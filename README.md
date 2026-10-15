@@ -7,7 +7,7 @@
 
 ## 当前状态
 
-**第一阶段 · Step 0 – Step 5.2.6 已完成**（Step 5.3 为工程化收尾，见下）：
+**第一阶段 · Step 0 – Step 5.8 进行中**（回测 API 与可视化前端已完成开发，尚未提交 Git）：
 
 - Step 0：仓库骨架；
 - Step 1：后端最小可跑（venv + 最小依赖 + `/health` 接口 + pytest）；
@@ -19,10 +19,16 @@
 - Step 5.2.4：回测执行引擎（T+1、涨跌停、手数、逐手回退、权益曲线、完整性判定）；
 - Step 5.2.5：绩效分析、JSON 序列化与可复现性（每日收益率、最大回撤、交易统计、数据集摘要、策略元数据）；
 - Step 5.2.6：系统级验收与集成（引擎自动填充绩效指标、跨模块端到端测试）；
-- Step 5.3：数据层加固（CSV UTF-8/GB18030 编码兼容）、端到端数据契约测试与工程文档。
+- Step 5.3：数据层加固（CSV UTF-8/GB18030 编码兼容）、端到端数据契约测试与工程文档；
+- Step 5.5：Windows 跨平台验收通过（310 passed），路径回归测试补充；
+- Step 5.6：回测 API 首版（`GET /datasets`、`GET /strategies`、`POST /backtests`，显式策略注册表 + 数据路径安全 + 统一异常映射）；
+- Step 5.7：跨平台回归验证、代码安全审查与版本基线固化（新增 junction 逃逸测试；Linux 回归验证待具备环境后执行）；
+- Step 5.8：回测结果可视化前端（React + Vite，见下文「前端」章节）。
 
-当前 **308 个 pytest 全部通过，1 个既有警告**（fastapi testclient 的 Starlette 弃用提示）。
-尚未实现：前端界面、实盘交易、多标的组合、数据库迁移。
+当前 **363 个 pytest 全部通过**（Step 5.7 Windows 实测；1 个符号链接文件测试在本机无权限时跳过，
+Windows 上以目录联接（junction）逃逸测试补充真实 reparse point 验证，Linux 下符号链接测试会实际执行），
+**1 个既有警告**（fastapi testclient 的 Starlette 弃用提示）。
+尚未实现：实盘交易、多标的组合、异步任务与结果持久化、数据库迁移、生产部署形态。
 
 > 费用与滑点为**模拟占位参数**（`fee_source=simulation_placeholder`），仅用于开发、测试与模拟，
 > **不代表任何券商真实费率或最新市场标准**。
@@ -67,6 +73,13 @@ DeepQuant/
 │   │   ├── version.py          # 项目版本 / 结果 schema 版本（唯一来源）
 │   │   └── api/                # FastAPI 路由（薄层）
 │   └── tests/                  # pytest，与 src 目录镜像
+├── frontend/                   # 回测结果可视化前端（Step 5.8，不入 Git：node_modules/dist）
+│   ├── src/api/                #   API 客户端（错误分类/超时）与手写 TS 类型（与 OpenAPI 对齐）
+│   ├── src/components/         #   数据集/策略/回测表单/绩效卡片/图表/明细表等界面组件
+│   ├── src/utils/              #   表单校验与请求体构造、格式化、图表数据变换（纯函数）
+│   ├── src/hooks/              #   后端健康状态
+│   ├── src/test/               #   Vitest 设置；测试文件与被测组件同目录
+│   └── vite.config.ts          #   开发代理 /api → http://127.0.0.1:8123 + Vitest 配置
 └── data/                       # 本地行情数据（不入 Git）
     ├── raw/                    # 原始行情（只读，不修改）
     ├── processed/              # 处理后行情
@@ -84,11 +97,11 @@ DeepQuant/
 
 | 层 | 选型 |
 |---|---|
-| 前端（本阶段暂不启用） | React · TypeScript · Vite · Tailwind CSS · Recharts |
+| 前端 | React 18 · TypeScript · Vite · Recharts · 原生 CSS（未使用 Tailwind） |
 | 后端 | Python · FastAPI |
 | 数据处理 | pandas · NumPy |
 | 数据存储 | CSV · Parquet · SQLite |
-| 测试 | pytest（+ 前端测试工具，后续） |
+| 测试 | pytest（后端）· Vitest + Testing Library（前端） |
 | 依赖管理 | venv + requirements.txt |
 | 版本管理 | Git · GitHub |
 
@@ -115,7 +128,7 @@ python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/pip install --no-deps -e .
 
-# 3) 运行测试（预期：308 passed, 1 warning）
+# 3) 运行测试（共 364 项；Windows 实测 363 passed + 1 skipped，Linux 下符号链接测试会实际执行）
 .venv/bin/python -m pytest -q
 
 # 4) 启动服务（http://127.0.0.1:8000/health，文档 /docs）
@@ -127,8 +140,8 @@ python3 -m venv .venv
 ```powershell
 # 在 backend 目录下执行（示例：cd D:\path\to\DeepQuant\backend）
 
-# 1) 创建虚拟环境
-py -3.12 -m venv .venv
+# 1) 创建虚拟环境（要求已安装 Python ≥ 3.12；开发环境实测 3.14.7）
+python -m venv .venv
 # 若激活脚本被执行策略拦截，可临时放开：
 #   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.venv\Scripts\Activate.ps1
@@ -138,7 +151,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 python -m pip install --no-deps -e .
 
-# 3) 运行测试（预期：308 passed, 1 warning）
+# 3) 运行测试（Windows 实测：363 passed, 1 skipped, 1 warning）
 python -m pytest -q
 
 # 4) 启动服务
@@ -272,6 +285,183 @@ restored = result_from_json(text)    # 恢复核心数据结构与类型
 引擎版本。三层可复现性（结果可序列化 / 输入可识别 / 过程可复现）需分别判定，
 缺关键项时明确标记为不可完全复现。
 
+## API 接口（Step 5.6 首版）
+
+同步 HTTP API，复用既有回测引擎与序列化契约；**不含前端、实盘、多标的组合与异步任务**。
+交互式文档：启动服务后访问 `http://127.0.0.1:8000/docs`（OpenAPI：`/openapi.json`）。
+
+### 数据根目录配置
+
+- 环境变量 **`DEEPQUANT_DATA_ROOT`** 指定数据根目录；未设置时默认使用仓库内 `backend/data/`
+  （以模块文件位置锚定，不依赖启动目录）。
+- 目录结构由导入管线生成：`raw/`（原始 CSV）、`processed/`（Parquet）、`metadata/`（`<symbol>.meta.json`）。
+- API **不接受客户端提供的任何文件路径**；数据集只能通过 symbol 标识符引用
+  （白名单字符：字母/数字开头，仅含字母/数字/`.`/`_`/`-`），所有文件访问都校验在数据根目录之内。
+- 数据根目录不存在时，数据集与回测接口返回 `503 data_root_unavailable`。
+
+### 路由表
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| GET | `/health` | 健康检查，返回 `{"status": "ok"}` |
+| GET | `/datasets` | 可用数据集列表（symbol / 行数 / 起止日期 / 原始 CSV 的 SHA-256）；损坏元数据列入 `invalid_datasets` |
+| GET | `/strategies` | 策略注册表（当前仅 `ma_cross`）：参数类型、默认值与约束说明 |
+| POST | `/backtests` | 同步执行回测，返回结果 JSON |
+
+### POST /backtests 请求字段
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---|---|
+| `dataset_symbol` | string | 是 | 已登记的数据集标识 |
+| `strategy_id` | string | 是 | 策略注册表标识（当前仅 `ma_cross`） |
+| `strategy_params` | object | 否 | 策略参数：`fast_window`(int ≥1, 默认 5)、`slow_window`(int >fast_window, 默认 20) |
+| `initial_cash` | number | 是 | 初始资金（>0） |
+| `start_date` / `end_date` | string(YYYY-MM-DD) | 否 | 回测区间（闭区间），缺省为数据全区间 |
+| `signal_lag` | int | 否 | 信号延迟，≥1，默认 1 |
+| `commission_rate` / `min_commission` / `stamp_duty_rate` / `transfer_fee_rate` / `slippage_buy` / `slippage_sell` | number | 否 | 费用与滑点（≥0）；**默认值为模拟占位参数** |
+
+未知字段一律拒绝（422）。客户端**不能**指定执行价规则、市场规则、模块路径或任意代码；
+`exec_price_rule` 固定为 `next_open`，市场规则为 A 股规则，`fee_source` 固定为 `simulation_placeholder`。
+
+### 响应结构
+
+```json
+{
+  "api": {"name": "deepquant-api", "version": "0.0.1"},
+  "result": { "schema_version": "0.1.0", "engine_version": "0.0.1", "config": {}, "period": {},
+              "strategy": {}, "dataset": {}, "orders": [], "fills": [], "account_states": [],
+              "performance": {}, "reproducibility": {} }
+}
+```
+
+`result` 为 `result_to_dict` 的原始输出（既有 JSON 契约不变，标准 JSON、无 NaN/Infinity）；
+`api` 为外层元信息。错误响应统一为 `{"error": {"code", "message", "details?"}}`：
+
+| 状态码 | code | 场景 |
+|---|---|---|
+| 400 | `data_validation_failed` / `backtest_rejected` / `data_load_failed` | 数据质量 ERROR；区间内无行情；数据无法按约定载入（详见服务端日志） |
+| 404 | `dataset_not_found` / `dataset_unavailable` / `strategy_not_found` | 数据集未登记 / 已登记但文件缺失或元数据无效 / 策略未注册 |
+| 422 | `invalid_request` / `invalid_strategy_params` / `invalid_config` | 字段或参数不合法 |
+| 503 | `data_root_unavailable` | 数据根目录不存在或不可访问 |
+| 500 | `serialization_failed` / `internal_error` | 结果序列化失败 / 未预期错误（详情见服务端日志） |
+
+错误响应不包含服务器绝对路径或堆栈。
+
+### 调用示例（PowerShell）
+
+```powershell
+# 准备数据集（一次性）：把 CSV 导入数据根目录
+python -c "from deepquant.data.pipeline import ingest_daily_csv; ingest_daily_csv(r'D:\quotes\600000.csv', symbol='600000', data_root=r'D:\DeepQuant\backend\data', source_name='my-vendor')"
+
+# 启动服务
+python -m uvicorn deepquant.api.app:app --host 127.0.0.1 --port 8000
+
+# 查询数据集与策略
+Invoke-RestMethod http://127.0.0.1:8000/datasets
+Invoke-RestMethod http://127.0.0.1:8000/strategies
+
+# 执行回测
+$body = @{
+  dataset_symbol = "600000"
+  strategy_id    = "ma_cross"
+  strategy_params = @{ fast_window = 5; slow_window = 20 }
+  initial_cash   = 100000
+  start_date     = "2020-01-01"
+  end_date       = "2024-12-31"
+} | ConvertTo-Json
+Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/backtests -ContentType "application/json" -Body $body
+```
+
+> 费用与滑点仍为**模拟占位参数**（响应 `config.fee_source=simulation_placeholder`），
+> 仅用于开发、测试与模拟，**不代表任何券商真实费率或最新市场标准**。
+> 首版为同步执行：2500 个交易日单标的回测约 0.22s（Step 5.7 Windows 本机实测），日线量级下无额外请求规模限制；
+> 异步任务与结果持久化属于后续阶段。
+
+## 前端（Step 5.8）
+
+回测结果可视化前端：**本地个人研究工具**，只对接上述本地 API；不含实盘交易、真实资金与公网部署。
+
+### 技术栈与目录
+
+- React 18 · TypeScript ~5.6 · Vite 6 · Recharts 2 · Vitest 3 + Testing Library（jsdom）；样式为手写 CSS（未使用 Tailwind）。
+- 代码位于 `frontend/`：`src/api/`（API 客户端与类型）、`src/components/`（界面组件）、
+  `src/utils/`（表单校验与请求体构造、格式化、图表数据，纯函数）、`src/hooks/`（健康状态）；
+  测试文件与被测组件同目录，Vitest 配置内嵌于 `vite.config.ts`。
+
+### 环境要求与安装
+
+- Node.js ≥ 18（Vite 6 官方支持 `^18 || ^20 || >=22`；开发环境实测 Node v24.21.0）与 npm。
+- 在 `frontend/` 目录执行 `npm install`（依赖版本由 `package-lock.json` 锁定；后端目前仍无锁文件）。
+- `npm install` 与 `npm ci` 的使用场景区分：日常开发（可能新增/更新依赖、允许改写 `package-lock.json`）用 `npm install`；
+  全新克隆、CI 或需要严格按锁文件复现安装时用 `npm ci`（要求 `package-lock.json` 与 `package.json` 一致，
+  安装前自动清空 `node_modules`，且不会修改锁文件）。
+
+### 启动与前后端联调
+
+1. 先启动后端（依赖安装见上文「后端快速开始」）。开发代理默认指向 `127.0.0.1:8123`：
+   ```powershell
+   python -m uvicorn deepquant.api.app:app --host 127.0.0.1 --port 8123
+   ```
+2. 再启动前端（`frontend/` 目录）：`npm run dev`，浏览器访问 `http://localhost:5173`。
+3. 联调方式：Vite 开发服务器把 `/api/*` 转发到后端（转发时去掉 `/api` 前缀），
+   **无需后端配置 CORS**。后端使用其他端口时，改 `frontend/vite.config.ts` 的
+   `BACKEND_DEV_TARGET`；或在 `frontend/.env.local` 设置 `VITE_API_BASE_URL=http://127.0.0.1:<端口>`
+   让前端直连后端（此时跨域由后端控制）。
+4. 注意：代理只存在于 `npm run dev` 开发服务器；`npm run build` 产出的 `dist/` 静态文件**没有代理**，
+   直连形态需 `VITE_API_BASE_URL` 在构建前指定（生产部署不属于本阶段范围）。
+
+### 常用命令（均在 `frontend/` 目录执行）
+
+| 命令 | 说明 |
+|---|---|
+| `npm run dev` | 启动开发服务器（默认 5173，含 `/api` 代理） |
+| `npm test` | 运行全部前端测试（Vitest 单次执行；当前 11 个文件 82 条） |
+| `npm run test:watch` | 测试监听模式 |
+| `npm run typecheck` | TypeScript 检查（`tsc --noEmit`） |
+| `npm run build` | 类型检查 + 生产构建（输出 `dist/`，不入 Git） |
+
+### 当前支持的功能
+
+- 数据集与策略列表**真实来自后端**（`GET /datasets` / `GET /strategies`），含失效数据集提示与手动刷新；
+- 参数表单由后端返回的策略 schema 驱动（类型/最小值/默认值占位）；参数**留空 = 使用后端默认值**；
+- 客户端即时校验（必填、整数/数字、日期格式与先后、快线窗口 < 慢线窗口）；后端校验仍是最终依据；
+- 同步运行回测并展示：回测概要、绩效指标卡片、账户资产曲线（后端 `equity_curve` 的**账户总资产**，
+  不是标准化净值或累计收益率曲线）、日收益率柱状图、最大回撤指标卡（后端仅提供汇总指标，无逐日回撤序列）、
+  订单/成交/账户状态明细、数据质量横幅与可复现性信息（数据摘要 digest、原始结果 JSON 折叠查看）；
+- 后端不可用 / 超时 / HTTP 错误 / 响应异常分类提示（含启动指引与重试）；请求失败时表单配置保留，可修改后重跑；
+- 运行期间禁用提交按钮、不自动重复提交；页面刷新后自动重新加载数据集与策略。
+
+### 当前未支持的功能
+
+- 实盘交易、券商账户连接、自动下单、真实资金管理；
+- 异步任务与进度条（后端为同步接口，页面如实显示「执行中 / 成功 / 失败」，不伪造任务 ID 或进度）；
+- 回测结果持久化与历史结果列表（结果仅保存在当前页面内存中）；
+- 多标的组合回测、策略编辑器、自定义策略代码执行、费率/滑点的前端配置项。
+
+### 回测费用与滑点限制
+
+- 前端**不提供**费率/滑点设置项；回测一律使用后端模拟占位默认值（`fee_source=simulation_placeholder`）。
+- 页面在提交摘要与结果页明确声明：该费率为**模拟占位参数，不代表任何真实券商费率**；
+  回测结果不构成对未来收益的任何保证。
+
+### 已知问题
+
+- `npm run build` 输出 Recharts 大 chunk 警告（本地研究工具可接受，未做代码分割优化）；
+- 无「回撤曲线」：后端只返回最大回撤汇总指标，页面仅展示指标并注明原因；
+- 响应式单栏布局（CSS 媒体查询 ≤960px）已实现，但未在真实移动设备或模拟视口下系统验收；
+- 生产部署形态（静态构建 + 直连后端 + CORS）未在本阶段实施与验证。
+
+### 启动失败与跨域排查
+
+- 页面顶栏显示「后端不可用」：确认后端已启动且端口与代理目标一致
+  （`curl http://127.0.0.1:8123/health` 应返回 `{"status":"ok"}`）；
+- 端口被占用：后端启动命令加 `--port <其他端口>` 并同步修改 `BACKEND_DEV_TARGET`（或改用
+  `VITE_API_BASE_URL` 直连）；前端端口冲突时修改 `vite.config.ts` 的 `server.port`；
+- 直连模式（`VITE_API_BASE_URL` 指向后端）出现浏览器 CORS 报错：本阶段后端未开放跨域，
+  **开发联调请使用默认代理模式**（`VITE_API_BASE_URL` 留空）；
+- Windows PowerShell 提示「禁止运行脚本」导致 npm 无法执行：改用 `npm.cmd`，或先执行
+  `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`。
+
 ## 多终端同步（GitHub）
 
 远端仓库：`https://github.com/simontang6868/DeepQuant`（默认分支 `main`）。
@@ -305,9 +495,7 @@ scripts/git-sync.sh "本次改动说明"
 
 ## 下一步
 
-- **Step 5.3 已完成**：CSV 编码兼容、数据契约端到端测试、工程文档。
-- **Step 5.4 已完成**：状态重新核实、数据/绩效/序列化契约审查、依赖可复现性评估、
-  Windows 验收准备、多终端同步脚本；Step 5.2.x/5.3 成果已提交并推送到 GitHub `main`。
-- 待办：Windows 本地验收（按上方 PowerShell 步骤在 Windows 机器执行并回传结果）。
-- 后续开发（Step 5.5+）：结果 API、前端绩效展示、结果比较、更多策略与数据源。
+- **Step 5.5 / 5.6 / 5.7 已完成**：跨平台验收、回测 API 首版、安全审查与版本基线固化（Linux 回归验证待具备环境后执行）。
+- **Step 5.8 已完成**：回测结果可视化前端开发与端到端验收（见上文「前端」章节），代码尚未提交 Git。
+- 后续开发：结果比较接口、异步任务与结果持久化、更多策略与数据源、移动端验收与生产部署形态。
 

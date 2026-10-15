@@ -186,3 +186,34 @@ def test_write_then_read_round_trip_with_chinese_content(tmp_path):
     reloaded = load_daily_csv(out)
     assert reloaded["名称"].tolist() == ["贵州茅台", "贵州茅台"]
     assert reloaded["close"].tolist() == df["close"].tolist()
+
+
+# ===================================================================== #
+# Windows 路径兼容（Step 5.5 验收补充）
+# ===================================================================== #
+
+
+def test_read_write_with_space_in_path(tmp_path):
+    # Windows 常见带空格目录/文件名（如 D:\My Data\）：读写往返应保持一致
+    sp_dir = tmp_path / "my data dir"
+    sp_dir.mkdir()
+    src = sp_dir / "sample data.csv"
+    src.write_text(CLEAN_CSV, encoding="utf-8")
+    df = load_daily_csv(src)
+    out = sp_dir / "out file.csv"
+    storage_io.write_daily_csv(df, out)
+    reloaded = load_daily_csv(out)
+    assert reloaded["close"].tolist() == df["close"].tolist() == [10.2, 10.4]
+
+
+def test_read_write_with_chinese_path(tmp_path):
+    # 中文目录/文件名（如 D:\量化数据\日线.csv）：读写往返应保持一致
+    cn_dir = tmp_path / "量化数据"
+    cn_dir.mkdir()
+    src = cn_dir / "日线行情.csv"
+    src.write_text(CLEAN_CSV, encoding="utf-8")
+    df = load_daily_csv(src)
+    out = cn_dir / "输出结果.csv"
+    storage_io.write_daily_csv(df, out)
+    reloaded = load_daily_csv(out)
+    assert reloaded["close"].tolist() == df["close"].tolist() == [10.2, 10.4]

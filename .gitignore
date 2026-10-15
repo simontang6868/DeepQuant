@@ -31,6 +31,9 @@ htmlcov/
 *.sqlite3
 *.db
 
+# API 服务默认数据根（backend/data/，可由 DEEPQUANT_DATA_ROOT 覆盖）：本地行情同样不入库
+/backend/data/
+
 # ---------- 密钥与环境变量（安全要求）----------
 .env
 .env.*
