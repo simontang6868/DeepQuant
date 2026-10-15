@@ -1,0 +1,52 @@
+# ============================================================
+# DeepQuant .gitignore
+# 原则：本地数据、虚拟环境、密钥一律不入 Git
+# ============================================================
+
+# ---------- Python 虚拟环境 / 缓存 ----------
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---------- 本地行情数据（原始 / 处理后分开保存，但不入库）----------
+# 保留目录结构（.gitkeep），忽略目录内实际数据文件
+/data/raw/*
+/data/processed/*
+/data/metadata/*
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep
+!/data/metadata/.gitkeep
+
+# 常见数据文件后缀，防止误提交到其他位置
+*.parquet
+*.sqlite
+*.sqlite3
+*.db
+
+# ---------- 密钥与环境变量（安全要求）----------
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# ---------- Node / 前端（第一阶段暂未启用，先预留）----------
+node_modules/
+dist/
+.vite/
+*.log
+
+# ---------- 编辑器 / 操作系统 ----------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

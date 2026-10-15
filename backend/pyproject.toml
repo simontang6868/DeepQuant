@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deepquant"
+version = "0.0.1"
+description = "DeepQuant - 面向个人投资者的量化研究、策略回测与自动化交易平台"
+requires-python = ">=3.12"
+# 运行依赖统一以 requirements.txt 为准（venv + requirements.txt 方式）
+
+[tool.setuptools.packages.find]
+where = ["src"]

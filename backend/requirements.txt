@@ -1,0 +1,10 @@
+# DeepQuant 后端依赖（venv + requirements.txt）
+# 安装：python -m venv .venv && .venv/bin/pip install -r requirements.txt
+# 版本已固定，便于复现；升级时请同步更新本文件。
+fastapi==0.143.1
+uvicorn[standard]==0.54.0
+pytest==9.1.1
+httpx==0.28.1
+pandas==3.0.6
+numpy==2.5.4
+pyarrow==26.0.0
