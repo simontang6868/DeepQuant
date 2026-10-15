@@ -7,13 +7,14 @@
 
 ## 当前状态
 
-**第一阶段 · Step 0 / Step 1 / Step 2 / Step 3 已完成**：
+**第一阶段 · Step 0 – Step 4 已完成**：
 - Step 0：仓库骨架；
 - Step 1：后端最小可跑（venv + 最小依赖 + `/health` 接口 + pytest）；
 - Step 2：数据层（CSV 导入、行情校验、确定性清洗、原始/处理分离落盘 + 元数据）；
-- Step 3：时间序列分析（简单/对数收益率、滚动均值/标准差、年化波动率）+ Parquet 存储。
+- Step 3：时间序列分析（简单/对数收益率、滚动均值/标准差、年化波动率）+ Parquet 存储；
+- Step 4：策略层（信号契约 + 双均线交叉策略，事件型信号、无未来函数）。
 
-当前 30 个 pytest 全部通过。尚未实现：策略、回测、绩效计算、前端。
+当前 36 个 pytest 全部通过。尚未实现：回测、绩效计算、前端。
 
 ## 第一阶段范围
 
@@ -140,6 +141,19 @@ vol20 = rolling_volatility(ret, 20, periods_per_year=252)        # 20 日年化�
 约定：所有滚动计算只使用「当前及过去」的数据（**无未来函数**）；`min_periods` 默认等于
 `window`，窗口未满返回 NaN；不做任何前向填充。
 
+## 策略层用法示例
+
+```python
+from deepquant.strategies.ma_cross import MaCrossStrategy
+
+strategy = MaCrossStrategy(fast_window=5, slow_window=20)
+signals = strategy.generate_signals(df)   # 与 df 同索引：1=BUY / -1=SELL / 0=HOLD
+print(strategy.describe())                # 记录名称/版本/参数，便于复现
+```
+
+信号契约：策略**只产出信号、不做撮合**；信号是**事件型**（仅在穿越当日给 BUY/SELL）；
+信号在 t 日收盘后产生，因此回测最早应在 **t+1 日**成交（避免未来函数）。
+
 ## 下一步
 
-Step 4：一个简单策略 —— 只产出信号（含明确的信号产生时间），并配套自动化测试。
+Step 5：基础历史回测 —— 撮合时点、手续费/滑点、持仓/现金/权益、逐笔交易记录 + 自动化测试。
