@@ -42,6 +42,7 @@ DeepQuant/
 ├── .gitignore
 ├── README.md
 ├── docs/                       # 设计记录、数据字典、回测约定
+├── scripts/                    # 多终端同步脚本（git-sync.sh / git-sync.ps1）
 ├── backend/
 │   ├── src/deepquant/
 │   │   ├── data/               # 数据层：导入 / 校验 / 清洗 / 存储
@@ -271,9 +272,42 @@ restored = result_from_json(text)    # 恢复核心数据结构与类型
 引擎版本。三层可复现性（结果可序列化 / 输入可识别 / 过程可复现）需分别判定，
 缺关键项时明确标记为不可完全复现。
 
+## 多终端同步（GitHub）
+
+远端仓库：`https://github.com/simontang6868/DeepQuant`（默认分支 `main`）。
+
+**每台机器首次**（含 Windows 电脑）：
+
+```bash
+git config --global user.name  "simontang6868"
+git config --global user.email "simontang6868@users.noreply.github.com"
+gh auth login                 # 或用 Git Credential Manager 登录一次；gh auth status 可查看状态
+git clone https://github.com/simontang6868/DeepQuant.git
+```
+
+**之后每次同步**（在仓库根目录执行）：
+
+```bash
+# Linux / macOS / WSL
+scripts/git-sync.sh "本次改动说明"
+```
+
+```powershell
+# Windows PowerShell
+.\scripts\git-sync.ps1 "本次改动说明"
+```
+
+脚本行为：`git add -A` → 有改动则 `commit` → `git pull --rebase --autostash` → `git push`。
+**绝不 force push**；如 rebase 出现冲突会停止，需人工解决后再次运行。省略说明参数时使用时间戳。
+
+> 同步前请确认已登录（`gh auth status`）。`.venv/`、`data/`、`__pycache__/`、`*.parquet` 等
+> 已被 `.gitignore` 排除，不会上传。多终端协作请遵循「先 `pull` 再改」，避免同一文件在两地同时改。
+
 ## 下一步
 
 - **Step 5.3 已完成**：CSV 编码兼容、数据契约端到端测试、工程文档。
-- 待办：Windows 本地验收（按上方 PowerShell 步骤在用户 Windows 机器执行并回传结果）；
-  按人工审核后的清单建立 Git 版本基线（本仓库当前**尚未**提交 Step 5.2.x/5.3 的新增文件）。
-- 后续开发（Step 5.4+）：前端绩效展示、结果比较、更多策略与数据源。
+- **Step 5.4 已完成**：状态重新核实、数据/绩效/序列化契约审查、依赖可复现性评估、
+  Windows 验收准备、多终端同步脚本；Step 5.2.x/5.3 成果已提交并推送到 GitHub `main`。
+- 待办：Windows 本地验收（按上方 PowerShell 步骤在 Windows 机器执行并回传结果）。
+- 后续开发（Step 5.5+）：结果 API、前端绩效展示、结果比较、更多策略与数据源。
+
