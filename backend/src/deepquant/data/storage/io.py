@@ -21,10 +21,13 @@ def file_sha256(path: str | Path) -> str:
 
 
 def write_daily_csv(df: pd.DataFrame, path: str | Path) -> Path:
-    """将行情 DataFrame 写为 CSV（不写索引）。"""
+    """将行情 DataFrame 写为 CSV（不写索引）。
+
+    明确使用 UTF-8 编码（不再依赖操作系统默认编码，避免 Windows 本地 GBK 乱码）。
+    """
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(path, index=False)
+    df.to_csv(path, index=False, encoding="utf-8")
     return path
 
 
