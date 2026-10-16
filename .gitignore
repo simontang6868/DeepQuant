@@ -25,6 +25,10 @@ htmlcov/
 !/data/processed/.gitkeep
 !/data/metadata/.gitkeep
 
+# Step 7.5 起新增的研究数据目录（如 data/step75/*.qfq.csv）
+# 必须以 / 开头锚定仓库根目录；写成 data/**/*.csv 会误伤 backend/tests/data 下的测试夹具
+/data/**/*.csv
+
 # 常见数据文件后缀，防止误提交到其他位置
 *.parquet
 *.sqlite
