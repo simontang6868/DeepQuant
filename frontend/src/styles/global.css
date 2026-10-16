@@ -403,6 +403,11 @@ body {
   margin: 8px 0 0;
 }
 
+.text-warn {
+  color: var(--warn);
+  font-weight: 600;
+}
+
 /* ---------- 数据表 ---------- */
 
 .table-scroll {
@@ -523,4 +528,375 @@ details summary {
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   background: var(--panel);
+}
+
+/* ---------------------------------------------------------------------------
+ * Step 6.4：历史回测页面
+ * ------------------------------------------------------------------------- */
+
+.app-tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--bg);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: background 120ms, color 120ms;
+}
+
+.tab:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
+.tab-active {
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.app-main-history {
+  display: block;
+  padding: 18px;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.history-filters {
+  padding: 14px 16px;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: end;
+}
+
+.filter-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+  min-width: 170px;
+}
+
+.filter-row input,
+.filter-row select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 7px 9px;
+  color: var(--text);
+  font-size: 13px;
+  width: 100%;
+}
+
+.filter-row input:focus,
+.filter-row select:focus {
+  outline: none;
+  border-color: var(--accent, #3b82f6);
+}
+
+.filter-actions {
+  display: flex;
+  gap: 8px;
+  align-self: flex-end;
+}
+
+.history-table-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.history-table th {
+  text-align: left;
+  padding: 8px 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  white-space: nowrap;
+}
+
+.history-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-table tbody tr:hover {
+  background: var(--border);
+}
+
+.btn-small {
+  padding: 3px 8px;
+  font-size: 12px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+.tag-ok {
+  border-color: #16a34a;
+  color: #16a34a;
+  background: rgba(22, 163, 74, 0.08);
+}
+
+.tag-warn {
+  border-color: #ca8a04;
+  color: #ca8a04;
+  background: rgba(202, 138, 4, 0.08);
+}
+
+.tag-neutral {
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 6px;
+}
+
+.page-indicator {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.detail-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.detail-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.detail-meta {
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.meta-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.meta-table th,
+.meta-table td {
+  padding: 6px 10px;
+  border-bottom: 1px dashed var(--border);
+  text-align: left;
+}
+
+.meta-table th {
+  width: 140px;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.meta-table td {
+  word-break: break-all;
+}
+
+/* ---------- 回测比较（Step 6.5 / 6.6） ---------- */
+
+.compare-table {
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.compare-table th {
+  background: #f8fafc;
+  font-weight: 600;
+}
+
+.compare-label-col {
+  width: 130px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.compare-col code {
+  font-size: 12px;
+}
+
+.cell-missing {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.cell-best {
+  background: #ecfdf5;
+  font-weight: 600;
+}
+
+.best-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-size: 11px;
+  color: #047857;
+  background: #d1fae5;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.compare-warnings li.warn-item {
+  margin: 6px 0;
+  color: var(--warn);
+}
+
+.diff-block {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: var(--radius);
+}
+
+.diff-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.badge-warn {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  font-size: 11px;
+  color: var(--warn);
+  background: #fef3c7;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* ---------- 结果完整性审计（Step 6.7） ---------- */
+
+.integrity-card {
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+
+.integrity-card h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.integrity-meta {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  word-break: break-all;
+}
+
+.check-list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+}
+
+.check-list li {
+  margin: 3px 0;
+}
+
+/* ---------- 只读复现信息清单（Step 6.8） ---------- */
+
+.repro-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.repro-level {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  background: var(--panel);
+}
+
+.repro-level-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.repro-level-row {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 2px 0;
+  word-break: break-word;
+}
+
+.repro-level .hint {
+  margin: 4px 0 0;
 }

@@ -12,6 +12,9 @@ vi.mock("./EquityChart", () => ({ EquityChart: () => <div data-testid="mock-equi
 vi.mock("./DailyReturnsChart", () => ({
   DailyReturnsChart: () => <div data-testid="mock-daily-returns-chart" />,
 }));
+vi.mock("./DrawdownChart", () => ({
+  DrawdownChart: () => <div data-testid="mock-drawdown-chart" />,
+}));
 
 function makeResult(patch: Partial<BacktestResult> = {}): BacktestResult {
   return {

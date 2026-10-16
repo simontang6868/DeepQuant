@@ -74,6 +74,8 @@ export interface BacktestRequestPayload {
   end_date?: string;
   /** 信号延迟（>=1 个交易日）；不传则使用后端默认值 1 */
   signal_lag?: number;
+  /** 是否持久化到历史记录；不传则后端默认 true（Step 6.2 新增） */
+  save?: boolean;
 }
 
 // --------------------------------------------------------------------------- //
@@ -258,4 +260,173 @@ export interface BacktestResult {
 export interface BacktestResponse {
   api: ApiInfo;
   result: BacktestResult;
+  /** 本次回测运行标识；save=false 时为 null（Step 6.2 新增，可选字段） */
+  run_id?: string | null;
+}
+
+// --------------------------------------------------------------------------- //
+// Step 6.3：历史回测列表 & 详情（后端 GET /backtests + GET /backtests/{run_id}）
+// --------------------------------------------------------------------------- //
+
+export interface BacktestRunListItem {
+  run_id: string;
+  created_at: string;
+  status: string;
+  symbol: string;
+  strategy_id: string | null;
+  strategy_version: string | null;
+  strategy_params: Record<string, unknown> | null;
+  dataset_symbol: string;
+  start_date: string | null;
+  end_date: string | null;
+  initial_cash: number;
+  source_sha256: string | null;
+  dataset_digest: string | null;
+  result_digest: string | null;
+  is_complete: boolean;
+  duration_ms: number | null;
+}
+
+export interface BacktestRunListResponse {
+  items: BacktestRunListItem[];
+  /** 符合过滤条件的总记录数（非当前页数量） */
+  total: number;
+  limit: number;
+  offset: number;
+}
+
+export interface BacktestRunDetailResponse {
+  run_id: string;
+  metadata: BacktestRunListItem;
+  /** 完整历史结果；结构与 BacktestResponse.result 相同 */
+  result: BacktestResult;
+}
+
+// --------------------------------------------------------------------------- //
+// Step 6.7：只读完整性审计（GET /backtests/{run_id}/integrity）
+// --------------------------------------------------------------------------- //
+
+/** 审计三态：passed=已执行检查均通过；failed=存在明确完整性问题；incomplete=信息不足无法完成全部检查 */
+export type BacktestIntegrityStatus = "passed" | "failed" | "incomplete";
+
+export interface BacktestIntegrityCheck {
+  name: string;
+  /** 单项检查状态（passed / failed / incomplete） */
+  status: BacktestIntegrityStatus | string;
+  message: string;
+}
+
+export interface BacktestIntegrityResponse {
+  run_id: string;
+  status: BacktestIntegrityStatus | string;
+  checks: BacktestIntegrityCheck[];
+  metadata_result_digest: string | null;
+  document_result_digest: string | null;
+  recomputed_digest: string | null;
+  /** 本次审计执行时间（UTC ISO-8601） */
+  audited_at: string;
+}
+
+// --------------------------------------------------------------------------- //
+// Step 6.8：只读复现信息清单（GET /backtests/{run_id}/reproducibility）
+// --------------------------------------------------------------------------- //
+
+/**
+ * 单项复现信息的保存 / 可验证状态。
+ * - available：记录中存在；
+ * - missing：记录中缺失；
+ * - verifiable：能依据现有材料验证；
+ * - not_verifiable：缺少必要材料，无法验证；
+ * - not_archived：原始数据或必要文件未归档；
+ * - not_recorded：历史运行时没有保存相关信息；
+ * - not_applicable：该项不适用。
+ */
+export type BacktestReproItemStatus =
+  | "available"
+  | "missing"
+  | "verifiable"
+  | "not_verifiable"
+  | "not_archived"
+  | "not_recorded"
+  | "not_applicable";
+
+export interface BacktestReproItem {
+  key: string;
+  label: string;
+  category: string;
+  status: BacktestReproItemStatus | string;
+  detail: string;
+  value: string | null;
+}
+
+/** 某一层级（数据 / 代码 / 环境）的复现能力状态 */
+export type BacktestReproLevelStatus = "full" | "partial" | "none" | "undetermined";
+
+export interface BacktestReproLevel {
+  /** data / code / environment */
+  level: string;
+  status: BacktestReproLevelStatus | string;
+  basis: string;
+  available_materials: string[];
+  missing_materials: string[];
+  impact: string;
+}
+
+export interface BacktestReproducibilityResponse {
+  run_id: string;
+  generated_at: string;
+  /** 结果文档可读性：ok / missing / corrupted */
+  result_document_state: string;
+  items: BacktestReproItem[];
+  levels: BacktestReproLevel[];
+  missing_info: string[];
+  conclusion: string;
+}
+
+// --------------------------------------------------------------------------- //
+// Step 6.5：历史回测比较（POST /backtests/compare）
+// --------------------------------------------------------------------------- //
+
+export interface BacktestCompareRequestPayload {
+  /** 至少 2 条、最多 5 条 run_id；顺序决定响应顺序 */
+  run_ids: string[];
+}
+
+export interface BacktestCompareMetrics {
+  initial_equity: number | null;
+  final_equity: number | null;
+  total_pnl: number | null;
+  cumulative_return: number | null;
+  annualized_return: number | null;
+  annualized_volatility: number | null;
+  max_drawdown_amount: number | null;
+  max_drawdown_ratio: number | null;
+  n_orders: number | null;
+  n_filled_orders: number | null;
+  n_fills: number | null;
+  n_closed_trades: number | null;
+  win_rate: number | null;
+}
+
+export interface BacktestCompareItem {
+  run_id: string;
+  metadata: BacktestRunListItem;
+  metrics: BacktestCompareMetrics;
+}
+
+/** compare_metadata() 输出的结构（performance/comparison.py）。 */
+export interface BacktestComparePair {
+  fairly_comparable: boolean;
+  identical: Record<string, unknown>;
+  differences: Record<string, [unknown, unknown]>;
+  reasons: string[];
+  strategy_differs: boolean;
+}
+
+export interface BacktestCompareResponse {
+  items: BacktestCompareItem[];
+  /** 两两比较；键为 sorted run_id 用 "||" 连接 */
+  pairwise: Record<string, BacktestComparePair>;
+  /** 面向用户的警示（含不可公平比较 / 关键差异） */
+  warnings: string[];
 }

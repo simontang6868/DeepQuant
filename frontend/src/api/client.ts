@@ -12,8 +12,14 @@
  */
 
 import type {
+  BacktestCompareRequestPayload,
+  BacktestCompareResponse,
+  BacktestIntegrityResponse,
+  BacktestReproducibilityResponse,
   BacktestRequestPayload,
   BacktestResponse,
+  BacktestRunDetailResponse,
+  BacktestRunListResponse,
   DatasetListResponse,
   StrategyListResponse,
 } from "./types";
@@ -221,6 +227,115 @@ export async function postBacktest(payload: BacktestRequestPayload): Promise<Bac
       timeoutMs: BACKTEST_TIMEOUT_MS,
       timeoutMessage:
         "回测请求超时：同步回测可能仍在后端执行，本次结果不会自动返回；请稍后重新提交，不要短时间反复提交。",
+    },
+  );
+}
+
+// --------------------------------------------------------------------------- //
+// Step 6.3：历史回测列表 & 详情
+// --------------------------------------------------------------------------- //
+
+export interface ListBacktestRunsParams {
+  limit?: number;
+  offset?: number;
+  symbol?: string | null;
+  strategy_id?: string | null;
+  status?: string | null;
+}
+
+/** 构建 query 字符串，自动跳过 null/undefined/空字符串值。 */
+function buildQuery(params: Record<string, unknown>): string {
+  const entries = Object.entries(params).filter(
+    ([, v]) => v !== undefined && v !== null && v !== "",
+  );
+  if (entries.length === 0) return "";
+  return "?" + entries.map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(String(v))}`).join("&");
+}
+
+export async function getBacktestRuns(
+  params: ListBacktestRunsParams = {},
+): Promise<BacktestRunListResponse> {
+  const query = buildQuery({
+    limit: params.limit,
+    offset: params.offset,
+    symbol: params.symbol,
+    strategy_id: params.strategy_id,
+    status: params.status,
+  });
+  return request(`/backtests${query}`, (data) => {
+    const obj = expectObject(data, "/backtests 列表响应");
+    expectArray(obj.items, "/backtests 列表响应的 items 字段");
+    if (typeof obj.total !== "number") {
+      throw new ApiError("invalid_response", "/backtests 列表响应缺少 total 字段");
+    }
+    return obj as unknown as BacktestRunListResponse;
+  });
+}
+
+export async function getBacktestRunDetail(runId: string): Promise<BacktestRunDetailResponse> {
+  return request(`/backtests/${encodeURIComponent(runId)}`, (data) => {
+    const obj = expectObject(data, `/backtests/${runId} 详情响应`);
+    expectObject(obj.metadata, `/backtests/${runId} 详情响应缺少 metadata 对象`);
+    expectObject(obj.result, `/backtests/${runId} 详情响应缺少 result 对象`);
+    return obj as unknown as BacktestRunDetailResponse;
+  });
+}
+
+// --------------------------------------------------------------------------- //
+// Step 6.7：只读完整性审计
+// --------------------------------------------------------------------------- //
+
+export async function getBacktestRunIntegrity(
+  runId: string,
+): Promise<BacktestIntegrityResponse> {
+  return request(`/backtests/${encodeURIComponent(runId)}/integrity`, (data) => {
+    const obj = expectObject(data, `/backtests/${runId}/integrity 响应`);
+    expectArray(obj.checks, `/backtests/${runId}/integrity 响应的 checks 字段`);
+    if (typeof obj.status !== "string") {
+      throw new ApiError("invalid_response", `/backtests/${runId}/integrity 响应缺少 status 字段`);
+    }
+    return obj as unknown as BacktestIntegrityResponse;
+  });
+}
+
+// --------------------------------------------------------------------------- //
+// Step 6.8：只读复现信息清单
+// --------------------------------------------------------------------------- //
+
+export async function getBacktestRunReproducibility(
+  runId: string,
+): Promise<BacktestReproducibilityResponse> {
+  return request(`/backtests/${encodeURIComponent(runId)}/reproducibility`, (data) => {
+    const obj = expectObject(data, `/backtests/${runId}/reproducibility 响应`);
+    expectArray(obj.items, `/backtests/${runId}/reproducibility 响应的 items 字段`);
+    expectArray(obj.levels, `/backtests/${runId}/reproducibility 响应的 levels 字段`);
+    if (typeof obj.result_document_state !== "string") {
+      throw new ApiError(
+        "invalid_response",
+        `/backtests/${runId}/reproducibility 响应缺少 result_document_state 字段`,
+      );
+    }
+    return obj as unknown as BacktestReproducibilityResponse;
+  });
+}
+
+// --------------------------------------------------------------------------- //
+// Step 6.5：历史回测比较
+// --------------------------------------------------------------------------- //
+
+export async function postBacktestCompare(
+  payload: BacktestCompareRequestPayload,
+): Promise<BacktestCompareResponse> {
+  return request(
+    "/backtests/compare",
+    (data) => {
+      const obj = expectObject(data, "/backtests/compare 响应");
+      expectArray(obj.items, "/backtests/compare 响应的 items 字段");
+      return obj as unknown as BacktestCompareResponse;
+    },
+    {
+      method: "POST",
+      body: payload,
     },
   );
 }

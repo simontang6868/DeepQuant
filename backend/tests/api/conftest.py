@@ -87,6 +87,14 @@ def client_with_dataset(client, data_root, tmp_path) -> TestClient:
     return client
 
 
+@pytest.fixture(autouse=True)
+def _isolate_db(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
+    """将持久化数据库重定向到临时文件，避免污染工作区或互相干扰。"""
+    db = tmp_path / "backtests.db"
+    monkeypatch.setenv("DEEPQUANT_DB_PATH", str(db))
+    return db
+
+
 @pytest.fixture
 def valid_backtest_payload() -> dict:
     """一份合法的回测请求体。"""

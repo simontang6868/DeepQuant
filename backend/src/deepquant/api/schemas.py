@@ -106,6 +106,11 @@ class BacktestRequest(BaseModel):
     start_date: date | None = Field(default=None, description="回测起始日（闭区间）")
     end_date: date | None = Field(default=None, description="回测结束日（闭区间）")
     signal_lag: int = Field(default=1, ge=1, description="信号延迟（>= 1 个交易日）")
+    save: bool = Field(
+        default=True,
+        description="是否将本次回测结果持久化到历史记录（默认 true）。"
+        "为 false 时执行回测但不写入历史记录，响应 run_id 为 null。",
+    )
 
     # --- 费用与滑点（模拟占位默认值，可在请求中显式覆盖）---
     commission_rate: float = Field(default=SIMULATION_COMMISSION_RATE, ge=0, allow_inf_nan=False)
@@ -116,7 +121,7 @@ class BacktestRequest(BaseModel):
     slippage_sell: float = Field(default=SIMULATION_SLIPPAGE_SELL, ge=0, allow_inf_nan=False)
 
     @model_validator(mode="after")
-    def _check_date_range(self) -> "BacktestRequest":
+    def _check_date_range(self) -> BacktestRequest:
         if self.start_date is not None and self.end_date is not None and self.start_date > self.end_date:
             raise ValueError("start_date 不能晚于 end_date")
         return self
@@ -134,4 +139,245 @@ class BacktestResponse(BaseModel):
     result: dict[str, Any] = Field(
         description="result_to_dict 的原始输出（schema_version/engine_version/config/period/"
         "strategy/dataset/orders/fills/account_states/performance/reproducibility 等）"
+    )
+    run_id: str | None = Field(
+        default=None,
+        description="本次回测运行的唯一标识。save=true 且保存成功时非空；"
+        "save=false 时为 null。新增字段，不影响旧客户端。",
+    )
+
+
+# --------------------------------------------------------------------------- #
+# GET /backtests  历史回测列表
+# --------------------------------------------------------------------------- #
+
+
+class BacktestRunListItem(BaseModel):
+    """历史回测列表中的单条元数据摘要（不包含完整结果文档）。"""
+
+    run_id: str
+    created_at: str
+    status: str
+    symbol: str
+    strategy_id: str | None
+    strategy_version: str | None
+    strategy_params: dict[str, Any] | None = None
+    dataset_symbol: str
+    start_date: str | None = None
+    end_date: str | None = None
+    initial_cash: float
+    source_sha256: str | None = None
+    dataset_digest: str | None = None
+    result_digest: str | None = None
+    is_complete: bool
+    duration_ms: int | None = None
+
+
+class BacktestRunListResponse(BaseModel):
+    """历史回测列表响应。"""
+
+    items: list[BacktestRunListItem]
+    total: int = Field(description="符合过滤条件的总记录数（非当前页数量）")
+    limit: int
+    offset: int
+
+
+# --------------------------------------------------------------------------- #
+# GET /backtests/{run_id}  历史回测详情
+# --------------------------------------------------------------------------- #
+
+
+class BacktestRunDetailResponse(BaseModel):
+    """历史回测详情响应：元数据 + 完整结果文档。"""
+
+    run_id: str
+    metadata: BacktestRunListItem
+    result: dict[str, Any] = Field(description="已保存的完整回测结果文档（result_to_dict 输出）")
+
+
+# --------------------------------------------------------------------------- #
+# GET /backtests/{run_id}/integrity  只读完整性审计
+# --------------------------------------------------------------------------- #
+
+
+class BacktestIntegrityCheck(BaseModel):
+    """单项完整性检查结果。
+
+    ``status`` 三态：passed / failed / incomplete。
+    - failed：存在明确的完整性问题（如摘要不一致、文档缺失）；
+    - incomplete：必要信息缺失，无法完成该检查（**不等于**校验通过）。
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    name: str
+    status: str
+    message: str
+
+
+class BacktestIntegrityResponse(BaseModel):
+    """只读完整性审计响应。
+
+    仅描述「已保存结果文档与其摘要是否一致」与「必需字段是否齐全」，
+    不表示策略结果正确、也不表示回测可复现（后者见结果文档的 reproducibility）。
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    run_id: str
+    status: str = Field(description="passed / failed / incomplete")
+    checks: list[BacktestIntegrityCheck]
+    metadata_result_digest: str | None = None
+    document_result_digest: str | None = None
+    recomputed_digest: str | None = None
+    audited_at: str = Field(description="本次审计的执行时间（UTC ISO-8601）")
+
+
+# --------------------------------------------------------------------------- #
+# GET /backtests/{run_id}/reproducibility  只读复现信息清单
+# --------------------------------------------------------------------------- #
+
+
+class BacktestReproItem(BaseModel):
+    """复现清单中的单项：某类信息的保存 / 可验证状态。
+
+    ``status`` 取值（前后端一致）：
+    - available：记录中存在；
+    - missing：记录中缺失；
+    - verifiable：能依据现有材料验证；
+    - not_verifiable：缺少必要材料，无法验证；
+    - not_archived：原始数据或必要文件未归档；
+    - not_recorded：历史运行时没有保存相关信息；
+    - not_applicable：该项不适用。
+
+    注意：字段存在不等于内容真实可靠；摘要存在不等于原始文件存在；
+    缺少必要证据时一律如实标注，绝不推断为「已验证」。
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    key: str
+    label: str
+    category: str
+    status: str
+    detail: str
+    value: str | None = None
+
+
+class BacktestReproLevel(BaseModel):
+    """某一层级（data / code / environment）的复现能力评估。
+
+    ``status`` 取值：full（具备）/ partial（部分具备）/ none（不具备）/
+    undetermined（无法判断）。缺少关键证据时不得标记为 full。
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    level: str = Field(description="data / code / environment")
+    status: str = Field(description="full / partial / none / undetermined")
+    basis: str
+    available_materials: list[str]
+    missing_materials: list[str]
+    impact: str
+
+
+class BacktestReproducibilityResponse(BaseModel):
+    """只读复现信息清单响应。
+
+    明确区分三件事（不得混为一谈）：
+    1. 记录了哪些信息（items.status）；
+    2. 能否被验证（items.status / levels）；
+    3. 凭现有材料能否重新执行（levels）。
+
+    只读：不重跑回测、不写入、不修改历史记录。``result_document_state`` 仅表示
+    结果文档能否被读取（ok / missing / corrupted）；完整性审计结论见 /integrity。
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    run_id: str
+    generated_at: str = Field(description="本清单的生成时间（UTC ISO-8601）")
+    result_document_state: str = Field(description="ok / missing / corrupted（结果文档可读性）")
+    items: list[BacktestReproItem]
+    levels: list[BacktestReproLevel]
+    missing_info: list[str] = Field(description="影响复现的关键缺失信息摘要")
+    conclusion: str = Field(description="复现能力结论（不宣称完全可复现）")
+
+
+# --------------------------------------------------------------------------- #
+# POST /backtests/compare  历史回测比较
+# --------------------------------------------------------------------------- #
+
+MAX_COMPARE_RUNS = 5  # 最多比较 5 条
+MIN_COMPARE_RUNS = 2  # 至少 2 条
+
+
+class BacktestCompareRequest(BaseModel):
+    """比较请求：run_ids 顺序即展示顺序（稳定对应 response.items）。"""
+
+    model_config = ConfigDict(extra="forbid")
+
+    run_ids: list[str] = Field(
+        ...,
+        min_length=MIN_COMPARE_RUNS,
+        max_length=MAX_COMPARE_RUNS,
+        description="至少 2 条、最多 5 条待比较的 run_id",
+    )
+
+    @model_validator(mode="after")
+    def _validate_ids(self) -> "BacktestCompareRequest":
+        # 空字符串 / 首尾空白 / 重复 均不允许
+        cleaned = [s.strip() for s in self.run_ids]
+        if any(s == "" for s in cleaned):
+            raise ValueError("run_ids 中不得包含空字符串")
+        if len(set(cleaned)) != len(cleaned):
+            raise ValueError("run_ids 不得重复")
+        self.run_ids = cleaned
+        return self
+
+
+class BacktestCompareMetrics(BaseModel):
+    """从完整结果文档的 performance 中提取、用于比较的绩效指标。
+
+    缺失指标显式为 null；绝不伪造 0。
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    initial_equity: float | None = None
+    final_equity: float | None = None
+    total_pnl: float | None = None
+    cumulative_return: float | None = None
+    annualized_return: float | None = None
+    annualized_volatility: float | None = None
+    max_drawdown_amount: float | None = None
+    max_drawdown_ratio: float | None = None
+    n_orders: int | None = None
+    n_filled_orders: int | None = None
+    n_fills: int | None = None
+    n_closed_trades: int | None = None
+    win_rate: float | None = None
+
+
+class BacktestCompareItem(BaseModel):
+    """单条回测在比较响应中的项。"""
+
+    run_id: str
+    metadata: BacktestRunListItem
+    metrics: BacktestCompareMetrics
+
+
+class BacktestCompareResponse(BaseModel):
+    """历史回测比较响应。"""
+
+    model_config = ConfigDict(extra="forbid")
+
+    items: list[BacktestCompareItem]
+    # 两两比较结果（键为 "a_id||b_id"，值为 compare_metadata() 的输出）
+    pairwise: dict[str, dict[str, Any]] = Field(
+        description="两两可比性分析；键为 sorted run_id 用 '||' 连接",
+    )
+    # 整体警告：存在多少对不可公平比较 / 关键配置差异
+    warnings: list[str] = Field(
+        description="面向用户的差异说明，不包含服务端内部细节",
     )

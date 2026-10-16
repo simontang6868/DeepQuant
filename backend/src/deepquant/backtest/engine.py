@@ -158,6 +158,18 @@ def run_backtest(
     dataset_meta = dataset_summary(df, dataset_id=config.symbol)
     strategy_meta = capture_strategy_metadata(strategy)
 
+    # --------------------------------------------------------------------- #
+    # 生成信号（先于区间裁剪，保证策略可以用 start_date 之前的预热数据）。
+    #
+    # Walk-Forward 场景中，调用方会把「训练尾部（预热）+ 样本外区间」拼接后一起传入；
+    # 这里先让策略在完整 df 上生成信号，再裁剪到交易区间 —— 这样 start_date 之前
+    # 的历史信息可以用来预热移动均线等滚动指标，但不会被计入交易统计 / 权益。
+    #
+    # 对于常规单次回测（没有额外预热），调用方只会传交易区间的数据，此时
+    # df_full 与裁剪后的 df 相同，行为完全一致，不会引入回归。
+    # --------------------------------------------------------------------- #
+    signals_full = strategy.generate_signals(df)
+
     if config.start_date is not None:
         df = df.loc[df.index >= config.start_date]
     if config.end_date is not None:
@@ -165,7 +177,17 @@ def run_backtest(
     if df.empty:
         raise ValueError("回测区间内没有可用的行情数据")
 
-    signals = validate_signals(strategy.generate_signals(df), df.index, strategy.name)
+    # 按 df.index 裁剪信号（仅保留交易区间内的信号日期）
+    if not signals_full.index.equals(df.index):
+        try:
+            signals = signals_full.loc[df.index]
+        except KeyError:
+            raise ValueError(
+                "策略信号索引与行情索引不一致：包含行情中不存在的日期"
+            )
+    else:
+        signals = signals_full
+    signals = validate_signals(signals, df.index, strategy.name)
 
     rules = config.market_rules
     lot_size = rules.lot_size

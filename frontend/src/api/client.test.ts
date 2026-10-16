@@ -4,7 +4,7 @@
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { ApiError, getDatasets, getHealth, getStrategies, postBacktest } from "./client";
+import { ApiError, getBacktestRunDetail, getBacktestRunIntegrity, getBacktestRuns, getDatasets, getHealth, getStrategies, postBacktest } from "./client";
 import type { BacktestRequestPayload } from "./types";
 
 const fetchMock = vi.fn();
@@ -182,5 +182,180 @@ describe("错误处理", () => {
     const err = await promise;
     vi.useRealTimers();
     expect((err as ApiError).kind).toBe("timeout");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Step 6.4：历史列表 & 详情 API 客户端测试
+// ---------------------------------------------------------------------------
+
+const SAMPLE_ITEM = {
+  run_id: "abc123",
+  created_at: "2026-01-01T00:00:00.000000Z",
+  status: "succeeded",
+  symbol: "000001.SZ",
+  strategy_id: "ma_cross",
+  strategy_version: "0.1.0",
+  strategy_params: { fast_window: 5, slow_window: 20 },
+  dataset_symbol: "TEST01",
+  start_date: "2020-01-01",
+  end_date: "2020-02-09T00:00:00",
+  initial_cash: 100000,
+  source_sha256: "sha256:a",
+  dataset_digest: "sha256:b",
+  result_digest: "sha256:c",
+  is_complete: true,
+  duration_ms: 1234,
+};
+
+const SAMPLE_LIST_RESPONSE = {
+  items: [SAMPLE_ITEM],
+  total: 1,
+  limit: 20,
+  offset: 0,
+};
+
+const SAMPLE_DETAIL_RESPONSE = {
+  run_id: "abc123",
+  metadata: SAMPLE_ITEM,
+  result: {
+    schema_version: "1",
+    engine_version: "1",
+    config: { symbol: "000001.SZ" },
+    period: { start: null, end: null },
+    strategy: null,
+    dataset: null,
+    orders: [],
+    fills: [],
+    account_states: [],
+    data_quality_issues: [],
+    limitations: [],
+    is_complete: true,
+    incomplete_reasons: [],
+    performance: null,
+    reproducibility: { inputs_identifiable: true, process_reproducible: true, missing: [], notes: [] },
+  },
+};
+
+describe("getBacktestRuns", () => {
+  it("默认参数构造正确 URL", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, SAMPLE_LIST_RESPONSE));
+    await getBacktestRuns();
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/backtests",
+      expect.objectContaining({ method: "GET" }),
+    );
+  });
+
+  it("带筛选和分页参数", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, SAMPLE_LIST_RESPONSE));
+    await getBacktestRuns({ limit: 50, offset: 40, symbol: "000001.SZ", status: "succeeded" });
+    const url = fetchMock.mock.calls[0][0] as string;
+    expect(url).toContain("limit=50");
+    expect(url).toContain("offset=40");
+    expect(url).toContain("symbol=000001.SZ");
+    expect(url).toContain("status=succeeded");
+    expect(url).toContain("?");
+  });
+
+  it("空字符串筛选不发送无意义参数", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, SAMPLE_LIST_RESPONSE));
+    await getBacktestRuns({ symbol: "", limit: 20 });
+    const url = fetchMock.mock.calls[0][0] as string;
+    expect(url).not.toContain("symbol=");
+  });
+
+  it("空响应列表 → invalid_response", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, { items: "not-array", total: 0 }));
+    const err = await getBacktestRuns().catch((e: unknown) => e);
+    expect((err as ApiError).kind).toBe("invalid_response");
+  });
+});
+
+describe("getBacktestRunDetail", () => {
+  it("正确请求 run_id", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, SAMPLE_DETAIL_RESPONSE));
+    const runId = "xyz-run-id-abc";
+    await getBacktestRunDetail(runId);
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/backtests/xyz-run-id-abc",
+      expect.objectContaining({ method: "GET" }),
+    );
+  });
+
+  it("对 run_id 做 URL 编码", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, SAMPLE_DETAIL_RESPONSE));
+    await getBacktestRunDetail("has/slash&x");
+    const url = fetchMock.mock.calls[0][0] as string;
+    expect(url).toContain("has%2Fslash%26x");
+  });
+
+  it("HTTP 404 → http_error with code", async () => {
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse(404, { error: { code: "run_not_found", message: "不存在" } }),
+    );
+    const err = await getBacktestRunDetail("missing").catch((e: unknown) => e);
+    expect((err as ApiError).status).toBe(404);
+    expect((err as ApiError).code).toBe("run_not_found");
+  });
+
+  it("HTTP 500 完整性错误 → http_error", async () => {
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse(500, { error: { code: "run_integrity_error", message: "不完整" } }),
+    );
+    const err = await getBacktestRunDetail("broken").catch((e: unknown) => e);
+    expect((err as ApiError).status).toBe(500);
+    expect((err as ApiError).code).toBe("run_integrity_error");
+  });
+
+  it("网络失败 → backend_unavailable", async () => {
+    fetchMock.mockRejectedValue(new TypeError("fetch failed"));
+    const err = await getBacktestRunDetail("abc").catch((e: unknown) => e);
+    expect((err as ApiError).kind).toBe("backend_unavailable");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Step 6.7：只读完整性审计 API 客户端测试
+// ---------------------------------------------------------------------------
+
+const SAMPLE_INTEGRITY_RESPONSE = {
+  run_id: "abc123",
+  status: "passed",
+  checks: [{ name: "document_present", status: "passed", message: "结果文档存在" }],
+  metadata_result_digest: "sha256:c",
+  document_result_digest: "sha256:c",
+  recomputed_digest: "sha256:c",
+  audited_at: "2026-01-01T00:00:01.000000Z",
+};
+
+describe("getBacktestRunIntegrity", () => {
+  it("正确请求 run_id 的 integrity 路径并对 run_id 编码", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, SAMPLE_INTEGRITY_RESPONSE));
+    await getBacktestRunIntegrity("has/slash&x");
+    const url = fetchMock.mock.calls[0][0] as string;
+    expect(url).toContain("/backtests/has%2Fslash%26x/integrity");
+    expect(url).toContain("integrity");
+  });
+
+  it("缺少 status 字段 → invalid_response", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, { checks: [] }));
+    const err = await getBacktestRunIntegrity("abc").catch((e: unknown) => e);
+    expect((err as ApiError).kind).toBe("invalid_response");
+  });
+
+  it("checks 非数组 → invalid_response", async () => {
+    fetchMock.mockResolvedValueOnce(jsonResponse(200, { status: "passed", checks: "no" }));
+    const err = await getBacktestRunIntegrity("abc").catch((e: unknown) => e);
+    expect((err as ApiError).kind).toBe("invalid_response");
+  });
+
+  it("404 → http_error with run_not_found", async () => {
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse(404, { error: { code: "run_not_found", message: "不存在" } }),
+    );
+    const err = await getBacktestRunIntegrity("missing").catch((e: unknown) => e);
+    expect((err as ApiError).status).toBe(404);
+    expect((err as ApiError).code).toBe("run_not_found");
   });
 });

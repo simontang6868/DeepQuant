@@ -22,6 +22,9 @@ import type { BacktestResponse, DatasetListResponse, StrategyListResponse } from
 import { BackendDownBanner, BackendStatusIndicator } from "./components/BackendStatusBar";
 import { BacktestForm } from "./components/BacktestForm";
 import { DatasetSelector } from "./components/DatasetSelector";
+import { BacktestComparison } from "./components/BacktestComparison";
+import { HistoryDetail } from "./components/HistoryDetail";
+import { HistoryList } from "./components/HistoryList";
 import { StrategyPanel } from "./components/StrategyPanel";
 import { ResultView } from "./components/ResultView";
 import { useBackendHealth } from "./hooks/useBackendHealth";
@@ -47,6 +50,12 @@ type BacktestState =
   | { status: "success"; response: BacktestResponse; finishedAt: string }
   | { status: "error"; error: ApiError; failedAt: string };
 
+type AppView =
+  | { kind: "create" }
+  | { kind: "history-list" }
+  | { kind: "history-detail"; runId: string }
+  | { kind: "compare"; runIds: string[] };
+
 export default function App() {
   const { health, check } = useBackendHealth();
   const [datasets, setDatasets] = useState<DatasetsState>({ status: "loading" });
@@ -54,6 +63,7 @@ export default function App() {
   const [form, setForm] = useState<BacktestFormValues>(INITIAL_FORM_VALUES);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [backtest, setBacktest] = useState<BacktestState>({ status: "idle" });
+  const [view, setView] = useState<AppView>({ kind: "create" });
 
   const loadDatasets = useCallback(async () => {
     setDatasets({ status: "loading" });
@@ -155,6 +165,38 @@ export default function App() {
       <header className="app-header">
         <h1>DeepQuant 回测工作台</h1>
         <BackendStatusIndicator health={health} />
+        <nav className="app-tabs" role="tablist" aria-label="功能">
+          <button
+            type="button"
+            className={`tab ${view.kind === "create" ? "tab-active" : ""}`}
+            role="tab"
+            aria-selected={view.kind === "create"}
+            data-testid="tab-create"
+            onClick={() => setView({ kind: "create" })}
+          >
+            新建回测
+          </button>
+          <button
+            type="button"
+            className={`tab ${
+              view.kind === "history-list" ||
+              view.kind === "history-detail" ||
+              view.kind === "compare"
+                ? "tab-active"
+                : ""
+            }`}
+            role="tab"
+            aria-selected={
+              view.kind === "history-list" ||
+              view.kind === "history-detail" ||
+              view.kind === "compare"
+            }
+            data-testid="tab-history"
+            onClick={() => setView({ kind: "history-list" })}
+          >
+            历史回测
+          </button>
+        </nav>
         <div className="spacer" />
         <button type="button" className="btn" onClick={refreshAll} data-testid="refresh-all">
           刷新数据
@@ -163,76 +205,111 @@ export default function App() {
 
       <BackendDownBanner health={health} onRetry={() => void check()} />
 
-      <main className="app-main">
-        <aside className="config-panel">
-          <DatasetSelector
-            state={datasets}
-            selectedSymbol={form.datasetSymbol}
-            fieldError={fieldErrors.dataset}
-            onSelect={handleSelectDataset}
-            onRefresh={() => void loadDatasets()}
-          />
-          <StrategyPanel
-            state={strategies}
-            selectedId={form.strategyId}
-            paramValues={form.paramValues}
-            fieldErrors={fieldErrors}
-            onSelect={handleSelectStrategy}
-            onParamChange={handleParamChange}
-            onRefresh={() => void loadStrategies()}
-          />
-          <BacktestForm
-            dataset={selectedDataset}
-            strategy={selectedStrategy}
-            values={form}
-            fieldErrors={fieldErrors}
-            running={backtest.status === "running"}
-            onChange={(patch) => setForm((prev) => ({ ...prev, ...patch }))}
-            onRun={() => void handleRun()}
-          />
-        </aside>
+      {view.kind !== "create" ? null : (
+        <main className="app-main">
+          <aside className="config-panel">
+            <DatasetSelector
+              state={datasets}
+              selectedSymbol={form.datasetSymbol}
+              fieldError={fieldErrors.dataset}
+              onSelect={handleSelectDataset}
+              onRefresh={() => void loadDatasets()}
+            />
+            <StrategyPanel
+              state={strategies}
+              selectedId={form.strategyId}
+              paramValues={form.paramValues}
+              fieldErrors={fieldErrors}
+              onSelect={handleSelectStrategy}
+              onParamChange={handleParamChange}
+              onRefresh={() => void loadStrategies()}
+            />
+            <BacktestForm
+              dataset={selectedDataset}
+              strategy={selectedStrategy}
+              values={form}
+              fieldErrors={fieldErrors}
+              running={backtest.status === "running"}
+              onChange={(patch) => setForm((prev) => ({ ...prev, ...patch }))}
+              onRun={() => void handleRun()}
+            />
+          </aside>
 
-        <section className="result-panel" aria-label="回测结果">
-          {backtest.status === "idle" && (
-            <div className="card empty-state" data-testid="result-placeholder">
-              在左侧选择数据集与策略、配置回测参数后点击「运行回测」，结果将显示在这里。
-            </div>
-          )}
-
-          {backtest.status === "running" && (
-            <div className="card banner banner-info" role="status" data-testid="result-running">
-              正在执行回测（同步请求）…完成后结果会自动展示。请勿重复提交。
-            </div>
-          )}
-
-          {backtest.status === "error" && (
-            <div className="card" data-testid="result-error">
-              <div className="banner banner-error" role="alert">
-                <strong>回测请求失败（{backtest.failedAt}）。</strong>
-                <div>{describeApiError(backtest.error)}</div>
-                {backtest.error.details !== undefined && (
-                  <details>
-                    <summary>错误详情</summary>
-                    <pre className="pre-json">
-                      {JSON.stringify(backtest.error.details, null, 2)}
-                    </pre>
-                  </details>
-                )}
-                <div>表单配置已保留，可修改后重新运行。</div>
+          <section className="result-panel" aria-label="回测结果">
+            {backtest.status === "idle" && (
+              <div className="card empty-state" data-testid="result-placeholder">
+                在左侧选择数据集与策略、配置回测参数后点击「运行回测」，结果将显示在这里。
               </div>
-            </div>
-          )}
+            )}
 
-          {backtest.status === "success" && (
-            <>
-              <div className="banner banner-info" data-testid="result-success-hint">
-                回测完成（{backtest.finishedAt}）。以下结果全部来自后端本次真实返回。
+            {backtest.status === "running" && (
+              <div className="card banner banner-info" role="status" data-testid="result-running">
+                正在执行回测（同步请求）…完成后结果会自动展示。请勿重复提交。
               </div>
-              <ResultView response={backtest.response} />
-            </>
-          )}
-        </section>
-      </main>
+            )}
+
+            {backtest.status === "error" && (
+              <div className="card" data-testid="result-error">
+                <div className="banner banner-error" role="alert">
+                  <strong>回测请求失败（{backtest.failedAt}）。</strong>
+                  <div>{describeApiError(backtest.error)}</div>
+                  {backtest.error.details !== undefined && (
+                    <details>
+                      <summary>错误详情</summary>
+                      <pre className="pre-json">
+                        {JSON.stringify(backtest.error.details, null, 2)}
+                      </pre>
+                    </details>
+                  )}
+                  <div>表单配置已保留，可修改后重新运行。</div>
+                </div>
+              </div>
+            )}
+
+            {backtest.status === "success" && (
+              <>
+                <div className="banner banner-info" data-testid="result-success-hint">
+                  回测完成（{backtest.finishedAt}）。以下结果全部来自后端本次真实返回。
+                  {backtest.response.run_id ? (
+                    <span>
+                      {" "}已自动保存到历史（run_id: {backtest.response.run_id.slice(0, 8)}…）。
+                      可前往「历史回测」查看完整记录。
+                    </span>
+                  ) : null}
+                </div>
+                <ResultView response={backtest.response} />
+              </>
+            )}
+          </section>
+        </main>
+      )}
+
+      {view.kind === "history-list" && (
+        <main className="app-main app-main-history">
+          <HistoryList
+            onSelectRun={(runId) => setView({ kind: "history-detail", runId })}
+            onCompare={(runIds) => setView({ kind: "compare", runIds })}
+          />
+        </main>
+      )}
+
+      {view.kind === "history-detail" && (
+        <main className="app-main app-main-history">
+          <HistoryDetail
+            runId={view.runId}
+            onBack={() => setView({ kind: "history-list" })}
+          />
+        </main>
+      )}
+
+      {view.kind === "compare" && (
+        <main className="app-main app-main-history">
+          <BacktestComparison
+            runIds={view.runIds}
+            onBack={() => setView({ kind: "history-list" })}
+          />
+        </main>
+      )}
 
       <footer className="app-footer">
         DeepQuant 为本地个人量化研究工具：仅支持历史数据模拟回测，不支持实盘交易；

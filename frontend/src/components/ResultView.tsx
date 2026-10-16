@@ -9,6 +9,7 @@ import { AccountStatesTable } from "./AccountStatesTable";
 import { DailyReturnsChart } from "./DailyReturnsChart";
 import { DataQualityNotice } from "./DataQualityNotice";
 import { DrawdownCard } from "./DrawdownCard";
+import { DrawdownChart } from "./DrawdownChart";
 import { EquityChart } from "./EquityChart";
 import { FillsTable } from "./FillsTable";
 import { OrdersTable } from "./OrdersTable";
@@ -99,6 +100,7 @@ export function ResultView({ response }: { response: BacktestResponse }) {
       <EquityChart result={result} />
       <DailyReturnsChart result={result} />
       <DrawdownCard result={result} />
+      <DrawdownChart result={result} />
       <OrdersTable orders={result.orders} />
       <FillsTable fills={result.fills} />
 

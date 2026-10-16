@@ -30,6 +30,16 @@ htmlcov/
 *.sqlite
 *.sqlite3
 *.db
+# SQLite 运行时伴随文件（WAL / SHM / journal），不得入库
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-wal
+*.sqlite3-shm
+*.db-wal
+*.db-shm
+*.db-journal
+*.sqlite-journal
+*.sqlite3-journal
 
 # API 服务默认数据根（backend/data/，可由 DEEPQUANT_DATA_ROOT 覆盖）：本地行情同样不入库
 /backend/data/

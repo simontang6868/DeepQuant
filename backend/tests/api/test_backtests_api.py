@@ -2,7 +2,7 @@
 
 覆盖：合法请求、非法字段、数据集/策略不存在、策略参数非法、日期范围非法、
 数据质量错误、JSON 可解析且无 NaN/Infinity、绩效与可复现性、确定性、
-不修改原始数据、错误响应不泄露绝对路径。
+不修改原始数据、错误响应不泄露绝对路径、结果持久化（save 参数）。
 """
 
 from __future__ import annotations
@@ -11,8 +11,9 @@ import hashlib
 import json
 
 import pandas as pd
-
 from conftest import ingest_dataset
+
+from deepquant.persistence import get_db_path, get_run, get_run_document, list_runs
 
 RESULT_KEYS = {
     "schema_version",
@@ -194,11 +195,20 @@ def test_data_quality_error_returns_400(client_with_dataset, data_root) -> None:
 
 
 def test_deterministic_repeat_execution(client_with_dataset, valid_backtest_payload) -> None:
-    """相同输入重复执行：响应完全一致（确定性）。"""
+    """相同输入重复执行：结果内容完全一致（确定性）。
+
+    run_id 是每次运行唯一生成的标识，不参与结果内容的确定性比较；
+    其余字段（含 result 全文）必须完全一致。
+    """
     first = client_with_dataset.post("/backtests", json=valid_backtest_payload)
     second = client_with_dataset.post("/backtests", json=valid_backtest_payload)
     assert first.status_code == second.status_code == 200
-    assert first.json() == second.json()
+    first_body = first.json()
+    second_body = second.json()
+    # run_id 每次不同，单独排除
+    first_body.pop("run_id", None)
+    second_body.pop("run_id", None)
+    assert first_body == second_body
 
 
 def test_api_does_not_modify_dataset(client_with_dataset, data_root, valid_backtest_payload) -> None:
@@ -238,3 +248,80 @@ def test_unavailable_dataset_returns_404(client, data_root, tmp_path, valid_back
     response = client.post("/backtests", json=valid_backtest_payload)
     assert response.status_code == 404
     assert response.json()["error"]["code"] == "dataset_unavailable"
+
+
+# --------------------------------------------------------------------------- #
+# 持久化（save 参数）
+# --------------------------------------------------------------------------- #
+
+
+def test_default_save_when_omitted(client_with_dataset, valid_backtest_payload) -> None:
+    """旧请求格式（不传 save）仍可使用，且默认保存（run_id 非空，记录落库）。"""
+    response = client_with_dataset.post("/backtests", json=valid_backtest_payload)
+    assert response.status_code == 200
+    body = response.json()
+
+    run_id = body.get("run_id")
+    assert isinstance(run_id, str) and run_id
+    # 历史记录确实存在
+    record = get_run(get_db_path(), run_id)
+    assert record is not None
+    assert record.run_id == run_id
+
+
+def test_save_true_persists_run(client_with_dataset, valid_backtest_payload) -> None:
+    """save=true：返回可识别 run_id，且历史记录存在。"""
+    payload = {**valid_backtest_payload, "save": True}
+    response = client_with_dataset.post("/backtests", json=payload)
+    assert response.status_code == 200
+    run_id = response.json()["run_id"]
+    assert isinstance(run_id, str) and run_id
+
+    runs = list_runs(get_db_path())
+    assert any(r.run_id == run_id for r in runs)
+
+
+def test_save_false_does_not_persist(client_with_dataset, valid_backtest_payload) -> None:
+    """save=false：执行回测但不写入历史记录，run_id 为 null。"""
+    payload = {**valid_backtest_payload, "save": False}
+    response = client_with_dataset.post("/backtests", json=payload)
+    assert response.status_code == 200
+    body = response.json()
+    assert body["run_id"] is None
+    # result 仍正常返回
+    assert "performance" in body["result"]
+
+    # 数据库中无任何记录
+    assert list_runs(get_db_path()) == []
+
+
+def test_persistence_failure_returns_500_not_success(
+    client_with_dataset, valid_backtest_payload, monkeypatch
+) -> None:
+    """数据库写入失败时：500 persistence_failed，不得返回虚假成功结果。"""
+    # 把数据库路径指向一个目录，使 sqlite3 无法打开 → PersistenceError
+    bad_db = get_db_path().parent / "is_a_directory"
+    bad_db.mkdir(exist_ok=True)
+    monkeypatch.setenv("DEEPQUANT_DB_PATH", str(bad_db))
+
+    response = client_with_dataset.post("/backtests", json=valid_backtest_payload)
+    assert response.status_code == 500
+    body = response.json()
+    assert body["error"]["code"] == "persistence_failed"
+    # 不得包含 run_id 或成功的 result
+    assert "run_id" not in body or body.get("run_id") is None
+    assert "result" not in body
+
+
+def test_saved_run_document_matches_response(
+    client_with_dataset, valid_backtest_payload
+) -> None:
+    """保存的完整结果文档必须与 API 响应中的 result 完全一致。"""
+    response = client_with_dataset.post("/backtests", json=valid_backtest_payload)
+    assert response.status_code == 200
+    body = response.json()
+    run_id = body["run_id"]
+
+    document = get_run_document(get_db_path(), run_id)
+    assert document is not None
+    assert document == body["result"]

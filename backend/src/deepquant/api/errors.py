@@ -19,6 +19,7 @@ from fastapi.responses import JSONResponse
 from deepquant.data.loaders.csv_loader import DataLoadError
 from deepquant.data.pipeline import DataValidationError
 from deepquant.performance.json_encoding import SerializationError
+from deepquant.persistence import PersistenceError, ResultDocumentCorruptedError
 
 logger = logging.getLogger("deepquant.api")
 
@@ -84,6 +85,34 @@ class BacktestRejectedError(ApiError):
     code = "backtest_rejected"
 
 
+class RunNotFoundError(ApiError):
+    """请求的回测运行记录不存在（GET /backtests/{run_id}）。"""
+
+    status_code = 404
+    code = "run_not_found"
+
+
+class RunIntegrityError(ApiError):
+    """回测运行元数据存在但完整结果文档缺失，属于数据完整性内部错误。
+
+    不得伪装为 404；应返回 5xx 并在服务端记录诊断信息。
+    """
+
+    status_code = 500
+    code = "run_integrity_error"
+
+
+class CompareRequestError(ApiError):
+    """比较请求参数非法：run_ids 数量越界、重复、空串等。
+
+    Pydantic 校验失败会自动返回 422 invalid_request；本类用于 API 层自定义校验逻辑，
+    保持相同的错误结构。
+    """
+
+    status_code = 422
+    code = "compare_invalid_request"
+
+
 def _error_body(code: str, message: str, details: Any = None) -> dict:
     body: dict[str, Any] = {"error": {"code": code, "message": message}}
     if details is not None:
@@ -140,6 +169,31 @@ def register_exception_handlers(app: FastAPI) -> None:
         return JSONResponse(
             status_code=500,
             content=_error_body("serialization_failed", "回测结果无法序列化为标准 JSON"),
+        )
+
+    @app.exception_handler(ResultDocumentCorruptedError)
+    async def _handle_corrupted_document(
+        request: Request, exc: ResultDocumentCorruptedError
+    ) -> JSONResponse:
+        # 历史结果文档存在但无法解析：这是明确的数据完整性问题，不是数据库故障，
+        # 也不是「记录不存在」。映射为独立的完整性错误码，让调用方能与
+        # persistence_failed（数据库故障）、run_integrity_error（文档缺失）、
+        # run_not_found（记录不存在）清晰区分。只记录到服务端日志，不回传堆栈/路径。
+        logger.error("历史结果文档损坏：%s", exc)
+        return JSONResponse(
+            status_code=500,
+            content=_error_body(
+                "run_result_corrupted", "历史结果文档已损坏，无法解析（数据完整性问题）"
+            ),
+        )
+
+    @app.exception_handler(PersistenceError)
+    async def _handle_persistence(request: Request, exc: PersistenceError) -> JSONResponse:
+        # 持久化失败属于服务端问题：不得在保存失败时返回成功结果
+        logger.error("回测结果持久化失败：%s", exc)
+        return JSONResponse(
+            status_code=500,
+            content=_error_body("persistence_failed", "回测结果保存失败，请检查数据库配置"),
         )
 
     @app.exception_handler(Exception)
