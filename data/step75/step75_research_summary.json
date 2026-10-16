@@ -1,0 +1,2264 @@
+{
+  "run_at": "2026-10-16T09:32:33+00:00",
+  "data_source": "akshare.stock_zh_a_hist_tx (tencent kline, qfq)",
+  "stocks": [
+    {
+      "code": "600519.SH",
+      "name": "\u8d35\u5dde\u8305\u53f0",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "sha256": "7e34d88ceddb1a0ee1efe39c7c11191db8a0d390d5ceba0846d9996f3c841e50",
+      "n_rows": 1699,
+      "date_min": "2018-01-02",
+      "date_max": "2024-12-31",
+      "ok": true,
+      "warnings": [
+        {
+          "code": "price_jump",
+          "msg": "\u5b58\u5728 1698 \u4e2a\u76f8\u90bb\u6536\u76d8\u4ef7\u8df3\u53d8 > 15%\uff08\u6700\u5927 18.14%\uff0c\u53ef\u80fd\u662f\u6da8\u8dcc\u505c / \u9664\u6743\u9664\u606f / \u6570\u636e\u6e90\u5f02\u5e38\uff09"
+        }
+      ]
+    },
+    {
+      "code": "000001.SZ",
+      "name": "\u5e73\u5b89\u94f6\u884c",
+      "industry": "\u94f6\u884c/\u91d1\u878d",
+      "sha256": "32a3847c4e8d923de12aaf12fed2e3ce96e2fe636b8d6e00adeb4bc33636fd62",
+      "n_rows": 1699,
+      "date_min": "2018-01-02",
+      "date_max": "2024-12-31",
+      "ok": true,
+      "warnings": [
+        {
+          "code": "price_jump",
+          "msg": "\u5b58\u5728 1698 \u4e2a\u76f8\u90bb\u6536\u76d8\u4ef7\u8df3\u53d8 > 15%\uff08\u6700\u5927 12.81%\uff0c\u53ef\u80fd\u662f\u6da8\u8dcc\u505c / \u9664\u6743\u9664\u606f / \u6570\u636e\u6e90\u5f02\u5e38\uff09"
+        }
+      ]
+    },
+    {
+      "code": "601318.SH",
+      "name": "\u4e2d\u56fd\u5e73\u5b89",
+      "industry": "\u4fdd\u9669/\u91d1\u878d",
+      "sha256": "e40960eebd32830bbc7a6d9e35aa8f6c73a51dfb0b2daa392c5afb8fbd60397c",
+      "n_rows": 1699,
+      "date_min": "2018-01-02",
+      "date_max": "2024-12-31",
+      "ok": true,
+      "warnings": [
+        {
+          "code": "price_jump",
+          "msg": "\u5b58\u5728 1698 \u4e2a\u76f8\u90bb\u6536\u76d8\u4ef7\u8df3\u53d8 > 15%\uff08\u6700\u5927 12.83%\uff0c\u53ef\u80fd\u662f\u6da8\u8dcc\u505c / \u9664\u6743\u9664\u606f / \u6570\u636e\u6e90\u5f02\u5e38\uff09"
+        }
+      ]
+    },
+    {
+      "code": "300750.SZ",
+      "name": "\u5b81\u5fb7\u65f6\u4ee3",
+      "industry": "\u65b0\u80fd\u6e90/\u5236\u9020",
+      "sha256": "692fcfe74550e571aafe242d3172c08a04a2ece4095a000167da404d79a1523e",
+      "n_rows": 1594,
+      "date_min": "2018-06-11",
+      "date_max": "2024-12-31",
+      "ok": true,
+      "warnings": [
+        {
+          "code": "price_jump",
+          "msg": "\u5b58\u5728 1593 \u4e2a\u76f8\u90bb\u6536\u76d8\u4ef7\u8df3\u53d8 > 15%\uff08\u6700\u5927 3683.33%\uff0c\u53ef\u80fd\u662f\u6da8\u8dcc\u505c / \u9664\u6743\u9664\u606f / \u6570\u636e\u6e90\u5f02\u5e38\uff09"
+        }
+      ]
+    },
+    {
+      "code": "000858.SZ",
+      "name": "\u4e94\u7cae\u6db2",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "sha256": "1f2ce5c51a92edf56783c94da84d4fa9ad19a69f5dc46b3fec9a867061c30691",
+      "n_rows": 1699,
+      "date_min": "2018-01-02",
+      "date_max": "2024-12-31",
+      "ok": true,
+      "warnings": [
+        {
+          "code": "price_jump",
+          "msg": "\u5b58\u5728 1698 \u4e2a\u76f8\u90bb\u6536\u76d8\u4ef7\u8df3\u53d8 > 15%\uff08\u6700\u5927 21.34%\uff0c\u53ef\u80fd\u662f\u6da8\u8dcc\u505c / \u9664\u6743\u9664\u606f / \u6570\u636e\u6e90\u5f02\u5e38\uff09"
+        }
+      ]
+    },
+    {
+      "code": "600900.SH",
+      "name": "\u957f\u6c5f\u7535\u529b",
+      "industry": "\u516c\u7528\u4e8b\u4e1a",
+      "sha256": "b80a0abdf660256413f7f680eb027bc81ca9f8127f772fc85312947642074da8",
+      "n_rows": 1688,
+      "date_min": "2018-01-02",
+      "date_max": "2024-12-31",
+      "ok": true,
+      "warnings": [
+        {
+          "code": "price_jump",
+          "msg": "\u5b58\u5728 1687 \u4e2a\u76f8\u90bb\u6536\u76d8\u4ef7\u8df3\u53d8 > 15%\uff08\u6700\u5927 8.79%\uff0c\u53ef\u80fd\u662f\u6da8\u8dcc\u505c / \u9664\u6743\u9664\u606f / \u6570\u636e\u6e90\u5f02\u5e38\uff09"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "symbol": "600519.SH",
+      "name": "\u8d35\u5dde\u8305\u53f0",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.06666666666666667,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 5,
+      "total_fees": 491.09000000000003,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 60)]": 3,
+        "[('fast_window', 5), ('slow_window', 25)]": 1,
+        "[('fast_window', 10), ('slow_window', 40)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 2,
+        "[('fast_window', 3), ('slow_window', 60)]": 3,
+        "[('fast_window', 20), ('slow_window', 40)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 18
+      },
+      "transition_rate": 0.3103448275862069,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "low_evidence"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "\u8d35\u5dde\u8305\u53f0",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.06666666666666667,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 5,
+      "total_fees": 449.88,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 60)]": 3,
+        "[('fast_window', 5), ('slow_window', 25)]": 1,
+        "[('fast_window', 10), ('slow_window', 40)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 2,
+        "[('fast_window', 3), ('slow_window', 60)]": 3,
+        "[('fast_window', 20), ('slow_window', 40)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 18
+      },
+      "transition_rate": 0.3103448275862069,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "low_evidence"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "\u8d35\u5dde\u8305\u53f0",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.06666666666666667,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 5,
+      "total_fees": 604.2,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 60)]": 3,
+        "[('fast_window', 5), ('slow_window', 25)]": 1,
+        "[('fast_window', 10), ('slow_window', 40)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 2,
+        "[('fast_window', 3), ('slow_window', 60)]": 3,
+        "[('fast_window', 20), ('slow_window', 40)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 18
+      },
+      "transition_rate": 0.3103448275862069,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "low_evidence"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "\u8d35\u5dde\u8305\u53f0",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.2,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 10,
+      "total_fees": 969.08,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 20)]": 4,
+        "[('fast_window', 10), ('slow_window', 15)]": 26
+      },
+      "transition_rate": 0.10344827586206896,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "\u8d35\u5dde\u8305\u53f0",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.2,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 10,
+      "total_fees": 896.99,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 20)]": 4,
+        "[('fast_window', 10), ('slow_window', 15)]": 26
+      },
+      "transition_rate": 0.10344827586206896,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600519.SH",
+      "name": "\u8d35\u5dde\u8305\u53f0",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.2,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 10,
+      "total_fees": 1166.55,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 20)]": 4,
+        "[('fast_window', 10), ('slow_window', 15)]": 26
+      },
+      "transition_rate": 0.10344827586206896,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000001.SZ",
+      "name": "\u5e73\u5b89\u94f6\u884c",
+      "industry": "\u94f6\u884c/\u91d1\u878d",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.07841270219193855,
+      "total_trades": 28,
+      "total_fees": 3327.12,
+      "param_dist": {
+        "[('fast_window', 3), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 10), ('slow_window', 15)]": 4,
+        "[('fast_window', 10), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 25)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 3,
+        "[('fast_window', 20), ('slow_window', 60)]": 6,
+        "[('fast_window', 5), ('slow_window', 25)]": 1,
+        "[('fast_window', 3), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 25)]": 3,
+        "[('fast_window', 5), ('slow_window', 60)]": 2,
+        "[('fast_window', 3), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.7586206896551724,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "warning"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000001.SZ",
+      "name": "\u5e73\u5b89\u94f6\u884c",
+      "industry": "\u94f6\u884c/\u91d1\u878d",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.07835472529244678,
+      "total_trades": 28,
+      "total_fees": 3064.19,
+      "param_dist": {
+        "[('fast_window', 3), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 10), ('slow_window', 15)]": 4,
+        "[('fast_window', 10), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 25)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 3,
+        "[('fast_window', 20), ('slow_window', 60)]": 6,
+        "[('fast_window', 5), ('slow_window', 25)]": 1,
+        "[('fast_window', 3), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 25)]": 3,
+        "[('fast_window', 5), ('slow_window', 60)]": 2,
+        "[('fast_window', 3), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.7586206896551724,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "warning"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000001.SZ",
+      "name": "\u5e73\u5b89\u94f6\u884c",
+      "industry": "\u94f6\u884c/\u91d1\u878d",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.08243507496267646,
+      "total_trades": 25,
+      "total_fees": 3654.69,
+      "param_dist": {
+        "[('fast_window', 3), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 10), ('slow_window', 15)]": 4,
+        "[('fast_window', 10), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 25)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 3,
+        "[('fast_window', 20), ('slow_window', 60)]": 6,
+        "[('fast_window', 5), ('slow_window', 25)]": 1,
+        "[('fast_window', 3), ('slow_window', 40)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 2,
+        "[('fast_window', 5), ('slow_window', 60)]": 2,
+        "[('fast_window', 3), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.7931034482758621,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "warning"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000001.SZ",
+      "name": "\u5e73\u5b89\u94f6\u884c",
+      "industry": "\u94f6\u884c/\u91d1\u878d",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.23333333333333334,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 12,
+      "total_fees": 1570.8500000000001,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 25)]": 9,
+        "[('fast_window', 10), ('slow_window', 15)]": 5,
+        "[('fast_window', 20), ('slow_window', 25)]": 8,
+        "[('fast_window', 10), ('slow_window', 20)]": 8
+      },
+      "transition_rate": 0.6206896551724138,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000001.SZ",
+      "name": "\u5e73\u5b89\u94f6\u884c",
+      "industry": "\u94f6\u884c/\u91d1\u878d",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.23333333333333334,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 12,
+      "total_fees": 1442.5,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 25)]": 9,
+        "[('fast_window', 10), ('slow_window', 15)]": 5,
+        "[('fast_window', 20), ('slow_window', 25)]": 8,
+        "[('fast_window', 10), ('slow_window', 20)]": 8
+      },
+      "transition_rate": 0.6206896551724138,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000001.SZ",
+      "name": "\u5e73\u5b89\u94f6\u884c",
+      "industry": "\u94f6\u884c/\u91d1\u878d",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.23333333333333334,
+      "median_ret": 0.0,
+      "median_mdd": 0.0,
+      "total_trades": 12,
+      "total_fees": 1919.76,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 25)]": 9,
+        "[('fast_window', 10), ('slow_window', 15)]": 5,
+        "[('fast_window', 20), ('slow_window', 25)]": 8,
+        "[('fast_window', 10), ('slow_window', 20)]": 8
+      },
+      "transition_rate": 0.6206896551724138,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "\u4e2d\u56fd\u5e73\u5b89",
+      "industry": "\u4fdd\u9669/\u91d1\u878d",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.4666666666666667,
+      "median_ret": 0.0,
+      "median_mdd": 0.06578745125670044,
+      "total_trades": 21,
+      "total_fees": 2565.69,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 60)]": 8,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 10), ('slow_window', 15)]": 2,
+        "[('fast_window', 10), ('slow_window', 25)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 5,
+        "[('fast_window', 10), ('slow_window', 60)]": 1,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 3), ('slow_window', 40)]": 2,
+        "[('fast_window', 20), ('slow_window', 40)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 5
+      },
+      "transition_rate": 0.5517241379310345,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "warning"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "\u4e2d\u56fd\u5e73\u5b89",
+      "industry": "\u4fdd\u9669/\u91d1\u878d",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.4666666666666667,
+      "median_ret": 0.0,
+      "median_mdd": 0.06574836570302206,
+      "total_trades": 21,
+      "total_fees": 2353.65,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 60)]": 8,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 10), ('slow_window', 15)]": 2,
+        "[('fast_window', 10), ('slow_window', 25)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 5,
+        "[('fast_window', 10), ('slow_window', 60)]": 1,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 3), ('slow_window', 40)]": 2,
+        "[('fast_window', 20), ('slow_window', 40)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 5
+      },
+      "transition_rate": 0.5517241379310345,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "warning"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "\u4e2d\u56fd\u5e73\u5b89",
+      "industry": "\u4fdd\u9669/\u91d1\u878d",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.4,
+      "median_ret": 0.0,
+      "median_mdd": 0.07330357104000662,
+      "total_trades": 21,
+      "total_fees": 3138.58,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 60)]": 8,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 10), ('slow_window', 15)]": 2,
+        "[('fast_window', 10), ('slow_window', 25)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 5,
+        "[('fast_window', 10), ('slow_window', 60)]": 1,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 3), ('slow_window', 40)]": 2,
+        "[('fast_window', 20), ('slow_window', 40)]": 1,
+        "[('fast_window', 3), ('slow_window', 25)]": 1,
+        "[('fast_window', 3), ('slow_window', 15)]": 4
+      },
+      "transition_rate": 0.5862068965517241,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "warning"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "\u4e2d\u56fd\u5e73\u5b89",
+      "industry": "\u4fdd\u9669/\u91d1\u878d",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.017570246726099574,
+      "total_trades": 15,
+      "total_fees": 2079.93,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 25)]": 11,
+        "[('fast_window', 10), ('slow_window', 20)]": 13,
+        "[('fast_window', 10), ('slow_window', 15)]": 5,
+        "[('fast_window', 10), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.41379310344827586,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "\u4e2d\u56fd\u5e73\u5b89",
+      "industry": "\u4fdd\u9669/\u91d1\u878d",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.01756903194974798,
+      "total_trades": 15,
+      "total_fees": 1906.5,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 25)]": 11,
+        "[('fast_window', 10), ('slow_window', 20)]": 13,
+        "[('fast_window', 10), ('slow_window', 15)]": 5,
+        "[('fast_window', 10), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.41379310344827586,
+      "risk_summary": "\u6240\u6709\u89c4\u5219 not_triggered\u3002\u6ce8\u610f\uff1anot_triggered \u2260 \u7b56\u7565\u6ca1\u6709\u8fc7\u62df\u5408\uff0c\u4ec5\u8868\u793a\u672a\u89e6\u53d1\u5f53\u524d\u89c4\u5219\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "601318.SH",
+      "name": "\u4e2d\u56fd\u5e73\u5b89",
+      "industry": "\u4fdd\u9669/\u91d1\u878d",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.018387479398593864,
+      "total_trades": 15,
+      "total_fees": 2545.27,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 25)]": 11,
+        "[('fast_window', 10), ('slow_window', 20)]": 13,
+        "[('fast_window', 10), ('slow_window', 15)]": 5,
+        "[('fast_window', 10), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.41379310344827586,
+      "risk_summary": "\u6240\u6709\u89c4\u5219 not_triggered\u3002\u6ce8\u610f\uff1anot_triggered \u2260 \u7b56\u7565\u6ca1\u6709\u8fc7\u62df\u5408\uff0c\u4ec5\u8868\u793a\u672a\u89e6\u53d1\u5f53\u524d\u89c4\u5219\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "\u5b81\u5fb7\u65f6\u4ee3",
+      "industry": "\u65b0\u80fd\u6e90/\u5236\u9020",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 28,
+      "n_sel_ok": 28,
+      "n_oos_ok": 28,
+      "positive_ratio": 0.39285714285714285,
+      "median_ret": 0.0,
+      "median_mdd": 0.054942980631161244,
+      "total_trades": 14,
+      "total_fees": 1826.35,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 25)]": 4,
+        "[('fast_window', 5), ('slow_window', 25)]": 2,
+        "[('fast_window', 20), ('slow_window', 40)]": 10,
+        "[('fast_window', 10), ('slow_window', 15)]": 4,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 3), ('slow_window', 60)]": 1,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 60)]": 1,
+        "[('fast_window', 5), ('slow_window', 15)]": 1,
+        "[('fast_window', 10), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.6666666666666666,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "\u5b81\u5fb7\u65f6\u4ee3",
+      "industry": "\u65b0\u80fd\u6e90/\u5236\u9020",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 28,
+      "n_sel_ok": 28,
+      "n_oos_ok": 28,
+      "positive_ratio": 0.39285714285714285,
+      "median_ret": 0.0,
+      "median_mdd": 0.05492492399455872,
+      "total_trades": 14,
+      "total_fees": 1669.16,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 25)]": 4,
+        "[('fast_window', 5), ('slow_window', 25)]": 2,
+        "[('fast_window', 20), ('slow_window', 40)]": 10,
+        "[('fast_window', 10), ('slow_window', 15)]": 4,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 3), ('slow_window', 60)]": 1,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 60)]": 1,
+        "[('fast_window', 5), ('slow_window', 15)]": 1,
+        "[('fast_window', 10), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.6666666666666666,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "\u5b81\u5fb7\u65f6\u4ee3",
+      "industry": "\u65b0\u80fd\u6e90/\u5236\u9020",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 28,
+      "n_sel_ok": 28,
+      "n_oos_ok": 28,
+      "positive_ratio": 0.39285714285714285,
+      "median_ret": 0.0,
+      "median_mdd": 0.05035833924824262,
+      "total_trades": 12,
+      "total_fees": 2024.8500000000001,
+      "param_dist": {
+        "[('fast_window', 20), ('slow_window', 25)]": 3,
+        "[('fast_window', 5), ('slow_window', 25)]": 2,
+        "[('fast_window', 20), ('slow_window', 40)]": 12,
+        "[('fast_window', 10), ('slow_window', 15)]": 3,
+        "[('fast_window', 3), ('slow_window', 60)]": 1,
+        "[('fast_window', 5), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 40)]": 3,
+        "[('fast_window', 10), ('slow_window', 25)]": 1
+      },
+      "transition_rate": 0.5925925925925926,
+      "risk_summary": "\u6240\u6709\u89c4\u5219 not_triggered\u3002\u6ce8\u610f\uff1anot_triggered \u2260 \u7b56\u7565\u6ca1\u6709\u8fc7\u62df\u5408\uff0c\u4ec5\u8868\u793a\u672a\u89e6\u53d1\u5f53\u524d\u89c4\u5219\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "\u5b81\u5fb7\u65f6\u4ee3",
+      "industry": "\u65b0\u80fd\u6e90/\u5236\u9020",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 28,
+      "n_sel_ok": 28,
+      "n_oos_ok": 28,
+      "positive_ratio": 0.17857142857142858,
+      "median_ret": 0.0,
+      "median_mdd": 0.019086399999999993,
+      "total_trades": 11,
+      "total_fees": 1382.47,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 15)]": 14,
+        "[('fast_window', 10), ('slow_window', 25)]": 8,
+        "[('fast_window', 10), ('slow_window', 20)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 4
+      },
+      "transition_rate": 0.4444444444444444,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "\u5b81\u5fb7\u65f6\u4ee3",
+      "industry": "\u65b0\u80fd\u6e90/\u5236\u9020",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 28,
+      "n_sel_ok": 28,
+      "n_oos_ok": 28,
+      "positive_ratio": 0.17857142857142858,
+      "median_ret": 0.0,
+      "median_mdd": 0.01906955000000002,
+      "total_trades": 11,
+      "total_fees": 1264.84,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 15)]": 14,
+        "[('fast_window', 10), ('slow_window', 25)]": 8,
+        "[('fast_window', 10), ('slow_window', 20)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 4
+      },
+      "transition_rate": 0.4444444444444444,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "300750.SZ",
+      "name": "\u5b81\u5fb7\u65f6\u4ee3",
+      "industry": "\u65b0\u80fd\u6e90/\u5236\u9020",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 28,
+      "n_sel_ok": 28,
+      "n_oos_ok": 28,
+      "positive_ratio": 0.17857142857142858,
+      "median_ret": 0.0,
+      "median_mdd": 0.019973050000000003,
+      "total_trades": 11,
+      "total_fees": 1705.86,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 15)]": 14,
+        "[('fast_window', 10), ('slow_window', 25)]": 8,
+        "[('fast_window', 10), ('slow_window', 20)]": 2,
+        "[('fast_window', 20), ('slow_window', 25)]": 4
+      },
+      "transition_rate": 0.4444444444444444,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000858.SZ",
+      "name": "\u4e94\u7cae\u6db2",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.04059149999999994,
+      "total_trades": 20,
+      "total_fees": 2235.27,
+      "param_dist": {
+        "[('fast_window', 3), ('slow_window', 40)]": 1,
+        "[('fast_window', 3), ('slow_window', 25)]": 3,
+        "[('fast_window', 10), ('slow_window', 60)]": 2,
+        "[('fast_window', 5), ('slow_window', 60)]": 4,
+        "[('fast_window', 10), ('slow_window', 25)]": 2,
+        "[('fast_window', 20), ('slow_window', 60)]": 4,
+        "[('fast_window', 10), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 40)]": 3,
+        "[('fast_window', 3), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 15)]": 5,
+        "[('fast_window', 5), ('slow_window', 15)]": 1,
+        "[('fast_window', 20), ('slow_window', 25)]": 2
+      },
+      "transition_rate": 0.6206896551724138,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000858.SZ",
+      "name": "\u4e94\u7cae\u6db2",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.04051789999999994,
+      "total_trades": 20,
+      "total_fees": 2053.53,
+      "param_dist": {
+        "[('fast_window', 3), ('slow_window', 40)]": 1,
+        "[('fast_window', 3), ('slow_window', 25)]": 3,
+        "[('fast_window', 10), ('slow_window', 60)]": 2,
+        "[('fast_window', 5), ('slow_window', 60)]": 4,
+        "[('fast_window', 10), ('slow_window', 25)]": 2,
+        "[('fast_window', 20), ('slow_window', 60)]": 4,
+        "[('fast_window', 10), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 40)]": 3,
+        "[('fast_window', 3), ('slow_window', 60)]": 2,
+        "[('fast_window', 10), ('slow_window', 15)]": 5,
+        "[('fast_window', 5), ('slow_window', 15)]": 1,
+        "[('fast_window', 20), ('slow_window', 25)]": 2
+      },
+      "transition_rate": 0.6206896551724138,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000858.SZ",
+      "name": "\u4e94\u7cae\u6db2",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.03551153360287523,
+      "total_trades": 17,
+      "total_fees": 2452.52,
+      "param_dist": {
+        "[('fast_window', 3), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 60)]": 5,
+        "[('fast_window', 10), ('slow_window', 60)]": 2,
+        "[('fast_window', 5), ('slow_window', 60)]": 4,
+        "[('fast_window', 10), ('slow_window', 25)]": 2,
+        "[('fast_window', 10), ('slow_window', 40)]": 1,
+        "[('fast_window', 20), ('slow_window', 40)]": 4,
+        "[('fast_window', 3), ('slow_window', 60)]": 2,
+        "[('fast_window', 3), ('slow_window', 25)]": 2,
+        "[('fast_window', 5), ('slow_window', 15)]": 1,
+        "[('fast_window', 10), ('slow_window', 15)]": 4,
+        "[('fast_window', 20), ('slow_window', 25)]": 2
+      },
+      "transition_rate": 0.5862068965517241,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "warning"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "warning"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000858.SZ",
+      "name": "\u4e94\u7cae\u6db2",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.23333333333333334,
+      "median_ret": 0.0,
+      "median_mdd": 0.03575230355566374,
+      "total_trades": 15,
+      "total_fees": 1775.71,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 20)]": 5,
+        "[('fast_window', 10), ('slow_window', 25)]": 9,
+        "[('fast_window', 10), ('slow_window', 15)]": 8,
+        "[('fast_window', 20), ('slow_window', 25)]": 8
+      },
+      "transition_rate": 0.5517241379310345,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000858.SZ",
+      "name": "\u4e94\u7cae\u6db2",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.23333333333333334,
+      "median_ret": 0.0,
+      "median_mdd": 0.035735072110209445,
+      "total_trades": 15,
+      "total_fees": 1633.03,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 20)]": 5,
+        "[('fast_window', 10), ('slow_window', 25)]": 9,
+        "[('fast_window', 10), ('slow_window', 15)]": 8,
+        "[('fast_window', 20), ('slow_window', 25)]": 8
+      },
+      "transition_rate": 0.5517241379310345,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "000858.SZ",
+      "name": "\u4e94\u7cae\u6db2",
+      "industry": "\u767d\u9152/\u6d88\u8d39",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.23333333333333334,
+      "median_ret": 0.0,
+      "median_mdd": 0.036654506437706194,
+      "total_trades": 15,
+      "total_fees": 2167.3,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 20)]": 5,
+        "[('fast_window', 10), ('slow_window', 25)]": 9,
+        "[('fast_window', 10), ('slow_window', 15)]": 8,
+        "[('fast_window', 20), ('slow_window', 25)]": 8
+      },
+      "transition_rate": 0.5517241379310345,
+      "risk_summary": "\u81f3\u5c11\u4e00\u6761\u89c4\u5219\u89e6\u53d1 elevated\uff1a\u5f53\u524d\u8bc1\u636e\u4e0d\u8db3\u4ee5\u652f\u6301\u7b56\u7565\u7a33\u5065\u6027\u7ed3\u8bba\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "elevated"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "\u957f\u6c5f\u7535\u529b",
+      "industry": "\u516c\u7528\u4e8b\u4e1a",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.03304519794291056,
+      "total_trades": 18,
+      "total_fees": 2400.93,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 15)]": 1,
+        "[('fast_window', 20), ('slow_window', 25)]": 4,
+        "[('fast_window', 5), ('slow_window', 60)]": 4,
+        "[('fast_window', 20), ('slow_window', 60)]": 3,
+        "[('fast_window', 20), ('slow_window', 40)]": 6,
+        "[('fast_window', 5), ('slow_window', 15)]": 3,
+        "[('fast_window', 10), ('slow_window', 25)]": 2,
+        "[('fast_window', 5), ('slow_window', 25)]": 2,
+        "[('fast_window', 10), ('slow_window', 40)]": 4,
+        "[('fast_window', 3), ('slow_window', 15)]": 1
+      },
+      "transition_rate": 0.6551724137931034,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "\u957f\u6c5f\u7535\u529b",
+      "industry": "\u516c\u7528\u4e8b\u4e1a",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3333333333333333,
+      "median_ret": 0.0,
+      "median_mdd": 0.03304395300985811,
+      "total_trades": 18,
+      "total_fees": 2198.47,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 15)]": 1,
+        "[('fast_window', 20), ('slow_window', 25)]": 4,
+        "[('fast_window', 5), ('slow_window', 60)]": 4,
+        "[('fast_window', 20), ('slow_window', 60)]": 3,
+        "[('fast_window', 20), ('slow_window', 40)]": 6,
+        "[('fast_window', 5), ('slow_window', 15)]": 3,
+        "[('fast_window', 10), ('slow_window', 25)]": 2,
+        "[('fast_window', 5), ('slow_window', 25)]": 2,
+        "[('fast_window', 10), ('slow_window', 40)]": 4,
+        "[('fast_window', 3), ('slow_window', 15)]": 1
+      },
+      "transition_rate": 0.6551724137931034,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "\u957f\u6c5f\u7535\u529b",
+      "industry": "\u516c\u7528\u4e8b\u4e1a",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.3,
+      "median_ret": 0.0,
+      "median_mdd": 0.032161925031465394,
+      "total_trades": 16,
+      "total_fees": 2621.81,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 60)]": 1,
+        "[('fast_window', 20), ('slow_window', 25)]": 4,
+        "[('fast_window', 20), ('slow_window', 60)]": 4,
+        "[('fast_window', 5), ('slow_window', 60)]": 2,
+        "[('fast_window', 20), ('slow_window', 40)]": 8,
+        "[('fast_window', 5), ('slow_window', 15)]": 3,
+        "[('fast_window', 5), ('slow_window', 25)]": 2,
+        "[('fast_window', 10), ('slow_window', 25)]": 1,
+        "[('fast_window', 10), ('slow_window', 40)]": 4,
+        "[('fast_window', 3), ('slow_window', 15)]": 1
+      },
+      "transition_rate": 0.6551724137931034,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "warning"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "warning"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "\u957f\u6c5f\u7535\u529b",
+      "industry": "\u516c\u7528\u4e8b\u4e1a",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.4,
+      "median_ret": 0.0,
+      "median_mdd": 0.03106936915359962,
+      "total_trades": 18,
+      "total_fees": 2279.46,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 15)]": 11,
+        "[('fast_window', 20), ('slow_window', 25)]": 6,
+        "[('fast_window', 10), ('slow_window', 20)]": 9,
+        "[('fast_window', 10), ('slow_window', 25)]": 4
+      },
+      "transition_rate": 0.5517241379310345,
+      "risk_summary": "\u82e5\u5e72\u89c4\u5219\u89e6\u53d1 warning\uff1a\u5b58\u5728\u9700\u8981\u5173\u6ce8\u7684\u98ce\u9669\u4fe1\u53f7\uff0c\u4f46\u5c1a\u65e0 elevated \u7ea7\u522b\u95ee\u9898\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "warning"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "\u957f\u6c5f\u7535\u529b",
+      "industry": "\u516c\u7528\u4e8b\u4e1a",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.4,
+      "median_ret": 0.0,
+      "median_mdd": 0.031068176737421627,
+      "total_trades": 18,
+      "total_fees": 2097.28,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 15)]": 11,
+        "[('fast_window', 20), ('slow_window', 25)]": 6,
+        "[('fast_window', 10), ('slow_window', 20)]": 9,
+        "[('fast_window', 10), ('slow_window', 25)]": 4
+      },
+      "transition_rate": 0.5517241379310345,
+      "risk_summary": "\u6240\u6709\u89c4\u5219 not_triggered\u3002\u6ce8\u610f\uff1anot_triggered \u2260 \u7b56\u7565\u6ca1\u6709\u8fc7\u62df\u5408\uff0c\u4ec5\u8868\u793a\u672a\u89e6\u53d1\u5f53\u524d\u89c4\u5219\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    },
+    {
+      "symbol": "600900.SH",
+      "name": "\u957f\u6c5f\u7535\u529b",
+      "industry": "\u516c\u7528\u4e8b\u4e1a",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 30,
+      "n_sel_ok": 30,
+      "n_oos_ok": 30,
+      "positive_ratio": 0.4,
+      "median_ret": 0.0,
+      "median_mdd": 0.03184512275315437,
+      "total_trades": 17,
+      "total_fees": 2644.75,
+      "param_dist": {
+        "[('fast_window', 10), ('slow_window', 15)]": 9,
+        "[('fast_window', 20), ('slow_window', 25)]": 6,
+        "[('fast_window', 10), ('slow_window', 20)]": 10,
+        "[('fast_window', 10), ('slow_window', 25)]": 5
+      },
+      "transition_rate": 0.5862068965517241,
+      "risk_summary": "\u6240\u6709\u89c4\u5219 not_triggered\u3002\u6ce8\u610f\uff1anot_triggered \u2260 \u7b56\u7565\u6ca1\u6709\u8fc7\u62df\u5408\uff0c\u4ec5\u8868\u793a\u672a\u89e6\u53d1\u5f53\u524d\u89c4\u5219\u3002",
+      "risk_rules": [
+        {
+          "id": "R1_low_valid_oos_windows",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R2_low_positive_oos_count",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R3_oos_positive_ratio",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R4_param_selection_instable",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R5_oos_positive_concentrated",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R6_train_alpha_unclear",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R7_fee_model_is_placeholder",
+          "level": "not_triggered"
+        },
+        {
+          "id": "R8_param_grid_too_large",
+          "level": "not_triggered"
+        }
+      ]
+    }
+  ]
+}
