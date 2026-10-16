@@ -3,8 +3,30 @@
 > **文档目的**：本文件是 DeepQuant 项目的完整交接指导，供腾讯 WorkBuddy 专家团队接手并持续推进直至项目完成。
 > 本文件整合了项目全部历史任务指令（Step 1 → Step 7.5）、核心设计原则、代码架构、当前状态、用户新增需求（信号概念、基准对比等）以及下一步方向。
 > **生成日期**：2026-10-16
-> **当前 Git HEAD**：`36a9b4d`（已推送到 `origin/main`）
+> **当前 Git HEAD**：`e636048`（已推送到 `origin/main`）
 > **仓库地址**：https://github.com/simontang6868/DeepQuant
+> **阅读建议**：专家团队接手后，建议按 §1（项目定位）→ §11（检查清单）→ §3（已完成工作）→ §9（未完成事项）→ §10（路线图）的顺序阅读。
+
+---
+
+## 目录
+
+- 第一部分：项目概述与最终目标
+- 第二部分：用户明确的红线（12 条）
+- 第三部分：已完成工作总览（含每阶段验收标准）
+- 第四部分：用户新增需求（信号 / 基准对比 / 多策略 / 持久化）
+- 第五部分：核心设计原则
+- 第六部分：代码架构（目录 / 数据结构 / 风险规则）
+- 第七部分：已完成的真实 A 股研究（Step 7.5）
+- 第八部分：环境与工具信息
+- 第九部分：未完成事项与优先级（P0-P4，16 项）
+- 第十部分：建议的下一步路线图（4 条）
+- 第十一部分：接手检查清单
+- 第十二部分：关键文件速查表
+- 第十三部分：交付报告索引
+- 第十四部分：用户偏好与沟通风格
+- 第十五部分：重要提醒
+- 第十六部分：项目"完成"的定义
 
 ---
 
@@ -41,50 +63,71 @@ DeepQuant 是一个 **A 股量化研究与回测平台**。它不是一个简单
 
 ---
 
-## 第二部分：用户明确的红线（绝对不能违反）
+## 第二部分：用户明确的红线（12 条，绝对不能违反）
 
-| 编号 | 红线 | 原因 |
-|---|---|---|
-| R1 | 不做实盘交易 / 自动下单 / 券商 API | 项目定位是研究，不是交易执行 |
-| R2 | 不用 OOS 数据选参 | 防止未来函数和数据泄漏 |
-| R3 | 不把合成行情标记为真实行情 | 研究诚信 |
-| R4 | 不把占位费率标记为真实券商费率 | 费用透明 |
-| R5 | 不删除 / 弱化失败窗口和失败策略记录 | 诚实暴露不足 |
-| R6 | 不 git reset / clean / restore / checkout | 保护历史成果 |
-| R7 | 不删除或弱化既有测试 | 保持质量基线 |
-| R8 | 不擅自 commit / push | Git 安全（需用户明确授权） |
-| R9 | 不把历史样本外表现说成未来收益保证 | 研究诚信 |
-| R10 | 不为了好看而修改风险规则阈值 | 审计规则的独立性 |
-| R11 | 不把所有候选参数的 OOS 收益排序后再选最优 | 二次数据泄漏 |
-| R12 | 不把窗口级统计冒充连续账户收益 | 统计语义透明 |
+| 编号 | 红线 | 原因 | 违反后果 |
+|---|---|---|---|
+| R1 | 不做实盘交易 / 自动下单 / 券商 API | 项目定位是研究，不是交易执行 | 项目方向偏离 |
+| R2 | 不用 OOS 数据选参 | 防止未来函数和数据泄漏 | 研究结果无效 |
+| R3 | 不把合成行情标记为真实行情 | 研究诚信 | 虚假结论 |
+| R4 | 不把占位费率标记为真实券商费率 | 费用透明 | 费用假设失真 |
+| R5 | 不删除 / 弱化失败窗口和失败策略记录 | 诚实暴露不足 | 研究偏差 |
+| R6 | 不 git reset / clean / restore / checkout | 保护历史成果 | 数据丢失 |
+| R7 | 不删除或弱化既有测试 | 保持质量基线 | 回归风险 |
+| R8 | 不擅自 commit / push | Git 安全（需用户明确授权） | 版本混乱 |
+| R9 | 不把历史样本外表现说成未来收益保证 | 研究诚信 | 误导用户 |
+| R10 | 不为了好看而修改风险规则阈值 | 审计规则的独立性 | 审计失效 |
+| R11 | 不把所有候选参数的 OOS 收益排序后再选最优 | 二次数据泄漏 | 过拟合 |
+| R12 | 不把窗口级统计冒充连续账户收益 | 统计语义透明 | 错误解读 |
 
 ---
 
 ## 第三部分：已完成工作总览
 
-### 3.1 阶段演进
+### 3.1 阶段演进总表
 
-项目从 Step 1 逐步迭代到 Step 7.5。以下是关键阶段：
+| 阶段 | 内容 | 核心交付文件 | 验收标准 | 交付报告 |
+|---|---|---|---|---|
+| Step 1-5 | 基础回测引擎 + API + React 前端 | `backtest/`、`api/`、`frontend/` | — | — |
+| Step 6.2 | SQLite 持久化层 | `persistence/`（RunRecord / RunDocument） | — | — |
+| Step 6.3 | 历史回测 API 路由 | `api/routes/backtests.py` | — | — |
+| Step 6.4 | 完整性审计（schema / source_sha256 / fee_source / fill_date） | `persistence/repro_checklist.py` | — | — |
+| Step 6.5 | 复现清单 | `persistence/repro_checklist.py` | — | — |
+| Step 6.6-6.7 | 对比 API + 前端历史详情页 | 前端组件 | — | — |
+| Step 7.0 | 回测时序、未来函数、交易成本方向可信度审查 | `tests/backtest/test_credibility.py`（17 条测试） | — | — |
+| Step 7.1 | 固定参数 Walk-Forward 滚动 OOS 验证 | `walkforward/__init__.py` | 13/13 通过 | STEP_7.1_DELIVERY_REPORT.md |
+| Step 7.2 | 训练期网格搜索 + 参数选择 + 独立 OOS | `walkforward/parameter_selection.py` | 13/13 通过 | STEP_7.2_DELIVERY_REPORT.md |
+| Step 7.3 | 参数敏感性分析 + 8 条过拟合风险规则 | `walkforward/sensitivity.py` | 12/12 通过 | STEP_7.3_DELIVERY_REPORT.md |
+| Step 7.4 | 真实 A 股数据接入（akshare）+ 扩展数据质量校验 | `data/validation/checks_extended.py` | 11/11 通过 | STEP_7.4_DELIVERY_REPORT.md |
+| Step 7.5 | 6 标的 × 2 策略 × 3 费用 Walk-Forward 研究 | `akshare_loader.py` / `fee_presets.py` / `mean_reversion.py` | 11/11 通过 | STEP_7.5_DELIVERY_REPORT.md |
 
-| 阶段 | 内容 | 核心交付 |
-|---|---|---|
-| Step 1-5 | 基础回测引擎 + API + React 前端 | `backtest/`、`api/`、`frontend/` |
-| Step 6.2 | SQLite 持久化层 | `persistence/`（RunRecord / RunDocument） |
-| Step 6.3 | 历史回测 API 路由 | `api/routes/backtests.py` |
-| Step 6.4 | 完整性审计（schema / source_sha256 / fee_source / fill_date） | `persistence/repro_checklist.py` |
-| Step 6.5 | 复现清单 | `persistence/repro_checklist.py` |
-| Step 6.6-6.7 | 对比 API + 前端历史详情页 | 前端组件 |
-| Step 7.0 | 回测时序、未来函数、交易成本方向可信度审查 | `tests/backtest/test_credibility.py` |
-| Step 7.1 | 固定参数 Walk-Forward 滚动 OOS 验证 | `walkforward/__init__.py` |
-| Step 7.2 | 训练期网格搜索 + 参数选择 + 独立 OOS | `walkforward/parameter_selection.py` |
-| Step 7.3 | 参数敏感性分析 + 8 条过拟合风险规则 | `walkforward/sensitivity.py` |
-| Step 7.4 | 真实 A 股数据接入（akshare）+ 扩展数据质量校验 | `data/validation/checks_extended.py` |
-| Step 7.5 | 6 标的 × 2 策略 × 3 费用 Walk-Forward 研究 | `akshare_loader.py` / `fee_presets.py` / `mean_reversion.py` |
+### 3.2 Step 7.1 引擎最小改动（关键设计决策）
 
-### 3.2 Git 历史
+Step 7.1 对引擎做了**唯一一次最小改动**（约 30 行）：
+
+**改动前**：`run_backtest` 先按 `start_date`/`end_date` 裁剪 df，再调 `strategy.generate_signals(df)`
+**改动后**：先在完整 df 上调 `strategy.generate_signals(df_full)`（拿到含预热的全量 signals），再按 `start_date`/`end_date` 裁剪 signals
+
+**原因**：让策略能看到 `start_date` 之前的预热数据（MA 等指标在 OOS 起点即可有效）。对常规调用（无预热）行为完全不变——483 既有测试零回归。
+
+### 3.3 Step 7.2 参数选择 8 步流程
+
+每个 Walk-Forward 窗口严格执行：
+
+1. 读取该窗口的训练期行情
+2. 构造候选参数集合（确定性网格）
+3. 对每组候选参数单独运行训练期回测（独立策略实例 + 独立账户）
+4. 仅根据训练期结果计算选择指标
+5. 按预先指定的选择规则选出一组参数（训练期累计收益 desc → 最大回撤 asc → 参数字典序）
+6. 固定选定参数
+7. 再使用选定参数运行该窗口的 OOS 回测（独立策略实例 + 独立初始账户）
+8. 记录训练期选择结果和 OOS 评估结果
+
+### 3.4 Git 历史
 
 ```
-36a9b4d docs: add Workday handoff guide                              ← HEAD（已推送）
+e636048 docs: rewrite handoff guide for Tencent WorkBuddy expert team  ← HEAD（已推送）
+36a9b4d docs: add Workday handoff guide (project overview...)
 6a4a1b7 docs: add Step 7.4 and Step 7.5 delivery reports
 e954923 Step 7.5: akshare loader, fee presets, mean reversion...
 c197e49 Step 7.4: extend data quality validation
@@ -92,15 +135,30 @@ c197e49 Step 7.4: extend data quality validation
 6e5e32d feat: add backtest API and React frontend (Steps 5.5-5.8)
 ```
 
-### 3.3 当前测试基线
+### 3.5 当前测试基线
 
-| 检查项 | 结果 | 测试数 |
-|---|---|---|
-| 后端 pytest | ✅ 通过 | 573 passed, 1 skipped |
-| 前端 Vitest | ✅ 通过 | 157 passed |
-| TypeScript | ✅ 通过 | — |
-| Vite build | ✅ 通过 | — |
-| git diff --check | ✅ 通过 | — |
+| 检查项 | 结果 | 测试数 | 测试文件分布 |
+|---|---|---|---|
+| 后端 pytest | ✅ 通过 | 573 passed, 1 skipped | 20+ 测试文件 |
+| 前端 Vitest | ✅ 通过 | 157 passed | — |
+| TypeScript | ✅ 通过 | — | — |
+| Vite build | ✅ 通过 | — | — |
+| git diff --check | ✅ 通过 | — | — |
+
+**后端测试文件分布**（关键）：
+- `tests/backtest/test_engine.py` — 25+ 条引擎测试
+- `tests/backtest/test_config.py` — 配置校验
+- `tests/backtest/test_costs.py` — 费用计算
+- `tests/backtest/test_models.py` — 模型
+- `tests/backtest/test_credibility.py` — 17 条可信度测试（Step 7.0）
+- `tests/market/test_ashare.py` / `test_rules.py` — A 股规则
+- `tests/strategies/test_ma_cross.py` — MA 策略
+- `tests/strategies/test_mean_reversion.py` — MR 策略（12 条，Step 7.5）
+- `tests/performance/test_metrics.py` — 绩效计算
+- `tests/api/test_backtests_api.py` / `test_backtest_history_api.py` — API 集成
+- `tests/walkforward/test_walkforward.py` — 22 条 WF 测试（Step 7.1）
+- `tests/walkforward/test_parameter_selection.py` — 22 条参数选择测试（Step 7.2）
+- `tests/walkforward/test_sensitivity.py` — 25 条敏感性测试（Step 7.3）
 
 ---
 
@@ -130,6 +188,8 @@ c197e49 Step 7.4: extend data quality validation
 - 可以做信号组合（ensemble）
 - 信号和执行解耦，便于研究信号本身的预测能力
 
+**约束**：不要破坏现有策略接口，573 条测试必须全过。
+
 ### 4.2 与基准（Benchmark）对比
 
 **用户需求**：策略结果要能和基准对比，而不是孤立看收益。
@@ -146,6 +206,8 @@ c197e49 Step 7.4: extend data quality validation
 **价值**：
 - 判断策略是否真的"跑赢市场"，而不是绝对收益
 - 区分"市场 beta"和"策略 alpha"
+
+**约束**：基准要和策略用同一数据 / 费用 / 窗口配置，否则对比不公平。
 
 ### 4.3 多策略异质对比
 
@@ -255,29 +317,61 @@ backend/src/deepquant/
 
 | 结构 | 位置 | 说明 |
 |---|---|---|
-| `BacktestConfig` | `backtest/config.py` | 回测配置 |
+| `BacktestConfig` | `backtest/config.py` | 回测配置（symbol / start / end / initial_cash / 6 费率 / fee_source） |
 | `FeePreset` | `backtest/fee_presets.py` | 费用预设 + verified_fields |
-| `MaCrossStrategy` | `strategies/ma_cross.py` | 双均线交叉 |
-| `MeanReversionStrategy` | `strategies/mean_reversion.py` | z-score 均值回归 |
-| `GridSearchConfig` | `walkforward/parameter_selection.py` | 参数网格配置 |
-| `WindowWFResult` | `walkforward/parameter_selection.py` | 单窗口结果 |
-| `WalkForwardSummaryV2` | `walkforward/parameter_selection.py` | 跨窗口汇总 |
+| `MaCrossStrategy` | `strategies/ma_cross.py` | 双均线交叉（fast_window / slow_window，约束 slow > fast） |
+| `MeanReversionStrategy` | `strategies/mean_reversion.py` | z-score 均值回归（lookback / threshold） |
+| `GridSearchConfig` | `walkforward/parameter_selection.py` | 参数网格配置（fast/slow 候选 / min_periods / min_trades / max_combinations） |
+| `WindowWFResult` | `walkforward/parameter_selection.py` | 单窗口结果（窗口信息 / 参数选择 / OOS 评估） |
+| `WalkForwardSummaryV2` | `walkforward/parameter_selection.py` | 跨窗口汇总（selection 成功 / oos 成功 / valid metrics 分离） |
 | `SensitivityReport` | `walkforward/sensitivity.py` | 敏感性 + 风险审计 |
 
-### 6.3 8 条过拟合风险规则（Step 7.3）
+### 6.3 WalkForwardConfig 字段说明
 
-| ID | 规则 | 触发条件 |
+| 字段 | 类型 | 说明 |
 |---|---|---|
-| R1 | 有效 OOS 窗口数不足 | < 5 → warning |
-| R2 | 正收益 OOS 窗口数不足 | < 3 → warning |
-| R3 | OOS 正收益占比过低 | < 30% → elevated |
-| R4 | 参数选择不稳定 | 相邻窗口参数过渡率 > 60% → warning |
-| R5 | OOS 正收益集中 | Top 25% 窗口贡献 > 80% 正收益 → warning |
-| R6 | 训练期 alpha 不足 | 训练期累计收益中位数 < 0 → warning |
-| R7 | 费用为占位 | fee_source == simulation_placeholder → warning |
-| R8 | 参数网格过大 | 候选数 / 有效窗口数 > 1 → warning |
+| `train_window` | int | 训练期交易日数 |
+| `oos_window` | int | OOS 交易日数 |
+| `step` | int | 滚动步长（通常 = oos_window 为无重叠） |
+| `warmup` | int | 指标预热交易日数（0 表示不用额外预热） |
+| `min_train` / `min_oos` | int | 最小有效长度 |
+| `start_date` / `end_date` | Timestamp | 整体时间边界（可选） |
+
+### 6.4 费用预设（Step 7.5）
+
+| 预设 | fee_source | 佣金 | 印花税 | 过户费 | 滑点 | verified_fields |
+|---|---|---|---|---|---|---|
+| `simulation` | simulation_placeholder | 0.025% | 0.05%（卖） | 0.001% | 0.01% | （无） |
+| `reference` | verified_reference | 0.025% | 0.05%（卖） | 0.001% | 0.01% | stamp_duty, transfer_fee |
+| `high_cost` | research_assumption | 0.05% | 0.05%（卖） | 0.001% | 0.05% | （无，标记为假设） |
+
+### 6.5 8 条过拟合风险规则（Step 7.3）
+
+| ID | 规则 | 触发条件 | 级别 |
+|---|---|---|---|
+| R1 | 有效 OOS 窗口数不足 | < 5 | warning |
+| R2 | 正收益 OOS 窗口数不足 | < 3 | warning |
+| R3 | OOS 正收益占比过低 | < 30% | elevated |
+| R4 | 参数选择不稳定 | 相邻窗口参数过渡率 > 60% | warning |
+| R5 | OOS 正收益集中 | Top 25% 窗口贡献 > 80% 正收益 | warning |
+| R6 | 训练期 alpha 不足 | 训练期累计收益中位数 < 0 | warning |
+| R7 | 费用为占位 | fee_source == simulation_placeholder | warning |
+| R8 | 参数网格过大 | 候选数 / 有效窗口数 > 1 | warning |
 
 **注意**：`not_triggered` 只表示未触发当前规则，**不代表策略没有过拟合**。
+
+### 6.6 akshare 字段映射（腾讯 K 线接口）
+
+| akshare 字段 | 标准字段 | 说明 |
+|---|---|---|
+| `date` | `date` | 交易日期 |
+| `open` | `open` | 开盘价 |
+| `close` | `close` | 收盘价 |
+| `high` | `high` | 最高价 |
+| `low` | `low` | 最低价 |
+| `amount` | `volume` | 成交量（注意：腾讯接口字段名是 amount，实际含义是成交量） |
+
+**数据源接口**：`ak.stock_zh_a_hist_tx(symbol='sh600519', start_date='20180101', end_date='20241231', adjust='qfq')`
 
 ---
 
@@ -285,14 +379,14 @@ backend/src/deepquant/
 
 ### 7.1 数据集
 
-| 标的 | 行业 | 行数 | 范围 | 复权 |
-|---|---|---|---|---|
-| 600519.SH 贵州茅台 | 白酒 | 1699 | 2018-2024 | qfq |
-| 000001.SZ 平安银行 | 银行 | 1699 | 2018-2024 | qfq |
-| 601318.SH 中国平安 | 保险 | 1699 | 2018-2024 | qfq |
-| 300750.SZ 宁德时代 | 新能源 | 1594 | 2018-06→2024 | qfq |
-| 000858.SZ 五粮液 | 白酒 | 1699 | 2018-2024 | qfq |
-| 600900.SH 长江电力 | 公用事业 | 1688 | 2018-2024 | qfq |
+| 标的 | 行业 | 行数 | 范围 | 复权 | SHA-256（前 16 位） |
+|---|---|---|---|---|---|
+| 600519.SH 贵州茅台 | 白酒 | 1699 | 2018-2024 | qfq | （见 step75_research_summary.json） |
+| 000001.SZ 平安银行 | 银行 | 1699 | 2018-2024 | qfq | （同上） |
+| 601318.SH 中国平安 | 保险 | 1699 | 2018-2024 | qfq | （同上） |
+| 300750.SZ 宁德时代 | 新能源 | 1594 | 2018-06→2024 | qfq | （同上） |
+| 000858.SZ 五粮液 | 白酒 | 1699 | 2018-2024 | qfq | （同上） |
+| 600900.SH 长江电力 | 公用事业 | 1688 | 2018-2024 | qfq | （同上） |
 
 ### 7.2 Walk-Forward 配置
 
@@ -311,7 +405,7 @@ backend/src/deepquant/
 ### 7.4 研究结果文件
 
 - `data/step75/step75_research_summary.json` — 完整结构化结果（已进 Git）
-- `data/step75/research.py` — 研究脚本（已进 Git）
+- `data/step75/research.py` — 研究脚本（已进 Git，可直接运行）
 - `data/step75/*.qfq.csv` — 6 只股票原始行情（**未进 Git**，可重下）
 
 ---
@@ -362,6 +456,21 @@ cd /workspace/DeepQuant/backend && .venv/bin/python3 ../data/step75/research.py
 
 - `gh auth login --web` 已完成，`gh auth setup-git` 已配置
 - `git push origin main` 可直接执行
+
+### 8.5 数据目录结构
+
+```
+data/
+└── step75/
+    ├── research.py                    # 研究脚本（已进 Git）
+    ├── step75_research_summary.json   # 研究结果（已进 Git）
+    ├── 600519.SH.qfq.csv              # 贵州茅台（未进 Git）
+    ├── 000001.SZ.qfq.csv              # 平安银行（未进 Git）
+    ├── 601318.SH.qfq.csv              # 中国平安（未进 Git）
+    ├── 300750.SZ.qfq.csv              # 宁德时代（未进 Git）
+    ├── 000858.SZ.qfq.csv              # 五粮液（未进 Git）
+    └── 600900.SH.qfq.csv              # 长江电力（未进 Git）
+```
 
 ---
 
@@ -457,7 +566,7 @@ Step 11.4: 多信号组合实验
 ```bash
 # 1. 确认 Git 状态
 cd /workspace/DeepQuant
-git log --oneline -3          # 应看到 36a9b4d, 6a4a1b7, e954923
+git log --oneline -5          # 应看到 e636048, 36a9b4d, 6a4a1b7, e954923, c197e49
 git status --short            # 应只有 6 个 CSV untracked
 git pull origin main          # 确认远程同步
 
@@ -471,8 +580,11 @@ import akshare as ak
 df = ak.stock_zh_a_hist_tx(symbol='sh600519', start_date='20240101', end_date='20241231', adjust='qfq')
 print(f'rows={len(df)}')
 "
+# 期望：rows > 200
 
 # 4. 阅读关键交付报告
+# STEP_7.2_DELIVERY_REPORT.md（参数选择）
+# STEP_7.3_DELIVERY_REPORT.md（敏感性 + 风险规则）
 # STEP_7.4_DELIVERY_REPORT.md（真实数据接入）
 # STEP_7.5_DELIVERY_REPORT.md（多标的研究）
 # 本文件（交接指导）
@@ -497,10 +609,23 @@ print(f'rows={len(df)}')
 | 跑真实数据研究 | `data/step75/research.py` |
 | 看持久化结构 | `persistence/connection.py` + `persistence/store.py` |
 | 看 API 路由 | `api/routes/backtests.py` |
+| 看前端组件 | `frontend/src/` |
 
 ---
 
-## 第十三部分：用户偏好与沟通风格
+## 第十三部分：交付报告索引
+
+| 报告 | 路径 | 内容 |
+|---|---|---|
+| Step 7.2 交付报告 | `STEP_7.2_DELIVERY_REPORT.md` | 训练期参数选择 + OOS 隔离 |
+| Step 7.3 交付报告 | `STEP_7.3_DELIVERY_REPORT.md` | 参数敏感性 + 8 条风险规则 |
+| Step 7.4 交付报告 | `STEP_7.4_DELIVERY_REPORT.md` | 真实 A 股数据接入 |
+| Step 7.5 交付报告 | `STEP_7.5_DELIVERY_REPORT.md` | 6 标的 × 2 策略 × 3 费用研究 |
+| 交接指导（本文件） | `DEEPQUANT_HANDOFF_TO_WORKBUDDY.md` | 完整交接指导 |
+
+---
+
+## 第十四部分：用户偏好与沟通风格
 
 1. **自主推进，不频繁询问** —— 用户明确要求"在不需要用户介入的前提下，尽可能完成整个阶段"
 2. **诚实报告，不包装** —— 失败如实报告，不为好看而弱化测试或伪造结果
@@ -511,7 +636,7 @@ print(f'rows={len(df)}')
 
 ---
 
-## 第十四部分：重要提醒
+## 第十五部分：重要提醒
 
 1. **不要为了好看修改 Step 7.3 风险规则阈值** —— 如需修改，必须同时报告旧规则和新规则的结果
 2. **不要把 6 只股票 + 2 策略 + 3 费用的研究结果包装成"策略有效"** —— 收益中位数全 0 是事实
@@ -523,7 +648,7 @@ print(f'rows={len(df)}')
 
 ---
 
-## 第十五部分：项目"完成"的定义
+## 第十六部分：项目"完成"的定义
 
 用户希望专家团队接手后**持续推进直到完成**。这里定义"完成"的标准：
 
@@ -551,5 +676,5 @@ print(f'rows={len(df)}')
 ---
 
 *本文件由 Step 7.5 完成后生成，面向腾讯 WorkBuddy 专家团队。*
-*所有代码已推送到 `origin/main`，HEAD = `36a9b4d`。*
+*所有代码已推送到 `origin/main`，HEAD = `e636048`。*
 *专家团队接手后，请先执行 §11 的检查清单，再阅读 §9 的未完成事项，选择方向推进。*
