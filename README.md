@@ -24,9 +24,11 @@
 - Step 5.6：回测 API 首版（`GET /datasets`、`GET /strategies`、`POST /backtests`，显式策略注册表 + 数据路径安全 + 统一异常映射）；
 - Step 5.7：跨平台回归验证、代码安全审查与版本基线固化（新增 junction 逃逸测试；Linux 回归验证待具备环境后执行）；
 - Step 5.8：回测结果可视化前端（React + Vite，见下文「前端」章节）。
+- Step 8.1–8.5'（信号研究旁路层，纯加法）：结构化信号层 `strategies/signals.py`、信号级持久化 `persistence/signal_store.py`、信号评价指标 `analysis/signal_metrics.py`、多信号组合 `strategies/ensemble*.py`、ensemble 评价接入 `analysis/ensemble_eval.py` 与评价结果导出 `analysis/ensemble_report.py`，以及端到端冒烟脚本 `tools/run_signal_pipeline.py`；详见下文「信号研究与 ensemble 模块（Step 8.x）」章节。
 
-当前 **363 个 pytest 全部通过**（Step 5.7 Windows 实测；1 个符号链接文件测试在本机无权限时跳过，
-Windows 上以目录联接（junction）逃逸测试补充真实 reparse point 验证，Linux 下符号链接测试会实际执行），
+截至本版文档，研究层与回测层**全部测试通过**；本地 `pytest -q` 实测 **799 passed**、零回归
+（含 Step 8 信号研究系列与 B 组真实数据链路加固）。1 个符号链接文件测试在本机无权限时跳过，
+Windows 上以目录联接（junction）逃逸测试补充真实 reparse point 验证，Linux 下符号链接测试会实际执行；
 **1 个既有警告**（fastapi testclient 的 Starlette 弃用提示）。
 尚未实现：实盘交易、多标的组合、异步任务与结果持久化、数据库迁移、生产部署形态。
 
@@ -128,7 +130,7 @@ python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 .venv/bin/pip install --no-deps -e .
 
-# 3) 运行测试（共 364 项；Windows 实测 363 passed + 1 skipped，Linux 下符号链接测试会实际执行）
+# 3) 运行测试（本地 pytest 实测 799 passed、零回归；本机无权限时跳过 1 个符号链接测试）
 .venv/bin/python -m pytest -q
 
 # 4) 启动服务（http://127.0.0.1:8000/health，文档 /docs）
@@ -151,7 +153,7 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 python -m pip install --no-deps -e .
 
-# 3) 运行测试（Windows 实测：363 passed, 1 skipped, 1 warning）
+# 3) 运行测试（Windows 实测：799 passed, 1 skipped, 1 warning）
 python -m pytest -q
 
 # 4) 启动服务
@@ -229,6 +231,157 @@ print(strategy.describe())                # 记录名称/版本/参数，便于�
 
 信号契约：策略**只产出信号、不做撮合**；信号是**事件型**（仅在穿越当日给 BUY/SELL）；
 信号在 t 日收盘后产生，因此回测最早应在 **t+1 日**成交（避免未来函数）。
+
+## 信号研究与 ensemble 模块（Step 8.x）
+
+在既有「策略层（只产出 `pd.Series` 信号）→ 回测引擎（撮合）」链路之外，项目新增了一套
+**信号研究旁路层**，用于「信号可比 / 可组合 / 可评价 / 可持久化」的量化研究。该层是纯加法旁路：
+**回测引擎默认不读取它**，两者无代码依赖；是否接入引擎属于后续决策（须先证明现有内嵌转换无法满足需求）。
+
+### 红线与诚实性（该层所有模块共同遵守）
+
+- **仅评价，不选择**：`signal_metrics` / `ensemble_eval` 使用未来收益评估信号预测能力，
+  这对「评价」是必需的，但**绝不得用于参数选择**（R2 不用 OOS 数据选参、R11 不对候选参数
+  按 OOS 收益排序择优）。这些模块**刻意不提供**任何 `best_*` / `select_*` / 网格搜索 /
+  排序择优入口。
+- **组合不承诺 alpha**：多个无 alpha 的策略组合起来依然无 alpha；合成信号命中率高于单源
+  **不能**作为「应该组合」的证据。
+- **不把合成行情标为真实**（R3）：测试与冒烟脚本使用确定性合成数据，返回值带 `synthetic`
+  标志；任何人不应把合成数据当真实行情。
+- 命中率不含费用、滑点、涨跌停、T+1 与整手约束，也不模拟撮合；命中率高 ≠ 策略盈利。
+
+### 8.1 结构化信号层 `strategies/signals.py`
+
+把既有 `pd.Series` 信号提升为可携带元信息的结构化事件：
+
+```python
+from deepquant.strategies.signals import SignalEvent, events_from_signals
+
+# SignalEvent 字段：date, direction(Signal 枚举), strength(0..1), source,
+#                   valid_until(有效期截止日), metadata(策略私有信息)
+# 二值策略（MA / MR）没有强度概念，strength 一律填 1.0 —— 不虚构强度。
+events = events_from_signals(
+    signals_series,                # 与行情同索引，取值 ∈ {-1,0,1}
+    source="ma_cross",
+    valid_days=1,                  # 默认 1：T 收盘 → T+1 开盘，与引擎时序一致
+)
+```
+
+`SignalEvent` 是不可变数据类，构造期校验方向 / 强度 / 源合法性；`events_from_signals` 默认
+只产出非 HOLD 的可操作事件（`include_hold=True` 可调）。另含 `SignalExecutor` 接口与
+默认实现 `NextOpenExecutor`（T 日信号 → T+1 开盘执行），**仅定义接口、未接入引擎**。
+
+### 8.2' 信号级持久化 `persistence/signal_store.py`
+
+把信号事件落库（SQLite），支持按多维度检索、无损往返：
+
+```python
+from deepquant.persistence.signal_store import (
+    save_signal_events, list_signal_events, count_signal_events,
+)
+
+batch_id = save_signal_events(events, db_path="signals.db")  # 落库，返回批次号
+rows = list_signal_events(                                    # 只读检索
+    source="ma_cross",                                        # 精确匹配
+    start=pd.Timestamp("2024-01-01"), end=pd.Timestamp("2024-06-30"),
+    symbol="600000",                                          # 按 metadata["symbol"] 过滤（A 组新增）
+    limit=100,
+    db_path="signals.db",
+)
+n = count_signal_events(batch_id=batch_id, db_path="signals.db")
+```
+
+- `symbol` 参数为 A 组新增（纯加法）：按每条事件的 `metadata["symbol"]` 精确匹配，可与
+  时间窗 / 源 / 批次组合过滤；不影响既有接口签名，也不迁移旧库 schema。
+- 检索函数只读取、不修改；往返读取的事件内容与落库前一一对应（测试覆盖）。
+
+### 8.3' 信号评价指标 `analysis/signal_metrics.py`
+
+评估信号序列的方向性预测能力（**只读、纯函数、不参与参数选择**）：
+
+```python
+from deepquant.analysis.signal_metrics import evaluate_signals
+
+report = evaluate_signals(series, close, source="ma_cross", horizon=5)
+# report: density / buy_hit_rate / sell_hit_rate / overall_hit_rate
+#         mean_return_after_buy / mean_return_after_sell
+#         mean_gap_days / max_gap_days / excluded_tail / notes
+```
+
+辅助函数：`forward_returns(close, horizon)`（未来收益，仅评价用途）、`signal_density`、
+`signal_gaps`。末尾 `horizon` 个交易日的信号无未来数据，从统计中剔除并在
+`excluded_tail` 报告数量（不静默丢弃、不用 0 填补）。`report.to_dict()` 可程序化再读取。
+
+### 8.4' 多信号组合 `strategies/ensemble_voting.py` + `strategies/ensemble.py`
+
+投票内核（`ensemble_voting.py` 提供 `validate_trading_days` / `validate_inputs` /
+`validate_weights` / `collect_votes` / `decide`）负责纯投票；`ensemble.py` 负责编排与
+结果封装：
+
+```python
+from deepquant.strategies.ensemble import combine_series, combine_events, MAJORITY
+
+result = combine_series(
+    {"ma_cross": s1, "momentum": s2},       # 各序列索引必须完全一致
+    method=MAJORITY,                         # MAJORITY | WEIGHTED | UNANIMOUS
+    weights={"ma_cross": 0.6, "momentum": 0.4},   # 仅 WEIGHTED；由调用方给定
+    min_sources=2,                           # 当日至少 N 个源给信号才合成
+)
+# result.signals 合成信号序列 / result.events 结构化事件 / result.votes 投票明细
+# result.agreement 逐日一致性比例（= events[*].strength，共识度非胜率）
+```
+
+三道硬边界（红线）：不拟合权重（`weights` 由调用方给定，无搜索 / 优化入口）、不评价
+（本模块不 import `signal_metrics`）、不改引擎时序（`valid_until` 沿用 1 日有效期）。
+合成 `strength` 是**一致性比例**，不是标定胜率；组合不承诺 alpha。
+
+### 8.5' ensemble 评价接入 `analysis/ensemble_eval.py`
+
+组合层不评价、评价层不组合，本模块是两者**唯一合法的接线点**：一次并列评价「合成信号 +
+各源信号」：
+
+```python
+from deepquant.analysis.ensemble_eval import evaluate_ensemble
+
+report = evaluate_ensemble(
+    {"ma_cross": s1, "momentum": s2}, close,
+    method=MAJORITY, horizon=5, evaluate_sources=True,
+)
+# report.ensemble 合成信号评估 / report.per_source 各源评估 / report.notes 红线声明
+```
+
+**红线（务必遵守）**：本函数返回的是**评价结果，不是选参依据**。请勿据此挑选
+`weights` / `method` / `min_sources`（违反 R2 / R11）。本模块刻意不提供任何择优 / 搜索 /
+优化入口；各源与合成信号并列展示仅为描述性对比，不构成排序择优。
+
+#### 评价结果导出 `analysis/ensemble_report.py`（A 组新增，纯加法）
+
+把 `EnsembleEvalReport` 序列化落盘，便于存档与人工查看：
+
+```python
+from deepquant.analysis.ensemble_report import export_ensemble_report
+
+export_ensemble_report(report, "eval.json", fmt="json")   # 完整嵌套结构
+export_ensemble_report(report, "eval.csv",  fmt="csv")    # 一行一个源 + ensemble 行
+```
+
+本模块**只序列化、不评价、不重新计算、不聚合、不排序择优**（R2 / R11）；原样写出
+`EnsembleEvalReport.notes`（已声明「使用未来收益仅用于评价、不得用于参数选择」），
+不删除、不改写（R3）。
+
+### 端到端冒烟脚本 `tools/run_signal_pipeline.py`（A 组新增，纯加法）
+
+把整条研究链路串起来跑一遍，验证「生成 → 组合 → 评价 → 持久化 → 读回校验」五环节在当前
+代码库下能端到端打通。**全程确定性合成数据，返回值带 `synthetic: True`，不代表真实行情（R3）**：
+
+```bash
+python tools/run_signal_pipeline.py                 # 临时库，跑完即清
+python tools/run_signal_pipeline.py --db smoke.db   # 落指定库
+python tools/run_signal_pipeline.py --method weighted --n-days 120
+```
+
+编程入口 `run_signal_pipeline(n_days=60, seed=42, method="majority")` 返回含 `readback_ok`
+的冒烟摘要；`evaluate_ensemble` 仅评价、不挑选任何参数（R2 / R11）。
 
 ## 回测引擎用法示例
 

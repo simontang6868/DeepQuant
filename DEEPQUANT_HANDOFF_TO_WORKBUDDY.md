@@ -506,7 +506,7 @@ data/
 10. **更多策略** —— 动量、布林带突破、ADX 过滤
 11. **跨市场时期分析** —— 2018-2020（熊）/ 2020-2022（震荡）/ 2022-2024（后疫情）
 12. **Walk-Forward 结果持久化 + 前端入口** —— SQLite + 只读页面
-13. **多信号组合（ensemble）** —— 投票 / 加权 / 过滤
+13. **多信号组合（ensemble）** —— 投票 / 加权 / 过滤（旁路层 `strategies/ensemble*.py` 已实现，尚未接入回测引擎 / 未做 WF 持久化前端）
 
 ### P4：工程优化
 
@@ -529,6 +529,16 @@ Step 8.3: 引擎适配 Signal → Order 转换
 Step 8.4: 回归测试（确保所有 573 测试仍通过）
 Step 8.5: 新增信号层面的评价指标（信号准确率、信号延迟等）
 ```
+
+> **已落地（截至 2026-10-17）**：上述路线图的大部分已在自动化推进中实现为**信号研究旁路层**，未接入回测引擎（保持纯加法）：
+> - 8.1 `strategies/signals.py`：`SignalEvent` 结构化事件 + `events_from_signals` + `SignalExecutor`/`NextOpenExecutor` 接口（未接入引擎）；
+> - 8.2' `persistence/signal_store.py`：信号事件 SQLite 落库与检索（A 组新增 `symbol` 过滤，纯加法）；
+> - 8.3' `analysis/signal_metrics.py`：信号评价指标（命中率 / 密度 / 间隔，仅评价不选择）；
+> - 8.4' `strategies/ensemble_voting.py` + `ensemble.py`：多信号投票组合（`combine_series` / `combine_events`）；
+> - 8.5' `analysis/ensemble_eval.py` + `ensemble_report.py`：ensemble 评价接入与结果导出（JSON / CSV）；
+> - A 组冒烟脚本 `tools/run_signal_pipeline.py`：端到端链路打通（确定性合成数据，非真实行情）。
+>
+> 红线：评价层使用未来收益仅做评价、绝不用于参数选择（R2 / R11）；合成数据明确标注、不冒充实真实（R3）。详细 API 与红线说明见 `README.md` 的「信号研究与 ensemble 模块（Step 8.x）」章节。
 
 ### 路线图 2：基准对比（用户核心新需求）
 
