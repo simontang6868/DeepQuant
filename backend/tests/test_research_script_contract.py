@@ -238,3 +238,95 @@ def test_gate_rejects_non_finite_price() -> None:
     report = validate_daily_extended(df, adjust_status="qfq")
     assert not report.is_valid
     assert "invalid_price" in report.error_codes()
+
+
+# =========================================================================== #
+# 5. 扩样股票池（build_universe.py + DEEPQUANT_UNIVERSE）
+# =========================================================================== #
+# 扩样的动机是 docs/EXTERNAL_VALIDITY_2026-10-17.md 的结论：6 只手挑标的
+# 支撑不了任何总体结论。这里锁住三件事，防止扩样变成「换个池子继续讲故事」：
+#   1) 池子可复现（等距抽样，无随机种子争议）；
+#   2) 偏差必须随结果落盘（幸存者偏差不写清楚 = 结果不可信）；
+#   3) 默认池不变（历史结果仍可比）。
+
+UNIVERSE_BUILDER = REPO_ROOT / "data" / "step75" / "build_universe.py"
+
+
+@pytest.fixture(scope="module")
+def universe_source() -> str:
+    if not UNIVERSE_BUILDER.exists():
+        pytest.skip("data/step75/build_universe.py 不存在（裁剪检出）")
+    return UNIVERSE_BUILDER.read_text(encoding="utf-8")
+
+
+@pytest.fixture(scope="module")
+def universe_module(universe_source: str):
+    """按文件路径加载 build_universe（不是包，只能 spec 加载）。
+
+    该模块顶层 `import akshare`（取成分股用）。未装 akshare 的环境直接跳过，
+    不让「缺可选依赖」变成红灯 —— 与 PR #8 的 extras 口径一致。
+    """
+    import importlib.util
+
+    pytest.importorskip("akshare", reason="未安装 akshare，跳过扩样池单测")
+    spec = importlib.util.spec_from_file_location("_step75_build_universe", UNIVERSE_BUILDER)
+    assert spec is not None and spec.loader is not None
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def test_research_supports_universe_env(source: str) -> None:
+    """research.py 必须支持 DEEPQUANT_UNIVERSE，否则扩样只能靠改代码。"""
+    assert "DEEPQUANT_UNIVERSE" in source, "未支持 DEEPQUANT_UNIVERSE 环境变量"
+
+
+def test_research_output_records_universe_meta(source: str) -> None:
+    """扩样池的 meta（含偏差声明）必须写进输出 JSON。
+
+    只报「50 只的中位数」而不报「池子是抓取当日的成分股」= 用偏差数据讲总体结论。
+    """
+    assert '"universe"' in source, "输出未记录 universe 元数据"
+
+
+def test_evenly_sampling_is_deterministic(universe_module) -> None:
+    """同一输入两次抽样必须完全一致（无随机种子，可逐字复现）。"""
+    rows = [{"code": f"{i:06d}", "name": f"S{i}"} for i in range(300)]
+    first = universe_module.select_evenly(rows, 50)
+    second = universe_module.select_evenly(list(reversed(rows)), 50)
+    assert [r["code"] for r in first] == [r["code"] for r in second]
+    assert len(first) == 50
+
+
+def test_evenly_sampling_covers_code_range(universe_module) -> None:
+    """等距抽样必须覆盖代码区间的两端，不能只挤在 600xxx 段。"""
+    rows = [{"code": f"{i:06d}", "name": f"S{i}"} for i in range(300)]
+    picked = universe_module.select_evenly(rows, 50)
+    codes = [r["code"] for r in picked]
+    assert codes[0] == "000000", f"未覆盖最小代码，实际首位 {codes[0]}"
+    assert codes[-1] == "000299", f"未覆盖最大代码，实际末位 {codes[-1]}"
+
+
+def test_evenly_sampling_returns_all_when_pool_smaller(universe_module) -> None:
+    """池子小于目标数量时应全取，不能重复填充。"""
+    rows = [{"code": f"{i:06d}", "name": f"S{i}"} for i in range(7)]
+    picked = universe_module.select_evenly(rows, 50)
+    assert len(picked) == 7
+    assert len({r["code"] for r in picked}) == 7
+
+
+def test_tencent_symbol_prefix(universe_module) -> None:
+    """腾讯行情接口要求 sh/sz 前缀：6 开头 → sh，其余 → sz。"""
+    assert universe_module._tencent_symbol("600519") == "sh600519"
+    assert universe_module._tencent_symbol("000001") == "sz000001"
+    assert universe_module._tencent_symbol("300750") == "sz300750"
+
+
+def test_universe_builder_declares_survivorship_bias(universe_source: str) -> None:
+    """幸存者偏差与抽样偏差必须以 meta 键名落盘（不是只写在注释里）。
+
+    抓取当日的成分股 ≠ 2017 年的成分股：缺退市/被剔除的失败样本，
+    收益类指标系统偏乐观。这个声明一旦丢了，扩样结果就会被当成总体结论。
+    """
+    assert "bias_survivorship" in universe_source, "未声明幸存者偏差"
+    assert "bias_sampling" in universe_source, "未声明抽样偏差"

@@ -36,6 +36,34 @@ STOCKS = [
     ("sh600900", "600900.SH", "长江电力", "公用事业"),
 ]
 
+# --- 股票池：默认是上面 6 只手挑标的（历史口径，保持向后可比）；
+#     DEEPQUANT_UNIVERSE 指向 data/step75/build_universe.py 产出的 JSON 时改用该池。
+#
+# 为什么要能换池：docs/EXTERNAL_VALIDITY_2026-10-17.md 实测 22 只里 0 只为正、
+# 「价格→参与率」相关性 r=-0.772 全靠茅台单点 → 6 只样本支撑不了任何总体结论。
+# 扩样池的**幸存者偏差**由 build_universe.py 写进 meta，本文件原样带进输出，
+# 不允许只报结果不报偏差。
+def _load_stocks():
+    path = os.environ.get("DEEPQUANT_UNIVERSE")
+    if not path:
+        return STOCKS, None
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    rows = [
+        (
+            s["tencent_symbol"],
+            s["code"],
+            s.get("name", ""),
+            s.get("industry", ""),
+        )
+        for s in payload["stocks"]
+    ]
+    if not rows:
+        raise SystemExit(f"DEEPQUANT_UNIVERSE 为空：{path}")
+    return rows, payload.get("meta")
+
+
+STOCKS, UNIVERSE_META = _load_stocks()
+
 DATA_ROOT = Path(os.environ.get("DEEPQUANT_DATA_ROOT", str(_HERE)))
 DATA_ROOT.mkdir(parents=True, exist_ok=True)
 
@@ -212,6 +240,10 @@ out = {
         "history_years": round((pd.Timestamp(END) - pd.Timestamp(START)).days / 365.25, 2),
     },
     "stocks": download_results,
+    # 扩样池的来源与偏差声明（默认 6 只池时为 None）。
+    # 偏差必须跟结果一起落盘：否则下游只看到「50 只的收益中位数」，
+    # 会误当成总体结论 —— 而该池是**抓取当日**的成分股，缺退市样本，收益偏乐观。
+    "universe": UNIVERSE_META,
     # 被数据质量闸门拦截的标的（R5：保留记录，不静默丢弃）
     "skipped": skipped,
     "results": all_results,
