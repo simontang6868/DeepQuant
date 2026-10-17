@@ -8,3 +8,9 @@ httpx==0.28.1
 pandas==3.0.6
 numpy==2.5.4
 pyarrow==26.0.0
+
+# 真实行情数据源（A 股）。
+# 用途：仅用于「真实行情拉取链路」相关模块与人工复核，**不得**用于把合成行情标为真实（红线 R3）。
+# 注意：akshare 依赖链较重（requests / lxml / beautifulsoup4 / openpyxl 等），
+#       若在 CI runner 上安装耗时过长或失败，可考虑拆分为可选依赖组（见 PR 说明）。
+akshare==1.19.1
