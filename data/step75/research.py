@@ -93,13 +93,41 @@ INITIAL_CASH = 100000.0
 # 「剔除零参与后的收益中位数」由 -0.002566 恶化到 -0.023935 —— 参与率是数量指标，
 # **不得**用它挑候选。此处启用它的目的是「让没有交易能力的候选不进入 IS 排序」，
 # 而不是「提高参与率」。
+# --- 设计探针覆盖（默认全空 = 正式研究口径，落盘结果与之前完全一致） ---
+#
+# 为什么要这个开关：扩样后仍有三成标的「OOS 中位数为 0」，成因已定位到**事件稀疏**
+# （slow=60 在 50 天 OOS 里平均只交叉 1.38 次）。但「网格太慢」和「OOS 太短」这两个解释
+# 从未被分开验证过 —— 不分开就无法决定下一步该动哪个。
+#
+# 只允许改三个**研究设计**维度：
+#   min_oos_periods  OOS 窗口长度
+#   ma_slow_max      均线网格的慢线上限
+#   fees             只跑哪些费率档（探针用单档省时间，正式研究仍跑三档）
+#
+# **严禁**通过这里改 min_trades / min_train_periods / 预热 —— 那三项是已裁决口径，
+# 动了就会把「设计探针」变成「调参」（R2/R11）。改它们请先提案。
+_DESIGN = json.loads(os.environ.get("DEEPQUANT_DESIGN_OVERRIDES", "{}"))
+_ALLOWED_DESIGN_KEYS = {"min_oos_periods", "ma_slow_max", "fees"}
+_unknown = set(_DESIGN) - _ALLOWED_DESIGN_KEYS
+if _unknown:
+    raise SystemExit(
+        f"DEEPQUANT_DESIGN_OVERRIDES 含不允许的键 {sorted(_unknown)}；"
+        f"只允许 {sorted(_ALLOWED_DESIGN_KEYS)}"
+    )
+OOS_WINDOW = int(_DESIGN.get("min_oos_periods", 50))
+MA_SLOW_MAX = int(_DESIGN.get("ma_slow_max", 60))
+MA_SLOW_CANDIDATES = tuple(c for c in (15, 25, 40, 60) if c <= MA_SLOW_MAX)
+if not MA_SLOW_CANDIDATES:
+    raise SystemExit(f"ma_slow_max={MA_SLOW_MAX} 过滤后没有可用慢线")
+_FEE_SET = _DESIGN.get("fees")
+
 MA_GRID = GridSearchConfig(
-    fast_candidates=(3, 5, 10, 20), slow_candidates=(15, 25, 40, 60),
-    min_train_periods=150, min_oos_periods=50, min_trades=2, max_combinations=50,
+    fast_candidates=(3, 5, 10, 20), slow_candidates=MA_SLOW_CANDIDATES,
+    min_train_periods=150, min_oos_periods=OOS_WINDOW, min_trades=2, max_combinations=50,
 )
 MR_GRID = GridSearchConfig(
     fast_candidates=(10, 20, 30, 50), slow_candidates=(15, 20, 25),   # ×10 → threshold 1.5/2.0/2.5
-    min_train_periods=150, min_oos_periods=50, min_trades=2, max_combinations=50,
+    min_train_periods=150, min_oos_periods=OOS_WINDOW, min_trades=2, max_combinations=50,
 )
 
 def ma_factory(p):
@@ -112,6 +140,12 @@ STRATEGIES = [
     ("mean_reversion", MR_GRID, mr_factory),
 ]
 PRESETS = [FEE_PRESET_SIMULATION, FEE_PRESET_REFERENCE, FEE_PRESET_HIGH_COST]
+if _FEE_SET:
+    _by_source = {p.fee_source: p for p in PRESETS}
+    _missing_fee = set(_FEE_SET) - set(_by_source)
+    if _missing_fee:
+        raise SystemExit(f"未知费率档 {sorted(_missing_fee)}；可选 {sorted(_by_source)}")
+    PRESETS = [_by_source[s] for s in _FEE_SET]
 
 # --- 下载 ---
 download_results = []
@@ -235,7 +269,11 @@ out = {
     "design": {
         "min_trades": 2,
         "min_train_periods": 150,
-        "min_oos_periods": 50,
+        # 以下三项可能被 DEEPQUANT_DESIGN_OVERRIDES 覆盖 —— 必须落盘实际生效值，
+        # 否则 50/75/100 天 OOS 的结果混在一起无法区分谁是谁。
+        "min_oos_periods": OOS_WINDOW,
+        "ma_slow_candidates": list(MA_SLOW_CANDIDATES),
+        "fees": [p.fee_source for p in PRESETS],
         "initial_cash": INITIAL_CASH,
         "history_years": round((pd.Timestamp(END) - pd.Timestamp(START)).days / 365.25, 2),
     },
