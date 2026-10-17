@@ -31,6 +31,48 @@ def _load(path: str) -> dict:
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
+# 影响可比性的设计维度。任何一项不同，两份结果就不是同一个口径，
+# 直接相减得到的是「口径差」而不是「扩样差」。
+_COMPARABLE_DESIGN_KEYS = (
+    "design_version",
+    "min_oos_periods",
+    "min_train_periods",
+    "min_trades",
+    "ma_slow_candidates",
+)
+
+
+def design_signature(payload: dict) -> dict:
+    """提取口径指纹。远古 JSON 无 design 段 → 各项为 None（视为"未标注时代"）。"""
+    design = payload.get("design") or {}
+    return {k: design.get(k) for k in _COMPARABLE_DESIGN_KEYS}
+
+
+def assert_same_design(base: dict, wide: dict, allow_mixed: bool) -> list[str]:
+    """口径不一致时拒绝出表 —— 除非显式放行。
+
+    为什么必须硬拦：OOS 50→75 会让收益中位数天然更极端（ma −0.58% → −2.15%），
+    若拿 v1 的 base 和 v2 的 wide 直接相减，会把**口径变化**记成**扩样效应**。
+    这类错误在数字上完全看不出来，只能靠前置检查挡。
+    """
+    sb, sw = design_signature(base), design_signature(wide)
+    diffs = [
+        f"{k}: base={sb[k]!r} vs wide={sw[k]!r}"
+        for k in _COMPARABLE_DESIGN_KEYS
+        if sb[k] != sw[k]
+    ]
+    if not diffs:
+        return []
+    if not allow_mixed:
+        raise SystemExit(
+            "拒绝出表：两份结果的**研究口径不同**，相减无意义。\n  "
+            + "\n  ".join(diffs)
+            + "\n\n若确实只想观察口径差异，请用 scripts/design_probe_report.py；"
+            "若坚持要并排出表，显式加 --allow-mixed-design（输出的对照列会标注为不可比）。"
+        )
+    return diffs
+
+
 def _rows(payload: dict, strategy: str | None = None, fee: str | None = None) -> list[dict]:
     out = []
     for r in payload.get("results", []):
@@ -146,6 +188,24 @@ def compare(base: dict, wide: dict, fee: str) -> dict:
 def to_markdown(report: dict) -> str:
     lines = []
     g = report["gate"]
+
+    # 口径必须先声明：跨口径的对照列不可读，读者有权在第一行就知道
+    d = report.get("design") or {}
+    dw = d.get("wide") or {}
+    if report.get("design_comparable", True):
+        ver = dw.get("design_version") or "未标注(v1)"
+        slows = dw.get("ma_slow_candidates") or []
+        lines.append(
+            f"> 研究口径 `{ver}`：OOS {dw.get('min_oos_periods')} 日 ｜ "
+            f"慢线上限 {slows[-1] if slows else '?'} ｜ min_trades={dw.get('min_trades')}"
+            f"　— **base 与 wide 同口径，对照有效**"
+        )
+    else:
+        lines.append("> ⚠️ **口径不一致，对照列不可比**，只可各自单看：")
+        for item in report.get("design_diffs") or []:
+            lines.append(f"> - {item}")
+    lines.append("")
+
     lines.append("## 1. 数据闸门：可用率就是结论\n")
     lines.append(
         f"请求 {g['n_requested']} 只｜拉取成功 {g['n_fetched']} 只｜通过闸门 {g['n_usable']} 只｜"
@@ -213,15 +273,25 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--fee", default="simulation_placeholder")
     ap.add_argument("--out-json", default=None)
     ap.add_argument("--out-md", default=None)
+    ap.add_argument(
+        "--allow-mixed-design",
+        action="store_true",
+        help="允许跨口径对比（默认拒绝）。放行后对照列会被标注为不可比。",
+    )
     args = ap.parse_args(argv)
 
     base = _load(args.base)
     wide = _load(args.wide)
+    design_diffs = assert_same_design(base, wide, args.allow_mixed_design)
     fee_order = ["simulation_placeholder", "broker_reference_common_2024", "research_scenario_high_cost"]
 
     report = {
         "base_range": base.get("request_range"),
         "wide_range": wide.get("request_range"),
+        # 口径指纹：同口径时两行相同；跨口径并列时必须能一眼看出差在哪
+        "design": {"base": design_signature(base), "wide": design_signature(wide)},
+        "design_comparable": not design_diffs,
+        "design_diffs": design_diffs,
         "gate": gate_summary(wide),
         "strategy": strategy_block(wide, fee=args.fee),
         "compare": compare(base, wide, args.fee),

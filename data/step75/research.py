@@ -106,6 +106,20 @@ INITIAL_CASH = 100000.0
 #
 # **严禁**通过这里改 min_trades / min_train_periods / 预热 —— 那三项是已裁决口径，
 # 动了就会把「设计探针」变成「调参」（R2/R11）。改它们请先提案。
+
+# --- 研究口径版本（改默认值必须 bump，否则结果会被跨口径混算） ---
+#
+# v1 = OOS 50 / 慢线≤60：PR #23 扩样 48 只、6 只基线、2026-10-17 之前的所有结果。
+# v2 = OOS 75 / 慢线≤60：设计探针（docs/DESIGN_PROBE_2026-10-17.md）实测后拍板。
+#      零中位数率 ma 33.3%→10.4%、mr 29.2%→16.7%；代价是窗口 35→23（独立样本 −34%）。
+#
+# **v1 与 v2 的收益数字不可直接比较**：OOS 越长，单窗口覆盖的行情段越长，
+# 中位数天然更极端（ma −0.58% → −2.15%）。这是口径差，不是策略变差。
+# 落盘的 design 里带 design_version，任何跨版本对比都必须先按版本分组。
+DESIGN_VERSION = "oos75-v2"
+DEFAULT_OOS_WINDOW = 75
+DEFAULT_MA_SLOW_MAX = 60
+
 _DESIGN = json.loads(os.environ.get("DEEPQUANT_DESIGN_OVERRIDES", "{}"))
 _ALLOWED_DESIGN_KEYS = {"min_oos_periods", "ma_slow_max", "fees"}
 _unknown = set(_DESIGN) - _ALLOWED_DESIGN_KEYS
@@ -114,8 +128,8 @@ if _unknown:
         f"DEEPQUANT_DESIGN_OVERRIDES 含不允许的键 {sorted(_unknown)}；"
         f"只允许 {sorted(_ALLOWED_DESIGN_KEYS)}"
     )
-OOS_WINDOW = int(_DESIGN.get("min_oos_periods", 50))
-MA_SLOW_MAX = int(_DESIGN.get("ma_slow_max", 60))
+OOS_WINDOW = int(_DESIGN.get("min_oos_periods", DEFAULT_OOS_WINDOW))
+MA_SLOW_MAX = int(_DESIGN.get("ma_slow_max", DEFAULT_MA_SLOW_MAX))
 MA_SLOW_CANDIDATES = tuple(c for c in (15, 25, 40, 60) if c <= MA_SLOW_MAX)
 if not MA_SLOW_CANDIDATES:
     raise SystemExit(f"ma_slow_max={MA_SLOW_MAX} 过滤后没有可用慢线")
@@ -267,11 +281,16 @@ out = {
     # 数据溯源：区间与门槛必须落盘，否则 7 年 / 15 年、None / 2 的结果无法区分
     "request_range": {"start": START, "end": END},
     "design": {
+        # 口径版本：v1=OOS50 / v2=OOS75。默认值一改就必须 bump，
+        # 否则 v1 的历史结果与 v2 的新结果会被当成同一尺度比较。
+        "design_version": DESIGN_VERSION,
         "min_trades": 2,
         "min_train_periods": 150,
         # 以下三项可能被 DEEPQUANT_DESIGN_OVERRIDES 覆盖 —— 必须落盘实际生效值，
         # 否则 50/75/100 天 OOS 的结果混在一起无法区分谁是谁。
         "min_oos_periods": OOS_WINDOW,
+        # 探针变体会偏离 design_version 的默认口径，显式标出，避免被当正式口径
+        "is_probe_override": bool(_DESIGN),
         "ma_slow_candidates": list(MA_SLOW_CANDIDATES),
         "fees": [p.fee_source for p in PRESETS],
         "initial_cash": INITIAL_CASH,
