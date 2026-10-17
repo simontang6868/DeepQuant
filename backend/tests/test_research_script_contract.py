@@ -146,9 +146,38 @@ def test_no_hardcoded_container_path(tree: ast.Module) -> None:
 
 
 def test_research_range_is_env_overridable(source: str) -> None:
-    """研究区间必须可通过环境变量覆盖（便于做 7 年 vs 15 年对照）。"""
+    """研究区间必须可通过环境变量覆盖（便于做 7 年 vs 8 年 vs 15 年对照）。"""
     assert "DEEPQUANT_START" in source
     assert "DEEPQUANT_END" in source
+
+
+def test_default_start_is_2017(tree: ast.Module) -> None:
+    """默认起点必须是 20170101（8 年），**不能**是 20100101（15 年）。
+
+    15 年经实测否决：qfq 前复权会把高分红标的的早期价格减成负数。
+    2010-2024 实测 6 只里 5 只含负价（茅台 1575 行 / 五粮液 1231 / 长电 1170 /
+    中国平安 849），负价区间全部在 2016-09-29 之前结束。
+    配数据质量闸门后 2010 起只有 1/6 标的可用；2017 起有 5/6 可用，且正好 8 年。
+
+    这条断言的作用：防止后人「为了更多数据」把默认值改回 2010，
+    那会让 60 组研究静默缩水成 6 组。
+    """
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        if not any(isinstance(t, ast.Name) and t.id == "START" for t in node.targets):
+            continue
+        call = node.value
+        assert isinstance(call, ast.Call), "START 应通过 os.environ.get 赋值"
+        assert len(call.args) == 2, "START 应有 2 个参数（环境变量名、默认值）"
+        default = call.args[1]
+        assert isinstance(default, ast.Constant), "START 的默认值必须是字面量"
+        assert default.value == "20170101", (
+            f"START 默认值应为 20170101（8 年），实际 {default.value!r}。"
+            "改回 20100101 会因 qfq 负价使可用标的从 5/6 掉到 1/6"
+        )
+        return
+    raise AssertionError("未找到 START 的赋值语句")
 
 
 def test_output_records_range_and_design(source: str) -> None:
