@@ -77,6 +77,51 @@ def a_share_rules(
     return MarketRules(name=name, lot_size=lot_size, t_plus_one=True, price_limit=limit)
 
 
+# 20% 涨跌幅档的代码前缀：创业板（300/301）与科创板（688/689）。
+# 用交易所代码前缀判定，不用行业/名称——前缀是规则，分类不是。
+PRICE_LIMIT_20PCT_PREFIXES = ("300", "301", "688", "689")
+
+# 涨跌停解析模式
+PRICE_LIMIT_MODE_BOARD = "board"  # 按板块：创业板/科创板 20%，其余 10%
+PRICE_LIMIT_MODE_FLAT = "flat"    # 一律 10%（消融对照）
+PRICE_LIMIT_MODE_OFF = "off"      # 不启用（消融对照，不得作主结果）
+PRICE_LIMIT_MODES = (
+    PRICE_LIMIT_MODE_BOARD,
+    PRICE_LIMIT_MODE_FLAT,
+    PRICE_LIMIT_MODE_OFF,
+)
+
+
+def a_share_price_limit_rate(code: str, *, mode: str = PRICE_LIMIT_MODE_BOARD) -> float | None:
+    """按标的代码解析 A 股涨跌幅比例；``None`` 表示不启用。
+
+    Args:
+        code: 形如 ``600519.SH`` / ``300750.SZ``；也接受不带后缀的 6 位代码。
+        mode: ``board``（默认，按板块）/ ``flat``（一律 10%）/ ``off``（不启用）。
+
+    Returns:
+        0.10 / 0.20，或 ``off`` 模式下的 ``None``。
+
+    Raises:
+        ValueError: mode 非法，或 code 无法解析出 6 位数字前缀。
+
+    已知简化（调用方须在结论中声明）：
+        创业板在 2020-08-24 之前实际为 10%，本函数不区分日期，统一按 20% 返回。
+        因此早期创业板标的的判定偏松（更少被拦）。
+    """
+    if mode not in PRICE_LIMIT_MODES:
+        raise ValueError(f"mode 必须是 {PRICE_LIMIT_MODES} 之一，收到 {mode!r}")
+    if mode == PRICE_LIMIT_MODE_OFF:
+        return None
+    if mode == PRICE_LIMIT_MODE_FLAT:
+        return 0.10
+
+    digits = str(code).split(".", 1)[0].strip()
+    if len(digits) != 6 or not digits.isdigit():
+        raise ValueError(f"无法从 code 解析 6 位代码：{code!r}")
+    return 0.20 if digits.startswith(PRICE_LIMIT_20PCT_PREFIXES) else 0.10
+
+
 def price_limit_notes(rules: MarketRules) -> list[str]:
     """返回与涨跌停配置相关的模型限制说明，供 BacktestResult.model_limitations 记录。"""
     limit = rules.price_limit
