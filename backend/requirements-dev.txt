@@ -1,0 +1,5 @@
+# DeepQuant 开发/CI 依赖（仅测试与工程化工具，不进运行时 requirements.txt）
+# 安装：pip install -r requirements-dev.txt
+# 版本不锁死到 patch：这些是开发期工具，最新版即可。
+pytest-cov
+pip-audit
