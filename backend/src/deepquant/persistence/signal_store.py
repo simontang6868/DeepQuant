@@ -203,12 +203,49 @@ def _build_filters(
     return where, params
 
 
+def _query_events(
+    *,
+    batch_id: str | None,
+    source: str | None,
+    start: pd.Timestamp | None,
+    end: pd.Timestamp | None,
+    symbol: str | None,
+    db_path: Path | None,
+) -> list[SignalEvent]:
+    """按 SQL 可表达的过滤条件取出事件，再在 Python 侧按 `symbol` 过滤。
+
+    时间窗（start/end）、batch、source 走 SQL（高效、可下推）；
+    `symbol` 存放在 `metadata_json` 里，无法在 SQL 层可靠过滤，统一在取回后
+    按 `metadata["symbol"]` 精确匹配。这样**无需改动既有 schema**，也不影响
+    旧库的读取（纯加法，R6/R7 友好）。`symbol=None` 表示不过滤（保留旧行为）。
+    """
+    where, params = _build_filters(
+        batch_id=batch_id, source=source, start=start, end=end
+    )
+    sql = (
+        "SELECT batch_id, event_date, direction, strength, source, "
+        "valid_until, metadata_json, created_at "
+        f"FROM signal_events{where} ORDER BY event_date ASC, id ASC"
+    )
+    try:
+        with _open(db_path) as conn:
+            rows = conn.execute(sql, params).fetchall()
+    except sqlite3.Error as exc:
+        raise PersistenceError(f"读取信号事件失败：{exc!r}") from exc
+
+    events = [_row_to_event(row) for row in rows]
+    if symbol is not None:
+        events = [e for e in events if e.metadata.get("symbol") == symbol]
+    return events
+
+
 def list_signal_events(
     *,
     batch_id: str | None = None,
     source: str | None = None,
     start: pd.Timestamp | None = None,
     end: pd.Timestamp | None = None,
+    symbol: str | None = None,
     limit: int | None = None,
     db_path: Path | None = None,
 ) -> list[SignalEvent]:
@@ -216,7 +253,9 @@ def list_signal_events(
 
     Args:
         batch_id / source: 精确匹配过滤。
-        start / end: 按信号日闭区间过滤（含端点）。
+        start / end: 按信号日闭区间过滤（含端点）；即「时间窗」过滤（已支持）。
+        symbol: 按 `metadata["symbol"]` 精确匹配过滤（新增，纯加法）。
+            为 None 时不按 symbol 过滤（保留旧行为）。
         limit: 最多返回条数；None 表示不限制。必须为正整数。
         db_path: 数据库路径；None 表示默认解析结果。
 
@@ -234,25 +273,19 @@ def list_signal_events(
         if limit <= 0:
             raise ValueError(f"limit 必须是正整数，收到 {limit}")
 
-    where, params = _build_filters(
-        batch_id=batch_id, source=source, start=start, end=end
-    )
-    sql = (
-        "SELECT batch_id, event_date, direction, strength, source, "
-        "valid_until, metadata_json, created_at "
-        f"FROM signal_events{where} ORDER BY event_date ASC, id ASC"
+    # 当按 symbol 过滤时，LIMIT 必须在 symbol 过滤之后生效，
+    # 否则会先截断再筛 symbol，导致结果数量不可预期（纯加法、语义明确）。
+    events = _query_events(
+        batch_id=batch_id,
+        source=source,
+        start=start,
+        end=end,
+        symbol=symbol,
+        db_path=db_path,
     )
     if limit is not None:
-        sql += " LIMIT ?"
-        params.append(limit)
-
-    try:
-        with _open(db_path) as conn:
-            rows = conn.execute(sql, params).fetchall()
-    except sqlite3.Error as exc:
-        raise PersistenceError(f"读取信号事件失败：{exc!r}") from exc
-
-    return [_row_to_event(row) for row in rows]
+        events = events[:limit]
+    return events
 
 
 def count_signal_events(
@@ -261,21 +294,34 @@ def count_signal_events(
     source: str | None = None,
     start: pd.Timestamp | None = None,
     end: pd.Timestamp | None = None,
+    symbol: str | None = None,
     db_path: Path | None = None,
 ) -> int:
     """只读取数：统计满足过滤条件的信号事件条数。
 
     参数语义同 `list_signal_events`（不含 `limit`）。无匹配时返回 0。
     """
-    where, params = _build_filters(
-        batch_id=batch_id, source=source, start=start, end=end
+    if symbol is None:
+        # 无 symbol 过滤时走 SQL COUNT，保持原有高效路径（不回归）。
+        where, params = _build_filters(
+            batch_id=batch_id, source=source, start=start, end=end
+        )
+        sql = f"SELECT COUNT(*) AS n FROM signal_events{where}"
+        try:
+            with _open(db_path) as conn:
+                row = conn.execute(sql, params).fetchone()
+        except sqlite3.Error as exc:
+            raise PersistenceError(f"统计信号事件失败：{exc!r}") from exc
+        return int(row["n"]) if row is not None else 0
+
+    # 含 symbol 过滤时，材料化后统计（与 `list_signal_events` 语义严格一致）。
+    return len(
+        _query_events(
+            batch_id=batch_id,
+            source=source,
+            start=start,
+            end=end,
+            symbol=symbol,
+            db_path=db_path,
+        )
     )
-    sql = f"SELECT COUNT(*) AS n FROM signal_events{where}"
-
-    try:
-        with _open(db_path) as conn:
-            row = conn.execute(sql, params).fetchone()
-    except sqlite3.Error as exc:
-        raise PersistenceError(f"统计信号事件失败：{exc!r}") from exc
-
-    return int(row["n"]) if row is not None else 0
