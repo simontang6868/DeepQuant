@@ -39,6 +39,12 @@ from deepquant.persistence.repro_checklist import (
     ReproLevel,
     build_reproducibility_checklist,
 )
+from deepquant.persistence.signal_store import (
+    SIGNAL_EVENTS_TABLE,
+    count_signal_events,
+    list_signal_events,
+    save_signal_events,
+)
 from deepquant.persistence.store import (
     INTEGRITY_FAILED,
     INTEGRITY_INCOMPLETE,
@@ -80,6 +86,7 @@ __all__ = [
     "LEVEL_UNDETERMINED",
     "RUN_STATUS_SUCCEEDED",
     "SCHEMA_VERSION",
+    "SIGNAL_EVENTS_TABLE",
     "IntegrityCheck",
     "IntegrityReport",
     "PersistenceError",
@@ -92,6 +99,7 @@ __all__ = [
     "build_reproducibility_checklist",
     "connect",
     "count_runs",
+    "count_signal_events",
     "get_connection",
     "get_db_path",
     "get_run",
@@ -99,6 +107,8 @@ __all__ = [
     "get_run_with_document",
     "init_schema",
     "list_runs",
+    "list_signal_events",
     "result_digest",
     "save_backtest_result",
+    "save_signal_events",
 ]
