@@ -7,7 +7,7 @@
 输出：
   1. 闸门拦截率与拦截原因（**这是扩样最重要的产出**：可用率本身就是结论）；
   2. 零中位数占比（原研究的核心症状，扩样后是否仍是「结构性」的）；
-  3. 参与率 / 收益中位数 / 回撤的分布（分位数，不看均值 —— 均值被极端值主导）；
+  3. 盈利窗口占比 / 收益中位数 / 回撤的分布（分位数，不看均值 —— 均值被极端值主导）；
   4. base 与 wide 在同一策略同一费率下的对照。
 
 明确不做的事：
@@ -94,10 +94,14 @@ def strategy_block(payload: dict, fee: str = "simulation_placeholder") -> dict:
             "n_windows": sorted({r["n_windows"] for r in rows}),
             "zero_median_symbols": zeros,
             "zero_median_rate": round(zeros / len(rows), 4),
-            "participation": _quantiles([r["positive_ratio"] for r in rows]),
+            # 字段名是 positive_ratio，语义是**盈利窗口占比**（return > 0 的窗口 / 有有效指标的窗口），
+            # **不是**交易参与率。真正的参与率由 design_audit.summarize_participation 按
+            # trade_count > 0 的窗口数计算，粒度是窗口级，summary 里拿不到。
+            # 早前把 positive_ratio 当参与率表述过，是错的，此处按实际语义命名。
+            "positive_window_ratio": _quantiles([r["positive_ratio"] for r in rows]),
             "median_ret": _quantiles(meds),
             "median_mdd": _quantiles([r["median_mdd"] for r in rows]),
-            # 非零中位数标的的收益中位数：剔除零参与后的真实收益形状
+            # 非零中位数标的的收益中位数：剔除零中位数标的后的真实收益形状
             "median_ret_excl_zero": _quantiles([m for m in meds if abs(m) >= ZERO_TOL]),
         }
     return out
@@ -166,14 +170,14 @@ def to_markdown(report: dict) -> str:
     lines.append("")
 
     lines.append("## 3. 分布（模拟费率）\n")
-    lines.append("| 策略 | 指标 | p25 | 中位 | p75 | 剔除零参与后中位 |")
+    lines.append("| 策略 | 指标 | p25 | 中位 | p75 | 剔除零中位数标的后中位 |")
     lines.append("|---|---|---|---|---|---|")
     for strat, v in report["strategy"].items():
         ex = v["median_ret_excl_zero"].get("median")
         ex_txt = "—" if ex is None else f"{ex:+.4f}"
         lines.append(
-            f"| {strat} | 参与率 | {v['participation']['p25']:.1%} | "
-            f"{v['participation']['median']:.1%} | {v['participation']['p75']:.1%} | — |"
+            f"| {strat} | 盈利窗口占比 | {v['positive_window_ratio']['p25']:.1%} | "
+            f"{v['positive_window_ratio']['median']:.1%} | {v['positive_window_ratio']['p75']:.1%} | — |"
         )
         lines.append(
             f"| {strat} | 收益中位数 | {v['median_ret']['p25']:+.4f} | "
@@ -225,7 +229,7 @@ def main(argv: list[str] | None = None) -> int:
         "caveats": [
             "扩样池为抓取当日指数成分股 → 幸存者偏差，收益类指标偏乐观，不得用于总体结论。",
             "窗口收益中位数 ≠ 账户连续收益（R12）。",
-            "参与率是数量指标，禁用于择优（R11）。",
+            "盈利窗口占比是方向性指标、事件密度是数量指标，两者都禁用于择优（R11）。",
         ],
     }
 
