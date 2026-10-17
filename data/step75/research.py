@@ -22,6 +22,11 @@ from deepquant.backtest.config import BacktestConfig
 from deepquant.backtest.fee_presets import (
     FEE_PRESET_SIMULATION, FEE_PRESET_REFERENCE, FEE_PRESET_HIGH_COST,
 )
+from deepquant.market.rules import (
+    PRICE_LIMIT_MODES,
+    a_share_price_limit_rate,
+    a_share_rules,
+)
 from deepquant.strategies.ma_cross import MaCrossStrategy
 from deepquant.strategies.mean_reversion import MeanReversionStrategy
 from deepquant.walkforward.parameter_selection import GridSearchConfig, run_walkforward_v2
@@ -87,6 +92,49 @@ START = os.environ.get("DEEPQUANT_START", "20170101")
 END = os.environ.get("DEEPQUANT_END", "20241231")
 INITIAL_CASH = 100000.0
 
+# --- 涨跌停（B18 / D2 修复）---
+#
+# 历史缺陷（docs/B18_RESEARCH_VERDICT_2026-10-18.md §3.10 D2）：
+#   此前 `BacktestConfig(symbol=..., initial_cash=...)` **未传 market_rules**，
+#   走默认 `a_share_rules()`，其 `price_limit_rate` 默认 None
+#   → `limit_prices()` 返 None → `open_fill_block_reason()` 跳过涨跌停判定。
+#   → **全部历史研究（含 48 只 288 组）从未模拟涨跌停。**
+#
+# 为什么必须修：对已测的两个族影响方向未知；但对横截面动量影响明确且负面——
+# 赢家组合常含涨停股，实盘买不到，不建模会把动量收益**系统性高估**。
+#
+# 三种模式：
+#   board（默认）  按板块取比例：创业板/科创板 20%，其余 10%
+#   flat           一律 10%（仅用于消融对照）
+#   off            不启用（**仅用于消融对照，不得作为主结果**）
+#
+# 已知简化（必须随结论声明）：
+#   1. 创业板 2020-08-24 前实际为 10%，本模型统一按 20% 处理
+#      → 早期创业板标的的判定偏松（更少被拦），可能高估其可成交性；
+#   2. `MarketRules` 是静态配置，引擎不支持按日期切换比例（改它属核心交易规则，未获批）；
+#   3. 不模拟排队、部分成交、盘中打开与 ST 5% 档（池已剔除 ST）。
+_PRICE_LIMIT_MODE = os.environ.get("DEEPQUANT_PRICE_LIMIT", "board")
+if _PRICE_LIMIT_MODE not in PRICE_LIMIT_MODES:
+    raise SystemExit(
+        f"DEEPQUANT_PRICE_LIMIT={_PRICE_LIMIT_MODE!r} 非法；只允许 "
+        f"{' / '.join(PRICE_LIMIT_MODES)}"
+    )
+
+
+def price_limit_rate_for(code: str) -> float | None:
+    """该标的实际生效的涨跌幅比例（None 仅出现在 off 模式）。
+
+    真正的解析逻辑在 ``market.rules.a_share_price_limit_rate``（可单测）；
+    本函数只把研究脚本的环境变量模式接进去，避免研究脚本里藏一份平行实现。
+    """
+    return a_share_price_limit_rate(code, mode=_PRICE_LIMIT_MODE)
+
+
+def market_rules_for(code: str):
+    """构造该标的的 MarketRules（显式传比例，绝不复用「未配置」默认）。"""
+    return a_share_rules(price_limit_rate=price_limit_rate_for(code))
+
+
 # min_trades=2：样本充分性门槛（判据是**交易次数**，不是收益）→ 不构成 R2/R11 择优。
 # 取值 2 的结构性理由：IS 段 150 个交易日 / 网格最慢均线 60 日 → 至少容纳一个完整往返。
 # 实测代价（docs/DECISION_RULING_2026-10-17.md）：参与率 56.7%→70.0%，但
@@ -116,7 +164,12 @@ INITIAL_CASH = 100000.0
 # **v1 与 v2 的收益数字不可直接比较**：OOS 越长，单窗口覆盖的行情段越长，
 # 中位数天然更极端（ma −0.58% → −2.15%）。这是口径差，不是策略变差。
 # 落盘的 design 里带 design_version，任何跨版本对比都必须先按版本分组。
-DESIGN_VERSION = "oos75-v2"
+#
+# v3 = OOS 75 + **启用涨跌停**（B18 / D2 修复，2026-10-18）：
+#      显式传 market_rules，按板块取 10% / 20%。涨跌停会拦截部分成交，
+#      因此 **v3 与 v1/v2 的成交笔数与收益均不可直接比较**——
+#      v2 → v3 的差值同时包含「拦截效应」和「样本变化」，不是策略改进。
+DESIGN_VERSION = "oos75-v3"
 DEFAULT_OOS_WINDOW = 75
 DEFAULT_MA_SLOW_MAX = 60
 
@@ -265,6 +318,9 @@ for tencent_code, full_code, name, industry in STOCKS:
 # --- Walk-Forward ---
 all_results = []
 skipped = []
+# 实际生效的涨跌停比例必须逐标的落盘：batch 里创业板与主板比例不同，
+# 只写一个全局值会让后来的读者误以为全部 10%。
+resolved_price_limits = {}
 for dr in download_results:
     if not dr["ok"] or dr["n_rows"] < 400:
         continue
@@ -285,10 +341,18 @@ for dr in download_results:
     df_wf = df.copy().set_index("date")[["open", "high", "low", "close", "volume"]]
     df_wf.index.name = None
 
+    # 涨跌停配置按标的解析一次，三档费率共用（费率档只改费用，不该改成交约束）
+    _market_rules = market_rules_for(full_code)
+    resolved_price_limits[full_code] = price_limit_rate_for(full_code)
+
     for strat_name, grid, factory in STRATEGIES:
         for preset in PRESETS:
             try:
-                base_cfg = BacktestConfig(symbol=full_code, initial_cash=INITIAL_CASH)
+                base_cfg = BacktestConfig(
+                    symbol=full_code,
+                    initial_cash=INITIAL_CASH,
+                    market_rules=_market_rules,
+                )
                 cfg = preset.apply(base_cfg)
                 specs, wf_results, summary = run_walkforward_v2(df_wf, cfg, strategy_factory=factory, grid_config=grid)
                 audit = run_sensitivity_and_risk_audit(wf_results, grid_config=grid)
@@ -329,8 +393,8 @@ out = {
     # 数据溯源：区间与门槛必须落盘，否则 7 年 / 15 年、None / 2 的结果无法区分
     "request_range": {"start": START, "end": END},
     "design": {
-        # 口径版本：v1=OOS50 / v2=OOS75。默认值一改就必须 bump，
-        # 否则 v1 的历史结果与 v2 的新结果会被当成同一尺度比较。
+        # 口径版本：v1=OOS50 / v2=OOS75 / v3=OOS75+涨跌停。默认值一改就必须 bump，
+        # 否则不同口径的结果会被当成同一尺度比较。
         "design_version": DESIGN_VERSION,
         "min_trades": 2,
         "min_train_periods": 150,
@@ -343,6 +407,30 @@ out = {
         "fees": [p.fee_source for p in PRESETS],
         "initial_cash": INITIAL_CASH,
         "history_years": round((pd.Timestamp(END) - pd.Timestamp(START)).days / 365.25, 2),
+    },
+    # 涨跌停配置（B18 / D2 修复）：必须落盘「实际生效值」，否则无法判断
+    # 某份结果是启用前还是启用后跑的 —— 两者成交笔数不可比。
+    "market_rules": {
+        "price_limit_mode": _PRICE_LIMIT_MODE,
+        "price_limit_enabled": _PRICE_LIMIT_MODE != "off",
+        # 逐标的实际比例：board 模式下创业板/科创板为 0.2，主板为 0.1
+        "price_limit_rate_by_symbol": resolved_price_limits,
+        "notes": [
+            "涨跌停为简化模型：按标的所属板块比例（主板 ±10%、创业板/科创板 ±20%）"
+            "与 0.01 最小变动单位计算边界价，仅以开盘价是否触及边界做保守判定；"
+            "不模拟排队、部分成交、盘中打开与不同板块差异。"
+        ],
+        "limitations": [
+            "创业板 2020-08-24 前实际涨跌幅为 10%，本模型统一按 20% 处理"
+            "（早期创业板判定偏松，可能高估其可成交性）",
+            "MarketRules 为静态配置，不支持按日期切换比例",
+            "仅以开盘价是否触及边界做判定，不模拟排队、部分成交、盘中打开",
+            "不区分 ST 5% 档（股票池已剔除 ST）",
+        ],
+        "off_mode_warning": (
+            "price_limit_mode=off 时不得将本结果作为主结果引用；"
+            "该模式只用于量化「涨跌停拦截效应」的消融对照"
+        ),
     },
     "stocks": download_results,
     # 扩样池的来源与偏差声明（默认 6 只池时为 None）。
