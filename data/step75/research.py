@@ -149,6 +149,52 @@ def ma_factory(p):
 def mr_factory(p):
     return MeanReversionStrategy(lookback=int(p["fast_window"]), threshold=float(p["slow_window"]) / 10.0)
 
+
+def window_return_stats(wf_results):
+    """窗口级收益分布 —— **只做观测，不参与任何选择**（R2/R11）。
+
+    为什么需要它：一个合并的中位数区分不了两种完全不同的情形，而这两种情形
+    导向完全相反的下一步：
+
+      ① 每个窗口都小幅亏损 → 策略假设系统性错误，成本稳定吞噬；
+      ② 多数窗口持平、少数窗口巨亏 → 尾部风险问题，该管的是风险不是假设。
+
+    **判据预设（在看到结果之前就固定）**：比较 |mean| 与 |median|。
+    均值会被极端值拉离中位数，中位数不会 —— 偏离越大，亏损越集中在少数窗口。
+    用 p10/p90 与亏损窗口占比作佐证。
+
+    口径与 `summarize_v2` 完全一致（只取 selection 成功 + oos 成功 +
+    final_equity 非 None + is_complete），否则会与已报出的 median_ret 对不上。
+    """
+    valid = [
+        r for r in wf_results
+        if r.selection_success and r.oos_success
+        and r.final_equity is not None and r.oos_is_complete
+        and r.cumulative_return is not None
+        and np.isfinite(r.cumulative_return)
+    ]
+    arr = np.array([r.cumulative_return for r in valid], dtype=float)
+    if arr.size == 0:
+        return None
+    losses, gains = arr[arr < 0], arr[arr > 0]
+    med, mean = float(np.median(arr)), float(arr.mean())
+    return {
+        "n_windows_valid": int(arr.size),
+        "p10": round(float(np.percentile(arr, 10)), 6),
+        "p25": round(float(np.percentile(arr, 25)), 6),
+        "p50": round(med, 6),
+        "p75": round(float(np.percentile(arr, 75)), 6),
+        "p90": round(float(np.percentile(arr, 90)), 6),
+        "mean": round(mean, 6),
+        "loss_window_ratio": round(float(losses.size / arr.size), 4),
+        "median_loss": round(float(np.median(losses)), 6) if losses.size else None,
+        "median_gain": round(float(np.median(gains)), 6) if gains.size else None,
+        "worst": round(float(arr.min()), 6),
+        "best": round(float(arr.max()), 6),
+        # 判据量：|均值| − |中位数|。越大 → 亏损越集中于少数窗口
+        "abs_mean_minus_abs_median": round(abs(mean) - abs(med), 6),
+    }
+
 STRATEGIES = [
     ("ma_cross", MA_GRID, ma_factory),
     ("mean_reversion", MR_GRID, mr_factory),
@@ -255,6 +301,8 @@ for dr in download_results:
                     "positive_ratio": summary.positive_ratio,
                     "median_ret": summary.median_cumulative_return,
                     "median_mdd": summary.median_max_drawdown_ratio,
+                    # 窗口级收益分布（只观测，不参与选参）—— 用于 B12「频率 vs 幅度」判别
+                    "window_stats": window_return_stats(wf_results),
                     "total_trades": summary.total_oos_trades,
                     "total_fees": summary.total_oos_fees,
                     "param_dist": summary.param_distribution,
