@@ -366,10 +366,42 @@ def test_design_whitelist_excludes_tuning_knobs(tree: ast.Module) -> None:
 
 
 def test_design_defaults_match_ruling(source: str) -> None:
-    """默认值必须仍是已裁决口径：OOS 50 天、慢线上限 60、三档费率。"""
-    assert '_DESIGN.get("min_oos_periods", 50)' in source, "OOS 默认值被改动（裁决为 50）"
-    assert '_DESIGN.get("ma_slow_max", 60)' in source, "慢线上限默认值被改动（裁决为 60）"
+    """默认值必须是**当前已裁决口径**：OOS 75 天、慢线上限 60、三档费率。
+
+    历史：v1 是 OOS 50（PR #23 及此前全部结果）。设计探针实测后拍板改 75 ——
+    零中位数率 ma 33.3%→10.4%、mr 29.2%→16.7%。
+    **这条断言是防回退的锚点**：谁把默认值改回 50，就是悄悄让新旧结果混算。
+    """
+    assert "DEFAULT_OOS_WINDOW = 75" in source, (
+        "OOS 默认值被改动（裁决为 75）。若要再改，必须同时 bump DESIGN_VERSION "
+        "并在文档里标注旧结果口径"
+    )
+    assert "DEFAULT_MA_SLOW_MAX = 60" in source, "慢线上限默认值被改动（裁决为 60）"
+    # 默认值必须从常量取，不能散落字面量（否则两处不一致时测试查不出来）
+    assert '_DESIGN.get("min_oos_periods", DEFAULT_OOS_WINDOW)' in source, (
+        "OOS 默认值未走 DEFAULT_OOS_WINDOW 常量"
+    )
+    assert '_DESIGN.get("ma_slow_max", DEFAULT_MA_SLOW_MAX)' in source, (
+        "慢线上限默认值未走 DEFAULT_MA_SLOW_MAX 常量"
+    )
     assert "_FEE_SET = _DESIGN.get(\"fees\")" in source, "费率档未走探针开关"
+
+
+def test_design_version_recorded(source: str) -> None:
+    """口径版本必须落盘，否则 v1(50) 与 v2(75) 的收益数字会被当成同一尺度比较。
+
+    OOS 越长，单窗口覆盖的行情段越长，收益中位数天然更极端
+    （ma −0.58% → −2.15%）——这是口径差，不是策略变差，只有版本号能区分。
+    """
+    assert 'DESIGN_VERSION = "oos75-v2"' in source, "口径版本号被删或未 bump"
+    assert '"design_version": DESIGN_VERSION' in source, "design 未落盘 design_version"
+
+
+def test_probe_override_is_flagged(source: str) -> None:
+    """探针变体偏离默认口径时必须自证，不能被当成正式口径的结果引用。"""
+    assert '"is_probe_override": bool(_DESIGN)' in source, (
+        "design 未落盘 is_probe_override，探针结果会被误当正式口径"
+    )
 
 
 def test_output_records_resolved_design(source: str) -> None:
