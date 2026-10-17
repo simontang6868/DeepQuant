@@ -3,7 +3,15 @@ import sys, os, json, hashlib, traceback
 from pathlib import Path
 from datetime import datetime, timezone
 
-sys.path.insert(0, "/workspace/DeepQuant/backend/src")
+# --- 路径解析：禁止硬编码容器路径 ---
+# 此前这里是 sys.path.insert(0, "/workspace/DeepQuant/backend/src")，
+# 换机器后 import 立即失败（也解释了「CSV 缓存没同步」：原研究只在那台容器里跑过）。
+# 现在按「环境变量 > 相对本文件」解析，任何 checkout 都能直接跑。
+_HERE = Path(__file__).resolve().parent              # .../data/step75
+_REPO_ROOT = _HERE.parents[1]                        # .../DeepQuant-main
+_SRC_DIR = Path(os.environ.get("DEEPQUANT_SRC", str(_REPO_ROOT / "backend" / "src")))
+if str(_SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(_SRC_DIR))
 
 import pandas as pd
 import numpy as np
@@ -28,18 +36,30 @@ STOCKS = [
     ("sh600900", "600900.SH", "长江电力", "公用事业"),
 ]
 
-DATA_ROOT = Path("/workspace/DeepQuant/data/step75")
+DATA_ROOT = Path(os.environ.get("DEEPQUANT_DATA_ROOT", str(_HERE)))
 DATA_ROOT.mkdir(parents=True, exist_ok=True)
-START, END = "20180101", "20241231"
+
+# 历史区间：默认 15 年（2010-01-01 起）。
+# 理由见 docs/DECISION_RULING_2026-10-17.md：外部惯例要求 walk-forward ≥ 8 年日线，
+# 原配置只有 7 年（2018-2024）。腾讯源实测可取 15 年（3,573 行 / 7.6s，按年分页，
+# 且分段复权一致性 488/488 全对）。用环境变量可回退到旧区间做对照。
+START = os.environ.get("DEEPQUANT_START", "20100101")
+END = os.environ.get("DEEPQUANT_END", "20241231")
 INITIAL_CASH = 100000.0
 
+# min_trades=2：样本充分性门槛（判据是**交易次数**，不是收益）→ 不构成 R2/R11 择优。
+# 取值 2 的结构性理由：IS 段 150 个交易日 / 网格最慢均线 60 日 → 至少容纳一个完整往返。
+# 实测代价（docs/DECISION_RULING_2026-10-17.md）：参与率 56.7%→70.0%，但
+# 「剔除零参与后的收益中位数」由 -0.002566 恶化到 -0.023935 —— 参与率是数量指标，
+# **不得**用它挑候选。此处启用它的目的是「让没有交易能力的候选不进入 IS 排序」，
+# 而不是「提高参与率」。
 MA_GRID = GridSearchConfig(
     fast_candidates=(3, 5, 10, 20), slow_candidates=(15, 25, 40, 60),
-    min_train_periods=150, min_oos_periods=50, min_trades=None, max_combinations=50,
+    min_train_periods=150, min_oos_periods=50, min_trades=2, max_combinations=50,
 )
 MR_GRID = GridSearchConfig(
     fast_candidates=(10, 20, 30, 50), slow_candidates=(15, 20, 25),   # ×10 → threshold 1.5/2.0/2.5
-    min_train_periods=150, min_oos_periods=50, min_trades=None, max_combinations=50,
+    min_train_periods=150, min_oos_periods=50, min_trades=2, max_combinations=50,
 )
 
 def ma_factory(p):
@@ -80,18 +100,47 @@ for tencent_code, full_code, name, industry in STOCKS:
     df = df.sort_values("date").reset_index(drop=True)
     sha = hashlib.sha256(csv_path.read_bytes()).hexdigest()
     report_ext = validate_daily_extended(df, adjust_status="qfq")
+    # --- 数据质量闸门（ERROR 级必须阻断） ---
+    # 此前这里只收集 `i.level == "warning"`，ERROR 被静默丢弃：
+    # qfq 会产生非正价格（实测宁德 2018-06-11 close=-2.07 / open=-5.42），
+    # `invalid_price` 本身是 ERROR 级、校验器一直报得出来，只因这里没看 level 就漏了过去，
+    # 导致失真数据直接进了 walk-forward（见 docs/EXTERNAL_VALIDITY_2026-10-17.md）。
+    # 判据是**数据合法性**，与策略收益无关 → 不构成 R2/R11 意义上的择优。
+    data_ok = report_ext.is_valid
     download_results.append({
         "code": full_code, "name": name, "industry": industry,
         "sha256": sha, "n_rows": len(df),
         "date_min": str(df["date"].min().date()), "date_max": str(df["date"].max().date()),
         "ok": True,
-        "warnings": [{"code": i.code, "msg": i.message[:200]} for i in report_ext.issues if i.level == "warning"],
+        # 数据质量是否通过；False 的标的不会进入 walk-forward（见下方闸门）
+        "data_ok": data_ok,
+        # R5：无论是否拦截，error / warning 一律原样保留，不删失败记录
+        "errors": [
+            {"code": i.code, "msg": i.message[:200], "count": i.count}
+            for i in report_ext.issues if i.level == "error"
+        ],
+        "warnings": [
+            {"code": i.code, "msg": i.message[:200], "count": i.count}
+            for i in report_ext.issues if i.level == "warning"
+        ],
     })
+    if not data_ok:
+        print(f"[GATE  ] {full_code} {name} 数据质量未通过，将跳过 walk-forward："
+              f"{[i.code for i in report_ext.issues if i.level == 'error']}", flush=True)
 
 # --- Walk-Forward ---
 all_results = []
+skipped = []
 for dr in download_results:
     if not dr["ok"] or dr["n_rows"] < 400:
+        continue
+    if not dr.get("data_ok", True):
+        # 数据质量闸门：显式记录被拦截的标的，不静默跳过（R5 不删失败记录）
+        skipped.append({
+            "code": dr["code"], "name": dr["name"],
+            "reason": "data_quality_gate",
+            "error_codes": [e["code"] for e in dr.get("errors", [])],
+        })
         continue
     full_code = dr["code"]
     csv_path = DATA_ROOT / f"{full_code}.qfq.csv"
@@ -141,7 +190,18 @@ for dr in download_results:
 out = {
     "run_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),
     "data_source": "akshare.stock_zh_a_hist_tx (tencent kline, qfq)",
+    # 数据溯源：区间与门槛必须落盘，否则 7 年 / 15 年、None / 2 的结果无法区分
+    "request_range": {"start": START, "end": END},
+    "design": {
+        "min_trades": 2,
+        "min_train_periods": 150,
+        "min_oos_periods": 50,
+        "initial_cash": INITIAL_CASH,
+        "history_years": round((pd.Timestamp(END) - pd.Timestamp(START)).days / 365.25, 2),
+    },
     "stocks": download_results,
+    # 被数据质量闸门拦截的标的（R5：保留记录，不静默丢弃）
+    "skipped": skipped,
     "results": all_results,
 }
 out_path = DATA_ROOT / "step75_research_summary.json"
