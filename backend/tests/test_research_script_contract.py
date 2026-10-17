@@ -23,6 +23,7 @@
 from __future__ import annotations
 
 import ast
+import os
 from pathlib import Path
 
 import numpy as np
@@ -330,3 +331,76 @@ def test_universe_builder_declares_survivorship_bias(universe_source: str) -> No
     """
     assert "bias_survivorship" in universe_source, "未声明幸存者偏差"
     assert "bias_sampling" in universe_source, "未声明抽样偏差"
+
+
+# =========================================================================== #
+# 6. 设计探针开关：只许改研究设计，不许借道调参
+# =========================================================================== #
+# 探针要回答「零中位数是网格太慢还是 OOS 太短」，必须能改 OOS 长度与慢线上限。
+# 但这个开关一旦放开到 min_trades / IS 长度，就从「设计探针」变成「调参」，
+# 直接踩 R2（不用 OOS 选参）与 R11（不按 OOS 收益择优）。所以白名单必须被测试锁住。
+
+
+def _design_whitelist(tree: ast.Module) -> set[str]:
+    for node in ast.walk(tree):
+        if (
+            isinstance(node, ast.Assign)
+            and any(
+                isinstance(t, ast.Name) and t.id == "_ALLOWED_DESIGN_KEYS"
+                for t in node.targets
+            )
+        ):
+            return set(ast.literal_eval(node.value))
+    raise AssertionError("未找到 _ALLOWED_DESIGN_KEYS 定义（探针白名单被删了？）")
+
+
+def test_design_whitelist_excludes_tuning_knobs(tree: ast.Module) -> None:
+    """白名单只允许设计维度；min_trades / IS 长度 / 预热一律不得进。"""
+    allowed = _design_whitelist(tree)
+    assert allowed == {"min_oos_periods", "ma_slow_max", "fees"}, (
+        f"探针白名单被改动：{sorted(allowed)}。"
+        "放开 min_trades / min_train_periods 会同时违反 R2 与 R11"
+    )
+    forbidden = {"min_trades", "min_train_periods", "warmup_days"}
+    assert not (allowed & forbidden), f"白名单混入调参键：{sorted(allowed & forbidden)}"
+
+
+def test_design_defaults_match_ruling(source: str) -> None:
+    """默认值必须仍是已裁决口径：OOS 50 天、慢线上限 60、三档费率。"""
+    assert '_DESIGN.get("min_oos_periods", 50)' in source, "OOS 默认值被改动（裁决为 50）"
+    assert '_DESIGN.get("ma_slow_max", 60)' in source, "慢线上限默认值被改动（裁决为 60）"
+    assert "_FEE_SET = _DESIGN.get(\"fees\")" in source, "费率档未走探针开关"
+
+
+def test_output_records_resolved_design(source: str) -> None:
+    """落盘必须是**实际生效值**，否则 50/75/100 天 OOS 的结果无法区分。"""
+    assert '"min_oos_periods": OOS_WINDOW' in source, "design 未落盘生效的 OOS 长度"
+    assert '"ma_slow_candidates"' in source, "design 未落盘生效的慢线候选"
+    assert '"fees"' in source, "design 未落盘生效的费率档"
+
+
+def test_design_override_rejects_tuning_keys(tmp_path) -> None:
+    """传入 min_trades 覆盖时必须直接报错退出，绝不静默忽略。"""
+    pytest.importorskip("akshare", reason="未安装 akshare，跳过脚本启动测试")
+    import subprocess
+    import sys
+
+    env = {
+        **os.environ,
+        "DEEPQUANT_DESIGN_OVERRIDES": '{"min_trades": 2}',
+        "DEEPQUANT_UNIVERSE": str(REPO_ROOT / "data" / "step75" / "universe" / "csi300_50.json"),
+        # 写到临时目录：脚本在解析覆盖前就会 mkdir(DATA_ROOT)，不能让它污染仓库
+        "DEEPQUANT_DATA_ROOT": str(tmp_path),
+    }
+    proc = subprocess.run(
+        [sys.executable, str(RESEARCH)],
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=180,
+    )
+    assert proc.returncode != 0, "非法覆盖键竟未报错退出"
+    combined = proc.stdout + proc.stderr
+    assert "不允许的键" in combined, f"报错信息不明确，实际输出：{combined[:300]}"
+    # 白名单生效意味着在下载前就退出 → 临时目录里不应该有任何 CSV
+    assert not list(tmp_path.glob("*.csv")), "非法覆盖后仍执行了下载"
