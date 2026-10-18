@@ -105,6 +105,65 @@
 > 事实陈述（非建议）：10 个"无专属测试文件"的模块里，仅 `fee_presets.py` 在运行时也确实零覆盖；
 > 其余 9 个虽无同名文件，但已被其他测试间接执行，覆盖率在 74%–100% 区间。
 
+## 5. 2026-10-18 刷新（A 线下一阶段前置）
+
+> **本節为对 2026-10-17 快照的刷新，原第 1~4 節（10-17 实测）全部保留不覆写（R5）。**
+> 复现命令同文末「附」；本次实测时间 2026-10-18，Python 3.13.14（venv），`--ignore=tests/research`。
+
+### 5.1 总览（刷新后真实数字）
+
+| 指标 | 数值 |
+|---|---|
+| 语句总数 (Stmts) | **5883**（10-17 为 4085，增加约 1798 条） |
+| 未覆盖语句 (Miss) | **1208** |
+| **总覆盖率** | **79%**（10-17 为 93%） |
+| 测试通过（A 线口径，--ignore=tests/research） | **1208 passed / 1 skipped / 6 xfailed / 0 failed** |
+| 覆盖率工具 | pytest-cov 7.x + coverage 7.x（Python 3.13.14） |
+
+**总覆盖率从 93% 降到 79% 的原因（非回归）**：10-17 之后 B 线 B18（Gate 0 装置，PR #35，`workbuddy/b18-gate0-device`，**未合 main**）新增了约 1800 条语句的 `performance/` 模块（`benchmarks.py` / `curve.py` / `portfolio_metrics.py` / `window_distribution.py` 等）。这些模块**不在 main 上、属在途工作**，不应计入 A 线缺口分析，但被 coverage 统计进了分母，拉低了总百分比。**A 线真正负责的源码（`api/` `backtest/` `data/` `strategies/` `walkforward/` `persistence/` `analysis/` `market/` 中已在 main 的部分）覆盖率仍高。**
+
+### 5.2 扣除 A9~A12 后的真实剩余缺口（A 线候选）
+
+A9~A12 已合并且其目标模块实测已 100%，**从缺口清单中移除**：
+
+| 已闭环模块 | 10-17 缺口 | 2026-10-18 实测 |
+|---|---|---|
+| `backtest/fee_presets.py`（A9） | 0%（36/36 miss） | **100%**（已闭环） |
+| `data/validation/checks_extended.py`（A10） | 74%（18 miss） | **100%**（已闭环） |
+| `walkforward/parameter_selection.py`（A11） | 91%（18 miss） | **100%**（已闭环） |
+| `performance/json_encoding.py` + `reproducibility.py`（A12） | 86% + 88% | **均 100%**（已闭环） |
+
+**仍 <100% 且属 A 线范畴（main 上、非 research、非 B18 在途）的模块**，按「未覆盖语句数」降序：
+
+| 模块 | Stmts | Miss | Cover | Missing（行） | 备注 |
+|---|---:|---:|---:|---|---|
+| `persistence/store.py` | 246 | **29** | 88% | 239-240,249-251,253,287-288,309-310,350,352,365-368,385-388,419-420,498-499,531,551-552,555,563,601 | 回测结果持久化地基；多为异常/边界分支 |
+| `walkforward/__init__.py` | 199 | 32 | 84% | 90,98,197,201,205,211-225,230,263-264,285,314-320,325-326,368-369,514,516,518,530-548 | `run_fixed_parameter_walkforward` 等高层入口 |
+| `backtest/models.py` | 242 | 17 | 93% | 79,125,129,137,160,224,226,238,240,248,257,264,322,388,390,392,396 | Order/Fill/Position/AccountState 地基 |
+| `api/registry.py` | 55 | 10 | 82% | 85-93,107 | 策略注册表 |
+| `strategies/signals.py` | 104 | 9 | 91% | 61,63,69,121,123,189,221,232,234 | |
+| `api/datasets.py` | 112 | 9 | 92% | 75-76,83,92,101,111,115,118,195 | |
+| `api/errors.py` | 86 | 6 | 93% | 159-160,168-169,201-202 | |
+| `api/config.py` | 9 | 3 | **67%** | 23-25 | 百分比最低（但绝对语句少） |
+| `data/pipeline.py` | 63 | 2 | 97% | 129-130 | |
+| `backtest/portfolio.py` | 417 | 38 | 91% | 103,137,197,229,351,359-362,369,… | B18 组合层，属在途（PR #35） |
+| `performance/benchmarks.py` | 150 | 10 | 93% | … | B18 在途（PR #35） |
+| `performance/curve.py` | 65 | 3 | 95% | 71,73,75 | B18 在途（PR #35） |
+| `performance/portfolio_metrics.py` | 109 | 6 | 94% | 133,186,209,219,248,298 | B18 在途（PR #35） |
+| `performance/window_distribution.py` | 64 | 1 | 98% | 103 | B18 在途（PR #35） |
+
+> 事实陈述（非建议）：A 线下一阶段若按「缺失语句数 × 非判断类」排，优先序为
+> `store.py`(29) → `walkforward/__init__.py`(32) → `models.py`(17) → `registry.py`(10) →
+> `signals.py`(9) / `datasets.py`(9) → `errors.py`(6) → `config.py`(3) → `pipeline.py`(2)。
+> `walkforward/__init__.py`、`backtest/portfolio.py` 含高层编排，挑「纯契约/不变量」分支做，不碰判断逻辑。
+> 所有 `performance/*` 与 `research/*` 为 B 线在途，**A 线不碰**（见本批次裁决）。
+
+### 5.3 A 线基线说明
+
+- A 线基线以 `pytest tests/ -q --ignore=tests/research` 为准：**1208 passed / 1 skipped / 6 xfailed / 0 failed**。
+- `tests/research/`（equity_bond_spread 在途）的失败**不计入 A 线**，按本批次裁决「在途工作，不修、不据以回退」。
+- 此前「完整顺序 25 failed」经核对**完全来自 `tests/research/`**，A 线作用域（忽略 research）下 0 failed；故不存在 A 线作用域内的测试隔离缺陷（详见 A14 处置记录）。
+
 ## 附：复现命令
 
 ```bash
