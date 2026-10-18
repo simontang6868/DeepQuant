@@ -111,9 +111,15 @@ def _format_event_table(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def render_report(inp: ReportInput) -> str:
-    """渲染完整的中文研究报告（Markdown）。"""
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+def render_report(inp: ReportInput, *, generated_at: str | None = None) -> str:
+    """渲染完整的中文研究报告（Markdown）。
+
+    ``generated_at`` 可注入：同输入必须可复现同一份文本。
+    默认仍取当前挂钟时间（命令行场景需要真实时间），但任何
+    「结果与报告一一对应」的场景都应显式传入运行时刻，
+    否则同一份结果隔一秒重渲就会得到不同文本，破坏可复现性。
+    """
+    now = generated_at if generated_at is not None else datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     lines: list[str] = []
     add = lines.append
 

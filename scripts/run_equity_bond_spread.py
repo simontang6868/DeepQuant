@@ -145,7 +145,9 @@ def main() -> int:
         notes.append(f"数据校验报错：{info['validation_errors']}")
 
     rep_inp = build_report_input(info, results, sens, cases_raw, notes)
-    md = render_report(rep_inp)
+    # 报告与摘要共用同一个时间戳：同一份结果再次写出时，文本可复现
+    run_stamp = datetime.now()
+    md = render_report(rep_inp, generated_at=run_stamp.strftime("%Y-%m-%d %H:%M:%S"))
     report_path = out_dir / "EQUITY_BOND_SPREAD_RESEARCH_REPORT.md"
     report_path.write_text(md, encoding="utf-8")
     # 同时写到仓库根目录，便于直接查阅
@@ -154,7 +156,7 @@ def main() -> int:
 
     # --- 机器可读摘要 ---
     summary = {
-        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "generated_at": run_stamp.isoformat(timespec="seconds"),
         "data": info,
         "experiments": {},
         "verdicts": {},
