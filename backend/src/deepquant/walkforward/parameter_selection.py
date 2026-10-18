@@ -328,6 +328,42 @@ class WindowWFResult:
     strategy_name: str
     strategy_version: str
 
+    # --- 逐笔明细（W1，可选）---
+    # 默认空元组：历史 288 组结果都是在这个字段存在之前跑出来的，默认空表示
+    # 「本次未采集」，**不等于「该窗口没有成交」**——后者看 trade_count/order_count。
+    # 只有 ``capture_trades=True`` 时才会填，且不改变任何既有指标。
+    fills: tuple[dict, ...] = ()
+    orders: tuple[dict, ...] = ()
+
+
+def _fill_to_dict(fill) -> dict:
+    """成交 → 普通 dict（只保留可落盘且事后可核的字段）。"""
+    return {
+        "fill_id": fill.fill_id,
+        "order_id": fill.order_id,
+        "symbol": fill.symbol,
+        "side": fill.side.value if hasattr(fill.side, "value") else str(fill.side),
+        "fill_date": str(pd.Timestamp(fill.fill_date).date()),
+        "price": float(fill.price),
+        "quantity": int(fill.quantity),
+        "fees": float(fill.fees.total),
+    }
+
+
+def _order_to_dict(order) -> dict:
+    """订单 → 普通 dict；被拒原因必须保留（否则「为什么没成交」无从追）。"""
+    return {
+        "order_id": order.order_id,
+        "symbol": order.symbol,
+        "side": order.side.value if hasattr(order.side, "value") else str(order.side),
+        "signal_date": str(pd.Timestamp(order.signal_date).date()),
+        "order_date": str(pd.Timestamp(order.order_date).date()),
+        "planned_exec_date": str(pd.Timestamp(order.planned_exec_date).date()),
+        "quantity": int(order.quantity),
+        "status": order.status.value if hasattr(order.status, "value") else str(order.status),
+        "reason": order.reason,
+    }
+
 
 def run_walkforward_window(
     full_df: pd.DataFrame,
@@ -343,9 +379,15 @@ def run_walkforward_window(
     selection_metric: str = "cumulative_return",
     min_trades: int | None = None,
     warmup_days: int = 0,
+    capture_trades: bool = False,
 ) -> WindowWFResult:
     """执行单个 Walk-Forward 窗口的完整流程：候选生成（已在调用方）→ 训练期评价
-    → 选中参数 → OOS 独立回测。"""
+    → 选中参数 → OOS 独立回测。
+
+    ``capture_trades=True`` 时把 OOS 的逐笔成交/订单转成普通 dict 挂在结果上，
+    供 W1 逐窗明细落盘使用。默认 False —— 288 组历史结果的指标与内存占用
+    完全不变，这一点由测试钉死，不靠注释保证。
+    """
     import dataclasses as _dc
 
     # --- 1. 定位行情位置 ---
@@ -504,6 +546,8 @@ def run_walkforward_window(
         oos_incomplete_reasons=tuple(perf.incomplete_reasons),
         fee_source=base_config.fee_source,
         strategy_name=strategy.name, strategy_version=strategy.version,
+        fills=tuple(_fill_to_dict(f) for f in oos_result.fills) if capture_trades else (),
+        orders=tuple(_order_to_dict(o) for o in oos_result.orders) if capture_trades else (),
     )
 
 
@@ -605,6 +649,7 @@ def run_walkforward_v2(
     grid_config: GridSearchConfig,
     selection_metric: str = "cumulative_return",
     window_config=None,  # Step 7.1 WalkForwardConfig 或等价对象
+    capture_trades: bool = False,
 ) -> tuple[list, list[WindowWFResult], WalkForwardSummaryV2]:
     """完整 Walk-Forward：窗口生成 → 参数选择 + OOS → 跨窗口汇总。
 
@@ -664,6 +709,7 @@ def run_walkforward_v2(
             selection_metric=selection_metric,
             min_trades=grid_config.min_trades,
             warmup_days=warmup_days,
+            capture_trades=capture_trades,
         ))
 
     summary = summarize_v2(results)

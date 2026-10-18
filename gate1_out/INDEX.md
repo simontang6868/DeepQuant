@@ -55,3 +55,4 @@ python scripts/gate1_run.py --execute --authorized-by "<用户授权原话>" --e
 - 逐窗（逐月）明细：`monthly_paired.csv`，每行一个自然月，`d = r_strategy − r_benchmark`。
 - 判定与统计量：`summary.json`；渲染层 `scripts/gate1_report.py` 只读这些落盘文件。
 - 完整性：`manifest.json` 记录落盘瞬间的 sha256，可用于验证事后未被改动。
+
