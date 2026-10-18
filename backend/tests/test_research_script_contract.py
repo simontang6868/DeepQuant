@@ -388,12 +388,19 @@ def test_design_defaults_match_ruling(source: str) -> None:
 
 
 def test_design_version_recorded(source: str) -> None:
-    """口径版本必须落盘，否则 v1(50) 与 v2(75) 的收益数字会被当成同一尺度比较。
+    """口径版本必须落盘，否则不同口径的收益数字会被当成同一尺度比较。
 
-    OOS 越长，单窗口覆盖的行情段越长，收益中位数天然更极端
-    （ma −0.58% → −2.15%）——这是口径差，不是策略变差，只有版本号能区分。
+    v1(50) → v2(75)：OOS 越长，单窗口覆盖的行情段越长，收益中位数天然更极端
+    （ma −0.58% → −2.15%）——这是口径差，不是策略变差。
+    v2 → **v3**（B18 / D2）：启用涨跌停会拦截部分成交，成交笔数与收益双双改变，
+    与 v2 同样不可直接比较。
+
+    **这条断言是变更留痕机制**：每次 bump 都必须到这里显式改一次，
+    不允许「悄悄改版本号让结果看起来可比」。
     """
-    assert 'DESIGN_VERSION = "oos75-v2"' in source, "口径版本号被删或未 bump"
+    assert 'DESIGN_VERSION = "oos75-v3"' in source, (
+        "口径版本号被删或未同步（当前裁决为 oos75-v3：OOS75 + 启用涨跌停）"
+    )
     assert '"design_version": DESIGN_VERSION' in source, "design 未落盘 design_version"
 
 
@@ -436,3 +443,57 @@ def test_design_override_rejects_tuning_keys(tmp_path) -> None:
     assert "不允许的键" in combined, f"报错信息不明确，实际输出：{combined[:300]}"
     # 白名单生效意味着在下载前就退出 → 临时目录里不应该有任何 CSV
     assert not list(tmp_path.glob("*.csv")), "非法覆盖后仍执行了下载"
+
+
+# =========================================================================== #
+# 7. 涨跌停配置（B18 / D2 修复）
+# =========================================================================== #
+# 历史缺陷：`BacktestConfig(...)` 未传 `market_rules` → 走默认 `a_share_rules()`
+# → `price_limit_rate=None` → `limit_prices()` 返 None → 涨跌停判定被跳过。
+# 于是**全部历史研究（含 48 只 288 组）从未模拟涨跌停**。
+# 对横截面动量影响最大：赢家组合常含涨停股，实盘买不到，不建模 = 系统性高估。
+#
+# 这组断言的职责：任何人都不能把 market_rules 悄悄删回默认。
+
+
+def test_backtest_config_passes_market_rules(tree: ast.Module) -> None:
+    """每个 BacktestConfig 都必须显式传 market_rules（D2 回归闸门）。"""
+    calls = _calls(tree, "BacktestConfig")
+    assert calls, "未找到 BacktestConfig 调用"
+    for idx, call in enumerate(calls):
+        kwargs = {k.arg for k in call.keywords if k.arg}
+        assert "market_rules" in kwargs, (
+            f"第 {idx + 1} 个 BacktestConfig 未传 market_rules —— "
+            "会退回 price_limit_rate=None，涨跌停判定被跳过（D2 回归）"
+        )
+
+
+def test_price_limit_defaults_to_board_mode(source: str) -> None:
+    """默认模式必须是 board，不能是 off。
+
+    off 会让主结果重新变回「未模拟涨跌停」，且这一次是**主动配置**的，
+    比原来的「忘了传」更难被发现。
+    """
+    assert "DEEPQUANT_PRICE_LIMIT" in source, "未提供涨跌停模式开关"
+    assert 'os.environ.get("DEEPQUANT_PRICE_LIMIT", "board")' in source, (
+        "涨跌停默认模式必须是 board（按板块 10%/20%），实际默认值被改动"
+    )
+
+
+def test_price_limit_mode_uses_shared_resolver(source: str) -> None:
+    """研究脚本不得自写一份板块判定，必须复用 market.rules 的纯函数。"""
+    assert "a_share_price_limit_rate" in source, (
+        "未复用 market.rules 的比例解析 —— 两份实现迟早分叉"
+    )
+
+
+def test_output_records_resolved_price_limits(source: str) -> None:
+    """必须逐标的落盘实际比例，否则无法判断某份结果是启用前还是启用后。"""
+    assert '"price_limit_rate_by_symbol"' in source, "未逐标的落盘实际涨跌停比例"
+    assert '"price_limit_enabled"' in source, "未落盘涨跌停是否启用"
+
+
+def test_off_mode_carries_warning(source: str) -> None:
+    """off 模式必须自带「不得作主结果」的警告，防止消融对照被当正式结论。"""
+    assert "off_mode_warning" in source
+    assert "不得将本结果作为主结果引用" in source
