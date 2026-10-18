@@ -468,6 +468,9 @@ def run_walkforward_window(
     try:
         strategy = strategy_factory(selected)
     except Exception as exc:  # noqa: BLE001
+        # 构造失败时 strategy 尚未绑定：这里必须允许它为 None，
+        # 否则 except 分支自己会抛 UnboundLocalError，把「显式失败」变成崩溃。
+        strategy = None
         return WindowWFResult(
             window_index=window_index,
             train_start=train_start, train_end=train_end,

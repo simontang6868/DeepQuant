@@ -26,6 +26,13 @@ Gate 1 主实验按预登记判据机械判定为 **`failure`（失败）**：
 **1717 passed / 1 failed / 1 skipped / 7 xfailed**；唯一的 fail 是 §2.3 的 D4（测试与输出目录状态耦合），
 已实测证明它由「结果目录中存在真实产物」触发，非源码回归，修复属 A 线职责。
 
+> **状态更新（2026-10-19 02:46）**：本节以上数字是 2026-10-18 收官轮的现场记录，**按 R5 保留不改**。
+> 此后 B 线完成装置修复轮（`docs/RESEARCH_FIXES_REPORT.md`，7 条缺陷）与结项归档
+> （`docs/GATE1_FINAL_CLOSEOUT_REPORT.md`），A 线完成 9 条 xfail 转正。
+> 最新复核：**1780 passed / 1 skipped / 0 failed / 0 xfailed**；§2.3 的 D1~D4 全部已修，
+> 其中 D4 由 A 线于 00:26 改为「运行前后快照对比」修好（断言未弱化）。
+> **判定与所有统计量未变**（`failure`、`mean(d) = −0.003961`、95% CI `[−0.017974, +0.010051]`）。
+
 ---
 
 ## 2. 研究方法层面的已知问题
@@ -62,7 +69,7 @@ Gate 1 主实验按预登记判据机械判定为 **`failure`（失败）**：
 | D1 | **脚本内对照组是退化的**。`--exclude-symbols` 会先把标的从数据中剔除再跑全部实验，最后又在同一份已剔除数据上「重跑主实验」当对照 → 对照组与它自己的主实验必然同值 | 排除跑中 `monthly_paired.csv` 与 `monthly_paired_excluded.csv` **sha256 完全相同**（`74be84da8d315a8e`） | 若只看 `summary.json` 的 `control_excluded`，会误以为已做「含 vs 排除」对照 | 本轮改用**跨跑比对**（全池 run vs 排除 run），结论不受影响；修复提案见 §5.1 |
 | D2 | **累计收益列不是窗口内口径**。`sensitivity.csv` 的 `strategy_total_return` / `benchmark_total_return` 是**全程**（2017-02 ~ 2024-12）累计，不随 `eval_end` 截断 | S12（OOS 前半）一行的累计与主实验完全相同（`+331.43% / +357.89%`），而它只用了 24 个月 | 容易被误读成「窗口内累计」 | 判定未受影响（mean(d)/t 均按窗口计算）；建议改列名或增列，见 §5.1 |
 | D3 | **BH q 值全部相同会很反直觉**。12 组 q 值都是 `0.8744` —— 这是 BH 取右侧最小值的正确性质，不是 bug | 最小 p 值来自 S5（p=0.8744），它决定了所有更大 p 的 q | 容易被误读为「12 组都同样差」 | 已在报告中注明；解读时应看原始 p 值区间（0.3436 ~ 0.8744） |
-| D4 | **一条测试与「仓库输出目录是否为空」耦合**。`test_gate1_run_contract.py::test_main_dry_run_with_exclusion_runs_no_backtest` 断言 dry-run 之后 `gate1_out/` 必须不存在或为空；一旦目录里有**任何真实运行结果**，该测试即失败 | 本轮把两个 run 的结果落盘后，该测试由 pass 变 fail；把 `gate1_out/` 临时移走后**立刻恢复 pass**（已实测验证，非推测） | 属测试隔离缺陷，**不是源码回归**：`src/` 本轮一行未改 | 修复需改 `backend/tests/**`（**A 线所有权**，且 R7 禁止弱化既有测试）→ **本线不擅改，转交 A 线**：应改为 monkeypatch `--out-root` 到 `tmp_path`，而不是检查真实输出目录 |
+| D4 | **一条测试与「仓库输出目录是否为空」耦合**。`test_gate1_run_contract.py::test_main_dry_run_with_exclusion_runs_no_backtest` 断言 dry-run 之后 `gate1_out/` 必须不存在或为空；一旦目录里有**任何真实运行结果**，该测试即失败 | 本轮把两个 run 的结果落盘后，该测试由 pass 变 fail；把 `gate1_out/` 临时移走后**立刻恢复 pass**（已实测验证，非推测） | 属测试隔离缺陷，**不是源码回归**：`src/` 本轮一行未改 | **✅ 已闭环**：A 线 2026-10-19 00:26 改为「运行前后 `_gate1_out_snapshot()` 对比」，未弱化断言；02:46 复核 0 failed |
 
 ### 2.4 一实验两用（已在报告中单次引用）
 

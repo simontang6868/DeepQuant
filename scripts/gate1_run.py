@@ -359,6 +359,11 @@ class RunResult:
     stats: object
     elapsed: float = 0.0
     q_value: float | None = None
+    # 评估窗口内累计收益（按 paired 的月度收益复利），与「全程累计」严格区分：
+    # 全程累计来自 strategy.cumulative_return（BACKTEST_START..BACKTEST_END），
+    # 不随 spec.eval_end 截断，直接拿来当「窗口内累计」是错的（旧 D2 缺陷）。
+    strategy_total_return_eval: float | None = None
+    benchmark_total_return_eval: float | None = None
 
 
 def run_one(
@@ -406,6 +411,8 @@ def run_one(
         paired=paired,
         stats=paired_stats(paired["d"].tolist()),
         elapsed=time.time() - t0,
+        strategy_total_return_eval=float((1.0 + rs).prod() - 1.0),
+        benchmark_total_return_eval=float((1.0 + rb).prod() - 1.0),
     )
 
 
@@ -576,6 +583,7 @@ def write_outputs(
     elapsed: float,
     excluded_symbols: Sequence[str] = (),
     control: RunResult | None = None,
+    inputs: Mapping[str, object] | None = None,
 ) -> dict[str, object]:
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -597,8 +605,12 @@ def write_outputs(
             "t_stat": r.stats.t_stat,
             "p_value": r.stats.p_value,
             "win_ratio": r.stats.win_ratio,
-            "strategy_total_return": r.strategy.cumulative_return,
-            "benchmark_total_return": r.benchmark.cumulative_return,
+            # 全程累计（BACKTEST_START..BACKTEST_END）——**不是**评估窗口内累计
+            "strategy_total_return_full": r.strategy.cumulative_return,
+            "benchmark_total_return_full": r.benchmark.cumulative_return,
+            # 评估窗口内累计（OOS_START..spec.eval_end，按月度收益复利）
+            "strategy_total_return_eval": getattr(r, "strategy_total_return_eval", None),
+            "benchmark_total_return_eval": getattr(r, "benchmark_total_return_eval", None),
             "q_value": getattr(r, "q_value", None),
         })
     pd.DataFrame(rows).to_csv(out_dir / "sensitivity.csv", index=False)
@@ -619,8 +631,13 @@ def write_outputs(
         summary["control_excluded"] = {
             "excluded_symbols": list(excluded_symbols),
             "stats": control.stats.as_dict(),
-            "note": "预登记 §10.2 第三条：与 main 的 mean(d) 符号不一致即判证据不足",
+            "note": (
+                "预登记 §10.2 第三条：与 main 的 mean(d) 符号不一致即判证据不足。"
+                "本对照必须在全池上独立重跑，不能拿「已剔除数据上的同一配置」充数。"
+            ),
         }
+    if inputs:
+        summary["inputs"] = dict(inputs)
     (out_dir / "summary.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=False, default=str), encoding="utf-8"
     )
@@ -634,22 +651,55 @@ def write_outputs(
         "price_limit_rate": PORTFOLIO_PRICE_LIMIT_RATE,
         "excluded_symbols": list(excluded_symbols),
     }
+    if inputs:
+        manifest["inputs"] = dict(inputs)
     (out_dir / "manifest.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False, default=str), encoding="utf-8"
     )
     return summary
 
 
+def _frame_digest(df: pd.DataFrame) -> bytes:
+    """单只标的的内容摘要：列名 + 形状 + **逐值哈希**。
+
+    只哈希「行数 + 首末日期」是常见的假防线：换个价格但保持形状与日期，
+    摘要不变 —— 那就不再是「内容哈希」，而是「形状哈希」。
+    """
+    h = hashlib.sha256()
+    h.update("|".join(str(c) for c in df.columns).encode())
+    h.update(str(df.shape).encode())
+    values = pd.util.hash_pandas_object(df, index=True).to_numpy(dtype="uint64")
+    h.update(values.tobytes())
+    return h.digest()
+
+
+def pool_fingerprint(prices: Mapping[str, pd.DataFrame]) -> str:
+    """池子输入指纹：标的集合 + 每只的**内容摘要**（逐值哈希）。
+
+    用途是**证明输入真的不同**：对照组若与主实验共用同一份数据，指纹必然相同，
+    这正是 D1 缺陷（排除跑内部对照退化）的判据。指纹相同却在比较「含/排除」，
+    说明装置退化了，应当直接报错而不是继续算。
+    """
+    h = hashlib.sha256()
+    for code in sorted(prices):
+        h.update(code.encode())
+        h.update(_frame_digest(prices[code]))
+    return h.hexdigest()[:16]
+
+
 def make_run_id(prices: Mapping[str, pd.DataFrame]) -> str:
-    """内容哈希：同一份数据 + 同一份协议 → 同一个 run_id（可复现的前提）。"""
+    """内容哈希：同一份数据 + 同一份协议 → 同一个 run_id（可复现的前提）。
+
+    2026-10-19 起覆盖**逐值内容**（缺陷 #9）：此前的实现只哈希标的集合、
+    行数与首末日期，形状相同但价格不同的两份数据会得到同一个 run_id，
+    进而共用同一个输出目录，或让 `ensure_no_overwrite` 误判「已存在」。
+    """
     h = hashlib.sha256()
     h.update(PREREG_VERSION.encode())
     h.update(str(len(prices)).encode())
     for code in sorted(prices):
-        df = prices[code]
         h.update(code.encode())
-        h.update(str(len(df)).encode())
-        h.update(f"{df['date'].min()}-{df['date'].max()}".encode())
+        h.update(_frame_digest(prices[code]))
     return h.hexdigest()[:16]
 
 
@@ -721,6 +771,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     data_root = Path(args.data_root)
     prices = load_prices(data_root)
+    prices_full = prices  # 全池原件：排除跑的对照组必须回到这份数据上独立重跑
     print(f"[LOAD] {len(prices)} 只标的 from {data_root}")
 
     excluded = parse_exclude_symbols(args.exclude_symbols)
@@ -782,10 +833,29 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     # §10.2 第三条：包含/排除该股两版结果符号不一致 → 数据缺陷影响无法隔离。
     # 只有传了 --exclude-symbols 才有对照；没传就不产生这条 flag（也不能凭空判「无法隔离」）。
+    #
+    # 关键：对照组必须回到**全池**上独立重跑。此前实现直接复用已被剔除的 prices，
+    # 等于在同一份数据上重跑同一配置 —— 两个 CSV 的 sha256 完全相同（D1 缺陷）。
     control: RunResult | None = None
+    inputs: dict[str, object] = {
+        "main_pool": {
+            "n_symbols": len(prices),
+            "fingerprint": pool_fingerprint(prices),
+        },
+    }
     if excluded:
-        print(f"\n[CONTROL] 排除 {list(excluded)} 后重跑主实验口径……")
-        control = run_one(MAIN_SPEC, prices, calendar=calendar)
+        print(f"\n[CONTROL] 在全池（{len(prices_full)} 只）上独立重跑主实验口径……")
+        control = run_one(MAIN_SPEC, prices_full, calendar=calendar)
+        inputs["control_pool"] = {
+            "n_symbols": len(prices_full),
+            "fingerprint": pool_fingerprint(prices_full),
+        }
+        same_input = inputs["main_pool"]["fingerprint"] == inputs["control_pool"]["fingerprint"]
+        if same_input:
+            raise RuntimeError(
+                "对照组与主实验的输入指纹相同：对照已退化为「同一份数据重跑」，"
+                "不能用于 §10.2 第三条的符号比较。请检查 apply_exclusion 是否真的生效。"
+            )
         print(
             f"  [ctrl] n={control.stats.n:3d} mean_d={control.stats.mean_d:+.6f} "
             f"t={control.stats.t_stat:+.3f} ({control.elapsed:.1f}s)"
@@ -797,7 +867,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     verdict = judge(results[0].stats, n_positive_sensitivity=n_positive, insufficient_flags=flags)
     elapsed = time.time() - t0
     summary = write_outputs(
-        out_dir, results, verdict, elapsed=elapsed, excluded_symbols=excluded, control=control
+        out_dir, results, verdict, elapsed=elapsed,
+        excluded_symbols=excluded, control=control, inputs=inputs,
     )
 
     print(f"\n[JUDGE] {verdict.label}  rule_hits={list(verdict.rule_hits)}")

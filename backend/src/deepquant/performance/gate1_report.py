@@ -162,7 +162,11 @@ def load_run(out_dir: Path) -> RunData:
 
 
 def _pct(x: float | None, digits: int = 2) -> str:
-    return "—" if x is None else f"{x * 100:+.{digits}f}%"
+    # 空值可能是 None，也可能是 CSV 空列读回来的 NaN —— 两者都必须显示「—」，
+    # 否则会渲染成 "+nan%" 这种既难看又误导的字符串。
+    if x is None or pd.isna(x):
+        return "—"
+    return f"{float(x) * 100:+.{digits}f}%"
 
 
 def _num(x: float | None, digits: int = 4) -> str:
@@ -178,8 +182,18 @@ def _mag(x: float | None, digits: int = 4) -> str:
 def _sensitivity_table(sensitivity: pd.DataFrame) -> str:
     if sensitivity.empty:
         return "_（本次运行未落盘 sensitivity.csv）_\n"
+    # 新口径（2026-10-19 起）：*_eval 是评估窗口内累计，*_full 才是全程累计。
+    # 旧结果目录只有 *_total_return（语义为全程），保留兼容，但表头必须说清，
+    # 不能把全程值标成「窗口内累计」。
+    has_eval = {"strategy_total_return_eval", "benchmark_total_return_eval"} <= set(
+        sensitivity.columns
+    )
+    s_col = "strategy_total_return_eval" if has_eval else "strategy_total_return"
+    b_col = "benchmark_total_return_eval" if has_eval else "benchmark_total_return"
+    s_head = "策略累计(窗口)" if has_eval else "策略累计(全程*)"
+    b_head = "基准累计(窗口)" if has_eval else "基准累计(全程*)"
     lines = [
-        "| 组 | 变量 | 取值 | n | mean(d) | t | p | win | 策略累计 | 基准累计 | BH q |",
+        f"| 组 | 变量 | 取值 | n | mean(d) | t | p | win | {s_head} | {b_head} | BH q |",
         "|---|---|---|---|---|---|---|---|---|---|---|",
     ]
     for _, r in sensitivity.iterrows():
@@ -188,8 +202,15 @@ def _sensitivity_table(sensitivity: pd.DataFrame) -> str:
         lines.append(
             f"| {r['name']} | {r['variable']} | {r['value']} | {int(r['n'])} | "
             f"{_num(r['mean_d'], 6)} | {_num(r['t_stat'], 3)} | {float(r['p_value']):.4f} | "
-            f"{float(r['win_ratio']) * 100:.1f}% | {_pct(r['strategy_total_return'])} | "
-            f"{_pct(r['benchmark_total_return'])} | {q_txt} |"
+            f"{float(r['win_ratio']) * 100:.1f}% | {_pct(r.get(s_col))} | "
+            f"{_pct(r.get(b_col))} | {q_txt} |"
+        )
+    if not has_eval:
+        lines.append("")
+        lines.append(
+            "> `*` 该结果目录由旧版脚本生成，累计列是**全程**（2017-02 ~ 2024-12）累计，"
+            "不随判定窗口截断，不能读成窗口内累计。新跑的结果会带 "
+            "`*_total_return_eval` / `*_total_return_full` 两组列。"
         )
     return "\n".join(lines) + "\n"
 
@@ -217,16 +238,34 @@ def _control_section(summary: dict) -> str:
         return ""
     ex = ", ".join(control.get("excluded_symbols") or [])
     st = control.get("stats") or {}
-    return (
-        f"\n### 4.2 对照跑：排除 `{ex}` 后的主实验口径\n\n"
-        f"| 项 | 含该股（主实验） | 排除该股（对照） |\n|---|---|---|\n"
+    inputs = summary.get("inputs") or {}
+    main_pool = inputs.get("main_pool") or {}
+    ctrl_pool = inputs.get("control_pool") or {}
+    rows = (
         f"| n | {summary.get('n_months')} | {st.get('n')} |\n"
         f"| mean(d) | {_num(summary.get('main', {}).get('mean_d'), 6)} | "
         f"{_num(st.get('mean_d'), 6)} |\n"
         f"| t | {_num(summary.get('main', {}).get('t_stat'), 3)} | "
-        f"{_num(st.get('t_stat'), 3)} |\n\n"
+        f"{_num(st.get('t_stat'), 3)} |\n"
+    )
+    if main_pool and ctrl_pool:
+        rows += (
+            f"| 池内标的数 | {main_pool.get('n_symbols')} | {ctrl_pool.get('n_symbols')} |\n"
+            f"| 输入指纹（前 8 位） | `{str(main_pool.get('fingerprint'))[:8]}` | "
+            f"`{str(ctrl_pool.get('fingerprint'))[:8]}` |\n"
+        )
+    return (
+        f"\n### 4.2 对照跑：排除 `{ex}` 后的主实验口径\n\n"
+        f"| 项 | 含该股（主实验） | 排除该股（对照） |\n|---|---|---|\n"
+        f"{rows}\n"
         "判定方式（预登记 §10.2）：两版 `mean(d)` 符号不一致 → 该股数据缺陷影响无法隔离，"
         "追加「证据不足」。\n"
+        + (
+            "\n> 两个池子的输入指纹不同，说明对照确实在**全池**上独立重跑，"
+            "不是「已剔除数据上重跑同一配置」的退化解。\n"
+            if main_pool and ctrl_pool
+            else ""
+        )
     )
 
 
