@@ -23,6 +23,7 @@ from pathlib import Path
 
 import pandas as pd
 
+from deepquant.data.instrument import normalize_display_name
 from deepquant.data.loaders.csv_loader import NUMERIC_COLUMNS, load_daily_csv
 from deepquant.data.storage import io as storage_io
 from deepquant.data.validation.checks import ERROR, ValidationReport, validate_daily
@@ -91,6 +92,7 @@ def ingest_daily_csv(
     symbol: str,
     data_root: str | Path,
     source_name: str | None = None,
+    instrument_name: str | None = None,
 ) -> IngestResult:
     """导入单个标的的日线 CSV。
 
@@ -99,7 +101,14 @@ def ingest_daily_csv(
         symbol: 标的代码（用于文件命名与元数据）。
         data_root: 数据根目录，其下自动使用 raw/ processed/ metadata/。
         source_name: 数据来源标识（供应商/渠道），默认取源文件名，用于记录数据许可与出处。
+        instrument_name: 标的显示名称（如「平安银行」），可选。只影响元数据与界面展示，
+            **不参与任何计算**；未提供时元数据里不出现 ``instrument`` 键，
+            与历史行为逐字节一致。
     """
+    # 名称校验放在最前面：名字不合法必须在写任何文件之前失败，
+    # 否则会留下「raw/processed 落盘了、metadata 没写」的半成品目录。
+    display_name = normalize_display_name(instrument_name)
+
     source_path = Path(source_path)
     data_root = Path(data_root)
 
@@ -165,6 +174,11 @@ def ingest_daily_csv(
         "schema": {"required_columns": list(NUMERIC_COLUMNS)},
         "notes": "原始数据原样保存在 raw/，处理后数据保存在 processed/；缺失值未做任何填充。",
     }
+    if display_name is not None:
+        # 条件插入而非固定写 None：历史数据集元数据里没有这个键，
+        # 保持「没传名称 = 元数据一字不变」这一可验证的性质。
+        metadata["instrument"] = {"display_name": display_name}
+
     metadata_path = storage_io.write_json(metadata, metadata_dir / f"{symbol}.meta.json")
 
     return IngestResult(
