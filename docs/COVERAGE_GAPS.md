@@ -368,3 +368,31 @@ A16 链已收官，剩余 A 线作用域内缺口均为**个位数小缺口**或
    详见 `docs/TEST_REPORT_2026-10-18.md` §5.3。
 5. 本节**只列事实不给建议**；是否继续提升由人工决策。
 
+### 7.7 A13+ 第 1 项已落地（`api/routes/backtests.py` 142/7 → **100%**）
+
+> 追加于 2026-10-19 00:45。本节与上文 §7.1–§7.6（00:00 快照）并存，**不覆写**；数字冲突时以本节为准。
+
+| 项 | 值 |
+|---|---|
+| 新增测试文件 | `backend/tests/api/test_backtests_routes_contracts.py`（**28 passed + 1 xfailed**） |
+| 目标模块 | `api/routes/backtests.py` **142 stmts / 0 miss = 100%** |
+| 全量守卫 | **1746 passed / 1 skipped / 8 xfailed / 0 failed**（1746 + 1 + 8 = 1755 = 1726 + 29，逐项对得上） |
+| `api` 包 | 991 / 26 → **991 / 19 = 98.1%** |
+| 非 research 合计 | 6336 / 209 → **6336 / 202 = 96.81%** |
+| 100% 模块数 | 45 → **46** |
+
+补掉的是**四个从未被触发过的错误/降级分支**（既有测试只覆盖正常路径与参数边界）：
+`_load_dataset_frame` 读取失败 → `DatasetUnavailableError`（且消息不得泄露文件系统路径）；
+`_build_config` 校验失败 → `ConfigInvalidError`（不得裸奔成 500）；
+`_extract_metrics` 的 `trade_stats` 非 dict → 五项交易统计显式 `None`（不伪造 0）；
+`compare_backtests` 文档无法还原 → `RunIntegrityError` 且必须指认是哪一条 run 坏了。
+
+过程中**新增发现 1 处源码缺陷**（只测不修，已 xfail 固化）：
+`api/routes/backtests.py:354` 的 `_num()` 判据 `v is not bool` 是把**值**与**类型**做身份比较（`True is bool` 恒 False），
+布尔因此从未被过滤；结果文档里布尔 `win_rate` 会被转成 1.0，比较接口等于凭空显示「100% 胜率」。
+正确写法 `not isinstance(v, bool)`。
+
+§7.5 的缺口清单随之更新：`api/routes/backtests.py`（原第 11 行，7 miss）已移出清单。
+下一个候选：`performance/serialize.py`（7）→ `performance/metrics.py`（5）→ `api/ui.py`（4）。
+
+

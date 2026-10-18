@@ -383,4 +383,83 @@ DEEPQUANT_DATA_ROOT="D:/DeepQuant power by txm/DeepQuant-main/data"
 
 ---
 
+
+---
+
+## 7. 刷新（2026-10-19 00:45）
+
+> 以上 §1–§6 是 **2026-10-18 23:45** 的快照。其后 A 线继续按「A13+」条款推进了对 `api/routes/backtests.py`
+> 的覆盖率补缺（新增 29 条测试），下列数字为最新实测值。**两处不一致时以本节为准。**
+
+### 7.1 最新守卫结果
+
+| 指标 | 23:45 快照 | **最新（00:45）** |
+|---|---:|---:|
+| passed | 1718 | **1746**（+28） |
+| skipped | 1 | 1 |
+| xfailed | 7 | **8**（+1，见 §7.3） |
+| failed | 0 | **0** |
+
+1746 passed + 1 skipped + 8 xfailed = **1755** = 1726 + 29（本轮新增 28 passed + 1 xfailed），逐项对得上。
+
+### 7.2 §5.2 那条环境序依赖红灯 —— 已被修复（**不是本轮所为**）
+
+`tests/backtest/test_gate1_run_contract.py` 于 **00:26 被另一个会话改写**（mtime 00:26:38）：
+
+```python
+# 改前（对仓库级目录做断言 → 非 hermetic）
+assert not (REPO_ROOT / "gate1_out").exists() or _gate1_out_untouched()
+
+# 改后（运行前后快照对比 → hermetic）
+before = _gate1_out_snapshot()
+code = g1.main([...])
+assert _gate1_out_snapshot() == before
+```
+
+改法与本报告 §5.2 记录的根因分析和修复建议一致，**且没有弱化测试** —— 它守的东西从
+「工作区恰好干净」变成了真正该守的「dry-run 没改动任何东西」。
+
+因此**全量守卫已恢复 0 failed**，不需要再 `--deselect` 那条用例。
+
+> ⚠️ 该文件属 A 线声明所有权范围却被并行会话改写 —— 这是并发问题的**第三次复发**。
+> 本轮**未覆盖推送**该文件以避免抢文件。建议人工确认是否有会话在并行跑同一条 A 线清单。
+
+### 7.3 新增固化的缺陷 #8：`_num()` 布尔判据失效
+
+`api/routes/backtests.py:354`：
+
+```python
+if isinstance(v, (int, float)) and v is not bool:   # `True is bool` 恒 False → 判据恒真
+```
+
+把**值**与**类型**做身份比较，导致布尔从未被过滤。结果文档里若 `win_rate` 是 `true`，
+会被一路放过并被 Pydantic 转成 **1.0**，比较接口等于凭空显示「100% 胜率」。
+正确写法：`not isinstance(v, bool)`。
+
+已用 `xfail(strict=True)` 固化（`tests/api/test_backtests_routes_contracts.py::
+test_bool_metrics_are_rejected_not_coerced_to_one`）。**只测不修** —— 改 src 属判断类，交回判断线。
+
+### 7.4 覆盖率变化
+
+| 模块 | 23:45 | **00:45** |
+|---|---:|---:|
+| `api/routes/backtests.py` | 142 stmts / 7 miss = 95% | **142 stmts / 0 miss = 100%** |
+| `api` 包 | 991 / 26 = 97.4% | **991 / 19 = 98.1%** |
+| 非 research 合计 | 6336 / 209 = 96.70% | **6336 / 202 = 96.81%** |
+
+100% 覆盖模块数：45 → **46**。
+
+### 7.5 A13+ 下一个候选（按 Miss 降序，纯加法可做）
+
+`performance/serialize.py`（7）、`performance/metrics.py`（5）、`api/ui.py`（4）、
+`performance/curve.py`（3）、`persistence/repro_checklist.py`（3）、
+`api/buildinfo.py`（2）、`api/datasets.py`（2）、`data/loaders/csv_loader.py`（2）、
+`analysis/ensemble_report.py`（2）、`strategies/ensemble_voting.py`（2），以及 6 个各剩 1 miss 的模块。
+
+**不在 A 线范畴**：`backtest/portfolio.py`（33）、`performance/window_records*.py`、`gate1_*`、`benchmarks.py`
+等属 B 线在途代码（其缺失行多为尚未定稿的分支）；`persistence/store.py`、`walkforward/__init__.py`
+已接近不变式上限，除非先清死代码或修 BUG，否则继续补没有意义。
+
+---
+
 *本报告由 A 线自动化产出；所有数字可复现，复现命令见 §1。*

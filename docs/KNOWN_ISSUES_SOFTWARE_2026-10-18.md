@@ -180,4 +180,57 @@ DEEPQUANT_DATA_ROOT="D:/DeepQuant power by txm/DeepQuant-main/data"
 - 未 merge 任何 PR，未 push main（硬约束 R8）。
 - 未复核 `docs/SOFTWARE_AUDIT_2026-10-18.md` 的逐条结论（属 B 线），仅在 §4.2 / §5.4 引用。
 - 未验证任何券商接口、未连接真实交易。
+
+---
+
+## 9. 刷新（2026-10-19 00:45）
+
+> 以上 §1–§8 是 2026-10-19 00:15 的快照。其后 A 线按「A13+」条款完成第 1 项覆盖率补缺，本节为增量。
+> **数字冲突时以本节为准。**
+
+### 9.1 最新测试结果
+
+| 指标 | 00:15 | **00:45** |
+|---|---:|---:|
+| passed | 1718 | **1746**（+28） |
+| skipped | 1 | 1 |
+| xfailed | 7 | **8**（+1） |
+| failed | 0 | **0** |
+| `api/routes/backtests.py` | 142 / 7 = 95% | **142 / 0 = 100%** |
+| 非 research 覆盖率 | 96.70% | **96.81%**（6336 / 202） |
+
+### 9.2 §5.2 的环境序依赖问题 —— 已由并行会话修复（**第三次并发复发**）
+
+`tests/backtest/test_gate1_run_contract.py` 在 **00:26:38** 被**另一个会话**改写
+（该文件在 A 线声明所有权范围内）。改动把
+
+```python
+assert not (REPO_ROOT / "gate1_out").exists() or _gate1_out_untouched()   # 非 hermetic
+```
+
+换成
+
+```python
+before = _gate1_out_snapshot(); g1.main([...]); assert _gate1_out_snapshot() == before
+```
+
+—— 与本文档 §5.2 的根因分析和修复建议一致，且**没有弱化测试**（守的东西从「工作区恰好干净」
+变成真正该守的「dry-run 没改动任何东西」）。**全量守卫恢复 0 failed**，不再需要 `--deselect`。
+
+**本轮未覆盖推送该文件**，避免抢文件。⚠️ 这是并发问题的第三次复发，**建议人工确认是否有会话在并行跑同一条 A 线清单**。
+
+### 9.3 新增缺陷 #8：`_num()` 布尔判据失效
+
+| 项 | 内容 |
+|---|---|
+| 位置 | `api/routes/backtests.py:354`，`_extract_metrics` 的内嵌 `_num()` |
+| 代码 | `if isinstance(v, (int, float)) and v is not bool:` |
+| 根因 | `True is bool` 恒为 `False`，所以 `v is not bool` **恒为真** —— 把**值**与**类型**做身份比较，布尔从未被过滤 |
+| 后果 | 结果文档里 `win_rate: true` 会一路通过并被 Pydantic 转成 **1.0**，比较接口等于**凭空显示「100% 胜率」** |
+| 正确写法 | `not isinstance(v, bool)` |
+| 状态 | 已用 `xfail(strict=True)` 固化（`test_bool_metrics_are_rejected_not_coerced_to_one`），**只测不修** |
+| 优先级 | 中低：需真实结果文档里出现布尔才触发，但属「凭空造数据」类问题，建议在 price_jump 那批之后修 |
+
+至此 **8 条已知缺陷**全部以 `xfail(strict=True)` 固化，A 线只测不修（修 bug 属判断类）。
+
 - 本文所有数字可复现，命令见 `docs/TEST_REPORT_2026-10-18.md` §1。
