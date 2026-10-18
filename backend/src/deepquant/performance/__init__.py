@@ -5,6 +5,7 @@
 - ``curve``：净值曲线统计（累计/年化/波动/回撤的唯一定义处，基准与组合层共用）；
 - ``benchmarks``：基准策略 B0 现金 / B1 买入持有 / B2 指数；
 - ``portfolio_metrics``：组合层夏普、换手率、成本占比、证据等级；
+- ``window_distribution``：窗口级收益分布与「同窗口基准对照」（含配对/分布级标记）；
 - ``serialize``：BacktestResult 的 JSON 往返序列化；
 - ``reproducibility``：数据集摘要与策略元数据；
 - ``comparison``：结果元数据比较基础；
