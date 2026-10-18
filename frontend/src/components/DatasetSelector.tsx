@@ -1,15 +1,22 @@
 /**
  * 数据集选择：
  * - 列表完全来自 GET /datasets 真实响应，不硬编码；
- * - 展示 symbol / rows / 起止日期 / 来源 / 原始 CSV 指纹 / 导入时间；
+ * - 展示 symbol / 名称 / rows / 起止日期 / 来源 / 原始 CSV 指纹 / 导入时间；
+ * - 数据集多时提供筛选（按代码或名称），因为 50 只池接进来后滚一个长下拉框不可用；
+ * - 当前已选项永远不会被筛选隐藏（否则 <select> 的 value 不在 options 里，会显示成空白）；
  * - invalid_datasets 只展示后端允许公开的信息（文件名 + 原因），不展示绝对路径；
  * - invalid_datasets 中的数据集不进入可选项。
  */
+
+import { useMemo, useState } from "react";
 
 import { describeApiError } from "../api/client";
 import type { ApiError } from "../api/client";
 import type { DatasetListResponse } from "../api/types";
 import { formatDate, formatDateTime, formatInteger, truncateMiddle } from "../utils/format";
+
+/** 超过这个数量才显示筛选框：3~5 只时多一个输入框只是噪音。 */
+const FILTER_THRESHOLD = 12;
 
 export type DatasetsState =
   | { status: "loading" }
@@ -24,6 +31,10 @@ interface DatasetSelectorProps {
   onRefresh: () => void;
 }
 
+function datasetLabel(dataset: { symbol: string; display_name?: string | null }): string {
+  return dataset.display_name ? `${dataset.display_name} · ${dataset.symbol}` : dataset.symbol;
+}
+
 export function DatasetSelector({
   state,
   selectedSymbol,
@@ -34,6 +45,22 @@ export function DatasetSelector({
   const datasets = state.status === "ready" ? state.data.datasets : [];
   const invalid = state.status === "ready" ? state.data.invalid_datasets : [];
   const selected = datasets.find((d) => d.symbol === selectedSymbol) ?? null;
+  const [query, setQuery] = useState("");
+
+  const showFilter = datasets.length > FILTER_THRESHOLD;
+  const { visible, matchedCount } = useMemo(() => {
+    const keyword = query.trim().toLowerCase();
+    if (!keyword) return { visible: datasets, matchedCount: datasets.length };
+    const matched = datasets.filter(
+      (d) =>
+        d.symbol.toLowerCase().includes(keyword) ||
+        (d.display_name ?? "").toLowerCase().includes(keyword),
+    );
+    // 已选项被筛掉时仍保留在列表里：否则 <select value> 找不到对应 option，
+    // 下拉框会显示成空白，看起来像「什么都没选」，而表单里其实带着上一只的代码。
+    const items = selected && !matched.includes(selected) ? [selected, ...matched] : matched;
+    return { visible: items, matchedCount: matched.length };
+  }, [datasets, query, selected]);
 
   return (
     <section className="card" aria-label="数据集选择">
@@ -76,6 +103,16 @@ export function DatasetSelector({
           <label htmlFor="dataset-select">
             数据集<span className="required" aria-hidden>*</span>
           </label>
+          {showFilter && (
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="按代码或名称筛选，例如 600519 或 茅台"
+              aria-label="筛选数据集"
+              data-testid="dataset-filter"
+            />
+          )}
           <select
             id="dataset-select"
             value={selectedSymbol}
@@ -83,13 +120,24 @@ export function DatasetSelector({
             data-testid="dataset-select"
           >
             <option value="">请选择数据集…</option>
-            {datasets.map((d) => (
+            {visible.map((d) => (
               <option key={d.symbol} value={d.symbol}>
-                {d.symbol}（{formatInteger(d.rows)} 行，{formatDate(d.start_date)} ~{" "}
+                {datasetLabel(d)}（{formatInteger(d.rows)} 行，{formatDate(d.start_date)} ~{" "}
                 {formatDate(d.end_date)}）
               </option>
             ))}
           </select>
+          <p className="hint" data-testid="dataset-count">
+            共 {datasets.length} 个可用数据集
+            {query.trim()
+              ? `（筛选匹配 ${matchedCount} 个${visible.length > matchedCount ? "，含当前已选项" : ""}）`
+              : ""}
+          </p>
+          {query.trim() && matchedCount === 0 && (
+            <p className="muted" data-testid="dataset-no-match">
+              没有匹配的数据集，请换个关键词或清空筛选。
+            </p>
+          )}
         </div>
       )}
 
@@ -111,6 +159,12 @@ export function DatasetSelector({
         <div className="selected-detail" data-testid="dataset-detail">
           <h3>数据集详情</h3>
           <ul className="kv-list">
+            {selected.display_name && (
+              <li>
+                <span className="k">名称</span>
+                <span data-testid="dataset-display-name">{selected.display_name}</span>
+              </li>
+            )}
             <li>
               <span className="k">标识（symbol）</span>
               <span>{selected.symbol}</span>

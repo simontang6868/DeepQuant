@@ -232,16 +232,11 @@ class TestDateRangeExtent:
 
 
 class TestPriceJumps:
-    @pytest.mark.xfail(
-        strict=True,
-        reason=(
-            "已知缺陷：validate_daily_extended 取 df_sorted[[\"close\"]]（双层方括号）得到 "
-            "DataFrame 而非 Series，导致 len(jumps) 退化成行数。"
-            "本例 60 行、真实跳变 3 个，实际报 59。修复后请删除本 xfail 标记。"
-        ),
-    )
     def test_public_path_reports_actual_jump_count(self) -> None:
-        """期望：count 应等于真实跳变个数 3。当前实现会报错 —— 故 xfail。"""
+        """count 必须等于真实跳变个数 3。
+
+        原为 xfail（实现报 59）；P0-2 修复后转正为普通断言，退化即报红。
+        """
         close = _staircase_close(60, steps=(10, 25, 40), factor=1.25)
         df = _make_df(pd.bdate_range("2024-01-01", periods=60), close)
 
@@ -267,14 +262,6 @@ class TestPriceJumps:
         assert issue.count == 3
         assert "最大 25.00%" in issue.message
 
-    @pytest.mark.xfail(
-        strict=True,
-        reason=(
-            "同一缺陷的另一面：jumps 是 DataFrame 布尔索引结果（行数不变），"
-            "len(jumps) > 0 对任何 ≥2 行数据都成立 ⇒ 恒定误报。"
-            "期望：全部变化都低于阈值时不报。修复后请删除本 xfail 标记。"
-        ),
-    )
     def test_below_threshold_reports_nothing(self) -> None:
         """每日仅 +1% ⇒ 全部低于 15% 阈值 ⇒ 不应报 price_jump。"""
         n = 60
@@ -299,13 +286,6 @@ class TestPriceJumps:
 
         assert strict.has_code("price_jump")
 
-    @pytest.mark.xfail(
-        strict=True,
-        reason=(
-            "恒定误报：阈值 15% 高于实际变化 10%，理应静默，但因 len(jumps)"
-            " 恒为正数而仍报警。修复后请删除本 xfail 标记。"
-        ),
-    )
     def test_threshold_raising_keeps_check_silent(self) -> None:
         """阈值 15% > 实际变化 10% ⇒ 应当静默。"""
         n = 40
