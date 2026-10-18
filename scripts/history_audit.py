@@ -35,8 +35,24 @@ from deepquant.backtest.fee_presets import (               # noqa: E402
     FEE_PRESET_SIMULATION,
 )
 
-V3_ROOT = Path(r"D:\DeepQuant power by txm\b50_v3")
-HIST_SUMMARY = Path(r"D:\DeepQuant power by txm\b50_dist\step75_research_summary.json")
+_DEFAULT_V3_ROOT = Path(r"D:\DeepQuant power by txm\b50_v3")
+_DEFAULT_HIST_SUMMARY = Path(r"D:\DeepQuant power by txm\b50_dist\step75_research_summary.json")
+
+
+def _env_path(var: str, default: Path) -> Path:
+    """用环境变量覆盖硬编码路径。
+
+    这两个目录是**本机**的历史产物，不在仓库内（`data/**` 与 `b50_*` 均未入库）。
+    换一台机器、或把产物挪到别处时，不必改代码：
+        DEEPQUANT_HIST_V3_ROOT=<dir>  DEEPQUANT_HIST_SUMMARY=<json>
+    未设置时保持原默认值，行为与改动前逐字节一致。
+    """
+    raw = os.environ.get(var)
+    return Path(raw) if raw else default
+
+
+V3_ROOT = _env_path("DEEPQUANT_HIST_V3_ROOT", _DEFAULT_V3_ROOT)
+HIST_SUMMARY = _env_path("DEEPQUANT_HIST_SUMMARY", _DEFAULT_HIST_SUMMARY)
 UNIVERSE = REPO_ROOT / "data" / "step75" / "universe" / "csi300_50.json"
 PRICE_KEYS = ("open", "close", "high", "low")
 OOS = ("2021-01-01", "2024-12-31")
