@@ -1,0 +1,6 @@
+8b0115517a7ae35df20250c0fdf04736cfa99d9bfd570b89f0d93bc29ec88d63 *docs/GATE1_PREREGISTRATION.md
+# 修订历史（sha256sum -c 时以第一行为准）
+# v1  2026-10-18 16:05  首次冻结
+# v1.1 2026-10-18 16:30  5bef0e3b0e45d4844d87c4aac15183b344d6acaec5d66378bed17ceb290c476f  修订 P1~P4（附录 A）
+# v1.2 2026-10-18 19:05  f245691282b15cad2c531813ab6d0c855e6a515148fb973d0eabe4a70c1e923f  补记初始资金（附录 B）
+# v1.3 2026-10-18 19:30  8b0115517a7ae35df20250c0fdf04736cfa99d9bfd570b89f0d93bc29ec88d63  §6 实现与表述不一致 + 三档冲突优先级（附录 C）
