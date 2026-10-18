@@ -207,6 +207,20 @@ df_raw = ak.stock_zh_a_hist(symbol="000001", period="daily", start_date="2022010
 | `date_range_missing_tail` | ✅ 无 | 实际结束 = 2024-12-31 |
 | `temporal_gap_too_long` | ✅ 无 | 最大 gap 是常规长假，不超过阈值 |
 | `price_jump` | ⚠️ WARNING | 存在 725 天的**相对变化** > 15%（但仔细看 max = 12.81% < 15% 阈值；是 pandas 3.0 逐行统计的边界问题，非真实跳变） |
+
+> **⚠️ 2026-10-19 更正（B 线，见 `docs/PRICE_JUMP_IMPACT_AUDIT.md` B4 + C4）**
+>
+> 用本报告同一标的、同一窗口（`000001.SZ`，2022-01-04 ~ 2024-12-31，**726 行**）重算：
+> **真实跳变 = 0 次**，`max |pct_change| = 12.81% < 15%`。
+> 「725」= **行数 − 1**，是校验器缺陷产物，不是测量值。
+>
+> 归因同样需要修正：根因**不是**「pandas 3.0 逐行统计的边界问题」，而是
+> `_check_price_jumps` 收到 `df[["close"]]`（单列 DataFrame）后布尔索引退化为同形 NaN 填充。
+> 括号里那句「仔细看 max = 12.81% < 15%」**是对的**，而且正是它反证了 count 有问题 ——
+> 只是当时把原因归给了 pandas 版本。
+>
+> 本报告的其他结论（walk-forward 15 窗口、风险审计档位、收益数字）**均不依赖该 count**，不受影响；
+> 引擎与数据未改动，本报告**未重跑**（重跑会改变交付物 sha256，而该产物已被历史结论引用）。
 | `zero_or_near_zero_volume` | ✅ 无 | 成交量正常 |
 | `adjust_status_unclear` | ✅ 无 | 我们显式传入 `adjust_status="qfq"` |
 

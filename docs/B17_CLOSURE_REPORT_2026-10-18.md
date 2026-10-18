@@ -90,6 +90,13 @@
    `len(jumps)` = 行数 − 1。最小复现：100 行 3 处跳变，真实 5 次，count 报 **99**。
    更严重后果：**零跳变也误报**。已由 A10 用 `xfail(strict=True)` 固化为可执行证据（PR #28，只测不修）。
    → 本报告**不使用** `price_jump` 的 count 做任何频率推断。
+
+   > **⚠️ 2026-10-19 更正（B 线，见 `docs/PRICE_JUMP_IMPACT_AUDIT.md` C5）**
+   > 句中的「真实 5 次」是笔误，与「3 处」自相矛盾。可复现样本是
+   > **100 行（4 段 × 25 行，10 → 12 → 10 → 12）共 3 处 ±20% 跳变，修复后 count = 3，修复前 count = 99**。
+   > 该样本已落成断言 `tests/research_fixes/test_ap1_price_jump_counting.py::...`，「真实 5 次」不应再被引用。
+   > 另：本条缺陷已于 2026-10-18 修复，`xfail` 已转正（不再是「只测不修」状态），
+   > 保留本条是为了留存「当时的判断依据」。
 3. **`b8_none` 的 `design.min_trades` 字段写死为 2**（脚本实际传 `None`）→ 该 JSON 的 `design` 字段**不可信**。
 4. **研究脚本曾只收 warning 不收 error**（`research.py:88`）→ 失真数据可静默进入研究。已改为使用 `is_valid`（PR #19）。
 

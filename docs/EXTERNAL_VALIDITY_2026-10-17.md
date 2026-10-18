@@ -254,6 +254,16 @@ step75_research_summary.json → stocks[300750.SZ].warnings:
 **1594 行数据里有 1593 次跳变 > 15%，等于每天都在跳变**——这是极其刺眼的异常信号，
 却因为是 warning 级别，被记录、被保存、然后被忽略。
 
+> **⚠️ 2026-10-19 更正（B 线，见 `docs/PRICE_JUMP_IMPACT_AUDIT.md` B2）**
+> 「1,593 次跳变」是校验器缺陷产物，不是真实跳变次数：`_check_price_jumps` 当时传入的是
+> `df_sorted[["close"]]`（双层方括号 → 单列 DataFrame），布尔掩码走 DataFrame 语义，
+> `len(jumps)` 恒等于「行数 − 1」。**真值是 25 次 / 1,594 个交易日 ≈ 1.6%**，最大跳变 3,683.33% 不变。
+> 因此**「每天都在跳变」这个论断作废**。
+>
+> 但本节结论**不变**：宁德时代的数据是坏的 —— 阻断它的依据是 **2 行 qfq 非正价（`invalid_price`，ERROR）**，
+> 与 jump 计数无关；修复后该校验器已能正确计数（`count = 25`）。
+> 缺陷本身已于 2026-10-18 23:xx 修复并回归（`backend/src/deepquant/data/validation/checks_extended.py`）。
+
 > **因果链**：数据源产生非正价 → 校验器正确报 ERROR → 研究脚本只收 WARNING →
 > 失真数据进入研究 → 产出"收益中位数 0"的结论。
 
