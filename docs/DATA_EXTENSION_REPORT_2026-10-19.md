@@ -3,7 +3,7 @@
 > **归属**：B 线（数据侧判断）
 > **上游**：A 线 `docs/DATA_FEASIBILITY_REPORT.md`（P3 调查：V5 被推翻 / V6 可解除 / V1 仍成立）
 > **本文件回答三个问题**：① 行情能不能安全延到最近交易日？② 沪深300 基准能不能直接建？③ PIT 成分股买不买？
-> **产出物**：`data/step75_ext/*.qfq.csv`（7 只）、`data/benchmark/hs300_daily.csv`、`probe_out/b_verify_and_extend.json`
+> **产出物**：`data/step75_ext/*.qfq.csv`（7 只）、`data/benchmark/hs300_daily.csv`、`scripts/b_verify_and_extend.py`
 > **红线**：未覆盖 `data/step75/**` 任何一个既有文件；未调用 `--execute`；未改任何策略参数。
 
 ---
@@ -71,10 +71,11 @@
 | 文件 | 内容 |
 |---|---|
 | `data/step75_ext/<code>.qfq.csv` | 6 只延伸到 2026-10-16 + `600809.SH`（1,932 行，供 D1 复核用） |
-| `probe_out/b_verify_and_extend.json` | 上述全部数字的机器可读版本 |
+| `probe_out/b_verify_and_extend.json` | 上述全部数字的机器可读版本（**本地产物**，关键数字已抄进本文件 §1.2） |
+| `scripts/b_verify_and_extend.py` | 生成上述全部产物的脚本（**已入库**） |
 
 > **注意**：`data/**` 按推送规则禁推。这些 CSV **只在本机**；
-> 换机后重跑 `probe_out/b_verify_and_extend.py` 即可原样重建（脚本已入库）。
+> 换机后重跑 `scripts/b_verify_and_extend.py` 即可原样重建（脚本已入库）。
 
 ---
 
@@ -163,7 +164,7 @@ PY="D:/DeepQuant power by txm/venv/Scripts/python.exe"
 cd "D:/DeepQuant power by txm/DeepQuant-main"
 
 # 重建延伸数据 + 基准 + 全部数字（约 70s，7 次网络请求）
-"$PY" probe_out/b_verify_and_extend.py
+"$PY" scripts/b_verify_and_extend.py
 
 # 校验无损性（任取一只）
 "$PY" -c "

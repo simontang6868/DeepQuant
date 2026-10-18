@@ -126,7 +126,7 @@
 | 原地改写 `data/step75/step75_research_summary.json` | ❌ **不做** | 一旦改写，「当时跑出来就是这样」这条证据链断裂，且无法再证明「当时的 warning 是 1,698」这类历史陈述 |
 | 用修复后实现重跑 step75 研究、产出**新文件** | ❌ **本轮不做** | 见 §3 五条理由 |
 | 在 `docs/` 侧登记真值更正表 | ✅ **已做** | A 线 `PRICE_JUMP_IMPACT_AUDIT.md` §5.2 + 本文件 §1 |
-| 机器可读真值单独落盘 | ✅ **已做** | `probe_out/price_jump_recount_b.json`（6 只 × 两个窗口：全窗口 / ≥2018-01-01） |
+| 机器可读真值单独落盘 | ✅ **已做** | `docs/PRICE_JUMP_RECOUNT_B_2026-10-19.json`（6 只 × 两个窗口：全窗口 / ≥2018-01-01） |
 
 ### 2.1 真值表（修复后实现，`abs(pct_change) > 0.15`）
 
@@ -157,7 +157,7 @@
    净收益为负。
 4. **R5（不覆盖未经确认的修改）**：`data/**` 明确禁推，重跑产物进不了 GitHub，
    换机后仍是「本机有一份对不上的文件」，等于制造新的不一致。
-5. **已有更好的替代物**：`docs/` 侧更正表 + `probe_out/price_jump_recount_b.json` 已能**逐只、逐窗口**复现真值，
+5. **已有更好的替代物**：`docs/` 侧更正表 + `docs/PRICE_JUMP_RECOUNT_B_2026-10-19.json` 已能**逐只、逐窗口**复现真值，
    且不需要碰任何历史文件。
 
 ---
@@ -184,14 +184,15 @@ PY="D:/DeepQuant power by txm/venv/Scripts/python.exe"
 cd "D:/DeepQuant power by txm/DeepQuant-main"
 
 # 一次跑出 D1/D2 + 6 只全窗口真值 + 延伸数据 + 沪深300
-"$PY" probe_out/b_verify_and_extend.py
+"$PY" scripts/b_verify_and_extend.py
 
-# 只跑真值表
+# 只跑真值表（入库版，无需联网）
 "$PY" -c "
 import json,io
-o=json.load(io.open('probe_out/b_verify_and_extend.json',encoding='utf-8'))
-for c,v in o['items']['extension'].items():
-    print(c, v['old_vs_new_jumps']['old'])
+o=json.load(io.open('docs/PRICE_JUMP_RECOUNT_B_2026-10-19.json',encoding='utf-8'))
+print(o['totals'])
+for c,v in o['symbols'].items():
+    print(c, v['full_window'], v['window_2018'])
 "
 ```
 
