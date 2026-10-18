@@ -1,0 +1,30 @@
+{
+  "prereg_version": "gate1-prereg-v1.3",
+  "prereg_sha256_prefix": "8b011551",
+  "main": {
+    "n": 48,
+    "mean_d": -0.003961063903264168,
+    "std_d": 0.048257323730626286,
+    "t_stat": -0.5686816758241799,
+    "p_value": 0.5722796611168761,
+    "win_ratio": 0.4166666666666667
+  },
+  "judgement": {
+    "verdict": "failure",
+    "label": "失败",
+    "n_positive_sensitivity": 2,
+    "rule_hits": [
+      "mean(d)=-0.003961 <= 0.0",
+      "t=-0.5687 < 1.0",
+      "敏感性正组数=2 <= 4"
+    ],
+    "insufficient_flags": []
+  },
+  "oos_window": [
+    "2021-01-01",
+    "2024-12-31"
+  ],
+  "n_months": 48,
+  "price_limit_rate": 0.1,
+  "elapsed_seconds": 92.1
+}
