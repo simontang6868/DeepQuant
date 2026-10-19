@@ -29,6 +29,16 @@ htmlcov/
 # 必须以 / 开头锚定仓库根目录；写成 data/**/*.csv 会误伤 backend/tests/data 下的测试夹具
 /data/**/*.csv
 
+# ---------- 例外：样本外检验的可复现基线（2026-10-19 用户批准入库）----------
+# 为什么破例：OOS 检验按 sha256 锁定数据指纹，`scripts/oos_2026_run.py` 第一步就校验。
+# 数据不入库 → 换机后第一步必退出，且腾讯 qfq 以最新价为基准重下后哈希大概率改变，
+# 届时只能当"新检验"重跑，无法声称复现。这两个目录合计约 1.5 MB，是检验本身的一部分。
+# 仍然只放行这两个精确路径；data/step75 等其余行情目录维持不入库。
+!/data/step75_ext/
+!/data/step75_ext/*.csv
+!/data/benchmark/
+!/data/benchmark/*.csv
+
 # 常见数据文件后缀，防止误提交到其他位置
 *.parquet
 *.sqlite
