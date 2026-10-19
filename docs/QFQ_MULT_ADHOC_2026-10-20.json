@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-10-20T01:22:18",
+  "purpose": "把加性前复权（qfq_t = raw_t - 未来累计分红_t）换成乘性前复权（hfq_t × raw_anchor/hfq_anchor）",
+  "recipe": "qfq_mult_t = hfq_t * (raw_anchor / hfq_anchor)，anchor 取两组共同的最新交易日",
+  "source": {
+    "hfq": "web.ifzq.gtimg.cn fqkline/get ... ,hfq",
+    "raw": "web.ifzq.gtimg.cn kline/kline（仅取锚点）"
+  },
+  "range": [
+    "2016-01-01",
+    "2026-10-16"
+  ],
+  "counts": {
+    "requested": 3,
+    "by_status": {
+      "ok": 2,
+      "cached": 1
+    }
+  },
+  "symbols": [
+    {
+      "code": "002165.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002165.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2556,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.44,
+      "hfq_anchor_close": 49.684,
+      "scale": 0.129619,
+      "sha256": "f25447f9939f3ebc"
+    },
+    {
+      "code": "601668.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601668.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "601699.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601699.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2599,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 15.25,
+      "hfq_anchor_close": 112.689,
+      "scale": 0.135328,
+      "sha256": "7d6cbfaa601b84fe"
+    }
+  ]
+}

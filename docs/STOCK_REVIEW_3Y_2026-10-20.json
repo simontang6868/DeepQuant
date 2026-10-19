@@ -1,0 +1,170 @@
+{
+  "generated_at": "2026-10-20T01:31:09",
+  "window": {
+    "start_requested": "2023-10-16",
+    "end": "2026-10-16",
+    "start_effective": "2023-10-16"
+  },
+  "basis_note": "total_return_basis = 乘性前复权（分红按除权日收盘价再投资），是持有者财富变化；price_only_basis = 不复权，即 K 线涨跌幅，高分红股会被除权跳空系统性压低。基准 hs300 为价格指数，不含股息。",
+  "benchmark_hs300": {
+    "n_days": 728,
+    "start_date": "2023-10-16",
+    "end_date": "2026-10-16",
+    "start_close": 3626.597,
+    "end_close": 4170.613,
+    "total_return": 0.150007,
+    "annualized": 0.047647,
+    "max_drawdown": -0.176622,
+    "mdd_peak_date": "2026-06-22",
+    "mdd_trough_date": "2026-10-15",
+    "ann_volatility": 0.182376,
+    "calmar": 0.2698,
+    "calendar_years": {
+      "2023": -0.053904,
+      "2024": 0.146833,
+      "2025": 0.176631,
+      "2026": -0.099208
+    }
+  },
+  "stocks": [
+    {
+      "code": "601699.SH",
+      "name": "潞安环能",
+      "total_return_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 16.1771,
+        "end_close": 15.25,
+        "total_return": -0.057309,
+        "annualized": -0.019463,
+        "max_drawdown": -0.456781,
+        "mdd_peak_date": "2024-03-07",
+        "mdd_trough_date": "2025-06-03",
+        "ann_volatility": 0.260939,
+        "calmar": -0.0426,
+        "calendar_years": {
+          "2023": 0.117846,
+          "2024": -0.208765,
+          "2025": -0.095169,
+          "2026": 0.177915
+        }
+      },
+      "price_only_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 18.9,
+        "end_close": 15.25,
+        "total_return": -0.193122,
+        "annualized": -0.068969,
+        "max_drawdown": -0.63143,
+        "mdd_peak_date": "2024-03-07",
+        "mdd_trough_date": "2025-06-26",
+        "ann_volatility": 0.398771,
+        "calmar": -0.1092,
+        "calendar_years": {
+          "2023": 0.159259,
+          "2024": -0.344592,
+          "2025": -0.178273,
+          "2026": 0.292373
+        }
+      },
+      "dividend_contribution_pp": 13.58,
+      "price_basis_ratio_start": 1.1683
+    },
+    {
+      "code": "002165.SZ",
+      "name": "红宝丽",
+      "total_return_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 4.2362,
+        "end_close": 6.44,
+        "total_return": 0.52023,
+        "annualized": 0.149691,
+        "max_drawdown": -0.573007,
+        "mdd_peak_date": "2026-02-04",
+        "mdd_trough_date": "2026-07-13",
+        "ann_volatility": 0.529294,
+        "calmar": 0.2612,
+        "calendar_years": {
+          "2023": 0.030853,
+          "2024": 0.029907,
+          "2025": 0.643024,
+          "2026": -0.128493
+        }
+      },
+      "price_only_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 4.08,
+        "end_close": 6.44,
+        "total_return": 0.578431,
+        "annualized": 0.164166,
+        "max_drawdown": -0.612606,
+        "mdd_peak_date": "2026-02-04",
+        "mdd_trough_date": "2026-07-13",
+        "ann_volatility": 0.601842,
+        "calmar": 0.268,
+        "calendar_years": {
+          "2023": 0.036765,
+          "2024": 0.01182,
+          "2025": 0.766355,
+          "2026": -0.148148
+        }
+      },
+      "dividend_contribution_pp": -5.82,
+      "price_basis_ratio_start": 0.9631,
+      "price_basis_warning": "不复权起点(4.08) < 乘性前复权起点(4.2362)，方向上不可能（前复权只会下调历史价）。腾讯不复权序列与 hfq 基准不一致，纯股价口径与分红贡献对这只票仅作参考，不可用于结论。"
+    },
+    {
+      "code": "601668.SH",
+      "name": "中国建筑",
+      "total_return_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 4.4751,
+        "end_close": 4.54,
+        "total_return": 0.014502,
+        "annualized": 0.004807,
+        "max_drawdown": -0.220303,
+        "mdd_peak_date": "2024-11-07",
+        "mdd_trough_date": "2026-06-30",
+        "ann_volatility": 0.154271,
+        "calmar": 0.0218,
+        "calendar_years": {
+          "2023": -0.061161,
+          "2024": 0.216404,
+          "2025": -0.072868,
+          "2026": -0.04183
+        }
+      },
+      "price_only_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 5.25,
+        "end_close": 4.54,
+        "total_return": -0.135238,
+        "annualized": -0.047237,
+        "max_drawdown": -0.35474,
+        "mdd_peak_date": "2024-11-07",
+        "mdd_trough_date": "2026-09-28",
+        "ann_volatility": 0.221984,
+        "calmar": -0.1332,
+        "calendar_years": {
+          "2023": -0.08381,
+          "2024": 0.247401,
+          "2025": -0.145,
+          "2026": -0.11501
+        }
+      },
+      "dividend_contribution_pp": 14.97,
+      "price_basis_ratio_start": 1.1732
+    }
+  ]
+}

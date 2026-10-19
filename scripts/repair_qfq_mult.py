@@ -204,6 +204,9 @@ def main() -> None:
     ap.add_argument("--listed-manifest", default="",
                     help="在市组行情清单：留空=50 只抽样那份；v1.2 传 298 只全量那份")
     ap.add_argument("--manifest", default="", help="修复清单输出路径（留空=默认）")
+    ap.add_argument("--codes", default="",
+                    help="只处理指定的标的，逗号分隔（如 601699.SH,002165.SZ）；"
+                         "给定此项时忽略清单与 --only，直接走 ad-hoc 通道，sub 一律记为 listed")
     args = ap.parse_args()
 
     # 换池：v1.2 的 A 组是 csi300 全量 298 只，清单不同
@@ -213,8 +216,12 @@ def main() -> None:
     if args.manifest:
         MANIFEST = Path(args.manifest)
 
-    members = collect_members(include_step75=True)
-    if args.only == "A":
+    if args.codes:
+        members = [(c.strip(), "listed") for c in args.codes.split(",") if c.strip()]
+        print(f"[POOL] ad-hoc 指定 {len(members)} 只：{[m[0] for m in members]}", flush=True)
+    else:
+        members = collect_members(include_step75=True)
+    if args.only == "A" and not args.codes:
         members = [m for m in members if m[1] == "listed"]
     elif args.only == "B":
         members = [m for m in members if m[1] == "delist"]
