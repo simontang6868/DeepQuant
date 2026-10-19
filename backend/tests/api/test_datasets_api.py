@@ -15,10 +15,21 @@ from conftest import ingest_dataset
 
 
 def test_empty_data_root_returns_empty_lists(client) -> None:
-    """数据根目录存在但没有任何数据集：返回两个空列表。"""
+    """数据根目录存在但没有任何数据集：两个列表为空。
+
+    2026-10-18 契约扩展：新增 ``unavailable_datasets``（导入被拒的标的）与
+    ``coverage``（数据覆盖声明）。新增字段是向后兼容的，**省略**反而有害——
+    前端分不清「没有不可用标的」与「后端没实现这个字段」。所以这里把形状
+    完整写死，将来再加字段时这条会先红，逼人决定「省略还是给空值」。
+    """
     response = client.get("/datasets")
     assert response.status_code == 200
-    assert response.json() == {"datasets": [], "invalid_datasets": []}
+    assert response.json() == {
+        "datasets": [],
+        "invalid_datasets": [],
+        "unavailable_datasets": [],
+        "coverage": None,
+    }
 
 
 def test_single_dataset_fields(client, data_root, tmp_path) -> None:
