@@ -29,7 +29,10 @@ export const INITIAL_FORM_VALUES: BacktestFormValues = {
   paramValues: {},
   startDate: "",
   endDate: "",
-  initialCash: "100000",
+  // 默认 100 万而不是 10 万：本模型按 100 股整手买入，10 万本金买不起 1 手
+  // 200 元以上的股票（茅台 1 手约 20 万），会得到「60 笔委托全部 rejected、
+  // 净值一条横线」的结果。默认值应该让第一次点击就能看到真实成交。
+  initialCash: "1000000",
 };
 
 export type ValidateOutcome =

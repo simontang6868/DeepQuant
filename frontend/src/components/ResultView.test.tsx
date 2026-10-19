@@ -3,8 +3,9 @@
  * 数据质量与限制 / 可复现性 digest 语义。图表组件 mock 掉（jsdom 无尺寸）。
  */
 
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { ResultView } from "./ResultView";
 import type { BacktestResponse, BacktestResult } from "../api/types";
 
@@ -146,5 +147,51 @@ describe("ResultView", () => {
     render(<ResultView response={response} />);
     expect(screen.getAllByText(/sha256:abc123/).length).toBeGreaterThan(0);
     expect(screen.getByText(/它不是导入时原始 CSV 文件的指纹/)).toBeInTheDocument();
+  });
+});
+
+describe("ResultView 导出", () => {
+  const created: Blob[] = [];
+
+  beforeEach(() => {
+    created.length = 0;
+    URL.createObjectURL = vi.fn((blob: Blob) => {
+      created.push(blob);
+      return "blob:mock-url";
+    }) as unknown as typeof URL.createObjectURL;
+    URL.revokeObjectURL = vi.fn();
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("提供摘要 / 成交 / 订单 / 状态 / PNG / JSON 六类导出", () => {
+    render(<ResultView response={response} />);
+    for (const key of ["summary", "fills", "orders", "states", "equity", "full"]) {
+      expect(screen.getByTestId(`export-${key}`)).toBeInTheDocument();
+    }
+  });
+
+  it("点 CSV 会真的产出文件", async () => {
+    render(<ResultView response={response} />);
+    await userEvent.click(screen.getByTestId("export-fills"));
+    expect(created.length).toBeGreaterThan(0);
+    expect(created[0].type).toContain("text/csv");
+  });
+
+  it("点 JSON 存档产出 JSON 文件", async () => {
+    render(<ResultView response={response} />);
+    await userEvent.click(screen.getByTestId("export-full"));
+    expect(created[0].type).toContain("application/json");
+  });
+
+  it("图表未渲染时 PNG 导出报错并提示改用 JSON，而不是静默下载空白图", async () => {
+    render(<ResultView response={response} />);
+    await userEvent.click(screen.getByTestId("export-equity"));
+    const feedback = screen.getByTestId("export-feedback");
+    expect(feedback).toHaveAttribute("role", "alert");
+    expect(feedback).toHaveTextContent(/JSON|截图/);
   });
 });

@@ -15,16 +15,24 @@ import {
   getDatasets,
   getStrategies,
   postBacktest,
+  postPortfolioBacktest,
   toApiError,
 } from "./api/client";
 import type { ApiError } from "./api/client";
-import type { BacktestResponse, DatasetListResponse, StrategyListResponse } from "./api/types";
+import type {
+  BacktestResponse,
+  DatasetListResponse,
+  PortfolioBacktestResponse,
+  StrategyListResponse,
+} from "./api/types";
 import { BackendDownBanner, BackendStatusIndicator } from "./components/BackendStatusBar";
 import { BacktestForm } from "./components/BacktestForm";
 import { DatasetSelector } from "./components/DatasetSelector";
 import { BacktestComparison } from "./components/BacktestComparison";
 import { HistoryDetail } from "./components/HistoryDetail";
 import { HistoryList } from "./components/HistoryList";
+import { PortfolioPanel } from "./components/PortfolioPanel";
+import { PortfolioResultView } from "./components/PortfolioResultView";
 import { StrategyPanel } from "./components/StrategyPanel";
 import { ResultView } from "./components/ResultView";
 import { useBackendHealth } from "./hooks/useBackendHealth";
@@ -33,6 +41,14 @@ import {
   validateAndBuildPayload,
 } from "./utils/backtestPayload";
 import type { BacktestFormValues, FieldErrors } from "./utils/backtestPayload";
+import {
+  PORTFOLIO_DEFAULTS,
+  validateAndBuildPortfolioPayload,
+} from "./utils/portfolioPayload";
+import type {
+  PortfolioFieldErrors,
+  PortfolioFormValues,
+} from "./utils/portfolioPayload";
 
 type DatasetsState =
   | { status: "loading" }
@@ -50,8 +66,15 @@ type BacktestState =
   | { status: "success"; response: BacktestResponse; finishedAt: string }
   | { status: "error"; error: ApiError; failedAt: string };
 
+type PortfolioState =
+  | { status: "idle" }
+  | { status: "running" }
+  | { status: "success"; response: PortfolioBacktestResponse; finishedAt: string }
+  | { status: "error"; error: ApiError; failedAt: string };
+
 type AppView =
   | { kind: "create" }
+  | { kind: "portfolio" }
   | { kind: "history-list" }
   | { kind: "history-detail"; runId: string }
   | { kind: "compare"; runIds: string[] };
@@ -63,6 +86,10 @@ export default function App() {
   const [form, setForm] = useState<BacktestFormValues>(INITIAL_FORM_VALUES);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [backtest, setBacktest] = useState<BacktestState>({ status: "idle" });
+  const [portfolioForm, setPortfolioForm] =
+    useState<PortfolioFormValues>(PORTFOLIO_DEFAULTS);
+  const [portfolioErrors, setPortfolioErrors] = useState<PortfolioFieldErrors>({});
+  const [portfolio, setPortfolio] = useState<PortfolioState>({ status: "idle" });
   const [view, setView] = useState<AppView>({ kind: "create" });
 
   const loadDatasets = useCallback(async () => {
@@ -151,6 +178,74 @@ export default function App() {
     }
   }, [form, strategies]);
 
+  // --- 组合回测 -------------------------------------------------------------
+
+  /** 标的池一改，与「池子规模」相关的旧错误立刻作废（否则改对了还在报错）。 */
+  const clearPoolErrors = useCallback(() => {
+    setPortfolioErrors((prev) => {
+      const next = { ...prev };
+      delete next.symbols;
+      delete next.minAssets;
+      return next;
+    });
+  }, []);
+
+  const handleTogglePortfolioSymbol = useCallback((symbol: string) => {
+    setPortfolioForm((prev) => {
+      const has = prev.symbols.includes(symbol);
+      return {
+        ...prev,
+        symbols: has
+          ? prev.symbols.filter((s) => s !== symbol)
+          : [...prev.symbols, symbol],
+      };
+    });
+    // 取消/新增选择会改变「标的数 vs min_assets」的可行性，旧错误立即作废
+    clearPoolErrors();
+  }, [clearPoolErrors]);
+
+  const handleSelectAllPortfolioSymbols = useCallback(() => {
+    if (datasets.status !== "ready") return;
+    setPortfolioForm((prev) => ({
+      ...prev,
+      symbols: datasets.data.datasets.map((d) => d.symbol),
+    }));
+    clearPoolErrors();
+  }, [datasets, clearPoolErrors]);
+
+  const handleClearPortfolioSymbols = useCallback(() => {
+    setPortfolioForm((prev) => ({ ...prev, symbols: [] }));
+    clearPoolErrors();
+  }, [clearPoolErrors]);
+
+  const handlePortfolioChange = useCallback((patch: Partial<PortfolioFormValues>) => {
+    setPortfolioForm((prev) => ({ ...prev, ...patch }));
+  }, []);
+
+  const handleRunPortfolio = useCallback(async () => {
+    const outcome = validateAndBuildPortfolioPayload(portfolioForm);
+    if (!outcome.ok) {
+      setPortfolioErrors(outcome.errors);
+      return;
+    }
+    setPortfolioErrors({});
+    setPortfolio({ status: "running" });
+    try {
+      const response = await postPortfolioBacktest(outcome.payload);
+      setPortfolio({
+        status: "success",
+        response,
+        finishedAt: new Date().toLocaleString("zh-CN", { hour12: false }),
+      });
+    } catch (err) {
+      setPortfolio({
+        status: "error",
+        error: toApiError(err),
+        failedAt: new Date().toLocaleString("zh-CN", { hour12: false }),
+      });
+    }
+  }, [portfolioForm]);
+
   const selectedDataset =
     datasets.status === "ready"
       ? (datasets.data.datasets.find((d) => d.symbol === form.datasetSymbol) ?? null)
@@ -175,6 +270,16 @@ export default function App() {
             onClick={() => setView({ kind: "create" })}
           >
             新建回测
+          </button>
+          <button
+            type="button"
+            className={`tab ${view.kind === "portfolio" ? "tab-active" : ""}`}
+            role="tab"
+            aria-selected={view.kind === "portfolio"}
+            data-testid="tab-portfolio"
+            onClick={() => setView({ kind: "portfolio" })}
+          >
+            组合回测
           </button>
           <button
             type="button"
@@ -278,6 +383,72 @@ export default function App() {
                   ) : null}
                 </div>
                 <ResultView response={backtest.response} />
+              </>
+            )}
+          </section>
+        </main>
+      )}
+
+      {view.kind === "portfolio" && (
+        <main className="app-main">
+          <aside className="config-panel">
+            <PortfolioPanel
+              datasets={datasets}
+              values={portfolioForm}
+              errors={portfolioErrors}
+              running={portfolio.status === "running"}
+              onChange={handlePortfolioChange}
+              onToggleSymbol={handleTogglePortfolioSymbol}
+              onSelectAll={handleSelectAllPortfolioSymbols}
+              onClearSymbols={handleClearPortfolioSymbols}
+              onRun={() => void handleRunPortfolio()}
+              onRefreshDatasets={() => void loadDatasets()}
+            />
+          </aside>
+
+          <section className="result-panel" aria-label="组合回测结果">
+            {portfolio.status === "idle" && (
+              <div className="card empty-state" data-testid="portfolio-placeholder">
+                组合回测：多标的、共享现金池、按月调仓。左侧勾选标的池（至少 2 只），
+                选好选股口径与参数后点击「运行组合回测」。
+                <br />
+                <br />
+                与「新建回测」的区别：那边是单标的、单持仓、单现金；
+                这里多只标的共享同一笔现金，卖出 A 才能买入 B，净值是连续的一条。
+              </div>
+            )}
+
+            {portfolio.status === "running" && (
+              <div className="card banner banner-info" role="status" data-testid="portfolio-running">
+                正在执行组合回测（同步请求）…完成后结果会自动展示。请勿重复提交。
+              </div>
+            )}
+
+            {portfolio.status === "error" && (
+              <div className="card" data-testid="portfolio-error">
+                <div className="banner banner-error" role="alert">
+                  <strong>组合回测请求失败（{portfolio.failedAt}）。</strong>
+                  <div>{describeApiError(portfolio.error)}</div>
+                  {portfolio.error.details !== undefined && (
+                    <details>
+                      <summary>错误详情</summary>
+                      <pre className="pre-json">
+                        {JSON.stringify(portfolio.error.details, null, 2)}
+                      </pre>
+                    </details>
+                  )}
+                  <div>表单配置已保留，可修改后重新运行。</div>
+                </div>
+              </div>
+            )}
+
+            {portfolio.status === "success" && (
+              <>
+                <div className="banner banner-info" data-testid="portfolio-success-hint">
+                  组合回测完成（{portfolio.finishedAt}）。结果全部来自后端本次真实返回。
+                  组合回测**不写入历史记录**（历史回测接口只接受单标的），需要留存请自行截图或导出。
+                </div>
+                <PortfolioResultView result={portfolio.response.result} />
               </>
             )}
           </section>

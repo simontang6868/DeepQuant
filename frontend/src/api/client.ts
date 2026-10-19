@@ -21,6 +21,8 @@ import type {
   BacktestRunDetailResponse,
   BacktestRunListResponse,
   DatasetListResponse,
+  PortfolioBacktestRequestPayload,
+  PortfolioBacktestResponse,
   StrategyListResponse,
 } from "./types";
 
@@ -78,6 +80,8 @@ const LIST_TIMEOUT_MS = 15_000;
 // 同步回测接口：本地 2500 个交易日约 0.3 秒，留足余量；超时只表示“结果未返回”，
 // 不代表后端已取消执行。
 const BACKTEST_TIMEOUT_MS = 120_000;
+// 组合回测：51 只 × 1456 交易日实测约 5 秒；给 3 分钟覆盖慢机器与更大池
+const PORTFOLIO_TIMEOUT_MS = 180_000;
 
 interface RequestOptions {
   method?: "GET" | "POST";
@@ -231,10 +235,38 @@ export async function postBacktest(payload: BacktestRequestPayload): Promise<Bac
   );
 }
 
+/**
+ * 多标的组合回测。
+ *
+ * 超时给得比单标的宽：51 只 × 1456 个交易日实测约 5 秒（含数据载入与截面取分），
+ * 但机器慢或标的更多时要留余量；超时只表示「结果未返回」，后端可能仍在执行。
+ */
+export async function postPortfolioBacktest(
+  payload: PortfolioBacktestRequestPayload,
+): Promise<PortfolioBacktestResponse> {
+  return request(
+    "/portfolio-backtests",
+    (data) => {
+      const obj = expectObject(data, "/portfolio-backtests 响应");
+      const result = obj.result;
+      if (typeof result !== "object" || result === null || Array.isArray(result)) {
+        throw new ApiError("invalid_response", "/portfolio-backtests 响应缺少 result 对象");
+      }
+      return obj as unknown as PortfolioBacktestResponse;
+    },
+    {
+      method: "POST",
+      body: payload,
+      timeoutMs: PORTFOLIO_TIMEOUT_MS,
+      timeoutMessage:
+        "组合回测请求超时：后端可能仍在执行，本次结果不会自动返回；请稍后重新提交。",
+    },
+  );
+}
+
 // --------------------------------------------------------------------------- //
 // Step 6.3：历史回测列表 & 详情
 // --------------------------------------------------------------------------- //
-
 export interface ListBacktestRunsParams {
   limit?: number;
   offset?: number;
