@@ -1,0 +1,2515 @@
+{
+  "generated_at": "2026-10-19T23:24:20",
+  "purpose": "区分退市组极端单日收益是真实退市整理期行情，还是 hfq 拼接脏数据",
+  "layout": "data/qfq_mult/delist",
+  "criteria": {
+    "price_limit": 0.21,
+    "tail_window": 15,
+    "low_price": 0.5
+  },
+  "counts": {
+    "n_symbols": 249,
+    "tail_window": 71,
+    "clean": 175,
+    "too_short": 1,
+    "low_price_tick": 1,
+    "other": 1
+  },
+  "flagged_for_review": [
+    {
+      "code": "603603.SH",
+      "class": "other",
+      "n": 1598,
+      "n_over": 2,
+      "buckets": {
+        "other": 1,
+        "tail_window": 1
+      },
+      "max_abs_ret": 1.162766,
+      "detail": [
+        {
+          "date": "2022-12-23",
+          "ret": 1.162766,
+          "prev_close": 1.6877,
+          "cls": "other",
+          "days_to_end": 482
+        },
+        {
+          "date": "2024-03-27",
+          "ret": -0.515891,
+          "prev_close": 0.8527,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    }
+  ],
+  "symbols": [
+    {
+      "code": "000005.SZ",
+      "class": "tail_window",
+      "n": 1740,
+      "n_over": 5,
+      "buckets": {
+        "tail_window": 5
+      },
+      "max_abs_ret": 0.30026,
+      "detail": [
+        {
+          "date": "2024-02-20",
+          "ret": 0.30026,
+          "prev_close": 0.3074,
+          "cls": "tail_window",
+          "days_to_end": 14
+        },
+        {
+          "date": "2024-02-22",
+          "ret": 0.250305,
+          "prev_close": 0.4918,
+          "cls": "tail_window",
+          "days_to_end": 12
+        },
+        {
+          "date": "2024-02-08",
+          "ret": -0.23517,
+          "prev_close": 0.5226,
+          "cls": "tail_window",
+          "days_to_end": 26
+        },
+        {
+          "date": "2024-02-19",
+          "ret": -0.230923,
+          "prev_close": 0.3997,
+          "cls": "tail_window",
+          "days_to_end": 15
+        },
+        {
+          "date": "2024-02-21",
+          "ret": 0.230423,
+          "prev_close": 0.3997,
+          "cls": "tail_window",
+          "days_to_end": 13
+        }
+      ]
+    },
+    {
+      "code": "000018.SZ",
+      "class": "clean",
+      "n": 707
+    },
+    {
+      "code": "000023.SZ",
+      "class": "clean",
+      "n": 1824
+    },
+    {
+      "code": "000033.SZ",
+      "class": "clean",
+      "n": 30
+    },
+    {
+      "code": "000038.SZ",
+      "class": "tail_window",
+      "n": 1303,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.703033,
+      "detail": [
+        {
+          "date": "2023-06-19",
+          "ret": -0.703033,
+          "prev_close": 1.912,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "000040.SZ",
+      "class": "clean",
+      "n": 1869
+    },
+    {
+      "code": "000046.SZ",
+      "class": "clean",
+      "n": 1641
+    },
+    {
+      "code": "000150.SZ",
+      "class": "clean",
+      "n": 1534
+    },
+    {
+      "code": "000413.SZ",
+      "class": "clean",
+      "n": 1746
+    },
+    {
+      "code": "000416.SZ",
+      "class": "clean",
+      "n": 1774
+    },
+    {
+      "code": "000418.SZ",
+      "class": "clean",
+      "n": 538
+    },
+    {
+      "code": "000511.SZ",
+      "class": "clean",
+      "n": 107
+    },
+    {
+      "code": "000540.SZ",
+      "class": "clean",
+      "n": 1214
+    },
+    {
+      "code": "000584.SZ",
+      "class": "clean",
+      "n": 1797
+    },
+    {
+      "code": "000585.SZ",
+      "class": "tail_window",
+      "n": 1188,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.608815,
+      "detail": [
+        {
+          "date": "2022-04-28",
+          "ret": -0.608815,
+          "prev_close": 0.8349,
+          "cls": "tail_window",
+          "days_to_end": 25
+        }
+      ]
+    },
+    {
+      "code": "000587.SZ",
+      "class": "clean",
+      "n": 1461
+    },
+    {
+      "code": "000606.SZ",
+      "class": "tail_window",
+      "n": 1404,
+      "n_over": 13,
+      "buckets": {
+        "tail_window": 13
+      },
+      "max_abs_ret": 4.120513,
+      "detail": [
+        {
+          "date": "2023-06-21",
+          "ret": 4.120513,
+          "prev_close": 0.039,
+          "cls": "tail_window",
+          "days_to_end": 14
+        },
+        {
+          "date": "2023-06-27",
+          "ret": 4.120513,
+          "prev_close": 0.039,
+          "cls": "tail_window",
+          "days_to_end": 8
+        },
+        {
+          "date": "2023-06-29",
+          "ret": -4.117949,
+          "prev_close": 0.039,
+          "cls": "tail_window",
+          "days_to_end": 6
+        },
+        {
+          "date": "2023-07-04",
+          "ret": -3.88862,
+          "prev_close": -0.0413,
+          "cls": "tail_window",
+          "days_to_end": 1
+        },
+        {
+          "date": "2023-07-05",
+          "ret": 1.347024,
+          "prev_close": 0.1193,
+          "cls": "tail_window",
+          "days_to_end": 0
+        }
+      ]
+    },
+    {
+      "code": "000611.SZ",
+      "class": "tail_window",
+      "n": 1171,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.741076,
+      "detail": [
+        {
+          "date": "2022-06-07",
+          "ret": -0.741076,
+          "prev_close": 3.8857,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "000613.SZ",
+      "class": "tail_window",
+      "n": 1165,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.765286,
+      "detail": [
+        {
+          "date": "2022-06-08",
+          "ret": -0.765286,
+          "prev_close": 2.1311,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "000616.SZ",
+      "class": "clean",
+      "n": 1444
+    },
+    {
+      "code": "000622.SZ",
+      "class": "clean",
+      "n": 1938
+    },
+    {
+      "code": "000627.SZ",
+      "class": "clean",
+      "n": 1933
+    },
+    {
+      "code": "000638.SZ",
+      "class": "clean",
+      "n": 1808
+    },
+    {
+      "code": "000662.SZ",
+      "class": "clean",
+      "n": 916
+    },
+    {
+      "code": "000666.SZ",
+      "class": "clean",
+      "n": 1454
+    },
+    {
+      "code": "000667.SZ",
+      "class": "clean",
+      "n": 1552
+    },
+    {
+      "code": "000671.SZ",
+      "class": "clean",
+      "n": 1552
+    },
+    {
+      "code": "000673.SZ",
+      "class": "tail_window",
+      "n": 1094,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.809025,
+      "detail": [
+        {
+          "date": "2022-06-13",
+          "ret": -0.809025,
+          "prev_close": 1.4028,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "000687.SZ",
+      "class": "tail_window",
+      "n": 1291,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.385244,
+      "detail": [
+        {
+          "date": "2022-05-26",
+          "ret": -0.385244,
+          "prev_close": 0.4893,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "000732.SZ",
+      "class": "clean",
+      "n": 1544
+    },
+    {
+      "code": "000748.SZ",
+      "class": "too_short",
+      "n": 0
+    },
+    {
+      "code": "000760.SZ",
+      "class": "tail_window",
+      "n": 818,
+      "n_over": 12,
+      "buckets": {
+        "other": 3,
+        "tail_window": 9
+      },
+      "max_abs_ret": 69.27027,
+      "detail": [
+        {
+          "date": "2021-07-09",
+          "ret": 69.27027,
+          "prev_close": 0.0037,
+          "cls": "tail_window",
+          "days_to_end": 13
+        },
+        {
+          "date": "2021-07-15",
+          "ret": 1.49661,
+          "prev_close": 0.5163,
+          "cls": "tail_window",
+          "days_to_end": 7
+        },
+        {
+          "date": "2021-07-07",
+          "ret": -0.985769,
+          "prev_close": 0.26,
+          "cls": "tail_window",
+          "days_to_end": 15
+        },
+        {
+          "date": "2021-07-14",
+          "ret": 0.985769,
+          "prev_close": 0.26,
+          "cls": "tail_window",
+          "days_to_end": 8
+        },
+        {
+          "date": "2021-07-02",
+          "ret": -0.599457,
+          "prev_close": 1.289,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "000780.SZ",
+      "class": "clean",
+      "n": 1191
+    },
+    {
+      "code": "000806.SZ",
+      "class": "tail_window",
+      "n": 1402,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.417788,
+      "detail": [
+        {
+          "date": "2023-06-13",
+          "ret": -0.417788,
+          "prev_close": 0.8916,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "000835.SZ",
+      "class": "tail_window",
+      "n": 1274,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.601003,
+      "detail": [
+        {
+          "date": "2022-04-27",
+          "ret": -0.601003,
+          "prev_close": 0.8772,
+          "cls": "tail_window",
+          "days_to_end": 23
+        }
+      ]
+    },
+    {
+      "code": "000836.SZ",
+      "class": "clean",
+      "n": 1681
+    },
+    {
+      "code": "000851.SZ",
+      "class": "clean",
+      "n": 1942
+    },
+    {
+      "code": "000861.SZ",
+      "class": "clean",
+      "n": 1834
+    },
+    {
+      "code": "000916.SZ",
+      "class": "clean",
+      "n": 102
+    },
+    {
+      "code": "000918.SZ",
+      "class": "clean",
+      "n": 1552
+    },
+    {
+      "code": "000939.SZ",
+      "class": "clean",
+      "n": 443
+    },
+    {
+      "code": "000961.SZ",
+      "class": "clean",
+      "n": 1779
+    },
+    {
+      "code": "000971.SZ",
+      "class": "clean",
+      "n": 1733
+    },
+    {
+      "code": "000976.SZ",
+      "class": "clean",
+      "n": 1778
+    },
+    {
+      "code": "000979.SZ",
+      "class": "clean",
+      "n": 282
+    },
+    {
+      "code": "000996.SZ",
+      "class": "tail_window",
+      "n": 1768,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.716962,
+      "detail": [
+        {
+          "date": "2024-06-06",
+          "ret": -0.716962,
+          "prev_close": 1.3129,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "002002.SZ",
+      "class": "clean",
+      "n": 1653
+    },
+    {
+      "code": "002013.SZ",
+      "class": "clean",
+      "n": 1413
+    },
+    {
+      "code": "002018.SZ",
+      "class": "clean",
+      "n": 645
+    },
+    {
+      "code": "002070.SZ",
+      "class": "clean",
+      "n": 198
+    },
+    {
+      "code": "002071.SZ",
+      "class": "clean",
+      "n": 979
+    },
+    {
+      "code": "002087.SZ",
+      "class": "tail_window",
+      "n": 1782,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.367942,
+      "detail": [
+        {
+          "date": "2024-06-06",
+          "ret": -0.367942,
+          "prev_close": 0.2639,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "002089.SZ",
+      "class": "tail_window",
+      "n": 1661,
+      "n_over": 10,
+      "buckets": {
+        "tail_window": 10
+      },
+      "max_abs_ret": 0.893348,
+      "detail": [
+        {
+          "date": "2024-03-26",
+          "ret": -0.893348,
+          "prev_close": 2.2503,
+          "cls": "tail_window",
+          "days_to_end": 22
+        },
+        {
+          "date": "2024-04-01",
+          "ret": -0.451087,
+          "prev_close": 0.1656,
+          "cls": "tail_window",
+          "days_to_end": 16
+        },
+        {
+          "date": "2024-03-28",
+          "ret": 0.449275,
+          "prev_close": 0.1656,
+          "cls": "tail_window",
+          "days_to_end": 20
+        },
+        {
+          "date": "2024-04-02",
+          "ret": 0.412541,
+          "prev_close": 0.0909,
+          "cls": "tail_window",
+          "days_to_end": 15
+        },
+        {
+          "date": "2024-04-11",
+          "ret": 0.366864,
+          "prev_close": 0.2028,
+          "cls": "tail_window",
+          "days_to_end": 6
+        }
+      ]
+    },
+    {
+      "code": "002113.SZ",
+      "class": "clean",
+      "n": 1297
+    },
+    {
+      "code": "002118.SZ",
+      "class": "clean",
+      "n": 1528
+    },
+    {
+      "code": "002143.SZ",
+      "class": "clean",
+      "n": 450
+    },
+    {
+      "code": "002147.SZ",
+      "class": "tail_window",
+      "n": 1118,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.673077,
+      "detail": [
+        {
+          "date": "2022-06-01",
+          "ret": -0.673077,
+          "prev_close": 1.1492,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "002220.SZ",
+      "class": "clean",
+      "n": 834
+    },
+    {
+      "code": "002231.SZ",
+      "class": "clean",
+      "n": 1933
+    },
+    {
+      "code": "002260.SZ",
+      "class": "clean",
+      "n": 269
+    },
+    {
+      "code": "002280.SZ",
+      "class": "clean",
+      "n": 1752
+    },
+    {
+      "code": "002288.SZ",
+      "class": "clean",
+      "n": 1789
+    },
+    {
+      "code": "002308.SZ",
+      "class": "clean",
+      "n": 1807
+    },
+    {
+      "code": "002325.SZ",
+      "class": "clean",
+      "n": 1817
+    },
+    {
+      "code": "002336.SZ",
+      "class": "clean",
+      "n": 1919
+    },
+    {
+      "code": "002341.SZ",
+      "class": "clean",
+      "n": 1773
+    },
+    {
+      "code": "002359.SZ",
+      "class": "clean",
+      "n": 799
+    },
+    {
+      "code": "002411.SZ",
+      "class": "tail_window",
+      "n": 1378,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.699349,
+      "detail": [
+        {
+          "date": "2023-06-19",
+          "ret": -0.699349,
+          "prev_close": 2.1816,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "002417.SZ",
+      "class": "tail_window",
+      "n": 1437,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.613446,
+      "detail": [
+        {
+          "date": "2023-06-15",
+          "ret": -0.613446,
+          "prev_close": 1.0159,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "002433.SZ",
+      "class": "tail_window",
+      "n": 1762,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.349693,
+      "detail": [
+        {
+          "date": "2024-06-14",
+          "ret": -0.349693,
+          "prev_close": 0.3749,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "002435.SZ",
+      "class": "clean",
+      "n": 1818
+    },
+    {
+      "code": "002447.SZ",
+      "class": "tail_window",
+      "n": 1146,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.736828,
+      "detail": [
+        {
+          "date": "2022-06-06",
+          "ret": -0.736828,
+          "prev_close": 0.7706,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "002450.SZ",
+      "class": "clean",
+      "n": 455
+    },
+    {
+      "code": "002464.SZ",
+      "class": "tail_window",
+      "n": 1056,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.748328,
+      "detail": [
+        {
+          "date": "2022-06-07",
+          "ret": -0.748328,
+          "prev_close": 1.196,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "002473.SZ",
+      "class": "tail_window",
+      "n": 1146,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.723107,
+      "detail": [
+        {
+          "date": "2022-05-31",
+          "ret": -0.723107,
+          "prev_close": 3.527,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "002477.SZ",
+      "class": "clean",
+      "n": 594
+    },
+    {
+      "code": "002499.SZ",
+      "class": "tail_window",
+      "n": 1416,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.447202,
+      "detail": [
+        {
+          "date": "2023-03-27",
+          "ret": -0.447202,
+          "prev_close": 1.4745,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "002502.SZ",
+      "class": "clean",
+      "n": 1684
+    },
+    {
+      "code": "002503.SZ",
+      "class": "clean",
+      "n": 1548
+    },
+    {
+      "code": "002504.SZ",
+      "class": "clean",
+      "n": 1400
+    },
+    {
+      "code": "002505.SZ",
+      "class": "clean",
+      "n": 1691
+    },
+    {
+      "code": "002509.SZ",
+      "class": "clean",
+      "n": 673
+    },
+    {
+      "code": "002604.SZ",
+      "class": "clean",
+      "n": 506
+    },
+    {
+      "code": "002610.SZ",
+      "class": "clean",
+      "n": 1661
+    },
+    {
+      "code": "002618.SZ",
+      "class": "clean",
+      "n": 1308
+    },
+    {
+      "code": "002619.SZ",
+      "class": "clean",
+      "n": 1092
+    },
+    {
+      "code": "002621.SZ",
+      "class": "clean",
+      "n": 1631
+    },
+    {
+      "code": "002665.SZ",
+      "class": "clean",
+      "n": 1706
+    },
+    {
+      "code": "002680.SZ",
+      "class": "clean",
+      "n": 477
+    },
+    {
+      "code": "002684.SZ",
+      "class": "tail_window",
+      "n": 1145,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.711935,
+      "detail": [
+        {
+          "date": "2022-06-06",
+          "ret": -0.711935,
+          "prev_close": 2.1391,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "002699.SZ",
+      "class": "clean",
+      "n": 1641
+    },
+    {
+      "code": "002711.SZ",
+      "class": "clean",
+      "n": 768
+    },
+    {
+      "code": "002740.SZ",
+      "class": "clean",
+      "n": 1577
+    },
+    {
+      "code": "002750.SZ",
+      "class": "clean",
+      "n": 1942
+    },
+    {
+      "code": "002751.SZ",
+      "class": "tail_window",
+      "n": 1521,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.743642,
+      "detail": [
+        {
+          "date": "2023-06-20",
+          "ret": -0.743642,
+          "prev_close": 3.8731,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "002770.SZ",
+      "class": "tail_window",
+      "n": 1218,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.702569,
+      "detail": [
+        {
+          "date": "2022-06-01",
+          "ret": -0.702569,
+          "prev_close": 2.1995,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "002776.SZ",
+      "class": "clean",
+      "n": 1655
+    },
+    {
+      "code": "002781.SZ",
+      "class": "tail_window",
+      "n": 1435,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.601644,
+      "detail": [
+        {
+          "date": "2023-06-12",
+          "ret": -0.601644,
+          "prev_close": 1.1437,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "002808.SZ",
+      "class": "clean",
+      "n": 1942
+    },
+    {
+      "code": "002898.SZ",
+      "class": "clean",
+      "n": 1773
+    },
+    {
+      "code": "200018.SZ",
+      "class": "clean",
+      "n": 705
+    },
+    {
+      "code": "200053.SZ",
+      "class": "clean",
+      "n": 322
+    },
+    {
+      "code": "200054.SZ",
+      "class": "clean",
+      "n": 1797
+    },
+    {
+      "code": "200152.SZ",
+      "class": "clean",
+      "n": 1539
+    },
+    {
+      "code": "200160.SZ",
+      "class": "clean",
+      "n": 689
+    },
+    {
+      "code": "200168.SZ",
+      "class": "clean",
+      "n": 881
+    },
+    {
+      "code": "200413.SZ",
+      "class": "clean",
+      "n": 1746
+    },
+    {
+      "code": "200418.SZ",
+      "class": "clean",
+      "n": 538
+    },
+    {
+      "code": "200613.SZ",
+      "class": "tail_window",
+      "n": 1164,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.778947,
+      "detail": [
+        {
+          "date": "2022-06-08",
+          "ret": -0.778947,
+          "prev_close": 0.95,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "200706.SZ",
+      "class": "clean",
+      "n": 1931
+    },
+    {
+      "code": "200771.SZ",
+      "class": "clean",
+      "n": 1933
+    },
+    {
+      "code": "200986.SZ",
+      "class": "clean",
+      "n": 914
+    },
+    {
+      "code": "300023.SZ",
+      "class": "tail_window",
+      "n": 1303,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.588319,
+      "detail": [
+        {
+          "date": "2022-06-08",
+          "ret": -0.588319,
+          "prev_close": 2.9501,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "300028.SZ",
+      "class": "clean",
+      "n": 380
+    },
+    {
+      "code": "300029.SZ",
+      "class": "clean",
+      "n": 1940
+    },
+    {
+      "code": "300038.SZ",
+      "class": "tail_window",
+      "n": 1207,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.377742,
+      "detail": [
+        {
+          "date": "2022-06-09",
+          "ret": -0.377742,
+          "prev_close": 0.5562,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "300064.SZ",
+      "class": "tail_window",
+      "n": 1268,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.431753,
+      "detail": [
+        {
+          "date": "2022-06-06",
+          "ret": -0.431753,
+          "prev_close": 1.4726,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "300089.SZ",
+      "class": "tail_window",
+      "n": 1371,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.653035,
+      "detail": [
+        {
+          "date": "2023-06-20",
+          "ret": -0.653035,
+          "prev_close": 0.6309,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "300090.SZ",
+      "class": "clean",
+      "n": 719
+    },
+    {
+      "code": "300104.SZ",
+      "class": "clean",
+      "n": 382
+    },
+    {
+      "code": "300108.SZ",
+      "class": "clean",
+      "n": 1742
+    },
+    {
+      "code": "300116.SZ",
+      "class": "clean",
+      "n": 1707
+    },
+    {
+      "code": "300117.SZ",
+      "class": "clean",
+      "n": 1926
+    },
+    {
+      "code": "300156.SZ",
+      "class": "clean",
+      "n": 695
+    },
+    {
+      "code": "300178.SZ",
+      "class": "tail_window",
+      "n": 1267,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.458945,
+      "detail": [
+        {
+          "date": "2022-05-31",
+          "ret": -0.458945,
+          "prev_close": 0.4567,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "300202.SZ",
+      "class": "tail_window",
+      "n": 1307,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.398602,
+      "detail": [
+        {
+          "date": "2022-06-13",
+          "ret": -0.398602,
+          "prev_close": 0.8442,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "300208.SZ",
+      "class": "clean",
+      "n": 1902
+    },
+    {
+      "code": "300216.SZ",
+      "class": "clean",
+      "n": 574
+    },
+    {
+      "code": "300262.SZ",
+      "class": "clean",
+      "n": 1799
+    },
+    {
+      "code": "300273.SZ",
+      "class": "tail_window",
+      "n": 1535,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.51417,
+      "detail": [
+        {
+          "date": "2023-06-13",
+          "ret": -0.51417,
+          "prev_close": 0.741,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "300280.SZ",
+      "class": "clean",
+      "n": 1796
+    },
+    {
+      "code": "300282.SZ",
+      "class": "tail_window",
+      "n": 1756,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.383117,
+      "detail": [
+        {
+          "date": "2024-06-27",
+          "ret": -0.383117,
+          "prev_close": 0.3388,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "300297.SZ",
+      "class": "tail_window",
+      "n": 1548,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.392444,
+      "detail": [
+        {
+          "date": "2023-07-10",
+          "ret": -0.392444,
+          "prev_close": 0.3891,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "300309.SZ",
+      "class": "tail_window",
+      "n": 1454,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.575084,
+      "detail": [
+        {
+          "date": "2023-05-09",
+          "ret": -0.575084,
+          "prev_close": 0.6566,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "300312.SZ",
+      "class": "tail_window",
+      "n": 1234,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.71998,
+      "detail": [
+        {
+          "date": "2022-06-13",
+          "ret": -0.71998,
+          "prev_close": 1.1842,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "300325.SZ",
+      "class": "tail_window",
+      "n": 1223,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.517118,
+      "detail": [
+        {
+          "date": "2022-06-07",
+          "ret": -0.517118,
+          "prev_close": 0.5024,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "300330.SZ",
+      "class": "tail_window",
+      "n": 1472,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.543062,
+      "detail": [
+        {
+          "date": "2023-04-28",
+          "ret": -0.543062,
+          "prev_close": 5.1252,
+          "cls": "tail_window",
+          "days_to_end": 25
+        }
+      ]
+    },
+    {
+      "code": "300336.SZ",
+      "class": "tail_window",
+      "n": 1549,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.527489,
+      "detail": [
+        {
+          "date": "2023-06-12",
+          "ret": -0.527489,
+          "prev_close": 0.5202,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "300344.SZ",
+      "class": "clean",
+      "n": 1933
+    },
+    {
+      "code": "300356.SZ",
+      "class": "tail_window",
+      "n": 1490,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.780321,
+      "detail": [
+        {
+          "date": "2023-06-20",
+          "ret": -0.780321,
+          "prev_close": 4.3172,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "300362.SZ",
+      "class": "clean",
+      "n": 700
+    },
+    {
+      "code": "300367.SZ",
+      "class": "tail_window",
+      "n": 1187,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.284343,
+      "detail": [
+        {
+          "date": "2022-06-09",
+          "ret": -0.284343,
+          "prev_close": 0.396,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "300372.SZ",
+      "class": "clean",
+      "n": 30
+    },
+    {
+      "code": "300379.SZ",
+      "class": "clean",
+      "n": 1937
+    },
+    {
+      "code": "300391.SZ",
+      "class": "clean",
+      "n": 1923
+    },
+    {
+      "code": "300392.SZ",
+      "class": "tail_window",
+      "n": 1364,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.692513,
+      "detail": [
+        {
+          "date": "2023-06-15",
+          "ret": -0.692513,
+          "prev_close": 0.7506,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "300431.SZ",
+      "class": "clean",
+      "n": 774
+    },
+    {
+      "code": "300495.SZ",
+      "class": "clean",
+      "n": 1770
+    },
+    {
+      "code": "300526.SZ",
+      "class": "tail_window",
+      "n": 1445,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.798812,
+      "detail": [
+        {
+          "date": "2023-06-19",
+          "ret": -0.798812,
+          "prev_close": 3.7557,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "300630.SZ",
+      "class": "clean",
+      "n": 1844
+    },
+    {
+      "code": "300742.SZ",
+      "class": "tail_window",
+      "n": 1468,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.575,
+      "detail": [
+        {
+          "date": "2024-07-01",
+          "ret": -0.575,
+          "prev_close": 0.8,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "300799.SZ",
+      "class": "tail_window",
+      "n": 1101,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.605375,
+      "detail": [
+        {
+          "date": "2024-07-08",
+          "ret": -0.605375,
+          "prev_close": 5.7381,
+          "cls": "tail_window",
+          "days_to_end": 18
+        }
+      ]
+    },
+    {
+      "code": "600005.SH",
+      "class": "clean",
+      "n": 15
+    },
+    {
+      "code": "600068.SH",
+      "class": "clean",
+      "n": 1126
+    },
+    {
+      "code": "600069.SH",
+      "class": "clean",
+      "n": 804
+    },
+    {
+      "code": "600070.SH",
+      "class": "clean",
+      "n": 1937
+    },
+    {
+      "code": "600074.SH",
+      "class": "clean",
+      "n": 484
+    },
+    {
+      "code": "600077.SH",
+      "class": "clean",
+      "n": 1565
+    },
+    {
+      "code": "600086.SH",
+      "class": "clean",
+      "n": 797
+    },
+    {
+      "code": "600090.SH",
+      "class": "tail_window",
+      "n": 1289,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.712445,
+      "detail": [
+        {
+          "date": "2022-06-10",
+          "ret": -0.712445,
+          "prev_close": 1.1643,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "600093.SH",
+      "class": "tail_window",
+      "n": 1240,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.255923,
+      "detail": [
+        {
+          "date": "2022-05-26",
+          "ret": -0.255923,
+          "prev_close": 0.6162,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600112.SH",
+      "class": "clean",
+      "n": 1737
+    },
+    {
+      "code": "600122.SH",
+      "class": "clean",
+      "n": 1439
+    },
+    {
+      "code": "600139.SH",
+      "class": "clean",
+      "n": 1487
+    },
+    {
+      "code": "600145.SH",
+      "class": "tail_window",
+      "n": 422,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.718192,
+      "detail": [
+        {
+          "date": "2022-03-30",
+          "ret": -0.718192,
+          "prev_close": 1.0021,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "600146.SH",
+      "class": "tail_window",
+      "n": 1021,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.773368,
+      "detail": [
+        {
+          "date": "2022-06-02",
+          "ret": -0.773368,
+          "prev_close": 1.1918,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600175.SH",
+      "class": "clean",
+      "n": 782
+    },
+    {
+      "code": "600190.SH",
+      "class": "clean",
+      "n": 1904
+    },
+    {
+      "code": "600193.SH",
+      "class": "clean",
+      "n": 1879
+    },
+    {
+      "code": "600200.SH",
+      "class": "clean",
+      "n": 1932
+    },
+    {
+      "code": "600209.SH",
+      "class": "tail_window",
+      "n": 1187,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.575266,
+      "detail": [
+        {
+          "date": "2022-05-25",
+          "ret": -0.575266,
+          "prev_close": 2.0142,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600213.SH",
+      "class": "clean",
+      "n": 1846
+    },
+    {
+      "code": "600220.SH",
+      "class": "clean",
+      "n": 1806
+    },
+    {
+      "code": "600225.SH",
+      "class": "clean",
+      "n": 1852
+    },
+    {
+      "code": "600240.SH",
+      "class": "clean",
+      "n": 725
+    },
+    {
+      "code": "600242.SH",
+      "class": "tail_window",
+      "n": 1432,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.363469,
+      "detail": [
+        {
+          "date": "2023-05-31",
+          "ret": -0.363469,
+          "prev_close": 0.4358,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "600247.SH",
+      "class": "clean",
+      "n": 1001
+    },
+    {
+      "code": "600260.SH",
+      "class": "clean",
+      "n": 1475
+    },
+    {
+      "code": "600270.SH",
+      "class": "clean",
+      "n": 418
+    },
+    {
+      "code": "600275.SH",
+      "class": "tail_window",
+      "n": 1306,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.586241,
+      "detail": [
+        {
+          "date": "2022-05-25",
+          "ret": -0.586241,
+          "prev_close": 0.9056,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600277.SH",
+      "class": "clean",
+      "n": 1664
+    },
+    {
+      "code": "600290.SH",
+      "class": "clean",
+      "n": 1636
+    },
+    {
+      "code": "600291.SH",
+      "class": "tail_window",
+      "n": 1308,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.53113,
+      "detail": [
+        {
+          "date": "2022-05-17",
+          "ret": -0.53113,
+          "prev_close": 1.5821,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600297.SH",
+      "class": "clean",
+      "n": 1831
+    },
+    {
+      "code": "600306.SH",
+      "class": "tail_window",
+      "n": 1729,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.778281,
+      "detail": [
+        {
+          "date": "2024-05-29",
+          "ret": -0.778281,
+          "prev_close": 1.5019,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600311.SH",
+      "class": "clean",
+      "n": 1475
+    },
+    {
+      "code": "600317.SH",
+      "class": "clean",
+      "n": 971
+    },
+    {
+      "code": "600321.SH",
+      "class": "clean",
+      "n": 1792
+    },
+    {
+      "code": "600355.SH",
+      "class": "clean",
+      "n": 1943
+    },
+    {
+      "code": "600385.SH",
+      "class": "tail_window",
+      "n": 1305,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.71324,
+      "detail": [
+        {
+          "date": "2022-06-10",
+          "ret": -0.71324,
+          "prev_close": 3.2937,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "600387.SH",
+      "class": "clean",
+      "n": 1844
+    },
+    {
+      "code": "600393.SH",
+      "class": "clean",
+      "n": 1490
+    },
+    {
+      "code": "600401.SH",
+      "class": "clean",
+      "n": 288
+    },
+    {
+      "code": "600421.SH",
+      "class": "clean",
+      "n": 1888
+    },
+    {
+      "code": "600432.SH",
+      "class": "clean",
+      "n": 104
+    },
+    {
+      "code": "600462.SH",
+      "class": "clean",
+      "n": 1840
+    },
+    {
+      "code": "600466.SH",
+      "class": "clean",
+      "n": 1534
+    },
+    {
+      "code": "600485.SH",
+      "class": "clean",
+      "n": 188
+    },
+    {
+      "code": "600532.SH",
+      "class": "tail_window",
+      "n": 1495,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.754566,
+      "detail": [
+        {
+          "date": "2023-05-30",
+          "ret": -0.754566,
+          "prev_close": 2.716,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "600555.SH",
+      "class": "tail_window",
+      "n": 1308,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.647491,
+      "detail": [
+        {
+          "date": "2022-06-16",
+          "ret": -0.647491,
+          "prev_close": 0.9109,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "600565.SH",
+      "class": "clean",
+      "n": 1802
+    },
+    {
+      "code": "600599.SH",
+      "class": "clean",
+      "n": 1941
+    },
+    {
+      "code": "600614.SH",
+      "class": "clean",
+      "n": 791
+    },
+    {
+      "code": "600636.SH",
+      "class": "clean",
+      "n": 1799
+    },
+    {
+      "code": "600647.SH",
+      "class": "tail_window",
+      "n": 1756,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.780598,
+      "detail": [
+        {
+          "date": "2024-06-05",
+          "ret": -0.780598,
+          "prev_close": 6.3755,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600652.SH",
+      "class": "tail_window",
+      "n": 1299,
+      "n_over": 3,
+      "buckets": {
+        "tail_window": 3
+      },
+      "max_abs_ret": 0.435149,
+      "detail": [
+        {
+          "date": "2022-05-25",
+          "ret": -0.435149,
+          "prev_close": 0.8905,
+          "cls": "tail_window",
+          "days_to_end": 21
+        },
+        {
+          "date": "2022-05-27",
+          "ret": 0.253688,
+          "prev_close": 0.5558,
+          "cls": "tail_window",
+          "days_to_end": 19
+        },
+        {
+          "date": "2022-05-30",
+          "ret": 0.227468,
+          "prev_close": 0.6968,
+          "cls": "tail_window",
+          "days_to_end": 16
+        }
+      ]
+    },
+    {
+      "code": "600677.SH",
+      "class": "clean",
+      "n": 808
+    },
+    {
+      "code": "600680.SH",
+      "class": "clean",
+      "n": 317
+    },
+    {
+      "code": "600687.SH",
+      "class": "clean",
+      "n": 933
+    },
+    {
+      "code": "600695.SH",
+      "class": "tail_window",
+      "n": 1244,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.609428,
+      "detail": [
+        {
+          "date": "2022-05-17",
+          "ret": -0.609428,
+          "prev_close": 1.3237,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600696.SH",
+      "class": "clean",
+      "n": 1902
+    },
+    {
+      "code": "600701.SH",
+      "class": "low_price_tick",
+      "n": 652,
+      "n_over": 10,
+      "buckets": {
+        "low_price_tick": 5,
+        "tail_window": 5
+      },
+      "max_abs_ret": 1.281734,
+      "detail": [
+        {
+          "date": "2021-04-07",
+          "ret": 1.281734,
+          "prev_close": 0.0323,
+          "cls": "tail_window",
+          "days_to_end": 19
+        },
+        {
+          "date": "2021-04-08",
+          "ret": 0.85346,
+          "prev_close": 0.0737,
+          "cls": "tail_window",
+          "days_to_end": 18
+        },
+        {
+          "date": "2021-04-02",
+          "ret": -0.561737,
+          "prev_close": 0.0737,
+          "cls": "low_price_tick",
+          "days_to_end": 24
+        },
+        {
+          "date": "2021-04-01",
+          "ret": -0.460469,
+          "prev_close": 0.1366,
+          "cls": "low_price_tick",
+          "days_to_end": 25
+        },
+        {
+          "date": "2021-04-09",
+          "ret": 0.459736,
+          "prev_close": 0.1366,
+          "cls": "tail_window",
+          "days_to_end": 17
+        }
+      ]
+    },
+    {
+      "code": "600705.SH",
+      "class": "clean",
+      "n": 1943
+    },
+    {
+      "code": "600723.SH",
+      "class": "clean",
+      "n": 1136
+    },
+    {
+      "code": "600767.SH",
+      "class": "tail_window",
+      "n": 1546,
+      "n_over": 12,
+      "buckets": {
+        "tail_window": 12
+      },
+      "max_abs_ret": 2.098979,
+      "detail": [
+        {
+          "date": "2023-06-15",
+          "ret": 2.098979,
+          "prev_close": -0.1273,
+          "cls": "tail_window",
+          "days_to_end": 5
+        },
+        {
+          "date": "2023-06-16",
+          "ret": -2.064639,
+          "prev_close": -0.3945,
+          "cls": "tail_window",
+          "days_to_end": 4
+        },
+        {
+          "date": "2023-06-12",
+          "ret": -1.869536,
+          "prev_close": 0.1464,
+          "cls": "tail_window",
+          "days_to_end": 8
+        },
+        {
+          "date": "2023-05-31",
+          "ret": -0.987943,
+          "prev_close": 101.8691,
+          "cls": "tail_window",
+          "days_to_end": 20
+        },
+        {
+          "date": "2023-06-09",
+          "ret": -0.651429,
+          "prev_close": 0.42,
+          "cls": "tail_window",
+          "days_to_end": 11
+        }
+      ]
+    },
+    {
+      "code": "600781.SH",
+      "class": "tail_window",
+      "n": 1500,
+      "n_over": 2,
+      "buckets": {
+        "tail_window": 2
+      },
+      "max_abs_ret": 0.511034,
+      "detail": [
+        {
+          "date": "2023-05-30",
+          "ret": -0.511034,
+          "prev_close": 0.8882,
+          "cls": "tail_window",
+          "days_to_end": 20
+        },
+        {
+          "date": "2023-05-31",
+          "ret": 0.232328,
+          "prev_close": 0.4343,
+          "cls": "tail_window",
+          "days_to_end": 19
+        }
+      ]
+    },
+    {
+      "code": "600804.SH",
+      "class": "clean",
+      "n": 1917
+    },
+    {
+      "code": "600806.SH",
+      "class": "clean",
+      "n": 102
+    },
+    {
+      "code": "600823.SH",
+      "class": "clean",
+      "n": 1785
+    },
+    {
+      "code": "600836.SH",
+      "class": "clean",
+      "n": 1806
+    },
+    {
+      "code": "600837.SH",
+      "class": "clean",
+      "n": 1926
+    },
+    {
+      "code": "600856.SH",
+      "class": "tail_window",
+      "n": 1198,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.468422,
+      "detail": [
+        {
+          "date": "2022-05-25",
+          "ret": -0.468422,
+          "prev_close": 0.5811,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600890.SH",
+      "class": "tail_window",
+      "n": 1061,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.506358,
+      "detail": [
+        {
+          "date": "2022-05-25",
+          "ret": -0.506358,
+          "prev_close": 0.6999,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "600891.SH",
+      "class": "clean",
+      "n": 786
+    },
+    {
+      "code": "600896.SH",
+      "class": "tail_window",
+      "n": 1257,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.416241,
+      "detail": [
+        {
+          "date": "2022-06-28",
+          "ret": -0.416241,
+          "prev_close": 1.6846,
+          "cls": "tail_window",
+          "days_to_end": 20
+        }
+      ]
+    },
+    {
+      "code": "600898.SH",
+      "class": "clean",
+      "n": 1935
+    },
+    {
+      "code": "600978.SH",
+      "class": "clean",
+      "n": 1004
+    },
+    {
+      "code": "601028.SH",
+      "class": "clean",
+      "n": 1885
+    },
+    {
+      "code": "601059.SH",
+      "class": "clean",
+      "n": 468
+    },
+    {
+      "code": "601198.SH",
+      "class": "clean",
+      "n": 1943
+    },
+    {
+      "code": "601258.SH",
+      "class": "clean",
+      "n": 1547
+    },
+    {
+      "code": "601558.SH",
+      "class": "clean",
+      "n": 823
+    },
+    {
+      "code": "601989.SH",
+      "class": "clean",
+      "n": 1819
+    },
+    {
+      "code": "603003.SH",
+      "class": "clean",
+      "n": 1942
+    },
+    {
+      "code": "603056.SH",
+      "class": "clean",
+      "n": 1678
+    },
+    {
+      "code": "603133.SH",
+      "class": "tail_window",
+      "n": 1736,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.746242,
+      "detail": [
+        {
+          "date": "2024-06-05",
+          "ret": -0.746242,
+          "prev_close": 1.2307,
+          "cls": "tail_window",
+          "days_to_end": 21
+        }
+      ]
+    },
+    {
+      "code": "603157.SH",
+      "class": "clean",
+      "n": 1109
+    },
+    {
+      "code": "603388.SH",
+      "class": "clean",
+      "n": 1888
+    },
+    {
+      "code": "603555.SH",
+      "class": "clean",
+      "n": 1667
+    },
+    {
+      "code": "603603.SH",
+      "class": "other",
+      "n": 1598,
+      "n_over": 2,
+      "buckets": {
+        "other": 1,
+        "tail_window": 1
+      },
+      "max_abs_ret": 1.162766,
+      "detail": [
+        {
+          "date": "2022-12-23",
+          "ret": 1.162766,
+          "prev_close": 1.6877,
+          "cls": "other",
+          "days_to_end": 482
+        },
+        {
+          "date": "2024-03-27",
+          "ret": -0.515891,
+          "prev_close": 0.8527,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "603963.SH",
+      "class": "clean",
+      "n": 1762
+    },
+    {
+      "code": "603996.SH",
+      "class": "tail_window",
+      "n": 1286,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.322402,
+      "detail": [
+        {
+          "date": "2022-04-22",
+          "ret": -0.322402,
+          "prev_close": 0.6495,
+          "cls": "tail_window",
+          "days_to_end": 25
+        }
+      ]
+    },
+    {
+      "code": "605081.SH",
+      "class": "clean",
+      "n": 943
+    },
+    {
+      "code": "688086.SH",
+      "class": "tail_window",
+      "n": 781,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.545278,
+      "detail": [
+        {
+          "date": "2023-06-08",
+          "ret": -0.545278,
+          "prev_close": 1.7503,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "688287.SH",
+      "class": "clean",
+      "n": 634
+    },
+    {
+      "code": "688555.SH",
+      "class": "tail_window",
+      "n": 699,
+      "n_over": 1,
+      "buckets": {
+        "tail_window": 1
+      },
+      "max_abs_ret": 0.584268,
+      "detail": [
+        {
+          "date": "2023-06-08",
+          "ret": -0.584268,
+          "prev_close": 3.5138,
+          "cls": "tail_window",
+          "days_to_end": 22
+        }
+      ]
+    },
+    {
+      "code": "900953.SH",
+      "class": "clean",
+      "n": 1805
+    },
+    {
+      "code": "900956.SH",
+      "class": "clean",
+      "n": 927
+    },
+    {
+      "code": "900957.SH",
+      "class": "clean",
+      "n": 1943
+    }
+  ]
+}
