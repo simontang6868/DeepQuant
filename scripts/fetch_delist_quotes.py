@@ -73,7 +73,15 @@ def main() -> None:
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     rows = load_delist_list()
-    print(f"[LIST] 退市股 {len(rows)} 只")
+    print(f"[LIST] 退市股 {len(rows)} 条原始记录")
+
+    # 去重：交易所名单里存在同一 code 出现两次的情况（实测沪市 5 个）。
+    # 不去重会让"清单条数"与"实际文件数"对不上（267 vs 262），看起来像下载漏了。
+    seen: dict[tuple[str, str], dict] = {}
+    for r in rows:
+        seen[(r["market"], r["code"])] = r
+    rows = sorted(seen.values(), key=lambda r: (r["delist_date"] or "", r["code"]))
+    print(f"[LIST] 去重后 {len(rows)} 只")
 
     picked = [r for r in rows if r["delist_date"] and r["delist_date"] >= args.since]
     picked.sort(key=lambda r: r["delist_date"])
@@ -81,7 +89,7 @@ def main() -> None:
         picked = picked[: args.limit]
     print(f"[LIST] {args.since} 后退市 {len(picked)} 只，开始下载")
 
-    ok = empty = fail = 0
+    ok = cached = empty = fail = 0
     for i, r in enumerate(picked, 1):
         sym = r["market"] + r["code"]
         path = OUT_DIR / f"{r['code']}.{r['market'].upper()}.qfq.csv"
@@ -110,15 +118,19 @@ def main() -> None:
         r["status"] = status
         r["n_rows"] = n_rows
         r["span"] = span
-        if status in ("ok", "cached"):
+        if status == "ok":
             ok += 1
+        elif status == "cached":
+            cached += 1
         elif status == "no_quote":
             empty += 1
         else:
             fail += 1
         if i % 25 == 0 or i == len(picked):
-            print(f"  [{i}/{len(picked)}] ok={ok} no_quote={empty} fail={fail}", flush=True)
+            print(f"  [{i}/{len(picked)}] ok={ok} cached={cached} "
+                  f"no_quote={empty} fail={fail}", flush=True)
 
+    usable = ok + cached
     payload = {
         "generated_at": pd.Timestamp.now().isoformat(timespec="seconds"),
         "purpose": (
@@ -127,16 +139,26 @@ def main() -> None:
         ),
         "source": "akshare stock_info_sh_delist / stock_info_sz_delist + stock_zh_a_hist_tx(qfq)",
         "since": args.since,
-        "counts": {"listed_total": len(rows), "picked": len(picked),
-                   "ok": ok, "no_quote": empty, "fail": fail},
+        "counts": {
+            "listed_total": len(seen),
+            "picked": len(picked),
+            "downloaded_now": ok,
+            "cached": cached,
+            "usable": usable,
+            "no_quote": empty,
+            "fail": fail,
+            "unique_files": len({(r["market"], r["code"]) for r in picked}),
+        },
         "note": (
             "行情文件在 data/delist/（不入库）。本清单入库，供复现时按其重建。"
             "no_quote 的标的不做任何价格填充——宁可缺口显式化，不要伪造数据。"
+            "usable = downloaded_now + cached，即真正有行情的标的数。"
         ),
         "symbols": picked,
     }
     MANIFEST.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"\n[OUT] {MANIFEST}   ok={ok} no_quote={empty} fail={fail}")
+    print(f"\n[OUT] {MANIFEST}   可用 {usable}/{len(picked)} "
+          f"(新下 {ok} + 缓存 {cached})  no_quote={empty} fail={fail}")
 
 
 if __name__ == "__main__":
