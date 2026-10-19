@@ -51,6 +51,24 @@ NAMES = {
     "002165.SZ": "红宝丽",
     "601668.SH": "中国建筑",
 }
+
+
+def fetch_name(code: str) -> str:
+    """名称：优先本地表，否则问腾讯实时快照（避免每加一只票就改代码）。"""
+    if code in NAMES:
+        return NAMES[code]
+    try:
+        url = "https://qt.gtimg.cn/q=" + tx_symbol(code)
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        txt = urllib.request.urlopen(req, timeout=15).read().decode("gbk", errors="ignore")
+        parts = txt.split("~")
+        if len(parts) > 2 and parts[1].strip():
+            return parts[1].strip().replace(" ", "")
+    except Exception:  # noqa: BLE001
+        pass
+    return ""
+
+
 START_DEFAULT = "2023-10-16"
 END = "2026-10-16"
 PAGE = 640
@@ -179,8 +197,7 @@ def yearly(win: list[tuple[str, float]]) -> dict:
 
 
 def one(code: str, start: str) -> dict:
-    name = NAMES.get(code, "")
-    rec: dict = {"code": code, "name": name}
+    rec: dict = {"code": code, "name": fetch_name(code)}
 
     qfq_path = QFQ_DIR / f"{code}.qfq.csv"
     if not qfq_path.exists():
@@ -210,11 +227,21 @@ def one(code: str, start: str) -> dict:
         ratio = pb["start_close"] / tb["start_close"]
         rec["price_basis_ratio_start"] = round(ratio, 4)
         if ratio < 1.0:
-            rec["price_basis_warning"] = (
-                f"不复权起点({pb['start_close']}) < 乘性前复权起点({tb['start_close']})，"
-                f"方向上不可能（前复权只会下调历史价）。腾讯不复权序列与 hfq 基准不一致，"
-                f"纯股价口径与分红贡献对这只票仅作参考，不可用于结论。"
-            )
+            # 不复权价只有 2 位小数，低价股（如 2 元股）的舍入可达 0.5%。
+            # 只有明显越界才算「基准不一致」，否则只是舍入。
+            rounding = 0.5 * 10 ** -2 / pb["start_close"]  # 半分钱 / 价格
+            if ratio < 1.0 - max(rounding, 0.01):
+                rec["price_basis_warning"] = (
+                    f"不复权起点({pb['start_close']}) 显著低于乘性前复权起点({tb['start_close']})，"
+                    f"比值 {ratio:.4f} 超出舍入容差（{1-max(rounding,0.01):.4f}）。方向上不可能："
+                    f"前复权只会下调历史价。腾讯不复权序列与 hfq 股本基准不一致 —— "
+                    f"本只票的纯股价与分红贡献不可用于结论。"
+                )
+            else:
+                rec["price_basis_note"] = (
+                    f"比值 {ratio:.4f} 略低于 1，落在不复权价 2 位小数的舍入容差内"
+                    f"（±{rounding:.4f}），非基准不一致；分红贡献量级仍可读，但不宜精确到 pp 后一位。"
+                )
     return rec
 
 

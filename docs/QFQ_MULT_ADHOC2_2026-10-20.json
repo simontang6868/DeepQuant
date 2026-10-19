@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-10-20T01:42:34",
+  "purpose": "把加性前复权（qfq_t = raw_t - 未来累计分红_t）换成乘性前复权（hfq_t × raw_anchor/hfq_anchor）",
+  "recipe": "qfq_mult_t = hfq_t * (raw_anchor / hfq_anchor)，anchor 取两组共同的最新交易日",
+  "source": {
+    "hfq": "web.ifzq.gtimg.cn fqkline/get ... ,hfq",
+    "raw": "web.ifzq.gtimg.cn kline/kline（仅取锚点）"
+  },
+  "range": [
+    "2016-01-01",
+    "2026-10-16"
+  ],
+  "counts": {
+    "requested": 5,
+    "by_status": {
+      "ok": 4,
+      "cached": 1
+    }
+  },
+  "symbols": [
+    {
+      "code": "600583.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600583.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.43,
+      "hfq_anchor_close": 140.505,
+      "scale": 0.045763,
+      "sha256": "44e9ff1b2e966ee1"
+    },
+    {
+      "code": "600871.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600871.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2587,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 2.07,
+      "hfq_anchor_close": 5.179,
+      "scale": 0.399691,
+      "sha256": "8f9decb251395074"
+    },
+    {
+      "code": "600938.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600938.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 1087
+    },
+    {
+      "code": "600968.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600968.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1772,
+      "span": [
+        "2019-06-26",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.03,
+      "hfq_anchor_close": 4.644,
+      "scale": 0.867786,
+      "sha256": "a3c9b3e6b06bc01f"
+    },
+    {
+      "code": "601808.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601808.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 12.79,
+      "hfq_anchor_close": 16.381,
+      "scale": 0.780783,
+      "sha256": "1d03cdf9f452876c"
+    }
+  ]
+}
