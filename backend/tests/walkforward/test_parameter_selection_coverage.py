@@ -368,15 +368,6 @@ class TestWindowFailurePaths:
         assert r.final_equity is None
         assert r.cumulative_return is None
 
-    @pytest.mark.xfail(
-        strict=True,
-        reason=(
-            "潜在缺陷：run_walkforward_window 的「OOS 策略构造失败」分支在 "
-            "except 里访问了尚未绑定的局部变量 strategy（源码 447-448 行），"
-            "导致函数抛 UnboundLocalError 崩溃，而非按契约返回 oos_success=False。"
-            "违反模块自述原则 4「失败显式表达」。修复后请删除本 xfail 标记。"
-        ),
-    )
     def test_oos_strategy_construction_failure_returns_clean_result(
         self,
     ) -> None:

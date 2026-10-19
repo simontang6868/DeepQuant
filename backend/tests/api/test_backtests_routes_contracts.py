@@ -336,16 +336,6 @@ def test_non_numeric_metrics_are_dropped_not_coerced():
     assert metrics.win_rate == 0.5, "真实数值必须从 trade_stats 照原值提取"
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "已知缺陷（只测不修，修 bug 属判断类，交回 B 线）："
-        "`api/routes/backtests.py` 的 `_num()` 判据写成 `isinstance(v, (int, float)) and v is not bool`，"
-        "其中 `v is not bool` 是把**值**与**类型**做身份比较，恒为 True，布尔因此从未被挡住。"
-        "`True` 会一路通过并被 Pydantic 转成 1.0 —— 胜率字段可能被显示成 100%。"
-        "正确写法为 `not isinstance(v, bool)`。修好后本用例 XPASS，strict=True 会报错提醒移除本标记。"
-    ),
-)
 def test_bool_metrics_are_rejected_not_coerced_to_one():
     """布尔不得被当成数值：bool 是 int 的子类，`win_rate: true` 被当成 1 等于凭空捏造 100% 胜率。"""
     document = {"performance": {"trade_stats": {"win_rate": True, "n_orders": True}}}

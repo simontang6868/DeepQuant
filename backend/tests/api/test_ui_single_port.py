@@ -38,10 +38,19 @@ def dist(tmp_path):
 
 
 @pytest.fixture
-def mounted(dist, monkeypatch):
-    """把 UI 挂到临时产物上，返回 TestClient。"""
+def mounted(dist, monkeypatch, tmp_path):
+    """把 UI 挂到临时产物上，返回 TestClient。
+
+    数据根目录也指向临时目录：`/datasets` 需要它存在才返回 200。若不指定，
+    默认值由 ``api/config.py`` 相对包位置推导，在 pip 安装（非源码树）的 CI 环境
+    会指向不存在的位置，让「静态文件是否抢占路由」这个命题变成对机器环境的断言。
+    这里给一个空目录：数据集列表为空，但路由本身可被正常命中。
+    """
     monkeypatch.setenv(ui.UI_ENV_VAR, "1")
     monkeypatch.setattr(ui, "ui_dist_dir", lambda: dist)
+    data_root = tmp_path / "data-root"
+    data_root.mkdir(exist_ok=True)
+    monkeypatch.setenv("DEEPQUANT_DATA_ROOT", str(data_root))
     app = create_app()
     return TestClient(app)
 

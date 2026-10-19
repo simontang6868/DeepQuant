@@ -134,8 +134,11 @@ def test_render_report_is_deterministic():
                        "max_fill_days": 3},
     }
     inp = build_report_input(info, results, pd.DataFrame(), {"A": [], "B": []}, ["注记"])
-    md1 = render_report(inp)
-    md2 = render_report(inp)
+    # 显式注入同一时刻：render_report 默认取挂钟时间（精确到秒），
+    # 两次调用跨秒就会得到不同文本 → 本用例曾长期 flaky（CI 上随机红）。
+    # 断言未改，只是把"可复现"这一契约真正钉死。
+    md1 = render_report(inp, generated_at="2026-01-01 00:00:00")
+    md2 = render_report(inp, generated_at="2026-01-01 00:00:00")
     assert md1 == md2
     assert "股债利差与长期市场机会识别研究报告" in md1
     assert "不构成任何投资建议" in md1
