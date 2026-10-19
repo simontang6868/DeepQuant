@@ -1,0 +1,211 @@
+{
+  "generated_at": "2026-10-19T20:47:20",
+  "cash": 100000.0,
+  "lot_size": 100,
+  "judgement": "affordable_whole = 窗口内最高收盘×手数 ≤ 整笔资金（独立账户能否建仓，strict）；affordable_equal = 同一门槛但按等权预算 cash/N 重算（在组合里能否占一份）；affordable_whole_lenient = 用最低收盘判（曾经有机会买）。本文件 strict 为主判据。",
+  "pools": {
+    "step75_6": {
+      "dir": "D:/DeepQuant power by txm/DeepQuant-main/data/step75_ext",
+      "n_files": 6,
+      "curve": [
+        {
+          "year": 2017,
+          "n_with_data": 5,
+          "n_whole": 5,
+          "n_equal": 4,
+          "n_lenient": 5,
+          "equal_budget": 16666.67,
+          "blocked_whole": []
+        },
+        {
+          "year": 2018,
+          "n_with_data": 6,
+          "n_whole": 6,
+          "n_equal": 5,
+          "n_lenient": 6,
+          "equal_budget": 16666.67,
+          "blocked_whole": []
+        },
+        {
+          "year": 2019,
+          "n_with_data": 6,
+          "n_whole": 6,
+          "n_equal": 5,
+          "n_lenient": 6,
+          "equal_budget": 16666.67,
+          "blocked_whole": []
+        },
+        {
+          "year": 2020,
+          "n_with_data": 6,
+          "n_whole": 5,
+          "n_equal": 3,
+          "n_lenient": 6,
+          "equal_budget": 16666.67,
+          "blocked_whole": [
+            "600519.SH"
+          ]
+        },
+        {
+          "year": 2021,
+          "n_with_data": 6,
+          "n_whole": 5,
+          "n_equal": 3,
+          "n_lenient": 5,
+          "equal_budget": 16666.67,
+          "blocked_whole": [
+            "600519.SH"
+          ]
+        },
+        {
+          "year": 2022,
+          "n_with_data": 6,
+          "n_whole": 5,
+          "n_equal": 3,
+          "n_lenient": 5,
+          "equal_budget": 16666.67,
+          "blocked_whole": [
+            "600519.SH"
+          ]
+        },
+        {
+          "year": 2023,
+          "n_with_data": 6,
+          "n_whole": 5,
+          "n_equal": 3,
+          "n_lenient": 5,
+          "equal_budget": 16666.67,
+          "blocked_whole": [
+            "600519.SH"
+          ]
+        },
+        {
+          "year": 2024,
+          "n_with_data": 6,
+          "n_whole": 5,
+          "n_equal": 4,
+          "n_lenient": 5,
+          "equal_budget": 16666.67,
+          "blocked_whole": [
+            "600519.SH"
+          ]
+        },
+        {
+          "year": 2025,
+          "n_with_data": 6,
+          "n_whole": 5,
+          "n_equal": 4,
+          "n_lenient": 5,
+          "equal_budget": 16666.67,
+          "blocked_whole": [
+            "600519.SH"
+          ]
+        },
+        {
+          "year": 2026,
+          "n_with_data": 6,
+          "n_whole": 5,
+          "n_equal": 4,
+          "n_lenient": 5,
+          "equal_budget": 16666.67,
+          "blocked_whole": [
+            "600519.SH"
+          ]
+        }
+      ],
+      "first_blocked_by_symbol": {
+        "600519.SH": {
+          "first_blocked_year": 2020,
+          "blocked_years": [
+            2020,
+            2021,
+            2022,
+            2023,
+            2024,
+            2025,
+            2026
+          ]
+        }
+      }
+    },
+    "b50_v3": {
+      "dir": "D:/DeepQuant power by txm/b50_v3",
+      "n_files": 50,
+      "curve": [
+        {
+          "year": 2017,
+          "n_with_data": 41,
+          "n_whole": 41,
+          "n_equal": 28,
+          "n_lenient": 41,
+          "equal_budget": 2000.0,
+          "blocked_whole": []
+        },
+        {
+          "year": 2018,
+          "n_with_data": 43,
+          "n_whole": 43,
+          "n_equal": 32,
+          "n_lenient": 43,
+          "equal_budget": 2000.0,
+          "blocked_whole": []
+        },
+        {
+          "year": 2019,
+          "n_with_data": 44,
+          "n_whole": 44,
+          "n_equal": 31,
+          "n_lenient": 44,
+          "equal_budget": 2000.0,
+          "blocked_whole": []
+        },
+        {
+          "year": 2020,
+          "n_with_data": 47,
+          "n_whole": 47,
+          "n_equal": 26,
+          "n_lenient": 47,
+          "equal_budget": 2000.0,
+          "blocked_whole": []
+        },
+        {
+          "year": 2021,
+          "n_with_data": 48,
+          "n_whole": 48,
+          "n_equal": 20,
+          "n_lenient": 48,
+          "equal_budget": 2000.0,
+          "blocked_whole": []
+        },
+        {
+          "year": 2022,
+          "n_with_data": 50,
+          "n_whole": 50,
+          "n_equal": 24,
+          "n_lenient": 50,
+          "equal_budget": 2000.0,
+          "blocked_whole": []
+        },
+        {
+          "year": 2023,
+          "n_with_data": 50,
+          "n_whole": 50,
+          "n_equal": 28,
+          "n_lenient": 50,
+          "equal_budget": 2000.0,
+          "blocked_whole": []
+        },
+        {
+          "year": 2024,
+          "n_with_data": 50,
+          "n_whole": 50,
+          "n_equal": 23,
+          "n_lenient": 50,
+          "equal_budget": 2000.0,
+          "blocked_whole": []
+        }
+      ],
+      "first_blocked_by_symbol": {}
+    }
+  }
+}
