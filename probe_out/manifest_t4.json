@@ -1,0 +1,25 @@
+{
+ "message": "A 线收官：存量补推 backend/tests 批次 4/6（20 个文件，backend/tests/performance/test_gate1_judgement.py .. backend/tests/persistence/test_store_contracts.py）",
+ "files": [
+  "backend/tests/performance/test_gate1_judgement.py",
+  "backend/tests/performance/test_gate1_report.py",
+  "backend/tests/performance/test_integration.py",
+  "backend/tests/performance/test_metrics.py",
+  "backend/tests/performance/test_portfolio_metrics.py",
+  "backend/tests/performance/test_reproducibility.py",
+  "backend/tests/performance/test_reproducibility_coverage.py",
+  "backend/tests/performance/test_serialization_contracts.py",
+  "backend/tests/performance/test_serialize.py",
+  "backend/tests/performance/test_w1_completeness.py",
+  "backend/tests/performance/test_window_distribution.py",
+  "backend/tests/performance/test_window_records.py",
+  "backend/tests/performance/test_window_records_integrity.py",
+  "backend/tests/persistence/test_integrity.py",
+  "backend/tests/persistence/test_repro_checklist.py",
+  "backend/tests/persistence/test_signal_store.py",
+  "backend/tests/persistence/test_signal_store_contracts.py",
+  "backend/tests/persistence/test_signal_store_symbol.py",
+  "backend/tests/persistence/test_store.py",
+  "backend/tests/persistence/test_store_contracts.py"
+ ]
+}

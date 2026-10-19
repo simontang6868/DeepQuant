@@ -1,0 +1,65 @@
+........................................................................ [  4%]
+................F..F.................................................... [  8%]
+........................................................................ [ 12%]
+........................................................................ [ 16%]
+........................................................................ [ 20%]
+........................................................................ [ 24%]
+........................................................................ [ 28%]
+........................................................................ [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 40%]
+..................................s..................................... [ 44%]
+........................................................................ [ 48%]
+........................................................................ [ 52%]
+........................................................................ [ 56%]
+........................................................................ [ 60%]
+........................................................................ [ 64%]
+........................................................................ [ 68%]
+........................................................................ [ 72%]
+........................................................................ [ 76%]
+..........................x............................................. [ 80%]
+........................................................................ [ 84%]
+........................................................................ [ 88%]
+........................................................................ [ 92%]
+........................................................................ [ 97%]
+.....................................................                    [100%]
+================================== FAILURES ===================================
+_________________________ test_list_filter_by_symbol __________________________
+
+client = <starlette.testclient.TestClient object at 0x0000016B9BA24130>
+data_root = WindowsPath('C:/Users/77436/AppData/Local/Temp/pytest-of-77436/pytest-253/test_list_filter_by_symbol0/data')
+tmp_path = WindowsPath('C:/Users/77436/AppData/Local/Temp/pytest-of-77436/pytest-253/test_list_filter_by_symbol0')
+valid_backtest_payload = {'dataset_symbol': 'TEST01', 'strategy_id': 'ma_cross', 'strategy_params': {'fast_window': 5, 'slow_window': 20}, 'initial_cash': 100000}
+
+    def test_list_filter_by_symbol(
+        client, data_root, tmp_path, valid_backtest_payload
+    ) -> None:
+        """按 symbol 过滤正确。"""
+>       from conftest import ingest_dataset
+E       ImportError: cannot import name 'ingest_dataset' from 'conftest' (D:\DeepQuant power by txm\DeepQuant-main\backend\tests\research_fixes\conftest.py)
+
+tests\api\test_backtest_history_api.py:101: ImportError
+______________________ test_list_combined_filters_total _______________________
+
+client = <starlette.testclient.TestClient object at 0x0000016B9BB1EC10>
+data_root = WindowsPath('C:/Users/77436/AppData/Local/Temp/pytest-of-77436/pytest-253/test_list_combined_filters_tot0/data')
+tmp_path = WindowsPath('C:/Users/77436/AppData/Local/Temp/pytest-of-77436/pytest-253/test_list_combined_filters_tot0')
+valid_backtest_payload = {'dataset_symbol': 'TEST01', 'strategy_id': 'ma_cross', 'strategy_params': {'fast_window': 5, 'slow_window': 20}, 'initial_cash': 100000}
+
+    def test_list_combined_filters_total(
+        client, data_root, tmp_path, valid_backtest_payload
+    ) -> None:
+        """多过滤条件组合时，total 为过滤后总数（非当前页数量）。"""
+>       from conftest import ingest_dataset
+E       ImportError: cannot import name 'ingest_dataset' from 'conftest' (D:\DeepQuant power by txm\DeepQuant-main\backend\tests\research_fixes\conftest.py)
+
+tests\api\test_backtest_history_api.py:153: ImportError
+============================== warnings summary ===============================
+..\..\venv\Lib\site-packages\fastapi\testclient.py:1
+  D:\DeepQuant power by txm\venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+XFAIL tests/research_fixes/test_ap1_control_input_separation.py::test_fingerprint_is_sensitive_to_content_not_just_symbol_set - 新发现缺陷 #9（A 线 2026-10-19 01:55 实测，只测不修）：`make_run_id` 与 `pool_fingerprint` 的 docstring 都写「内容哈希 / 池子输入指纹」，但实现只哈希『标的集合 + 每只行数 + 首末日期』，**完全不覆盖价格数值**。后果：两只形状/日期相同但价格不同的数据集会得到同一个 run_id，而 run_id 正是输出目录名与 `ensure_no_overwrite` 的判据 —— 要么两次不同数据的产物被归到同一目录，要么第二次被误判为『已存在』而拒绝执行。对 D1 的影响：现有指纹只能证明『标的集合不同』，不能证明『数据本身不同』。修好后本用例 XPASS，strict=True 会报错提醒移除本标记。
+2 failed, 1777 passed, 1 skipped, 1 xfailed, 1 warning in 102.47s (0:01:42)

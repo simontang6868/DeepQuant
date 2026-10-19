@@ -1,0 +1,91 @@
+{
+  "prereg_id": "stage0-survivorship-2026-10-19",
+  "version": "1.2",
+  "frozen_at": "2026-10-19T22:01:00",
+  "status": "FROZEN_BEFORE_RESULTS",
+  "supersedes": ["1.0", "1.1"],
+  "question": "把在市值从 csi300 等距抽样 50 只扩到 csi300 全量 298 只之后，v1.1 的 S1 结论是否仍然成立？幅度怎么变？",
+  "why_v1_2": {
+    "problem": "v1.1 的 A 组是 csi300 的等距抽样 50 只。csi300_50.json 的 meta 自己写着 bias_sampling：『等距抽样非随机，代码分段与行业相关，行业分布不完全均衡』。这意味着 v1.1 的「在市组」除了幸存者偏差之外，还叠了一层抽样偏差，两者无法区分。",
+    "fix": "用 data/step75/build_universe.py --n 300 抓 csi300 全量成分（实测 298/298，2 只 unsupported_board 被剔除），A 组从 50 → 298 只。",
+    "what_this_removes": "只消除 bias_sampling（抽样偏差）。不消除 bias_survivorship（当日成分向前倒推的幸存者偏差）—— 后者必须靠 PIT 数据，T1 闸门未开，不在本次范围。",
+    "what_does_not_change": "B 组、策略、网格、费率、资金、区间、涨跌停、观测单元、检验方法、S0-S3 四条判据及其措辞，逐条与 v1.1 相同。"
+  },
+  "design": {
+    "arms": {
+      "A_listed": {
+        "label": "在市组（csi300 全量）",
+        "definition": "data/step75/universe/csi300_full.json 的 298 只",
+        "expected_n": 298
+      },
+      "B_delisted": {
+        "label": "退市组",
+        "definition": "docs/DELIST_UNIVERSE_2026-10-19.json 中 delist_date >= 2017-01-01 的全量 262 只",
+        "expected_n": 262
+      }
+    },
+    "strategy": "ma_cross",
+    "params_grid": {
+      "fast_candidates": [3, 5, 10, 20],
+      "slow_candidates": [15, 25, 40, 60],
+      "min_train_periods": 150,
+      "min_oos_periods": 75,
+      "min_trades": 2,
+      "max_combinations": 50
+    },
+    "fee_preset": "simulation_placeholder",
+    "initial_cash": 100000.0,
+    "date_range": ["2017-01-01", "2024-12-31"],
+    "price_limit_mode": "board",
+    "data_layout": "mult（乘性前复权，与 v1.1 相同；qfq_mult = hfq x (raw_anchor / hfq_anchor)）"
+  },
+  "observation_unit": "每只标的每个 walk-forward 窗口的 cumulative_return，须满足 selection_success & oos_success & final_equity 非 None & oos_is_complete",
+  "primary_test": {
+    "name": "Mann-Whitney U（单侧，B < A）",
+    "effect_size": "median(B) - median(A)",
+    "alpha": 0.05
+  },
+  "decision_rules": [
+    {"id": "S0", "label": "INSUFFICIENT_DATA", "condition": "任一组有效窗口 < 30"},
+    {"id": "S1", "label": "SURVIVORSHIP_MATERIAL", "condition": "p_one_sided < 0.05 且 median(B) < median(A)"},
+    {"id": "S2", "label": "SURVIVORSHIP_REVERSED", "condition": "p_two_sided < 0.05 且 median(B) > median(A)"},
+    {"id": "S3", "label": "SURVIVORSHIP_IMMATERIAL", "condition": "以上皆不满足（不等于『偏差不存在』）"}
+  ],
+  "preregistered_predictions": [
+    {
+      "id": "P1",
+      "claim": "判定仍为 S1（SURVIVORSHIP_MATERIAL）",
+      "rationale": "v1.1 的 Δ=-1.47pp、p=2e-06 距离阈值很远；扩样若只增加观测数，方向不会翻"
+    },
+    {
+      "id": "P2",
+      "claim": "A 组中位相对 v1.1（-1.52%）的变化幅度 < 1pp",
+      "rationale": "若抽样偏差影响不大，50 只与 298 只的中位应接近；若变了超过 1pp，说明 v1.1 的 A 组不具代表性，v1.1 的幅度需作废"
+    },
+    {
+      "id": "P3",
+      "claim": "Δmedian 落在 -1.0pp ~ -2.0pp 之间",
+      "rationale": "以 v1.1 的 -1.47pp 为中心，扩样后可能略微移动但不应改变量级"
+    },
+    {
+      "id": "P4",
+      "claim": "2017-2020 起始窗口的 Δ 仍强于 2021-2024 起始窗口",
+      "rationale": "时间结构在 v1.0/v1.1 两套复权口径下都成立，不像是抽样偶然"
+    }
+  ],
+  "mandatory_reporting": [
+    "v1.1（50 只）与 v1.2（298 只）的 A 组中位并列对比 —— 这是本次唯一新增的自变量",
+    "四条预登记预测逐条核对，落空的必须明写，不得改口径回圆",
+    "两组的有效窗口数、零成交窗口、data_quality_gate / file_missing / too_short 逐条清单",
+    "按 OOS 起始年份的时间切分（两段）",
+    "剔除 B 股后的对照",
+    "A 组仍为「当日成分向前倒推」的声明：本次只消除抽样偏差，不消除幸存者偏差"
+  ],
+  "hard_constraints": [
+    "参数在看到结果后不得修改；要改必须新开 v1.3 并声明 v1.2 作废",
+    "不得因为 298 只的结果更『好看』或更『难看』而回头改 50 只的口径",
+    "不得把本结果表述为『策略在全市场无效』—— csi300 全量仍不是全市场（5,575 只）",
+    "不得把本结果称为 PIT 池 —— 它仍是当日成分向前倒推",
+    "no_quote / fail / file_missing 的标的不得做任何价格填充"
+  ]
+}

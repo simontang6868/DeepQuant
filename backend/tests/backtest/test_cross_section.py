@@ -11,6 +11,7 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 import pandas as pd
@@ -35,7 +36,11 @@ from deepquant.backtest.cross_section import (
 )
 from deepquant.backtest.portfolio import equal_weight_targets
 
-REAL_600809 = Path(r"D:/DeepQuant power by txm/b50_v3/600809.SH.qfq.csv")
+# 真实行情样本不在仓库内（b50_v3 是本机历史产物）。默认值保留原作者的绝对路径，
+# 以便在该机上零配置运行；换机器用 DEEPQUANT_REAL_600809 指过去，指不到就按
+# skipif 跳过——绝不允许"因为路径不存在，所以这条真实数据回归悄悄不跑了"却不留痕。
+_DEFAULT_REAL_600809 = r"D:/DeepQuant power by txm/b50_v3/600809.SH.qfq.csv"
+REAL_600809 = Path(os.environ.get("DEEPQUANT_REAL_600809", _DEFAULT_REAL_600809))
 
 N_DAYS = 70          # 信号日 = 第 69 个位置；窗口 [5, 64]
 SIGNAL_POS = 69

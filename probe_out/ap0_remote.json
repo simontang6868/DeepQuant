@@ -1,0 +1,571 @@
+{
+ "main_sha": "c1919456757b070e40e51e0642d430adb2ef8452",
+ "branches": [
+  {
+   "name": "main",
+   "sha": "c1919456757b070e40e51e0642d430adb2ef8452"
+  },
+  {
+   "name": "step-8.1-signal-events",
+   "sha": "f161bc03518a43a8e7cc7987561a86160137c361"
+  },
+  {
+   "name": "workbuddy/a10b-checks-extended-cov",
+   "sha": "81fa745465a1f932123718b94a6c36ff207770cd"
+  },
+  {
+   "name": "workbuddy/a11-parameter-selection-cov",
+   "sha": "ccbf09a116da1271699be9f0ac52b17814947b9d"
+  },
+  {
+   "name": "workbuddy/a13-coverage-refresh",
+   "sha": "88381d6024aab9aeadc00be48507232c2f383ad3"
+  },
+  {
+   "name": "workbuddy/a13-routes-backtests",
+   "sha": "72a0d7f5684823872d00b1f6ad42e363e88bec2a"
+  },
+  {
+   "name": "workbuddy/a15-r12-window-stats-defense",
+   "sha": "a1b64de6e03410b98cde1a3192e4a2884efbf0e1"
+  },
+  {
+   "name": "workbuddy/a16-models-contracts",
+   "sha": "50cb279a6fcc6f4e39d0a871d86e14d39d8a4a0c"
+  },
+  {
+   "name": "workbuddy/a16-registry-contracts",
+   "sha": "73c1fd02818d9d39cf701fe66ac040c72fbe6444"
+  },
+  {
+   "name": "workbuddy/a16-signals-contracts",
+   "sha": "ecebca054e194de153004dcdc5bc8f08b22b13cc"
+  },
+  {
+   "name": "workbuddy/a16-store-contracts",
+   "sha": "c8703572afe00bccda6f90df4d69dab7ef671e75"
+  },
+  {
+   "name": "workbuddy/a-2026-10-18-final",
+   "sha": "57f926534af3b2a52ac2bacd0ce4fc04b1a32b59"
+  },
+  {
+   "name": "workbuddy/a-checks-extended-cov",
+   "sha": "78416b2471cb8ead8b0fac46b5abf4ad66446013"
+  },
+  {
+   "name": "workbuddy/a-ci-hardening",
+   "sha": "ba8ddeb2693d392b524196f4361a00e0ae37fd2a"
+  },
+  {
+   "name": "workbuddy/a-coverage-gaps",
+   "sha": "6a419b5877651b5f77f9bad63d407153796465db"
+  },
+  {
+   "name": "workbuddy/a-docs-sync",
+   "sha": "98e66a268abd1f661df0647e4804e311a6e30e78"
+  },
+  {
+   "name": "workbuddy/a-e2e-smoke",
+   "sha": "4befdbf113aa6c7bbc066f01904a190c8b640a62"
+  },
+  {
+   "name": "workbuddy/a-ensemble-report",
+   "sha": "5fccca7f07b2c2bb786e8806e90d9480fc0934b2"
+  },
+  {
+   "name": "workbuddy/a-fee-presets-cov",
+   "sha": "1357ac5da1899eb3ece0fbc0c264b1760f35bea4"
+  },
+  {
+   "name": "workbuddy/a-pytest-markers",
+   "sha": "57643496a33f5792072ba488b0679402aee3b9ac"
+  },
+  {
+   "name": "workbuddy/a-serialization-contracts",
+   "sha": "860561843e6fb302a28712659d62974bcdb88cfc"
+  },
+  {
+   "name": "workbuddy/a-signal-store-symbol",
+   "sha": "b958757ffa267dcb6dc21ab9a14f08b44fe5b557"
+  },
+  {
+   "name": "workbuddy/a-test-hardening",
+   "sha": "d66db738686709946e648390a21d4c8d962600c6"
+  },
+  {
+   "name": "workbuddy/b15-8y-summary",
+   "sha": "abd99e8747802d1fc9dc9a6bded3134b9ed66edc"
+  },
+  {
+   "name": "workbuddy/b16-direction-verdict",
+   "sha": "09c5b110892422ff90f30bd30059eaeb612921b4"
+  },
+  {
+   "name": "workbuddy/b17-closure-report",
+   "sha": "8e1e0e344da1859f62750bc5f577e28fd034b13f"
+  },
+  {
+   "name": "workbuddy/b18-gate0-device",
+   "sha": "cad648c08c37902de1885d2aac276faccdffdf33"
+  },
+  {
+   "name": "workbuddy/b19-a3-portfolio",
+   "sha": "d119fe475d31ced8e1d1de220a110e54ef92332a"
+  },
+  {
+   "name": "workbuddy/b-2026-10-18-final",
+   "sha": "9fdef26829c7312171504e80e930732d5647598b"
+  },
+  {
+   "name": "workbuddy/b-akshare-dep",
+   "sha": "88d03e69da3e63170754c63645120e23ae817e37"
+  },
+  {
+   "name": "workbuddy/b-akshare-tencent-fallback",
+   "sha": "d08aa04b5a8140ce10a7dc4b7f7a03d915678d1b"
+  },
+  {
+   "name": "workbuddy/b-decision-proposal",
+   "sha": "97c4d9d6ad6c0a3c11515c0d09edacc8767986b9"
+  },
+  {
+   "name": "workbuddy/b-design-audit",
+   "sha": "2ce9ea0dc0a1ca45a06cec6dd8d2d1af1675e7cc"
+  },
+  {
+   "name": "workbuddy/b-design-probe",
+   "sha": "45a61ad8a3f0c9e925045764331394cfd397b682"
+  },
+  {
+   "name": "workbuddy/b-diag-oos-zero-median",
+   "sha": "8c6f58bae9d17bf383a5c9cfd16258b19660ab63"
+  },
+  {
+   "name": "workbuddy/b-expansion",
+   "sha": "9ea8e78b5404493dc998e9cd26c7518d1de2254a"
+  },
+  {
+   "name": "workbuddy/b-external-validity",
+   "sha": "9070f47094d1a16f0b432973b8056ffe8f020578"
+  },
+  {
+   "name": "workbuddy/b-oos75",
+   "sha": "1626ad529c45aa9aec98da18f6c9d608fcb6e5ed"
+  },
+  {
+   "name": "workbuddy/b-pr-review",
+   "sha": "8e8e3dd11c4c6a9bf6b8c10e016051955e6a929d"
+  },
+  {
+   "name": "workbuddy/b-research-gate",
+   "sha": "cc35b74e730674e4d91f53e5765693a77f1edd8e"
+  },
+  {
+   "name": "workbuddy/b-return-shape",
+   "sha": "9e45dc6d03adce225fcfe7ccd2754323f901d6b3"
+  },
+  {
+   "name": "workbuddy/b-window-skew",
+   "sha": "38e1acba1f83afbab4cc946a3c73bf6d2a4547b7"
+  },
+  {
+   "name": "workbuddy/ensemble-eval",
+   "sha": "9b7250f8d4771c7aa50ca746e770193790363618"
+  },
+  {
+   "name": "workbuddy/fix-ci-pythonpath",
+   "sha": "4dbae4f93b179abdb9fdb80e6ae84d1a06a8427a"
+  },
+  {
+   "name": "workbuddy/signal-store",
+   "sha": "31921bf10cf39397218844fcbe5438db5907904d"
+  },
+  {
+   "name": "workbuddy/step8-ensemble",
+   "sha": "118e3c639aeb4659681a260ba86d8e7ac4e14a98"
+  },
+  {
+   "name": "workbuddy/step8-signal-layer",
+   "sha": "4f8cfc2c8cfbdbad6218ad4bb6c0273dfa54d289"
+  }
+ ],
+ "open_prs": [
+  {
+   "number": 45,
+   "title": "A13+ #1：api/routes/backtests.py 覆盖率 142/7 → 100%（HTTP 层错误分支契约）",
+   "head": "workbuddy/a13-routes-backtests",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T16:47:25Z",
+   "updated_at": "2026-10-18T16:47:25Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 44,
+   "title": "B 线收官：Gate 1 实验 + 研究报告（2026-10-18）",
+   "head": "workbuddy/b-2026-10-18-final",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T16:33:29Z",
+   "updated_at": "2026-10-18T17:01:23Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 43,
+   "title": "A 线收官：测试报告 + 契约测试 + 覆盖率刷新（2026-10-18）",
+   "head": "workbuddy/a-2026-10-18-final",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T16:20:25Z",
+   "updated_at": "2026-10-18T16:50:29Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 42,
+   "title": "A16#4: strategies/signals.py 契约与不变量测试",
+   "head": "workbuddy/a16-signals-contracts",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T07:17:10Z",
+   "updated_at": "2026-10-18T07:17:10Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 41,
+   "title": "A16#3: api/registry.py 契约与不变量测试",
+   "head": "workbuddy/a16-registry-contracts",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T07:01:10Z",
+   "updated_at": "2026-10-18T07:01:10Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 40,
+   "title": "A16#2: backtest/models.py 契约与不变量测试",
+   "head": "workbuddy/a16-models-contracts",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T05:41:35Z",
+   "updated_at": "2026-10-18T05:41:35Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 39,
+   "title": "A16#1: store.py 契约与不变量测试",
+   "head": "workbuddy/a16-store-contracts",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T04:20:21Z",
+   "updated_at": "2026-10-18T04:20:21Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 38,
+   "title": "A15: R12 防线——窗口级统计 ≠ 连续账户净值",
+   "head": "workbuddy/a15-r12-window-stats-defense",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T04:20:12Z",
+   "updated_at": "2026-10-18T04:20:12Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 37,
+   "title": "A13: 刷新覆盖率基线（2026-10-18）",
+   "head": "workbuddy/a13-coverage-refresh",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T04:20:04Z",
+   "updated_at": "2026-10-18T04:20:04Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 36,
+   "title": "B19/B20：A3 组合记账循环（四项口径落地）+ 窗口级 B0/B1 基准回补",
+   "head": "workbuddy/b19-a3-portfolio",
+   "base": "workbuddy/b18-gate0-device",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-18T04:13:27Z",
+   "updated_at": "2026-10-18T04:13:27Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  },
+  {
+   "number": 35,
+   "title": "B18 Gate 0（一）：涨跌停启用 + 基准体系 + Sharpe/换手率 + 组合层 A1/A2",
+   "head": "workbuddy/b18-gate0-device",
+   "base": "main",
+   "draft": false,
+   "mergeable": null,
+   "mergeable_state": null,
+   "created_at": "2026-10-17T18:28:54Z",
+   "updated_at": "2026-10-17T18:28:54Z",
+   "commits": null,
+   "changed_files": null,
+   "additions": null,
+   "deletions": null
+  }
+ ],
+ "repo": {
+  "default_branch": "main",
+  "pushed_at": "2026-10-18T17:01:22Z",
+  "size_kb": 1503,
+  "private": false
+ },
+ "recent_commits": [
+  {
+   "sha": "c191945675",
+   "msg": "Merge pull request #31 from simontang6868/workbuddy/b17-closure-report",
+   "date": "2026-10-17T18:16:46Z"
+  },
+  {
+   "sha": "b7cfbe5b40",
+   "msg": "Merge pull request #30 from simontang6868/workbuddy/b16-direction-verdict",
+   "date": "2026-10-17T18:16:36Z"
+  },
+  {
+   "sha": "0cec70b429",
+   "msg": "Merge pull request #34 from simontang6868/workbuddy/a10b-checks-extended-cov",
+   "date": "2026-10-17T18:16:27Z"
+  },
+  {
+   "sha": "d34d37920c",
+   "msg": "Merge pull request #33 from simontang6868/workbuddy/a11-parameter-selection-cov",
+   "date": "2026-10-17T18:16:19Z"
+  },
+  {
+   "sha": "692606b72a",
+   "msg": "Merge pull request #32 from simontang6868/workbuddy/a-serialization-contracts",
+   "date": "2026-10-17T18:16:09Z"
+  }
+ ],
+ "open_prs_detail": [
+  {
+   "number": 45,
+   "title": "A13+ #1：api/routes/backtests.py 覆盖率 142/7 → 100%（HTTP 层错误分支契约）",
+   "head": "workbuddy/a13-routes-backtests",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 1,
+   "additions": 453,
+   "deletions": 0,
+   "created_at": "2026-10-18T16:47:25Z",
+   "updated_at": "2026-10-18T16:47:25Z",
+   "draft": false,
+   "head_sha": "72a0d7f5684823872d00b1f6ad42e363e88bec2a"
+  },
+  {
+   "number": 44,
+   "title": "B 线收官：Gate 1 实验 + 研究报告（2026-10-18）",
+   "head": "workbuddy/b-2026-10-18-final",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "unstable",
+   "commits": 7,
+   "changed_files": 90,
+   "additions": 21667,
+   "deletions": 1057,
+   "created_at": "2026-10-18T16:33:29Z",
+   "updated_at": "2026-10-18T17:01:23Z",
+   "draft": false,
+   "head_sha": "9fdef26829c7312171504e80e930732d5647598b"
+  },
+  {
+   "number": 43,
+   "title": "A 线收官：测试报告 + 契约测试 + 覆盖率刷新（2026-10-18）",
+   "head": "workbuddy/a-2026-10-18-final",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "unstable",
+   "commits": 9,
+   "changed_files": 62,
+   "additions": 13264,
+   "deletions": 121,
+   "created_at": "2026-10-18T16:20:25Z",
+   "updated_at": "2026-10-18T16:50:29Z",
+   "draft": false,
+   "head_sha": "57f926534af3b2a52ac2bacd0ce4fc04b1a32b59"
+  },
+  {
+   "number": 42,
+   "title": "A16#4: strategies/signals.py 契约与不变量测试",
+   "head": "workbuddy/a16-signals-contracts",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 1,
+   "additions": 128,
+   "deletions": 0,
+   "created_at": "2026-10-18T07:17:10Z",
+   "updated_at": "2026-10-18T07:17:10Z",
+   "draft": false,
+   "head_sha": "ecebca054e194de153004dcdc5bc8f08b22b13cc"
+  },
+  {
+   "number": 41,
+   "title": "A16#3: api/registry.py 契约与不变量测试",
+   "head": "workbuddy/a16-registry-contracts",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 1,
+   "additions": 101,
+   "deletions": 0,
+   "created_at": "2026-10-18T07:01:10Z",
+   "updated_at": "2026-10-18T07:01:10Z",
+   "draft": false,
+   "head_sha": "73c1fd02818d9d39cf701fe66ac040c72fbe6444"
+  },
+  {
+   "number": 40,
+   "title": "A16#2: backtest/models.py 契约与不变量测试",
+   "head": "workbuddy/a16-models-contracts",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 1,
+   "additions": 262,
+   "deletions": 0,
+   "created_at": "2026-10-18T05:41:35Z",
+   "updated_at": "2026-10-18T05:41:35Z",
+   "draft": false,
+   "head_sha": "50cb279a6fcc6f4e39d0a871d86e14d39d8a4a0c"
+  },
+  {
+   "number": 39,
+   "title": "A16#1: store.py 契约与不变量测试",
+   "head": "workbuddy/a16-store-contracts",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 1,
+   "additions": 288,
+   "deletions": 0,
+   "created_at": "2026-10-18T04:20:21Z",
+   "updated_at": "2026-10-18T04:20:21Z",
+   "draft": false,
+   "head_sha": "c8703572afe00bccda6f90df4d69dab7ef671e75"
+  },
+  {
+   "number": 38,
+   "title": "A15: R12 防线——窗口级统计 ≠ 连续账户净值",
+   "head": "workbuddy/a15-r12-window-stats-defense",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 1,
+   "additions": 159,
+   "deletions": 0,
+   "created_at": "2026-10-18T04:20:12Z",
+   "updated_at": "2026-10-18T04:20:12Z",
+   "draft": false,
+   "head_sha": "a1b64de6e03410b98cde1a3192e4a2884efbf0e1"
+  },
+  {
+   "number": 37,
+   "title": "A13: 刷新覆盖率基线（2026-10-18）",
+   "head": "workbuddy/a13-coverage-refresh",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 1,
+   "additions": 59,
+   "deletions": 0,
+   "created_at": "2026-10-18T04:20:04Z",
+   "updated_at": "2026-10-18T04:20:04Z",
+   "draft": false,
+   "head_sha": "88381d6024aab9aeadc00be48507232c2f383ad3"
+  },
+  {
+   "number": 36,
+   "title": "B19/B20：A3 组合记账循环（四项口径落地）+ 窗口级 B0/B1 基准回补",
+   "head": "workbuddy/b19-a3-portfolio",
+   "base": "workbuddy/b18-gate0-device",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 13,
+   "additions": 3190,
+   "deletions": 21,
+   "created_at": "2026-10-18T04:13:27Z",
+   "updated_at": "2026-10-18T04:13:27Z",
+   "draft": false,
+   "head_sha": "d119fe475d31ced8e1d1de220a110e54ef92332a"
+  },
+  {
+   "number": 35,
+   "title": "B18 Gate 0（一）：涨跌停启用 + 基准体系 + Sharpe/换手率 + 组合层 A1/A2",
+   "head": "workbuddy/b18-gate0-device",
+   "base": "main",
+   "mergeable": true,
+   "mergeable_state": "clean",
+   "commits": 1,
+   "changed_files": 17,
+   "additions": 2338,
+   "deletions": 16,
+   "created_at": "2026-10-17T18:28:54Z",
+   "updated_at": "2026-10-17T18:28:54Z",
+   "draft": false,
+   "head_sha": "cad648c08c37902de1885d2aac276faccdffdf33"
+  }
+ ]
+}

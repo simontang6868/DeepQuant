@@ -1,0 +1,25 @@
+{
+ "message": "A 线收官：存量补推 backend/tests 批次 3/6（20 个文件，backend/tests/backtest/test_portfolio_end_to_end.py .. backend/tests/performance/test_comparison.py）",
+ "files": [
+  "backend/tests/backtest/test_portfolio_end_to_end.py",
+  "backend/tests/backtest/test_portfolio_engine_parity.py",
+  "backend/tests/backtest/test_portfolio_schedule.py",
+  "backend/tests/data/test_akshare_live.py",
+  "backend/tests/data/test_akshare_loader.py",
+  "backend/tests/data/test_checks_extended.py",
+  "backend/tests/data/test_checks_extended_coverage.py",
+  "backend/tests/data/test_csv_loader.py",
+  "backend/tests/data/test_end_to_end.py",
+  "backend/tests/data/test_import_pool.py",
+  "backend/tests/data/test_instrument_name.py",
+  "backend/tests/data/test_pipeline.py",
+  "backend/tests/data/test_pipeline_contracts.py",
+  "backend/tests/data/test_validation.py",
+  "backend/tests/market/test_ashare.py",
+  "backend/tests/market/test_price_limit_rate.py",
+  "backend/tests/market/test_rules.py",
+  "backend/tests/performance/helpers.py",
+  "backend/tests/performance/test_benchmarks.py",
+  "backend/tests/performance/test_comparison.py"
+ ]
+}

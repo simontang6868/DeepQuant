@@ -40,23 +40,29 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0, help="只跑前 N 只（试跑用）")
     ap.add_argument("--force", action="store_true", help="覆盖已存在文件")
+    ap.add_argument("--pool", default=str(POOL), help="池 json（默认 csi300_50）")
+    ap.add_argument("--manifest", default=str(MANIFEST), help="清单输出路径")
+    ap.add_argument("--out-dir", default=str(OUT_DIR), help="行情输出目录")
     args = ap.parse_args()
 
     import akshare as ak
     import pandas as pd
 
-    payload = json.loads(POOL.read_text(encoding="utf-8"))
+    pool_path = Path(args.pool)
+    out_dir = Path(args.out_dir)
+    manifest_path = Path(args.manifest)
+    payload = json.loads(pool_path.read_text(encoding="utf-8"))
     stocks = payload["stocks"]
     if args.limit:
         stocks = stocks[: args.limit]
-    print(f"[POOL] csi300_50 名单 {len(stocks)} 只，开始补齐行情", flush=True)
+    print(f"[POOL] {pool_path.name} 名单 {len(stocks)} 只，开始补齐行情", flush=True)
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
     rows: list[dict] = []
     for i, s in enumerate(stocks, 1):
         code = s["code"]
         sym = s["tencent_symbol"]
-        path = OUT_DIR / f"{code}.qfq.csv"
+        path = out_dir / f"{code}.qfq.csv"
         status, n_rows, span = "pending", 0, None
 
         if path.exists() and path.stat().st_size > 500 and not args.force:
@@ -95,11 +101,16 @@ def main() -> None:
             print(f"[{i:>3}/{len(stocks)}] {code} {status} {n_rows}", flush=True)
 
     usable = [r for r in rows if r["status"] in ("cached", "downloaded")]
+    # pool 可能是相对路径，resolve() 后再求相对，否则 relative_to 会抛 ValueError
+    try:
+        pool_rel = pool_path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        pool_rel = str(pool_path).replace("\\", "/")
     manifest = {
         "generated_at": __import__("datetime").datetime.now().isoformat(timespec="seconds"),
-        "purpose": "阶段 0a：补齐 50 只 csi300 样本的在市股行情，与 262 只退市股组成时点无关池",
+        "purpose": "阶段 0a：补齐 csi300 样本的在市股行情，与 262 只退市股组成时点无关池",
         "source": f"akshare stock_zh_a_hist_tx(qfq), start={START_DATE}, end={END_DATE}",
-        "pool_file": "data/step75/universe/csi300_50.json",
+        "pool_file": pool_rel,
         "counts": {
             "pool_size": len(rows),
             "usable": len(usable),
@@ -112,9 +123,9 @@ def main() -> None:
         "note": "行情文件在 data/stage0/listed/（不入库）。本清单入库，供复现时按其重建。取不到的不做任何填充。",
         "symbols": rows,
     }
-    MANIFEST.parent.mkdir(parents=True, exist_ok=True)
-    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"[DONE] usable={len(usable)}/{len(rows)}  rows={manifest['counts']['total_rows']}  -> {MANIFEST.name}", flush=True)
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"[DONE] usable={len(usable)}/{len(rows)}  rows={manifest['counts']['total_rows']}  -> {manifest_path.name}", flush=True)
 
 
 if __name__ == "__main__":

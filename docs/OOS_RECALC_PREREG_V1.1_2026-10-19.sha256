@@ -1,0 +1,7 @@
+# 冻结指纹（重算预登记 v1.1，先于任何重算结果）
+56eee69f8fa869015e6d9e830b2299803ad475c8dc96f4bd20a7209df5861dea  docs/oos_recalc_prereg_v1.1_2026-10-19.json
+8be336c28c7550e55aa3ea0c5da947d374f2d5300ac26db5aa5932e4d0844199  docs/OOS_RECALC_PREREG_V1.1_2026-10-19.md
+
+# frozen_at 2026-10-19T22:14:00+08:00
+# 取代 docs/oos_recalc_prereg_2026-10-19.json（5f2e709b…），后者在产生任何组间结果前作废
+# v1 那次运行已终止，未产出 docs/OOS_RESULTS_RECALC_2026-10-19.json

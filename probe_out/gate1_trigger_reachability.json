@@ -1,0 +1,166 @@
+{
+  "mode": "trigger-reachability",
+  "data_root": "D:\\DeepQuant power by txm\\b50_v3",
+  "prereg": {
+    "version": "gate1-prereg-v1.3",
+    "sha256_prefix": "8b011551"
+  },
+  "probe_config": {
+    "lookback": 60,
+    "skip": 5,
+    "top_fraction": 0.2,
+    "price_limit_rate": 0.1
+  },
+  "pool": {
+    "n_symbols": 50,
+    "n_oos_targets": 48,
+    "n_gem": 9,
+    "gem_symbols": [
+      "300059.SZ",
+      "300316.SZ",
+      "300442.SZ",
+      "300661.SZ",
+      "300896.SZ",
+      "688009.SH",
+      "688082.SH",
+      "688271.SH",
+      "688981.SH"
+    ],
+    "min_holdings": 9,
+    "max_holdings": 10
+  },
+  "T1_gem_exclusion": {
+    "t1a_oos_lookback_boundary": {
+      "perturb_before": "2020-06-30",
+      "factor": 1.1,
+      "n_changed": 0,
+      "changed_months": [],
+      "reading": "0 表示 OOS 决策不依赖该日之前的任何数据 → IS 期池子怎么改都进不了 OOS 判据"
+    },
+    "t1b_literal_exclusion": {
+      "cutoff": "2021-01-01",
+      "excluded_symbols": [
+        "300059.SZ",
+        "300316.SZ",
+        "300442.SZ",
+        "300661.SZ",
+        "300896.SZ",
+        "688009.SH",
+        "688082.SH",
+        "688271.SH",
+        "688981.SH"
+      ],
+      "n_changed": 3,
+      "changed_months": [
+        {
+          "signal_date": "2021-01-29",
+          "only_in_base": [
+            "300059.SZ",
+            "300316.SZ",
+            "300896.SZ"
+          ],
+          "only_in_variant": [
+            "000807.SZ",
+            "002415.SZ"
+          ]
+        },
+        {
+          "signal_date": "2021-02-26",
+          "only_in_base": [
+            "300059.SZ",
+            "300316.SZ",
+            "300896.SZ"
+          ],
+          "only_in_variant": [
+            "000001.SZ"
+          ]
+        },
+        {
+          "signal_date": "2021-03-31",
+          "only_in_base": [
+            "002415.SZ",
+            "300442.SZ"
+          ],
+          "only_in_variant": []
+        }
+      ],
+      "reading": "受影响月份全部集中在回看窗口仍触及 2020 年的头几个月；机制是「少了回看数据」，不是「涨跌停约束」"
+    },
+    "t1c_window_mismatch": {
+      "gem_regime_start": "2020-08-24",
+      "oos_months_in_regime": 48,
+      "oos_months_holding_gem": 41,
+      "slots": 479,
+      "gem_slots": 82,
+      "gem_slot_share": 0.17118997912317327,
+      "reading": "触发项移出的是 flat 10% 判定正确的区间（2017~2020），保留的是判定偏严的区间（2020-08-24 起），而 OOS 全部落在后者"
+    }
+  },
+  "T2_symbol_exclusion": {
+    "600809.SH": {
+      "symbol": "600809.SH",
+      "oos_target_months": 48,
+      "held_months": 9,
+      "first_held": "2021-01-29",
+      "last_held": "2023-10-31",
+      "can_flip_sign": true,
+      "lot": {
+        "lot_cost_min": 13517.0,
+        "lot_cost_max": 35204.0,
+        "budget_per_name": 100000.0,
+        "affordable_always": true,
+        "affordable_never": false
+      }
+    },
+    "000568.SZ": {
+      "symbol": "000568.SZ",
+      "oos_target_months": 48,
+      "held_months": 7,
+      "first_held": "2021-02-26",
+      "last_held": "2023-09-28",
+      "can_flip_sign": true,
+      "lot": {
+        "lot_cost_min": 8829.0,
+        "lot_cost_max": 28734.0,
+        "budget_per_name": 100000.0,
+        "affordable_always": true,
+        "affordable_never": false
+      }
+    }
+  },
+  "T3_cost_tier": {
+    "main_fee": "broker_reference_common_2024",
+    "high_fee": "research_scenario_high_cost",
+    "preset_delta": {
+      "main": {
+        "commission_rate": 0.00025,
+        "min_commission": 5.0,
+        "stamp_duty_rate": 0.0005,
+        "transfer_fee_rate": 1e-05,
+        "slippage_buy": 0.001,
+        "slippage_sell": 0.001
+      },
+      "high": {
+        "commission_rate": 0.0004,
+        "min_commission": 5.0,
+        "stamp_duty_rate": 0.0005,
+        "transfer_fee_rate": 1e-05,
+        "slippage_buy": 0.003,
+        "slippage_sell": 0.003
+      },
+      "changed": [
+        "commission_rate",
+        "slippage_buy",
+        "slippage_sell"
+      ],
+      "same": [
+        "min_commission",
+        "stamp_duty_rate",
+        "transfer_fee_rate"
+      ]
+    },
+    "requires_run": true,
+    "reading": "只能靠真跑判定；本脚本只记录参数差，不对收益作任何推测"
+  },
+  "will_compute_returns": false
+}

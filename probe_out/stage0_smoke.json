@@ -1,0 +1,142 @@
+{
+  "generated_at": "2026-10-19T21:20:39",
+  "prereg": {
+    "file": "stage0_prereg_2026-10-19.json",
+    "prereg_id": "stage0-survivorship-2026-10-19",
+    "version": "1.0",
+    "frozen_at": "2026-10-19T21:20:00",
+    "sha256": "8e35d7622900761a0fb34ea5a2044d69e1304fbea37177d4db1b4846291dbf3b"
+  },
+  "design": {
+    "strategy": "ma_cross",
+    "params_grid": {
+      "fast_candidates": [
+        3,
+        5,
+        10,
+        20
+      ],
+      "slow_candidates": [
+        15,
+        25,
+        40,
+        60
+      ],
+      "min_train_periods": 150,
+      "min_oos_periods": 75,
+      "min_trades": 2,
+      "max_combinations": 50
+    },
+    "fee_preset": "simulation_placeholder",
+    "initial_cash": 100000.0,
+    "date_range": [
+      "2017-01-01",
+      "2024-12-31"
+    ],
+    "price_limit_mode": "board",
+    "design_version": "oos75-v3"
+  },
+  "assembly": {
+    "requested": 3,
+    "ran_ok": 0,
+    "by_group": {
+      "A_listed": 0,
+      "B_delisted": 0
+    },
+    "symbols_with_valid_windows": {
+      "A_listed": 0,
+      "B_delisted": 0
+    },
+    "notes": [
+      "A 组装配 50 只（名单 50）",
+      "B 组装配 262 只（清单 usable 262）"
+    ]
+  },
+  "stats": {
+    "A_listed": {
+      "n": 0
+    },
+    "B_delisted": {
+      "n": 0
+    }
+  },
+  "zero_trade_windows": {
+    "A_listed": 0,
+    "B_delisted": 0
+  },
+  "mannwhitney": {
+    "error": "empty group",
+    "n1": 0,
+    "n2": 0
+  },
+  "by_oos_start_year": {},
+  "by_delist_year": {},
+  "skipped": [
+    {
+      "code": "000748.SZ",
+      "group": "B_delisted",
+      "status": "too_short",
+      "reason": "区间内仅 0 行（<400）",
+      "data_errors": []
+    },
+    {
+      "code": "600005.SH",
+      "group": "B_delisted",
+      "status": "too_short",
+      "reason": "区间内仅 15 行（<400）",
+      "data_errors": []
+    },
+    {
+      "code": "000033.SZ",
+      "group": "B_delisted",
+      "status": "too_short",
+      "reason": "区间内仅 30 行（<400）",
+      "data_errors": []
+    }
+  ],
+  "verdict": "S0",
+  "verdict_reason": "INSUFFICIENT_DATA：A 组 0 / B 组 0 有效窗口，任一组 <30",
+  "scope_note": "在市值仅 50 只（csi300 当日成分等距抽样），退市侧为 2017 年后全量 262 只；并集 312 只不得称为『全市场池』。本结果不构成策略有效性结论，也不触发 PIT 采购。",
+  "records": [
+    {
+      "code": "000748.SZ",
+      "group": "B_delisted",
+      "name": "长城信息",
+      "delist_date": "2017-01-18",
+      "status": "too_short",
+      "skip_reason": "区间内仅 0 行（<400）",
+      "data_errors": [],
+      "data_warnings": [],
+      "n_rows": 0,
+      "valid_windows": 0,
+      "n_windows": 0
+    },
+    {
+      "code": "600005.SH",
+      "group": "B_delisted",
+      "name": "武钢股份",
+      "delist_date": "2017-02-14",
+      "status": "too_short",
+      "skip_reason": "区间内仅 15 行（<400）",
+      "data_errors": [],
+      "data_warnings": [],
+      "n_rows": 15,
+      "valid_windows": 0,
+      "n_windows": 0
+    },
+    {
+      "code": "000033.SZ",
+      "group": "B_delisted",
+      "name": "新都退",
+      "delist_date": "2017-07-07",
+      "status": "too_short",
+      "skip_reason": "区间内仅 30 行（<400）",
+      "data_errors": [],
+      "data_warnings": [],
+      "n_rows": 30,
+      "valid_windows": 0,
+      "n_windows": 0
+    }
+  ],
+  "windows": []
+}

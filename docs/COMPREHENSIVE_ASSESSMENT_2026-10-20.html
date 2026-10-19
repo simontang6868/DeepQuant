@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>DeepQuant 全面评估报告</title>
+<style>
+@page { size: A4; margin: 18mm 16mm; }
+* { box-sizing: border-box; }
+body { font-family: "Source Han Sans SC", "Noto Sans CJK SC", "Microsoft YaHei", -apple-system, Segoe UI, sans-serif;
+       color: #1a1a1a; line-height: 1.72; font-size: 10.5pt; max-width: 900px; margin: 0 auto; padding: 32px 28px; background: #fff; }
+h1 { font-size: 21pt; border-bottom: 3px solid #1f3a5f; padding-bottom: 10px; margin: 0 0 18px; color: #14283f; }
+h2 { font-size: 14.5pt; margin: 30px 0 12px; padding-left: 10px; border-left: 5px solid #2f5d8a; color: #14283f; page-break-after: avoid; }
+h3 { font-size: 12pt; margin: 22px 0 8px; color: #1f3a5f; page-break-after: avoid; }
+h4 { font-size: 10.8pt; margin: 16px 0 6px; color: #33475b; page-break-after: avoid; }
+p { margin: 8px 0; text-align: justify; }
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 9.2pt; page-break-inside: auto; }
+th, td { border: 1px solid #c9d3de; padding: 6px 8px; vertical-align: top; text-align: left; }
+th { background: #eef3f8; font-weight: 600; color: #14283f; }
+tr { page-break-inside: avoid; }
+tbody tr:nth-child(even) { background: #fafbfc; }
+code { background: #f1f3f5; padding: 1px 5px; border-radius: 3px; font-family: "Cascadia Mono", Consolas, monospace; font-size: 8.8pt; color: #a11b3a; }
+pre { background: #f6f8fa; border: 1px solid #dde3ea; border-left: 4px solid #2f5d8a; padding: 10px 14px; overflow-x: auto; page-break-inside: avoid; }
+pre code { background: none; color: #1f2933; padding: 0; font-size: 8.6pt; }
+blockquote { margin: 12px 0; padding: 10px 14px; background: #f7f9fb; border-left: 4px solid #8fa8c1; color: #33475b; }
+ul, ol { margin: 8px 0; padding-left: 24px; }
+li { margin: 3px 0; }
+hr { border: 0; border-top: 1px solid #dfe5ec; margin: 26px 0; }
+strong { color: #14283f; }
+@media print { body { padding: 0; font-size: 10pt; } h2 { page-break-after: avoid; } }
+</style>
+</head>
+<body>
+<h1>DeepQuant 全面评估报告</h1>
+<blockquote><strong>用途</strong>：提交给独立专业人士做综合分析（技术、研究、决策三层）。<br/><strong>生成时间</strong>：2026-10-20 00:30 GMT+8<br/><strong>生成方</strong>：项目协调层（汇总 A/B 两线产物 + 本轮独立复算 + 外部沙箱复核结论）<br/><strong>性质</strong>：<strong>不新增任何研究结论</strong>。所有数字标注来源；凡协调层独立复算过的单独标 ✅复算。<br/><strong>一句话</strong>：这是一套<strong>能可靠证伪策略假设</strong>的研究装置，不是一个<strong>已经找到赚钱策略</strong>的交易系统。两者差距不在代码，在数据与方法设计空间。</blockquote>
+<hr/>
+<h2>0. 阅读须知（先看这 6 条，否则容易误读）</h2>
+<ol><li><strong>本报告把四件事严格分开</strong>，不允许互相替代：</li><li>① 软件功能是否正确（代码按自己的写法跑对了吗）</li><li>② 回测计算是否可信（成交、费用、净值算得对吗）</li><li>③ 策略是否显示统计优势（有没有可复现的超额）</li><li>④ 是否具备真实交易可行性（容量、冲击、券源、实盘滑点）</li><li><strong>①+② 已基本通关；③ 本轮给出了明确的否定答案；④ 一项都没做。</strong></li><li>本报告中出现的「失败」「无优势」，<strong>只适用于被检验的那一个假设与那一批数据</strong>，不等于「A 股没有 alpha」，也不等于「动量因子无效」。</li><li>凡标注 <strong>⚠️ 假设</strong> 的参数，都不是可核实的事实，引用结论时必须一起引用。</li><li>凡标注 <strong>✅复算</strong> 的数字，是协调层从落盘原始 CSV 独立重算的，不是抄子报告。</li><li>本报告由 AI 协调层撰写。<strong>它对"做了什么、算出什么"负责；不对"该不该继续投钱"负责</strong> —— 那是第 9、10 节留给评审者的判断。</li></ol>
+<hr/>
+<h2>1. 执行摘要</h2>
+<h3>1.1 系统定位</h3>
+<p>DeepQuant 是一个<strong>本地单机、A 股日线级、以可复现与可证伪为核心</strong>的量化研究平台。它的设计目标不是"多快好省地跑出漂亮曲线"，而是：</p>
+<blockquote><strong>让一个策略假设在跑之前就被冻结，跑完之后无论结果好坏都不得修改判据，从而得到一个不会被自我欺骗污染的答案。</strong></blockquote>
+<p>这个目标已经达成。它的副产品是一个能用的回测软件（Web 界面 + REST API + 历史库）；它的<strong>未达成部分是"找到可交易策略"</strong>，而这一部分受限于数据而非代码。</p>
+<h3>1.2 五条硬结论</h3>
+<table><thead><tr>
+<th>#</th>
+<th>结论</th>
+<th>证据强度</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>C1</strong></td>
+<td>软件可运行、可回归、可复现：<strong>1997 passed / 1 skipped / 0 failed</strong>，非 research 覆盖率 <strong>96.81%</strong>，45/76 模块 100%；单端口启动、界面/API/历史库全链路实测通过</td>
+<td><strong>实测</strong>（作者机 + 独立沙箱双环境）</td>
+</tr>
+<tr>
+<td><strong>C2</strong></td>
+<td>回测引擎的<strong>记账与对账已闭合</strong>：单标的路径与组合路径对同一笔交易必须给出相同成交价/股数/费用/逐日权益（3 条断言），权益恒等式违反即抛错</td>
+<td><strong>实测</strong></td>
+</tr>
+<tr>
+<td><strong>C3</strong></td>
+<td>横截面动量 Gate 1 实验的机械判定为 <strong><code>failure</code></strong>：mean(d) = <strong>−0.003961/月</strong>，t = <strong>−0.5687</strong>，p = 0.5723，胜率 41.67%，<strong>95% CI 跨 0</strong>（[−0.017974, +0.010051]），12 组敏感性仅 2 组为正，BH 校正后 0 组显著</td>
+<td><strong>预登记 + 机械判定 + ✅复算</strong></td>
+</tr>
+<tr>
+<td><strong>C4</strong></td>
+<td>已检验的<strong>四个策略方向全部无正面证据</strong>：<code>ma_cross</code>（288 组全负）、<code>mean_reversion</code>（样本外衰减 82%）、股债利差（构造错误 + 样本不足）、横截面动量（failure）</td>
+<td><strong>实测</strong>（各方向证据强度不一，见 §5）</td>
+</tr>
+<tr>
+<td><strong>C5</strong></td>
+<td>真正的瓶颈是<strong>数据</strong>：无历史时点成分股（PIT）、样本外仅 48 个月而统计功效需约 160 个月。行情长度与指数数据<strong>已被本轮实测证明可零成本解决</strong>，PIT 不行</td>
+<td><strong>实测 + 功效计算</strong></td>
+</tr>
+</tbody></table>
+<h3>1.3 分维度评分（不要合并成一个百分比）</h3>
+<table><thead><tr>
+<th>维度</th>
+<th>完成度</th>
+<th>判定依据</th>
+<th>剩余工作</th>
+</tr></thead><tbody>
+<tr>
+<td>软件工程（功能/测试/可复现）</td>
+<td><strong>95%</strong></td>
+<td>1997 用例零失败、覆盖率 96.81%、双环境复现</td>
+<td>打包分发、CI、多用户/权限（非必需）</td>
+</tr>
+<tr>
+<td>回测引擎（记账/成本/对账）</td>
+<td><strong>85%</strong></td>
+<td>双路径对账、恒等式、四项记账口径写死</td>
+<td>成本模型仍是假设；涨跌停 flat 10%</td>
+</tr>
+<tr>
+<td>研究方法论（预登记/判定/纪律）</td>
+<td><strong>90%</strong></td>
+<td>预登记冻结→授权→执行→报告全链有哈希</td>
+<td>装置缺陷已修完，待结项归档</td>
+</tr>
+<tr>
+<td><strong>策略有效性</strong></td>
+<td><strong>0%</strong></td>
+<td>四个方向无正面证据；Gate 1 = failure</td>
+<td>需要新数据 + 新假设</td>
+</tr>
+<tr>
+<td>数据完备性</td>
+<td><strong>40%</strong></td>
+<td>51 只 × 8 年日线；无 PIT、无全收益指数</td>
+<td>见 §6</td>
+</tr>
+<tr>
+<td><strong>实盘可行性</strong></td>
+<td><strong>0%</strong></td>
+<td>容量/冲击/券源/实盘滑点<strong>一项未做</strong></td>
+<td>不建议在①②③通关前启动</td>
+</tr>
+</tbody></table>
+<blockquote><strong>给决策者的一句话</strong>：如果目标是"一个可信的量化研究平台"，现在约 <strong>80%</strong> 可用；如果目标是"一套能上钱的交易系统"，现在约 <strong>15%</strong>。这两个数字的差距几乎全部来自 §6 的数据缺口与 §5 的策略空白，而不是 §2 的软件。</blockquote>
+<h3>1.4 我认为最值得评审者先看的三件事</h3>
+<ol><li><strong>Gate 1 的"失败"是可信的否定，不是"跑崩了"</strong>（§5.3）。它有预登记、有冻结哈希、有 CI、有敏感性、有排除对照。它证明的是"这个假设在这批数据上没有优势"，不是"动量无效"。</li><li><strong>报告表里曾出现过 <code>+331.43%</code> 这种会误导人的数字</strong>（§5.3.4）。那是<strong>全程累计</strong>，不是样本外。样本外 48 个月的真实数字是策略 <strong>+35.2%</strong> vs 基准 <strong>+66.4%</strong>。这是本轮最容易误读的一处，已修正列名并在文档中显式标注。</li><li><strong>测试里曾经硬编码了作者本机的绝对路径</strong>（§2.4）。这意味着"真实数据回归测试"在别人机器上会<strong>永久 skip 而不报错</strong> —— 比起"跑失败"，这种"悄悄不跑"更难发现。已修。</li></ol>
+<hr/>
+<h2>2. 第 1 层：系统与软件现状</h2>
+<h3>2.1 它是什么 / 不是什么</h3>
+<table><thead><tr>
+<th>是</th>
+<th>不是</th>
+</tr></thead><tbody>
+<tr>
+<td>本地单机研究平台（Windows 优先，Linux 可跑）</td>
+<td>分布式回测集群 / 云服务</td>
+</tr>
+<tr>
+<td>A 股<strong>日线</strong>级、多标的组合回测</td>
+<td>分钟级 / Tick 级 / 高频</td>
+</tr>
+<tr>
+<td>单账户、无并发、SQLite 落库</td>
+<td>多用户、权限体系、生产级部署</td>
+</tr>
+<tr>
+<td>支持<strong>预注册实验</strong>与机械判定</td>
+<td>支持参数搜索与自动择优（<strong>故意不支持</strong>）</td>
+</tr>
+<tr>
+<td>有 Web 界面（回测、结果、历史、对比）</td>
+<td>有实盘下单通道（<strong>刻意未接</strong>）</td>
+</tr>
+</tbody></table>
+<h3>2.2 架构与技术栈</h3>
+<table><thead><tr>
+<th>层</th>
+<th>实现</th>
+<th>规模</th>
+</tr></thead><tbody>
+<tr>
+<td>后端</td>
+<td>Python 3.13.14 + FastAPI 0.143.1 + uvicorn 0.54.0</td>
+<td><code>backend/src</code> <strong>21,504 行</strong></td>
+</tr>
+<tr>
+<td>计算</td>
+<td>pandas 3.0.6 / numpy 2.5.4 / pyarrow 26.0.0</td>
+<td>全 pin</td>
+</tr>
+<tr>
+<td>存储</td>
+<td>行情 Parquet + 元数据 JSON + 回测历史 SQLite</td>
+<td><code>data/</code> 约 6.7 MB（核心）/ 110 MB（全量）</td>
+</tr>
+<tr>
+<td>前端</td>
+<td>React + TypeScript + Vite，<code>dist</code> 已预构建</td>
+<td><code>frontend/src</code> <strong>12,105 行</strong>，36 个组件</td>
+</tr>
+<tr>
+<td>测试</td>
+<td>pytest 9.1.1，119 个测试文件</td>
+<td><code>backend/tests</code> <strong>28,544 行</strong></td>
+</tr>
+<tr>
+<td>研究脚本</td>
+<td><code>scripts/</code> 49 个</td>
+<td>含 Gate 1 执行/报告/校验链</td>
+</tr>
+</tbody></table>
+<p><strong>模块地图</strong>（<code>backend/src/deepquant/</code>）：</p>
+<table><thead><tr>
+<th>模块</th>
+<th>职责</th>
+<th>关键点</th>
+</tr></thead><tbody>
+<tr>
+<td><code>backtest/</code></td>
+<td>单标的引擎、组合引擎、成本、A 股市场规则</td>
+<td>双路径共用同一套成本与撮合语义</td>
+</tr>
+<tr>
+<td><code>portfolio</code> + <code>cross_section</code></td>
+<td>组合构建、调仓、权重记账</td>
+<td>卖出先于买入、最小佣金、停牌冻结、涨跌停顺延</td>
+</tr>
+<tr>
+<td><code>walkforward/</code></td>
+<td>窗口切分、参数选择、逐窗执行</td>
+<td><code>end_date</code> 缺陷已修（P0-1）</td>
+</tr>
+<tr>
+<td><code>data/validation/</code></td>
+<td>数据质量校验（跳变、缺口、复权）</td>
+<td><code>price_jump</code> 计数缺陷已修（P0-2）</td>
+</tr>
+<tr>
+<td><code>performance/</code></td>
+<td>绩效指标、基准、窗口记录、判定、报告</td>
+<td>判定与报告<strong>机械生成</strong>，不允许传措辞</td>
+</tr>
+<tr>
+<td><code>research/</code></td>
+<td>资金充足性、有效池、股债利差</td>
+<td>用于"这个池子能不能真的交易"这类现实检验</td>
+</tr>
+<tr>
+<td><code>api/</code></td>
+<td>10 个端点 + 静态界面挂载</td>
+<td>策略注册表<strong>白名单</strong>，不做反射</td>
+</tr>
+</tbody></table>
+<h3>2.3 功能面：界面上实际能做什么</h3>
+<table><thead><tr>
+<th>能力</th>
+<th>状态</th>
+<th>说明</th>
+</tr></thead><tbody>
+<tr>
+<td>选数据集</td>
+<td>✅</td>
+<td><strong>51 只</strong> A 股日线（2017-01-03 ~ 2024-12-31，各 1,943 行）</td>
+</tr>
+<tr>
+<td>选策略</td>
+<td>⚠️ 仅 1 个</td>
+<td>注册表只开放 <code>ma_cross</code>（<code>fast_window</code>/<code>slow_window</code>）；<code>mean_reversion</code>、<code>ensemble</code> 在代码里但<strong>未注册</strong>，UI 不可选</td>
+</tr>
+<tr>
+<td>单标的回测</td>
+<td>✅</td>
+<td>资金、区间、信号延迟、费用档</td>
+</tr>
+<tr>
+<td>组合回测</td>
+<td>✅</td>
+<td><code>momentum_top</code> / <code>equal_weight_all</code>，<code>dataset_symbols</code> + <code>top_fraction</code></td>
+</tr>
+<tr>
+<td>结果视图</td>
+<td>✅</td>
+<td>净值、回撤、日收益、绩效卡、成交、委托、账户状态</td>
+</tr>
+<tr>
+<td>拒单归因</td>
+<td>✅</td>
+<td>单标的看 <code>orders[].reason</code>；组合看 <code>blocked[]</code>（<strong>不是同一字段</strong>，易误读）</td>
+</tr>
+<tr>
+<td>历史与对比</td>
+<td>✅</td>
+<td>每次回测落 SQLite，可回看、可两组对比</td>
+</tr>
+<tr>
+<td>完整性 / 可复现</td>
+<td>✅</td>
+<td><code>integrity</code> 与 <code>reproducibility</code> 两个端点，UI 可点</td>
+</tr>
+<tr>
+<td>导出</td>
+<td>✅</td>
+<td>结果导出为文件</td>
+</tr>
+<tr>
+<td>参数搜索 / 自动优化</td>
+<td>❌</td>
+<td><strong>故意不做</strong>——防择优是本项目第一原则</td>
+</tr>
+</tbody></table>
+<p><strong>API 端点（10 个）</strong>：</p>
+<pre><code>GET  /api/health
+GET  /api/datasets
+GET  /api/strategies
+POST /api/backtests
+GET  /api/backtests                          （历史列表）
+GET  /api/backtests/{run_id}                 （明细）
+GET  /api/backtests/{run_id}/integrity       （完整性）
+GET  /api/backtests/{run_id}/reproducibility （可复现清单）
+POST /api/backtests/compare                  （两组对比）
+POST /api/portfolio-backtests                （组合，同步）</code></pre>
+<h3>2.4 工程质量证据（可复现）</h3>
+<table><thead><tr>
+<th>指标</th>
+<th>值</th>
+<th>口径</th>
+</tr></thead><tbody>
+<tr>
+<td>全量测试</td>
+<td><strong>1997 passed / 1 skipped / 0 failed</strong></td>
+<td>Windows + Python 3.13.14，干净解压副本，119.59 s</td>
+</tr>
+<tr>
+<td>收集用例数</td>
+<td>1,998</td>
+<td><code>passed + skipped</code> 恒等于收集数，可交叉验算</td>
+</tr>
+<tr>
+<td>非 research 语句覆盖率</td>
+<td><strong>96.81%</strong>（6,336 stmts / 202 miss）</td>
+<td>全仓库 73.78% 是<strong>口径差异</strong>（research 被 <code>--ignore</code> 记 0%），不是缺陷</td>
+</tr>
+<tr>
+<td>100% 覆盖模块</td>
+<td>45 / 76</td>
+<td></td>
+</tr>
+<tr>
+<td>跨平台差异</td>
+<td>Linux 期望 1994/4/0</td>
+<td>4 条 skip 是"私有产物缺失"声明的用例，不是失败</td>
+</tr>
+</tbody></table>
+<p><strong>两条真实缺陷的修复（本轮 P0）</strong>：</p>
+<table><thead><tr>
+<th>#</th>
+<th>缺陷</th>
+<th>症状</th>
+<th>修复后实测</th>
+</tr></thead><tbody>
+<tr>
+<td>P0-1</td>
+<td><code>generate_windows</code> 用 <code>(~mask)</code> 求末位，<strong><code>end_date</code> 被完全忽略</strong></td>
+<td><code>end_date=2021-02-24</code> 与 <code>None</code> 同样返回 44 窗，末窗 2023-10-31，<strong>35 个窗口越界</strong></td>
+<td>9 窗，末窗 2021-02-23，<strong>越界 0</strong></td>
+</tr>
+<tr>
+<td>P0-2</td>
+<td><code>df_sorted[["close"]]</code> 取到 DataFrame，<code>len(jumps)</code> 恒为<strong>行数−1</strong></td>
+<td>100 行平盘 → <code>count=99</code>；50 只池误报 <strong>88,346</strong> 次，真实 <strong>280</strong> 次</td>
+<td>平盘 <code>count=0</code>，3 处真跳变 <code>count=3</code>，传 DataFrame 抛 <code>TypeError</code></td>
+</tr>
+</tbody></table>
+<blockquote><strong>P0-2 的连带影响必须说清</strong>：修复前，<strong>任何引用过 price_jump 计数的历史结论都需重核</strong>。本轮已用真实数据重算（见 <code>docs/PRICE_JUMP_RECOUNT_B_2026-10-19.json</code>）。</blockquote>
+<p><strong>测试侧的一处真缺陷（由外部复核引发，我认为比复核报告判得更重）</strong>：<br/><code>tests/backtest/test_cross_section.py:38</code> 曾硬编码 <code>D:/.../b50_v3/600809.SH.qfq.csv</code>。在作者机上 PASS，在别人机上<strong>永久 skip 且不报警</strong> —— 等于这条"真实数据回归"从来没被别人跑过。已改为 <code>DEEPQUANT_REAL_600809</code> 环境变量可覆盖（默认值不变，本机 25 passed 不变；指不到就显式 skip）。</p>
+<h3>2.5 怎么跑起来（三条命令）</h3>
+<pre><code># 1) 测试（必须在 backend 下，PYTHONPATH 必须设）
+cd DeepQuant-main/backend &amp;&amp; PYTHONPATH=src python -m pytest tests/ -q
+
+# 2) 启动（单端口，--no-build 表示用已构建的 dist）
+DEEPQUANT_DATA_ROOT=&quot;$PWD/../data&quot; python scripts/start_deepquant.py --no-build --port 8123
+
+# 3) 健康检查
+curl --noproxy &#x27;*&#x27; http://127.0.0.1:8123/health   # → {&quot;status&quot;:&quot;ok&quot;}</code></pre>
+<p><strong>三个必踩的坑</strong>（已写入交付说明）：</p>
+<ul><li><code>DEEPQUANT_DATA_ROOT</code> <strong>必须显式设</strong>，默认指向不存在的 <code>backend/data</code> → 表现为"服务正常、0 个数据集"。</li><li>组合接口字段是 <code>dataset_symbols</code> / <code>top_fraction</code>，写 <code>symbols</code> / <code>top_pct</code> 会 422（<code>extra="forbid"</code>）。</li><li>有 <code>HTTP_PROXY</code> 时 urllib 会把 <code>127.0.0.1</code> 送进代理得到 502 → 用 <code>--noproxy '*'</code> 或 <code>ProxyHandler({})</code>。</li></ul>
+<h3>2.6 已有的独立复核结论（供评审者参考，不必重复劳动）</h3>
+<p>一位外部专家在 <strong>Linux + Python 3.13.15</strong> 沙箱里按 8 条清单实跑，结论：</p>
+<table><thead><tr>
+<th>档位</th>
+<th>判定</th>
+</tr></thead><tbody>
+<tr>
+<td>A（能跑、数字对得上）</td>
+<td><strong>达成</strong></td>
+</tr>
+<tr>
+<td>B（跨环境稳定）</td>
+<td><strong>部分</strong>（依赖声明不全，已修）</td>
+</tr>
+<tr>
+<td>C（具备研究能力）</td>
+<td><strong>未开始</strong></td>
+</tr>
+</tbody></table>
+<p>我对其报告的裁决：<strong>主体认可</strong>，两处事实前提不成立（<code>tabulate</code> 实为 akshare 的传递依赖，非"完全缺失"；本机唯一 skip 是 <code>test_akshare_live</code> 而非 <code>test_history_audit</code>），已按其建议修订并重新打包。完整往来见 <code>sandbox_verify/README_FOR_SANDBOX.md</code> §5.5。</p>
+<p><strong>第二轮（综合裁决，2026-10-19）之后新增的三件事</strong>（本报告定稿前完成）：</p>
+<table><thead><tr>
+<th>改动</th>
+<th>原因</th>
+<th>验证方式</th>
+</tr></thead><tbody>
+<tr>
+<td>交付包加 <code>PACKAGE_INFO.json</code> + <code>verify_package.py</code></td>
+<td><strong>包没有身份</strong>：同一文件名重建过 3 次，上一轮"审旧包、评新包"双方都没说谎，但无法自证</td>
+<td><code>verify_package.py</code> 打印 <code>package_id</code>（= MANIFEST 的 sha256）+ 逐文件校验 + 9 个关键标记</td>
+</tr>
+<tr>
+<td>新增 <code>check_deps.py</code></td>
+<td>依赖靠"传递依赖碰巧装上"，换个装法就红 2 条</td>
+<td>解析 pin、查 <code>importlib.metadata</code>、展开 <code>uvicorn[standard]</code> extras；缺失/漂版分列</td>
+</tr>
+<tr>
+<td>新增 <code>check_env.py</code></td>
+<td>数据根"必须显式设"这句话过严（启动器会自动发现），但没人能一眼看出差异</td>
+<td>直接打印"启动器解析到哪 / 直连 uvicorn 默认值是什么"，并给数据集条数</td>
+</tr>
+</tbody></table>
+<blockquote><strong>上一轮复核的一个硬事实需要更正</strong>：其裁决所依据的包是 <code>6faded1f…</code>（第一版），不是当前包。<br/>当前包已含 <code>DEEPQUANT_REAL_600809</code> 与 <code>tabulate==0.10.0</code>；<code>verify_package.py</code> 的三条标记检查<br/>就是为这类争议准备的。<strong>引用任何复核结论时，请连带引用 <code>package_id</code>。</strong></blockquote>
+<hr/>
+<h2>3. 第 2 层：回测计算是否可信</h2>
+<h3>3.1 记账口径（写死在 <code>docs/A3_ACCOUNTING_SPEC.md</code>）</h3>
+<table><thead><tr>
+<th>口径</th>
+<th>规则</th>
+<th>为什么重要</th>
+</tr></thead><tbody>
+<tr>
+<td>现金释放顺序</td>
+<td><strong>卖出先于买入</strong></td>
+<td>否则同日调仓会假性资金不足</td>
+</tr>
+<tr>
+<td>最小佣金</td>
+<td>权重记账下仍生效</td>
+<td>否则小额成交成本被低估</td>
+</tr>
+<tr>
+<td>停牌估值</td>
+<td>冻结上一价 + 计数</td>
+<td>否则停牌期净值凭空跳动</td>
+</tr>
+<tr>
+<td>涨跌停</td>
+<td>无法成交则<strong>顺延</strong>到下一可成交日</td>
+<td>否则高估策略的成交能力</td>
+</tr>
+</tbody></table>
+<h3>3.2 三重对账机制</h3>
+<table><thead><tr>
+<th>机制</th>
+<th>内容</th>
+<th>状态</th>
+</tr></thead><tbody>
+<tr>
+<td>双路径对账</td>
+<td>同标的、同一天、同一笔交易，单标的与组合路径的<strong>成交价/股数/费用/逐日权益必须一致</strong></td>
+<td>3 条断言全过</td>
+</tr>
+<tr>
+<td>权益恒等式</td>
+<td>每日 <code>现金 + 持仓市值 = 权益</code>，违反即 <code>RuntimeError</code></td>
+<td>不产出可疑净值</td>
+</tr>
+<tr>
+<td>运行指纹</td>
+<td>每次回测记录参数指纹与数据指纹，同参数二次运行<strong>逐位一致</strong></td>
+<td>实测通过</td>
+</tr>
+</tbody></table>
+<h3>3.3 成本模型（<strong>含假设，必须随结论引用</strong>）</h3>
+<table><thead><tr>
+<th>项</th>
+<th>值</th>
+<th>性质</th>
+</tr></thead><tbody>
+<tr>
+<td>佣金</td>
+<td>券商参考值（<code>broker_reference_common_2024</code>）</td>
+<td>可核实到"参考"，不可核实到"你的账户"</td>
+</tr>
+<tr>
+<td>印花税 / 过户费</td>
+<td>按现行规则</td>
+<td>规则性，可信</td>
+</tr>
+<tr>
+<td><strong>滑点</strong></td>
+<td><strong>单边 0.1%</strong></td>
+<td>⚠️ <strong>纯研究假设，无法核实</strong></td>
+</tr>
+<tr>
+<td>涨跌停</td>
+<td><strong>flat 10%</strong>，无 per-symbol 通道</td>
+<td>主板正确；2020-08-24 后对 9 只双创<strong>偏严 = 悲观方向</strong></td>
+</tr>
+<tr>
+<td>停牌</td>
+<td>以"当日无行情行"近似，无标记</td>
+<td>会低估停牌期间的机会成本</td>
+</tr>
+</tbody></table>
+<blockquote><strong>因此</strong>：任何结论都<strong>不得</strong>写成"按真实成本回测"。正确写法是"按含 0.1% 单边滑点假设的成本模型回测"。</blockquote>
+<h3>3.4 明确不可信的边界</h3>
+<ul><li><strong>容量 / 冲击成本</strong>：完全未建模。50 只池里若有大资金，结论不成立。</li><li><strong>券源</strong>：未涉及（当前无融券逻辑）。</li><li><strong>实盘滑点</strong>：未校准，0.1% 是行业惯例值，不是本项目实测值。</li><li><strong>分红再投</strong>：前复权为减法复权，长区间会出现非正价格（600809 有 131 行为负），因此<strong>低价股研究不能复用这批数据</strong>。</li></ul>
+<hr/>
+<h2>4. 方法论资产：这套东西真正的价值</h2>
+<p>这一节是给"懂行的人"看的。<strong>如果只看策略结论，会低估这个项目；如果只看软件，会高估它。</strong></p>
+<h3>4.1 预登记（Pre-registration）机制</h3>
+<table><thead><tr>
+<th>环节</th>
+<th>时间</th>
+<th>证据</th>
+</tr></thead><tbody>
+<tr>
+<td>预登记冻结</td>
+<td>2026-10-18 19:30</td>
+<td><code>gate1-prereg-v1.3</code>，sha256 <code>8b011551…</code></td>
+</tr>
+<tr>
+<td>用户授权执行</td>
+<td>2026-10-18 23:26</td>
+<td>授权原话写入 <code>summary.json</code></td>
+</tr>
+<tr>
+<td>实际执行</td>
+<td>2026-10-18 23:51</td>
+<td>主实验 92.1 s</td>
+</tr>
+<tr>
+<td>机械生成报告</td>
+<td>2026-10-18 23:58</td>
+<td><code>scripts/gate1_report.py</code>，<strong>接口不提供"传入措辞"参数</strong></td>
+</tr>
+<tr>
+<td>执行后复核</td>
+<td>2026-10-18 23:59</td>
+<td>本地文件 sha256 与冻结值<strong>逐字符相同</strong></td>
+</tr>
+</tbody></table>
+<p><strong>协议先于结果的证据链完整</strong>。这不是形式主义：它排除了"跑完再改判据"这种最常见、也最难自察的作弊。</p>
+<h3>4.2 三档机械判定 + 多重检验</h3>
+<ul><li>档位：<code>success</code> / <code>failure</code> / <code>inconclusive</code>，冲突优先级 <code>failure &gt; inconclusive &gt; success</code>。</li><li>12 组敏感性<strong>预先写死</strong>，不是根据结果挑的；BH 校正后 q 全为 0.8744（这是 BH 取右侧最小值的<strong>正确性质</strong>，不是 bug；应看原始 p 区间 0.3436–0.8744）。</li><li>主实验<strong>自由度 = 0</strong>（单参数组合），因此不存在"换组参数再试试"的解释空间。</li></ul>
+<h3>4.3 十二条纪律（R1–R12，节选最关键的）</h3>
+<table><thead><tr>
+<th>规则</th>
+<th>内容</th>
+</tr></thead><tbody>
+<tr>
+<td>R2 / R11</td>
+<td>禁止调参、禁止择优、禁止事后换窗口</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>禁止编造数据（缺失就报缺失）</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>占位费率必须显式标注</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>禁止删除失败结果</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>禁止 reset / clean / restore 掉历史</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>禁止弱化测试来让结果变绿</td>
+</tr>
+<tr>
+<td>R8</td>
+<td>禁止 push main / 禁止 merge</td>
+</tr>
+<tr>
+<td>R12</td>
+<td><strong>窗口级统计 ≠ 连续账户收益</strong>，不得混用</td>
+</tr>
+</tbody></table>
+<blockquote>这十二条不是装饰。它们直接对应量化研究里最常见的七种自欺：择优、删失败、改判据、弱化测试、混口径、编数据、悄悄重跑。</blockquote>
+<h3>4.4 这套方法论能迁移到哪里</h3>
+<p>即使这个项目最终不产生策略，它的<strong>装置</strong>可以直接复用于：任何"先假设、后验证"的因子研究；任何需要审计链的模型评估；任何要回答"这个结果是不是我调出来的"的场景。<strong>这是本项目最可能被长期复用的资产。</strong></p>
+<hr/>
+<h2>5. 第 3 层：策略资产盘点（核心）</h2>
+<h3>5.1 三层区分：已实现 / 已注册 / 已验证</h3>
+<table><thead><tr>
+<th>策略族</th>
+<th>代码里</th>
+<th>API 可调用</th>
+<th>经过预登记验证</th>
+<th>结论</th>
+</tr></thead><tbody>
+<tr>
+<td><code>ma_cross</code> 双均线</td>
+<td>✅</td>
+<td>✅ 唯一注册</td>
+<td>✅ 288 组参数扫描 + walk-forward</td>
+<td><strong>方向错</strong></td>
+</tr>
+<tr>
+<td><code>mean_reversion</code> 均值回归</td>
+<td>✅</td>
+<td>❌ 未注册</td>
+<td>✅ 样本内外对比</td>
+<td><strong>无幅度边际</strong></td>
+</tr>
+<tr>
+<td><code>ensemble</code> / <code>ensemble_voting</code></td>
+<td>✅</td>
+<td>❌ 未注册</td>
+<td>❌</td>
+<td>未验证，不可对外宣称</td>
+</tr>
+<tr>
+<td>横截面动量（组合层）</td>
+<td>✅ 组合路由支持</td>
+<td>✅ <code>momentum_top</code></td>
+<td>✅ <strong>Gate 1 预登记实验</strong></td>
+<td><strong>failure</strong></td>
+</tr>
+<tr>
+<td>股债利差</td>
+<td>✅ <code>research/equity_bond_spread</code></td>
+<td>❌</td>
+<td>✅</td>
+<td><strong>构造错误 + 样本不足</strong></td>
+</tr>
+</tbody></table>
+<p><strong>这张表本身就是一条结论</strong>：代码里"有 5 个方向"，能对外用的只有 1 个，经过严格验证且结果为负的有 4 个。<strong>任何"我们有多个策略"的说法都是不准确的。</strong></p>
+<h3>5.2 四个方向的证据</h3>
+<h4>① <code>ma_cross</code>（双均线）</h4>
+<table><thead><tr>
+<th>项</th>
+<th>结果</th>
+</tr></thead><tbody>
+<tr>
+<td>参数扫描</td>
+<td><strong>288 组全负</strong></td>
+</tr>
+<tr>
+<td>相对买入持有</td>
+<td>中位 <strong>−3.35pp</strong></td>
+</tr>
+<tr>
+<td>窗口亏损比例</td>
+<td>48 只池中 <strong>56.5% ~ 60.9%</strong> 窗口亏损，且亏损<strong>均匀分布</strong>（不是尾部事件）</td>
+</tr>
+<tr>
+<td>三档费率</td>
+<td>全负</td>
+</tr>
+<tr>
+<td>样本内 → 样本外</td>
+<td>IS 中位 <strong>−0.94%</strong> → OOS <strong>−1.13%</strong>，几乎无衰减</td>
+</tr>
+<tr>
+<td>解读</td>
+<td><strong>不是"过拟合崩了"，是样本内本来就没有正边际</strong>，样本外照原样复现了这件事</td>
+</tr>
+</tbody></table>
+<h4>② <code>mean_reversion</code>（均值回归）</h4>
+<table><thead><tr>
+<th>项</th>
+<th>结果</th>
+</tr></thead><tbody>
+<tr>
+<td>盈亏幅度比</td>
+<td><strong>1.03</strong>（盈亏平衡胜率需 49.3%，实测仅高约 7pp）</td>
+</tr>
+<tr>
+<td>样本内 → 样本外</td>
+<td><strong>+2.50% → +0.46%</strong>，衰减 <strong>82%</strong></td>
+</tr>
+<tr>
+<td>高成本档</td>
+<td>塌到 <strong>+0.03%</strong></td>
+</tr>
+<tr>
+<td>分层</td>
+<td>会<strong>符号反转</strong></td>
+</tr>
+<tr>
+<td>相对基准</td>
+<td>超额中位 <strong>−1.06%</strong></td>
+</tr>
+<tr>
+<td>解读</td>
+<td>唯一有实质衰减的格子；仍然为正，但"几乎全还回去了"，且跑不过基准</td>
+</tr>
+</tbody></table>
+<h4>③ 股债利差</h4>
+<table><thead><tr>
+<th>项</th>
+<th>结果</th>
+</tr></thead><tbody>
+<tr>
+<td>问题</td>
+<td><strong>方向构造错误</strong> + 样本不足</td>
+</tr>
+<tr>
+<td>结论</td>
+<td>不可用；需要重新设计，不能修补</td>
+</tr>
+</tbody></table>
+<h4>④ 横截面动量（Gate 1，本轮主实验）</h4>
+<p>见 §5.3。</p>
+<h3>5.3 Gate 1 详解（本轮唯一一个"协议完整"的实验）</h3>
+<h4>5.3.1 假设（先于结果写死）</h4>
+<blockquote>在 A 股 50 只样本池上，过去 <strong>60 个交易日</strong>（跳过最近 <strong>5 日</strong>）的收益率排序，取前 <strong>20%</strong> 等权持有一个月，<br/>其月度收益<strong>优于同池等权基准</strong>。<br/>可证伪点：<code>d_t = r_strategy,t − r_benchmark,t</code> 的均值是否显著为正。</blockquote>
+<h4>5.3.2 设计约束</h4>
+<table><thead><tr>
+<th>项</th>
+<th>设定</th>
+</tr></thead><tbody>
+<tr>
+<td>主实验参数</td>
+<td><strong>单组，自由度 0</strong></td>
+</tr>
+<tr>
+<td>OOS</td>
+<td>2021-01 ~ 2024-12，<strong>48 个月</strong></td>
+</tr>
+<tr>
+<td>基准</td>
+<td><strong>同池等权</strong>（当时无指数数据）</td>
+</tr>
+<tr>
+<td>交易</td>
+<td>次日开盘、月度调仓、等权</td>
+</tr>
+<tr>
+<td>判定</td>
+<td>三档机械判据</td>
+</tr>
+<tr>
+<td>多重检验</td>
+<td>12 组敏感性 + BH</td>
+</tr>
+</tbody></table>
+<h4>5.3.3 结果（<code>gate1_out/032a11f591553e25/summary.json</code>）</h4>
+<table><thead><tr>
+<th>指标</th>
+<th>值</th>
+</tr></thead><tbody>
+<tr>
+<td>n</td>
+<td>48 个月</td>
+</tr>
+<tr>
+<td>mean(d)</td>
+<td><strong>−0.003961 / 月</strong>（−0.40pp/月）</td>
+</tr>
+<tr>
+<td>std(d)</td>
+<td>0.048257</td>
+</tr>
+<tr>
+<td>t</td>
+<td><strong>−0.5687</strong>（p = 0.5723）</td>
+</tr>
+<tr>
+<td>胜率</td>
+<td><strong>41.67%</strong>（20/48）</td>
+</tr>
+<tr>
+<td><strong>95% CI</strong></td>
+<td><strong>[−0.017974, +0.010051] / 月 → 跨 0</strong></td>
+</tr>
+<tr>
+<td>敏感性 12 组中为正</td>
+<td><strong>2 组</strong>（S5、S8）</td>
+</tr>
+<tr>
+<td>BH 后 q ≤ 0.05</td>
+<td><strong>0 组</strong></td>
+</tr>
+<tr>
+<td>排除 <code>600809.SH</code> 重跑</td>
+<td>mean(d) = −0.003284，t = −0.4644，<strong>符号未翻转</strong></td>
+</tr>
+</tbody></table>
+<p><strong>判定：<code>failure</code></strong>，命中三条：<code>mean(d) ≤ 0</code>、<code>t &lt; 1.0</code>、<code>敏感性正组数 = 2 ≤ 4</code>。</p>
+<h4>5.3.4 这里有一个必须点名的陷阱</h4>
+<p>B 线报告表里曾列 <strong><code>+331.43%</code> / <code>+357.89%</code></strong>。那是<strong>全程（2017-02 ~ 2024-12）累计</strong>，不随判定窗口截断 —— 看起来像"大幅跑赢"。</p>
+<p>✅复算后的真实数字：</p>
+<table><thead><tr>
+<th>口径</th>
+<th>策略</th>
+<th>基准</th>
+<th>差额</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>OOS 48 个月（正确口径）</strong></td>
+<td><strong>+35.2%</strong></td>
+<td><strong>+66.36%</strong></td>
+<td><strong>−31.2pp</strong></td>
+</tr>
+<tr>
+<td>全程累计（会误导的口径）</td>
+<td>+331.43%</td>
+<td>+357.89%</td>
+<td>−26.5pp</td>
+</tr>
+</tbody></table>
+<p><strong>方向一致（跑输），但幅度不构成统计显著（CI 跨 0）。</strong> 该缺陷已修：列名拆成 <code><em>_total_return_eval</code>（窗口内）与 <code></em>_total_return_full</code>（全程）。</p>
+<h4>5.3.5 这个"失败"到底有多强</h4>
+<ol><li><strong><code>t = −0.57</code> 远未达显著</strong> → 不能说"已证明显著跑输"。</li><li><strong>功效不足</strong>：σ ≈ 0.048/月，要检出 0.003/月 的边际需约 <strong>160 个月</strong>；本轮只有 <strong>48 个月（30%）</strong>。</li></ol>
+<p>   → <strong>"失败"判定比"成功"判定可靠，但两种判定都不强。</strong></p>
+<ol><li><strong>自由度已为 0</strong>，所以"换组参数就有效"不成立 —— 那属于<strong>新实验</strong>，不属于本研究。</li></ol>
+<h3>5.4 一个容易被忽略的现实检验：资金充足性</h3>
+<p><code>research/capital_adequacy.py</code> 的结论：<strong>6 只池从 2021 年起实际只有 4 只在跑 —— 茅台一手买不起。</strong></p>
+<p>这不是模型问题，是<strong>可负担性断崖</strong>：1 手 &gt; 本金即完全无法交易，是<strong>二值而非梯度</strong>。任何"组合等权"的结论，在小资金下都会失真。这类检验比多跑 100 组参数更有价值。</p>
+<hr/>
+<h2>6. 数据资产与硬约束</h2>
+<h3>6.1 现有数据</h3>
+<table><thead><tr>
+<th>类别</th>
+<th>数量</th>
+<th>区间</th>
+<th>说明</th>
+</tr></thead><tbody>
+<tr>
+<td>已登记数据集</td>
+<td><strong>51 只</strong></td>
+<td>2017-01-03 ~ 2024-12-31</td>
+<td>各 1,943 行，含元数据 + 校验记录</td>
+</tr>
+<tr>
+<td><code>data/processed</code></td>
+<td>51 parquet</td>
+<td>同上</td>
+<td>回测输入</td>
+</tr>
+<tr>
+<td><code>data/metadata</code></td>
+<td>51 json</td>
+<td>—</td>
+<td>来源、清洗、校验、schema</td>
+</tr>
+<tr>
+<td><code>data/step75_ext</code></td>
+<td>7</td>
+<td>—</td>
+<td>扩展池研究用</td>
+</tr>
+<tr>
+<td><code>data/step75</code></td>
+<td>6 qfq CSV + 脚本 + universe</td>
+<td>—</td>
+<td><strong>测试硬依赖</strong>，缺它测试会 1 failed + 31 skipped</td>
+</tr>
+<tr>
+<td>全量 <code>data/</code></td>
+<td>约 110 MB</td>
+<td>—</td>
+<td>含 raw / qfq_mult / stage0 / delist / benchmark</td>
+</tr>
+</tbody></table>
+<h3>6.2 五条关键约束 + 最新实测更正</h3>
+<table><thead><tr>
+<th>#</th>
+<th>约束</th>
+<th>本轮实测后的状态</th>
+<th>影响</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>V5</strong></td>
+<td>行情止于 2024-12-31，"是免费源上限"</td>
+<td>❌ <strong>不成立</strong>。同一接口 <code>ak.stock_zh_a_hist_tx</code> 实测取到 <strong>2026-10-16</strong>，可回溯 2017-01-03（2,374 行）</td>
+<td><strong>可零成本解决</strong>：改 <code>end_date</code> 重下即可</td>
+</tr>
+<tr>
+<td><strong>V6</strong></td>
+<td>无指数数据，基准只能用同池等权</td>
+<td>❌ <strong>数据侧已解除</strong>。<code>stock_zh_index_daily</code> 实测：沪深300 自 2002-01-04、中证500 自 2005-01-04、中证1000 自 2014-10-17，<strong>均到 2026-10-16</strong></td>
+<td>「相对大盘如何」现在<strong>可以回答</strong>（但需注意：这是<strong>价格指数</strong>，非全收益，会低估基准）</td>
+</tr>
+<tr>
+<td><strong>V1</strong></td>
+<td>无历史时点（PIT）成分股</td>
+<td>✅ <strong>仍成立，且理由更硬</strong>：免费源只给<strong>当前快照</strong>与<strong>纳入日期</strong>，<strong>不给剔除日期</strong>；已退出成分股根本不在返回里</td>
+<td><strong>不可用代码解决</strong>。自建"历史成分"会<strong>加重</strong>幸存者偏差（看起来有列表，实际漏掉输家）</td>
+</tr>
+<tr>
+<td><strong>V3</strong></td>
+<td>前复权为<strong>减法复权</strong>，产生非正价格</td>
+<td>✅ 仍成立（600809 有 131 行、000568 有 1 行）</td>
+<td>价格水平不可信；低价股研究不可复用</td>
+</tr>
+<tr>
+<td><strong>V8</strong></td>
+<td>50 只是从 4,608 只等距抽样</td>
+<td>✅ 代表性<strong>未验证</strong></td>
+<td>扩池会<strong>放大</strong> V1，不建议先扩池</td>
+</tr>
+</tbody></table>
+<h3>6.3 数据偏差的方向（这一点决定结论怎么读）</h3>
+<table><thead><tr>
+<th>偏差</th>
+<th>方向</th>
+<th>后果</th>
+</tr></thead><tbody>
+<tr>
+<td>幸存者偏差（无 PIT）</td>
+<td><strong>系统性高估</strong>策略与基准的绝对收益</td>
+<td>只有"策略 − 基准"的<strong>配对差额</strong>可讨论</td>
+</tr>
+<tr>
+<td>减法复权负价</td>
+<td>价格水平失真</td>
+<td>信号只用收益率时影响有限</td>
+</tr>
+<tr>
+<td>涨跌停 flat 10%</td>
+<td>对双创<strong>偏严 = 悲观</strong></td>
+<td>不会高估成交能力</td>
+</tr>
+<tr>
+<td>滑点 0.1%</td>
+<td><strong>不确定</strong></td>
+<td>可能高估或低估，取决于真实成交</td>
+</tr>
+<tr>
+<td>停牌无标记</td>
+<td><strong>偏乐观</strong></td>
+<td>低估停牌机会成本</td>
+</tr>
+</tbody></table>
+<blockquote><strong>结论</strong>：绝对收益不可信；<strong>配对差额方向相对可信</strong>；一切结论只能写成"在这批数据、这个成本假设下"。</blockquote>
+<hr/>
+<h2>7. 进度评估：为什么不能给一个百分比</h2>
+<table><thead><tr>
+<th>视角</th>
+<th>完成度</th>
+<th>理由</th>
+</tr></thead><tbody>
+<tr>
+<td>按"阶段 A–E 任务书"</td>
+<td><strong>≈ 95%</strong></td>
+<td>7 项交付物全部产出；Gate 1 已执行并结项；装置缺陷已修</td>
+</tr>
+<tr>
+<td>按"可用的量化研究平台"</td>
+<td><strong>≈ 80%</strong></td>
+<td>软件与协议已通关；缺数据纵深与方法扩展</td>
+</tr>
+<tr>
+<td>按"能上钱的交易系统"</td>
+<td><strong>≈ 15%</strong></td>
+<td>策略 0%、实盘可行性 0%、成本未校准、无风控/执行层</td>
+</tr>
+<tr>
+<td>按"找到第一个可用策略"</td>
+<td><strong>0%</strong></td>
+<td>四个方向全部无正面证据</td>
+</tr>
+</tbody></table>
+<p><strong>这四行必须一起看。</strong> 任何单看一行得出的结论都会误导：</p>
+<ul><li>只看 95% → 以为快成了；</li><li>只看 0% → 以为什么都没做；</li><li>真相是：<strong>装置建好了，假设被诚实否定了，下一步是换数据而不是换参数。</strong></li></ul>
+<hr/>
+<h2>8. 风险登记册</h2>
+<h3>8.1 统计与方法风险（最高）</h3>
+<table><thead><tr>
+<th>#</th>
+<th>风险</th>
+<th>说明</th>
+<th>缓解</th>
+</tr></thead><tbody>
+<tr>
+<td>S1</td>
+<td><strong>功效不足</strong></td>
+<td>48 个月 vs 需 ~160 个月；"失败"与"成功"都不可强解读</td>
+<td>延长样本 / 提高信噪比 / 明确写"证据不足"</td>
+</tr>
+<tr>
+<td>S2</td>
+<td><strong>设计空间过窄</strong></td>
+<td>只测过 2 族信号，且用<strong>同一份输入</strong>（单标的日线价格）；不能外推"A 股无 alpha"</td>
+<td>引入新数据维度（基本面 PIT、行业、指数成分）</td>
+</tr>
+<tr>
+<td>S3</td>
+<td><strong>多重比较</strong></td>
+<td>12 组敏感性来自同一批数据；BH 只能控制已声明的那 12 次</td>
+<td>预登记写死组数；新增组必须新预登记</td>
+</tr>
+<tr>
+<td>S4</td>
+<td><strong>口径混用</strong></td>
+<td>窗口级统计 ≠ 连续账户收益（R12）；全程累计 ≠ OOS 累计（D2）</td>
+<td>列出名拆分 + 文档显式标注</td>
+</tr>
+</tbody></table>
+<h3>8.2 数据风险</h3>
+<table><thead><tr>
+<th>#</th>
+<th>风险</th>
+<th>缓解</th>
+</tr></thead><tbody>
+<tr>
+<td>D1</td>
+<td>幸存者偏差<strong>单向</strong>存在，无法用免费源消除</td>
+<td>只引用配对差额；若要绝对收益结论，必须买 PIT 数据</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>数据止于 2024-12-31（<strong>可解决</strong>）</td>
+<td>改 <code>end_date</code> 重下至 2026-10</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>减法复权负价</td>
+<td>不做低价股研究；或改用比率复权</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>指数为价格指数，非全收益</td>
+<td>基准偏低 → 会<strong>高估</strong>超额；需加回股息或注明</td>
+</tr>
+</tbody></table>
+<h3>8.3 工程与交付风险</h3>
+<table><thead><tr>
+<th>#</th>
+<th>风险</th>
+<th>现状</th>
+<th>缓解</th>
+</tr></thead><tbody>
+<tr>
+<td>E1</td>
+<td>工作副本<strong>不是 git 仓库</strong>，真仓库 <code>D:\DeepQuant</code> 落后</td>
+<td>通过 GitHub API 推到 2 个分支</td>
+<td>尽快统一仓库，避免版本漂移</td>
+</tr>
+<tr>
+<td>E2</td>
+<td>11 个 PR 未合并，有依赖顺序</td>
+<td>#35 → #36 → #44 → #43 → #45 → #37–#42</td>
+<td>按序合并，否则后续 rebase 成本上升</td>
+</tr>
+<tr>
+<td>E3</td>
+<td>单机 SQLite、无并发、无权限</td>
+<td>设计如此</td>
+<td>单用户研究场景够用；多用户需重做</td>
+</tr>
+<tr>
+<td>E4</td>
+<td>依赖 Windows 路径与内置解释器</td>
+<td>已提供跨平台说明</td>
+<td>建议容器化（未做）</td>
+</tr>
+<tr>
+<td>E5</td>
+<td>曾有并发会话改写同一文件</td>
+<td>发生过 3 次</td>
+<td>明确文件所有权，避免并行改同一线</td>
+</tr>
+</tbody></table>
+<h3>8.4 实盘风险（当前为"未评估"，不是"低风险"）</h3>
+<p>容量、冲击成本、券源、实盘滑点、交易接口、风控、合规 —— <strong>七项全部未做</strong>。在 ①②③ 未通关前讨论实盘，属于<strong>用未验证的结论去承担真实风险</strong>。</p>
+<hr/>
+<h2>9. 给评审专家的 10 个问题</h2>
+<blockquote>每条都给出<strong>我的倾向</strong>，但明确标注为"非结论"。这些是本轮产出<strong>边界</strong>上的判断，不是执行缺陷。</blockquote>
+<table><thead><tr>
+<th>#</th>
+<th>问题</th>
+<th>我的倾向（非结论）</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Q1</strong></td>
+<td>是否接受 <code>failure</code> 作为本阶段正式结论并结项？</td>
+<td><strong>接受为"本研究线在现有数据下的结论"</strong>；<strong>不要</strong>升级为"横截面动量在 A 股无效"</td>
+</tr>
+<tr>
+<td><strong>Q2</strong></td>
+<td>先修装置还是先进下一轮？</td>
+<td>装置已修完（7 条），可直接进下一轮；但需先归档，避免"边修边跑"污染</td>
+</tr>
+<tr>
+<td><strong>Q3</strong></td>
+<td>数据缺口怎么补？</td>
+<td><strong>V5/V6 零成本可解，先做</strong>；V1（PIT）是唯一需要花钱的，且是<strong>唯一能实质提升证据强度</strong>的方向</td>
+</tr>
+<tr>
+<td><strong>Q4</strong></td>
+<td>是否改用沪深300 作基准？</td>
+<td>数据已具备。但<strong>价格指数会低估基准 → 高估超额</strong>，必须先解决全收益口径，否则会制造"虚假 alpha"</td>
+</tr>
+<tr>
+<td><strong>Q5</strong></td>
+<td>48 个月 OOS 够不够？</td>
+<td>不足以支撑"有效"；<strong>足以支撑"不值得在现有数据上继续投入同一假设"</strong></td>
+</tr>
+<tr>
+<td><strong>Q6</strong></td>
+<td>是否继续找新策略？</td>
+<td><strong>暂停</strong>。四个方向全无正面证据，继续加策略族 = 在窄设计空间里重复试错</td>
+</tr>
+<tr>
+<td><strong>Q7</strong></td>
+<td>滑点 0.1% 是否合理？</td>
+<td>建议改为<strong>成本敏感性区间</strong>（如 0.05% / 0.1% / 0.2% / 0.3%）而非单点假设</td>
+</tr>
+<tr>
+<td><strong>Q8</strong></td>
+<td>是否扩池到全市场？</td>
+<td><strong>先解决 V1 再扩池</strong>；否则偏差随样本一起放大</td>
+</tr>
+<tr>
+<td><strong>Q9</strong></td>
+<td>是否引入基本面因子？</td>
+<td>财务数据<strong>可以做到 PIT</strong>（<code>stock_yjbb_em</code> 带"最新公告日期"，11,445 行），但需先验证该日期等于首次披露日</td>
+</tr>
+<tr>
+<td><strong>Q10</strong></td>
+<td>这套装置值不值得继续投入？</td>
+<td><strong>值得，但用途要换</strong>：从"找 alpha"转为"低成本证伪 + 数据资产建设"。装置本身可复用</td>
+</tr>
+</tbody></table>
+<hr/>
+<h2>10. 三条候选路径（成本 / 收益 / 风险）</h2>
+<h3>路径 A：修完 + 结项归档（1–2 人日，低成本）</h3>
+<p><strong>做什么</strong>：归档本轮结果为 v1.3 协议下的正式结论；合并 11 个 PR；统一 git 仓库；写结项说明。<br/><strong>收益</strong>：得到一个<strong>干净、可复现、有审计链</strong>的阶段性成果，可作为后续任何研究的基线。<br/><strong>风险</strong>：低。<strong>但不会带来任何新策略结论。</strong></p>
+<h3>路径 B：补数据，重做一轮（成本取决于数据源，唯一能实质提升证据强度）</h3>
+<p><strong>做什么</strong>：</p>
+<ol><li>行情延到 2026-10（<strong>零成本</strong>，改 <code>end_date</code>）；</li><li>建沪深300 基准（<strong>零成本</strong>，但需解决全收益口径）；</li><li>获取 <strong>PIT 成分股</strong>（唯一需付费项）；</li><li><strong>重新预登记</strong>（不得在 v1.3 上改参数），再跑一轮。</li></ol>
+<p><strong>收益</strong>：消掉 V1/V5/V6 三条硬约束，样本从 48 个月扩到 ~110 个月，功效显著改善。<br/><strong>风险</strong>：中。数据质量与口径一致性是主要风险；<strong>不建议</strong>多源拼接（复权与停牌处理不同，拼出来无法自证一致）。</p>
+<h3>路径 C：换假设，不换参数（中等成本，风险较高）</h3>
+<p><strong>做什么</strong>：针对<strong>新的可证伪假设</strong>（残差动量 / 行业中性后动量 / 事件驱动）重新冻结预登记。<br/><strong>风险</strong>：在 V1 未解决时，新假设同样只能得到"测不出来"，容易变成<strong>无限试错</strong>。<br/><strong>我的判断</strong>：<strong>在路径 B 完成前，不建议做 C。</strong></p>
+<h3>明确不建议做的事</h3>
+<ul><li>❌ 在 v1.3 上换 lookback / skip 再试（R2/R11 明令禁止的择优）</li><li>❌ 因本轮失败而增加参数组合、删掉表现差的敏感性组、或改看样本内</li><li>❌ 在四层结论未通关前讨论实盘、接入真实资金</li><li>❌ 继续在 50 只静态池上追加策略族</li><li>❌ 为了"补数据"去接多个免费源做拼接</li></ul>
+<hr/>
+<h2>11. 附录</h2>
+<h3>11.1 关键文件索引</h3>
+<table><thead><tr>
+<th>主题</th>
+<th>文件</th>
+</tr></thead><tbody>
+<tr>
+<td>系统定位与运行</td>
+<td><code>PROGRAM_REVIEW_PACKAGE_2026-10-19.md</code>、<code>sandbox_verify/README_FOR_SANDBOX.md</code></td>
+</tr>
+<tr>
+<td>工程基线</td>
+<td><code>docs/ENGINEERING_BASELINE_REPORT.md</code></td>
+</tr>
+<tr>
+<td>测试与覆盖</td>
+<td><code>docs/TEST_REPORT_2026-10-18.md</code>、<code>docs/COVERAGE_GAPS.md</code></td>
+</tr>
+<tr>
+<td>软件已知问题</td>
+<td><code>docs/KNOWN_ISSUES_SOFTWARE_2026-10-18.md</code></td>
+</tr>
+<tr>
+<td>研究已知问题</td>
+<td><code>docs/KNOWN_ISSUES_RESEARCH_2026-10-18.md</code></td>
+</tr>
+<tr>
+<td>预登记（冻结）</td>
+<td><code>docs/GATE1_PREREGISTRATION.md</code> + <code>.sha256</code></td>
+</tr>
+<tr>
+<td>Gate 1 结果</td>
+<td><code>gate1_out/032a11f591553e25/</code>、<code>gate1_out/a027865f26ea237a/</code>、<code>gate1_out/INDEX.md</code></td>
+</tr>
+<tr>
+<td>Gate 1 结项</td>
+<td><code>docs/GATE1_FINAL_CLOSEOUT_REPORT.md</code></td>
+</tr>
+<tr>
+<td>装置修复</td>
+<td><code>docs/RESEARCH_FIXES_REPORT.md</code></td>
+</tr>
+<tr>
+<td>四方向裁决</td>
+<td><code>docs/B16_DIRECTION_VERDICT_2026-10-18.md</code></td>
+</tr>
+<tr>
+<td>OOS 判定</td>
+<td><code>docs/OOS_VERDICT_2026-10-19.md</code></td>
+</tr>
+<tr>
+<td>数据可行性</td>
+<td><code>docs/DATA_FEASIBILITY_REPORT.md</code></td>
+</tr>
+<tr>
+<td>成本/记账口径</td>
+<td><code>docs/A3_ACCOUNTING_SPEC.md</code></td>
+</tr>
+<tr>
+<td>外部沙箱复核</td>
+<td><code>C:\Users\77436\Desktop\SANDBOX_VERIFICATION_REPORT.md</code></td>
+</tr>
+</tbody></table>
+<h3>11.2 复现命令</h3>
+<pre><code># 测试（Windows，作者机）
+cd backend &amp;&amp; PYTHONPATH=src ../venv/Scripts/python.exe -m pytest tests/ -q
+
+# 测试（Linux 等价）
+cd backend &amp;&amp; PYTHONPATH=src python -m pytest tests/ -q
+
+# 启动
+DEEPQUANT_DATA_ROOT=&quot;$PWD/data&quot; python scripts/start_deepquant.py --no-build --port 8123
+
+# Gate 1 复跑（需新授权，不得覆盖既有结果）
+python scripts/gate1_run.py --execute --authorized-by &quot;&lt;授权人+时间&gt;&quot;
+
+# 报告（机械生成，手改即视为伪造）
+python scripts/gate1_report.py</code></pre>
+<h3>11.3 引用规范</h3>
+<p>引用本项目任何结论，<strong>必须同时给出</strong>：</p>
+<ul><li>预登记 sha256 前缀 <code>8b011551</code>；</li><li>结果目录 <code>gate1_out/032a11f591553e25</code>（或排除对照 <code>a027865f26ea237a</code>）；</li><li>判定档位 <code>failure</code>；</li><li>95% CI <code>[−0.017974, +0.010051]</code>。</li></ul>
+<p><strong>只引用单个数字、不引用判定档位与 CI，视为断章取义。</strong></p>
+<h3>11.4 术语</h3>
+<table><thead><tr>
+<th>术语</th>
+<th>含义</th>
+</tr></thead><tbody>
+<tr>
+<td>PIT（Point-in-Time）</td>
+<td>时点数据：当时能看到什么，而不是今天回看能看到什么</td>
+</tr>
+<tr>
+<td>幸存者偏差</td>
+<td>只用"今天还活着"的股票回测，系统性剔除输家</td>
+</tr>
+<tr>
+<td>预登记</td>
+<td>跑之前冻结假设、参数、判据，防止事后择优</td>
+</tr>
+<tr>
+<td>配对差额 <code>d_t</code></td>
+<td>策略月收益 − 基准月收益，本研究的主统计量</td>
+</tr>
+<tr>
+<td>功效（power）</td>
+<td>在给定噪声下检出真实效应的能力；样本越短越低</td>
+</tr>
+<tr>
+<td>xfail(strict)</td>
+<td>把"当前错误行为"钉成会喊的断言；修好后会 XPASS 并强制移除标记</td>
+</tr>
+<tr>
+<td>窗口级统计</td>
+<td>每个 walk-forward 窗口独立的收益统计，<strong>不等于</strong>连续账户收益</td>
+</tr>
+</tbody></table>
+<h3>11.5 责任边界与声明</h3>
+<ol><li>本报告由 AI 协调层汇总生成，<strong>所有数字均可在上述文件中复现</strong>；凡标 ✅复算 的为独立重算。</li><li>报告<strong>不构成投资建议</strong>，也<strong>不构成"策略有效/无效"的一般性结论</strong>。</li><li>报告<strong>不掩盖</strong>：四个方向全部无正面证据；实盘可行性一项未做；成本含未核实假设；数据含单向偏差。</li><li>报告<strong>不替任何一方圆场</strong>：外部复核报告的两处事实前提、我自己的两处文档缺陷、A/B 两线的装置缺陷，均已如实列出。</li><li><strong>最诚实的一句总结</strong>：这套系统现在能做的最有价值的事，不是告诉你"买什么"，而是<strong>在你想相信一个策略时，把你拦住</strong>。它已经成功拦住了一次。</li></ol>
+<hr/>
+<p><em>报告结束。如需就任一条展开，请指明编号（C1–C5 / Q1–Q10 / 路径 A–C / 风险编号）。</em></p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+ "message": "A 线收官：存量补推 backend/tests 批次 2/6（20 个文件，backend/tests/api/test_security.py .. backend/tests/backtest/test_portfolio_consistency_tolerance.py）",
+ "files": [
+  "backend/tests/api/test_security.py",
+  "backend/tests/api/test_start_launcher.py",
+  "backend/tests/api/test_strategies_api.py",
+  "backend/tests/api/test_ui_single_port.py",
+  "backend/tests/backtest/test_backtest_config_contracts.py",
+  "backend/tests/backtest/test_config.py",
+  "backend/tests/backtest/test_costs.py",
+  "backend/tests/backtest/test_credibility.py",
+  "backend/tests/backtest/test_cross_section.py",
+  "backend/tests/backtest/test_cross_section_execution.py",
+  "backend/tests/backtest/test_engine.py",
+  "backend/tests/backtest/test_fee_presets.py",
+  "backend/tests/backtest/test_gate1_prereg_contract.py",
+  "backend/tests/backtest/test_gate1_run_contract.py",
+  "backend/tests/backtest/test_gate1_trigger_reachability.py",
+  "backend/tests/backtest/test_history_audit.py",
+  "backend/tests/backtest/test_models.py",
+  "backend/tests/backtest/test_models_contracts.py",
+  "backend/tests/backtest/test_portfolio_accounting.py",
+  "backend/tests/backtest/test_portfolio_consistency_tolerance.py"
+ ]
+}

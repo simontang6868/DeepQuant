@@ -1,0 +1,7 @@
+{
+ "message": "A 线收官：新增 KNOWN_ISSUES_SOFTWARE_2026-10-18.md + COVERAGE_GAPS 追加 2026-10-18 收官刷新章节（不覆写 10-17 快照）",
+ "files": [
+  "docs/KNOWN_ISSUES_SOFTWARE_2026-10-18.md",
+  "docs/COVERAGE_GAPS.md"
+ ]
+}

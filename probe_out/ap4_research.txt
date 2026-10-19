@@ -1,0 +1,10 @@
+........................................................................ [ 45%]
+........................................................................ [ 90%]
+...............                                                          [100%]
+============================== warnings summary ===============================
+tests/research/test_data.py::test_load_equity_drops_unparsable_dates
+  D:\DeepQuant power by txm\DeepQuant-main\backend\src\deepquant\research\equity_bond_spread\data.py:42: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+    return pd.to_datetime(series, errors="coerce")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+159 passed, 1 warning in 20.86s

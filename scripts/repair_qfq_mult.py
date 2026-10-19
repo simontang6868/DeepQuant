@@ -201,7 +201,17 @@ def main() -> None:
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--force", action="store_true")
+    ap.add_argument("--listed-manifest", default="",
+                    help="在市组行情清单：留空=50 只抽样那份；v1.2 传 298 只全量那份")
+    ap.add_argument("--manifest", default="", help="修复清单输出路径（留空=默认）")
     args = ap.parse_args()
+
+    # 换池：v1.2 的 A 组是 csi300 全量 298 只，清单不同
+    global LISTED_MANIFEST, MANIFEST
+    if args.listed_manifest:
+        LISTED_MANIFEST = Path(args.listed_manifest)
+    if args.manifest:
+        MANIFEST = Path(args.manifest)
 
     members = collect_members(include_step75=True)
     if args.only == "A":

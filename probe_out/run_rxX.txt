@@ -1,0 +1,262 @@
+........................................................................ [  4%]
+........................................................................ [  8%]
+........................................................................ [ 12%]
+........................................................................ [ 16%]
+........................................................................ [ 20%]
+........................................................................ [ 25%]
+........................................................................ [ 29%]
+...................................................................F.... [ 33%]
+........................................................................ [ 37%]
+........................................................................ [ 41%]
+.....s.................................................xx............... [ 45%]
+.x.x.x.................................................................. [ 50%]
+........................................................................ [ 54%]
+........................................................................ [ 58%]
+........................................................................ [ 62%]
+........................................................................ [ 66%]
+........................................................................ [ 70%]
+........................................................................ [ 75%]
+........................................................................ [ 79%]
+........................................................................ [ 83%]
+........................................................................ [ 87%]
+........................................................................ [ 91%]
+................................................................x....... [ 95%]
+.............................................................x........   [100%]
+================================== FAILURES ===================================
+______________ test_main_dry_run_with_exclusion_runs_no_backtest ______________
+
+tmp_path = WindowsPath('C:/Users/77436/AppData/Local/Temp/pytest-of-77436/pytest-227/test_main_dry_run_with_exclusi0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001DDB10CA9E0>
+
+    def test_main_dry_run_with_exclusion_runs_no_backtest(tmp_path, monkeypatch):
+        """带 --exclude-symbols 走 dry-run 时，一条回测都不许跑。"""
+        _write_toy_csvs(tmp_path)
+    
+        def _boom(*a, **k):
+            raise AssertionError("dry-run 不得调用 run_one（那会算出收益）")
+    
+        monkeypatch.setattr(g1, "run_one", _boom)
+        code = g1.main(["--data-root", str(tmp_path), "--exclude-symbols", "600001.SH"])
+        assert code == 0
+>       assert not (REPO_ROOT / "gate1_out").exists() or _gate1_out_untouched()
+E       AssertionError: assert (not True or False)
+E        +  where True = exists()
+E        +    where exists = (WindowsPath('D:/DeepQuant power by txm/DeepQuant-main') / 'gate1_out').exists
+E        +  and   False = _gate1_out_untouched()
+
+tests\backtest\test_gate1_run_contract.py:474: AssertionError
+---------------------------- Captured stdout call -----------------------------
+[LOAD] 4 只标的 from C:\Users\77436\AppData\Local\Temp\pytest-of-77436\pytest-227\test_main_dry_run_with_exclusi0
+[EXCLUDE] 剔除 ['600001.SH'] → 剩 3 只
+{
+  "mode": "dry-run",
+  "data_root": "C:\\Users\\77436\\AppData\\Local\\Temp\\pytest-of-77436\\pytest-227\\test_main_dry_run_with_exclusi0",
+  "prereg": {
+    "version": "gate1-prereg-v1.3",
+    "sha256_prefix": "8b011551"
+  },
+  "data_quality": {
+    "n_symbols": 3,
+    "date_span": [
+      "2017-01-03",
+      "2017-10-09"
+    ],
+    "nonpositive_rows": {},
+    "n_nonpositive_symbols": 0,
+    "gem_symbols": [
+      "300001.SZ"
+    ],
+    "n_gem": 1
+  },
+  "calendar": {
+    "n_trading_days": 200,
+    "first": "2017-01-03",
+    "last": "2017-10-09",
+    "n_signal_dates": 10
+  },
+  "main_schedule": {
+    "n_targets": 10,
+    "n_cash_months": 10,
+    "n_holdings_min": null,
+    "n_holdings_max": null,
+    "n_holdings_median": null,
+    "exit_collisions": [
+      "2017-10-09: 信号日之后无交易日"
+    ],
+    "first_invested": null
+  },
+  "benchmark_schedule": {
+    "n_targets": 10,
+    "n_cash_months": 10
+  },
+  "per_experiment_schedule": [
+    {
+      "name": "main",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S1",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S2",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S3",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S4",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S5",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S6",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S7",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S8",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S9",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S10",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S11",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    },
+    {
+      "name": "S12",
+      "n_targets": 10,
+      "n_cash_months": 10,
+      "n_holdings_min": null,
+      "n_holdings_max": null,
+      "n_holdings_median": null,
+      "oos_months": 0,
+      "oos_invested_months": 0,
+      "first_invested": null
+    }
+  ],
+  "estimated_backtests": 28,
+  "price_limit_note": "组合层单一涨跌停比例 = 10%（预登记 §6 为 board 模式，per-symbol 无法实现）；池内 1 只双创标的在 2020-08-24 后被偏严判定（悲观方向）",
+  "will_compute_returns": false,
+  "excluded_symbols": [
+    "600001.SH"
+  ],
+  "n_symbols_after_exclusion": 3,
+  "extra_control_run": "真跑时额外执行 1 组对照（主实验口径 × 排除后的池子，策略+基准共 2 次回测），用于预登记 §10.2「600809.SH 数据缺陷影响无法隔离」的符号判定"
+}
+
+[DRY-RUN] 未计算任何收益。真跑需 --execute 且 --authorized-by "<用户授权原话>"。
+============================== warnings summary ===============================
+..\..\venv\Lib\site-packages\fastapi\testclient.py:1
+  D:\DeepQuant power by txm\venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+XFAIL tests/data/test_checks_extended.py::test_price_jump_count_should_equal_true_violations - 已知缺陷（只测不修，修 bug 属判断类，交回 B 线）：validate_daily_extended 里 df_sorted[["close"]] 取到的是 DataFrame，使 _check_price_jumps 内 `pct_change[pct_change > threshold]` 走 DataFrame 布尔掩码语义（返回同形 NaN 填充的 DataFrame，而非过滤后的子集），len(jumps) 因此等于行数-1。最小复现：100 行、3 处跳变，真实超阈值 5 次，却报告 count=99。修复后本测试 XPASS，strict=True 会令其报错，强制移除本标记。
+XFAIL tests/data/test_checks_extended.py::test_flat_prices_should_not_report_price_jump - 同一缺陷的更严重后果：掩码 DataFrame 的 len() 恒 > 0，因此**即使零跳变也会误报 price_jump**（count = 行数-1）。这正是历史研究 JSON 里「1594 行 1593 个跳变」= 行数-1 的由来——那不是真实跳变数。修复后本测试 XPASS，strict=True 会令其报错，强制移除本标记。
+XFAIL tests/data/test_checks_extended_coverage.py::TestPriceJumps::test_public_path_reports_actual_jump_count - 已知缺陷：validate_daily_extended 取 df_sorted[["close"]]（双层方括号）得到 DataFrame 而非 Series，导致 len(jumps) 退化成行数。本例 60 行、真实跳变 3 个，实际报 59。修复后请删除本 xfail 标记。
+XFAIL tests/data/test_checks_extended_coverage.py::TestPriceJumps::test_below_threshold_reports_nothing - 同一缺陷的另一面：jumps 是 DataFrame 布尔索引结果（行数不变），len(jumps) > 0 对任何 ≥2 行数据都成立 ⇒ 恒定误报。期望：全部变化都低于阈值时不报。修复后请删除本 xfail 标记。
+XFAIL tests/data/test_checks_extended_coverage.py::TestPriceJumps::test_threshold_raising_keeps_check_silent - 恒定误报：阈值 15% 高于实际变化 10%，理应静默，但因 len(jumps) 恒为正数而仍报警。修复后请删除本 xfail 标记。
+XFAIL tests/walkforward/test_parameter_selection_coverage.py::TestWindowFailurePaths::test_oos_strategy_construction_failure_returns_clean_result - 潜在缺陷：run_walkforward_window 的「OOS 策略构造失败」分支在 except 里访问了尚未绑定的局部变量 strategy（源码 447-448 行），导致函数抛 UnboundLocalError 崩溃，而非按契约返回 oos_success=False。违反模块自述原则 4「失败显式表达」。修复后请删除本 xfail 标记。
+XFAIL tests/walkforward/test_walkforward_contracts.py::test_generate_windows_end_date_respects_boundary - BUG: generate_windows 的 end_date 裁剪在 __init__.py:222 用 (~mask) 而非 mask 求 last_true_pos，导致 end_idx 恒等于 len(index)，end_date 被完全忽略。正确行为应为『末窗 oos_end ≤ end_date』。修复后本用例将由 XPASS 触发 strict 报错，提示移除本标记。
+1 failed, 1717 passed, 1 skipped, 7 xfailed, 1 warning in 103.31s (0:01:43)

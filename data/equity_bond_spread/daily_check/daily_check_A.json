@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "indicator": "A",
+    "threshold_pct": 90.0,
+    "percentile_window": "expanding",
+    "min_history_obs": 36,
+    "lookback_years": 5,
+    "min_gap_obs": 4,
+    "exec_lag_obs": 1,
+    "is_end_date": "2018-12-31",
+    "cost_rate": 0.0015,
+    "daily_coverage": [
+      "2021-10-18",
+      "2026-10-16"
+    ],
+    "daily_rows": 1212,
+    "calendar_coverage": [
+      "1990-12-19",
+      "2026-12-31"
+    ],
+    "note": "信号规则与月频完全一致；仅执行时点与持有期改为日频精确口径"
+  },
+  "n_events_monthly": 0,
+  "comparison_daily": {
+    "20td": {
+      "window_td": 20,
+      "n_signals": 0,
+      "note": "无可用事件"
+    },
+    "60td": {
+      "window_td": 60,
+      "n_signals": 0,
+      "note": "无可用事件"
+    },
+    "120td": {
+      "window_td": 120,
+      "n_signals": 0,
+      "note": "无可用事件"
+    },
+    "250td": {
+      "window_td": 250,
+      "n_signals": 0,
+      "note": "无可用事件"
+    }
+  },
+  "buy_and_hold_daily": {
+    "start": "2021-10-18",
+    "end": "2026-10-16",
+    "n_obs": 1212,
+    "years": 4.99384,
+    "total_return": -0.144452,
+    "cagr": -0.030758,
+    "max_drawdown": -0.378565,
+    "ann_vol": 0.178565,
+    "sharpe": -0.172252
+  },
+  "monthly_vs_daily": []
+}

@@ -1,0 +1,135 @@
+{
+  "spec_version": "oos-recalc-prereg-v1",
+  "recalc_id": "oos-recalc-2026-10-19",
+  "frozen_at": "2026-10-19T22:09:00+08:00",
+  "frozen_by": "B-line",
+  "status": "FROZEN_BEFORE_RESULTS",
+
+  "identity": {
+    "is": "把 v1 样本外结果在**乘性前复权**价格上按**完全相同**的设计重算一遍，只产出数字",
+    "is_not": [
+      "不是第二次样本外检验 —— 2025-01-02 ~ 2026-10-16 这 431 个交易日已在 v1 被判过（R4_INCONCLUSIVE），按 OOS_PREREG_V2 §4「产生判定即消耗区间」，该区间不再具备盲测属性",
+      "不是改判 —— v1 的 R4_INCONCLUSIVE 原样保留，本文件不重判它",
+      "不产生关于策略有效性的新证据 —— 它只回答「同一批数字在正确口径下是多少」"
+    ],
+    "why_now": "阶段 0a 探针暴露腾讯/东财 qfq 是加性复权，价位会被压到趋零甚至为负（docs/QFQ_ADDITIVE_ARTIFACT_2026-10-19.md）。v1 的 OOS_RESULTS 就是在那种价格上算的，数字已不可引用（docs/STAGE0_OOS_CALIBER_IMPACT_2026-10-19.md §2）。"
+  },
+
+  "supersedes": {
+    "for_numbers_only": "docs/OOS_RESULTS_2026-10-19.json",
+    "keeps_untouched": [
+      "docs/OOS_PREREG_2026-10-19.json（v1 规格，sha256 b6076e32…，只读）",
+      "docs/OOS_PREREG_2026-10-19.md（v1 人读版，只读）",
+      "docs/OOS_VERDICT_2026-10-19.md（v1 裁定，只读）",
+      "docs/OOS_RESULTS_2026-10-19.json（v1 结果，只读，不删不改）"
+    ],
+    "cannot_do": "本重算不得用来声称「样本外通过/失败」。要看策略在新数据上的表现，只能等 2026-10-16 之后的新交易日，并按 OOS_PREREG_V2 重新冻结。"
+  },
+
+  "data": {
+    "kind": "tencent_kline_qfq_cached_mult",
+    "caliber": "乘性前复权 qfq_mult_t = hfq_t × (raw_anchor / hfq_anchor)；缩放只改水平值不改收益率",
+    "caliber_source": "scripts/repair_qfq_mult.py；逐只状态见 docs/QFQ_MULT_MANIFEST_2026-10-19.json",
+    "source_dir": "data/oos_recalc_pool",
+    "pool_assembly_note": "6 只从 data/qfq_mult/{step75,listed} 复制而来，逐字节相同（sha256 与源文件一致），只为让规格里的 source_dir 单值可校验",
+    "benchmark": {
+      "path": "data/benchmark/hs300_daily.csv",
+      "code": "sh000300",
+      "purpose": "逐窗 buy&hold 超额，仅描述，不参与判定",
+      "unchanged_from_v1": true,
+      "why_unchanged": "沪深300 是价格指数，用收盘点位算区间收益，不做复权，不受本次口径缺陷影响；sha256 与 v1 规格逐位相同即为证据"
+    },
+    "pool": [
+      {"code": "600519.SH", "name": "贵州茅台", "sha256": "dd62bd91bd82a130a6413dbc0e2391c6b56ad5fcb2529d5ca9db9a162edbbcf1"},
+      {"code": "000001.SZ", "name": "平安银行", "sha256": "a493dd08ab6b6ece40442def057cae2eec24b605c2d464da4ed68a22a15dbd57"},
+      {"code": "601318.SH", "name": "中国平安", "sha256": "3b1cf9842f669143fe4e41883a60177b349d85a4ce8997cec5fdf63a1e32eddb"},
+      {"code": "300750.SZ", "name": "宁德时代", "sha256": "68287c7c0a1a8c43c17907de884ab3494f44e59d3c7f974fdca2272e60e8dc77"},
+      {"code": "000858.SZ", "name": "五粮液", "sha256": "8a3cca4a14757de85d4104f6dcbc106c0d26cd4b966fda7775ae1bae5b3c706f"},
+      {"code": "600900.SH", "name": "长江电力", "sha256": "f0b55f7aa473643107f84a27c85cb9db303a92c3cd920f6bb494b98d4bd8f1b0"}
+    ],
+    "benchmark_sha256": "a25057d953187fdbd1149c274d3ab3296e36d1d09eb0a45b096c624c49ac9d3e",
+    "data_gate": "validate_daily_extended 原样应用，ERROR 级一律阻断；阻断结果照实记录。实测 6/6 通过（v1 里 300750 因 add 口径产生负价被拦，mult 下最小收盘 18.62）"
+  },
+
+  "design": {
+    "design_version": "oos75-v3",
+    "identical_to_v1": true,
+    "identical_note": "以下每一项逐字复制自 docs/oos_prereg_2026-10-19.json 的 design 段，一个字未改；改任何一项，本次重算就不再是「只换价格口径」的对照",
+    "start": "20170101",
+    "end": "20261016",
+    "train_periods": 150,
+    "oos_window": 75,
+    "step": 75,
+    "min_trades": 2,
+    "initial_cash": 100000.0,
+    "price_limit_mode": "board",
+    "fee_presets": [
+      "simulation_placeholder",
+      "broker_reference_common_2024",
+      "research_scenario_high_cost"
+    ],
+    "ma_grid": {"fast": [3, 5, 10, 20], "slow": [15, 25, 40, 60], "max_combinations": 50},
+    "mr_grid": {"fast": [10, 20, 30, 50], "slow": [15, 20, 25], "threshold_scale": 0.1, "max_combinations": 50},
+    "capital_note": "初始资金刻意保持 10 万不变。若同时改资金，就分不清数字变化是口径带来的还是资金带来的——那正是本轮要避免的混淆。茅台买不起一手的问题本次不解，只如实报出"
+  },
+
+  "evaluations": {
+    "E1": {"role": "primary", "kind": "rolling_windows", "expected_n_windows": 5,
+            "rule": "与 v1 逐字相同：step=75，取 oos_start >= 2025-01-02，跨界窗口单列不计入"},
+    "E2": {"role": "secondary_confirmatory", "kind": "single_holdout",
+            "train_range": ["2017-01-03", "2024-12-31"], "oos_range": ["2025-01-02", "2026-10-16"]}
+  },
+
+  "primary_cell": ["ma_cross", "simulation_placeholder"],
+  "metrics": {
+    "primary": "OOS 窗口累计收益的中位数（pooled，按 cell）",
+    "secondary": ["OOS 正收益窗口占比", "OOS 零成交窗口占比", "OOS 相对沪深300 的超额中位", "E2 的 431 日单窗口收益"],
+    "added_this_round": [
+      "名义池 vs 有效池：逐标的统计它在纯样本外贡献了几个有效观测（n_nominal 与 n_effective 的差集必须单列）",
+      "逐窗新旧对照：同一 (symbol, oos_start) 在 add 口径与 mult 口径下的收益差与符号是否翻转"
+    ]
+  },
+
+  "verdict_rules_ordered_first_match_wins": [
+    {"id": "R0_NO_POWER", "when": "zero_trade_ratio >= 0.50 或 n_valid_oos_obs < 20", "verdict": "NO_POWER", "meaning": "这批数据没有判别力，既不能否证也不能证实；禁止据此裁决策略，也禁止据此决定扩池"},
+    {"id": "R1_REFUTED", "when": "e1_median < 0 且 e1_pos_ratio <= 0.25 且 e2_ret < 0", "verdict": "REFUTED", "meaning": "样本外为负且方向一致，策略在该池上不成立"},
+    {"id": "R2_IMPROVED", "when": "e1_median > is_p90 且 e2_ret > 0", "verdict": "IMPROVED", "meaning": "样本外好于样本内 p90，需先排除数据/口径错误再谈结论"},
+    {"id": "R3_CONSISTENT", "when": "is_p10 <= e1_median <= is_p90 且 sign(e1_median) == sign(e2_ret) 且 e1_median != 0", "verdict": "CONSISTENT", "meaning": "样本外落在样本内分布内且方向一致，无衰减证据"},
+    {"id": "R4_INCONCLUSIVE", "when": "其余", "verdict": "INCONCLUSIVE", "meaning": "方向不一致或落在分布边界外，样本量不足以判定，需扩样本"}
+  ],
+  "verdict_rules_verbatim_from_v1": true,
+  "verdict_rules_note": "以上五条逐字复制自 docs/oos_prereg_2026-10-19.json。重算只换价格口径，不换判据——判据若也换了，就分不清数字变化是口径造成的还是判据造成的",
+
+  "predicted_before_run": {
+    "P1_gate": "6/6 全部通过数据闸门（v1 拦下 300750，mult 下最小收盘价 18.62，不复现 invalid_price）",
+    "P2_moutai_still_absent": "600519 的 5 个纯样本外窗口仍然 sel_ok=False，OOS 有效观测 = 0。理由：mult 口径下 2021 年后前复权价回到千元以上，一手 > 10 万，与该窗口有无价格缺陷无关",
+    "P3_oos_n": "主格 OOS 有效观测从 20 升到 25（宁德 +5，茅台仍 0）",
+    "P4_median": "主格 OOS 中位变化幅度 < 1pp，且仍为负",
+    "P5_verdict": "判定仍为 R4_INCONCLUSIVE",
+    "P6_window_flips": "4 只共有标的的 20 个窗口里，收益符号发生翻转的窗口数 ≥1 且 ≤6（75 天窗口里最多一次分红，影响量级个位数百分比，不该大面积翻号）",
+    "prediction_is_falsifiable": "以上 6 条逐条核对。落空必须明写「预测错误」并给出实际值，不得事后改口径圆回来"
+  },
+
+  "reporting_requirements": [
+    "新旧逐格对照表：IS 中位/p10/p90、OOS n/中位/正收益占比/零成交占比、E2 中位，六个格子全报",
+    "名义池 vs 有效池：逐标的列出 OOS 有效观测数，600519 的 0 必须显式出现，不得只写「6 只池」",
+    "逐窗新旧对照：20 个共有窗口的收益差与符号翻转计数",
+    "E1 与 E2 若方向冲突，两个都报",
+    "明确写「本次不是样本外检验」，并且不得把 R4 的重现说成「样本外结论稳健」"
+  ],
+
+  "forbidden_after_seeing_results": [
+    "改初始资金（10 万 → 其他）让茅台能建仓，再声称「池完整」",
+    "改池（剔除茅台或加标的）",
+    "改 OOS 窗口 / step / min_trades",
+    "因为新数字更「好看」而只报 mult 臂、隐去 add 臂",
+    "把本次重算描述为样本外验证，或据此决定扩池 / 上线",
+    "改动 docs/OOS_PREREG_*、docs/OOS_RESULTS_2026-10-19.json、docs/OOS_VERDICT_2026-10-19.md 的任何字节"
+  ],
+
+  "output": {
+    "results_json": "docs/OOS_RESULTS_RECALC_2026-10-19.json",
+    "comparison_json": "docs/OOS_RECALC_COMPARE_2026-10-19.json",
+    "report": "docs/OOS_RECALC_2026-10-19.md"
+  }
+}

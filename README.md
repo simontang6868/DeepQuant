@@ -5,6 +5,15 @@
 > 名称说明：DeepQuant 的命名表达了对 DeepSeek 的敬意，但本项目为**独立个人项目**，
 > 与 DeepSeek 无官方合作或隶属关系。
 
+## 立即使用（可用版）
+
+双击 **`start_deepquant.bat`** → 浏览器自动打开 `http://127.0.0.1:8123/`（端口被占用会顺延）。
+一个进程、一个端口，不需要再开第二个终端跑前端开发服务器。
+
+- 三步跑出第一份回测 / 打不开怎么排查：**`START_HERE.md`**
+- 交付说明、验证清单与边界：`docs/PRODUCT_READY_2026-10-18.md`
+- 只自检不启动：`python scripts/start_deepquant.py --check`
+
 ## 当前状态
 
 **第一阶段 · Step 0 – Step 5.8 进行中**（回测 API 与可视化前端已完成开发，尚未提交 Git）：
@@ -457,9 +466,10 @@ restored = result_from_json(text)    # 恢复核心数据结构与类型
 | 方法 | 路径 | 说明 |
 |---|---|---|
 | GET | `/health` | 健康检查，返回 `{"status": "ok"}` |
-| GET | `/datasets` | 可用数据集列表（symbol / 行数 / 起止日期 / 原始 CSV 的 SHA-256）；损坏元数据列入 `invalid_datasets` |
+| GET | `/datasets` | 可用数据集列表（symbol / 名称 / 行数 / 起止日期 / 原始 CSV 的 SHA-256）；损坏元数据列入 `invalid_datasets`；导入时被闸门拒绝的标的列入 `unavailable_datasets`（带原因码）；`coverage` 给出数据覆盖范围与已知偏差 |
 | GET | `/strategies` | 策略注册表（当前仅 `ma_cross`）：参数类型、默认值与约束说明 |
-| POST | `/backtests` | 同步执行回测，返回结果 JSON |
+| POST | `/backtests` | 同步执行**单标的**回测，返回结果 JSON |
+| POST | `/portfolio-backtests` | 同步执行**多标的组合**回测（共享现金池、月末调仓、连续净值），默认参数即 Gate 1 主实验口径 |
 
 ### POST /backtests 请求字段
 
@@ -475,6 +485,33 @@ restored = result_from_json(text)    # 恢复核心数据结构与类型
 
 未知字段一律拒绝（422）。客户端**不能**指定执行价规则、市场规则、模块路径或任意代码；
 `exec_price_rule` 固定为 `next_open`，市场规则为 A 股规则，`fee_source` 固定为 `simulation_placeholder`。
+
+### POST /portfolio-backtests 请求字段
+
+多标的组合回测（共享现金池 / 月末调仓 / 连续净值）。**默认值就是 Gate 1 主实验口径**，
+改任何一项都会在响应的 `limitations` 里标注偏差。
+
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---|---|
+| `dataset_symbols` | string[] | 是 | 标的池，**至少 2 只、最多 60 只**，不得重复 |
+| `initial_cash` | number | 是 | 组合初始资金（>0） |
+| `selection` | string | 否 | `momentum_top`（默认，截面动量取前 N%）或 `equal_weight_all`（全池等权，此时 `top_fraction` 强制 1.0） |
+| `top_fraction` | number | 否 | 每期取前多少比例，(0,1]，默认 `0.2` |
+| `lookback` / `skip` | int | 否 | 动量回看窗口与末端跳过天数，默认 `60` / `5`（`skip < lookback`） |
+| `min_assets` | int | 否 | 可参与排序的标的少于此数时当期空仓，默认 `5`；**不得大于标的数**（否则全程空仓，直接 422） |
+| `max_weight_per_asset` | number | 否 | 单标的上限 (0,1]；缺省不限制 |
+| `allocation` | string | 否 | `weights`（默认，按权重记账）或 `lots`（整手约束，检验可执行性） |
+| `start_date` / `end_date` | string(YYYY-MM-DD) | 否 | 区间（闭区间）；超出数据覆盖的部分会被真实行情截断，响应 `period` 是**实际**区间 |
+| 费用与滑点 | number | 否 | 同 `/backtests`，默认模拟占位参数 |
+
+响应 `result.schema_version = "portfolio-v1"`，含 `config` / `period` / `coverage` /
+`datasets`（逐标的数据指纹）/ `selection` / `targets` / `states` / `fills` /
+`blocked`（**没有成交的订单**，含 `limit_up`/`limit_down`/`insufficient_cash`/`below_one_unit`
+/`deferred_sell`/`no_price`）/ `performance`（含夏普、换手、成本占比、证据等级）/ `limitations` /
+`consistency_issues`（自检，正常应为空数组）。
+
+涨跌停按组合层**单一标量 10%** 执行：组合层 `PriceLimit` 没有 per-symbol 通道，
+创业板/科创板 2020-08-24 起的 20% 无法区分（同 `docs/GATE1_PREREGISTRATION.md` 附录 C）。
 
 ### 响应结构
 
@@ -505,6 +542,10 @@ restored = result_from_json(text)    # 恢复核心数据结构与类型
 ```powershell
 # 准备数据集（一次性）：把 CSV 导入数据根目录
 python -c "from deepquant.data.pipeline import ingest_daily_csv; ingest_daily_csv(r'D:\quotes\600000.csv', symbol='600000', data_root=r'D:\DeepQuant\backend\data', source_name='my-vendor')"
+
+# 或整池导入（先验 sha256、走同一道数据闸门、幂等、落盘 pool_manifest.json）
+python scripts/import_pool.py --pool-dir <研究池目录> --dry-run
+python scripts/import_pool.py --pool-dir <研究池目录> --extra-names data/extra_instrument_names.json
 
 # 启动服务
 python -m uvicorn deepquant.api.app:app --host 127.0.0.1 --port 8000
@@ -583,13 +624,20 @@ Invoke-RestMethod -Method Post -Uri http://127.0.0.1:8000/backtests -ContentType
   订单/成交/账户状态明细、数据质量横幅与可复现性信息（数据摘要 digest、原始结果 JSON 折叠查看）；
 - 后端不可用 / 超时 / HTTP 错误 / 响应异常分类提示（含启动指引与重试）；请求失败时表单配置保留，可修改后重跑；
 - 运行期间禁用提交按钮、不自动重复提交；页面刷新后自动重新加载数据集与策略。
+- **单标的回测**与**多标的组合回测**（后者多只标的共享同一笔现金，月末调仓、等权或动量选股）；
+- 数据集**带中文名称**并可按代码/名称搜索筛选；被数据闸门拒绝的标的会连原因一起列出。
+- **结果导出**：绩效 / 成交 / 订单（含拒单原因）/ 账户逐日状态 四类 CSV，曲线 PNG（2×），
+  完整结果 JSON；组合页额外导出被阻挡订单、调仓目标权重、数据指纹与口径声明。
+
+> CSV 是纯数据表（缺失留空、比例保留原始小数），方便接着算；
+> **口径（费用占位、涨跌停、幸存者偏差、数据指纹）只在 JSON 存档里**。存档与转发请用 JSON。
 
 ### 当前未支持的功能
 
 - 实盘交易、券商账户连接、自动下单、真实资金管理；
 - 异步任务与进度条（后端为同步接口，页面如实显示「执行中 / 成功 / 失败」，不伪造任务 ID 或进度）；
-- 回测结果持久化与历史结果列表（结果仅保存在当前页面内存中）；
-- 多标的组合回测、策略编辑器、自定义策略代码执行、费率/滑点的前端配置项。
+- 单标的回测的历史记录已有；**组合回测结果不写入历史记录**（历史库是单标的 schema）；
+- 策略编辑器、自定义策略代码执行、费率/滑点的前端配置项。
 
 ### 回测费用与滑点限制
 

@@ -1,0 +1,947 @@
+{
+  "generated_by": "scripts/price_jump_recount.py",
+  "threshold": 0.15,
+  "limit_tolerance": 0.21,
+  "data_root": "D:\\DeepQuant power by txm\\b50_v3",
+  "n_symbols": 50,
+  "n_match_between_two_implementations": 50,
+  "n_mismatch": 0,
+  "n_symbols_with_true_jumps": 20,
+  "n_symbols_without_jumps": 30,
+  "total_jumps": 280,
+  "jump_breakdown_total": {
+    "nonpositive_endpoint": 55,
+    "beyond_limit": 95,
+    "within_limit": 130
+  },
+  "legacy_total_would_be": 88346,
+  "symbols": [
+    {
+      "symbol": "000001.SZ",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.128105,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "000301.SZ",
+      "n_rows": 1772,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.118605,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1771,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "000568.SZ",
+      "n_rows": 1943,
+      "reported_count": 41,
+      "independent_count": 41,
+      "match": true,
+      "max_abs_pct_change": 1.0,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 21,
+        "within_limit": 20
+      },
+      "within_limit_price_floor": 1.3,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 1,
+      "reported_message": "存在 41 个相邻收盘价跳变 > 15%（最大 100.00%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "000657.SZ",
+      "n_rows": 1928,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.119101,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1927,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "000807.SZ",
+      "n_rows": 1916,
+      "reported_count": 2,
+      "independent_count": 2,
+      "match": true,
+      "max_abs_pct_change": 0.168831,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 2
+      },
+      "within_limit_price_floor": 1.92,
+      "legacy_count_would_be": 1915,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 2 个相邻收盘价跳变 > 15%（最大 16.88%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "000977.SZ",
+      "n_rows": 1931,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.103093,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1930,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "001979.SZ",
+      "n_rows": 1927,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.123934,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1926,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "002074.SZ",
+      "n_rows": 1930,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.104199,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1929,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "002241.SZ",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.117876,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "002415.SZ",
+      "n_rows": 1941,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.138137,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1940,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "002493.SZ",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.123288,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "002625.SZ",
+      "n_rows": 1780,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.105598,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1779,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "002916.SZ",
+      "n_rows": 1710,
+      "reported_count": 7,
+      "independent_count": 7,
+      "match": true,
+      "max_abs_pct_change": 0.251984,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 2,
+        "within_limit": 5
+      },
+      "within_limit_price_floor": 7.71,
+      "legacy_count_would_be": 1709,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 7 个相邻收盘价跳变 > 15%（最大 25.20%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "300059.SZ",
+      "n_rows": 1943,
+      "reported_count": 6,
+      "independent_count": 6,
+      "match": true,
+      "max_abs_pct_change": 0.202296,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 6
+      },
+      "within_limit_price_floor": 13.94,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 6 个相邻收盘价跳变 > 15%（最大 20.23%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "300316.SZ",
+      "n_rows": 1943,
+      "reported_count": 3,
+      "independent_count": 3,
+      "match": true,
+      "max_abs_pct_change": 0.204701,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 3
+      },
+      "within_limit_price_floor": 26.38,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 3 个相邻收盘价跳变 > 15%（最大 20.47%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "300442.SZ",
+      "n_rows": 1933,
+      "reported_count": 10,
+      "independent_count": 10,
+      "match": true,
+      "max_abs_pct_change": 0.244444,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 5,
+        "within_limit": 5
+      },
+      "within_limit_price_floor": 5.22,
+      "legacy_count_would_be": 1932,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 10 个相邻收盘价跳变 > 15%（最大 24.44%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "300661.SZ",
+      "n_rows": 1833,
+      "reported_count": 3,
+      "independent_count": 3,
+      "match": true,
+      "max_abs_pct_change": 0.201493,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 3
+      },
+      "within_limit_price_floor": 61.26,
+      "legacy_count_would_be": 1832,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 3 个相邻收盘价跳变 > 15%（最大 20.15%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "300896.SZ",
+      "n_rows": 1032,
+      "reported_count": 7,
+      "independent_count": 7,
+      "match": true,
+      "max_abs_pct_change": 0.20862,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 7
+      },
+      "within_limit_price_floor": 156.84,
+      "legacy_count_would_be": 1031,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 7 个相邻收盘价跳变 > 15%（最大 20.86%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "600000.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.141487,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600018.SH",
+      "n_rows": 1940,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.144772,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1939,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600028.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.135965,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600048.SH",
+      "n_rows": 1943,
+      "reported_count": 1,
+      "independent_count": 1,
+      "match": true,
+      "max_abs_pct_change": 0.15415,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 1
+      },
+      "within_limit_price_floor": 7.59,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 1 个相邻收盘价跳变 > 15%（最大 15.42%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "600104.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.113502,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600176.SH",
+      "n_rows": 1931,
+      "reported_count": 1,
+      "independent_count": 1,
+      "match": true,
+      "max_abs_pct_change": 0.155039,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 1
+      },
+      "within_limit_price_floor": 5.16,
+      "legacy_count_would_be": 1930,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 1 个相邻收盘价跳变 > 15%（最大 15.50%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "600233.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.11866,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600415.SH",
+      "n_rows": 1943,
+      "reported_count": 3,
+      "independent_count": 3,
+      "match": true,
+      "max_abs_pct_change": 0.162037,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 3
+      },
+      "within_limit_price_floor": 2.16,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 3 个相邻收盘价跳变 > 15%（最大 16.20%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "600489.SH",
+      "n_rows": 1932,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.128399,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1931,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600570.SH",
+      "n_rows": 1941,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.108764,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1940,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600674.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.12095,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600809.SH",
+      "n_rows": 1932,
+      "reported_count": 148,
+      "independent_count": 148,
+      "match": true,
+      "max_abs_pct_change": 20.333333,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 55,
+        "beyond_limit": 60,
+        "within_limit": 33
+      },
+      "within_limit_price_floor": 0.23,
+      "legacy_count_would_be": 1931,
+      "n_nonpositive_close": 115,
+      "n_nonpositive_any_ohlc": 131,
+      "reported_message": "存在 148 个相邻收盘价跳变 > 15%（最大 2033.33%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "600900.SH",
+      "n_rows": 1932,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.087905,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1931,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "600938.SH",
+      "n_rows": 656,
+      "reported_count": 4,
+      "independent_count": 4,
+      "match": true,
+      "max_abs_pct_change": 0.195683,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 4
+      },
+      "within_limit_price_floor": 6.95,
+      "legacy_count_would_be": 655,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 4 个相邻收盘价跳变 > 15%（最大 19.57%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "601009.SH",
+      "n_rows": 1941,
+      "reported_count": 2,
+      "independent_count": 2,
+      "match": true,
+      "max_abs_pct_change": 0.160825,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 2
+      },
+      "within_limit_price_floor": 4.85,
+      "legacy_count_would_be": 1940,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 2 个相邻收盘价跳变 > 15%（最大 16.08%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "601066.SH",
+      "n_rows": 1588,
+      "reported_count": 2,
+      "independent_count": 2,
+      "match": true,
+      "max_abs_pct_change": 0.156322,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 2
+      },
+      "within_limit_price_floor": 4.03,
+      "legacy_count_would_be": 1587,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 2 个相邻收盘价跳变 > 15%（最大 15.63%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "601127.SH",
+      "n_rows": 1928,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.142114,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1927,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "601211.SH",
+      "n_rows": 1926,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.140688,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1925,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "601319.SH",
+      "n_rows": 1487,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.132964,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1486,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "601398.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.130564,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "601628.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.12178,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "601689.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.148676,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "601800.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.125612,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "601872.SH",
+      "n_rows": 1843,
+      "reported_count": 2,
+      "independent_count": 2,
+      "match": true,
+      "max_abs_pct_change": 0.164557,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 2
+      },
+      "within_limit_price_floor": 1.58,
+      "legacy_count_would_be": 1842,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 2 个相邻收盘价跳变 > 15%（最大 16.46%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "601899.SH",
+      "n_rows": 1939,
+      "reported_count": 22,
+      "independent_count": 22,
+      "match": true,
+      "max_abs_pct_change": 0.340206,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 6,
+        "within_limit": 16
+      },
+      "within_limit_price_floor": 0.71,
+      "legacy_count_would_be": 1938,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 22 个相邻收盘价跳变 > 15%（最大 34.02%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "601988.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.130573,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "603288.SH",
+      "n_rows": 1943,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.124617,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1942,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "603893.SH",
+      "n_rows": 1192,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.14803,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 1191,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "688009.SH",
+      "n_rows": 1323,
+      "reported_count": 6,
+      "independent_count": 6,
+      "match": true,
+      "max_abs_pct_change": 0.243194,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 1,
+        "within_limit": 5
+      },
+      "within_limit_price_floor": 4.97,
+      "legacy_count_would_be": 1322,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 6 个相邻收盘价跳变 > 15%（最大 24.32%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "688082.SH",
+      "n_rows": 758,
+      "reported_count": 6,
+      "independent_count": 6,
+      "match": true,
+      "max_abs_pct_change": 0.20432,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 6
+      },
+      "within_limit_price_floor": 67.16,
+      "legacy_count_would_be": 757,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 6 个相邻收盘价跳变 > 15%（最大 20.43%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    },
+    {
+      "symbol": "688271.SH",
+      "n_rows": 573,
+      "reported_count": 0,
+      "independent_count": 0,
+      "match": true,
+      "max_abs_pct_change": 0.128918,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 0
+      },
+      "within_limit_price_floor": null,
+      "legacy_count_would_be": 572,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": ""
+    },
+    {
+      "symbol": "688981.SH",
+      "n_rows": 1084,
+      "reported_count": 4,
+      "independent_count": 4,
+      "match": true,
+      "max_abs_pct_change": 0.20004,
+      "jump_breakdown": {
+        "nonpositive_endpoint": 0,
+        "beyond_limit": 0,
+        "within_limit": 4
+      },
+      "within_limit_price_floor": 49.99,
+      "legacy_count_would_be": 1083,
+      "n_nonpositive_close": 0,
+      "n_nonpositive_any_ohlc": 0,
+      "reported_message": "存在 4 个相邻收盘价跳变 > 15%（最大 20.00%，可能是涨跌停 / 除权除息 / 数据源异常）"
+    }
+  ],
+  "historical_claims": [
+    {
+      "doc": "docs/EXPANSION_2026-10-17.md:123",
+      "claim": "泸州老窖 count 报 1942、真实 41",
+      "symbol": "000568.SZ",
+      "historical_value": 41,
+      "recomputed": 41,
+      "status": "holds",
+      "note": "报的 1942 恰为 1943 行 − 1，与缺陷机制吻合；41 与本轮独立重算逐位相同"
+    },
+    {
+      "doc": "docs/B15_8Y_30GROUPS_2026-10-18.md:44",
+      "claim": "茅台 count = 行数 − 1（1,942/1,943 行）",
+      "symbol": "600519.SH",
+      "status": "not_in_pool",
+      "recomputed": null,
+      "note": "600519.SH 不在本次数据集内，无法核对；不声称成立与否"
+    },
+    {
+      "doc": "docs/B15_8Y_30GROUPS_2026-10-18.md:42",
+      "claim": "宁德 1,593/1,594 行跳变、最大 3683.33%",
+      "symbol": "300750.SZ",
+      "status": "not_in_pool",
+      "recomputed": null,
+      "note": "300750.SZ 不在本次数据集内，无法核对；不声称成立与否"
+    }
+  ]
+}

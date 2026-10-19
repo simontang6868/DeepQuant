@@ -9,6 +9,12 @@ pandas==3.0.6
 numpy==2.5.4
 pyarrow==26.0.0
 
+# 报告渲染：pandas.DataFrame.to_markdown() 的必需依赖。
+# 生产路径在用（research/equity_bond_spread/report.py），缺它会红 2 条测试。
+# 注意：akshare 也要求 tabulate>=0.8.6，但**不得依赖这条传递依赖**——
+#       不装 akshare（README 允许的降级装法）时它就会消失。
+tabulate==0.10.0
+
 # 真实行情数据源（A 股）。
 # 用途：仅用于「真实行情拉取链路」相关模块与人工复核，**不得**用于把合成行情标为真实（红线 R3）。
 # 注意：akshare 依赖链较重（requests / lxml / beautifulsoup4 / openpyxl 等），

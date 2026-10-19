@@ -1,0 +1,354 @@
+{
+ "gate1_out": {
+  "files": [
+   {
+    "path": "gate1_out/032a11f591553e25/GATE1_RESULT_REPORT.md",
+    "size": 5784,
+    "sha256": "f0f1f962e6cf566a78bca4069e25d36e211f63e7a96b928163c4bd6f53c7af82"
+   },
+   {
+    "path": "gate1_out/032a11f591553e25/manifest.json",
+    "size": 538,
+    "sha256": "722b08f784edbb771685e89fe4470a1dcf53f22d593b65b29507ad615b77f194"
+   },
+   {
+    "path": "gate1_out/032a11f591553e25/monthly_paired.csv",
+    "size": 3623,
+    "sha256": "54a432f6fd4e1acbad563c745556f92f042c465020303df596de1374bb7e1a47"
+   },
+   {
+    "path": "gate1_out/032a11f591553e25/sensitivity.csv",
+    "size": 2290,
+    "sha256": "c02be62fc80d0db6fd58752ee2891b2b4f211ca8ae4abf78c3efffaa3166ab59"
+   },
+   {
+    "path": "gate1_out/032a11f591553e25/summary.json",
+    "size": 700,
+    "sha256": "b34d2cd1f8e567e2c2f647af25cad2a92769b62209888685381e02493ea94d89"
+   },
+   {
+    "path": "gate1_out/a027865f26ea237a/GATE1_RESULT_REPORT.md",
+    "size": 5914,
+    "sha256": "e5089e11f6b838cf6c6bc43ed182dac0ed863567be17c477c0b5421f08ca7c08"
+   },
+   {
+    "path": "gate1_out/a027865f26ea237a/manifest.json",
+    "size": 712,
+    "sha256": "194af80219582ed057e4e113bbde1ee6323a5e3b54e3e471138fed4fea6b6842"
+   },
+   {
+    "path": "gate1_out/a027865f26ea237a/monthly_paired.csv",
+    "size": 3622,
+    "sha256": "74be84da8d315a8e89d1978aee5cff5b8c8b7e31afea74d0fae02eece95211d2"
+   },
+   {
+    "path": "gate1_out/a027865f26ea237a/monthly_paired_excluded.csv",
+    "size": 3622,
+    "sha256": "74be84da8d315a8e89d1978aee5cff5b8c8b7e31afea74d0fae02eece95211d2"
+   },
+   {
+    "path": "gate1_out/a027865f26ea237a/sensitivity.csv",
+    "size": 2366,
+    "sha256": "ecebcbb74e3e666c5e2d31c1d45e2a3c381e8dc7471ae14401fea33ed8ab8eb6"
+   },
+   {
+    "path": "gate1_out/a027865f26ea237a/summary.json",
+    "size": 1165,
+    "sha256": "1f9b7f404db1c4068bb26ed6141e45fd6452d57ee9e827b9f3b4ae62671e5948"
+   },
+   {
+    "path": "gate1_out/INDEX.md",
+    "size": 3726,
+    "sha256": "b17f38fb295db01e170d632afd70897bf9185b086be19d79096e3ddd5210fe94"
+   }
+  ],
+  "count": 12,
+  "tree_sha256": "09cef0040bd11c5454145e327339bb64f592e95bb1418ce9a2b8ff47392e26ad",
+  "runs": {
+   "032a11f591553e25": {
+    "count": 5,
+    "tree_sha256": "6ba955bef57e7674dc8769f4f7cc3be21d7eaa194d7a6ef255753ee6cf288e46"
+   },
+   "a027865f26ea237a": {
+    "count": 6,
+    "tree_sha256": "670fa339638469a523d9e67cad983990cf6bf27401fb62743dc1749fcb8bf79c"
+   }
+  }
+ },
+ "docs": {
+  "files": [
+   {
+    "path": "docs/.gitkeep",
+    "size": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+   },
+   {
+    "path": "docs/A1_PR_AUDIT_AND_A2_REVERIFY_2026-10-18.md",
+    "size": 5966,
+    "sha256": "7af21bdccd7983eba360e2c267ae73fbcfef2f85a8310a7590c32fc4c208939f"
+   },
+   {
+    "path": "docs/A3_ACCOUNTING_SPEC.md",
+    "size": 12434,
+    "sha256": "772ee7b1450f2ea69a502fa8a165dff2e8c841304eee54874686c9e8196df26c"
+   },
+   {
+    "path": "docs/B15_8Y_30GROUPS_2026-10-18.md",
+    "size": 16772,
+    "sha256": "b58cddebfe64bd8f5ffb866c1f4a29ba2890ae45cd520dc40819f6160f10d8d2"
+   },
+   {
+    "path": "docs/B16_DIRECTION_VERDICT_2026-10-18.md",
+    "size": 11482,
+    "sha256": "89c4559a554daed3e30a551bbbd57940281eeb1d1561a030e8b4ba6e331ae8b7"
+   },
+   {
+    "path": "docs/B17_CLOSURE_REPORT_2026-10-18.md",
+    "size": 23313,
+    "sha256": "24ceb4df05127721422afb6cfe234dfe30048980bbefd805173331860b78d6dc"
+   },
+   {
+    "path": "docs/B18_GATE0_PROGRESS_2026-10-18.md",
+    "size": 11336,
+    "sha256": "73527cefd448d7079fb93e3c9ab0b6f5f5b5e4bd4b4d57354c5be11eb431a25d"
+   },
+   {
+    "path": "docs/B18_RESEARCH_VERDICT_2026-10-18.md",
+    "size": 38776,
+    "sha256": "5bc024a922c530b01c83cc4a12ec3c3773498e153b59ff20a84535e1f584b258"
+   },
+   {
+    "path": "docs/B19_A3_DELIVERY_2026-10-18.md",
+    "size": 6335,
+    "sha256": "85d6524300ccd08886b397c4f75cefe87de64a454b574afc76490f610390e13c"
+   },
+   {
+    "path": "docs/B20_WINDOW_BH_2026-10-18.md",
+    "size": 14898,
+    "sha256": "f943c5d909bc658a20c7e2ad5140ed2b63224c3bebfcb8e68e2620bb335e17cf"
+   },
+   {
+    "path": "docs/B20_WINDOW_BH_2026-10-18_per_group.csv",
+    "size": 33658,
+    "sha256": "c3a25bdf378e200bc39fcbd889f982b9b8ae370a72e31ec50e4569b695f4eac1"
+   },
+   {
+    "path": "docs/B3_STAGE1_IMPLEMENTATION_2026-10-18.md",
+    "size": 9971,
+    "sha256": "f84b49b5ad338fa8da34c94086ae49dc0985d40d14fdeffaf00a9aa32c28f920"
+   },
+   {
+    "path": "docs/backtest_reference.md",
+    "size": 6280,
+    "sha256": "81f8bd97d1e695c8b1cb4a7137f84daa081d34e4286f2eef8c5988f6d325dc8f"
+   },
+   {
+    "path": "docs/BASELINE_SNAPSHOT_2026-10-19.md",
+    "size": 30531,
+    "sha256": "0ead78516f9a248db50883afbcd62293069f561db782aa8eeaa7f23813acaf2c"
+   },
+   {
+    "path": "docs/COVERAGE_GAPS.md",
+    "size": 25763,
+    "sha256": "f9054558f611373805bb34a306ebec7746097077e0507b91c159d07e9bfced2e"
+   },
+   {
+    "path": "docs/DATA_FEASIBILITY_REPORT.md",
+    "size": 15286,
+    "sha256": "f0dd485de40f98b161f525185cefc066ecf70959645a42e0e458fb7ee179133c"
+   },
+   {
+    "path": "docs/DATA_GATE_FINDINGS_2026-10-17.md",
+    "size": 6332,
+    "sha256": "f6f382573413376ca82f8cff81e44c2e05acda26dab85d63e065c3c7b48df8da"
+   },
+   {
+    "path": "docs/DATASET_POOL_2026-10-18.md",
+    "size": 7375,
+    "sha256": "ebf3cbcf43f75e8b83069f1e11136b453a003ccbdf60b9fda9371bb6a3c2c82a"
+   },
+   {
+    "path": "docs/DECISION_PROPOSAL_2026-10-17.md",
+    "size": 21516,
+    "sha256": "f3c9ffb8e2edf4c725f353228ba7ef5e2667a27b383e1787942b8d079e33db25"
+   },
+   {
+    "path": "docs/DECISION_RULING_2026-10-17.md",
+    "size": 9725,
+    "sha256": "ffbb4682b3a5f7c435869b8fc903cd5c681b70c86d5cc7552810d9850d759d67"
+   },
+   {
+    "path": "docs/DESIGN_PROBE_2026-10-17.md",
+    "size": 6812,
+    "sha256": "10a430dd9d7e1436b0fb8fa98cdbcc49cdf59ac56971201a7d9fb48c8d5521cd"
+   },
+   {
+    "path": "docs/DIAG_OOS_ZERO_MEDIAN.md",
+    "size": 8915,
+    "sha256": "f53dead7f6ad1aa00055c1f5c2ec6f1604172c7987dc0b694270f72613480ae2"
+   },
+   {
+    "path": "docs/ENGINEERING_BASELINE_REPORT.md",
+    "size": 6526,
+    "sha256": "5df59aebca36ad24630467f0b4e9fd6b4c9467cdc3617f3f953cc21ed49c786c"
+   },
+   {
+    "path": "docs/EQUITY_BOND_SPREAD.md",
+    "size": 4548,
+    "sha256": "75e9f77cc900fa20188501039584e4e3abe9388f2401d429eaa6dc933379445b"
+   },
+   {
+    "path": "docs/EQUITY_BOND_SPREAD_US.md",
+    "size": 4222,
+    "sha256": "040799b53d46729781714ef83ce48843f59fc90966896f62573e67804b55e1eb"
+   },
+   {
+    "path": "docs/EVIDENCE_SYNTHESIS_2026-10-18.md",
+    "size": 10102,
+    "sha256": "3fe8883d06c5481ccc08c572b20f2bcafb2a1404edd1d6639713d7b0d57826af"
+   },
+   {
+    "path": "docs/EXPANSION_2026-10-17.md",
+    "size": 6231,
+    "sha256": "aa6c81ec1fd3250d80bfd3395f42302d013c7ba87e835847e7aa7a372e054046"
+   },
+   {
+    "path": "docs/EXTERNAL_VALIDITY_2026-10-17.md",
+    "size": 13836,
+    "sha256": "87e932a477ae50ceee8542bbc145cfb505bdb3515fc50cf0d06e454ede371856"
+   },
+   {
+    "path": "docs/GATE1_EXPERIMENT_REPORT.md",
+    "size": 5784,
+    "sha256": "f0f1f962e6cf566a78bca4069e25d36e211f63e7a96b928163c4bd6f53c7af82"
+   },
+   {
+    "path": "docs/GATE1_FINAL_CLOSEOUT_REPORT.md",
+    "size": 16582,
+    "sha256": "38a63951e8534268523e164a2b490b6906dc69f3e08bbd8bddd0deb4eaf8eb6b"
+   },
+   {
+    "path": "docs/GATE1_FINAL_ENGINEERING_2026-10-18.md",
+    "size": 8669,
+    "sha256": "55a0ccce3c719f39eae55e35b3653047d0ca03565644eb16b3d230f35e7916fb"
+   },
+   {
+    "path": "docs/GATE1_PREREGISTRATION.md",
+    "size": 37372,
+    "sha256": "8b0115517a7ae35df20250c0fdf04736cfa99d9bfd570b89f0d93bc29ec88d63"
+   },
+   {
+    "path": "docs/GATE1_PREREGISTRATION.sha256",
+    "size": 588,
+    "sha256": "6ec5bfa0e54fb2a9d0d246c0ff06f6b907ecab3d882266745a54dc908fc85355"
+   },
+   {
+    "path": "docs/GATE1_STAGE2_IMPLEMENTATION_2026-10-18.md",
+    "size": 12460,
+    "sha256": "c296a7150328a94a04ce66de5302d029363066e69d2f7aad188bb4b2fce602af"
+   },
+   {
+    "path": "docs/GATE1_TRIGGER_REACHABILITY_2026-10-18.md",
+    "size": 10292,
+    "sha256": "0d311dbb8a4275db4b4e18a4cf5cac384cf56909e4c5e8b58ae2f7f4b44cb47e"
+   },
+   {
+    "path": "docs/HISTORICAL_CONCLUSION_AUDIT_2026-10-18.md",
+    "size": 19148,
+    "sha256": "5000ef1c244c7f1467a06b14cdc6e56982914ebe1f3e25ece9ab387c37435d7d"
+   },
+   {
+    "path": "docs/KNOWN_ISSUES_RESEARCH_2026-10-18.md",
+    "size": 10926,
+    "sha256": "672b95ba6d2c1d461eed78d829111ae2b435fba815e0146bd64a8b29fce7efe2"
+   },
+   {
+    "path": "docs/KNOWN_ISSUES_SOFTWARE_2026-10-18.md",
+    "size": 15175,
+    "sha256": "155bbcafc5ce5a2d15af86690430635f44b9ae87c8860ba687332afa8e8276e7"
+   },
+   {
+    "path": "docs/OOS75_BASELINE_2026-10-17.md",
+    "size": 5315,
+    "sha256": "9557ede5c8a5ec76f9b511b83855584a07fd8f3aff245fd903d67011bcfb8b84"
+   },
+   {
+    "path": "docs/PORTFOLIO_BACKTEST_2026-10-18.md",
+    "size": 12483,
+    "sha256": "5edbf4b9a620338aa5869e560279509b4b7d574f11452e379048d75fbb7389b3"
+   },
+   {
+    "path": "docs/PR_REVIEW_2026-10-17.md",
+    "size": 6824,
+    "sha256": "ebeb3e4e1e2493f82b3ef50202616b44711cabd5282115ac848898e0b8fdf2ab"
+   },
+   {
+    "path": "docs/PRICE_JUMP_IMPACT_AUDIT.md",
+    "size": 16704,
+    "sha256": "84620275744f998c97fa4cc909c9de36d058889c0c27e22f4a7b68477e986b87"
+   },
+   {
+    "path": "docs/PRODUCT_READY_2026-10-18.md",
+    "size": 18519,
+    "sha256": "6ee1f657d4df7eaac4722c85642b646a2bc8c77f51745fd81cda94f587c34bbc"
+   },
+   {
+    "path": "docs/PROGRESS_SNAPSHOT_2026-10-18.md",
+    "size": 4983,
+    "sha256": "15be1b1e3dc9b7c9e5ffac37d8d20ef4fdba71b79a88c5635963ab3267faaf81"
+   },
+   {
+    "path": "docs/RESEARCH_FIXES_REPORT.md",
+    "size": 25247,
+    "sha256": "278f6a03e561b9a5add23b802e169f5dc9cb6e50adae6db963f58ebe84a86b5f"
+   },
+   {
+    "path": "docs/RESULT_EXPORT_2026-10-18.md",
+    "size": 6577,
+    "sha256": "2fe036e6df0190ef2bf5521c23f7301d7cf656c40d08e9c97fca6aad7e489735"
+   },
+   {
+    "path": "docs/RETURN_SHAPE_2026-10-18.md",
+    "size": 8463,
+    "sha256": "08fab244f09024fe1c19f1160973702dd004d7d6cfd2fc1c1499cf1d2034539a"
+   },
+   {
+    "path": "docs/SOFTWARE_AUDIT_2026-10-18.md",
+    "size": 15046,
+    "sha256": "d9d7b1c5bd66ef31bf5719c2009478598ce59eea3ad1d1c92371a33c0bf65733"
+   },
+   {
+    "path": "docs/STAGE_REPORT_FOR_REVIEW_2026-10-19.md",
+    "size": 21073,
+    "sha256": "7fec88031cadb47010f5d999714f2bd5acc502fb357b75a38bedd7c5c247c0d4"
+   },
+   {
+    "path": "docs/TEST_REPORT_2026-10-18.md",
+    "size": 24172,
+    "sha256": "9eaac963e94f78f468897f0ff7e708800d1da1adfd596051cd7d85ad463dbe7f"
+   },
+   {
+    "path": "docs/W1_IMPLEMENTATION_REPORT.md",
+    "size": 12427,
+    "sha256": "f68d373edfb85ae1cccde4097d99bffbbc29acedbc76dd77569b82b159ec0dcd"
+   },
+   {
+    "path": "docs/WINDOW_SKEW_2026-10-18.md",
+    "size": 5210,
+    "sha256": "6f960496e882dc289b8b06c955702c34cee1b614e2a1502444bf3b017af2f030"
+   }
+  ],
+  "count": 52,
+  "tree_sha256": "f42c485c3d5971b546f2712e68699f09f90c1e62332ee266693b925664c45c29"
+ },
+ "preregistration": {
+  "doc_sha256": "8b0115517a7ae35df20250c0fdf04736cfa99d9bfd570b89f0d93bc29ec88d63",
+  "expected_line": "8b0115517a7ae35df20250c0fdf04736cfa99d9bfd570b89f0d93bc29ec88d63 *docs/GATE1_PREREGISTRATION.md\n# 修订历史（sha256sum -c 时以第一行为准）\n# v1  2026-10-18 16:05  首次冻结\n# v1.1 2026-10-18 16:30  5bef0e3b0e45d4844d87c4aac15183b344d6acaec5d66378bed17ceb290c476f  修订 P1~P4（附录 A）\n# v1.2 2026-10-18 19:05  f245691282b15cad2c531813ab6d0c855e6a515148fb973d0eabe4a70c1e923f  补记初始资金（附录 B）\n# v1.3 2026-10-18 19:30  8b0115517a7ae35df20250c0fdf04736cfa99d9bfd570b89f0d93bc29ec88d63  §6 实现与表述不一致 + 三档冲突优先级（附录 C）"
+ },
+ "counts": {
+  "tests_py": 117,
+  "tests_all_py": 121,
+  "src_py": 95,
+  "docs_md": 49
+ }
+}

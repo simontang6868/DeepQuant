@@ -1,0 +1,20 @@
+{
+ "message": "A 线收官：存量补推 backend/tests 批次 6/6（15 个文件，backend/tests/strategies/test_signals_contracts.py .. backend/tests/walkforward/test_walkforward_contracts.py）",
+ "files": [
+  "backend/tests/strategies/test_signals_contracts.py",
+  "backend/tests/test_b20_script_contract.py",
+  "backend/tests/test_expansion_report_contract.py",
+  "backend/tests/test_health.py",
+  "backend/tests/test_research_script_contract.py",
+  "backend/tests/test_return_shape.py",
+  "backend/tests/test_window_skew.py",
+  "backend/tests/tools/test_run_signal_pipeline.py",
+  "backend/tests/walkforward/test_design_audit.py",
+  "backend/tests/walkforward/test_parameter_selection.py",
+  "backend/tests/walkforward/test_parameter_selection_coverage.py",
+  "backend/tests/walkforward/test_r12_window_stats_defense.py",
+  "backend/tests/walkforward/test_sensitivity.py",
+  "backend/tests/walkforward/test_walkforward.py",
+  "backend/tests/walkforward/test_walkforward_contracts.py"
+ ]
+}

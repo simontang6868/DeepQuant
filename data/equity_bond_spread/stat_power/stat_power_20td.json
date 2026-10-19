@@ -1,0 +1,113 @@
+{
+  "window_td": 20,
+  "n_signal_events": 5,
+  "n_baseline_obs": 72,
+  "signal_mean": 0.05001232570308606,
+  "baseline_mean": -0.0035699121652108365,
+  "observed_difference": 0.0535822378682969,
+  "pooled_sd": 0.059264015727468804,
+  "permutation": {
+    "valid": true,
+    "n_signal": 5,
+    "n_pool": 77,
+    "signal_mean": 0.05001232570308606,
+    "pool_mean": -9.054606986688155e-05,
+    "observed_diff": 0.05010287177295294,
+    "n_perm": 20000,
+    "p_two_sided": 0.04665,
+    "p_one_sided": 0.0354,
+    "perm_std": 0.025224879166290112,
+    "perm_q95": 0.04525027656971692,
+    "perm_q99": 0.06716754155070499,
+    "note": "置换检验只衡量「随机分组的偶然性」，不校正观测重叠、不校正多重比较、不构成因果推断"
+  },
+  "permutation_oos": {
+    "valid": true,
+    "n_signal": 4,
+    "n_pool": 64,
+    "signal_mean": 0.05957334118385445,
+    "pool_mean": 0.0005108808329105201,
+    "observed_diff": 0.059062460350943924,
+    "n_perm": 20000,
+    "p_two_sided": 0.03955,
+    "p_one_sided": 0.03505,
+    "perm_std": 0.02808693325036786,
+    "perm_q95": 0.05299301268827642,
+    "perm_q99": 0.07746674154165206,
+    "note": "置换检验只衡量「随机分组的偶然性」，不校正观测重叠、不校正多重比较、不构成因果推断"
+  },
+  "n_oos_signals": 4,
+  "n_oos_baseline": 60,
+  "oos_difference": 0.06299995770767353,
+  "required_sample": {
+    "valid": true,
+    "effect": 0.0535822378682969,
+    "sd": 0.059264015727468804,
+    "alpha": 0.05,
+    "power": 0.8,
+    "n_per_group": 19.20339965723552,
+    "n_per_group_ceil": 20,
+    "note": "正态近似；对厚尾与自相关数据是乐观下界，实际需求更多"
+  },
+  "overlap_diagnostics": {
+    "window_td": 20,
+    "full": {
+      "n": 5,
+      "mean": 0.050012,
+      "median": 0.014283,
+      "pct_pos": 0.8,
+      "worst": -0.043167,
+      "best": 0.209811,
+      "mean_dd": -0.070515
+    },
+    "is": {
+      "n": 1,
+      "mean": 0.011768,
+      "median": 0.011768,
+      "pct_pos": 1.0,
+      "worst": 0.011768,
+      "best": 0.011768,
+      "mean_dd": -0.044455,
+      "baseline_n": 12,
+      "baseline_mean": -0.004286,
+      "baseline_median": -0.021885,
+      "baseline_pct_pos": 0.416667,
+      "mean_difference": 0.016055
+    },
+    "oos": {
+      "n": 4,
+      "mean": 0.059573,
+      "median": 0.035824,
+      "pct_pos": 0.75,
+      "worst": -0.043167,
+      "best": 0.209811,
+      "mean_dd": -0.070515,
+      "baseline_n": 60,
+      "baseline_mean": -0.003427,
+      "baseline_median": -0.007213,
+      "baseline_pct_pos": 0.45,
+      "mean_difference": 0.063
+    },
+    "baseline_full": {
+      "n": 72,
+      "mean": -0.00357,
+      "median": -0.010389,
+      "pct_pos": 0.444444
+    },
+    "n_signals": 5
+  },
+  "daily_return_autocorr": {
+    "valid": true,
+    "n": 1211,
+    "lag1_autocorr": 0.0036641379011790732,
+    "n_eff_lag1": 1202.157856835242,
+    "sum_autocorr_factor": 0.9447811322413855,
+    "n_eff_multi_lag": 1281.7783491580115,
+    "note": "n_eff_multi_lag 用前若干阶自相关之和，比仅用 lag-1 更保守"
+  },
+  "caveats": [
+    "事件数 4 个，远低于正态近似所需样本量，任何 p 值都不可作为接受/拒绝的依据",
+    "信号事件的持有期互相重叠（事件3/4/5），不构成独立观测",
+    "置换检验未校正多重比较、未校正数据窥探"
+  ]
+}

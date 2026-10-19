@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-10-18T02:33:25",
+  "provenance": {
+    "equity": {
+      "field": "沪深300 指数（000300.SH）月频快照",
+      "source": "腾讯自选股行情接口（westock-data CLI: quote sh000300 --date YYYY-MM-DD）",
+      "method": "对每个月最后一个自然日逐点请求；非交易日由行情源回填上一交易日数据",
+      "fields": {
+        "price": "收盘价（价格指数口径，不含分红再投资）",
+        "pe": "行情源返回的市盈率字段，口径未经指数公司官方确认",
+        "pb": "行情源返回的市净率字段",
+        "div_yield": "行情源返回的股息率 TTM（百分数）"
+      },
+      "caveats": [
+        "价格指数口径，不是全收益指数",
+        "PE 口径未获官方确认，可能与 PE-TTM 存在差异",
+        "行情源对部分早期日期不返回 PE/PB，已置为空"
+      ]
+    },
+    "bond": {
+      "field": "中国 10 年期国债收益率",
+      "source": "中国债券信息网 - 中债国债收益率曲线（yield.chinabond.com.cn）",
+      "method": "按自然年分段请求（单次请求跨度需小于一年），取「中债国债收益率曲线」的 10 年期列",
+      "fields": {
+        "yield_10y": "10 年期国债到期收益率（百分数）"
+      },
+      "caveats": [
+        "曲线数据起始于 2006-03-01，之前区间无数据",
+        "收益率曲线为中央国债登记结算有限责任公司编制"
+      ]
+    }
+  },
+  "files": {
+    "raw_equity": {
+      "path": "data\\equity_bond_spread\\raw\\csi300_monthly_raw.csv",
+      "sha256": "c76daf2b1a48b32869e9ddf1390031ee4b715dd2d4fb32e3417596e92d1e612f",
+      "rows": 261
+    },
+    "raw_bond": {
+      "path": "data\\equity_bond_spread\\raw\\cn10y_raw.csv",
+      "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+      "rows": 5158
+    },
+    "clean_equity": {
+      "path": "data\\equity_bond_spread\\csi300_monthly.csv",
+      "sha256": "22dfb3ddaffd6eae66106c00884d792eff92c4adb353ce760720068ee861ca8a",
+      "rows": 261,
+      "date_min": "2005-01-31",
+      "date_max": "2026-09-30",
+      "missing_rate": {
+        "price": 0.0,
+        "pe": 0.011494252873563218,
+        "pb": 0.011494252873563218,
+        "div_yield": 0.011494252873563218
+      }
+    },
+    "clean_bond": {
+      "path": "data\\equity_bond_spread\\cn10y.csv",
+      "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+      "rows": 5158,
+      "date_min": "2006-03-01",
+      "date_max": "2026-10-16",
+      "missing_rate": {
+        "yield_10y": 0.0
+      }
+    }
+  },
+  "cleaning_rules": [
+    "行情源用 0 表示的缺失值统一置为空",
+    "非交易日采样以行情源返回的 quote_date 作为真实数据日期",
+    "按日期升序去重，同一日期保留最后一条",
+    "缺失值不做任何插值填充"
+  ]
+}

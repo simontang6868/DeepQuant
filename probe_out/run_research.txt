@@ -1,0 +1,40 @@
+...........F............................................................ [ 45%]
+........................................................................ [ 90%]
+...............                                                          [100%]
+================================== FAILURES ===================================
+_____________________ test_render_report_is_deterministic _____________________
+
+    def test_render_report_is_deterministic():
+        results = {"A": _fake_result(IndicatorType.A), "B": _fake_result(IndicatorType.B)}
+        info = {
+            "equity": {"date_min": "2010-01-31", "date_max": "2020-12-31",
+                       "n_output_rows": 120, "sha256": "a" * 64},
+            "bond": {"date_min": "2010-01-04", "date_max": "2020-12-31",
+                     "n_output_rows": 2600, "sha256": "b" * 64},
+            "coverage": {"n_obs": 120, "coverage_price": 1.0, "coverage_pe": 0.98},
+            "bond_match": {"n_exact": 100, "n_filled": 20, "n_missing": 0,
+                           "max_fill_days": 3},
+        }
+        inp = build_report_input(info, results, pd.DataFrame(), {"A": [], "B": []}, ["注记"])
+        md1 = render_report(inp)
+        md2 = render_report(inp)
+>       assert md1 == md2
+E       AssertionError: assert '# 股债利差与长期市场机...资有风险，决策需谨慎。\n' == '# 股债利差与长期市场机...资有风险，决策需谨慎。\n'
+E         
+E         Skipping 36 identical leading characters in diff, use -v to show
+E         Skipping 6310 identical trailing characters in diff, use -v to show
+E         - 18 23:58:33 ｜ 标的：沪深3
+E         ?           ^
+E         + 18 23:58:32 ｜ 标的：沪深3
+E         ?           ^
+
+tests\research\test_config_report.py:139: AssertionError
+============================== warnings summary ===============================
+tests/research/test_data.py::test_load_equity_drops_unparsable_dates
+  D:\DeepQuant power by txm\DeepQuant-main\backend\src\deepquant\research\equity_bond_spread\data.py:42: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+    return pd.to_datetime(series, errors="coerce")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/research/test_config_report.py::test_render_report_is_deterministic
+1 failed, 158 passed, 1 warning in 25.68s

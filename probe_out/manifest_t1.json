@@ -1,0 +1,25 @@
+{
+ "message": "A 线收官：存量补推 backend/tests 批次 1/6（20 个文件，backend/tests/analysis/test_ensemble_eval.py .. backend/tests/api/test_registry_contracts.py）",
+ "files": [
+  "backend/tests/analysis/test_ensemble_eval.py",
+  "backend/tests/analysis/test_ensemble_report.py",
+  "backend/tests/analysis/test_returns.py",
+  "backend/tests/analysis/test_rolling.py",
+  "backend/tests/analysis/test_signal_metrics.py",
+  "backend/tests/analysis/test_signal_metrics_boundary.py",
+  "backend/tests/api/conftest.py",
+  "backend/tests/api/test_backtest_compare_api.py",
+  "backend/tests/api/test_backtest_history_api.py",
+  "backend/tests/api/test_backtest_integrity_api.py",
+  "backend/tests/api/test_backtest_reproducibility_api.py",
+  "backend/tests/api/test_backtests_api.py",
+  "backend/tests/api/test_config_contracts.py",
+  "backend/tests/api/test_dataset_display_names.py",
+  "backend/tests/api/test_dataset_unavailable.py",
+  "backend/tests/api/test_datasets_api.py",
+  "backend/tests/api/test_datasets_contracts.py",
+  "backend/tests/api/test_errors_contracts.py",
+  "backend/tests/api/test_portfolio_backtest.py",
+  "backend/tests/api/test_registry_contracts.py"
+ ]
+}
