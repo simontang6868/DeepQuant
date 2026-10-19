@@ -1,0 +1,72 @@
+{
+  "files": {
+    "csi300_daily.csv": {
+      "rows": 1463,
+      "date_min": "2011-06-01",
+      "date_max": "2026-10-16",
+      "sha256": "87be240ce35a850587fd207666fb3f09bbf0f692f9fa84d6c8ca41076c961233",
+      "sources": [
+        {
+          "file": "csi300_daily.md",
+          "kind": "westock_markdown",
+          "sha256": "1eef16e9db3045edf5eb9a452e4803c7a3495e0d2ab9ddfbb02ece995f958713"
+        },
+        {
+          "file": "csi300_2011_raw.csv",
+          "kind": "westock_quote_date_point_sample",
+          "rows": 251,
+          "sha256": "5e1b203dd5fc54fb24fa13decce4071131b5bb32b6acadce41502977ef9d2462",
+          "note": "已丢弃 quote_date != date 的回填记录"
+        }
+      ]
+    },
+    "trade_cal.csv": {
+      "rows": 8797,
+      "date_min": "1990-12-19",
+      "date_max": "2026-12-31",
+      "sha256": "172f3b5360876bb7cf1ce714da28124390690d25b002814c2c43fc971c434e2d"
+    }
+  },
+  "coverage": {
+    "calendar_days_in_span": 3734,
+    "daily_rows": 1463,
+    "missing_trading_days_in_span": 2271,
+    "missing_rate": 0.6081949651847884,
+    "missing_examples": [
+      "2012-06-13",
+      "2012-06-14",
+      "2012-06-15",
+      "2012-06-18",
+      "2012-06-19",
+      "2012-06-20",
+      "2012-06-21",
+      "2012-06-25",
+      "2012-06-26",
+      "2012-06-27"
+    ],
+    "segments": [
+      {
+        "start": "2011-06-01",
+        "end": "2012-06-12",
+        "rows": 251
+      },
+      {
+        "start": "2021-10-18",
+        "end": "2026-10-16",
+        "rows": 1212
+      }
+    ],
+    "n_segments": 2,
+    "rows_per_year": {
+      "2011": 146,
+      "2012": 105,
+      "2021": 55,
+      "2022": 242,
+      "2023": 242,
+      "2024": 242,
+      "2025": 243,
+      "2026": 188
+    },
+    "note": "缺失交易日不做任何插值；日频核验时缺失即标记 daily_available=False。segments 列出连续数据段，段与段之间的空洞不可跨越。"
+  }
+}

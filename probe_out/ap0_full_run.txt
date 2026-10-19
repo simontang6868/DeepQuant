@@ -1,0 +1,41 @@
+........................................................................ [  4%]
+........................................................................ [  8%]
+.............................x.......................................... [ 12%]
+........................................................................ [ 16%]
+........................................................................ [ 20%]
+........................................................................ [ 24%]
+........................................................................ [ 28%]
+........................................................................ [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 41%]
+..................................s..................................... [ 45%]
+............xx................x.x.x..................................... [ 49%]
+........................................................................ [ 53%]
+........................................................................ [ 57%]
+........................................................................ [ 61%]
+........................................................................ [ 65%]
+........................................................................ [ 69%]
+........................................................................ [ 73%]
+........................................................................ [ 77%]
+........................................................................ [ 82%]
+........................................................................ [ 86%]
+........................................................................ [ 90%]
+........................................................................ [ 94%]
+.....................x.................................................. [ 98%]
+..................x........                                              [100%]
+============================== warnings summary ===============================
+..\..\venv\Lib\site-packages\fastapi\testclient.py:1
+  D:\DeepQuant power by txm\venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+XFAIL tests/api/test_backtests_routes_contracts.py::test_bool_metrics_are_rejected_not_coerced_to_one - 已知缺陷（只测不修，修 bug 属判断类，交回 B 线）：`api/routes/backtests.py` 的 `_num()` 判据写成 `isinstance(v, (int, float)) and v is not bool`，其中 `v is not bool` 是把**值**与**类型**做身份比较，恒为 True，布尔因此从未被挡住。`True` 会一路通过并被 Pydantic 转成 1.0 —— 胜率字段可能被显示成 100%。正确写法为 `not isinstance(v, bool)`。修好后本用例 XPASS，strict=True 会报错提醒移除本标记。
+XFAIL tests/data/test_checks_extended.py::test_price_jump_count_should_equal_true_violations - 已知缺陷（只测不修，修 bug 属判断类，交回 B 线）：validate_daily_extended 里 df_sorted[["close"]] 取到的是 DataFrame，使 _check_price_jumps 内 `pct_change[pct_change > threshold]` 走 DataFrame 布尔掩码语义（返回同形 NaN 填充的 DataFrame，而非过滤后的子集），len(jumps) 因此等于行数-1。最小复现：100 行、3 处跳变，真实超阈值 5 次，却报告 count=99。修复后本测试 XPASS，strict=True 会令其报错，强制移除本标记。
+XFAIL tests/data/test_checks_extended.py::test_flat_prices_should_not_report_price_jump - 同一缺陷的更严重后果：掩码 DataFrame 的 len() 恒 > 0，因此**即使零跳变也会误报 price_jump**（count = 行数-1）。这正是历史研究 JSON 里「1594 行 1593 个跳变」= 行数-1 的由来——那不是真实跳变数。修复后本测试 XPASS，strict=True 会令其报错，强制移除本标记。
+XFAIL tests/data/test_checks_extended_coverage.py::TestPriceJumps::test_public_path_reports_actual_jump_count - 已知缺陷：validate_daily_extended 取 df_sorted[["close"]]（双层方括号）得到 DataFrame 而非 Series，导致 len(jumps) 退化成行数。本例 60 行、真实跳变 3 个，实际报 59。修复后请删除本 xfail 标记。
+XFAIL tests/data/test_checks_extended_coverage.py::TestPriceJumps::test_below_threshold_reports_nothing - 同一缺陷的另一面：jumps 是 DataFrame 布尔索引结果（行数不变），len(jumps) > 0 对任何 ≥2 行数据都成立 ⇒ 恒定误报。期望：全部变化都低于阈值时不报。修复后请删除本 xfail 标记。
+XFAIL tests/data/test_checks_extended_coverage.py::TestPriceJumps::test_threshold_raising_keeps_check_silent - 恒定误报：阈值 15% 高于实际变化 10%，理应静默，但因 len(jumps) 恒为正数而仍报警。修复后请删除本 xfail 标记。
+XFAIL tests/walkforward/test_parameter_selection_coverage.py::TestWindowFailurePaths::test_oos_strategy_construction_failure_returns_clean_result - 潜在缺陷：run_walkforward_window 的「OOS 策略构造失败」分支在 except 里访问了尚未绑定的局部变量 strategy（源码 447-448 行），导致函数抛 UnboundLocalError 崩溃，而非按契约返回 oos_success=False。违反模块自述原则 4「失败显式表达」。修复后请删除本 xfail 标记。
+XFAIL tests/walkforward/test_walkforward_contracts.py::test_generate_windows_end_date_respects_boundary - BUG: generate_windows 的 end_date 裁剪在 __init__.py:222 用 (~mask) 而非 mask 求 last_true_pos，导致 end_idx 恒等于 len(index)，end_date 被完全忽略。正确行为应为『末窗 oos_end ≤ end_date』。修复后本用例将由 XPASS 触发 strict 报错，提示移除本标记。
+1746 passed, 1 skipped, 8 xfailed, 1 warning in 107.96s (0:01:47)

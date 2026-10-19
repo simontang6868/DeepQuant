@@ -1,0 +1,1034 @@
+{
+  "generated_at": "2026-10-18T11:53:37",
+  "data": {
+    "equity": {
+      "source_path": "data\\equity_bond_spread\\csi300_monthly.csv",
+      "sha256": "22dfb3ddaffd6eae66106c00884d792eff92c4adb353ce760720068ee861ca8a",
+      "n_input_rows": 261,
+      "n_output_rows": 261,
+      "n_bad_date": 0,
+      "n_duplicate_date": 0,
+      "n_out_of_range": {
+        "price_nonpositive": 0,
+        "pe_invalid": 3,
+        "pb_invalid": 0,
+        "div_yield_invalid": 0
+      },
+      "date_min": "2005-01-31",
+      "date_max": "2026-09-30",
+      "missing_rate": {
+        "price": 0.0,
+        "pe": 0.011494,
+        "pb": 0.011494,
+        "div_yield": 0.011494
+      }
+    },
+    "bond": {
+      "source_path": "data\\equity_bond_spread\\cn10y.csv",
+      "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+      "n_input_rows": 5158,
+      "n_output_rows": 5158,
+      "n_bad_date": 0,
+      "n_duplicate_date": 0,
+      "n_out_of_range": {
+        "bond_out_of_range": 0
+      },
+      "date_min": "2006-03-01",
+      "date_max": "2026-10-16",
+      "missing_rate": {
+        "bond_10y": 0.0
+      }
+    },
+    "bond_match": {
+      "rule": "forward_fill",
+      "n_exact": 247,
+      "n_filled": 0,
+      "n_missing": 14,
+      "max_fill_days": 0,
+      "mean_fill_days": 0.0
+    },
+    "coverage": {
+      "n_obs": 261,
+      "coverage_price": 1.0,
+      "coverage_pe": 0.988506,
+      "coverage_pb": 0.988506,
+      "coverage_div_yield": 0.988506,
+      "coverage_bond_10y": 0.94636,
+      "date_min": "2005-01-31",
+      "date_max": "2026-09-30"
+    },
+    "validation_errors": [],
+    "validation_issues": [
+      {
+        "level": "warning",
+        "code": "missing_pe",
+        "message": "pe 存在缺失值",
+        "count": 3
+      },
+      {
+        "level": "warning",
+        "code": "missing_pb",
+        "message": "pb 存在缺失值",
+        "count": 3
+      },
+      {
+        "level": "warning",
+        "code": "missing_div_yield",
+        "message": "div_yield 存在缺失值",
+        "count": 3
+      },
+      {
+        "level": "warning",
+        "code": "missing_bond_10y",
+        "message": "bond_10y 存在缺失值",
+        "count": 14
+      }
+    ],
+    "manifest": {
+      "generated_at": "2026-10-18T02:33:25",
+      "provenance": {
+        "equity": {
+          "field": "沪深300 指数（000300.SH）月频快照",
+          "source": "腾讯自选股行情接口（westock-data CLI: quote sh000300 --date YYYY-MM-DD）",
+          "method": "对每个月最后一个自然日逐点请求；非交易日由行情源回填上一交易日数据",
+          "fields": {
+            "price": "收盘价（价格指数口径，不含分红再投资）",
+            "pe": "行情源返回的市盈率字段，口径未经指数公司官方确认",
+            "pb": "行情源返回的市净率字段",
+            "div_yield": "行情源返回的股息率 TTM（百分数）"
+          },
+          "caveats": [
+            "价格指数口径，不是全收益指数",
+            "PE 口径未获官方确认，可能与 PE-TTM 存在差异",
+            "行情源对部分早期日期不返回 PE/PB，已置为空"
+          ]
+        },
+        "bond": {
+          "field": "中国 10 年期国债收益率",
+          "source": "中国债券信息网 - 中债国债收益率曲线（yield.chinabond.com.cn）",
+          "method": "按自然年分段请求（单次请求跨度需小于一年），取「中债国债收益率曲线」的 10 年期列",
+          "fields": {
+            "yield_10y": "10 年期国债到期收益率（百分数）"
+          },
+          "caveats": [
+            "曲线数据起始于 2006-03-01，之前区间无数据",
+            "收益率曲线为中央国债登记结算有限责任公司编制"
+          ]
+        }
+      },
+      "files": {
+        "raw_equity": {
+          "path": "data\\equity_bond_spread\\raw\\csi300_monthly_raw.csv",
+          "sha256": "c76daf2b1a48b32869e9ddf1390031ee4b715dd2d4fb32e3417596e92d1e612f",
+          "rows": 261
+        },
+        "raw_bond": {
+          "path": "data\\equity_bond_spread\\raw\\cn10y_raw.csv",
+          "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+          "rows": 5158
+        },
+        "clean_equity": {
+          "path": "data\\equity_bond_spread\\csi300_monthly.csv",
+          "sha256": "22dfb3ddaffd6eae66106c00884d792eff92c4adb353ce760720068ee861ca8a",
+          "rows": 261,
+          "date_min": "2005-01-31",
+          "date_max": "2026-09-30",
+          "missing_rate": {
+            "price": 0.0,
+            "pe": 0.011494252873563218,
+            "pb": 0.011494252873563218,
+            "div_yield": 0.011494252873563218
+          }
+        },
+        "clean_bond": {
+          "path": "data\\equity_bond_spread\\cn10y.csv",
+          "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+          "rows": 5158,
+          "date_min": "2006-03-01",
+          "date_max": "2026-10-16",
+          "missing_rate": {
+            "yield_10y": 0.0
+          }
+        }
+      },
+      "cleaning_rules": [
+        "行情源用 0 表示的缺失值统一置为空",
+        "非交易日采样以行情源返回的 quote_date 作为真实数据日期",
+        "按日期升序去重，同一日期保留最后一条",
+        "缺失值不做任何插值填充"
+      ]
+    }
+  },
+  "experiments": {
+    "A": {
+      "config": {
+        "experiment_name": "A_primary_5y_thr90",
+        "indicator": "A",
+        "return_basis": "price",
+        "lookback_years": 5,
+        "percentile_window": "expanding",
+        "percentile_fixed_years": 10,
+        "min_history_obs": 36,
+        "threshold_pct": 90.0,
+        "min_gap_obs": 4,
+        "exec_lag_obs": 1,
+        "start_date": "2005-01-01",
+        "end_date": "2026-10-16",
+        "forward_windows_td": [
+          20,
+          60,
+          120,
+          250
+        ],
+        "is_end_date": "2018-12-31",
+        "benchmark": "000300.SH",
+        "cost_rate": 0.0015,
+        "data": {
+          "equity_csv": "csi300_weekly.csv",
+          "bond_csv": "cn10y.csv",
+          "frequency": "monthly",
+          "bond_match_rule": "forward_fill",
+          "bond_max_fill_days": 10,
+          "pe_valid_min": 1.0,
+          "pe_valid_max": 300.0,
+          "bond_valid_min": 0.1,
+          "bond_valid_max": 15.0
+        }
+      },
+      "n_events": 0,
+      "comparison_full": [
+        {
+          "segment": "full",
+          "window_td": 20,
+          "n_signals": 0,
+          "n_baseline": 260,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.0073509831617330195,
+          "baseline_median": 0.004525719719317922,
+          "baseline_pct_positive": 0.55,
+          "baseline_worst": -0.2596184314914024,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "full",
+          "window_td": 60,
+          "n_signals": 0,
+          "n_baseline": 258,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.028007691426117858,
+          "baseline_median": 0.005117523047226458,
+          "baseline_pct_positive": 0.5193798449612403,
+          "baseline_worst": -0.407828822084621,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "full",
+          "window_td": 120,
+          "n_signals": 0,
+          "n_baseline": 255,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.06882484386870161,
+          "baseline_median": 0.01935773701734922,
+          "baseline_pct_positive": 0.5411764705882353,
+          "baseline_worst": -0.5804207727979955,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "full",
+          "window_td": 250,
+          "n_signals": 0,
+          "n_baseline": 249,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.16480197446855693,
+          "baseline_median": 0.04787998158621609,
+          "baseline_pct_positive": 0.5742971887550201,
+          "baseline_worst": -0.7079805169692048,
+          "mean_difference": null,
+          "signal_better": false
+        }
+      ],
+      "comparison_is": [
+        {
+          "segment": "is",
+          "window_td": 20,
+          "n_signals": 0,
+          "n_baseline": 168,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.009630393742137179,
+          "baseline_median": 0.009448879980334723,
+          "baseline_pct_positive": 0.5714285714285714,
+          "baseline_worst": -0.2596184314914024,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "is",
+          "window_td": 60,
+          "n_signals": 0,
+          "n_baseline": 168,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.037650975477936284,
+          "baseline_median": 0.013529993727551592,
+          "baseline_pct_positive": 0.5416666666666666,
+          "baseline_worst": -0.407828822084621,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "is",
+          "window_td": 120,
+          "n_signals": 0,
+          "n_baseline": 168,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.09346096676260614,
+          "baseline_median": 0.045043395786912854,
+          "baseline_pct_positive": 0.5595238095238095,
+          "baseline_worst": -0.5804207727979955,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "is",
+          "window_td": 250,
+          "n_signals": 0,
+          "n_baseline": 168,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.22290439643885426,
+          "baseline_median": 0.050066173190336793,
+          "baseline_pct_positive": 0.5833333333333334,
+          "baseline_worst": -0.7079805169692048,
+          "mean_difference": null,
+          "signal_better": false
+        }
+      ],
+      "comparison_oos": [
+        {
+          "segment": "oos",
+          "window_td": 20,
+          "n_signals": 0,
+          "n_baseline": 92,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.0031885812322993362,
+          "baseline_median": 0.0017309802490859116,
+          "baseline_pct_positive": 0.5108695652173914,
+          "baseline_worst": -0.08041415360525561,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "oos",
+          "window_td": 60,
+          "n_signals": 0,
+          "n_baseline": 90,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.010006894529390135,
+          "baseline_median": -0.0031420162949800656,
+          "baseline_pct_positive": 0.4777777777777778,
+          "baseline_worst": -0.15986740126136068,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "oos",
+          "window_td": 120,
+          "n_signals": 0,
+          "n_baseline": 87,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.02125164103909287,
+          "baseline_median": 0.0009429411911445751,
+          "baseline_pct_positive": 0.5057471264367817,
+          "baseline_worst": -0.2002931839297768,
+          "mean_difference": null,
+          "signal_better": false
+        },
+        {
+          "segment": "oos",
+          "window_td": 250,
+          "n_signals": 0,
+          "n_baseline": 81,
+          "signal_mean": null,
+          "signal_median": null,
+          "signal_pct_positive": null,
+          "signal_worst": null,
+          "signal_best": null,
+          "signal_mean_maxdd": null,
+          "baseline_mean": 0.044293247419051406,
+          "baseline_median": 0.043889746833555954,
+          "baseline_pct_positive": 0.5555555555555556,
+          "baseline_worst": -0.2862902621226906,
+          "mean_difference": null,
+          "signal_better": false
+        }
+      ],
+      "buy_and_hold": {
+        "n_obs": 261,
+        "start_date": "2005-01-31",
+        "end_date": "2026-09-30",
+        "years": 21.662,
+        "total_return": 3.563526306970509,
+        "annualized_return": 0.07259554049961525,
+        "max_drawdown": -0.7075418297137754
+      },
+      "panel_info": {
+        "equity": {
+          "source_path": "data\\equity_bond_spread\\csi300_monthly.csv",
+          "sha256": "22dfb3ddaffd6eae66106c00884d792eff92c4adb353ce760720068ee861ca8a",
+          "n_input_rows": 261,
+          "n_output_rows": 261,
+          "n_bad_date": 0,
+          "n_duplicate_date": 0,
+          "n_out_of_range": {
+            "price_nonpositive": 0,
+            "pe_invalid": 3,
+            "pb_invalid": 0,
+            "div_yield_invalid": 0
+          },
+          "date_min": "2005-01-31",
+          "date_max": "2026-09-30",
+          "missing_rate": {
+            "price": 0.0,
+            "pe": 0.011494,
+            "pb": 0.011494,
+            "div_yield": 0.011494
+          }
+        },
+        "bond": {
+          "source_path": "data\\equity_bond_spread\\cn10y.csv",
+          "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+          "n_input_rows": 5158,
+          "n_output_rows": 5158,
+          "n_bad_date": 0,
+          "n_duplicate_date": 0,
+          "n_out_of_range": {
+            "bond_out_of_range": 0
+          },
+          "date_min": "2006-03-01",
+          "date_max": "2026-10-16",
+          "missing_rate": {
+            "bond_10y": 0.0
+          }
+        },
+        "bond_match": {
+          "rule": "forward_fill",
+          "n_exact": 247,
+          "n_filled": 0,
+          "n_missing": 14,
+          "max_fill_days": 0,
+          "mean_fill_days": 0.0
+        },
+        "coverage": {
+          "n_obs": 261,
+          "coverage_price": 1.0,
+          "coverage_pe": 0.988506,
+          "coverage_pb": 0.988506,
+          "coverage_div_yield": 0.988506,
+          "coverage_bond_10y": 0.94636,
+          "date_min": "2005-01-31",
+          "date_max": "2026-09-30"
+        },
+        "validation_errors": [],
+        "validation_issues": [
+          {
+            "level": "warning",
+            "code": "missing_pe",
+            "message": "pe 存在缺失值",
+            "count": 3
+          },
+          {
+            "level": "warning",
+            "code": "missing_pb",
+            "message": "pb 存在缺失值",
+            "count": 3
+          },
+          {
+            "level": "warning",
+            "code": "missing_div_yield",
+            "message": "div_yield 存在缺失值",
+            "count": 3
+          },
+          {
+            "level": "warning",
+            "code": "missing_bond_10y",
+            "message": "bond_10y 存在缺失值",
+            "count": 14
+          }
+        ],
+        "manifest": {
+          "generated_at": "2026-10-18T02:33:25",
+          "provenance": {
+            "equity": {
+              "field": "沪深300 指数（000300.SH）月频快照",
+              "source": "腾讯自选股行情接口（westock-data CLI: quote sh000300 --date YYYY-MM-DD）",
+              "method": "对每个月最后一个自然日逐点请求；非交易日由行情源回填上一交易日数据",
+              "fields": {
+                "price": "收盘价（价格指数口径，不含分红再投资）",
+                "pe": "行情源返回的市盈率字段，口径未经指数公司官方确认",
+                "pb": "行情源返回的市净率字段",
+                "div_yield": "行情源返回的股息率 TTM（百分数）"
+              },
+              "caveats": [
+                "价格指数口径，不是全收益指数",
+                "PE 口径未获官方确认，可能与 PE-TTM 存在差异",
+                "行情源对部分早期日期不返回 PE/PB，已置为空"
+              ]
+            },
+            "bond": {
+              "field": "中国 10 年期国债收益率",
+              "source": "中国债券信息网 - 中债国债收益率曲线（yield.chinabond.com.cn）",
+              "method": "按自然年分段请求（单次请求跨度需小于一年），取「中债国债收益率曲线」的 10 年期列",
+              "fields": {
+                "yield_10y": "10 年期国债到期收益率（百分数）"
+              },
+              "caveats": [
+                "曲线数据起始于 2006-03-01，之前区间无数据",
+                "收益率曲线为中央国债登记结算有限责任公司编制"
+              ]
+            }
+          },
+          "files": {
+            "raw_equity": {
+              "path": "data\\equity_bond_spread\\raw\\csi300_monthly_raw.csv",
+              "sha256": "c76daf2b1a48b32869e9ddf1390031ee4b715dd2d4fb32e3417596e92d1e612f",
+              "rows": 261
+            },
+            "raw_bond": {
+              "path": "data\\equity_bond_spread\\raw\\cn10y_raw.csv",
+              "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+              "rows": 5158
+            },
+            "clean_equity": {
+              "path": "data\\equity_bond_spread\\csi300_monthly.csv",
+              "sha256": "22dfb3ddaffd6eae66106c00884d792eff92c4adb353ce760720068ee861ca8a",
+              "rows": 261,
+              "date_min": "2005-01-31",
+              "date_max": "2026-09-30",
+              "missing_rate": {
+                "price": 0.0,
+                "pe": 0.011494252873563218,
+                "pb": 0.011494252873563218,
+                "div_yield": 0.011494252873563218
+              }
+            },
+            "clean_bond": {
+              "path": "data\\equity_bond_spread\\cn10y.csv",
+              "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+              "rows": 5158,
+              "date_min": "2006-03-01",
+              "date_max": "2026-10-16",
+              "missing_rate": {
+                "yield_10y": 0.0
+              }
+            }
+          },
+          "cleaning_rules": [
+            "行情源用 0 表示的缺失值统一置为空",
+            "非交易日采样以行情源返回的 quote_date 作为真实数据日期",
+            "按日期升序去重，同一日期保留最后一条",
+            "缺失值不做任何插值填充"
+          ]
+        }
+      }
+    },
+    "B": {
+      "config": {
+        "experiment_name": "B_primary_thr90",
+        "indicator": "B",
+        "return_basis": "price",
+        "lookback_years": 5,
+        "percentile_window": "expanding",
+        "percentile_fixed_years": 10,
+        "min_history_obs": 36,
+        "threshold_pct": 90.0,
+        "min_gap_obs": 4,
+        "exec_lag_obs": 1,
+        "start_date": "2005-01-01",
+        "end_date": "2026-10-16",
+        "forward_windows_td": [
+          20,
+          60,
+          120,
+          250
+        ],
+        "is_end_date": "2018-12-31",
+        "benchmark": "000300.SH",
+        "cost_rate": 0.0015,
+        "data": {
+          "equity_csv": "csi300_weekly.csv",
+          "bond_csv": "cn10y.csv",
+          "frequency": "monthly",
+          "bond_match_rule": "forward_fill",
+          "bond_max_fill_days": 10,
+          "pe_valid_min": 1.0,
+          "pe_valid_max": 300.0,
+          "bond_valid_min": 0.1,
+          "bond_valid_max": 15.0
+        }
+      },
+      "n_events": 5,
+      "comparison_full": [
+        {
+          "segment": "full",
+          "window_td": 20,
+          "n_signals": 5,
+          "n_baseline": 260,
+          "signal_mean": 0.01209884113197277,
+          "signal_median": 0.0033175246039491846,
+          "signal_pct_positive": 0.6,
+          "signal_worst": -0.03301431362544638,
+          "signal_best": 0.09188918158209836,
+          "signal_mean_maxdd": -0.011043465978121891,
+          "baseline_mean": 0.0073509831617330195,
+          "baseline_median": 0.004525719719317922,
+          "baseline_pct_positive": 0.55,
+          "baseline_worst": -0.2596184314914024,
+          "mean_difference": 0.004747857970239751,
+          "signal_better": true
+        },
+        {
+          "segment": "full",
+          "window_td": 60,
+          "n_signals": 5,
+          "n_baseline": 258,
+          "signal_mean": 0.03354113623905371,
+          "signal_median": 0.05458438272117605,
+          "signal_pct_positive": 0.6,
+          "signal_worst": -0.15328456944439883,
+          "signal_best": 0.16920467263679528,
+          "signal_mean_maxdd": -0.04091994600387357,
+          "baseline_mean": 0.028007691426117858,
+          "baseline_median": 0.005117523047226458,
+          "baseline_pct_positive": 0.5193798449612403,
+          "baseline_worst": -0.407828822084621,
+          "mean_difference": 0.005533444812935849,
+          "signal_better": true
+        },
+        {
+          "segment": "full",
+          "window_td": 120,
+          "n_signals": 5,
+          "n_baseline": 255,
+          "signal_mean": -0.006848855426607803,
+          "signal_median": -0.015623458360151998,
+          "signal_pct_positive": 0.4,
+          "signal_worst": -0.23056762776396234,
+          "signal_best": 0.17697898563367298,
+          "signal_mean_maxdd": -0.0870367822226696,
+          "baseline_mean": 0.06882484386870161,
+          "baseline_median": 0.01935773701734922,
+          "baseline_pct_positive": 0.5411764705882353,
+          "baseline_worst": -0.5804207727979955,
+          "mean_difference": -0.07567369929530941,
+          "signal_better": false
+        },
+        {
+          "segment": "full",
+          "window_td": 250,
+          "n_signals": 5,
+          "n_baseline": 249,
+          "signal_mean": 0.06482317078051274,
+          "signal_median": 0.15328570379680673,
+          "signal_pct_positive": 0.6,
+          "signal_worst": -0.19256080306429835,
+          "signal_best": 0.2720024113139057,
+          "signal_mean_maxdd": -0.11674305670918375,
+          "baseline_mean": 0.16480197446855693,
+          "baseline_median": 0.04787998158621609,
+          "baseline_pct_positive": 0.5742971887550201,
+          "baseline_worst": -0.7079805169692048,
+          "mean_difference": -0.0999788036880442,
+          "signal_better": false
+        }
+      ],
+      "comparison_is": [
+        {
+          "segment": "is",
+          "window_td": 20,
+          "n_signals": 1,
+          "n_baseline": 168,
+          "signal_mean": -0.02512019027032708,
+          "signal_median": -0.02512019027032708,
+          "signal_pct_positive": 0.0,
+          "signal_worst": -0.02512019027032708,
+          "signal_best": -0.02512019027032708,
+          "signal_mean_maxdd": -0.023655673780998643,
+          "baseline_mean": 0.009630393742137179,
+          "baseline_median": 0.009448879980334723,
+          "baseline_pct_positive": 0.5714285714285714,
+          "baseline_worst": -0.2596184314914024,
+          "mean_difference": -0.03475058401246426,
+          "signal_better": false
+        },
+        {
+          "segment": "is",
+          "window_td": 60,
+          "n_signals": 1,
+          "n_baseline": 168,
+          "signal_mean": -0.15328456944439883,
+          "signal_median": -0.15328456944439883,
+          "signal_pct_positive": 0.0,
+          "signal_worst": -0.15328456944439883,
+          "signal_best": -0.15328456944439883,
+          "signal_mean_maxdd": -0.15201258832688924,
+          "baseline_mean": 0.037650975477936284,
+          "baseline_median": 0.013529993727551592,
+          "baseline_pct_positive": 0.5416666666666666,
+          "baseline_worst": -0.407828822084621,
+          "mean_difference": -0.1909355449223351,
+          "signal_better": false
+        },
+        {
+          "segment": "is",
+          "window_td": 120,
+          "n_signals": 1,
+          "n_baseline": 168,
+          "signal_mean": -0.23056762776396234,
+          "signal_median": -0.23056762776396234,
+          "signal_pct_positive": 0.0,
+          "signal_worst": -0.23056762776396234,
+          "signal_best": -0.23056762776396234,
+          "signal_mean_maxdd": -0.22941174538203546,
+          "baseline_mean": 0.09346096676260614,
+          "baseline_median": 0.045043395786912854,
+          "baseline_pct_positive": 0.5595238095238095,
+          "baseline_worst": -0.5804207727979955,
+          "mean_difference": -0.32402859452656846,
+          "signal_better": false
+        },
+        {
+          "segment": "is",
+          "window_td": 250,
+          "n_signals": 1,
+          "n_baseline": 168,
+          "signal_mean": -0.19256080306429835,
+          "signal_median": -0.19256080306429835,
+          "signal_pct_positive": 0.0,
+          "signal_worst": -0.19256080306429835,
+          "signal_best": -0.19256080306429835,
+          "signal_mean_maxdd": -0.22941174538203546,
+          "baseline_mean": 0.22290439643885426,
+          "baseline_median": 0.050066173190336793,
+          "baseline_pct_positive": 0.5833333333333334,
+          "baseline_worst": -0.7079805169692048,
+          "mean_difference": -0.41546519950315264,
+          "signal_better": false
+        }
+      ],
+      "comparison_oos": [
+        {
+          "segment": "oos",
+          "window_td": 20,
+          "n_signals": 4,
+          "n_baseline": 92,
+          "signal_mean": 0.021403598982547734,
+          "signal_median": 0.013369763986769478,
+          "signal_pct_positive": 0.75,
+          "signal_worst": -0.03301431362544638,
+          "signal_best": 0.09188918158209836,
+          "signal_mean_maxdd": -0.007890414027402703,
+          "baseline_mean": 0.0031885812322993362,
+          "baseline_median": 0.0017309802490859116,
+          "baseline_pct_positive": 0.5108695652173914,
+          "baseline_worst": -0.08041415360525561,
+          "mean_difference": 0.018215017750248398,
+          "signal_better": true
+        },
+        {
+          "segment": "oos",
+          "window_td": 60,
+          "n_signals": 4,
+          "n_baseline": 90,
+          "signal_mean": 0.08024756265991684,
+          "signal_median": 0.08694874741202874,
+          "signal_pct_positive": 0.75,
+          "signal_worst": -0.022111916821185407,
+          "signal_best": 0.16920467263679528,
+          "signal_mean_maxdd": -0.013146785423119645,
+          "baseline_mean": 0.010006894529390135,
+          "baseline_median": -0.0031420162949800656,
+          "baseline_pct_positive": 0.4777777777777778,
+          "baseline_worst": -0.15986740126136068,
+          "mean_difference": 0.0702406681305267,
+          "signal_better": true
+        },
+        {
+          "segment": "oos",
+          "window_td": 120,
+          "n_signals": 4,
+          "n_baseline": 87,
+          "signal_mean": 0.04908083765773083,
+          "signal_median": 0.02664282164642806,
+          "signal_pct_positive": 0.5,
+          "signal_worst": -0.03394127829560578,
+          "signal_best": 0.17697898563367298,
+          "signal_mean_maxdd": -0.05144304143282813,
+          "baseline_mean": 0.02125164103909287,
+          "baseline_median": 0.0009429411911445751,
+          "baseline_pct_positive": 0.5057471264367817,
+          "baseline_worst": -0.2002931839297768,
+          "mean_difference": 0.02782919661863796,
+          "signal_better": true
+        },
+        {
+          "segment": "oos",
+          "window_td": 250,
+          "n_signals": 4,
+          "n_baseline": 81,
+          "signal_mean": 0.1291691642417155,
+          "signal_median": 0.16932395659929134,
+          "signal_pct_positive": 0.75,
+          "signal_worst": -0.0939736675456263,
+          "signal_best": 0.2720024113139057,
+          "signal_mean_maxdd": -0.08857588454097082,
+          "baseline_mean": 0.044293247419051406,
+          "baseline_median": 0.043889746833555954,
+          "baseline_pct_positive": 0.5555555555555556,
+          "baseline_worst": -0.2862902621226906,
+          "mean_difference": 0.0848759168226641,
+          "signal_better": true
+        }
+      ],
+      "buy_and_hold": {
+        "n_obs": 261,
+        "start_date": "2005-01-31",
+        "end_date": "2026-09-30",
+        "years": 21.662,
+        "total_return": 3.563526306970509,
+        "annualized_return": 0.07259554049961525,
+        "max_drawdown": -0.7075418297137754
+      },
+      "panel_info": {
+        "equity": {
+          "source_path": "data\\equity_bond_spread\\csi300_monthly.csv",
+          "sha256": "22dfb3ddaffd6eae66106c00884d792eff92c4adb353ce760720068ee861ca8a",
+          "n_input_rows": 261,
+          "n_output_rows": 261,
+          "n_bad_date": 0,
+          "n_duplicate_date": 0,
+          "n_out_of_range": {
+            "price_nonpositive": 0,
+            "pe_invalid": 3,
+            "pb_invalid": 0,
+            "div_yield_invalid": 0
+          },
+          "date_min": "2005-01-31",
+          "date_max": "2026-09-30",
+          "missing_rate": {
+            "price": 0.0,
+            "pe": 0.011494,
+            "pb": 0.011494,
+            "div_yield": 0.011494
+          }
+        },
+        "bond": {
+          "source_path": "data\\equity_bond_spread\\cn10y.csv",
+          "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+          "n_input_rows": 5158,
+          "n_output_rows": 5158,
+          "n_bad_date": 0,
+          "n_duplicate_date": 0,
+          "n_out_of_range": {
+            "bond_out_of_range": 0
+          },
+          "date_min": "2006-03-01",
+          "date_max": "2026-10-16",
+          "missing_rate": {
+            "bond_10y": 0.0
+          }
+        },
+        "bond_match": {
+          "rule": "forward_fill",
+          "n_exact": 247,
+          "n_filled": 0,
+          "n_missing": 14,
+          "max_fill_days": 0,
+          "mean_fill_days": 0.0
+        },
+        "coverage": {
+          "n_obs": 261,
+          "coverage_price": 1.0,
+          "coverage_pe": 0.988506,
+          "coverage_pb": 0.988506,
+          "coverage_div_yield": 0.988506,
+          "coverage_bond_10y": 0.94636,
+          "date_min": "2005-01-31",
+          "date_max": "2026-09-30"
+        },
+        "validation_errors": [],
+        "validation_issues": [
+          {
+            "level": "warning",
+            "code": "missing_pe",
+            "message": "pe 存在缺失值",
+            "count": 3
+          },
+          {
+            "level": "warning",
+            "code": "missing_pb",
+            "message": "pb 存在缺失值",
+            "count": 3
+          },
+          {
+            "level": "warning",
+            "code": "missing_div_yield",
+            "message": "div_yield 存在缺失值",
+            "count": 3
+          },
+          {
+            "level": "warning",
+            "code": "missing_bond_10y",
+            "message": "bond_10y 存在缺失值",
+            "count": 14
+          }
+        ],
+        "manifest": {
+          "generated_at": "2026-10-18T02:33:25",
+          "provenance": {
+            "equity": {
+              "field": "沪深300 指数（000300.SH）月频快照",
+              "source": "腾讯自选股行情接口（westock-data CLI: quote sh000300 --date YYYY-MM-DD）",
+              "method": "对每个月最后一个自然日逐点请求；非交易日由行情源回填上一交易日数据",
+              "fields": {
+                "price": "收盘价（价格指数口径，不含分红再投资）",
+                "pe": "行情源返回的市盈率字段，口径未经指数公司官方确认",
+                "pb": "行情源返回的市净率字段",
+                "div_yield": "行情源返回的股息率 TTM（百分数）"
+              },
+              "caveats": [
+                "价格指数口径，不是全收益指数",
+                "PE 口径未获官方确认，可能与 PE-TTM 存在差异",
+                "行情源对部分早期日期不返回 PE/PB，已置为空"
+              ]
+            },
+            "bond": {
+              "field": "中国 10 年期国债收益率",
+              "source": "中国债券信息网 - 中债国债收益率曲线（yield.chinabond.com.cn）",
+              "method": "按自然年分段请求（单次请求跨度需小于一年），取「中债国债收益率曲线」的 10 年期列",
+              "fields": {
+                "yield_10y": "10 年期国债到期收益率（百分数）"
+              },
+              "caveats": [
+                "曲线数据起始于 2006-03-01，之前区间无数据",
+                "收益率曲线为中央国债登记结算有限责任公司编制"
+              ]
+            }
+          },
+          "files": {
+            "raw_equity": {
+              "path": "data\\equity_bond_spread\\raw\\csi300_monthly_raw.csv",
+              "sha256": "c76daf2b1a48b32869e9ddf1390031ee4b715dd2d4fb32e3417596e92d1e612f",
+              "rows": 261
+            },
+            "raw_bond": {
+              "path": "data\\equity_bond_spread\\raw\\cn10y_raw.csv",
+              "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+              "rows": 5158
+            },
+            "clean_equity": {
+              "path": "data\\equity_bond_spread\\csi300_monthly.csv",
+              "sha256": "22dfb3ddaffd6eae66106c00884d792eff92c4adb353ce760720068ee861ca8a",
+              "rows": 261,
+              "date_min": "2005-01-31",
+              "date_max": "2026-09-30",
+              "missing_rate": {
+                "price": 0.0,
+                "pe": 0.011494252873563218,
+                "pb": 0.011494252873563218,
+                "div_yield": 0.011494252873563218
+              }
+            },
+            "clean_bond": {
+              "path": "data\\equity_bond_spread\\cn10y.csv",
+              "sha256": "0f0dd54c9f168e3fca13668e40144054bf001b580c0257ffdcd2312ffec279d7",
+              "rows": 5158,
+              "date_min": "2006-03-01",
+              "date_max": "2026-10-16",
+              "missing_rate": {
+                "yield_10y": 0.0
+              }
+            }
+          },
+          "cleaning_rules": [
+            "行情源用 0 表示的缺失值统一置为空",
+            "非交易日采样以行情源返回的 quote_date 作为真实数据日期",
+            "按日期升序去重，同一日期保留最后一条",
+            "缺失值不做任何插值填充"
+          ]
+        }
+      }
+    }
+  },
+  "verdicts": {
+    "A": {
+      "verdict": "insufficient",
+      "label": "数据不足，无法判断",
+      "is_mean_difference": null,
+      "oos_mean_difference": null,
+      "n_oos_events": 0
+    },
+    "B": {
+      "verdict": "not_supported",
+      "label": "暂时未发现支持证据",
+      "is_mean_difference": -0.41546519950315264,
+      "oos_mean_difference": 0.0848759168226641,
+      "n_oos_events": 4
+    }
+  }
+}

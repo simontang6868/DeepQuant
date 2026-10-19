@@ -1,0 +1,25 @@
+{
+ "message": "A 线收官：存量补推 backend/tests 批次 5/6（20 个文件，backend/tests/persistence/test_store_edge_contracts.py .. backend/tests/strategies/test_signals.py）",
+ "files": [
+  "backend/tests/persistence/test_store_edge_contracts.py",
+  "backend/tests/research/__init__.py",
+  "backend/tests/research/test_cases.py",
+  "backend/tests/research/test_config_report.py",
+  "backend/tests/research/test_daily_exec.py",
+  "backend/tests/research/test_data.py",
+  "backend/tests/research/test_experiment.py",
+  "backend/tests/research/test_indicators.py",
+  "backend/tests/research/test_signals.py",
+  "backend/tests/research/test_us_data.py",
+  "backend/tests/research/test_us_experiment.py",
+  "backend/tests/research/test_us_indicators_signals.py",
+  "backend/tests/research/test_us_stats.py",
+  "backend/tests/strategies/test_ensemble.py",
+  "backend/tests/strategies/test_ensemble_boundary.py",
+  "backend/tests/strategies/test_ensemble_series.py",
+  "backend/tests/strategies/test_ensemble_voting_boundary.py",
+  "backend/tests/strategies/test_ma_cross.py",
+  "backend/tests/strategies/test_mean_reversion.py",
+  "backend/tests/strategies/test_signals.py"
+ ]
+}

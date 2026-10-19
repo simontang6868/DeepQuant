@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-18T21:03:59+08:00",
+  "dry_run": false,
+  "pool": {
+    "label": "b50_v3",
+    "summary": "step75_research_summary.json",
+    "summary_sha256": "f7cec95fdb75e060f27af0dda7c75df206adb2ee932cd6e630e4d7d2f2586140",
+    "n_listed": 50,
+    "n_files_found": 50,
+    "n_unlisted_files": 0,
+    "research_skipped": {
+      "000568.SZ": "invalid_price",
+      "600809.SH": "invalid_price"
+    }
+  },
+  "gate": {
+    "unchanged": 48,
+    "rejected": 2
+  },
+  "disagreements": [],
+  "symbols": [
+    {
+      "code": "000001.SZ",
+      "name": "平安银行",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "c1b82506679d532b0256c1e9d2708e670a319b544a1d05855bb022b555402fa5",
+      "source_name": "step75/000001.SZ.qfq.csv"
+    },
+    {
+      "code": "000301.SZ",
+      "name": "东方盛虹",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1772,
+      "sha256": "e9c5065cc212b063c56d7782e6ac31c3837f51ce11ec137089c504383aed9bfe",
+      "source_name": "b50_v3/000301.SZ.qfq.csv"
+    },
+    {
+      "code": "000568.SZ",
+      "name": "泸州老窖",
+      "status": "rejected",
+      "reason": "invalid_price(1)",
+      "rows": null,
+      "sha256": "d0a768c5702d86a9f73003125ee6947e931ad7a8a3177e0c9f1584d42219a88b",
+      "source_name": null
+    },
+    {
+      "code": "000657.SZ",
+      "name": "中钨高新",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1928,
+      "sha256": "b93a7c5bae37e88ff9fb32fe55ff5c32318c99a1984f193eaa7bdad780703794",
+      "source_name": "b50_v3/000657.SZ.qfq.csv"
+    },
+    {
+      "code": "000807.SZ",
+      "name": "云铝股份",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1916,
+      "sha256": "c2cb9bb14b3bfbb976cbc34a78a74b0b5b5be4bd97df64f22a34fda95b322735",
+      "source_name": "b50_v3/000807.SZ.qfq.csv"
+    },
+    {
+      "code": "000977.SZ",
+      "name": "浪潮信息",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1931,
+      "sha256": "b2da03d20f4235767209b60a0a19240e6c4c4fcf7a02aa4c11c3e1126ba5b962",
+      "source_name": "b50_v3/000977.SZ.qfq.csv"
+    },
+    {
+      "code": "001979.SZ",
+      "name": "招商蛇口",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1927,
+      "sha256": "c06ab63173d1e59e6d7d0aa7f7b9e273c2ec33bafdce5ecbaad510ab1aad3cab",
+      "source_name": "b50_v3/001979.SZ.qfq.csv"
+    },
+    {
+      "code": "002074.SZ",
+      "name": "国轩高科",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1930,
+      "sha256": "f018bbe625708add897b57a4b2c27428f14bc0f0ee50325c1502434f5d3d22e1",
+      "source_name": "b50_v3/002074.SZ.qfq.csv"
+    },
+    {
+      "code": "002241.SZ",
+      "name": "歌尔股份",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "f6922c57aad5de18b92e15f6a1884ed264fc82228e603c655eb6fa1362b82849",
+      "source_name": "b50_v3/002241.SZ.qfq.csv"
+    },
+    {
+      "code": "002415.SZ",
+      "name": "海康威视",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1941,
+      "sha256": "09810d6d58771b83ec15e168f7bec0320c2a9aac6e12aaf754d8aab36254e943",
+      "source_name": "b50_v3/002415.SZ.qfq.csv"
+    },
+    {
+      "code": "002493.SZ",
+      "name": "荣盛石化",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "c3c9b6d306281cb74d5f1df95f06527f8af4c75f0405b20ef15ac8d9b58b81d9",
+      "source_name": "b50_v3/002493.SZ.qfq.csv"
+    },
+    {
+      "code": "002625.SZ",
+      "name": "光启技术",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1780,
+      "sha256": "16c1f7e4e10071b19da16676fc3cd76829f9f463eb2aeca3cac5d1578787d6f3",
+      "source_name": "b50_v3/002625.SZ.qfq.csv"
+    },
+    {
+      "code": "002916.SZ",
+      "name": "深南电路",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1710,
+      "sha256": "a3e4ab30905151b9b012e00a7e547a94a75d053af191d0671fad64a37978f850",
+      "source_name": "b50_v3/002916.SZ.qfq.csv"
+    },
+    {
+      "code": "300059.SZ",
+      "name": "东方财富",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "c2b9995188d0669eb4d09553f3e60a8f37927e7c2458c65b9e686a20f2924c22",
+      "source_name": "b50_v3/300059.SZ.qfq.csv"
+    },
+    {
+      "code": "300316.SZ",
+      "name": "晶盛机电",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "08abdf86ea0a95391be2fb3052c8de04adb56b1fa2e0c10660c722501c946bf0",
+      "source_name": "b50_v3/300316.SZ.qfq.csv"
+    },
+    {
+      "code": "300442.SZ",
+      "name": "润泽科技",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1933,
+      "sha256": "d00cf39202917b3247d908f045a21104fee0c5c8bcd00c866268d4bf244a4c16",
+      "source_name": "b50_v3/300442.SZ.qfq.csv"
+    },
+    {
+      "code": "300661.SZ",
+      "name": "圣邦股份",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1833,
+      "sha256": "8e8b382b9f31bb0ce00b0112c75ae6e6ca71bd3eecbc6a841e0c246d5cd47575",
+      "source_name": "b50_v3/300661.SZ.qfq.csv"
+    },
+    {
+      "code": "300896.SZ",
+      "name": "爱美客",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1032,
+      "sha256": "31b323c41749ddaefc809b7de5cb954d7395e040a4cdb7da3b4034bb522cf349",
+      "source_name": "b50_v3/300896.SZ.qfq.csv"
+    },
+    {
+      "code": "600000.SH",
+      "name": "浦发银行",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "9d6cbf82db6f481207f1c903e70ec54d9d827356536e0f9262fbcd630eb60ff1",
+      "source_name": "b50_v3/600000.SH.qfq.csv"
+    },
+    {
+      "code": "600018.SH",
+      "name": "上港集团",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1940,
+      "sha256": "7f68efff806c0e41f68df1689e846eca77c1b6aac67bfab5f30ffd488c44472a",
+      "source_name": "b50_v3/600018.SH.qfq.csv"
+    },
+    {
+      "code": "600028.SH",
+      "name": "中国石化",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "3390c5f32642664fc46471af3e0414fb91c4c7b366e04511896125fe2f9b82d2",
+      "source_name": "b50_v3/600028.SH.qfq.csv"
+    },
+    {
+      "code": "600048.SH",
+      "name": "保利发展",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "be99911597c3603989cf563fcfd471bf1d03b782f6451c9b2ebc0d6ac84d608e",
+      "source_name": "b50_v3/600048.SH.qfq.csv"
+    },
+    {
+      "code": "600104.SH",
+      "name": "上汽集团",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "533bd6ff39d8d3fc2e413998dc3fee0178631b6387bd80c652eb1ec662ebc017",
+      "source_name": "b50_v3/600104.SH.qfq.csv"
+    },
+    {
+      "code": "600176.SH",
+      "name": "中国巨石",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1931,
+      "sha256": "4d4034bc76c04456acf8c80ca2260f72f3ba38ae242c9d051ca9d9db19142513",
+      "source_name": "b50_v3/600176.SH.qfq.csv"
+    },
+    {
+      "code": "600233.SH",
+      "name": "圆通速递",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "ddebeaa6db0ef9952e25d523dab4a19945b2c0196f02ab458f6bf199afbf184f",
+      "source_name": "b50_v3/600233.SH.qfq.csv"
+    },
+    {
+      "code": "600415.SH",
+      "name": "小商品城",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "e04bebd19740386c381b25635db6449aaaade016224d8272cf158e95cb3f2bed",
+      "source_name": "b50_v3/600415.SH.qfq.csv"
+    },
+    {
+      "code": "600489.SH",
+      "name": "中金黄金",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1932,
+      "sha256": "31b5ea39f265fdeb80c493ca37c28d50491c3bec15d2293b012882f344127ad5",
+      "source_name": "b50_v3/600489.SH.qfq.csv"
+    },
+    {
+      "code": "600570.SH",
+      "name": "恒生电子",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1941,
+      "sha256": "3534ba44d5fdf7bea945b9cf6401239e26c0b9d31a12a38f63f379cf4762e7c1",
+      "source_name": "b50_v3/600570.SH.qfq.csv"
+    },
+    {
+      "code": "600674.SH",
+      "name": "川投能源",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "6fee7a57b4f61b8da29ad6249cbbc31479a8009e547264c5ddc76d1b0d986778",
+      "source_name": "b50_v3/600674.SH.qfq.csv"
+    },
+    {
+      "code": "600809.SH",
+      "name": "山西汾酒",
+      "status": "rejected",
+      "reason": "invalid_price(131)",
+      "rows": null,
+      "sha256": "61f21b420706207fbc39e538560ab06bda6ad389f3da98d5826837a1cd7048d1",
+      "source_name": null
+    },
+    {
+      "code": "600900.SH",
+      "name": "长江电力",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1932,
+      "sha256": "264ac8c4fe49bf7c8059a874269368ddb1b05a0cc7de746bb260c267a9ff3f7f",
+      "source_name": "step75/600900.SH.qfq.csv"
+    },
+    {
+      "code": "600938.SH",
+      "name": "中国海油",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 656,
+      "sha256": "8dc91643d629275e3b34dd9fdfb6a55c04a11b135133d98d71b73ba7d5595e7e",
+      "source_name": "b50_v3/600938.SH.qfq.csv"
+    },
+    {
+      "code": "601009.SH",
+      "name": "南京银行",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1941,
+      "sha256": "e1f08a3d7109e41ea0e91a2c6445454d895c968d6d9fef1fa37ed5e54bed9da7",
+      "source_name": "b50_v3/601009.SH.qfq.csv"
+    },
+    {
+      "code": "601066.SH",
+      "name": "中信建投",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1588,
+      "sha256": "4af86b2dda1af1d95e75d20ededb991f30337d4fbf196b87fccfbeff8accf4b0",
+      "source_name": "b50_v3/601066.SH.qfq.csv"
+    },
+    {
+      "code": "601127.SH",
+      "name": "赛力斯",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1928,
+      "sha256": "55b9fabf7d2b8de4afc9a2a437139dbbef94a0d3a51f9901a0c94bf7a18565a1",
+      "source_name": "b50_v3/601127.SH.qfq.csv"
+    },
+    {
+      "code": "601211.SH",
+      "name": "国泰海通",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1926,
+      "sha256": "1a30658e61eea3a19a52a72be32a18b68ac0642779dce58488766e8ce58759e9",
+      "source_name": "b50_v3/601211.SH.qfq.csv"
+    },
+    {
+      "code": "601319.SH",
+      "name": "中国人保",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1487,
+      "sha256": "9d3ea8b9d8f77a5cddad19213d2f4cce8ec643bb4b0681cdc17ab82664be5e14",
+      "source_name": "b50_v3/601319.SH.qfq.csv"
+    },
+    {
+      "code": "601398.SH",
+      "name": "工商银行",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "5163f1aba520de2580f8ece6a5913abca5d64b934a53d2dd3f141fe94656e29c",
+      "source_name": "b50_v3/601398.SH.qfq.csv"
+    },
+    {
+      "code": "601628.SH",
+      "name": "中国人寿",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "fbd258a5d62e6156f42d4304b93fe2ccaba076bc26603418d41829651effdebc",
+      "source_name": "b50_v3/601628.SH.qfq.csv"
+    },
+    {
+      "code": "601689.SH",
+      "name": "拓普集团",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "6e5547d30aa98c7bf8feb1dd7b91ed74bbb5c3a7d125a5094e72ead30f9bfbec",
+      "source_name": "b50_v3/601689.SH.qfq.csv"
+    },
+    {
+      "code": "601800.SH",
+      "name": "中国交建",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "89391ad9c700a55466ccd689fee576b6b82a521e179c861f95b1dbc8ebabf362",
+      "source_name": "b50_v3/601800.SH.qfq.csv"
+    },
+    {
+      "code": "601872.SH",
+      "name": "招商轮船",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1843,
+      "sha256": "e8c1b21f5e6293304470ca4346dce1d9c99e17ae8aaf22a8eee550dcc9d9ca00",
+      "source_name": "b50_v3/601872.SH.qfq.csv"
+    },
+    {
+      "code": "601899.SH",
+      "name": "紫金矿业",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1939,
+      "sha256": "4e69b4f04799184d04f4e946d0ffe035e70253fe4741b718c341f8010dccb3eb",
+      "source_name": "b50_v3/601899.SH.qfq.csv"
+    },
+    {
+      "code": "601988.SH",
+      "name": "中国银行",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "cc92c015d0d6fa550f15c731d06ef62c03e2577b888065801cd20ea586a6f6f4",
+      "source_name": "b50_v3/601988.SH.qfq.csv"
+    },
+    {
+      "code": "603288.SH",
+      "name": "海天味业",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1943,
+      "sha256": "a81f52188cd931c5af9b770450bd8632ec9af7e7cad955a8b3332e53fcb43d00",
+      "source_name": "b50_v3/603288.SH.qfq.csv"
+    },
+    {
+      "code": "603893.SH",
+      "name": "瑞芯微",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1192,
+      "sha256": "70dc20c787b73aba51785bb5b94e629528c774792a4ce053b9b8d4d271a5f608",
+      "source_name": "b50_v3/603893.SH.qfq.csv"
+    },
+    {
+      "code": "688009.SH",
+      "name": "中国通号",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1323,
+      "sha256": "5b49570cc2deca760e5a5e454b9de286362b7ad0061452aacf7053b7c55368ec",
+      "source_name": "b50_v3/688009.SH.qfq.csv"
+    },
+    {
+      "code": "688082.SH",
+      "name": "盛美上海",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 758,
+      "sha256": "f61eb89517beddda79066b4f5dc86267f9975c984e7fc210bf834379382588c1",
+      "source_name": "b50_v3/688082.SH.qfq.csv"
+    },
+    {
+      "code": "688271.SH",
+      "name": "联影医疗",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 573,
+      "sha256": "7ad4bbe70952f21f3606abc4948751808da63fc44bf61ef515463906b573d1ef",
+      "source_name": "b50_v3/688271.SH.qfq.csv"
+    },
+    {
+      "code": "688981.SH",
+      "name": "中芯国际",
+      "status": "unchanged",
+      "reason": null,
+      "rows": 1084,
+      "sha256": "59904430bbefe39c74264f1fe3bc026cccff0d5b5c57af3b0bf985964fe1e728",
+      "source_name": "b50_v3/688981.SH.qfq.csv"
+    }
+  ],
+  "notes": "本文件由 scripts/import_pool.py 生成。gate 计数描述**最近一次运行**的状态分布，不是累计导入历史；每只标的的数据来源见 source_name。status 语义：imported=本次导入；enriched=数据未变、仅回填名称；unchanged=已导入且无变化；rejected=数据闸门拒绝（不导入、不修改）；conflict=已存在但指纹不同（不覆盖）；failed=文件缺失或读取失败。"
+}

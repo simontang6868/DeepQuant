@@ -1,0 +1,2114 @@
+{
+  "meta": {
+    "built_at": "2026-10-19T21:59:05+08:00",
+    "index_code": "000300",
+    "source": "csindex:index_stock_cons_csindex",
+    "sampling_rule": "代码升序等距抽取，每 1.00 只取 1，目标 n=300",
+    "n_raw": 300,
+    "n_after_filter": 298,
+    "n_selected": 298,
+    "n_dropped": 2,
+    "dropped_sample": [
+      {
+        "code": "003816",
+        "name": "中国广核",
+        "reason": "unsupported_board:003816"
+      },
+      {
+        "code": "302132",
+        "name": "中航成飞",
+        "reason": "unsupported_board:302132"
+      }
+    ],
+    "bias_survivorship": "成分股为抓取当日快照，非 2017 年历史成分。收益类指标系统偏乐观，缺失退市/被剔除的失败样本。仅可用于参与率/事件密度/零中位数等结构性问题，不得用于『策略能赚钱』类结论。",
+    "bias_sampling": "等距抽样非随机，代码分段与行业相关，行业分布不完全均衡。"
+  },
+  "stocks": [
+    {
+      "code": "000001.SZ",
+      "tencent_symbol": "sz000001",
+      "name": "平安银行",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000002.SZ",
+      "tencent_symbol": "sz000002",
+      "name": "万科A",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000063.SZ",
+      "tencent_symbol": "sz000063",
+      "name": "中兴通讯",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000100.SZ",
+      "tencent_symbol": "sz000100",
+      "name": "TCL科技",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000157.SZ",
+      "tencent_symbol": "sz000157",
+      "name": "中联重科",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000166.SZ",
+      "tencent_symbol": "sz000166",
+      "name": "申万宏源",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000301.SZ",
+      "tencent_symbol": "sz000301",
+      "name": "东方盛虹",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000333.SZ",
+      "tencent_symbol": "sz000333",
+      "name": "美的集团",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000338.SZ",
+      "tencent_symbol": "sz000338",
+      "name": "潍柴动力",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000408.SZ",
+      "tencent_symbol": "sz000408",
+      "name": "藏格矿业",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000425.SZ",
+      "tencent_symbol": "sz000425",
+      "name": "徐工机械",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000538.SZ",
+      "tencent_symbol": "sz000538",
+      "name": "云南白药",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000568.SZ",
+      "tencent_symbol": "sz000568",
+      "name": "泸州老窖",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000596.SZ",
+      "tencent_symbol": "sz000596",
+      "name": "古井贡酒",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000617.SZ",
+      "tencent_symbol": "sz000617",
+      "name": "中油资本",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000625.SZ",
+      "tencent_symbol": "sz000625",
+      "name": "长安汽车",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000630.SZ",
+      "tencent_symbol": "sz000630",
+      "name": "铜陵有色",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000651.SZ",
+      "tencent_symbol": "sz000651",
+      "name": "格力电器",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000657.SZ",
+      "tencent_symbol": "sz000657",
+      "name": "中钨高新",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000708.SZ",
+      "tencent_symbol": "sz000708",
+      "name": "中信特钢",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000725.SZ",
+      "tencent_symbol": "sz000725",
+      "name": "京东方A",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000768.SZ",
+      "tencent_symbol": "sz000768",
+      "name": "中航西飞",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000776.SZ",
+      "tencent_symbol": "sz000776",
+      "name": "广发证券",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000792.SZ",
+      "tencent_symbol": "sz000792",
+      "name": "盐湖股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000807.SZ",
+      "tencent_symbol": "sz000807",
+      "name": "云铝股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000858.SZ",
+      "tencent_symbol": "sz000858",
+      "name": "五 粮 液",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000895.SZ",
+      "tencent_symbol": "sz000895",
+      "name": "双汇发展",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000938.SZ",
+      "tencent_symbol": "sz000938",
+      "name": "紫光股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000963.SZ",
+      "tencent_symbol": "sz000963",
+      "name": "华东医药",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000975.SZ",
+      "tencent_symbol": "sz000975",
+      "name": "山金国际",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000977.SZ",
+      "tencent_symbol": "sz000977",
+      "name": "浪潮信息",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000988.SZ",
+      "tencent_symbol": "sz000988",
+      "name": "华工科技",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "000999.SZ",
+      "tencent_symbol": "sz000999",
+      "name": "华润三九",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "001280.SZ",
+      "tencent_symbol": "sz001280",
+      "name": "中国铀业",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "001391.SZ",
+      "tencent_symbol": "sz001391",
+      "name": "国货航",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "001965.SZ",
+      "tencent_symbol": "sz001965",
+      "name": "招商公路",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "001979.SZ",
+      "tencent_symbol": "sz001979",
+      "name": "招商蛇口",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002001.SZ",
+      "tencent_symbol": "sz002001",
+      "name": "新和成",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002027.SZ",
+      "tencent_symbol": "sz002027",
+      "name": "分众传媒",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002028.SZ",
+      "tencent_symbol": "sz002028",
+      "name": "思源电气",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002049.SZ",
+      "tencent_symbol": "sz002049",
+      "name": "紫光国微",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002050.SZ",
+      "tencent_symbol": "sz002050",
+      "name": "三花智控",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002074.SZ",
+      "tencent_symbol": "sz002074",
+      "name": "国轩高科",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002142.SZ",
+      "tencent_symbol": "sz002142",
+      "name": "宁波银行",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002179.SZ",
+      "tencent_symbol": "sz002179",
+      "name": "中航光电",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002202.SZ",
+      "tencent_symbol": "sz002202",
+      "name": "金风科技",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002230.SZ",
+      "tencent_symbol": "sz002230",
+      "name": "科大讯飞",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002236.SZ",
+      "tencent_symbol": "sz002236",
+      "name": "大华股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002241.SZ",
+      "tencent_symbol": "sz002241",
+      "name": "歌尔股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002294.SZ",
+      "tencent_symbol": "sz002294",
+      "name": "信立泰",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002304.SZ",
+      "tencent_symbol": "sz002304",
+      "name": "洋河股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002311.SZ",
+      "tencent_symbol": "sz002311",
+      "name": "海大集团",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002352.SZ",
+      "tencent_symbol": "sz002352",
+      "name": "顺丰控股",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002353.SZ",
+      "tencent_symbol": "sz002353",
+      "name": "杰瑞股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002371.SZ",
+      "tencent_symbol": "sz002371",
+      "name": "北方华创",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002384.SZ",
+      "tencent_symbol": "sz002384",
+      "name": "东山精密",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002415.SZ",
+      "tencent_symbol": "sz002415",
+      "name": "海康威视",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002422.SZ",
+      "tencent_symbol": "sz002422",
+      "name": "科伦药业",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002460.SZ",
+      "tencent_symbol": "sz002460",
+      "name": "赣锋锂业",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002463.SZ",
+      "tencent_symbol": "sz002463",
+      "name": "沪电股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002466.SZ",
+      "tencent_symbol": "sz002466",
+      "name": "天齐锂业",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002475.SZ",
+      "tencent_symbol": "sz002475",
+      "name": "立讯精密",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002493.SZ",
+      "tencent_symbol": "sz002493",
+      "name": "荣盛石化",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002532.SZ",
+      "tencent_symbol": "sz002532",
+      "name": "天山铝业",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002558.SZ",
+      "tencent_symbol": "sz002558",
+      "name": "巨人网络",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002594.SZ",
+      "tencent_symbol": "sz002594",
+      "name": "比亚迪",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002600.SZ",
+      "tencent_symbol": "sz002600",
+      "name": "领益智造",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002602.SZ",
+      "tencent_symbol": "sz002602",
+      "name": "世纪华通",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002625.SZ",
+      "tencent_symbol": "sz002625",
+      "name": "光启技术",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002648.SZ",
+      "tencent_symbol": "sz002648",
+      "name": "卫星化学",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002709.SZ",
+      "tencent_symbol": "sz002709",
+      "name": "天赐材料",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002714.SZ",
+      "tencent_symbol": "sz002714",
+      "name": "牧原股份",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002736.SZ",
+      "tencent_symbol": "sz002736",
+      "name": "国信证券",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002837.SZ",
+      "tencent_symbol": "sz002837",
+      "name": "英维克",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002916.SZ",
+      "tencent_symbol": "sz002916",
+      "name": "深南电路",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002920.SZ",
+      "tencent_symbol": "sz002920",
+      "name": "德赛西威",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "002938.SZ",
+      "tencent_symbol": "sz002938",
+      "name": "鹏鼎控股",
+      "board": "深主板",
+      "industry": ""
+    },
+    {
+      "code": "300014.SZ",
+      "tencent_symbol": "sz300014",
+      "name": "亿纬锂能",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300015.SZ",
+      "tencent_symbol": "sz300015",
+      "name": "爱尔眼科",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300033.SZ",
+      "tencent_symbol": "sz300033",
+      "name": "同花顺",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300059.SZ",
+      "tencent_symbol": "sz300059",
+      "name": "东方财富",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300122.SZ",
+      "tencent_symbol": "sz300122",
+      "name": "智飞生物",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300124.SZ",
+      "tencent_symbol": "sz300124",
+      "name": "汇川技术",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300251.SZ",
+      "tencent_symbol": "sz300251",
+      "name": "光线传媒",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300274.SZ",
+      "tencent_symbol": "sz300274",
+      "name": "阳光电源",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300308.SZ",
+      "tencent_symbol": "sz300308",
+      "name": "中际旭创",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300316.SZ",
+      "tencent_symbol": "sz300316",
+      "name": "晶盛机电",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300394.SZ",
+      "tencent_symbol": "sz300394",
+      "name": "天孚通信",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300408.SZ",
+      "tencent_symbol": "sz300408",
+      "name": "三环集团",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300413.SZ",
+      "tencent_symbol": "sz300413",
+      "name": "芒果超媒",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300418.SZ",
+      "tencent_symbol": "sz300418",
+      "name": "昆仑万维",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300433.SZ",
+      "tencent_symbol": "sz300433",
+      "name": "蓝思科技",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300442.SZ",
+      "tencent_symbol": "sz300442",
+      "name": "润泽科技",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300450.SZ",
+      "tencent_symbol": "sz300450",
+      "name": "先导智能",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300476.SZ",
+      "tencent_symbol": "sz300476",
+      "name": "胜宏科技",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300498.SZ",
+      "tencent_symbol": "sz300498",
+      "name": "温氏股份",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300502.SZ",
+      "tencent_symbol": "sz300502",
+      "name": "新易盛",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300628.SZ",
+      "tencent_symbol": "sz300628",
+      "name": "亿联网络",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300661.SZ",
+      "tencent_symbol": "sz300661",
+      "name": "圣邦股份",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300750.SZ",
+      "tencent_symbol": "sz300750",
+      "name": "宁德时代",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300760.SZ",
+      "tencent_symbol": "sz300760",
+      "name": "迈瑞医疗",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300803.SZ",
+      "tencent_symbol": "sz300803",
+      "name": "指南针",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300832.SZ",
+      "tencent_symbol": "sz300832",
+      "name": "新产业",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300866.SZ",
+      "tencent_symbol": "sz300866",
+      "name": "安克创新",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300896.SZ",
+      "tencent_symbol": "sz300896",
+      "name": "爱美客",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "300999.SZ",
+      "tencent_symbol": "sz300999",
+      "name": "金龙鱼",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "301165.SZ",
+      "tencent_symbol": "sz301165",
+      "name": "锐捷网络",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "301236.SZ",
+      "tencent_symbol": "sz301236",
+      "name": "软通动力",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "301269.SZ",
+      "tencent_symbol": "sz301269",
+      "name": "华大九天",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "301308.SZ",
+      "tencent_symbol": "sz301308",
+      "name": "江波龙",
+      "board": "创业板",
+      "industry": ""
+    },
+    {
+      "code": "600000.SH",
+      "tencent_symbol": "sh600000",
+      "name": "浦发银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600009.SH",
+      "tencent_symbol": "sh600009",
+      "name": "上海机场",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600010.SH",
+      "tencent_symbol": "sh600010",
+      "name": "包钢股份",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600011.SH",
+      "tencent_symbol": "sh600011",
+      "name": "华能国际",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600015.SH",
+      "tencent_symbol": "sh600015",
+      "name": "华夏银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600016.SH",
+      "tencent_symbol": "sh600016",
+      "name": "民生银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600018.SH",
+      "tencent_symbol": "sh600018",
+      "name": "上港集团",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600019.SH",
+      "tencent_symbol": "sh600019",
+      "name": "宝钢股份",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600023.SH",
+      "tencent_symbol": "sh600023",
+      "name": "浙能电力",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600025.SH",
+      "tencent_symbol": "sh600025",
+      "name": "华能水电",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600026.SH",
+      "tencent_symbol": "sh600026",
+      "name": "中远海能",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600027.SH",
+      "tencent_symbol": "sh600027",
+      "name": "华电国际",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600028.SH",
+      "tencent_symbol": "sh600028",
+      "name": "中国石化",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600029.SH",
+      "tencent_symbol": "sh600029",
+      "name": "南方航空",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600030.SH",
+      "tencent_symbol": "sh600030",
+      "name": "中信证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600031.SH",
+      "tencent_symbol": "sh600031",
+      "name": "三一重工",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600036.SH",
+      "tencent_symbol": "sh600036",
+      "name": "招商银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600039.SH",
+      "tencent_symbol": "sh600039",
+      "name": "四川路桥",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600048.SH",
+      "tencent_symbol": "sh600048",
+      "name": "保利发展",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600050.SH",
+      "tencent_symbol": "sh600050",
+      "name": "中国联通",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600061.SH",
+      "tencent_symbol": "sh600061",
+      "name": "国投资本",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600066.SH",
+      "tencent_symbol": "sh600066",
+      "name": "宇通客车",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600085.SH",
+      "tencent_symbol": "sh600085",
+      "name": "同仁堂",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600089.SH",
+      "tencent_symbol": "sh600089",
+      "name": "特变电工",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600104.SH",
+      "tencent_symbol": "sh600104",
+      "name": "上汽集团",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600111.SH",
+      "tencent_symbol": "sh600111",
+      "name": "北方稀土",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600115.SH",
+      "tencent_symbol": "sh600115",
+      "name": "中国东航",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600118.SH",
+      "tencent_symbol": "sh600118",
+      "name": "中国卫星",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600150.SH",
+      "tencent_symbol": "sh600150",
+      "name": "中国船舶",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600160.SH",
+      "tencent_symbol": "sh600160",
+      "name": "巨化股份",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600176.SH",
+      "tencent_symbol": "sh600176",
+      "name": "中国巨石",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600183.SH",
+      "tencent_symbol": "sh600183",
+      "name": "生益科技",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600188.SH",
+      "tencent_symbol": "sh600188",
+      "name": "兖矿能源",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600196.SH",
+      "tencent_symbol": "sh600196",
+      "name": "复星医药",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600219.SH",
+      "tencent_symbol": "sh600219",
+      "name": "南山铝业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600221.SH",
+      "tencent_symbol": "sh600221",
+      "name": "海航控股",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600233.SH",
+      "tencent_symbol": "sh600233",
+      "name": "圆通速递",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600276.SH",
+      "tencent_symbol": "sh600276",
+      "name": "恒瑞医药",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600309.SH",
+      "tencent_symbol": "sh600309",
+      "name": "万华化学",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600346.SH",
+      "tencent_symbol": "sh600346",
+      "name": "恒力石化",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600362.SH",
+      "tencent_symbol": "sh600362",
+      "name": "江西铜业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600372.SH",
+      "tencent_symbol": "sh600372",
+      "name": "中航机载",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600406.SH",
+      "tencent_symbol": "sh600406",
+      "name": "国电南瑞",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600415.SH",
+      "tencent_symbol": "sh600415",
+      "name": "小商品城",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600426.SH",
+      "tencent_symbol": "sh600426",
+      "name": "华鲁恒升",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600436.SH",
+      "tencent_symbol": "sh600436",
+      "name": "片仔癀",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600438.SH",
+      "tencent_symbol": "sh600438",
+      "name": "通威股份",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600460.SH",
+      "tencent_symbol": "sh600460",
+      "name": "士兰微",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600482.SH",
+      "tencent_symbol": "sh600482",
+      "name": "中国动力",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600489.SH",
+      "tencent_symbol": "sh600489",
+      "name": "中金黄金",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600515.SH",
+      "tencent_symbol": "sh600515",
+      "name": "海南机场",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600519.SH",
+      "tencent_symbol": "sh600519",
+      "name": "贵州茅台",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600522.SH",
+      "tencent_symbol": "sh600522",
+      "name": "中天科技",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600547.SH",
+      "tencent_symbol": "sh600547",
+      "name": "山东黄金",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600549.SH",
+      "tencent_symbol": "sh600549",
+      "name": "厦门钨业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600570.SH",
+      "tencent_symbol": "sh600570",
+      "name": "恒生电子",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600584.SH",
+      "tencent_symbol": "sh600584",
+      "name": "长电科技",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600585.SH",
+      "tencent_symbol": "sh600585",
+      "name": "海螺水泥",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600588.SH",
+      "tencent_symbol": "sh600588",
+      "name": "用友网络",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600600.SH",
+      "tencent_symbol": "sh600600",
+      "name": "青岛啤酒",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600660.SH",
+      "tencent_symbol": "sh600660",
+      "name": "福耀玻璃",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600674.SH",
+      "tencent_symbol": "sh600674",
+      "name": "川投能源",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600690.SH",
+      "tencent_symbol": "sh600690",
+      "name": "海尔智家",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600741.SH",
+      "tencent_symbol": "sh600741",
+      "name": "华域汽车",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600760.SH",
+      "tencent_symbol": "sh600760",
+      "name": "中航沈飞",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600795.SH",
+      "tencent_symbol": "sh600795",
+      "name": "国电电力",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600803.SH",
+      "tencent_symbol": "sh600803",
+      "name": "新奥股份",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600809.SH",
+      "tencent_symbol": "sh600809",
+      "name": "山西汾酒",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600845.SH",
+      "tencent_symbol": "sh600845",
+      "name": "宝信软件",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600875.SH",
+      "tencent_symbol": "sh600875",
+      "name": "东方电气",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600886.SH",
+      "tencent_symbol": "sh600886",
+      "name": "国投电力",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600887.SH",
+      "tencent_symbol": "sh600887",
+      "name": "伊利股份",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600893.SH",
+      "tencent_symbol": "sh600893",
+      "name": "航发动力",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600900.SH",
+      "tencent_symbol": "sh600900",
+      "name": "长江电力",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600905.SH",
+      "tencent_symbol": "sh600905",
+      "name": "三峡能源",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600918.SH",
+      "tencent_symbol": "sh600918",
+      "name": "中泰证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600919.SH",
+      "tencent_symbol": "sh600919",
+      "name": "江苏银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600926.SH",
+      "tencent_symbol": "sh600926",
+      "name": "杭州银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600930.SH",
+      "tencent_symbol": "sh600930",
+      "name": "华电新能",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600938.SH",
+      "tencent_symbol": "sh600938",
+      "name": "中国海油",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600941.SH",
+      "tencent_symbol": "sh600941",
+      "name": "中国移动",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600958.SH",
+      "tencent_symbol": "sh600958",
+      "name": "东方证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600989.SH",
+      "tencent_symbol": "sh600989",
+      "name": "宝丰能源",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "600999.SH",
+      "tencent_symbol": "sh600999",
+      "name": "招商证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601006.SH",
+      "tencent_symbol": "sh601006",
+      "name": "大秦铁路",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601009.SH",
+      "tencent_symbol": "sh601009",
+      "name": "南京银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601012.SH",
+      "tencent_symbol": "sh601012",
+      "name": "隆基绿能",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601018.SH",
+      "tencent_symbol": "sh601018",
+      "name": "宁波港",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601021.SH",
+      "tencent_symbol": "sh601021",
+      "name": "春秋航空",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601058.SH",
+      "tencent_symbol": "sh601058",
+      "name": "赛轮轮胎",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601066.SH",
+      "tencent_symbol": "sh601066",
+      "name": "中信建投",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601077.SH",
+      "tencent_symbol": "sh601077",
+      "name": "渝农商行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601088.SH",
+      "tencent_symbol": "sh601088",
+      "name": "中国神华",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601100.SH",
+      "tencent_symbol": "sh601100",
+      "name": "恒立液压",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601111.SH",
+      "tencent_symbol": "sh601111",
+      "name": "中国国航",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601117.SH",
+      "tencent_symbol": "sh601117",
+      "name": "中国化学",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601127.SH",
+      "tencent_symbol": "sh601127",
+      "name": "赛力斯",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601136.SH",
+      "tencent_symbol": "sh601136",
+      "name": "首创证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601138.SH",
+      "tencent_symbol": "sh601138",
+      "name": "工业富联",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601166.SH",
+      "tencent_symbol": "sh601166",
+      "name": "兴业银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601169.SH",
+      "tencent_symbol": "sh601169",
+      "name": "北京银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601186.SH",
+      "tencent_symbol": "sh601186",
+      "name": "中国铁建",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601211.SH",
+      "tencent_symbol": "sh601211",
+      "name": "国泰海通",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601225.SH",
+      "tencent_symbol": "sh601225",
+      "name": "陕西煤业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601229.SH",
+      "tencent_symbol": "sh601229",
+      "name": "上海银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601238.SH",
+      "tencent_symbol": "sh601238",
+      "name": "广汽集团",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601288.SH",
+      "tencent_symbol": "sh601288",
+      "name": "农业银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601318.SH",
+      "tencent_symbol": "sh601318",
+      "name": "中国平安",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601319.SH",
+      "tencent_symbol": "sh601319",
+      "name": "中国人保",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601328.SH",
+      "tencent_symbol": "sh601328",
+      "name": "交通银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601336.SH",
+      "tencent_symbol": "sh601336",
+      "name": "新华保险",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601360.SH",
+      "tencent_symbol": "sh601360",
+      "name": "三六零",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601377.SH",
+      "tencent_symbol": "sh601377",
+      "name": "兴业证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601390.SH",
+      "tencent_symbol": "sh601390",
+      "name": "中国中铁",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601398.SH",
+      "tencent_symbol": "sh601398",
+      "name": "工商银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601456.SH",
+      "tencent_symbol": "sh601456",
+      "name": "国联民生",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601600.SH",
+      "tencent_symbol": "sh601600",
+      "name": "中国铝业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601601.SH",
+      "tencent_symbol": "sh601601",
+      "name": "中国太保",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601607.SH",
+      "tencent_symbol": "sh601607",
+      "name": "上海医药",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601618.SH",
+      "tencent_symbol": "sh601618",
+      "name": "中国中冶",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601628.SH",
+      "tencent_symbol": "sh601628",
+      "name": "中国人寿",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601633.SH",
+      "tencent_symbol": "sh601633",
+      "name": "长城汽车",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601658.SH",
+      "tencent_symbol": "sh601658",
+      "name": "邮储银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601668.SH",
+      "tencent_symbol": "sh601668",
+      "name": "中国建筑",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601669.SH",
+      "tencent_symbol": "sh601669",
+      "name": "中国电建",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601688.SH",
+      "tencent_symbol": "sh601688",
+      "name": "华泰证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601689.SH",
+      "tencent_symbol": "sh601689",
+      "name": "拓普集团",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601698.SH",
+      "tencent_symbol": "sh601698",
+      "name": "中国卫通",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601727.SH",
+      "tencent_symbol": "sh601727",
+      "name": "上海电气",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601728.SH",
+      "tencent_symbol": "sh601728",
+      "name": "中国电信",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601766.SH",
+      "tencent_symbol": "sh601766",
+      "name": "中国中车",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601788.SH",
+      "tencent_symbol": "sh601788",
+      "name": "光大证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601800.SH",
+      "tencent_symbol": "sh601800",
+      "name": "中国交建",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601816.SH",
+      "tencent_symbol": "sh601816",
+      "name": "京沪高铁",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601818.SH",
+      "tencent_symbol": "sh601818",
+      "name": "光大银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601825.SH",
+      "tencent_symbol": "sh601825",
+      "name": "沪农商行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601838.SH",
+      "tencent_symbol": "sh601838",
+      "name": "成都银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601857.SH",
+      "tencent_symbol": "sh601857",
+      "name": "中国石油",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601868.SH",
+      "tencent_symbol": "sh601868",
+      "name": "中国能建",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601872.SH",
+      "tencent_symbol": "sh601872",
+      "name": "招商轮船",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601877.SH",
+      "tencent_symbol": "sh601877",
+      "name": "正泰电器",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601878.SH",
+      "tencent_symbol": "sh601878",
+      "name": "浙商证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601881.SH",
+      "tencent_symbol": "sh601881",
+      "name": "中国银河",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601888.SH",
+      "tencent_symbol": "sh601888",
+      "name": "中国中免",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601898.SH",
+      "tencent_symbol": "sh601898",
+      "name": "中煤能源",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601899.SH",
+      "tencent_symbol": "sh601899",
+      "name": "紫金矿业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601901.SH",
+      "tencent_symbol": "sh601901",
+      "name": "方正证券",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601916.SH",
+      "tencent_symbol": "sh601916",
+      "name": "浙商银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601919.SH",
+      "tencent_symbol": "sh601919",
+      "name": "中远海控",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601939.SH",
+      "tencent_symbol": "sh601939",
+      "name": "建设银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601985.SH",
+      "tencent_symbol": "sh601985",
+      "name": "中国核电",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601988.SH",
+      "tencent_symbol": "sh601988",
+      "name": "中国银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601995.SH",
+      "tencent_symbol": "sh601995",
+      "name": "中金公司",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "601998.SH",
+      "tencent_symbol": "sh601998",
+      "name": "中信银行",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603019.SH",
+      "tencent_symbol": "sh603019",
+      "name": "中科曙光",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603259.SH",
+      "tencent_symbol": "sh603259",
+      "name": "药明康德",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603260.SH",
+      "tencent_symbol": "sh603260",
+      "name": "合盛硅业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603288.SH",
+      "tencent_symbol": "sh603288",
+      "name": "海天味业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603296.SH",
+      "tencent_symbol": "sh603296",
+      "name": "华勤技术",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603369.SH",
+      "tencent_symbol": "sh603369",
+      "name": "今世缘",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603392.SH",
+      "tencent_symbol": "sh603392",
+      "name": "万泰生物",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603501.SH",
+      "tencent_symbol": "sh603501",
+      "name": "豪威集团",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603799.SH",
+      "tencent_symbol": "sh603799",
+      "name": "华友钴业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603893.SH",
+      "tencent_symbol": "sh603893",
+      "name": "瑞芯微",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603986.SH",
+      "tencent_symbol": "sh603986",
+      "name": "兆易创新",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "603993.SH",
+      "tencent_symbol": "sh603993",
+      "name": "洛阳钼业",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "605117.SH",
+      "tencent_symbol": "sh605117",
+      "name": "德业股份",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "605499.SH",
+      "tencent_symbol": "sh605499",
+      "name": "东鹏饮料",
+      "board": "沪主板",
+      "industry": ""
+    },
+    {
+      "code": "688008.SH",
+      "tencent_symbol": "sh688008",
+      "name": "澜起科技",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688009.SH",
+      "tencent_symbol": "sh688009",
+      "name": "中国通号",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688012.SH",
+      "tencent_symbol": "sh688012",
+      "name": "中微公司",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688036.SH",
+      "tencent_symbol": "sh688036",
+      "name": "传音控股",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688041.SH",
+      "tencent_symbol": "sh688041",
+      "name": "海光信息",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688047.SH",
+      "tencent_symbol": "sh688047",
+      "name": "龙芯中科",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688072.SH",
+      "tencent_symbol": "sh688072",
+      "name": "拓荆科技",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688082.SH",
+      "tencent_symbol": "sh688082",
+      "name": "盛美上海",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688111.SH",
+      "tencent_symbol": "sh688111",
+      "name": "金山办公",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688126.SH",
+      "tencent_symbol": "sh688126",
+      "name": "沪硅产业",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688183.SH",
+      "tencent_symbol": "sh688183",
+      "name": "生益电子",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688223.SH",
+      "tencent_symbol": "sh688223",
+      "name": "晶科能源",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688256.SH",
+      "tencent_symbol": "sh688256",
+      "name": "寒武纪",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688271.SH",
+      "tencent_symbol": "sh688271",
+      "name": "联影医疗",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688303.SH",
+      "tencent_symbol": "sh688303",
+      "name": "大全能源",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688396.SH",
+      "tencent_symbol": "sh688396",
+      "name": "华润微",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688472.SH",
+      "tencent_symbol": "sh688472",
+      "name": "阿特斯",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688506.SH",
+      "tencent_symbol": "sh688506",
+      "name": "百利天恒",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688521.SH",
+      "tencent_symbol": "sh688521",
+      "name": "芯原股份",
+      "board": "科创板",
+      "industry": ""
+    },
+    {
+      "code": "688981.SH",
+      "tencent_symbol": "sh688981",
+      "name": "中芯国际",
+      "board": "科创板",
+      "industry": ""
+    }
+  ]
+}

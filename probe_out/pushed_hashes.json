@@ -1,0 +1,23 @@
+{
+  "commit": "5550cdec86fa54e17b54d5d6157306af6cafd87f",
+  "files": {
+    ".gitignore": "9a8a995cb33a5fbc99836ddc3fe2bba1551114a3a16c8ef15ed090302a1a3549",
+    "scripts/oos_2026_run.py": "b7060e9452c8d30a09fcc63e5e8b4994a70c8bb9fe33833fe526bbb1e0be4c49",
+    "scripts/oos_recalc_compare.py": "30743070ad07773a07f1c1694b6d4dc8f57013af0e6017ef8505e07c52f41d22",
+    "docs/oos_recalc_prereg_2026-10-19.json": "5f2e709b06e6ffcb14f54f22f5b1452a2cd0d629183fc5dae5462eb7b62051e0",
+    "docs/OOS_RECALC_PREREG_2026-10-19.md": "d762544cdba7f51f28c9ce48e8bd8e8ef6f587c1c59215adb64144866d0f1232",
+    "docs/OOS_RECALC_PREREG_2026-10-19.sha256": "7f38ab2884c2c97e176a352206d273fd779f6de7a84d5f5d5cb6d5d282efe043",
+    "docs/oos_recalc_prereg_v1.1_2026-10-19.json": "56eee69f8fa869015e6d9e830b2299803ad475c8dc96f4bd20a7209df5861dea",
+    "docs/OOS_RECALC_PREREG_V1.1_2026-10-19.md": "8be336c28c7550e55aa3ea0c5da947d374f2d5300ac26db5aa5932e4d0844199",
+    "docs/OOS_RECALC_PREREG_V1.1_2026-10-19.sha256": "c47cf759fea3fff0a3508c9b4bf546354b81d8751a2a893337ca8d51bd436856",
+    "docs/OOS_RECALC_COMPARE_2026-10-19.json": "b0f005d36d47b808a2a261324795b165fc3160131bcda4e22fda3bfd1907ba12",
+    "docs/OOS_RECALC_2026-10-19.md": "ad8f33147abfbdf9db488e3e14536c70db65ecd3f917f8175b9f0a57acedd25e",
+    "docs/OOS_RESULTS_RECALC_2026-10-19.json": "bbf9b65d8f4ebf1db32167a73f98d71bfb96e79be133c0483d626d33249b53d5",
+    "data/oos_recalc_pool_2017/600519.SH.qfq.csv": "7f952b5bd74d626e96ea40c49173e34fd85e87f71a3cc5c62c1cdfba2a9679d1",
+    "data/oos_recalc_pool_2017/000001.SZ.qfq.csv": "c67a749bbd8026cb43001f115853b1bc1127fd93d8d07d61751211eedbdaff48",
+    "data/oos_recalc_pool_2017/601318.SH.qfq.csv": "7d46c6549e299eed23565ee2effa500667c1faf64c2317d2ceca65d02a2f412c",
+    "data/oos_recalc_pool_2017/300750.SZ.qfq.csv": "9cd1a7699ac483a97aa50f8b12fbd6c2f6a0b0813e3b41acdbbc149cf060c7e2",
+    "data/oos_recalc_pool_2017/000858.SZ.qfq.csv": "6173e237fd4538750e0ea5a55c60101f974a7daa129a7756bdd229011c469a59",
+    "data/oos_recalc_pool_2017/600900.SH.qfq.csv": "9ed64f77416569d7a81390a9b529bd39b04f52df15946622ecf1c52e3814d370"
+  }
+}

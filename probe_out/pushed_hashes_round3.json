@@ -1,0 +1,62 @@
+{
+  "commit": "28c996d48b3f78351b51efc33fc7a968000e8db3",
+  "branch": "workbuddy/b-effective-pool-2026-10-19",
+  "files": {
+    "backend/src/deepquant/research/effective_pool.py": {
+      "sha256": "d6e106074ba7d8b7041f74460409c12a8fef4e4f691843e4368d53bea1a9a30b",
+      "bytes": 20998
+    },
+    "scripts/oos_2026_run.py": {
+      "sha256": "85373fd72893c99bc6d982ff3aa69a67cc369d78a9a3dde051e53c0a781d3f1d",
+      "bytes": 27912
+    },
+    "scripts/effective_pool_check.py": {
+      "sha256": "6cc0026281194c7bd25f09d3466e33c682d171e1e8dcee0069111f695cc46360",
+      "bytes": 7039
+    },
+    "scripts/selftest_effective_pool.py": {
+      "sha256": "8190bd02c44a357159df4bcb5cb3737aaf253854d6f9cd24e28d361a2718dc1d",
+      "bytes": 6568
+    },
+    "scripts/capital_tier_resolve.py": {
+      "sha256": "2e811e8d01ab1e136999613bef7ec455cc5b2982e5afe075c6588b35e0e0bfd5",
+      "bytes": 7280
+    },
+    "scripts/long_horizon_caliber_recalc.py": {
+      "sha256": "0fed938fb4db146d537e68832d084c45ea28cc226bd2407b3da2880b99c0bd11",
+      "bytes": 8189
+    },
+    "docs/capital_tier_prereg_2026-10-19.json": {
+      "sha256": "ce2feed8350fe2eb3865da21721a7cd4dd280d08c9e88899d15050f0f0b98484",
+      "bytes": 4355
+    },
+    "docs/CAPITAL_TIER_PREREG_2026-10-19.sha256": {
+      "sha256": "982b5076eee53dc19ea7a6899826637b3dd55e8000644fdf11a9546274fd6b9c",
+      "bytes": 196
+    },
+    "docs/CAPITAL_TIER_TABLE_2026-10-19.json": {
+      "sha256": "123d72804c774ba43643a929955a0023d67b105c8fc1bf5380f64c915e56b6eb",
+      "bytes": 6708
+    },
+    "docs/CAPITAL_TIER_2026-10-19.md": {
+      "sha256": "bf251851947a094e95ebdab446e6927ed67eb3a9d9ca3a2067287342f899ba96",
+      "bytes": 6210
+    },
+    "docs/EFFECTIVE_POOL_GATE_2026-10-19.json": {
+      "sha256": "69cb3072c56a67b8ddfa786de2a5f06269076c8fc1ed00f8e32bc5686b07c80c",
+      "bytes": 35350
+    },
+    "docs/EFFECTIVE_POOL_GATE_2026-10-19.md": {
+      "sha256": "ad47401b7db2abcc65908c39484ef4710a2aeed47a9fa8b83c21692d9e85bbd4",
+      "bytes": 8190
+    },
+    "docs/LONG_HORIZON_CALIBER_RECALC_2026-10-19.json": {
+      "sha256": "ce0328f20d73975102c8a1d2cee7039ed1fa33bf9bcfe2a462f9092d15927c54",
+      "bytes": 24146
+    },
+    "docs/LONG_HORIZON_CALIBER_RECALC_2026-10-19.md": {
+      "sha256": "dae93788b909802188a4f9575445a008e3af614da9b597948aa8b25871004577",
+      "bytes": 4896
+    }
+  }
+}

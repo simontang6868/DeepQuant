@@ -13,6 +13,7 @@
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import os
@@ -35,6 +36,7 @@ from deepquant.backtest.fee_presets import (
 )
 from deepquant.data.validation.checks_extended import validate_daily_extended
 from deepquant.market.rules import a_share_rules, a_share_price_limit_rate
+from deepquant.research.effective_pool import PoolGateError, enforce, evaluate_pool
 from deepquant.strategies.ma_cross import MaCrossStrategy
 from deepquant.strategies.mean_reversion import MeanReversionStrategy
 from deepquant.walkforward import WalkForwardConfig, generate_windows
@@ -43,9 +45,11 @@ from deepquant.walkforward.parameter_selection import (
     run_walkforward_v2, run_walkforward_window,
 )
 
-SPEC_PATH = ROOT / "docs" / "oos_prereg_2026-10-19.json"
-SHA_PATH = ROOT / "docs" / "OOS_PREREG_2026-10-19.sha256"
-OUT_PATH = ROOT / "docs" / "OOS_RESULTS_2026-10-19.json"
+# 默认值即 v1（2026-10-19 20:20 冻结）的三件套，行为不变；
+# 换规格只需传 --spec/--sha/--out，代码路径完全相同 —— 这是重算能当对照的前提。
+DEFAULT_SPEC = ROOT / "docs" / "oos_prereg_2026-10-19.json"
+DEFAULT_SHA = ROOT / "docs" / "OOS_PREREG_2026-10-19.sha256"
+DEFAULT_OUT = ROOT / "docs" / "OOS_RESULTS_2026-10-19.json"
 
 PRESETS = {
     "simulation_placeholder": FEE_PRESET_SIMULATION,
@@ -59,18 +63,27 @@ def sha256_of(p: Path) -> str:
 
 
 # ---------------------------------------------------------------- 0. 完整性校验
-def verify_against_freeze(spec: dict) -> dict:
+def verify_against_freeze(spec: dict, spec_path: Path, sha_path: Path) -> dict:
     """规格与数据必须与冻结记录逐字节一致，否则拒绝运行。"""
     recorded = {}
-    for line in SHA_PATH.read_text(encoding="utf-8").splitlines():
+    for line in sha_path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line or line.startswith("#"):
             continue
         h, _, name = line.partition("  ")
         recorded[name.strip()] = h.strip()
 
-    spec_actual = sha256_of(SPEC_PATH)
-    spec_recorded = recorded.get("docs/oos_prereg_2026-10-19.json")
+    try:
+        spec_rel = spec_path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:  # 传进来的是相对路径或仓库外路径：按原样比对，比对不上会走下面「没有这一行」
+        spec_rel = spec_path.as_posix()
+    spec_actual = sha256_of(spec_path)
+    spec_recorded = recorded.get(spec_rel)
+    if spec_recorded is None:
+        raise SystemExit(
+            f"冻结记录里没有 {spec_rel} 这一行，无法证明「先冻结后跑」，拒绝运行。\n"
+            f"记录文件：{sha_path.name}"
+        )
     if spec_actual != spec_recorded:
         raise SystemExit(
             f"规格文件已被修改：实际 {spec_actual[:16]}… 冻结 {str(spec_recorded)[:16]}…\n"
@@ -92,7 +105,8 @@ def verify_against_freeze(spec: dict) -> dict:
     if drift:
         raise SystemExit("数据指纹不符，拒绝运行：\n  " + "\n  ".join(drift))
 
-    print(f"[FREEZE-OK] spec={spec_actual[:16]}… 数据 7/7 指纹一致\n", flush=True)
+    print(f"[FREEZE-OK] spec={spec_actual[:16]}… 数据 {len(spec['data']['pool'])}/{len(spec['data']['pool'])} "
+          f"+ 基准 1/1 指纹一致\n", flush=True)
     return {"spec_sha256": spec_actual, "recorded": recorded}
 
 
@@ -146,8 +160,23 @@ def classify(oos_start: pd.Timestamp, oos_end: pd.Timestamp, cut: pd.Timestamp) 
 
 # ---------------------------------------------------------------- 3. 主流程
 def main() -> None:
-    spec = json.loads(SPEC_PATH.read_text(encoding="utf-8"))
-    freeze = verify_against_freeze(spec)
+    ap = argparse.ArgumentParser(description="按冻结的预登记规格跑样本外，并机械执行判定规则")
+    ap.add_argument("--spec", default=str(DEFAULT_SPEC), help="预登记规格 JSON")
+    ap.add_argument("--sha", default=str(DEFAULT_SHA), help="冻结指纹文件（必须包含 --spec 那一行）")
+    ap.add_argument("--out", default=str(DEFAULT_OUT), help="结果 JSON 输出路径")
+    ap.add_argument("--gate-pool", choices=["default", "off", "warn", "block"], default="default",
+                    help="有效池闸门（G2/G3）。default = 照规格声明；规格没写则 warn。"
+                         "block = 不通过就不产生任何判定，退出码 2")
+    args = ap.parse_args()
+    spec_path, sha_path, out_path = Path(args.spec), Path(args.sha), Path(args.out)
+
+    spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    freeze = verify_against_freeze(spec, spec_path, sha_path)
+    # 写进结果的路径一律是相对仓库根的形式；传进来是相对路径就直接用，是绝对路径才裁前缀
+    try:
+        spec_rel_shown = spec_path.resolve().relative_to(ROOT).as_posix()
+    except ValueError:
+        spec_rel_shown = spec_path.as_posix()
 
     design = spec["design"]
     cut = pd.Timestamp("2024-12-31")          # IS 截止：原始研究的最后一天
@@ -219,6 +248,47 @@ def main() -> None:
         repro[code] = {"n_windows_extended": n_full, "n_windows_to_20241231": n_trunc,
                        "n_rows": len(full_idx)}
         print(f"[WINDOWS] {code} 全段 {n_full} / 截至 2024-12-31 {n_trunc}", flush=True)
+
+    # --- G2/G3 有效池闸门：跑之前先算「名义池里有几只是真的在投标的」---
+    # 这一层是 OOS_PREREG_V2 §3 的 G2/G3，此前只存在于文档里。
+    # 规格没声明 gates 时默认 warn：历史规格必须能原样复跑，否则"同一份规格可复现"没人验证得了。
+    gate_cfg = (spec.get("gates") or {}).get("G2") or {}
+    gate_on_fail = args.gate_pool
+    if gate_on_fail == "default":
+        gate_on_fail = gate_cfg.get("on_fail", "warn")
+    gate_basis = gate_cfg.get("basis", "strict")
+    gate_block_on = gate_cfg.get("block_on", "absent")
+    pool_gate = None
+    if gate_on_fail != "off":
+        pool_gate = evaluate_pool(
+            frames,
+            {c: generate_windows(pd.DatetimeIndex(wf.index), wcfg)
+             for c, wf in wf_frames.items()},
+            cash=design["initial_cash"],
+            basis=gate_basis,
+            cut=cut,
+            expected_codes=[x["code"] for x in spec["data"]["pool"]],
+            nominal_n=len(spec["data"]["pool"]),
+            min_effective_ratio=float(gate_cfg.get("min_effective_ratio", 1.0)),
+        )
+        gd = pool_gate.as_dict()
+        print(f"[GATE-POOL] 名义 {gd['nominal_n']} / 可建仓 {gd['n_effective']}"
+              f" / 样本外缺席 {gd['predicted_absent']} / 无数据 {gd['missing']}"
+              f" / G2={gd['g2_passed']} G3={gd['g3_passed']} / on_fail={gate_on_fail}",
+              flush=True)
+        for c, v in gd["per_symbol"].items():
+            if not v["clean"]:
+                print(f"[GATE-POOL]   {c} 训练段 {v['n_train_affordable']}/{v['n_windows']}"
+                      f"、样本外窗口 {v['n_oos_affordable']}/{v['n_oos_windows']}"
+                      f"、最贵一手 {v['one_lot_max_overall']:,.0f} 元 —— {v['reason']}",
+                      flush=True)
+        try:
+            enforce(pool_gate, on_fail=gate_on_fail, block_on=gate_block_on)
+        except PoolGateError as exc:
+            print(f"[GATE-POOL-BLOCK] {exc}", flush=True)
+            print("[GATE-POOL-BLOCK] 未写任何结果文件。要跑请改池或改资金后重新冻结规格。",
+                  flush=True)
+            raise SystemExit(2)
 
     # --- 基准 ---
     bench = pd.read_csv(ROOT / spec["data"]["benchmark"]["path"])
@@ -416,12 +486,15 @@ def main() -> None:
     # 预测核对（跑前写下的四条，逐条打勾）
     pred = spec["predicted_before_run"]
     pred_check = {
+        # 不同版本的规格对「跑前预测」的字段命名不同：v1 用 gate_blocks/participating_symbols，
+        # 重算规格用 P1…P6。这里只做逐字回显 + 能给机械核对的项给核对，
+        # 不做「猜语义」的映射 —— 猜错了比不核对更糟。
         "gate_blocks": {
-            "predicted": pred["gate_blocks"],
+            "predicted": pred.get("gate_blocks"),
             "actual": [c for c, d in data_report.items() if not d["data_ok"]],
         },
         "participating_symbols": {
-            "predicted": pred["participating_symbols"], "actual": len(frames),
+            "predicted": pred.get("participating_symbols"), "actual": len(frames),
         },
         "e1_n_windows": {
             "predicted": spec["evaluations"]["E1"]["expected_n_windows"],
@@ -430,23 +503,32 @@ def main() -> None:
             "actual": len({r["oos_start"] for r in per_cell_raw[(pc[0], pc[1])]["OOS"]}),
         },
         "zero_trade_high": {
-            "predicted": "偏高（>=0.5 则与 R0 一致）",
+            "predicted": pred.get("zero_trade_ratio_estimate", "偏高（>=0.5 则与 R0 一致）"),
             "actual": ztr,
             "prediction_held": (ztr is not None and ztr >= 0.5),
         },
-        "verdict_expected_no_power_or_inconclusive": {
-            "predicted": "NO_POWER 或 INCONCLUSIVE 概率合计更高",
+        "verdict_expected": {
+            "predicted": pred.get("expected_verdict", "NO_POWER 或 INCONCLUSIVE 概率合计更高"),
             "actual": verdict,
             "prediction_held": verdict in ("R0_NO_POWER", "R4_INCONCLUSIVE"),
         },
+        "spec_predictions_verbatim": pred,
     }
 
     out = {
         "generated_at": pd.Timestamp.now().isoformat(timespec="seconds"),
         "spec_version": spec["spec_version"],
+        "spec_path": spec_rel_shown,
+        "data_caliber": spec["data"].get("caliber"),
         "freeze": freeze,
-        "question": spec["question"],
+        "question": spec.get("question") or spec.get("identity", {}).get("is"),
         "data": data_report,
+        "effective_pool_gate": {
+            "enabled": pool_gate is not None,
+            "on_fail": gate_on_fail,
+            "block_on": gate_block_on,
+            "result": None if pool_gate is None else pool_gate.as_dict(),
+        },
         "window_structure": repro,
         "primary_cell": pk,
         "verdict": verdict,
@@ -464,8 +546,8 @@ def main() -> None:
             "基准为沪深300 buy&hold、不含成本与现金拖累，仅作方向参考，不是可交易组合。",
         ],
     }
-    OUT_PATH.write_text(json.dumps(out, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
-    print(f"\n[SAVED] {OUT_PATH}")
+    out_path.write_text(json.dumps(out, indent=2, ensure_ascii=False, default=str), encoding="utf-8")
+    print(f"\n[SAVED] {out_path}")
 
     print("\n=== 各格汇总（E1 = 纯样本外窗口）===")
     print(f"{'cell':46s} {'IS_med':>9} {'OOS_n':>6} {'OOS_med':>9} {'pos':>6} {'zeroTr':>7} {'E2_med':>9}")

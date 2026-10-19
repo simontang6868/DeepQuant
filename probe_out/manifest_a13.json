@@ -1,0 +1,5 @@
+{
+ "branch": "workbuddy/a13-routes-backtests",
+ "message": "A13+ #1：api/routes/backtests.py 142/7 -> 100%，补齐 4 个从未触发的错误分支契约",
+ "files": ["backend/tests/api/test_backtests_routes_contracts.py"]
+}

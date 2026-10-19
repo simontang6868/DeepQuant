@@ -1,0 +1,185 @@
+{
+  "generated_at": "2026-10-19T02:16:53",
+  "items": {
+    "D2_step74_725": {
+      "symbol": "000001.SZ",
+      "window": "2022-01-04~2024-12-31",
+      "delta_rows_1": 725,
+      "claimed": 725,
+      "recomputed": {
+        "n_rows": 726,
+        "n_jumps": 0,
+        "max_pct": 0.12810457516339868
+      },
+      "match_rows_minus_1": true
+    },
+    "D1_600809_41": {
+      "symbol": "600809.SH",
+      "window": "2017-01-03~2024-12-31",
+      "claimed_rows": 1943,
+      "claimed_jumps": 41,
+      "recomputed": {
+        "n_rows": 1932,
+        "n_jumps": 148,
+        "max_pct": 20.333333333333336
+      },
+      "match_rows": false,
+      "match_jumps": false
+    },
+    "extension": {
+      "600519.SH": {
+        "old_rows": 1943,
+        "old_range": "2017-01-03~2024-12-31",
+        "new_rows": 2374,
+        "new_range": "2017-01-03~2026-10-16",
+        "new_rows_after_20241231": 431,
+        "overlap_days": 1943,
+        "ratio_min": 1.0,
+        "ratio_max": 1.0,
+        "ratio_is_constant": true,
+        "old_vs_new_jumps": {
+          "old": {
+            "n_rows": 1943,
+            "n_jumps": 5,
+            "max_pct": 0.4036761284318289
+          },
+          "new_same_window": {
+            "n_rows": 1943,
+            "n_jumps": 5,
+            "max_pct": 0.4036761284318289
+          }
+        }
+      },
+      "000001.SZ": {
+        "old_rows": 1943,
+        "old_range": "2017-01-03~2024-12-31",
+        "new_rows": 2374,
+        "new_range": "2017-01-03~2026-10-16",
+        "new_rows_after_20241231": 431,
+        "overlap_days": 1943,
+        "ratio_min": 1.0,
+        "ratio_max": 1.0,
+        "ratio_is_constant": true,
+        "old_vs_new_jumps": {
+          "old": {
+            "n_rows": 1943,
+            "n_jumps": 0,
+            "max_pct": 0.12810457516339868
+          },
+          "new_same_window": {
+            "n_rows": 1943,
+            "n_jumps": 0,
+            "max_pct": 0.12810457516339868
+          }
+        }
+      },
+      "601318.SH": {
+        "old_rows": 1943,
+        "old_range": "2017-01-03~2024-12-31",
+        "new_rows": 2374,
+        "new_range": "2017-01-03~2026-10-16",
+        "new_rows_after_20241231": 431,
+        "overlap_days": 1943,
+        "ratio_min": 1.0,
+        "ratio_max": 1.0,
+        "ratio_is_constant": true,
+        "old_vs_new_jumps": {
+          "old": {
+            "n_rows": 1943,
+            "n_jumps": 0,
+            "max_pct": 0.12829131652661063
+          },
+          "new_same_window": {
+            "n_rows": 1943,
+            "n_jumps": 0,
+            "max_pct": 0.12829131652661063
+          }
+        }
+      },
+      "300750.SZ": {
+        "old_rows": 1594,
+        "old_range": "2018-06-11~2024-12-31",
+        "new_rows": 2025,
+        "new_range": "2018-06-11~2026-10-16",
+        "new_rows_after_20241231": 431,
+        "overlap_days": 1594,
+        "ratio_min": 1.0,
+        "ratio_max": 1.0,
+        "ratio_is_constant": true,
+        "old_vs_new_jumps": {
+          "old": {
+            "n_rows": 1594,
+            "n_jumps": 25,
+            "max_pct": 36.833333333333336
+          },
+          "new_same_window": {
+            "n_rows": 1594,
+            "n_jumps": 25,
+            "max_pct": 36.833333333333336
+          }
+        }
+      },
+      "000858.SZ": {
+        "old_rows": 1943,
+        "old_range": "2017-01-03~2024-12-31",
+        "new_rows": 2374,
+        "new_range": "2017-01-03~2026-10-16",
+        "new_rows_after_20241231": 431,
+        "overlap_days": 1943,
+        "ratio_min": 1.0,
+        "ratio_max": 1.0,
+        "ratio_is_constant": true,
+        "old_vs_new_jumps": {
+          "old": {
+            "n_rows": 1943,
+            "n_jumps": 10,
+            "max_pct": 0.34444444444444433
+          },
+          "new_same_window": {
+            "n_rows": 1943,
+            "n_jumps": 10,
+            "max_pct": 0.34444444444444433
+          }
+        }
+      },
+      "600900.SH": {
+        "old_rows": 1932,
+        "old_range": "2017-01-03~2024-12-31",
+        "new_rows": 2363,
+        "new_range": "2017-01-03~2026-10-16",
+        "new_rows_after_20241231": 431,
+        "overlap_days": 1932,
+        "ratio_min": 1.0,
+        "ratio_max": 1.0,
+        "ratio_is_constant": true,
+        "old_vs_new_jumps": {
+          "old": {
+            "n_rows": 1932,
+            "n_jumps": 0,
+            "max_pct": 0.08790482485128881
+          },
+          "new_same_window": {
+            "n_rows": 1932,
+            "n_jumps": 0,
+            "max_pct": 0.08790482485128881
+          }
+        }
+      }
+    },
+    "benchmark_hs300": {
+      "rows": 6010,
+      "range": "2002-01-04~2026-10-16",
+      "columns": [
+        "date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "volume"
+      ],
+      "rows_since_2017": 2374,
+      "rows_since_2022": 1157
+    }
+  },
+  "errors": []
+}

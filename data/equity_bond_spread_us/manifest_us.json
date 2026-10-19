@@ -1,0 +1,112 @@
+{
+  "generated_at_utc": "2026-10-18T07:40:56+00:00",
+  "base_dir": "data/equity_bond_spread_us",
+  "sources": [
+    {
+      "name": "multpl.com 月度表",
+      "url": "https://www.multpl.com/<slug>/table/by-month",
+      "slugs": {
+        "cape": "shiller-pe",
+        "price": "s-p-500-historical-prices",
+        "div_yield": "s-p-500-dividend-yield",
+        "cpi": "cpi",
+        "earnings": "s-p-500-earnings"
+      },
+      "used_for": [
+        "CAPE（周期调整市盈率，10 年通胀调整盈利口径）",
+        "标普 500 指数月度均价（点数）",
+        "滚动 12 个月股息率（%）",
+        "美国 CPI 指数（1982-84=100 口径，multpl 转载）",
+        "滚动 12 个月盈利（指数点数）"
+      ],
+      "caveats": [
+        "二手聚合站，非指数公司原始发布；已与 Shiller 原始数据集逐月比对（见 validation_us.json）",
+        "CAPE 口径沿用 Shiller 方法（10 年通胀调整平均盈利），但历史值随盈利修订而变化，存在回溯修订风险"
+      ]
+    },
+    {
+      "name": "Robert Shiller, Irrational Exuberance 数据集",
+      "url": "http://www.econ.yale.edu/~shiller/data/ie_data.xls",
+      "used_for": "仅用于交叉校验（该文件当前只更新至 2023-09）",
+      "caveats": [
+        "GS10 在 1953 年前为历史估算序列，不是逐日交易的 CMT 收益率"
+      ]
+    },
+    {
+      "name": "akshare bond_zh_us_rate（美国 10 年期国债收益率）",
+      "url": "https://akshare.akfamily.xyz/",
+      "used_for": "1990-12 起的月度均值，用于拼接长历史国债收益率",
+      "caveats": [
+        "日频原始数据，取月度算术平均；来源为公开聚合接口"
+      ]
+    }
+  ],
+  "field_definitions": {
+    "price": "标普 500 指数月度均价（点数）",
+    "cape": "周期调整市盈率（10 年通胀调整平均盈利）",
+    "div_yield": "滚动 12 个月股息率（%）",
+    "cpi": "美国 CPI 指数",
+    "earnings": "滚动 12 个月盈利（指数点数）",
+    "y10": "美国 10 年期国债收益率（%），1990-12 前为 Shiller GS10",
+    "y10_source": "y10 的取自来源",
+    "partial_month": "该月尚未走完（asof 日不是月末），分析时应剔除"
+  },
+  "splice": {
+    "bond": {
+      "before": "1990-12：Shiller GS10（月度）",
+      "from": "1990-12：akshare 美国 10Y 日频的月度均值",
+      "validation": {
+        "n": 394,
+        "mean_abs_diff": 0.00441,
+        "max_abs_diff": 0.429091,
+        "corr": 0.999904,
+        "splice_month": "1990-12-31",
+        "months_source": {
+          "shiller_gs10": 1438,
+          "akshare_us10y_monthly": 431
+        }
+      }
+    }
+  },
+  "files": {
+    "panel_us.csv": {
+      "sha256": "3867ad2d565ea456f51ded702b64ad57e601017fd7bd489f0cdc3eb9c86ab88a",
+      "bytes": 134760
+    },
+    "raw/akshare_us10y_daily.csv": {
+      "sha256": "78e9daa2c2324d331d98bfaed546b6c7e366448be801379679e64d6e131514c6",
+      "bytes": 156751
+    },
+    "raw/multpl_cpi.html": {
+      "sha256": "720970001c5e9e809b4a66bbdc6c92b61b1e66225c4341c266820e8d435b8cc8",
+      "bytes": 148761
+    },
+    "raw/multpl_s-p-500-dividend-yield.html": {
+      "sha256": "d9f0d38611b0cf3e0548b0f7787610ab5dfd677490157de3fdc36eb7067ec079",
+      "bytes": 151817
+    },
+    "raw/multpl_s-p-500-earnings.html": {
+      "sha256": "3d586c7087f7e3ab66f6c0873800014feb89523f1f4afa75cb5c93f1f56863ed",
+      "bytes": 151435
+    },
+    "raw/multpl_s-p-500-historical-prices.html": {
+      "sha256": "51472206bf88058715789d4d1e04815536e2556912afdc7bd5114a55e861dd0d",
+      "bytes": 150620
+    },
+    "raw/multpl_shiller-pe.html": {
+      "sha256": "de574d057f9cfac45d0e98baec0e91db54514e2ee47caeb87baccdf977dcdb8c",
+      "bytes": 149391
+    },
+    "raw/shiller_ie_data.xls": {
+      "sha256": "0df9392b7dacf91f756e92c8db508ad903c4588b43f3253680eec3dd8b40db68",
+      "bytes": 1628672
+    }
+  },
+  "row_count": 1869,
+  "date_range": [
+    "1871-02-28",
+    "2026-10-31"
+  ],
+  "missing_months": [],
+  "no_interpolation": true
+}

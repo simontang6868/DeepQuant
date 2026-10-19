@@ -1,0 +1,4314 @@
+{
+  "generated_at": "2026-10-19T22:20:23",
+  "purpose": "把加性前复权（qfq_t = raw_t - 未来累计分红_t）换成乘性前复权（hfq_t × raw_anchor/hfq_anchor）",
+  "recipe": "qfq_mult_t = hfq_t * (raw_anchor / hfq_anchor)，anchor 取两组共同的最新交易日",
+  "source": {
+    "hfq": "web.ifzq.gtimg.cn fqkline/get ... ,hfq",
+    "raw": "web.ifzq.gtimg.cn kline/kline（仅取锚点）"
+  },
+  "range": [
+    "2016-01-01",
+    "2026-10-16"
+  ],
+  "counts": {
+    "requested": 298,
+    "by_status": {
+      "cached": 49,
+      "ok": 245,
+      "no_quote": 4
+    }
+  },
+  "symbols": [
+    {
+      "code": "000001.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000001.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "000002.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000002.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2492,
+      "span": [
+        "2016-07-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 3.66,
+      "hfq_anchor_close": 1252.243,
+      "scale": 0.002923,
+      "sha256": "2de6297b97c9f8c4"
+    },
+    {
+      "code": "000063.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000063.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2547,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 27.1,
+      "hfq_anchor_close": 438.242,
+      "scale": 0.061838,
+      "sha256": "d9cc06c971f5fed2"
+    },
+    {
+      "code": "000100.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000100.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2452,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.54,
+      "hfq_anchor_close": 15.582,
+      "scale": 0.291362,
+      "sha256": "57a2e78fbedda40d"
+    },
+    {
+      "code": "000157.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000157.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.89,
+      "hfq_anchor_close": 472.146,
+      "scale": 0.012475,
+      "sha256": "509b3e62e7333e02"
+    },
+    {
+      "code": "000166.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000166.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2593,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.44,
+      "hfq_anchor_close": 7.142,
+      "scale": 0.621675,
+      "sha256": "41f941d777a1b54b"
+    },
+    {
+      "code": "000301.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000301.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2447
+    },
+    {
+      "code": "000333.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000333.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2568,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 84.6,
+      "hfq_anchor_close": 405.185,
+      "scale": 0.208794,
+      "sha256": "ef39ab43de8c9a4e"
+    },
+    {
+      "code": "000338.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000338.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2616,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 21.77,
+      "hfq_anchor_close": 408.175,
+      "scale": 0.053335,
+      "sha256": "2e02c7c5db7081dc"
+    },
+    {
+      "code": "000408.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000408.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2579,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 70.16,
+      "hfq_anchor_close": 519.551,
+      "scale": 0.13504,
+      "sha256": "85269d9727531ee8"
+    },
+    {
+      "code": "000425.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000425.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2585,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.91,
+      "hfq_anchor_close": 297.062,
+      "scale": 0.023261,
+      "sha256": "b67bed8aef5d83a1"
+    },
+    {
+      "code": "000538.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000538.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2454,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 53.08,
+      "hfq_anchor_close": 1483.279,
+      "scale": 0.035786,
+      "sha256": "c51861c095f9a00d"
+    },
+    {
+      "code": "000568.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000568.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2600
+    },
+    {
+      "code": "000596.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000596.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 85.07,
+      "hfq_anchor_close": 318.022,
+      "scale": 0.267497,
+      "sha256": "1a4642a6708d7233"
+    },
+    {
+      "code": "000617.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000617.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2509,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.5,
+      "hfq_anchor_close": 51.179,
+      "scale": 0.127005,
+      "sha256": "71b1a252e02dc171"
+    },
+    {
+      "code": "000625.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000625.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2598,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 7.07,
+      "hfq_anchor_close": 102.969,
+      "scale": 0.068661,
+      "sha256": "bac4f8718c8b1297"
+    },
+    {
+      "code": "000630.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000630.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.38,
+      "hfq_anchor_close": 186.212,
+      "scale": 0.028892,
+      "sha256": "a38332a73098275e"
+    },
+    {
+      "code": "000651.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000651.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2461,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 39.49,
+      "hfq_anchor_close": 6133.076,
+      "scale": 0.006439,
+      "sha256": "d0ab806943389493"
+    },
+    {
+      "code": "000657.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000657.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2570
+    },
+    {
+      "code": "000708.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000708.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2612,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 13.2,
+      "hfq_anchor_close": 53.619,
+      "scale": 0.246181,
+      "sha256": "d2226d025be6b947"
+    },
+    {
+      "code": "000725.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000725.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.13,
+      "hfq_anchor_close": 26.804,
+      "scale": 0.191389,
+      "sha256": "4b5271f247271447"
+    },
+    {
+      "code": "000768.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000768.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 23.59,
+      "hfq_anchor_close": 213.058,
+      "scale": 0.110721,
+      "sha256": "0b568d9b09c9d704"
+    },
+    {
+      "code": "000776.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000776.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 19.27,
+      "hfq_anchor_close": 120.192,
+      "scale": 0.160327,
+      "sha256": "779b459cc68d23b7"
+    },
+    {
+      "code": "000792.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000792.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2299,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 23.06,
+      "hfq_anchor_close": 154.126,
+      "scale": 0.149618,
+      "sha256": "bbdc106f4bdb73a1"
+    },
+    {
+      "code": "000807.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000807.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2591
+    },
+    {
+      "code": "000858.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000858.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 72.07,
+      "hfq_anchor_close": 1486.888,
+      "scale": 0.04847,
+      "sha256": "a5c0153ec97b3de1"
+    },
+    {
+      "code": "000895.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000895.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2603,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 23.96,
+      "hfq_anchor_close": 494.678,
+      "scale": 0.048436,
+      "sha256": "fe15231ceeae17f6"
+    },
+    {
+      "code": "000938.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000938.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2583,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 25.32,
+      "hfq_anchor_close": 173.838,
+      "scale": 0.145653,
+      "sha256": "8dac779b7bf6414c"
+    },
+    {
+      "code": "000963.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000963.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 26.25,
+      "hfq_anchor_close": 332.123,
+      "scale": 0.079037,
+      "sha256": "0abdb3db3d2c2e96"
+    },
+    {
+      "code": "000975.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000975.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2451,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 24.63,
+      "hfq_anchor_close": 180.982,
+      "scale": 0.136091,
+      "sha256": "d3effe63bb2eef29"
+    },
+    {
+      "code": "000977.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000977.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2605
+    },
+    {
+      "code": "000988.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000988.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2615,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 75.7,
+      "hfq_anchor_close": 791.934,
+      "scale": 0.095589,
+      "sha256": "5577cc2ae6da1661"
+    },
+    {
+      "code": "000999.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/000999.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 25.57,
+      "hfq_anchor_close": 93.062,
+      "scale": 0.274763,
+      "sha256": "9af0e896c6e44b7a"
+    },
+    {
+      "code": "001280.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/001280.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 209,
+      "span": [
+        "2025-12-03",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 57.13,
+      "hfq_anchor_close": 57.39,
+      "scale": 0.99547,
+      "sha256": "a5dbf24c58732645"
+    },
+    {
+      "code": "001391.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/001391.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 433,
+      "span": [
+        "2024-12-30",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.04,
+      "hfq_anchor_close": 4.192,
+      "scale": 0.96374,
+      "sha256": "78e3ff293a4477a2"
+    },
+    {
+      "code": "001965.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/001965.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2135,
+      "span": [
+        "2017-12-25",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 10.35,
+      "hfq_anchor_close": 13.36,
+      "scale": 0.774701,
+      "sha256": "2b1345ebd567d802"
+    },
+    {
+      "code": "001979.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/001979.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2602
+    },
+    {
+      "code": "002001.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002001.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2614,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 26.14,
+      "hfq_anchor_close": 937.529,
+      "scale": 0.027882,
+      "sha256": "3b7a56a0defde08b"
+    },
+    {
+      "code": "002027.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002027.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.16,
+      "hfq_anchor_close": 90.408,
+      "scale": 0.057075,
+      "sha256": "36b0a8192f271c83"
+    },
+    {
+      "code": "002028.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002028.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 118.03,
+      "hfq_anchor_close": 2046.911,
+      "scale": 0.057662,
+      "sha256": "a5ada02e0b650e15"
+    },
+    {
+      "code": "002049.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002049.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2448,
+      "span": [
+        "2016-03-11",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 53.23,
+      "hfq_anchor_close": 313.833,
+      "scale": 0.169613,
+      "sha256": "85784d4ae6d554db"
+    },
+    {
+      "code": "002050.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002050.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2580,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 31.42,
+      "hfq_anchor_close": 392.195,
+      "scale": 0.080113,
+      "sha256": "7a2c886b42183647"
+    },
+    {
+      "code": "002074.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002074.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2595
+    },
+    {
+      "code": "002142.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002142.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2611,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 34.72,
+      "hfq_anchor_close": 68.656,
+      "scale": 0.50571,
+      "sha256": "6ec7efa965284412"
+    },
+    {
+      "code": "002179.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002179.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 32.65,
+      "hfq_anchor_close": 484.916,
+      "scale": 0.067331,
+      "sha256": "84e33558dc6d4736"
+    },
+    {
+      "code": "002202.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002202.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2612,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 15.13,
+      "hfq_anchor_close": 118.006,
+      "scale": 0.128214,
+      "sha256": "e8213bf9db5c382c"
+    },
+    {
+      "code": "002230.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002230.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2570,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 36.0,
+      "hfq_anchor_close": 482.142,
+      "scale": 0.074667,
+      "sha256": "25540ccbe138862a"
+    },
+    {
+      "code": "002236.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002236.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2616,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 14.69,
+      "hfq_anchor_close": 737.841,
+      "scale": 0.019909,
+      "sha256": "e43c7af04f2f82ef"
+    },
+    {
+      "code": "002241.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002241.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "002294.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002294.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 30.84,
+      "hfq_anchor_close": 351.625,
+      "scale": 0.087707,
+      "sha256": "30b102824077ca11"
+    },
+    {
+      "code": "002304.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002304.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 37.95,
+      "hfq_anchor_close": 258.056,
+      "scale": 0.147061,
+      "sha256": "e2606c4f020c60d1"
+    },
+    {
+      "code": "002311.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002311.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 43.05,
+      "hfq_anchor_close": 301.515,
+      "scale": 0.142779,
+      "sha256": "1ec645dc74b07251"
+    },
+    {
+      "code": "002352.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002352.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2570,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 31.18,
+      "hfq_anchor_close": 112.789,
+      "scale": 0.276445,
+      "sha256": "14fdaa6a2d0f8592"
+    },
+    {
+      "code": "002353.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002353.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2601,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 85.3,
+      "hfq_anchor_close": 698.037,
+      "scale": 0.1222,
+      "sha256": "220ffda89cc97134"
+    },
+    {
+      "code": "002371.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002371.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-11",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 593.63,
+      "hfq_anchor_close": 3769.377,
+      "scale": 0.157488,
+      "sha256": "5788c00e13e74125"
+    },
+    {
+      "code": "002384.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002384.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2539,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 122.67,
+      "hfq_anchor_close": 889.922,
+      "scale": 0.137844,
+      "sha256": "b9931fe97494d45b"
+    },
+    {
+      "code": "002415.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002415.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2616
+    },
+    {
+      "code": "002422.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002422.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 39.95,
+      "hfq_anchor_close": 270.091,
+      "scale": 0.147913,
+      "sha256": "7fc15fe182d9219f"
+    },
+    {
+      "code": "002460.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002460.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2615,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 39.29,
+      "hfq_anchor_close": 537.289,
+      "scale": 0.073126,
+      "sha256": "8e184048bd217be0"
+    },
+    {
+      "code": "002463.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002463.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 113.38,
+      "hfq_anchor_close": 308.817,
+      "scale": 0.367143,
+      "sha256": "75001c9add192eaa"
+    },
+    {
+      "code": "002466.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002466.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2592,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 36.44,
+      "hfq_anchor_close": 323.578,
+      "scale": 0.112616,
+      "sha256": "799c21aa0effd678"
+    },
+    {
+      "code": "002475.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002475.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 44.67,
+      "hfq_anchor_close": 1505.829,
+      "scale": 0.029665,
+      "sha256": "35c9e8e201aaf45b"
+    },
+    {
+      "code": "002493.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002493.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "002532.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002532.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2531,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 11.5,
+      "hfq_anchor_close": 91.441,
+      "scale": 0.125764,
+      "sha256": "2e54718c77b31835"
+    },
+    {
+      "code": "002558.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002558.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2506,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 20.95,
+      "hfq_anchor_close": 94.324,
+      "scale": 0.222107,
+      "sha256": "e6f464a6042b8a1f"
+    },
+    {
+      "code": "002594.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002594.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 82.72,
+      "hfq_anchor_close": 258.701,
+      "scale": 0.319751,
+      "sha256": "18bc11872900a044"
+    },
+    {
+      "code": "002600.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002600.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2495,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 10.01,
+      "hfq_anchor_close": 42.559,
+      "scale": 0.235203,
+      "sha256": "a00b6c3f52f664b3"
+    },
+    {
+      "code": "002602.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002602.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2476,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 12.27,
+      "hfq_anchor_close": 115.067,
+      "scale": 0.106634,
+      "sha256": "54796684c2bfc957"
+    },
+    {
+      "code": "002625.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002625.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2455
+    },
+    {
+      "code": "002648.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002648.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2616,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 24.9,
+      "hfq_anchor_close": 298.441,
+      "scale": 0.083434,
+      "sha256": "470066c5df92e1a7"
+    },
+    {
+      "code": "002709.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002709.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 28.73,
+      "hfq_anchor_close": 416.451,
+      "scale": 0.068988,
+      "sha256": "aa11c57f7189973a"
+    },
+    {
+      "code": "002714.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002714.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 41.1,
+      "hfq_anchor_close": 796.537,
+      "scale": 0.051598,
+      "sha256": "6d72a88541efda9b"
+    },
+    {
+      "code": "002736.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002736.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 9.86,
+      "hfq_anchor_close": 13.4,
+      "scale": 0.735821,
+      "sha256": "87ba8c5c73f5dd93"
+    },
+    {
+      "code": "002837.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002837.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2300,
+      "span": [
+        "2016-12-29",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 44.7,
+      "hfq_anchor_close": 621.144,
+      "scale": 0.071964,
+      "sha256": "11e22dc6b36c142d"
+    },
+    {
+      "code": "002916.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002916.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2141
+    },
+    {
+      "code": "002920.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002920.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2134,
+      "span": [
+        "2017-12-26",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 73.8,
+      "hfq_anchor_close": 79.084,
+      "scale": 0.933185,
+      "sha256": "9d015aff42cf7566"
+    },
+    {
+      "code": "002938.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/002938.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1955,
+      "span": [
+        "2018-09-18",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 74.17,
+      "hfq_anchor_close": 79.368,
+      "scale": 0.934508,
+      "sha256": "f3c1b2203490dbba"
+    },
+    {
+      "code": "300014.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300014.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 47.04,
+      "hfq_anchor_close": 842.432,
+      "scale": 0.055838,
+      "sha256": "92e79051bc8fb171"
+    },
+    {
+      "code": "300015.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300015.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2602,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 7.8,
+      "hfq_anchor_close": 524.616,
+      "scale": 0.014868,
+      "sha256": "15fe26b5db4ac32c"
+    },
+    {
+      "code": "300033.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300033.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 202.37,
+      "hfq_anchor_close": 2428.504,
+      "scale": 0.083331,
+      "sha256": "c35bf98d00088245"
+    },
+    {
+      "code": "300059.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300059.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2613
+    },
+    {
+      "code": "300122.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300122.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 12.57,
+      "hfq_anchor_close": 93.73,
+      "scale": 0.134109,
+      "sha256": "273c51cff85334b9"
+    },
+    {
+      "code": "300124.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300124.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2607,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 49.7,
+      "hfq_anchor_close": 1147.747,
+      "scale": 0.043302,
+      "sha256": "63359910f8ebb38c"
+    },
+    {
+      "code": "300251.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300251.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2584,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 11.6,
+      "hfq_anchor_close": 307.6,
+      "scale": 0.037711,
+      "sha256": "a43093917ef6eb43"
+    },
+    {
+      "code": "300274.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300274.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2613,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 76.86,
+      "hfq_anchor_close": 737.337,
+      "scale": 0.10424,
+      "sha256": "4d401cfac9e1ad96"
+    },
+    {
+      "code": "300308.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300308.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2474,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 670.0,
+      "hfq_anchor_close": 4255.219,
+      "scale": 0.157454,
+      "sha256": "db758c66110945f6"
+    },
+    {
+      "code": "300316.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300316.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2610
+    },
+    {
+      "code": "300394.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300394.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2606,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 212.8,
+      "hfq_anchor_close": 2665.322,
+      "scale": 0.07984,
+      "sha256": "2464df384e1c1a88"
+    },
+    {
+      "code": "300408.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300408.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 97.18,
+      "hfq_anchor_close": 401.031,
+      "scale": 0.242325,
+      "sha256": "0c88b35b12a4e788"
+    },
+    {
+      "code": "300413.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300413.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2358,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 23.61,
+      "hfq_anchor_close": 42.359,
+      "scale": 0.557379,
+      "sha256": "563d277f15bf45db"
+    },
+    {
+      "code": "300418.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300418.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2613,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 39.98,
+      "hfq_anchor_close": 159.529,
+      "scale": 0.250613,
+      "sha256": "162185fdb0c22ae6"
+    },
+    {
+      "code": "300433.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300433.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2604,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 25.26,
+      "hfq_anchor_close": 150.268,
+      "scale": 0.1681,
+      "sha256": "a6742fea1633cb9e"
+    },
+    {
+      "code": "300442.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300442.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2602
+    },
+    {
+      "code": "300450.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300450.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2469,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 31.04,
+      "hfq_anchor_close": 640.327,
+      "scale": 0.048475,
+      "sha256": "f128f7febe5c917f"
+    },
+    {
+      "code": "300476.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300476.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2613,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 182.0,
+      "hfq_anchor_close": 836.187,
+      "scale": 0.217655,
+      "sha256": "bb52a011f1ee8c64"
+    },
+    {
+      "code": "300498.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300498.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2607,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 15.25,
+      "hfq_anchor_close": 34.827,
+      "scale": 0.437879,
+      "sha256": "f8b53e3dc81a5646"
+    },
+    {
+      "code": "300502.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300502.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2578,
+      "span": [
+        "2016-03-03",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 306.91,
+      "hfq_anchor_close": 4972.553,
+      "scale": 0.061721,
+      "sha256": "a9c5a45b5343e26a"
+    },
+    {
+      "code": "300628.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300628.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2326,
+      "span": [
+        "2017-03-17",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 35.91,
+      "hfq_anchor_close": 747.309,
+      "scale": 0.048052,
+      "sha256": "b02894132175505b"
+    },
+    {
+      "code": "300661.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300661.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 2264
+    },
+    {
+      "code": "300750.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300750.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 2025,
+      "span": [
+        "2018-06-11",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 277.0,
+      "hfq_anchor_close": 538.532,
+      "scale": 0.514361,
+      "sha256": "645436830889292a"
+    },
+    {
+      "code": "300760.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300760.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1941,
+      "span": [
+        "2018-10-16",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 167.3,
+      "hfq_anchor_close": 199.321,
+      "scale": 0.83935,
+      "sha256": "f1f676aff2ec8944"
+    },
+    {
+      "code": "300803.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300803.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1675,
+      "span": [
+        "2019-11-18",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 53.26,
+      "hfq_anchor_close": 112.245,
+      "scale": 0.474498,
+      "sha256": "a267bac544503519"
+    },
+    {
+      "code": "300832.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300832.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1560,
+      "span": [
+        "2020-05-12",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 50.38,
+      "hfq_anchor_close": 107.337,
+      "scale": 0.469363,
+      "sha256": "f71ee64eb24c1cee"
+    },
+    {
+      "code": "300866.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300866.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1488,
+      "span": [
+        "2020-08-24",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 108.91,
+      "hfq_anchor_close": 153.273,
+      "scale": 0.710562,
+      "sha256": "860102ff3acf6654"
+    },
+    {
+      "code": "300896.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300896.SZ.qfq.csv",
+      "status": "cached",
+      "n_rows": 1463
+    },
+    {
+      "code": "300999.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/300999.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1456,
+      "span": [
+        "2020-10-15",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 25.6,
+      "hfq_anchor_close": 26.317,
+      "scale": 0.972755,
+      "sha256": "ae480adc993a3b2c"
+    },
+    {
+      "code": "301165.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/301165.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 945,
+      "span": [
+        "2022-11-21",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 81.78,
+      "hfq_anchor_close": 162.99,
+      "scale": 0.501749,
+      "sha256": "872c870da33832cd"
+    },
+    {
+      "code": "301236.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/301236.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1112,
+      "span": [
+        "2022-03-15",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 33.54,
+      "hfq_anchor_close": 76.958,
+      "scale": 0.435822,
+      "sha256": "3b0e62755c179c32"
+    },
+    {
+      "code": "301269.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/301269.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1010,
+      "span": [
+        "2022-07-29",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 98.35,
+      "hfq_anchor_close": 98.95,
+      "scale": 0.993936,
+      "sha256": "f3fd29285217d5ab"
+    },
+    {
+      "code": "301308.SZ",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/301308.SZ.qfq.csv",
+      "status": "ok",
+      "n_rows": 1015,
+      "span": [
+        "2022-08-05",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 241.65,
+      "hfq_anchor_close": 243.371,
+      "scale": 0.992928,
+      "sha256": "95a6195ff0018ee7"
+    },
+    {
+      "code": "600000.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600000.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2600
+    },
+    {
+      "code": "600009.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600009.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2607,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 23.43,
+      "hfq_anchor_close": 70.745,
+      "scale": 0.331189,
+      "sha256": "cb070c93622957fa"
+    },
+    {
+      "code": "600010.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600010.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2609,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 2.09,
+      "hfq_anchor_close": 15.425,
+      "scale": 0.135494,
+      "sha256": "878ae4509b289db1"
+    },
+    {
+      "code": "600011.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600011.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 7.51,
+      "hfq_anchor_close": 32.879,
+      "scale": 0.228413,
+      "sha256": "3b64a6f191531226"
+    },
+    {
+      "code": "600015.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600015.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.34,
+      "hfq_anchor_close": 32.594,
+      "scale": 0.194514,
+      "sha256": "3184e47982934339"
+    },
+    {
+      "code": "600016.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600016.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 3.5,
+      "hfq_anchor_close": 126.569,
+      "scale": 0.027653,
+      "sha256": "7b51e5f6d991455a"
+    },
+    {
+      "code": "600018.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600018.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2615
+    },
+    {
+      "code": "600019.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600019.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2526,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.04,
+      "hfq_anchor_close": 15.544,
+      "scale": 0.388574,
+      "sha256": "87ba5afc29542fef"
+    },
+    {
+      "code": "600023.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600023.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.4,
+      "hfq_anchor_close": 10.334,
+      "scale": 0.522547,
+      "sha256": "a9aa414004de529e"
+    },
+    {
+      "code": "600025.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600025.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2141,
+      "span": [
+        "2017-12-15",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 10.29,
+      "hfq_anchor_close": 11.735,
+      "scale": 0.876864,
+      "sha256": "3d2e09e3c596818b"
+    },
+    {
+      "code": "600026.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600026.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2613,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 20.07,
+      "hfq_anchor_close": 31.076,
+      "scale": 0.645836,
+      "sha256": "484f776bd489657f"
+    },
+    {
+      "code": "600027.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600027.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2607,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.18,
+      "hfq_anchor_close": 10.312,
+      "scale": 0.502327,
+      "sha256": "839a0aba236e43ab"
+    },
+    {
+      "code": "600028.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600028.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "600029.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600029.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2615,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.74,
+      "hfq_anchor_close": 8.1,
+      "scale": 0.585185,
+      "sha256": "44c1ecf06e055be7"
+    },
+    {
+      "code": "600030.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600030.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2601,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 26.12,
+      "hfq_anchor_close": 146.13,
+      "scale": 0.178745,
+      "sha256": "e0a3461002384088"
+    },
+    {
+      "code": "600031.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600031.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 17.69,
+      "hfq_anchor_close": 833.067,
+      "scale": 0.021235,
+      "sha256": "c82c6841cb15b380"
+    },
+    {
+      "code": "600036.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600036.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 42.45,
+      "hfq_anchor_close": 226.442,
+      "scale": 0.187465,
+      "sha256": "399042b436ce7245"
+    },
+    {
+      "code": "600039.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600039.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2596,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 8.79,
+      "hfq_anchor_close": 113.589,
+      "scale": 0.077384,
+      "sha256": "1f19d421ec1a7634"
+    },
+    {
+      "code": "600048.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600048.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2611
+    },
+    {
+      "code": "600050.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600050.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2523,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.38,
+      "hfq_anchor_close": 8.859,
+      "scale": 0.494412,
+      "sha256": "b738e9610565aff4"
+    },
+    {
+      "code": "600061.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600061.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2607,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.21,
+      "hfq_anchor_close": 59.653,
+      "scale": 0.104102,
+      "sha256": "203d9c7c358102cf"
+    },
+    {
+      "code": "600066.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600066.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 28.71,
+      "hfq_anchor_close": 1065.415,
+      "scale": 0.026947,
+      "sha256": "36e535547501c9de"
+    },
+    {
+      "code": "600085.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600085.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 24.36,
+      "hfq_anchor_close": 246.615,
+      "scale": 0.098777,
+      "sha256": "2137dd0f5b11cf9c"
+    },
+    {
+      "code": "600089.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600089.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2612,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 17.25,
+      "hfq_anchor_close": 1075.567,
+      "scale": 0.016038,
+      "sha256": "7bfd231b24b484df"
+    },
+    {
+      "code": "600104.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600104.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "600111.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600111.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 35.32,
+      "hfq_anchor_close": 678.833,
+      "scale": 0.05203,
+      "sha256": "dadc692eaf75e5c0"
+    },
+    {
+      "code": "600115.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600115.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 3.16,
+      "hfq_anchor_close": 4.497,
+      "scale": 0.702691,
+      "sha256": "2a141104bf917b25"
+    },
+    {
+      "code": "600118.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600118.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 50.91,
+      "hfq_anchor_close": 985.324,
+      "scale": 0.051668,
+      "sha256": "be5633dcf0a541a3"
+    },
+    {
+      "code": "600150.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600150.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2477,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 35.77,
+      "hfq_anchor_close": 117.57,
+      "scale": 0.304244,
+      "sha256": "f000bef046b7f6e8"
+    },
+    {
+      "code": "600160.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600160.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2607,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 29.75,
+      "hfq_anchor_close": 295.252,
+      "scale": 0.100761,
+      "sha256": "e5db487aaf41f52d"
+    },
+    {
+      "code": "600176.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600176.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2606
+    },
+    {
+      "code": "600183.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600183.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 114.6,
+      "hfq_anchor_close": 888.801,
+      "scale": 0.128938,
+      "sha256": "67e68c6374611d07"
+    },
+    {
+      "code": "600188.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600188.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 18.92,
+      "hfq_anchor_close": 110.536,
+      "scale": 0.171166,
+      "sha256": "166c1f9b1527165c"
+    },
+    {
+      "code": "600196.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600196.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 22.98,
+      "hfq_anchor_close": 283.268,
+      "scale": 0.081125,
+      "sha256": "42c08a31128ab378"
+    },
+    {
+      "code": "600219.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600219.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2576,
+      "span": [
+        "2016-01-25",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.33,
+      "hfq_anchor_close": 36.668,
+      "scale": 0.118087,
+      "sha256": "7fd065db6174d34f"
+    },
+    {
+      "code": "600221.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600221.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2487,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 1.2,
+      "hfq_anchor_close": 4.469,
+      "scale": 0.268516,
+      "sha256": "2eef3577ba68347d"
+    },
+    {
+      "code": "600233.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600233.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2529
+    },
+    {
+      "code": "600276.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600276.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 46.63,
+      "hfq_anchor_close": 2841.438,
+      "scale": 0.016411,
+      "sha256": "e90bdb7d3eb9f2a8"
+    },
+    {
+      "code": "600309.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600309.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2493,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 66.24,
+      "hfq_anchor_close": 2134.817,
+      "scale": 0.031028,
+      "sha256": "e6f84e5edb5a26ce"
+    },
+    {
+      "code": "600346.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600346.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2506,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 15.4,
+      "hfq_anchor_close": 171.923,
+      "scale": 0.089575,
+      "sha256": "0f4cda790ed44b48"
+    },
+    {
+      "code": "600362.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600362.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2610,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 39.43,
+      "hfq_anchor_close": 57.347,
+      "scale": 0.687569,
+      "sha256": "a278c8f8db3940df"
+    },
+    {
+      "code": "600372.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600372.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2595,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 11.38,
+      "hfq_anchor_close": 35.231,
+      "scale": 0.323011,
+      "sha256": "813569b93c16c106"
+    },
+    {
+      "code": "600406.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600406.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2509,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 22.73,
+      "hfq_anchor_close": 1070.472,
+      "scale": 0.021234,
+      "sha256": "3db9461f3262bb6f"
+    },
+    {
+      "code": "600415.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600415.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "600426.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600426.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 18.94,
+      "hfq_anchor_close": 287.342,
+      "scale": 0.065914,
+      "sha256": "cca3c160861fc562"
+    },
+    {
+      "code": "600436.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600436.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 120.74,
+      "hfq_anchor_close": 751.329,
+      "scale": 0.160702,
+      "sha256": "24a6cf2372bed08b"
+    },
+    {
+      "code": "600438.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600438.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2545,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 11.33,
+      "hfq_anchor_close": 158.912,
+      "scale": 0.071297,
+      "sha256": "f4f97df0eb94dfbe"
+    },
+    {
+      "code": "600460.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600460.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2533,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 25.65,
+      "hfq_anchor_close": 371.575,
+      "scale": 0.06903,
+      "sha256": "0f99a845d64a657a"
+    },
+    {
+      "code": "600482.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600482.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2592,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 31.39,
+      "hfq_anchor_close": 88.172,
+      "scale": 0.356009,
+      "sha256": "5fc9c09adcde84af"
+    },
+    {
+      "code": "600489.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600489.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2601
+    },
+    {
+      "code": "600515.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600515.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2472,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 2.65,
+      "hfq_anchor_close": 8.711,
+      "scale": 0.304213,
+      "sha256": "a1bb8350c5f154bd"
+    },
+    {
+      "code": "600519.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600519.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 1329.0,
+      "hfq_anchor_close": 9282.618,
+      "scale": 0.143171,
+      "sha256": "bdb7fdd0a73f47ff"
+    },
+    {
+      "code": "600522.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600522.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2607,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 26.62,
+      "hfq_anchor_close": 218.887,
+      "scale": 0.121615,
+      "sha256": "23773994402dbe2a"
+    },
+    {
+      "code": "600547.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600547.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2588,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 26.37,
+      "hfq_anchor_close": 551.671,
+      "scale": 0.0478,
+      "sha256": "e86712f9fcdf8825"
+    },
+    {
+      "code": "600549.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600549.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 36.82,
+      "hfq_anchor_close": 466.459,
+      "scale": 0.078935,
+      "sha256": "5fb4dad3218739d3"
+    },
+    {
+      "code": "600570.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600570.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2616
+    },
+    {
+      "code": "600584.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600584.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2516,
+      "span": [
+        "2016-05-10",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 56.96,
+      "hfq_anchor_close": 277.604,
+      "scale": 0.205184,
+      "sha256": "efad998fb5b38035"
+    },
+    {
+      "code": "600585.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600585.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 18.64,
+      "hfq_anchor_close": 107.3,
+      "scale": 0.173719,
+      "sha256": "189e127c1dff7c9d"
+    },
+    {
+      "code": "600588.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600588.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2616,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 9.25,
+      "hfq_anchor_close": 473.445,
+      "scale": 0.019538,
+      "sha256": "ccb6f2dcb24b48a3"
+    },
+    {
+      "code": "600600.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600600.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 52.47,
+      "hfq_anchor_close": 81.14,
+      "scale": 0.64666,
+      "sha256": "a2a31560b432c255"
+    },
+    {
+      "code": "600660.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600660.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 54.78,
+      "hfq_anchor_close": 2490.78,
+      "scale": 0.021993,
+      "sha256": "8d2a4b2656df7cb4"
+    },
+    {
+      "code": "600674.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600674.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "600690.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600690.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2596,
+      "span": [
+        "2016-02-01",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 20.33,
+      "hfq_anchor_close": 713.144,
+      "scale": 0.028508,
+      "sha256": "7b6a2a41c96ddc11"
+    },
+    {
+      "code": "600741.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600741.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 15.59,
+      "hfq_anchor_close": 840.751,
+      "scale": 0.018543,
+      "sha256": "2455ec6fecdc8f85"
+    },
+    {
+      "code": "600760.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600760.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2536,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 45.88,
+      "hfq_anchor_close": 473.114,
+      "scale": 0.096975,
+      "sha256": "503a4e5dd667f01e"
+    },
+    {
+      "code": "600795.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600795.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2554,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.39,
+      "hfq_anchor_close": 1534.684,
+      "scale": 0.003512,
+      "sha256": "552236cf7210e8a6"
+    },
+    {
+      "code": "600803.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600803.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2555,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 19.9,
+      "hfq_anchor_close": 160.139,
+      "scale": 0.124267,
+      "sha256": "1b56849567353e3a"
+    },
+    {
+      "code": "600809.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600809.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2606
+    },
+    {
+      "code": "600845.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600845.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2616,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 16.93,
+      "hfq_anchor_close": 251.637,
+      "scale": 0.067279,
+      "sha256": "b7fc206e7dc70d85"
+    },
+    {
+      "code": "600875.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600875.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2542,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 22.04,
+      "hfq_anchor_close": 66.022,
+      "scale": 0.333828,
+      "sha256": "ea3da8c41b3f1779"
+    },
+    {
+      "code": "600886.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600886.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 15.99,
+      "hfq_anchor_close": 736.959,
+      "scale": 0.021697,
+      "sha256": "abf020b332e26aba"
+    },
+    {
+      "code": "600887.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600887.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2594,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 28.2,
+      "hfq_anchor_close": 2361.438,
+      "scale": 0.011942,
+      "sha256": "4c63a6365b141b3a"
+    },
+    {
+      "code": "600893.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600893.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2587,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 39.5,
+      "hfq_anchor_close": 128.685,
+      "scale": 0.306951,
+      "sha256": "fbfedb867aa30d06"
+    },
+    {
+      "code": "600900.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600900.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2601
+    },
+    {
+      "code": "600905.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600905.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1296,
+      "span": [
+        "2021-06-10",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 3.44,
+      "hfq_anchor_close": 3.761,
+      "scale": 0.91465,
+      "sha256": "8873e19a50dcaa93"
+    },
+    {
+      "code": "600918.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600918.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1544,
+      "span": [
+        "2020-06-03",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.46,
+      "hfq_anchor_close": 5.773,
+      "scale": 0.945782,
+      "sha256": "1aa73bd69ad2eac9"
+    },
+    {
+      "code": "600919.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600919.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2470,
+      "span": [
+        "2016-08-02",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 12.3,
+      "hfq_anchor_close": 18.963,
+      "scale": 0.648632,
+      "sha256": "d651edb747167fd7"
+    },
+    {
+      "code": "600926.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600926.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2421,
+      "span": [
+        "2016-10-27",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 16.83,
+      "hfq_anchor_close": 41.527,
+      "scale": 0.405278,
+      "sha256": "ee3e0621dc4ed479"
+    },
+    {
+      "code": "600930.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600930.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 303,
+      "span": [
+        "2025-07-16",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 3.99,
+      "hfq_anchor_close": 4.05,
+      "scale": 0.985185,
+      "sha256": "2c57e86b9dee6ae1"
+    },
+    {
+      "code": "600938.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600938.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 1087
+    },
+    {
+      "code": "600941.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600941.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1156,
+      "span": [
+        "2022-01-05",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 101.4,
+      "hfq_anchor_close": 123.662,
+      "scale": 0.819977,
+      "sha256": "3aef137bc147da69"
+    },
+    {
+      "code": "600958.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600958.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2596,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 8.68,
+      "hfq_anchor_close": 11.49,
+      "scale": 0.75544,
+      "sha256": "318d2c05d7c39eca"
+    },
+    {
+      "code": "600989.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600989.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1800,
+      "span": [
+        "2019-05-16",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 22.4,
+      "hfq_anchor_close": 25.61,
+      "scale": 0.874658,
+      "sha256": "411013a04f241f7e"
+    },
+    {
+      "code": "600999.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/600999.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2612,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 16.59,
+      "hfq_anchor_close": 34.037,
+      "scale": 0.487411,
+      "sha256": "e390ebafc371e53a"
+    },
+    {
+      "code": "601006.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601006.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.04,
+      "hfq_anchor_close": 12.723,
+      "scale": 0.396133,
+      "sha256": "36626aeceb355696"
+    },
+    {
+      "code": "601009.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601009.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2616
+    },
+    {
+      "code": "601012.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601012.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2611,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 10.89,
+      "hfq_anchor_close": 222.991,
+      "scale": 0.048836,
+      "sha256": "23dbe6f945209e77"
+    },
+    {
+      "code": "601018.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601018.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2582,
+      "span": [
+        "2016-02-22",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 3.59,
+      "hfq_anchor_close": 4.969,
+      "scale": 0.722479,
+      "sha256": "dd280e4dfea41ee7"
+    },
+    {
+      "code": "601021.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601021.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2611,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 39.07,
+      "hfq_anchor_close": 85.843,
+      "scale": 0.455133,
+      "sha256": "054a26d935c0b597"
+    },
+    {
+      "code": "601058.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601058.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-12",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 12.41,
+      "hfq_anchor_close": 63.126,
+      "scale": 0.196591,
+      "sha256": "c9461d086b340056"
+    },
+    {
+      "code": "601066.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601066.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2019
+    },
+    {
+      "code": "601077.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601077.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1689,
+      "span": [
+        "2019-10-29",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 7.0,
+      "hfq_anchor_close": 8.89,
+      "scale": 0.787402,
+      "sha256": "e4f8926e3fbec216"
+    },
+    {
+      "code": "601088.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601088.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2544,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 50.98,
+      "hfq_anchor_close": 76.18,
+      "scale": 0.669205,
+      "sha256": "c7cdca34cf81461e"
+    },
+    {
+      "code": "601100.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601100.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 78.13,
+      "hfq_anchor_close": 260.013,
+      "scale": 0.300485,
+      "sha256": "3ecb9c3dae289026"
+    },
+    {
+      "code": "601111.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601111.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.65,
+      "hfq_anchor_close": 6.638,
+      "scale": 0.85116,
+      "sha256": "1de1089298a25fdc"
+    },
+    {
+      "code": "601117.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601117.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2615,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 7.04,
+      "hfq_anchor_close": 9.106,
+      "scale": 0.773117,
+      "sha256": "b246e4e5892cc82b"
+    },
+    {
+      "code": "601127.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601127.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2485
+    },
+    {
+      "code": "601136.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601136.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 922,
+      "span": [
+        "2022-12-22",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 14.2,
+      "hfq_anchor_close": 14.803,
+      "scale": 0.959265,
+      "sha256": "081e21c77d1bc53e"
+    },
+    {
+      "code": "601138.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601138.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2026,
+      "span": [
+        "2018-06-08",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 47.78,
+      "hfq_anchor_close": 51.607,
+      "scale": 0.925843,
+      "sha256": "d10c2f098bbd3f13"
+    },
+    {
+      "code": "601166.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601166.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2613,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 18.45,
+      "hfq_anchor_close": 94.355,
+      "scale": 0.195538,
+      "sha256": "c3b29c3d8e7e583a"
+    },
+    {
+      "code": "601169.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601169.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2610,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.64,
+      "hfq_anchor_close": 23.633,
+      "scale": 0.238649,
+      "sha256": "1964b55965f0b0a4"
+    },
+    {
+      "code": "601186.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601186.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.19,
+      "hfq_anchor_close": 9.656,
+      "scale": 0.641052,
+      "sha256": "836729a3f617edc5"
+    },
+    {
+      "code": "601211.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601211.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2599
+    },
+    {
+      "code": "601225.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601225.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 28.28,
+      "hfq_anchor_close": 37.544,
+      "scale": 0.75325,
+      "sha256": "508807a665dfe00e"
+    },
+    {
+      "code": "601229.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601229.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2407,
+      "span": [
+        "2016-11-16",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 9.61,
+      "hfq_anchor_close": 31.994,
+      "scale": 0.300369,
+      "sha256": "a0007a03d82461eb"
+    },
+    {
+      "code": "601238.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601238.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2598,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.99,
+      "hfq_anchor_close": 10.614,
+      "scale": 0.470134,
+      "sha256": "2be1b44a17f1f1ee"
+    },
+    {
+      "code": "601288.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601288.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 7.24,
+      "hfq_anchor_close": 10.148,
+      "scale": 0.713441,
+      "sha256": "be06a57dafb19f0b"
+    },
+    {
+      "code": "601318.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601318.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 51.88,
+      "hfq_anchor_close": 152.692,
+      "scale": 0.339769,
+      "sha256": "55f2f19ce52aa883"
+    },
+    {
+      "code": "601319.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601319.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 1918
+    },
+    {
+      "code": "601328.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601328.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 8.09,
+      "hfq_anchor_close": 15.828,
+      "scale": 0.51112,
+      "sha256": "4be21f1a2fb80cc4"
+    },
+    {
+      "code": "601336.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601336.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 52.31,
+      "hfq_anchor_close": 66.561,
+      "scale": 0.785896,
+      "sha256": "97aa8060bb0d973f"
+    },
+    {
+      "code": "601360.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601360.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2496,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 8.38,
+      "hfq_anchor_close": 18.296,
+      "scale": 0.458024,
+      "sha256": "c4cf8f59d6252738"
+    },
+    {
+      "code": "601377.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601377.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2603,
+      "span": [
+        "2016-01-07",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.67,
+      "hfq_anchor_close": 15.073,
+      "scale": 0.376169,
+      "sha256": "542d256e7bda55d3"
+    },
+    {
+      "code": "601390.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601390.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2544,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.34,
+      "hfq_anchor_close": 6.482,
+      "scale": 0.669546,
+      "sha256": "bde0810f19970359"
+    },
+    {
+      "code": "601398.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601398.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "601456.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601456.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1484,
+      "span": [
+        "2020-07-31",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 8.49,
+      "hfq_anchor_close": 8.968,
+      "scale": 0.946699,
+      "sha256": "66035fabbb56e3e7"
+    },
+    {
+      "code": "601600.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601600.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2509,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 8.78,
+      "hfq_anchor_close": 9.796,
+      "scale": 0.896284,
+      "sha256": "53c9d2ec6ae232eb"
+    },
+    {
+      "code": "601601.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601601.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 29.32,
+      "hfq_anchor_close": 43.44,
+      "scale": 0.674954,
+      "sha256": "ab463b110b16b8d2"
+    },
+    {
+      "code": "601607.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601607.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 16.61,
+      "hfq_anchor_close": 159.177,
+      "scale": 0.104349,
+      "sha256": "f016b3dc5a1cbb69"
+    },
+    {
+      "code": "601618.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601618.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 2.58,
+      "hfq_anchor_close": 3.427,
+      "scale": 0.752845,
+      "sha256": "47b3e5512996593c"
+    },
+    {
+      "code": "601628.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601628.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "601633.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601633.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2611,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 14.03,
+      "hfq_anchor_close": 54.73,
+      "scale": 0.256349,
+      "sha256": "9af5615c0139a41e"
+    },
+    {
+      "code": "601658.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601658.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1659,
+      "span": [
+        "2019-12-10",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.51,
+      "hfq_anchor_close": 7.175,
+      "scale": 0.767944,
+      "sha256": "2f34d3ae5acec191"
+    },
+    {
+      "code": "601668.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601668.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.54,
+      "hfq_anchor_close": 10.216,
+      "scale": 0.444401,
+      "sha256": "88adfc25eff88d00"
+    },
+    {
+      "code": "601669.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601669.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2609,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 4.56,
+      "hfq_anchor_close": 6.041,
+      "scale": 0.754842,
+      "sha256": "f79defbc76cef8f3"
+    },
+    {
+      "code": "601688.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601688.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 17.84,
+      "hfq_anchor_close": 23.635,
+      "scale": 0.754813,
+      "sha256": "cee56fb1de2f6d6a"
+    },
+    {
+      "code": "601689.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601689.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2608
+    },
+    {
+      "code": "601698.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601698.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1770,
+      "span": [
+        "2019-06-28",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 22.03,
+      "hfq_anchor_close": 22.239,
+      "scale": 0.990602,
+      "sha256": "d8c53303513f5097"
+    },
+    {
+      "code": "601727.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601727.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2401,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.24,
+      "hfq_anchor_close": 6.994,
+      "scale": 0.892193,
+      "sha256": "aaace68771037403"
+    },
+    {
+      "code": "601728.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601728.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1246,
+      "span": [
+        "2021-08-20",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.85,
+      "hfq_anchor_close": 8.142,
+      "scale": 0.841317,
+      "sha256": "b24e8ebdef81d721"
+    },
+    {
+      "code": "601766.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601766.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.38,
+      "hfq_anchor_close": 9.092,
+      "scale": 0.701716,
+      "sha256": "ab3b3c020cbbe7a2"
+    },
+    {
+      "code": "601788.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601788.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 13.69,
+      "hfq_anchor_close": 18.17,
+      "scale": 0.75344,
+      "sha256": "e5c622eecf82c88b"
+    },
+    {
+      "code": "601800.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601800.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "601816.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601816.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1633,
+      "span": [
+        "2020-01-16",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 5.13,
+      "hfq_anchor_close": 5.64,
+      "scale": 0.909574,
+      "sha256": "5f0777ab9e466e3c"
+    },
+    {
+      "code": "601818.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601818.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2617,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 3.1,
+      "hfq_anchor_close": 5.726,
+      "scale": 0.54139,
+      "sha256": "4eab9a98b7de4b30"
+    },
+    {
+      "code": "601825.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601825.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1247,
+      "span": [
+        "2021-08-19",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 8.65,
+      "hfq_anchor_close": 11.048,
+      "scale": 0.782947,
+      "sha256": "fb4ddf839b842540"
+    },
+    {
+      "code": "601838.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601838.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2109,
+      "span": [
+        "2018-01-31",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 19.09,
+      "hfq_anchor_close": 25.196,
+      "scale": 0.75766,
+      "sha256": "011c60b501dda1d3"
+    },
+    {
+      "code": "601857.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601857.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 12.76,
+      "hfq_anchor_close": 18.052,
+      "scale": 0.706847,
+      "sha256": "eb5e37123d5c16ee"
+    },
+    {
+      "code": "601868.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601868.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1221,
+      "span": [
+        "2021-09-28",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 2.36,
+      "hfq_anchor_close": 2.504,
+      "scale": 0.942492,
+      "sha256": "09cdc90428d6364d"
+    },
+    {
+      "code": "601872.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601872.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2518
+    },
+    {
+      "code": "601877.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601877.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2612,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 25.0,
+      "hfq_anchor_close": 44.919,
+      "scale": 0.556557,
+      "sha256": "da26df019300c14c"
+    },
+    {
+      "code": "601878.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601878.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2260,
+      "span": [
+        "2017-06-26",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 8.95,
+      "hfq_anchor_close": 10.097,
+      "scale": 0.886402,
+      "sha256": "a2cfa0d4bfd7c31d"
+    },
+    {
+      "code": "601881.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601881.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2360,
+      "span": [
+        "2017-01-23",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 11.9,
+      "hfq_anchor_close": 14.03,
+      "scale": 0.848182,
+      "sha256": "328912e69e4ae29c"
+    },
+    {
+      "code": "601888.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601888.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 49.2,
+      "hfq_anchor_close": 118.29,
+      "scale": 0.415927,
+      "sha256": "afe0ac5d03940615"
+    },
+    {
+      "code": "601898.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601898.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 14.93,
+      "hfq_anchor_close": 18.547,
+      "scale": 0.804982,
+      "sha256": "a20dbbd445100619"
+    },
+    {
+      "code": "601899.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601899.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2612
+    },
+    {
+      "code": "601901.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601901.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 6.69,
+      "hfq_anchor_close": 7.26,
+      "scale": 0.921488,
+      "sha256": "59c0d2ed6a508dc9"
+    },
+    {
+      "code": "601916.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601916.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1663,
+      "span": [
+        "2019-11-26",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 2.97,
+      "hfq_anchor_close": 4.437,
+      "scale": 0.669371,
+      "sha256": "a34ce6f1ad433100"
+    },
+    {
+      "code": "601919.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601919.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2568,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 16.88,
+      "hfq_anchor_close": 32.332,
+      "scale": 0.522083,
+      "sha256": "54804976b64df26b"
+    },
+    {
+      "code": "601939.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601939.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 11.45,
+      "hfq_anchor_close": 17.809,
+      "scale": 0.642933,
+      "sha256": "668a92fe98e8d0ca"
+    },
+    {
+      "code": "601985.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601985.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 9.43,
+      "hfq_anchor_close": 10.989,
+      "scale": 0.858131,
+      "sha256": "ce14c5b27c1a7048"
+    },
+    {
+      "code": "601988.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601988.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "601995.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601995.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1418,
+      "span": [
+        "2020-11-02",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 32.09,
+      "hfq_anchor_close": 33.43,
+      "scale": 0.959916,
+      "sha256": "2b3c78b44b91d7ba"
+    },
+    {
+      "code": "601998.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/601998.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 9.09,
+      "hfq_anchor_close": 14.897,
+      "scale": 0.61019,
+      "sha256": "0b1d34f783b864e4"
+    },
+    {
+      "code": "603019.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603019.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2605,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 70.48,
+      "hfq_anchor_close": 283.374,
+      "scale": 0.248717,
+      "sha256": "9828ee231839f764"
+    },
+    {
+      "code": "603259.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603259.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2049,
+      "span": [
+        "2018-05-08",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 144.3,
+      "hfq_anchor_close": 355.667,
+      "scale": 0.405717,
+      "sha256": "938d2f2fe2f5b18c"
+    },
+    {
+      "code": "603260.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603260.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2175,
+      "span": [
+        "2017-10-30",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 31.74,
+      "hfq_anchor_close": 51.341,
+      "scale": 0.618219,
+      "sha256": "224d03f95ee6dcd9"
+    },
+    {
+      "code": "603288.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603288.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 2618
+    },
+    {
+      "code": "603296.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603296.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 771,
+      "span": [
+        "2023-08-08",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 66.49,
+      "hfq_anchor_close": 134.359,
+      "scale": 0.494868,
+      "sha256": "eb0d6f71d368676c"
+    },
+    {
+      "code": "603369.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603369.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 29.64,
+      "hfq_anchor_close": 90.73,
+      "scale": 0.326684,
+      "sha256": "c547b9ae3123782a"
+    },
+    {
+      "code": "603392.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603392.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1566,
+      "span": [
+        "2020-04-29",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 25.04,
+      "hfq_anchor_close": 74.615,
+      "scale": 0.335589,
+      "sha256": "15ee7ebc6acab7d3"
+    },
+    {
+      "code": "603501.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603501.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2124,
+      "span": [
+        "2017-05-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 71.53,
+      "hfq_anchor_close": 99.233,
+      "scale": 0.720829,
+      "sha256": "aeaa143f81f9fbac"
+    },
+    {
+      "code": "603799.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603799.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2606,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 32.25,
+      "hfq_anchor_close": 83.112,
+      "scale": 0.388031,
+      "sha256": "7a3aec36b775a6b7"
+    },
+    {
+      "code": "603893.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603893.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 1623
+    },
+    {
+      "code": "603986.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603986.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2258,
+      "span": [
+        "2016-08-18",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 281.86,
+      "hfq_anchor_close": 1567.421,
+      "scale": 0.179824,
+      "sha256": "1d723866eafac91d"
+    },
+    {
+      "code": "603993.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/603993.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 2599,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 15.9,
+      "hfq_anchor_close": 52.021,
+      "scale": 0.305646,
+      "sha256": "28ccdfa6cf360e23"
+    },
+    {
+      "code": "605117.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/605117.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1330,
+      "span": [
+        "2021-04-20",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 71.54,
+      "hfq_anchor_close": 543.97,
+      "scale": 0.131515,
+      "sha256": "3a1b6f9f567dfb32"
+    },
+    {
+      "code": "605499.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/605499.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1306,
+      "span": [
+        "2021-05-27",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 114.25,
+      "hfq_anchor_close": 217.852,
+      "scale": 0.524439,
+      "sha256": "455e14676c822a3b"
+    },
+    {
+      "code": "688008.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688008.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1754,
+      "span": [
+        "2019-07-22",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 169.2,
+      "hfq_anchor_close": 171.667,
+      "scale": 0.985629,
+      "sha256": "2d3192c45e963add"
+    },
+    {
+      "code": "688009.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688009.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 1754
+    },
+    {
+      "code": "688012.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688012.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1745,
+      "span": [
+        "2019-07-22",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 295.22,
+      "hfq_anchor_close": 441.026,
+      "scale": 0.669394,
+      "sha256": "d612637afd2ba7e5"
+    },
+    {
+      "code": "688036.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688036.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1705,
+      "span": [
+        "2019-09-30",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 48.12,
+      "hfq_anchor_close": 86.128,
+      "scale": 0.558703,
+      "sha256": "e585a8bc660b052b"
+    },
+    {
+      "code": "688041.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688041.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1000,
+      "span": [
+        "2022-08-12",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 192.54,
+      "hfq_anchor_close": 193.099,
+      "scale": 0.997105,
+      "sha256": "20a03477740221a0"
+    },
+    {
+      "code": "688047.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688047.SH.qfq.csv",
+      "status": "no_quote",
+      "reason": "腾讯 hfq 无数据"
+    },
+    {
+      "code": "688072.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688072.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1078,
+      "span": [
+        "2022-04-20",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 663.0,
+      "hfq_anchor_close": 1454.007,
+      "scale": 0.455981,
+      "sha256": "d125967aa3ed2529"
+    },
+    {
+      "code": "688082.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688082.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 1189
+    },
+    {
+      "code": "688111.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688111.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1675,
+      "span": [
+        "2019-11-18",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 231.44,
+      "hfq_anchor_close": 236.799,
+      "scale": 0.977369,
+      "sha256": "e59e796a2c6fec16"
+    },
+    {
+      "code": "688126.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688126.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1563,
+      "span": [
+        "2020-04-20",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 19.08,
+      "hfq_anchor_close": 19.12,
+      "scale": 0.997908,
+      "sha256": "420498c145b6eb35"
+    },
+    {
+      "code": "688183.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688183.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1367,
+      "span": [
+        "2021-02-25",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 95.25,
+      "hfq_anchor_close": 97.036,
+      "scale": 0.981594,
+      "sha256": "a48ec326316df947"
+    },
+    {
+      "code": "688223.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688223.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1141,
+      "span": [
+        "2022-01-26",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 3.66,
+      "hfq_anchor_close": 3.995,
+      "scale": 0.916145,
+      "sha256": "0ce2c969264e8629"
+    },
+    {
+      "code": "688256.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688256.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1513,
+      "span": [
+        "2020-07-20",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 915.0,
+      "hfq_anchor_close": 1364.85,
+      "scale": 0.670403,
+      "sha256": "458e07e49625c22c"
+    },
+    {
+      "code": "688271.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688271.SH.qfq.csv",
+      "status": "cached",
+      "n_rows": 1004
+    },
+    {
+      "code": "688303.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688303.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1267,
+      "span": [
+        "2021-07-22",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 16.36,
+      "hfq_anchor_close": 20.977,
+      "scale": 0.779902,
+      "sha256": "b40c2cba0d08c3a1"
+    },
+    {
+      "code": "688396.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688396.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 1609,
+      "span": [
+        "2020-02-27",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 49.2,
+      "hfq_anchor_close": 49.924,
+      "scale": 0.985498,
+      "sha256": "6065bf50b3714dfc"
+    },
+    {
+      "code": "688472.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688472.SH.qfq.csv",
+      "status": "ok",
+      "n_rows": 811,
+      "span": [
+        "2023-06-09",
+        "2026-10-16"
+      ],
+      "anchor_date": "2026-10-16",
+      "anchor_raw_close": 7.87,
+      "hfq_anchor_close": 8.177,
+      "scale": 0.962456,
+      "sha256": "3921a76e05683458"
+    },
+    {
+      "code": "688506.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688506.SH.qfq.csv",
+      "status": "no_quote",
+      "reason": "腾讯 hfq 无数据"
+    },
+    {
+      "code": "688521.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688521.SH.qfq.csv",
+      "status": "no_quote",
+      "reason": "腾讯 hfq 无数据"
+    },
+    {
+      "code": "688981.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688981.SH.qfq.csv",
+      "status": "no_quote",
+      "reason": "腾讯 hfq 无数据"
+    }
+  ]
+}
