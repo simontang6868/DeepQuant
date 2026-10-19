@@ -350,8 +350,9 @@ def _extract_metrics(document: dict) -> BacktestCompareMetrics:
         n_orders = n_filled = n_fills = n_closed = win_rate = None
 
     def _num(v):
-        # 校验 float/int，排除 NaN/Infinity（allow_inf_nan=False 已在 Pydantic 层）
-        if isinstance(v, (int, float)) and v is not bool:
+        # 校验 float/int，排除 bool（bool 是 int 子类，True 会被 Pydantic 转成 1.0，
+        # 让「胜率」凭空变成 100%），并排除 NaN/Infinity（allow_inf_nan=False 已在 Pydantic 层）
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
             return v
         return None
 

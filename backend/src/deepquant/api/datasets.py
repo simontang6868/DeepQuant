@@ -24,6 +24,7 @@ from deepquant.api.errors import (
     DatasetNotFoundError,
     DatasetUnavailableError,
 )
+from deepquant.data.instrument import normalize_display_name
 
 # 数据集标识符白名单：字母或数字开头，仅含字母/数字/点/下划线/连字符
 SYMBOL_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$")
@@ -43,6 +44,8 @@ class DatasetInfo:
     source_name: str | None
     source_sha256: str | None
     ingested_at: str | None
+    #: 标的显示名称（如「平安银行」）；缺失时为 None，界面回落到只显示 symbol。
+    display_name: str | None = None
 
 
 @dataclass(frozen=True)
@@ -123,6 +126,19 @@ def _parse_metadata(data: object, *, expected_symbol: str) -> tuple[DatasetInfo,
     source_sha256 = source.get("sha256")
     ingested_at = source.get("ingested_at")
 
+    # 名称是可选字段：缺失时数据集照常可用（历史元数据都没有这个键）。
+    # 但**存在而非法**必须报错——那种情况下界面会显示一串乱码或把控制字符打进 DOM，
+    # 与其展示可疑内容，不如明确列为不可用，让人去修元数据。
+    instrument = data.get("instrument")
+    display_name: str | None = None
+    if instrument is not None:
+        if not isinstance(instrument, dict):
+            return "元数据 instrument 字段不是对象"
+        try:
+            display_name = normalize_display_name(instrument.get("display_name"))
+        except ValueError as exc:
+            return f"元数据标的名称不可用：{exc}"
+
     info = DatasetInfo(
         symbol=symbol,
         rows=n_rows,
@@ -131,6 +147,7 @@ def _parse_metadata(data: object, *, expected_symbol: str) -> tuple[DatasetInfo,
         source_name=source_name if isinstance(source_name, str) else None,
         source_sha256=source_sha256 if isinstance(source_sha256, str) else None,
         ingested_at=ingested_at if isinstance(ingested_at, str) else None,
+        display_name=display_name,
     )
     return info, processed_name
 
@@ -204,3 +221,85 @@ def find_dataset(data_root: Path, symbol: str) -> tuple[DatasetInfo, Path]:
             f"数据集 {symbol!r} 已登记但不可用：{entry.reason}"
         )
     return entry
+
+
+# --------------------------------------------------------------------------- #
+# 不可用标的：解释「为什么列表里没有它」
+# --------------------------------------------------------------------------- #
+#
+# 背景：导入脚本会**拒绝**数据不干净的标的（例如前复权减法实现造成的负价），
+# 被拒的标的一次都不会进 metadata/，因此它在 /datasets 的 datasets 里没有、
+# 在 invalid_datasets 里也没有 —— 界面上就是「凭空少了一只」。
+#
+# 这不是 bug（拒绝是对的：修一修会得到一份与文档不对应的行情），但「悄悄少一只」
+# 会让人以为软件漏导入。所以这里把导入时留下的清单读出来，作为**解释性**信息展示。
+#
+# 三条边界，缺一条就会变成骗人：
+# 1. 只读 data_root 内的 pool_manifest.json（不放外部路径，也不联网）；
+# 2. 只取 status == "rejected" 的条目，且**当前仓库里确实不存在**该 symbol
+#    （若已存在，说明数据后来被补上了，此时以仓库为准，不再说它不可用）；
+# 3. reason 是**导入时**的判定结果，不是实时校验结论——字段名与文案都按此表述。
+
+#: 导入清单文件名（由 scripts/import_pool.py 写出）
+POOL_MANIFEST_NAME = "pool_manifest.json"
+
+#: 只有这个状态的条目才解释「为何缺失」
+_REJECTED_STATUS = "rejected"
+
+
+@dataclass(frozen=True)
+class UnavailableDataset:
+    """一只**导入时被拒绝**的标的（仅用于解释缺失原因，不参与任何计算）。"""
+
+    symbol: str
+    display_name: str | None
+    reason: str
+    checked_at: str | None
+
+
+def read_pool_manifest(data_root: Path) -> dict | None:
+    """读取导入清单；不存在或不可解析时返回 None（这不是错误，只是没有清单）。"""
+    path = _resolve_within(data_root, data_root / POOL_MANIFEST_NAME)
+    if path is None or not path.is_file():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError, UnicodeDecodeError):
+        return None
+    return data if isinstance(data, dict) else None
+
+
+def list_unavailable(data_root: Path, available: set[str]) -> list[UnavailableDataset]:
+    """列出被导入闸门拒绝、且当前仓库里确实没有的标的（按代码升序）。"""
+    manifest = read_pool_manifest(data_root)
+    if manifest is None:
+        return []
+
+    entries = manifest.get("symbols")
+    if not isinstance(entries, list):
+        return []
+
+    checked_at = manifest.get("generated_at")
+    checked_at = checked_at if isinstance(checked_at, str) else None
+
+    out: list[UnavailableDataset] = []
+    for item in entries:
+        if not isinstance(item, dict):
+            continue
+        if item.get("status") != _REJECTED_STATUS:
+            continue
+        symbol = item.get("code")
+        if not is_valid_symbol(symbol) or symbol in available:
+            continue
+        reason = item.get("reason")
+        reason = reason if isinstance(reason, str) and reason.strip() else "导入时被拒绝"
+        name: str | None = None
+        try:
+            name = normalize_display_name(item.get("name"))
+        except ValueError:
+            # 清单里的名称非法不影响「它为什么不可用」这个事实，宁可不显示名称
+            name = None
+        out.append(UnavailableDataset(symbol, name, reason, checked_at))
+
+    out.sort(key=lambda d: d.symbol)
+    return out

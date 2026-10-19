@@ -216,10 +216,11 @@ def generate_windows(
     if cfg.end_date is not None:
         mask = index <= cfg.end_date
         if mask.any():
-            # 找到最后一个满足条件的索引位置 + 1
-            end_idx = int(mask.sum())
-            # argmax 返回第一个 True 的位置，对最后一个 True 用类似方式：
-            last_true_pos = len(index) - 1 - int((~mask)[::-1].argmax())
+            # 找到最后一个 True 的位置 + 1（右边界，exclusive）。
+            # 注意：必须对 mask 本身取反转后的 argmax，不能用 (~mask)。
+            # 若写成 (~mask)[::-1].argmax()，当尾部全为 False 时反转后全 True，
+            # argmax 恒为 0 → last_true_pos 恒等于 len-1 → end_date 被完全忽略。
+            last_true_pos = len(index) - 1 - int(mask[::-1].argmax())
             end_idx = last_true_pos + 1
         else:
             return []

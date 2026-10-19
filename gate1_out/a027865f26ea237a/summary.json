@@ -1,0 +1,47 @@
+{
+  "prereg_version": "gate1-prereg-v1.3",
+  "prereg_sha256_prefix": "8b011551",
+  "main": {
+    "n": 48,
+    "mean_d": -0.003284333989033312,
+    "std_d": 0.048995431450109254,
+    "t_stat": -0.4644215323482675,
+    "p_value": 0.6444899768868412,
+    "win_ratio": 0.4791666666666667
+  },
+  "judgement": {
+    "verdict": "failure",
+    "label": "失败",
+    "n_positive_sensitivity": 2,
+    "rule_hits": [
+      "mean(d)=-0.003284 <= 0.0",
+      "t=-0.4644 < 1.0",
+      "敏感性正组数=2 <= 4"
+    ],
+    "insufficient_flags": []
+  },
+  "oos_window": [
+    "2021-01-01",
+    "2024-12-31"
+  ],
+  "n_months": 48,
+  "price_limit_rate": 0.1,
+  "elapsed_seconds": 99.7,
+  "excluded_symbols": [
+    "600809.SH"
+  ],
+  "control_excluded": {
+    "excluded_symbols": [
+      "600809.SH"
+    ],
+    "stats": {
+      "n": 48,
+      "mean_d": -0.003284333989033312,
+      "std_d": 0.048995431450109254,
+      "t_stat": -0.4644215323482675,
+      "p_value": 0.6444899768868412,
+      "win_ratio": 0.4791666666666667
+    },
+    "note": "预登记 §10.2 第三条：与 main 的 mean(d) 符号不一致即判证据不足"
+  }
+}

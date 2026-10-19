@@ -1,0 +1,25 @@
+{
+  "files": {
+    "monthly_paired.csv": {
+      "sha256": "74be84da8d315a8e89d1978aee5cff5b8c8b7e31afea74d0fae02eece95211d2",
+      "bytes": 3622
+    },
+    "monthly_paired_excluded.csv": {
+      "sha256": "74be84da8d315a8e89d1978aee5cff5b8c8b7e31afea74d0fae02eece95211d2",
+      "bytes": 3622
+    },
+    "sensitivity.csv": {
+      "sha256": "ecebcbb74e3e666c5e2d31c1d45e2a3c381e8dc7471ae14401fea33ed8ab8eb6",
+      "bytes": 2366
+    },
+    "summary.json": {
+      "sha256": "1f9b7f404db1c4068bb26ed6141e45fd6452d57ee9e827b9f3b4ae62671e5948",
+      "bytes": 1165
+    }
+  },
+  "prereg_version": "gate1-prereg-v1.3",
+  "price_limit_rate": 0.1,
+  "excluded_symbols": [
+    "600809.SH"
+  ]
+}

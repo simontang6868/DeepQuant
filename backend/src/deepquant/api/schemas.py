@@ -11,8 +11,9 @@
 
 from __future__ import annotations
 
+import re
 from datetime import date
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -27,6 +28,8 @@ from deepquant.backtest.config import (
 
 # 与 api.datasets.SYMBOL_PATTERN 保持一致（Pydantic 用字符串形式）
 IDENTIFIER_REGEX = r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
+# 列表元素级别的完整匹配版本（复用同一份字符集，避免两处漂移）
+_IDENTIFIER_FULL = re.compile(IDENTIFIER_REGEX)
 
 
 # --------------------------------------------------------------------------- #
@@ -46,6 +49,10 @@ class DatasetEntry(BaseModel):
         default=None, description="导入时原始 CSV 文件的 SHA-256 指纹"
     )
     ingested_at: str | None = None
+    display_name: str | None = Field(
+        default=None,
+        description="标的显示名称（如「平安银行」）；缺失时前端只显示 symbol",
+    )
 
 
 class InvalidDatasetEntry(BaseModel):
@@ -56,9 +63,41 @@ class InvalidDatasetEntry(BaseModel):
     reason: str
 
 
+class UnavailableDatasetEntry(BaseModel):
+    """导入时被闸门拒绝的标的：解释「为什么列表里没有它」。
+
+    与 ``InvalidDatasetEntry`` 的区别（两者不是一回事，混起来会误导）：
+    - ``invalid_datasets``：元数据**已存在**但坏了（文件缺失/字段非法），是数据仓库的现场状态；
+    - ``unavailable_datasets``：**从未入库**，导入时就被拒绝，是历史判定结果。
+    本字段只作解释，不参与任何计算，也不能被选为回测标的。
+    """
+
+    symbol: str
+    display_name: str | None = Field(default=None, description="导入清单里记录的标的名称")
+    reason: str = Field(description="导入时的拒绝原因码（如 invalid_price(131)）")
+    checked_at: str | None = Field(default=None, description="导入清单生成时间（ISO-8601）")
+
+
+class DatasetCoverage(BaseModel):
+    """数据覆盖声明：把「区间为什么到这里为止」写进接口，而不是只写在文档里。"""
+
+    start_date: str | None = Field(default=None, description="全部可用数据集里最早的起始日")
+    end_date: str | None = Field(default=None, description="全部可用数据集里最晚的结束日")
+    n_datasets: int
+    n_unavailable: int
+    note: str = Field(description="覆盖范围与已知偏差的说明（含池快照与幸存者偏差提示）")
+
+
 class DatasetListResponse(BaseModel):
     datasets: list[DatasetEntry]
     invalid_datasets: list[InvalidDatasetEntry]
+    unavailable_datasets: list[UnavailableDatasetEntry] = Field(
+        default_factory=list,
+        description="导入时被拒绝、因此不在可选列表里的标的（解释性信息）",
+    )
+    coverage: DatasetCoverage | None = Field(
+        default=None, description="数据覆盖范围与偏差说明；为空表示未计算"
+    )
 
 
 # --------------------------------------------------------------------------- #
@@ -380,4 +419,123 @@ class BacktestCompareResponse(BaseModel):
     # 整体警告：存在多少对不可公平比较 / 关键配置差异
     warnings: list[str] = Field(
         description="面向用户的差异说明，不包含服务端内部细节",
+    )
+
+
+# --------------------------------------------------------------------------- #
+# POST /portfolio-backtests  多标的组合回测
+# --------------------------------------------------------------------------- #
+
+#: 组合至少 2 只（1 只不是组合，是单标的——那应该走 /backtests）
+MIN_PORTFOLIO_SYMBOLS = 2
+#: 上限与预登记池规模同量级；再大不是算不动，而是「等权 top 20%」会退化成指数
+MAX_PORTFOLIO_SYMBOLS = 60
+
+
+class PortfolioBacktestRequest(BaseModel):
+    """组合回测请求。
+
+    默认值就是 ``scripts/gate1_run.py`` 的主实验口径（月度调仓 / 动量 60·5 /
+    等权 top 20% / min_assets=5 / 初始资金 100 万），因此界面用默认值跑出来的
+    结果与研究报告同口径。改任何一个字段都会在响应 ``limitations`` 里标注偏差。
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    dataset_symbols: list[str] = Field(
+        ...,
+        min_length=MIN_PORTFOLIO_SYMBOLS,
+        max_length=MAX_PORTFOLIO_SYMBOLS,
+        description="标的池（已登记的数据集标识），至少 2 只，不允许重复",
+    )
+    initial_cash: float = Field(gt=0, allow_inf_nan=False, description="组合初始资金")
+
+    selection: Literal["momentum_top", "equal_weight_all"] = Field(
+        default="momentum_top",
+        description="选股口径：momentum_top=截面动量取前 top_fraction；"
+        "equal_weight_all=全池等权（此时 top_fraction 被强制为 1.0）",
+    )
+    top_fraction: float = Field(
+        default=0.2, gt=0, le=1, allow_inf_nan=False, description="每期取前多少比例（等权）"
+    )
+    lookback: int = Field(default=60, ge=2, le=250, description="动量回看窗口（交易日）")
+    skip: int = Field(
+        default=5, ge=0, le=60, description="窗口末端跳过的交易日（剔除短期反转）"
+    )
+    min_assets: int = Field(
+        default=5,
+        ge=1,
+        description="可参与排序的标的少于此数时当期空仓（预登记 §5 = 5）",
+    )
+    max_weight_per_asset: float | None = Field(
+        default=None,
+        gt=0,
+        le=1,
+        allow_inf_nan=False,
+        description="单标的上限；None 表示不限制（等权时即 1/k）",
+    )
+    allocation: Literal["weights", "lots"] = Field(
+        default="weights",
+        description="weights=按权重记账（主口径）；lots=整手约束（可执行性检验）",
+    )
+
+    start_date: date | None = Field(default=None, description="回测起始日（闭区间）")
+    end_date: date | None = Field(default=None, description="回测结束日（闭区间）")
+
+    # --- 费用与滑点（与 /backtests 同一组模拟占位默认值）---
+    fee_source: str = Field(
+        default="simulation_placeholder",
+        min_length=1,
+        max_length=64,
+        description="费用来源标注；默认 simulation_placeholder 表示模拟占位费率",
+    )
+    commission_rate: float = Field(default=SIMULATION_COMMISSION_RATE, ge=0, allow_inf_nan=False)
+    min_commission: float = Field(default=SIMULATION_MIN_COMMISSION, ge=0, allow_inf_nan=False)
+    stamp_duty_rate: float = Field(default=SIMULATION_STAMP_DUTY_RATE, ge=0, allow_inf_nan=False)
+    transfer_fee_rate: float = Field(
+        default=SIMULATION_TRANSFER_FEE_RATE, ge=0, allow_inf_nan=False
+    )
+    slippage_buy: float = Field(default=SIMULATION_SLIPPAGE_BUY, ge=0, allow_inf_nan=False)
+    slippage_sell: float = Field(default=SIMULATION_SLIPPAGE_SELL, ge=0, allow_inf_nan=False)
+
+    @model_validator(mode="after")
+    def _validate_combination(self) -> "PortfolioBacktestRequest":
+        cleaned = [s.strip() for s in self.dataset_symbols]
+        if any(s == "" for s in cleaned):
+            raise ValueError("dataset_symbols 中不得包含空字符串")
+        # 逐个校验标识符字符集：路径分隔符、盘符、``..`` 在这一步就被拒，
+        # 不会走到文件系统再靠 resolve 兜底（纵深防御，两道都要在）。
+        bad = [s for s in cleaned if not _IDENTIFIER_FULL.match(s)]
+        if bad:
+            raise ValueError(f"dataset_symbols 含非法标识符：{bad[:3]}")
+        if len(set(cleaned)) != len(cleaned):
+            raise ValueError("dataset_symbols 不得重复（同一只标的不能占两个权重位）")
+        self.dataset_symbols = cleaned
+
+        if self.skip >= self.lookback:
+            raise ValueError(
+                f"skip({self.skip}) 必须小于 lookback({self.lookback})，否则窗口两端点位置重叠"
+            )
+        if self.start_date is not None and self.end_date is not None:
+            if self.start_date > self.end_date:
+                raise ValueError("start_date 不能晚于 end_date")
+        # 池子比 min_assets 还小时，整段回测会「每期空仓」——那看起来像一条
+        # 平稳的现金曲线，而不是一个错误。宁可在这里拒绝，也不让用户拿到
+        # 一份「跑了但什么都没买」的结果。
+        if self.min_assets > len(self.dataset_symbols):
+            raise ValueError(
+                f"min_assets={self.min_assets} 大于标的数 {len(self.dataset_symbols)}："
+                "每期都凑不满可排序标的，整段回测会全程空仓。"
+                "请多选标的，或把 min_assets 降到不超过标的数。"
+            )
+        return self
+
+
+class PortfolioBacktestResponse(BaseModel):
+    """组合回测响应：外层 API 元信息 + 结果文档（结构见 api/portfolio.py）。"""
+
+    api: ApiInfo
+    result: dict[str, Any] = Field(
+        description="schema_version=portfolio-v1；含 config/period/coverage/datasets/"
+        "selection/targets/states/fills/blocked/performance/limitations 等"
     )

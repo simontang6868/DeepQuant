@@ -70,9 +70,12 @@ def validate_daily_extended(
         _check_date_range_extent(report, dates, expected_range)
 
     # ---- B. 价格跳变 ----
-    price_df = df_sorted[["close"]].astype("float64").dropna()
-    if len(price_df) >= 2:
-        _check_price_jumps(report, price_df, price_jump_threshold)
+    # 必须取 Series（单层方括号）。写成 df[["close"]] 会得到单列 DataFrame，
+    # 布尔掩码 pct_change[pct_change > threshold] 走 DataFrame 语义（同形、NaN 填充），
+    # len() 恒等于行数（或行数-1），导致「零跳变也报警」且计数失真。
+    close_series = df_sorted["close"].astype("float64").dropna()
+    if len(close_series) >= 2:
+        _check_price_jumps(report, close_series, price_jump_threshold)
 
     # ---- 成交量异常 ----
     _check_volume_near_zero(report, df_sorted, zero_volume_ratio_threshold)
@@ -177,6 +180,13 @@ def _check_price_jumps(
     刚好在两者之上，大部分合法涨跌停不会触发，但连涨多日也会触发。
     所有跳变都只是 WARNING，交给人工判断。
     """
+    if not isinstance(close_series, pd.Series):
+        # 显式拒绝：传 DataFrame 会让布尔掩码语义悄悄变成「同形 NaN 填充」，
+        # 计数从「跳变个数」退化为「行数」，是最难察觉的一类静默错误。
+        raise TypeError(
+            f"close_series 必须是 pd.Series，收到 {type(close_series)!r}；"
+            "取列请用 df['close']（单层方括号），不要用 df[['close']]"
+        )
     pct_change = close_series.pct_change().dropna().abs()
     jumps = pct_change[pct_change > threshold]
     if len(jumps) > 0:
