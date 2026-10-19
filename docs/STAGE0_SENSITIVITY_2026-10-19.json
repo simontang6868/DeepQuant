@@ -1,0 +1,124 @@
+{
+  "generated_at": "2026-10-19T21:50:52",
+  "status": "POST_HOC_NOT_USED_FOR_VERDICT",
+  "warning": "本表是看到主结果之后做的稳健性检查，不参与判定。判定已在全样本上由预登记判据机械执行过一次，此处不得改判。",
+  "layout_desc": {
+    "mult": "乘性前复权（主口径，预登记 v1.1）",
+    "legacy": "腾讯加性前复权（敏感性，预登记 v1.0）"
+  },
+  "verdict_by_layout": {
+    "mult": "S1",
+    "legacy": "S1"
+  },
+  "rows_by_layout": {
+    "mult": [
+      {
+        "filter": "基准",
+        "segment": "全样本",
+        "note": "预登记判据在此口径上执行过一次",
+        "n_A": 1028,
+        "n_B": 3719,
+        "median_A": -0.015245,
+        "median_B": -0.029925,
+        "delta_median": -0.01468,
+        "p_one_sided_B_less": 2e-06,
+        "p_two_sided": 4e-06,
+        "rank_biserial": -0.0938
+      },
+      {
+        "filter": "基准",
+        "segment": "2017-2020 起始窗口",
+        "note": "时间切分上段",
+        "n_A": 458,
+        "n_B": 2184,
+        "median_A": -0.009145,
+        "median_B": -0.031706,
+        "delta_median": -0.022561,
+        "p_one_sided_B_less": 0.0,
+        "p_two_sided": 0.0,
+        "rank_biserial": -0.1663
+      },
+      {
+        "filter": "基准",
+        "segment": "2021-2024 起始窗口",
+        "note": "时间切分下段",
+        "n_A": 570,
+        "n_B": 1535,
+        "median_A": -0.021106,
+        "median_B": -0.026428,
+        "delta_median": -0.005322,
+        "p_one_sided_B_less": 0.189492,
+        "p_two_sided": 0.378983,
+        "rank_biserial": -0.0249
+      },
+      {
+        "filter": "剔除 B 股（200*/900*）",
+        "segment": "全样本",
+        "note": "B 股流动性与 A 股不可比 / 预登记判据在此口径上执行过一次",
+        "n_A": 1028,
+        "n_B": 3507,
+        "median_A": -0.015245,
+        "median_B": -0.031187,
+        "delta_median": -0.015942,
+        "p_one_sided_B_less": 0.0,
+        "p_two_sided": 1e-06,
+        "rank_biserial": -0.1004
+      }
+    ],
+    "legacy": [
+      {
+        "filter": "基准",
+        "segment": "全样本",
+        "note": "预登记判据在此口径上执行过一次",
+        "n_A": 994,
+        "n_B": 3967,
+        "median_A": -0.020323,
+        "median_B": -0.030244,
+        "delta_median": -0.009921,
+        "p_one_sided_B_less": 0.002934,
+        "p_two_sided": 0.005867,
+        "rank_biserial": -0.0564
+      },
+      {
+        "filter": "基准",
+        "segment": "2017-2020 起始窗口",
+        "note": "时间切分上段",
+        "n_A": 436,
+        "n_B": 2338,
+        "median_A": -0.013579,
+        "median_B": -0.035407,
+        "delta_median": -0.021828,
+        "p_one_sided_B_less": 1.7e-05,
+        "p_two_sided": 3.5e-05,
+        "rank_biserial": -0.1247
+      },
+      {
+        "filter": "基准",
+        "segment": "2021-2024 起始窗口",
+        "note": "时间切分下段",
+        "n_A": 558,
+        "n_B": 1629,
+        "median_A": -0.027113,
+        "median_B": -0.022968,
+        "delta_median": 0.004146,
+        "p_one_sided_B_less": 0.690053,
+        "p_two_sided": 0.619895,
+        "rank_biserial": 0.014
+      },
+      {
+        "filter": "剔除 B 股（200*/900*）",
+        "segment": "全样本",
+        "note": "B 股流动性与 A 股不可比 / 预登记判据在此口径上执行过一次",
+        "n_A": 994,
+        "n_B": 3746,
+        "median_A": -0.020323,
+        "median_B": -0.031065,
+        "delta_median": -0.010742,
+        "p_one_sided_B_less": 0.001308,
+        "p_two_sided": 0.002616,
+        "rank_biserial": -0.062
+      }
+    ]
+  },
+  "key_finding": "两套复权口径给出同一结构：全样本均为 S1；偏差集中在 2017-2020 起始窗口（乘性 −2.26pp / 加性 −2.18pp），2021-2024 起始窗口都很弱（乘性 −0.53pp、p=0.19 / 加性 +0.41pp、p=0.69）。口径修正把全样本幅度从 −0.99pp 抬到 −1.47pp（加性低估约 1/3），但未改变结论方向与时间结构。"
+}

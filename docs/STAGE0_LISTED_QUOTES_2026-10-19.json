@@ -1,0 +1,618 @@
+{
+  "generated_at": "2026-10-19T21:20:05",
+  "purpose": "阶段 0a：补齐 50 只 csi300 样本的在市股行情，与 262 只退市股组成时点无关池",
+  "source": "akshare stock_zh_a_hist_tx(qfq), start=20160101, end=20261016",
+  "pool_file": "data/step75/universe/csi300_50.json",
+  "counts": {
+    "pool_size": 50,
+    "usable": 50,
+    "downloaded": 47,
+    "cached": 3,
+    "no_quote": 0,
+    "fail": 0,
+    "total_rows": 119116
+  },
+  "note": "行情文件在 data/stage0/listed/（不入库）。本清单入库，供复现时按其重建。取不到的不做任何填充。",
+  "symbols": [
+    {
+      "code": "000001.SZ",
+      "name": "平安银行",
+      "board": "深主板",
+      "status": "cached",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/000001.SZ.qfq.csv"
+    },
+    {
+      "code": "000301.SZ",
+      "name": "东方盛虹",
+      "board": "深主板",
+      "status": "cached",
+      "n_rows": 2447,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/000301.SZ.qfq.csv"
+    },
+    {
+      "code": "000568.SZ",
+      "name": "泸州老窖",
+      "board": "深主板",
+      "status": "cached",
+      "n_rows": 2600,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/000568.SZ.qfq.csv"
+    },
+    {
+      "code": "000657.SZ",
+      "name": "中钨高新",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2570,
+      "span": [
+        "2016-02-25",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/000657.SZ.qfq.csv"
+    },
+    {
+      "code": "000807.SZ",
+      "name": "云铝股份",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2591,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/000807.SZ.qfq.csv"
+    },
+    {
+      "code": "000977.SZ",
+      "name": "浪潮信息",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2605,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/000977.SZ.qfq.csv"
+    },
+    {
+      "code": "001979.SZ",
+      "name": "招商蛇口",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2602,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/001979.SZ.qfq.csv"
+    },
+    {
+      "code": "002074.SZ",
+      "name": "国轩高科",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2595,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/002074.SZ.qfq.csv"
+    },
+    {
+      "code": "002241.SZ",
+      "name": "歌尔股份",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/002241.SZ.qfq.csv"
+    },
+    {
+      "code": "002415.SZ",
+      "name": "海康威视",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2616,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/002415.SZ.qfq.csv"
+    },
+    {
+      "code": "002493.SZ",
+      "name": "荣盛石化",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/002493.SZ.qfq.csv"
+    },
+    {
+      "code": "002625.SZ",
+      "name": "光启技术",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2455,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/002625.SZ.qfq.csv"
+    },
+    {
+      "code": "002916.SZ",
+      "name": "深南电路",
+      "board": "深主板",
+      "status": "downloaded",
+      "n_rows": 2141,
+      "span": [
+        "2017-12-13",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/002916.SZ.qfq.csv"
+    },
+    {
+      "code": "300059.SZ",
+      "name": "东方财富",
+      "board": "创业板",
+      "status": "downloaded",
+      "n_rows": 2613,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/300059.SZ.qfq.csv"
+    },
+    {
+      "code": "300316.SZ",
+      "name": "晶盛机电",
+      "board": "创业板",
+      "status": "downloaded",
+      "n_rows": 2610,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/300316.SZ.qfq.csv"
+    },
+    {
+      "code": "300442.SZ",
+      "name": "润泽科技",
+      "board": "创业板",
+      "status": "downloaded",
+      "n_rows": 2602,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/300442.SZ.qfq.csv"
+    },
+    {
+      "code": "300661.SZ",
+      "name": "圣邦股份",
+      "board": "创业板",
+      "status": "downloaded",
+      "n_rows": 2264,
+      "span": [
+        "2017-06-06",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/300661.SZ.qfq.csv"
+    },
+    {
+      "code": "300896.SZ",
+      "name": "爱美客",
+      "board": "创业板",
+      "status": "downloaded",
+      "n_rows": 1463,
+      "span": [
+        "2020-09-28",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/300896.SZ.qfq.csv"
+    },
+    {
+      "code": "600000.SH",
+      "name": "浦发银行",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2600,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600000.SH.qfq.csv"
+    },
+    {
+      "code": "600018.SH",
+      "name": "上港集团",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2615,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600018.SH.qfq.csv"
+    },
+    {
+      "code": "600028.SH",
+      "name": "中国石化",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600028.SH.qfq.csv"
+    },
+    {
+      "code": "600048.SH",
+      "name": "保利发展",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2611,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600048.SH.qfq.csv"
+    },
+    {
+      "code": "600104.SH",
+      "name": "上汽集团",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600104.SH.qfq.csv"
+    },
+    {
+      "code": "600176.SH",
+      "name": "中国巨石",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2606,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600176.SH.qfq.csv"
+    },
+    {
+      "code": "600233.SH",
+      "name": "圆通速递",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2529,
+      "span": [
+        "2016-04-11",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600233.SH.qfq.csv"
+    },
+    {
+      "code": "600415.SH",
+      "name": "小商品城",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600415.SH.qfq.csv"
+    },
+    {
+      "code": "600489.SH",
+      "name": "中金黄金",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2601,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600489.SH.qfq.csv"
+    },
+    {
+      "code": "600570.SH",
+      "name": "恒生电子",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2616,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600570.SH.qfq.csv"
+    },
+    {
+      "code": "600674.SH",
+      "name": "川投能源",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600674.SH.qfq.csv"
+    },
+    {
+      "code": "600809.SH",
+      "name": "山西汾酒",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2606,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600809.SH.qfq.csv"
+    },
+    {
+      "code": "600900.SH",
+      "name": "长江电力",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2601,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600900.SH.qfq.csv"
+    },
+    {
+      "code": "600938.SH",
+      "name": "中国海油",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 1087,
+      "span": [
+        "2022-04-21",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/600938.SH.qfq.csv"
+    },
+    {
+      "code": "601009.SH",
+      "name": "南京银行",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2616,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601009.SH.qfq.csv"
+    },
+    {
+      "code": "601066.SH",
+      "name": "中信建投",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2019,
+      "span": [
+        "2018-06-20",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601066.SH.qfq.csv"
+    },
+    {
+      "code": "601127.SH",
+      "name": "赛力斯",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2485,
+      "span": [
+        "2016-06-15",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601127.SH.qfq.csv"
+    },
+    {
+      "code": "601211.SH",
+      "name": "国泰海通",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2599,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601211.SH.qfq.csv"
+    },
+    {
+      "code": "601319.SH",
+      "name": "中国人保",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 1918,
+      "span": [
+        "2018-11-16",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601319.SH.qfq.csv"
+    },
+    {
+      "code": "601398.SH",
+      "name": "工商银行",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601398.SH.qfq.csv"
+    },
+    {
+      "code": "601628.SH",
+      "name": "中国人寿",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601628.SH.qfq.csv"
+    },
+    {
+      "code": "601689.SH",
+      "name": "拓普集团",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2608,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601689.SH.qfq.csv"
+    },
+    {
+      "code": "601800.SH",
+      "name": "中国交建",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601800.SH.qfq.csv"
+    },
+    {
+      "code": "601872.SH",
+      "name": "招商轮船",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2518,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601872.SH.qfq.csv"
+    },
+    {
+      "code": "601899.SH",
+      "name": "紫金矿业",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2612,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601899.SH.qfq.csv"
+    },
+    {
+      "code": "601988.SH",
+      "name": "中国银行",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/601988.SH.qfq.csv"
+    },
+    {
+      "code": "603288.SH",
+      "name": "海天味业",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 2618,
+      "span": [
+        "2016-01-04",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/603288.SH.qfq.csv"
+    },
+    {
+      "code": "603893.SH",
+      "name": "瑞芯微",
+      "board": "沪主板",
+      "status": "downloaded",
+      "n_rows": 1623,
+      "span": [
+        "2020-02-07",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/603893.SH.qfq.csv"
+    },
+    {
+      "code": "688009.SH",
+      "name": "中国通号",
+      "board": "科创板",
+      "status": "downloaded",
+      "n_rows": 1754,
+      "span": [
+        "2019-07-22",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/688009.SH.qfq.csv"
+    },
+    {
+      "code": "688082.SH",
+      "name": "盛美上海",
+      "board": "科创板",
+      "status": "downloaded",
+      "n_rows": 1189,
+      "span": [
+        "2021-11-18",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/688082.SH.qfq.csv"
+    },
+    {
+      "code": "688271.SH",
+      "name": "联影医疗",
+      "board": "科创板",
+      "status": "downloaded",
+      "n_rows": 1004,
+      "span": [
+        "2022-08-22",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/688271.SH.qfq.csv"
+    },
+    {
+      "code": "688981.SH",
+      "name": "中芯国际",
+      "board": "科创板",
+      "status": "downloaded",
+      "n_rows": 1509,
+      "span": [
+        "2020-07-16",
+        "2026-10-16"
+      ],
+      "file": "data/stage0/listed/688981.SH.qfq.csv"
+    }
+  ]
+}
