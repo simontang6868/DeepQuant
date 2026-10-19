@@ -17,6 +17,7 @@
 from __future__ import annotations
 
 import importlib.util
+import json
 from pathlib import Path
 
 import pytest
@@ -191,3 +192,45 @@ def test_冻结参数与research脚本一致(probe):
     assert g.max_combinations == 50
     assert probe.INITIAL_CASH == 100_000.0
     assert (probe.START, probe.END) == ("2017-01-01", "2024-12-31")
+
+
+# --------------------------------------------------- 适用范围声明（防硬编码）
+
+
+def test_scope_note_跟随清单而不是写死池规模(probe, tmp_path, monkeypatch):
+    """scope_note 必须从在市清单的 pool_file 读池名。
+
+    这是实际踩过的坑：v1.2 把在市组从 50 只扩到 298 只，但 scope_note 是硬编码字符串，
+    结果 json 里仍写着「在市值仅 50 只」，与结果自相矛盾。这里钉死它必须跟着清单走。
+    """
+    manifest = tmp_path / "listed.json"
+    manifest.write_text(
+        json.dumps({"pool_file": "data/step75/universe/csi300_full.json"}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(probe, "LISTED_MANIFEST", manifest)
+
+    text = probe.scope_note({"A_listed": 289, "B_delisted": 229})
+    assert "csi300_full.json" in text
+    assert "289" in text and "229" in text
+    # 写死的池规模不得再出现
+    assert "仅 50 只" not in text
+    assert "312 只" not in text
+
+
+def test_scope_note_声明不是PIT且不是全市场(probe, tmp_path, monkeypatch):
+    """两条措辞红线（预登记 v1.2 §6）：不得称 PIT 池、不得称全市场池。"""
+    manifest = tmp_path / "listed.json"
+    manifest.write_text(json.dumps({"pool_file": "x.json"}, ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setattr(probe, "LISTED_MANIFEST", manifest)
+
+    text = probe.scope_note({"A_listed": 1, "B_delisted": 1})
+    assert "不是 PIT 池" in text
+    assert "全市场池" in text and "不得称为" in text
+
+
+def test_scope_note_清单缺失时不崩(probe, tmp_path, monkeypatch):
+    """清单读不到时给「未知池」，不能抛异常把整个结果 json 打断。"""
+    monkeypatch.setattr(probe, "LISTED_MANIFEST", tmp_path / "nope.json")
+    text = probe.scope_note({"A_listed": 0, "B_delisted": 0})
+    assert "未知池" in text
