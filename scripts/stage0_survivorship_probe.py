@@ -329,6 +329,26 @@ def decide(stats: dict, mw: dict) -> tuple[str, str]:
                   f"不显著≠偏差不存在，只代表这批数据测不出来")
 
 
+def scope_note(active: dict) -> str:
+    """结果 json 里的适用范围声明。
+
+    必须跟着**实际装配**走，不能写死池子规模 —— v1.2 把在市组从 50 只扩到 298 只，
+    写死的字符串会让 json 与报告自相矛盾。池路径取自在市清单的 pool_file 字段。
+    """
+    try:
+        pool = json.loads(LISTED_MANIFEST.read_text(encoding="utf-8")).get("pool_file", "未知池")
+    except Exception:
+        pool = "未知池"
+    n_a = active.get("A_listed", 0)
+    n_b = active.get("B_delisted", 0)
+    return (
+        f"在市侧取自 {pool} 中实际跑出窗口的 {n_a} 只（当日成分向前倒推，不是 PIT 池）；"
+        f"退市侧为 2017 年后全量中实际跑出窗口的 {n_b} 只。"
+        f"两者并集仍远小于全市场（约 5,575 只在市 + 262 退市），不得称为『全市场池』，"
+        f"不得据此表述为『策略在全市场无效』。本结果不构成策略有效性结论，也不触发 PIT 采购。"
+    )
+
+
 # ---------------------------------------------------------------- 主流程
 
 
@@ -342,6 +362,8 @@ def main() -> None:
     ap.add_argument("--layout", choices=["legacy", "mult"], default=LAYOUT,
                     help="行情口径：legacy=加性前复权原文件；mult=乘性前复权（默认）")
     ap.add_argument("--jobs", type=int, default=1, help="并行进程数（结果与串行逐位一致）")
+    ap.add_argument("--listed-manifest", default="",
+                    help="在市组行情清单：留空=50 只抽样那份；v1.2 传 298 只全量那份")
     args = ap.parse_args()
     LAYOUT = args.layout
 
@@ -349,6 +371,11 @@ def main() -> None:
     prereg_raw = prereg_path.read_bytes()
     prereg = json.loads(prereg_raw)
     prereg_sha = hashlib.sha256(prereg_raw).hexdigest()
+
+    # 在市组清单可换：v1.1 用 50 只抽样，v1.2 用 298 只全量
+    global LISTED_MANIFEST
+    if args.listed_manifest:
+        LISTED_MANIFEST = Path(args.listed_manifest)
 
     members, notes, missing = load_members()
     if args.only == "A":
@@ -461,10 +488,7 @@ def main() -> None:
         "skipped": skip_table,
         "verdict": verdict,
         "verdict_reason": reason,
-        "scope_note": (
-            "在市值仅 50 只（csi300 当日成分等距抽样），退市侧为 2017 年后全量 262 只；"
-            "并集 312 只不得称为『全市场池』。本结果不构成策略有效性结论，也不触发 PIT 采购。"
-        ),
+        "scope_note": scope_note(active),
         "records": [
             {k: v for k, v in r.items() if k != "windows"} | {
                 "valid_windows": len(valid_rets(r)),

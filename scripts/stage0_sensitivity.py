@@ -24,8 +24,12 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = {
-    "mult": ("docs/STAGE0_RESULTS_MULT_2026-10-19.json", "乘性前复权（主口径，预登记 v1.1）"),
-    "legacy": ("docs/STAGE0_RESULTS_2026-10-19.json", "腾讯加性前复权（敏感性，预登记 v1.0）"),
+    "v12_full": ("docs/STAGE0_RESULTS_V12_2026-10-19.json",
+                 "乘性前复权 + csi300 全量 298 只（主口径，预登记 v1.2）"),
+    "v11_sampled": ("docs/STAGE0_RESULTS_MULT_2026-10-19.json",
+                    "乘性前复权 + csi300 抽样 50 只（v1.1）"),
+    "legacy_add": ("docs/STAGE0_RESULTS_2026-10-19.json",
+                   "腾讯加性前复权 + 抽样 50 只（v1.0，仅作口径对照）"),
 }
 OUT = ROOT / "docs" / "STAGE0_SENSITIVITY_2026-10-19.json"
 PROBE = ROOT / "scripts" / "stage0_survivorship_probe.py"
@@ -105,10 +109,17 @@ def main() -> None:
         "verdict_by_layout": verdicts,
         "rows_by_layout": blocks,
         "key_finding": (
-            "两套复权口径给出同一结构：全样本均为 S1；偏差集中在 2017-2020 起始窗口"
-            "（乘性 −2.26pp / 加性 −2.18pp），2021-2024 起始窗口都很弱"
-            "（乘性 −0.53pp、p=0.19 / 加性 +0.41pp、p=0.69）。"
-            "口径修正把全样本幅度从 −0.99pp 抬到 −1.47pp（加性低估约 1/3），但未改变结论方向与时间结构。"
+            "三套口径给出同一结构：全样本均为 S1；偏差集中在前段。"
+            "v1.2（298 只）全样本 −1.67pp / p<1e-16 / rb −0.109；"
+            "v1.1（50 只）−1.47pp / 2e-6 / −0.094 —— A 组中位从 −1.52% 移到 −1.32%（+0.20pp），"
+            "说明 50 只抽样略偏悲观，且抽样偏差不足以改变结论。"
+            "后段(2021-2024)：v1.2 显著（−1.03pp, p=8e-4, rb −0.056），v1.1 不显著（−0.53pp, p=0.19）。"
+            "差别不是单一原因：(a) A 组后段窗口 570→3348，功效提升；"
+            "(b) 2021 年本身 Δ≈0（两版都为正，是数据事实不是抽样）；"
+            "(c) 2023 年 50 只样本的 A 中位比 289 只低 1.13pp，属抽样假象。"
+            "因此 v1.1 的『后段测不出』应改读为『功效不足 + 局部抽样假象』，不得读作『偏差在 2021 年后消失』。"
+            "另：legacy_add 后段 Δ=+0.41pp / p=0.69 / rb +0.014，符号被翻转 —— "
+            "加性口径不仅压缩组间差，还会反转时段结构，不得用于跨年份对比。"
         ),
     }
     OUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
