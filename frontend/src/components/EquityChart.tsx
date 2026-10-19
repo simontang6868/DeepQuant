@@ -6,6 +6,7 @@
  * 绘图数据按日期升序排列（utils/chartData.ts 纯函数）。
  */
 
+import type { Ref } from "react";
 import {
   CartesianGrid,
   Line,
@@ -19,7 +20,14 @@ import type { BacktestResult } from "../api/types";
 import { toEquitySeries } from "../utils/chartData";
 import { formatMoney } from "../utils/format";
 
-export function EquityChart({ result }: { result: BacktestResult }) {
+interface EquityChartProps {
+  result: BacktestResult;
+  /** 可选的容器转发引用：供「导出 PNG」定位已渲染的 SVG，不传则不可导出。
+   *  用 `Ref` 而非 `RefObject`：React 19 的 `ref` 属性签名更宽，只接受它能接受的类型。 */
+  containerRef?: Ref<HTMLDivElement>;
+}
+
+export function EquityChart({ result, containerRef }: EquityChartProps) {
   const series = toEquitySeries(result.performance?.equity_curve);
 
   return (
@@ -29,7 +37,7 @@ export function EquityChart({ result }: { result: BacktestResult }) {
         <div className="empty-state">暂无曲线数据（回测可能未产生任何账户估值点）。</div>
       ) : (
         <>
-          <div className="chart-box" data-testid="equity-chart">
+          <div className="chart-box" data-testid="equity-chart" ref={containerRef}>
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={series} margin={{ top: 10, right: 20, bottom: 5, left: 5 }}>
                 <CartesianGrid strokeDasharray="3 3" />

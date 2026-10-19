@@ -4,7 +4,17 @@
  * 全部字段来自真实响应，缺失时显示空状态，不虚构数据。
  */
 
+import { useRef } from "react";
 import type { BacktestResponse } from "../api/types";
+import type { ExportAction } from "../utils/export";
+import { chartPngAction, csvAction, jsonAction } from "../utils/export";
+import { slugify, timestampTag } from "../utils/export";
+import {
+  accountStatesTable,
+  fillsTable,
+  ordersTable,
+  summaryTable,
+} from "../utils/exportTables";
 import { AccountStatesTable } from "./AccountStatesTable";
 import { DailyReturnsChart } from "./DailyReturnsChart";
 import { DataQualityNotice } from "./DataQualityNotice";
@@ -12,9 +22,11 @@ import { DrawdownCard } from "./DrawdownCard";
 import { DrawdownChart } from "./DrawdownChart";
 import { EquityChart } from "./EquityChart";
 import { FillsTable } from "./FillsTable";
+import { NoFillNotice } from "./NoFillNotice";
 import { OrdersTable } from "./OrdersTable";
 import { PerformanceCards } from "./PerformanceCards";
 import { ReproducibilityPanel } from "./ReproducibilityPanel";
+import { ResultExportBar } from "./ResultExportBar";
 import { formatDate, formatMoney } from "../utils/format";
 import { execPriceRuleLabel } from "../utils/labels";
 
@@ -34,6 +46,30 @@ function FeeDisclaimer({ feeSource }: { feeSource: string }) {
 export function ResultView({ response }: { response: BacktestResponse }) {
   const { result, api } = response;
   const config = result.config;
+  const chartRef = useRef<HTMLDivElement>(null);
+
+  // 文件名自带口径：脱离界面后，光看文件名也知道跑的是什么
+  const baseName = [
+    "deepquant",
+    slugify(config.symbol),
+    slugify(result.strategy?.name ?? "strategy"),
+    result.period.start?.slice(0, 10) ?? "start",
+    result.period.end?.slice(0, 10) ?? "end",
+    timestampTag(),
+  ].join("_");
+
+  const exportActions: ExportAction[] = [
+    csvAction(baseName, "summary", "绩效摘要 CSV", summaryTable(result)),
+    csvAction(baseName, "fills", "成交明细 CSV", fillsTable(result)),
+    csvAction(baseName, "orders", "订单明细 CSV", ordersTable(result)),
+    csvAction(baseName, "states", "账户逐日状态 CSV", accountStatesTable(result)),
+    chartPngAction(baseName, "equity", "资产曲线 PNG", chartRef),
+    jsonAction(baseName, "full", "完整结果 JSON", response),
+  ];
+
+  const exportNote =
+    "CSV 为纯数据（缺失留空、比例保留原始小数），方便直接进 Excel / pandas；" +
+    "完整口径（模拟费率、执行价规则、数据指纹）请用「完整结果 JSON」。";
 
   return (
     <div data-testid="result-view">
@@ -95,9 +131,11 @@ export function ResultView({ response }: { response: BacktestResponse }) {
       </div>
 
       <DataQualityNotice result={result} />
+      <NoFillNotice result={result} />
       <FeeDisclaimer feeSource={config.fee_source} />
+      <ResultExportBar baseName={baseName} actions={exportActions} note={exportNote} />
       <PerformanceCards result={result} />
-      <EquityChart result={result} />
+      <EquityChart result={result} containerRef={chartRef} />
       <DailyReturnsChart result={result} />
       <DrawdownCard result={result} />
       <DrawdownChart result={result} />

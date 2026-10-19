@@ -900,3 +900,116 @@ details summary {
 .repro-level .hint {
   margin: 4px 0 0;
 }
+
+/* ---------- 组合回测：标的多选 ---------- */
+
+.portfolio-picker-tools {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.portfolio-picker-tools input[type="search"] {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 9px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #fff;
+  color: var(--text);
+}
+
+.portfolio-picker-tools .btn {
+  flex: 0 0 auto;
+  padding: 5px 10px;
+  font-size: 12.5px;
+}
+
+/* 50+ 项的长列表必须限高：否则配置文件把整页撑长，结果区被挤到看不见 */
+.symbol-picker {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 4px;
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.symbol-picker li label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 3px 4px;
+  font-size: 12.5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.symbol-picker li label:hover {
+  background: var(--surface-muted, #f4f6fa);
+}
+
+.symbol-picker input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.symbol-picker .symbol-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.limitation-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.limitation-list li {
+  margin-bottom: 4px;
+}
+
+/* ---------- 结果导出 ---------- */
+
+.export-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+
+.export-actions .btn {
+  font-size: 12.5px;
+  padding: 6px 11px;
+}
+
+.export-feedback {
+  margin: 8px 0 0;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  background: #eef4ff;
+  color: #1a3f8f;
+}
+
+.export-feedback-error {
+  background: #fdecec;
+  color: #a12626;
+}
