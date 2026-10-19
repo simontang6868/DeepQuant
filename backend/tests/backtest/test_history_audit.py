@@ -70,6 +70,14 @@ def test_fee_ordering_puts_broker_reference_first():
         tiers["simulation_placeholder"]["round_trip_cost"]
 
 
+@pytest.mark.skipif(
+    not ha.HIST_SUMMARY.exists() or not ha.V3_ROOT.exists(),
+    reason=(
+        "审计对象是本机历史产物（b50_dist / b50_v3），未入库；"
+        "干净环境无对象可审。需要时用 DEEPQUANT_HIST_SUMMARY / "
+        "DEEPQUANT_HIST_V3_ROOT 指向产物目录后再跑。"
+    ),
+)
 def test_audit_does_not_compute_returns():
     """审计脚本的自我约束：输出里必须显式声明「不产生收益数字」。"""
     report = ha.run()

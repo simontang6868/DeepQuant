@@ -469,15 +469,25 @@ def test_main_dry_run_with_exclusion_runs_no_backtest(tmp_path, monkeypatch):
         raise AssertionError("dry-run 不得调用 run_one（那会算出收益）")
 
     monkeypatch.setattr(g1, "run_one", _boom)
+    # 断言「运行前后输出目录一致」，而不是「输出目录不存在」。
+    # 后者把结论建立在工作区恰好干净之上：一旦有人真跑过一次，目录留下，
+    # 这条就会假失败，而真正要守的东西——dry-run 没改动任何东西——反而没测到。
+    before = _gate1_out_snapshot()
     code = g1.main(["--data-root", str(tmp_path), "--exclude-symbols", "600001.SH"])
     assert code == 0
-    assert not (REPO_ROOT / "gate1_out").exists() or _gate1_out_untouched()
+    assert _gate1_out_snapshot() == before
 
 
-def _gate1_out_untouched() -> bool:
-    """dry-run 不得在默认输出目录留下任何文件（该目录只有在真跑时才存在）。"""
+def _gate1_out_snapshot() -> dict[str, tuple[int, int]]:
+    """默认输出目录快照：相对路径 → (字节数, mtime_ns)。"""
     d = REPO_ROOT / "gate1_out"
-    return not d.exists() or not any(d.iterdir())
+    if not d.exists():
+        return {}
+    return {
+        str(p.relative_to(d)): (p.stat().st_size, p.stat().st_mtime_ns)
+        for p in d.rglob("*")
+        if p.is_file()
+    }
 
 
 def test_write_outputs_persists_control_evidence(tmp_path):

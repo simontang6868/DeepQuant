@@ -22,8 +22,20 @@ from deepquant.backtest.config import BacktestConfig
 from deepquant.backtest.fee_presets import (
     FEE_PRESET_SIMULATION, FEE_PRESET_REFERENCE, FEE_PRESET_HIGH_COST,
 )
+from deepquant.market.rules import (
+    PRICE_LIMIT_MODES,
+    a_share_price_limit_rate,
+    a_share_rules,
+)
 from deepquant.strategies.ma_cross import MaCrossStrategy
 from deepquant.strategies.mean_reversion import MeanReversionStrategy
+from deepquant.performance.window_records import (
+    ExperimentContext,
+    build_records as build_window_records,
+    make_experiment_id,
+    summarize_records as summarize_window_records,
+    write_records as write_window_records,
+)
 from deepquant.walkforward.parameter_selection import GridSearchConfig, run_walkforward_v2
 from deepquant.walkforward.sensitivity import run_sensitivity_and_risk_audit
 
@@ -80,12 +92,57 @@ DATA_ROOT.mkdir(parents=True, exist_ok=True)
 #   1. 全部老股负价在 2016-09-29 前结束 → 2017 起 **5/6** 标的干净可用；
 #   2. 8 年日线正好达到外部惯例的 walk-forward 下限（TradingView 口径 ≥8 年）；
 #   3. 宁德时代（300750）仍会被闸门拦下 —— 这是**正确结果**：它 2018-06 上市初期
-#      2 行 qfq 负价，且原研究 JSON 自记「1593/1594 行跳变 > 15%」，本就是坏数据。
+#      2 行 qfq 负价（ERROR 级 invalid_price），且原研究 JSON 自记「1593/1594 行跳变 > 15%」，本就是坏数据。
+#      注：那句「1593/1594 行跳变」是校验器缺陷产物（count = 行数-1），真实为 25 次 / 1594 行；
+#      阻断依据是 2 行非正价，不是跳变次数。2026-10-19 更正，见 docs/PRICE_JUMP_IMPACT_AUDIT.md C6。
 #
 # 需要旧口径对照时用环境变量，例如 DEEPQUANT_START=20180101（7 年）或 20100101（15 年，仅 1 只可用）。
 START = os.environ.get("DEEPQUANT_START", "20170101")
 END = os.environ.get("DEEPQUANT_END", "20241231")
 INITIAL_CASH = 100000.0
+
+# --- 涨跌停（B18 / D2 修复）---
+#
+# 历史缺陷（docs/B18_RESEARCH_VERDICT_2026-10-18.md §3.10 D2）：
+#   此前 `BacktestConfig(symbol=..., initial_cash=...)` **未传 market_rules**，
+#   走默认 `a_share_rules()`，其 `price_limit_rate` 默认 None
+#   → `limit_prices()` 返 None → `open_fill_block_reason()` 跳过涨跌停判定。
+#   → **全部历史研究（含 48 只 288 组）从未模拟涨跌停。**
+#
+# 为什么必须修：对已测的两个族影响方向未知；但对横截面动量影响明确且负面——
+# 赢家组合常含涨停股，实盘买不到，不建模会把动量收益**系统性高估**。
+#
+# 三种模式：
+#   board（默认）  按板块取比例：创业板/科创板 20%，其余 10%
+#   flat           一律 10%（仅用于消融对照）
+#   off            不启用（**仅用于消融对照，不得作为主结果**）
+#
+# 已知简化（必须随结论声明）：
+#   1. 创业板 2020-08-24 前实际为 10%，本模型统一按 20% 处理
+#      → 早期创业板标的的判定偏松（更少被拦），可能高估其可成交性；
+#   2. `MarketRules` 是静态配置，引擎不支持按日期切换比例（改它属核心交易规则，未获批）；
+#   3. 不模拟排队、部分成交、盘中打开与 ST 5% 档（池已剔除 ST）。
+_PRICE_LIMIT_MODE = os.environ.get("DEEPQUANT_PRICE_LIMIT", "board")
+if _PRICE_LIMIT_MODE not in PRICE_LIMIT_MODES:
+    raise SystemExit(
+        f"DEEPQUANT_PRICE_LIMIT={_PRICE_LIMIT_MODE!r} 非法；只允许 "
+        f"{' / '.join(PRICE_LIMIT_MODES)}"
+    )
+
+
+def price_limit_rate_for(code: str) -> float | None:
+    """该标的实际生效的涨跌幅比例（None 仅出现在 off 模式）。
+
+    真正的解析逻辑在 ``market.rules.a_share_price_limit_rate``（可单测）；
+    本函数只把研究脚本的环境变量模式接进去，避免研究脚本里藏一份平行实现。
+    """
+    return a_share_price_limit_rate(code, mode=_PRICE_LIMIT_MODE)
+
+
+def market_rules_for(code: str):
+    """构造该标的的 MarketRules（显式传比例，绝不复用「未配置」默认）。"""
+    return a_share_rules(price_limit_rate=price_limit_rate_for(code))
+
 
 # min_trades=2：样本充分性门槛（判据是**交易次数**，不是收益）→ 不构成 R2/R11 择优。
 # 取值 2 的结构性理由：IS 段 150 个交易日 / 网格最慢均线 60 日 → 至少容纳一个完整往返。
@@ -116,7 +173,12 @@ INITIAL_CASH = 100000.0
 # **v1 与 v2 的收益数字不可直接比较**：OOS 越长，单窗口覆盖的行情段越长，
 # 中位数天然更极端（ma −0.58% → −2.15%）。这是口径差，不是策略变差。
 # 落盘的 design 里带 design_version，任何跨版本对比都必须先按版本分组。
-DESIGN_VERSION = "oos75-v2"
+#
+# v3 = OOS 75 + **启用涨跌停**（B18 / D2 修复，2026-10-18）：
+#      显式传 market_rules，按板块取 10% / 20%。涨跌停会拦截部分成交，
+#      因此 **v3 与 v1/v2 的成交笔数与收益均不可直接比较**——
+#      v2 → v3 的差值同时包含「拦截效应」和「样本变化」，不是策略改进。
+DESIGN_VERSION = "oos75-v3"
 DEFAULT_OOS_WINDOW = 75
 DEFAULT_MA_SLOW_MAX = 60
 
@@ -143,6 +205,16 @@ MR_GRID = GridSearchConfig(
     fast_candidates=(10, 20, 30, 50), slow_candidates=(15, 20, 25),   # ×10 → threshold 1.5/2.0/2.5
     min_train_periods=150, min_oos_periods=OOS_WINDOW, min_trades=2, max_combinations=50,
 )
+
+# --- W1 逐窗明细（B-1）---
+#
+# 为什么不默认开启：历史 288 组结果是在没有逐窗明细的情况下产出的，B20 因此
+# 只能做「分布级对照」而不能配对。默认关闭保证既有口径的产出**一字不变**；
+# 设 DEEPQUANT_W1_OUT=<目录> 才落 windows.csv，并且每个实验单独一个子目录
+# （experiment_id 由内容哈希派生，不同配置不会互相覆盖）。
+W1_OUT = os.environ.get("DEEPQUANT_W1_OUT") or None
+W1_INDEX: list[dict] = []
+
 
 def ma_factory(p):
     return MaCrossStrategy(fast_window=int(p["fast_window"]), slow_window=int(p["slow_window"]))
@@ -265,6 +337,9 @@ for tencent_code, full_code, name, industry in STOCKS:
 # --- Walk-Forward ---
 all_results = []
 skipped = []
+# 实际生效的涨跌停比例必须逐标的落盘：batch 里创业板与主板比例不同，
+# 只写一个全局值会让后来的读者误以为全部 10%。
+resolved_price_limits = {}
 for dr in download_results:
     if not dr["ok"] or dr["n_rows"] < 400:
         continue
@@ -285,13 +360,95 @@ for dr in download_results:
     df_wf = df.copy().set_index("date")[["open", "high", "low", "close", "volume"]]
     df_wf.index.name = None
 
+    # 涨跌停配置按标的解析一次，三档费率共用（费率档只改费用，不该改成交约束）
+    _market_rules = market_rules_for(full_code)
+    resolved_price_limits[full_code] = price_limit_rate_for(full_code)
+
     for strat_name, grid, factory in STRATEGIES:
         for preset in PRESETS:
             try:
-                base_cfg = BacktestConfig(symbol=full_code, initial_cash=INITIAL_CASH)
+                base_cfg = BacktestConfig(
+                    symbol=full_code,
+                    initial_cash=INITIAL_CASH,
+                    market_rules=_market_rules,
+                )
                 cfg = preset.apply(base_cfg)
-                specs, wf_results, summary = run_walkforward_v2(df_wf, cfg, strategy_factory=factory, grid_config=grid)
+                # capture_trades 跟随 W1：不落明细时不采集，内存与历史口径不变
+                specs, wf_results, summary = run_walkforward_v2(
+                    df_wf, cfg, strategy_factory=factory, grid_config=grid,
+                    capture_trades=bool(W1_OUT),
+                )
                 audit = run_sensitivity_and_risk_audit(wf_results, grid_config=grid)
+
+                # --- W1：逐窗明细落盘（仅 DEEPQUANT_W1_OUT 时执行）---
+                # 放在汇总之前：即使下面构造 summary 出错，明细也已经先落地。
+                if W1_OUT:
+                    _exp_id = make_experiment_id(
+                        design_version=DESIGN_VERSION,
+                        symbol=full_code,
+                        strategy_name=strat_name,
+                        fee_source=preset.fee_source,
+                        price_limit_mode=_PRICE_LIMIT_MODE,
+                        dataset_digest=dr["sha256"],
+                        request_range=(START, END),
+                        params_grid={
+                            "fast_candidates": grid.fast_candidates,
+                            "slow_candidates": grid.slow_candidates,
+                            "min_train_periods": grid.min_train_periods,
+                            "min_oos_periods": grid.min_oos_periods,
+                            "min_trades": grid.min_trades,
+                            "max_combinations": grid.max_combinations,
+                        },
+                    )
+                    _ctx = ExperimentContext.from_config(
+                        cfg,
+                        experiment_id=_exp_id,
+                        design_version=DESIGN_VERSION,
+                        strategy_name=strat_name,
+                        # 取第一个非空版本：选择失败的窗口 strategy_version 为空串，
+                        # 用第一条会把整组版本号写成空，事后无法判断策略版本
+                        strategy_version=next(
+                            (r.strategy_version for r in wf_results if r.strategy_version), ""
+                        ),
+                        price_limit_mode=_PRICE_LIMIT_MODE,
+                        dataset_digest=dr["sha256"],
+                        dataset_rows=dr["n_rows"],
+                        dataset_start=dr["date_min"],
+                        dataset_end=dr["date_max"],
+                        universe_id=(UNIVERSE_META or {}).get("universe_id") or "step75-manual-6",
+                        universe_size=len(STOCKS),
+                        oos_window=OOS_WINDOW,
+                        step=OOS_WINDOW,
+                    )
+                    # 基准只用 OOS 段行情（不含预热段）：预热期不是持有期
+                    _frames = {
+                        spec.window_index: df_wf.loc[spec.oos_start:spec.oos_end]
+                        for spec in specs
+                    }
+                    _records = build_window_records(_ctx, wf_results, _frames)
+                    try:
+                        _path = write_window_records(_records, W1_OUT)
+                        _w1_note = f"saved:{_path}"
+                    except RuntimeError as _exc:
+                        # 同实验重跑但内容不同 → 拒绝覆盖（R5）。不静默吞掉：
+                        # 打印并在索引里留痕，主流程继续跑其它组。
+                        print(f"  [W1-CONFLICT] {_exp_id}: {_exc}", flush=True)
+                        _w1_note = f"conflict:{_exp_id}"
+                    _w1 = summarize_window_records(_records)
+                    W1_INDEX.append({
+                        "experiment_id": _exp_id,
+                        "symbol": full_code,
+                        "strategy": strat_name,
+                        "fee_source": preset.fee_source,
+                        "n_windows": len(_records),
+                        "n_paired": _w1.get("n_paired"),
+                        "median_paired_excess": _w1.get("median_paired_excess"),
+                        "median_strategy_minus_median_benchmark":
+                            _w1.get("median_strategy_minus_median_benchmark"),
+                        "status_counts": _w1.get("status_counts"),
+                        "write": _w1_note,
+                    })
+
                 all_results.append({
                     "symbol": full_code, "name": dr["name"], "industry": dr["industry"],
                     "strategy": strat_name, "fee_source": preset.fee_source,
@@ -329,8 +486,8 @@ out = {
     # 数据溯源：区间与门槛必须落盘，否则 7 年 / 15 年、None / 2 的结果无法区分
     "request_range": {"start": START, "end": END},
     "design": {
-        # 口径版本：v1=OOS50 / v2=OOS75。默认值一改就必须 bump，
-        # 否则 v1 的历史结果与 v2 的新结果会被当成同一尺度比较。
+        # 口径版本：v1=OOS50 / v2=OOS75 / v3=OOS75+涨跌停。默认值一改就必须 bump，
+        # 否则不同口径的结果会被当成同一尺度比较。
         "design_version": DESIGN_VERSION,
         "min_trades": 2,
         "min_train_periods": 150,
@@ -344,6 +501,30 @@ out = {
         "initial_cash": INITIAL_CASH,
         "history_years": round((pd.Timestamp(END) - pd.Timestamp(START)).days / 365.25, 2),
     },
+    # 涨跌停配置（B18 / D2 修复）：必须落盘「实际生效值」，否则无法判断
+    # 某份结果是启用前还是启用后跑的 —— 两者成交笔数不可比。
+    "market_rules": {
+        "price_limit_mode": _PRICE_LIMIT_MODE,
+        "price_limit_enabled": _PRICE_LIMIT_MODE != "off",
+        # 逐标的实际比例：board 模式下创业板/科创板为 0.2，主板为 0.1
+        "price_limit_rate_by_symbol": resolved_price_limits,
+        "notes": [
+            "涨跌停为简化模型：按标的所属板块比例（主板 ±10%、创业板/科创板 ±20%）"
+            "与 0.01 最小变动单位计算边界价，仅以开盘价是否触及边界做保守判定；"
+            "不模拟排队、部分成交、盘中打开与不同板块差异。"
+        ],
+        "limitations": [
+            "创业板 2020-08-24 前实际涨跌幅为 10%，本模型统一按 20% 处理"
+            "（早期创业板判定偏松，可能高估其可成交性）",
+            "MarketRules 为静态配置，不支持按日期切换比例",
+            "仅以开盘价是否触及边界做判定，不模拟排队、部分成交、盘中打开",
+            "不区分 ST 5% 档（股票池已剔除 ST）",
+        ],
+        "off_mode_warning": (
+            "price_limit_mode=off 时不得将本结果作为主结果引用；"
+            "该模式只用于量化「涨跌停拦截效应」的消融对照"
+        ),
+    },
     "stocks": download_results,
     # 扩样池的来源与偏差声明（默认 6 只池时为 None）。
     # 偏差必须跟结果一起落盘：否则下游只看到「50 只的收益中位数」，
@@ -356,6 +537,27 @@ out = {
 out_path = DATA_ROOT / "step75_research_summary.json"
 out_path.write_text(json.dumps(out, indent=2, default=str))
 print(f"\n[SAVED] {out_path}")
+
+# --- W1 索引（逐窗明细的总目录，不含任何收益数字本身）---
+if W1_OUT:
+    _w1_dir = Path(W1_OUT)
+    _w1_dir.mkdir(parents=True, exist_ok=True)
+    _index_path = _w1_dir / "w1_index.json"
+    _index_path.write_text(json.dumps({
+        "schema_version": "w1-window-record-v1",
+        "run_at": out["run_at"],
+        "design_version": DESIGN_VERSION,
+        "request_range": {"start": START, "end": END},
+        "price_limit_mode": _PRICE_LIMIT_MODE,
+        "n_experiments": len(W1_INDEX),
+        "experiments": W1_INDEX,
+        "note": (
+            "每个 experiment_id 对应一个子目录的 windows.csv（逐窗一行）。"
+            "median_paired_excess 是逐窗差的中位数，"
+            "median_strategy_minus_median_benchmark 是两个中位数之差，两者不相等。"
+        ),
+    }, indent=2, ensure_ascii=False, default=str))
+    print(f"[SAVED] {_index_path}（{len(W1_INDEX)} 个实验）")
 
 # --- 终端汇总 ---
 from collections import defaultdict

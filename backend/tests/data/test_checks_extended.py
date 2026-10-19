@@ -19,9 +19,9 @@
 1. `count` 报的是「行数 - 1」而不是真实违规次数；
 2. 更严重：掩码 DataFrame 的 `len()` 恒 > 0，**即使一行跳变都没有也会误报** price_jump。
 
-下面用两个 `xfail(strict=True)` 把这两条固化成可执行证据：
-现在它们是「预期失败」（套件保持绿），一旦有人修好，XPASS + strict 会直接报错，
-**强制删除 xfail 标记** —— 缺陷不会悄悄溜走，也不会被伪装修好。
+下面两条原本用 `xfail(strict=True)` 固化（缺陷已在 2026-10-19 修复，标记已摘除）：
+现在它们是**普通断言**（回归守卫）：缺陷 2026-10-19 已修，此处不得再退回 xfail ——
+一旦实现退化，这两条会直接报红。
 
 最小复现自包含（不依赖任何外部 CSV）：100 行、3 处跳变，真实超阈值 5 次，count 报 99。
 """
@@ -97,10 +97,10 @@ def _flat_frame(n: int = 60, price: float = 100.0) -> pd.DataFrame:
 def test_clean_data_is_valid_without_errors():
     """干净数据（走平价、正常量、已声明复权口径）不应产生任何 ERROR。
 
-    注意：受下方 xfail 记录的已知缺陷影响，此处**仍会**冒出一条 price_jump WARNING
+    注意：修复前受「取到 DataFrame」缺陷影响，此处**曾会**冒出一条 price_jump WARNING
     （实测：60 行走平价报「59 个跳变 > 15%，最大 0.00%」——59 = 行数-1，最大幅度 0%，
     自相矛盾，正是缺陷的直观证据）。因此这里只断言无任何 ERROR、整体 is_valid，
-    「不应产生 price_jump」这一正确行为由下面那条 xfail 单独固化。
+    「不应产生 price_jump」这一正确行为由下面那条断言单独守卫。
     """
     rep = validate_daily_extended(_flat_frame(), adjust_status="qfq")
     assert rep.is_valid
@@ -258,25 +258,14 @@ def test_check_price_jumps_with_series_gives_correct_count():
 
 
 def test_check_price_jumps_with_series_no_jump_no_issue():
-    """传 Series 且无跳变时不产生 issue（对照：走 DataFrame 时会误报，见下方 xfail）。"""
+    """传 Series 且无跳变时不产生 issue（对照：走 DataFrame 时曾误报，见下方两条守卫）。"""
     rep = ValidationReport()
     _check_price_jumps(rep, pd.Series([100.0] * 50, dtype="float64"), JUMP_THRESHOLD)
     assert not rep.has_code("price_jump")
 
 
-# ---- 缺陷固化：两条 xfail(strict=True) ----
+# ---- P0-2 回归守卫（原 xfail，2026-10-19 缺陷修复后转正）----
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "已知缺陷（只测不修，修 bug 属判断类，交回 B 线）："
-        "validate_daily_extended 里 df_sorted[[\"close\"]] 取到的是 DataFrame，"
-        "使 _check_price_jumps 内 `pct_change[pct_change > threshold]` 走 DataFrame 布尔掩码语义"
-        "（返回同形 NaN 填充的 DataFrame，而非过滤后的子集），len(jumps) 因此等于行数-1。"
-        f"最小复现：{REPRO_ROWS} 行、3 处跳变，真实超阈值 {TRUE_JUMP_COUNT} 次，却报告 count={BUGGY_COUNT}。"
-        "修复后本测试 XPASS，strict=True 会令其报错，强制移除本标记。"
-    ),
-)
 def test_price_jump_count_should_equal_true_violations():
     """count 应等于真实超阈值次数（5），而非行数-1（99）。"""
     rep = validate_daily_extended(_frame(_repro_closes()))
@@ -285,15 +274,6 @@ def test_price_jump_count_should_equal_true_violations():
     assert issue.count == TRUE_JUMP_COUNT
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "同一缺陷的更严重后果：掩码 DataFrame 的 len() 恒 > 0，"
-        "因此**即使零跳变也会误报 price_jump**（count = 行数-1）。"
-        "这正是历史研究 JSON 里「1594 行 1593 个跳变」= 行数-1 的由来——那不是真实跳变数。"
-        "修复后本测试 XPASS，strict=True 会令其报错，强制移除本标记。"
-    ),
-)
 def test_flat_prices_should_not_report_price_jump():
     """全程走平（零跳变）不应产生 price_jump。"""
     rep = validate_daily_extended(_flat_frame(n=100), adjust_status="qfq")

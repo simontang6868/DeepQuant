@@ -133,24 +133,19 @@ def test_generate_windows_end_date_branch_reached():
     """end_date 落在区间内 ⇒ 裁剪分支（217-225）被执行且不抛错（覆盖守卫行）。
 
     正确的边界裁剪语义另由 test_generate_windows_end_date_respects_boundary
-    以 xfail(strict=True) 钉死——详见该测试注释中记录的 BUG。
+    由下面的 test_generate_windows_end_date_respects_boundary 逐条断言。
     """
     cfg = _cfg(end_date=IDX[40])
     windows = generate_windows(IDX, cfg)
     assert windows  # 分支被触达，返回了窗口
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason=(
-        "BUG: generate_windows 的 end_date 裁剪在 __init__.py:222 用 (~mask) 而非 mask 求 "
-        "last_true_pos，导致 end_idx 恒等于 len(index)，end_date 被完全忽略。"
-        "正确行为应为『末窗 oos_end ≤ end_date』。修复后本用例将由 XPASS 触发 strict 报错，"
-        "提示移除本标记。"
-    ),
-)
 def test_generate_windows_end_date_respects_boundary():
-    """end_date 落在区间内 ⇒ 末窗 oos_end 必须 ≤ end_date（正确语义，当前因 BUG 失败）。"""
+    """end_date 落在区间内 ⇒ 末窗 oos_end 必须 ≤ end_date。
+
+    回归守卫：该语义曾因 `( ~mask )[::-1].argmax()` 恒取末位而完全失效（P0-1），
+    修复后此处改为普通断言 —— 再退化会直接报红，而不是变成 xfail。
+    """
     cfg = _cfg(end_date=IDX[40])
     windows = generate_windows(IDX, cfg)
     assert windows
