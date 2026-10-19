@@ -1,0 +1,40 @@
+# 本文件自身也必须字节稳定（否则策略文件自己被转换，语义虽不变但会污染 diff）
+.gitattributes -text
+
+# 行尾归一化策略
+# 背景：Windows 上 git 默认 core.autocrlf=true，会把仓库里的 LF 在 checkout 时转成 CRLF。
+# 对普通源码无影响，但对「按字节做 sha256 冻结」的文档是致命的：
+# 同一个 commit，Windows clone 出来哈希与冻结记录不符，契约测试必红。
+# 因此下面这些文件显式关闭行尾转换（-text），保证任何平台取到的字节完全一致。
+
+# ---- 预登记文档与其冻结哈希（sha256 按字节计算） ----
+docs/GATE1_PREREGISTRATION.md        -text
+docs/GATE1_PREREGISTRATION.sha256    -text
+docs/CAPITAL_TIER_PREREG_2026-10-19.md     -text
+docs/CAPITAL_TIER_PREREG_2026-10-19.sha256 -text
+docs/OOS_PREREG_2026-10-19.md        -text
+docs/OOS_PREREG_2026-10-19.sha256    -text
+docs/OOS_RECALC_PREREG_2026-10-19.md        -text
+docs/OOS_RECALC_PREREG_2026-10-19.sha256    -text
+docs/OOS_RECALC_PREREG_V1.1_2026-10-19.md        -text
+docs/OOS_RECALC_PREREG_V1.1_2026-10-19.sha256    -text
+docs/stage0_prereg_2026-10-19.md        -text
+docs/stage0_prereg_2026-10-19.sha256    -text
+docs/stage0_prereg_v1.1_2026-10-19.md        -text
+docs/stage0_prereg_v1.1_2026-10-19.sha256    -text
+docs/stage0_prereg_v1.2_2026-10-19.md        -text
+docs/stage0_prereg_v1.2_2026-10-19.sha256    -text
+
+# ---- 原始实验产物（只读归档，不得因 checkout 改变一个字节） ----
+gate1_out/** -text
+
+# ---- 二进制：禁止任何形式的转换 ----
+*.parquet binary
+*.zip      binary
+*.png      binary
+*.jpg      binary
+*.ico      binary
+*.woff     binary
+*.woff2    binary
+*.db       binary
+*.sqlite3  binary
