@@ -1,0 +1,257 @@
+{
+  "spec": "capital-tier-2026-10-19",
+  "spec_version": "1.0",
+  "spec_sha256": "ce2feed8350fe2eb3865da21721a7cd4dd280d08c9e88899d15050f0f0b98484",
+  "generated_at": "2026-10-19T22:53:51",
+  "cash_ladder": [
+    100000,
+    200000,
+    300000,
+    500000,
+    1000000,
+    1500000
+  ],
+  "n_symbols": 6,
+  "rows": [
+    {
+      "cash": 100000,
+      "independent_account": {
+        "budget_per_symbol": 100000,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "0/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 1,
+        "absent": [
+          "600519.SH"
+        ],
+        "worst_one_lot": 215871.51,
+        "feasible": false
+      },
+      "equal_weight_portfolio": {
+        "budget_per_symbol": 16666.67,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "0/5",
+          "600519.SH": "0/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 2,
+        "absent": [
+          "300750.SZ",
+          "600519.SH"
+        ],
+        "worst_one_lot": 215871.51,
+        "feasible": false
+      }
+    },
+    {
+      "cash": 200000,
+      "independent_account": {
+        "budget_per_symbol": 200000,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "5/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 0,
+        "absent": [],
+        "worst_one_lot": 215871.51,
+        "feasible": false
+      },
+      "equal_weight_portfolio": {
+        "budget_per_symbol": 33333.33,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "1/5",
+          "600519.SH": "0/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 1,
+        "absent": [
+          "600519.SH"
+        ],
+        "worst_one_lot": 215871.51,
+        "feasible": false
+      }
+    },
+    {
+      "cash": 300000,
+      "independent_account": {
+        "budget_per_symbol": 300000,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "5/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 0,
+        "absent": [],
+        "worst_one_lot": 215871.51,
+        "feasible": true
+      },
+      "equal_weight_portfolio": {
+        "budget_per_symbol": 50000.0,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "0/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 1,
+        "absent": [
+          "600519.SH"
+        ],
+        "worst_one_lot": 215871.51,
+        "feasible": false
+      }
+    },
+    {
+      "cash": 500000,
+      "independent_account": {
+        "budget_per_symbol": 500000,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "5/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 0,
+        "absent": [],
+        "worst_one_lot": 215871.51,
+        "feasible": true
+      },
+      "equal_weight_portfolio": {
+        "budget_per_symbol": 83333.33,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "0/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 1,
+        "absent": [
+          "600519.SH"
+        ],
+        "worst_one_lot": 215871.51,
+        "feasible": false
+      }
+    },
+    {
+      "cash": 1000000,
+      "independent_account": {
+        "budget_per_symbol": 1000000,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "5/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 0,
+        "absent": [],
+        "worst_one_lot": 215871.51,
+        "feasible": true
+      },
+      "equal_weight_portfolio": {
+        "budget_per_symbol": 166666.67,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "5/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 0,
+        "absent": [],
+        "worst_one_lot": 215871.51,
+        "feasible": false
+      }
+    },
+    {
+      "cash": 1500000,
+      "independent_account": {
+        "budget_per_symbol": 1500000,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "5/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 0,
+        "absent": [],
+        "worst_one_lot": 215871.51,
+        "feasible": true
+      },
+      "equal_weight_portfolio": {
+        "budget_per_symbol": 250000.0,
+        "deployable_windows_by_symbol": {
+          "000001.SZ": "5/5",
+          "000858.SZ": "5/5",
+          "300750.SZ": "5/5",
+          "600519.SH": "5/5",
+          "600900.SH": "5/5",
+          "601318.SH": "5/5"
+        },
+        "n_absent": 0,
+        "absent": [],
+        "worst_one_lot": 215871.51,
+        "feasible": true
+      }
+    }
+  ],
+  "picked": {
+    "independent_account": 300000,
+    "equal_weight_portfolio": 1500000
+  },
+  "prediction_check": {
+    "checks": {
+      "P1_independent_tier": {
+        "predicted": 300000,
+        "actual": 300000,
+        "held": true
+      },
+      "P2_equal_weight_tier": {
+        "predicted": 1500000,
+        "actual": 1500000,
+        "held": true
+      },
+      "P3_at_200k_still_infeasible": {
+        "predicted": true,
+        "actual": true,
+        "held": true
+      },
+      "P4_at_30k_effective_pool_is_6": {
+        "predicted": 6,
+        "actual": 6,
+        "held": true
+      }
+    },
+    "n_held": 4,
+    "n_total": 4
+  },
+  "note": "规则只用价格与整手成本；收益数字不参与选档。"
+}

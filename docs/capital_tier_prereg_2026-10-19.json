@@ -1,0 +1,77 @@
+{
+  "spec_id": "capital-tier-2026-10-19",
+  "version": "1.0",
+  "frozen_at": "2026-10-19T22:53:00+08:00",
+  "status": "FROZEN_BEFORE_COMPUTATION",
+  "purpose": "给「茅台买不起」这件事定一个资金档，规则只用价格、不看任何收益数字",
+  "question": "在 A 股 100 股整手 + 已冻结的 6 只名义池下，初始资金取哪一档，才能让每只标的在每个样本外窗口都真的能建仓？",
+  "scope_limits": [
+    "只回答资金档，不重跑、不回改 docs/OOS_RESULTS_2026-10-19.json 与 docs/OOS_RESULTS_RECALC_2026-10-19.json",
+    "不改变已冻结的样本外判定 R4_INCONCLUSIVE",
+    "本档位只对未来的规格生效；历史结果的资金仍是 10 万"
+  ],
+  "disclosure": "本规格写于 2026-10-19 22:53。此时我已经从有效池闸门的输出里看到 600519 的最贵一手约 23.6 万元（这是价格，不是收益）。规则本身不使用任何收益率、超额、p 值，也不允许按「哪档结果好看」挑档——档位由下面的机械规则唯一确定，先写后算。",
+  "data": {
+    "caliber": "乘性前复权（multiplicative qfq），6 只池裁剪到与 v1 池完全相同的行",
+    "source_dir": "data/oos_recalc_pool_2017",
+    "pool": [
+      {"code": "600519.SH", "name": "贵州茅台"},
+      {"code": "000001.SZ", "name": "平安银行"},
+      {"code": "601318.SH", "name": "中国平安"},
+      {"code": "300750.SZ", "name": "宁德时代"},
+      {"code": "000858.SZ", "name": "五粮液"},
+      {"code": "600900.SH", "name": "长江电力"}
+    ],
+    "oos_cut": "2024-12-31",
+    "walkforward": {"train_periods": 150, "oos_window": 75, "step": 75},
+    "price_basis_note": "qfq 的一手成本是真实成本的下界；因此「qfq 判买不起」可靠，「qfq 判买得起」只是必要不充分"
+  },
+  "ladder": [100000, 200000, 300000, 500000, 1000000, 1500000],
+  "ladder_note": "档位固定为 10/20/30/50/100/150 万，不允许在观测后插入新档（插入即为事后调参）",
+  "policies": {
+    "independent_account": {
+      "budget_per_symbol": "cash",
+      "rationale": "walkforward 逐只独立回测，整笔资金可全部投入一只；这是历史研究实际用的口径，只是从没写明",
+      "select_rule": "取 ladder 中最小的档位，使 6 只名义标的在全部样本外窗口中 strict 一手成本 ≤ 该档；无解则取 ladder 最大档并报 FAIL"
+    },
+    "equal_weight_portfolio": {
+      "budget_per_symbol": "cash / N",
+      "rationale": "若把 6 只当成一个真实组合，每只只能拿到 1/N 的预算",
+      "select_rule": "取 ladder 中最小的档位，使 cash / N ≥ 池内最贵标的的 strict 一手成本；无解则取 ladder 最大档并报 FAIL"
+    }
+  },
+  "criterion": {
+    "affordability": "strict：窗口内（训练段与样本外段分别判）最高收盘价 × 100 股 ≤ 每只预算",
+    "deployable_window": "训练段与样本外段都满足 affordability",
+    "tier_feasible": "该档下，6 只标的在全部 5 个纯样本外窗口里都 deployable"
+  },
+  "predictions_before_computation": {
+    "P1_independent_tier": {
+      "value": 300000,
+      "reason": "最贵一手约 23.6 万（价格已知），ladder 里第一个 ≥ 它的档是 30 万"
+    },
+    "P2_equal_weight_tier": {
+      "value": 1500000,
+      "reason": "6 × 23.6 万 ≈ 141.5 万，ladder 里第一个 ≥ 它的档是 150 万"
+    },
+    "P3_at_200k_still_infeasible": {
+      "value": true,
+      "reason": "20 万 < 23.6 万，茅台仍买不起 → 若这一条被证伪，说明我对价格的读数有误"
+    },
+    "P4_at_30k_effective_pool_is_6": {
+      "value": 6,
+      "reason": "30 万下 6 只在 5 个样本外窗口全部 deployable"
+    }
+  },
+  "scoring": "四条预测在跑之前已写死；任何一条落空必须在报告里明写，不得改规则回圆",
+  "outputs": {
+    "report": "docs/CAPITAL_TIER_2026-10-19.md",
+    "table": "docs/CAPITAL_TIER_TABLE_2026-10-19.json",
+    "script": "scripts/capital_tier_resolve.py"
+  },
+  "not_doing": [
+    "不用资金档重跑样本外并宣称新证据 —— 该区间已消耗，不再有盲测属性",
+    "不因为某档收益更好就选它",
+    "不把「30 万能让 6 只都在投标」说成「30 万的组合可行」—— 组合还要看等权预算"
+  ]
+}
