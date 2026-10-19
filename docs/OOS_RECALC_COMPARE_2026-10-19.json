@@ -1,0 +1,2227 @@
+{
+  "generated_at": "2026-10-19T22:29:47",
+  "what_this_is": "同一批数据、同一套设计、只换价格口径的数值对照；不是第二次样本外检验",
+  "sources": {
+    "old": {
+      "path": "OOS_RESULTS_2026-10-19.json",
+      "spec_sha256": "b6076e3213b4b3976da49f68598a4e646dd0e4e79a65432139e463e8476c476e",
+      "data_caliber": null,
+      "verdict": "R4_INCONCLUSIVE",
+      "generated_at": "2026-10-19T20:40:14"
+    },
+    "new": {
+      "path": "OOS_RESULTS_RECALC_2026-10-19.json",
+      "spec_sha256": "56eee69f8fa869015e6d9e830b2299803ad475c8dc96f4bd20a7209df5861dea",
+      "data_caliber": "乘性前复权 qfq_mult_t = hfq_t × (raw_anchor / hfq_anchor)；缩放只改水平值不改收益率",
+      "verdict": "R4_INCONCLUSIVE",
+      "generated_at": "2026-10-19T22:27:28"
+    },
+    "recalc_spec": {
+      "path": "oos_recalc_prereg_v1.1_2026-10-19.json",
+      "spec_sha256": "56eee69f8fa869015e6d9e830b2299803ad475c8dc96f4bd20a7209df5861dea"
+    }
+  },
+  "verdict": {
+    "old": "R4_INCONCLUSIVE",
+    "new": "R4_INCONCLUSIVE",
+    "changed": false,
+    "note": "判定相同不代表策略被验证；两次读的都是同一批已消耗的样本外数据"
+  },
+  "cells": {
+    "ma_cross|broker_reference_common_2024": {
+      "IS": {
+        "n": {
+          "old": 103,
+          "new": 122,
+          "delta": 19
+        },
+        "median": {
+          "old": -0.009378,
+          "new": -0.000907,
+          "delta": 0.008471
+        },
+        "p10": {
+          "old": -0.135046,
+          "new": -0.088473,
+          "delta": 0.046573
+        },
+        "p90": {
+          "old": 0.15933,
+          "new": 0.151335,
+          "delta": -0.007995
+        }
+      },
+      "OOS": {
+        "n": {
+          "old": 20,
+          "new": 25,
+          "delta": 5
+        },
+        "median": {
+          "old": -0.011156,
+          "new": -0.006733,
+          "delta": 0.004423
+        },
+        "pos_ratio": {
+          "old": 0.35,
+          "new": 0.4,
+          "delta": 0.05
+        },
+        "zero_trade_ratio": {
+          "old": 0.05,
+          "new": 0.04,
+          "delta": -0.01
+        },
+        "total_trades": {
+          "old": 28,
+          "new": 38
+        }
+      },
+      "E2": {
+        "n_valid": {
+          "old": 5,
+          "new": 6,
+          "delta": 1
+        },
+        "ret_median": {
+          "old": 0.0,
+          "new": 0.020966,
+          "delta": 0.020966
+        },
+        "ret_mean": {
+          "old": -0.010563,
+          "new": 0.046204,
+          "delta": 0.056767
+        }
+      }
+    },
+    "ma_cross|research_scenario_high_cost": {
+      "IS": {
+        "n": {
+          "old": 103,
+          "new": 122,
+          "delta": 19
+        },
+        "median": {
+          "old": -0.013931,
+          "new": -0.008039,
+          "delta": 0.005892
+        },
+        "p10": {
+          "old": -0.144289,
+          "new": -0.098797,
+          "delta": 0.045492
+        },
+        "p90": {
+          "old": 0.130849,
+          "new": 0.133766,
+          "delta": 0.002917
+        }
+      },
+      "OOS": {
+        "n": {
+          "old": 20,
+          "new": 25,
+          "delta": 5
+        },
+        "median": {
+          "old": -0.017073,
+          "new": -0.013516,
+          "delta": 0.003557
+        },
+        "pos_ratio": {
+          "old": 0.35,
+          "new": 0.4,
+          "delta": 0.05
+        },
+        "zero_trade_ratio": {
+          "old": 0.1,
+          "new": 0.12,
+          "delta": 0.02
+        },
+        "total_trades": {
+          "old": 27,
+          "new": 35
+        }
+      },
+      "E2": {
+        "n_valid": {
+          "old": 5,
+          "new": 6,
+          "delta": 1
+        },
+        "ret_median": {
+          "old": 0.0,
+          "new": 0.008733,
+          "delta": 0.008733
+        },
+        "ret_mean": {
+          "old": -0.025855,
+          "new": 0.033074,
+          "delta": 0.058929
+        }
+      }
+    },
+    "ma_cross|simulation_placeholder": {
+      "IS": {
+        "n": {
+          "old": 103,
+          "new": 122,
+          "delta": 19
+        },
+        "median": {
+          "old": -0.009418,
+          "new": -0.0032,
+          "delta": 0.006218
+        },
+        "p10": {
+          "old": -0.135199,
+          "new": -0.088629,
+          "delta": 0.04657
+        },
+        "p90": {
+          "old": 0.159264,
+          "new": 0.151027,
+          "delta": -0.008237
+        }
+      },
+      "OOS": {
+        "n": {
+          "old": 20,
+          "new": 25,
+          "delta": 5
+        },
+        "median": {
+          "old": -0.011273,
+          "new": -0.006851,
+          "delta": 0.004422
+        },
+        "pos_ratio": {
+          "old": 0.35,
+          "new": 0.4,
+          "delta": 0.05
+        },
+        "zero_trade_ratio": {
+          "old": 0.05,
+          "new": 0.04,
+          "delta": -0.01
+        },
+        "total_trades": {
+          "old": 28,
+          "new": 38
+        }
+      },
+      "E2": {
+        "n_valid": {
+          "old": 5,
+          "new": 6,
+          "delta": 1
+        },
+        "ret_median": {
+          "old": 0.0,
+          "new": 0.020744,
+          "delta": 0.020744
+        },
+        "ret_mean": {
+          "old": -0.011019,
+          "new": 0.045762,
+          "delta": 0.056781
+        }
+      }
+    },
+    "mean_reversion|broker_reference_common_2024": {
+      "IS": {
+        "n": {
+          "old": 102,
+          "new": 120,
+          "delta": 18
+        },
+        "median": {
+          "old": 0.025197,
+          "new": 0.011723,
+          "delta": -0.013474
+        },
+        "p10": {
+          "old": -0.131507,
+          "new": -0.104036,
+          "delta": 0.027471
+        },
+        "p90": {
+          "old": 0.16093,
+          "new": 0.121005,
+          "delta": -0.039925
+        }
+      },
+      "OOS": {
+        "n": {
+          "old": 20,
+          "new": 25,
+          "delta": 5
+        },
+        "median": {
+          "old": 0.004683,
+          "new": 0.005119,
+          "delta": 0.000436
+        },
+        "pos_ratio": {
+          "old": 0.5,
+          "new": 0.52,
+          "delta": 0.02
+        },
+        "zero_trade_ratio": {
+          "old": 0.2,
+          "new": 0.16,
+          "delta": -0.04
+        },
+        "total_trades": {
+          "old": 26,
+          "new": 35
+        }
+      },
+      "E2": {
+        "n_valid": {
+          "old": 5,
+          "new": 6,
+          "delta": 1
+        },
+        "ret_median": {
+          "old": -0.019633,
+          "new": -0.009275,
+          "delta": 0.010358
+        },
+        "ret_mean": {
+          "old": -0.041485,
+          "new": 0.009266,
+          "delta": 0.050751
+        }
+      }
+    },
+    "mean_reversion|research_scenario_high_cost": {
+      "IS": {
+        "n": {
+          "old": 102,
+          "new": 120,
+          "delta": 18
+        },
+        "median": {
+          "old": 0.01744,
+          "new": 0.008212,
+          "delta": -0.009228
+        },
+        "p10": {
+          "old": -0.137144,
+          "new": -0.108943,
+          "delta": 0.028201
+        },
+        "p90": {
+          "old": 0.15194,
+          "new": 0.116442,
+          "delta": -0.035498
+        }
+      },
+      "OOS": {
+        "n": {
+          "old": 20,
+          "new": 25,
+          "delta": 5
+        },
+        "median": {
+          "old": 0.0,
+          "new": 0.0,
+          "delta": 0.0
+        },
+        "pos_ratio": {
+          "old": 0.45,
+          "new": 0.48,
+          "delta": 0.03
+        },
+        "zero_trade_ratio": {
+          "old": 0.2,
+          "new": 0.16,
+          "delta": -0.04
+        },
+        "total_trades": {
+          "old": 26,
+          "new": 34
+        }
+      },
+      "E2": {
+        "n_valid": {
+          "old": 5,
+          "new": 6,
+          "delta": 1
+        },
+        "ret_median": {
+          "old": -0.046907,
+          "new": -0.023139,
+          "delta": 0.023768
+        },
+        "ret_mean": {
+          "old": -0.062042,
+          "new": -0.016907,
+          "delta": 0.045135
+        }
+      }
+    },
+    "mean_reversion|simulation_placeholder": {
+      "IS": {
+        "n": {
+          "old": 102,
+          "new": 120,
+          "delta": 18
+        },
+        "median": {
+          "old": 0.025035,
+          "new": 0.011527,
+          "delta": -0.013508
+        },
+        "p10": {
+          "old": -0.131715,
+          "new": -0.10418,
+          "delta": 0.027535
+        },
+        "p90": {
+          "old": 0.160764,
+          "new": 0.12092,
+          "delta": -0.039844
+        }
+      },
+      "OOS": {
+        "n": {
+          "old": 20,
+          "new": 25,
+          "delta": 5
+        },
+        "median": {
+          "old": 0.004589,
+          "new": 0.004932,
+          "delta": 0.000343
+        },
+        "pos_ratio": {
+          "old": 0.5,
+          "new": 0.52,
+          "delta": 0.02
+        },
+        "zero_trade_ratio": {
+          "old": 0.2,
+          "new": 0.16,
+          "delta": -0.04
+        },
+        "total_trades": {
+          "old": 26,
+          "new": 35
+        }
+      },
+      "E2": {
+        "n_valid": {
+          "old": 5,
+          "new": 6,
+          "delta": 1
+        },
+        "ret_median": {
+          "old": -0.020162,
+          "new": -0.009542,
+          "delta": 0.01062
+        },
+        "ret_mean": {
+          "old": -0.042005,
+          "new": 0.008755,
+          "delta": 0.05076
+        }
+      }
+    }
+  },
+  "effective_pool": {
+    "old": {
+      "ma_cross|simulation_placeholder": {
+        "n_nominal": 6,
+        "n_effective": 4,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "300750.SZ": {
+            "oos_windows": 0,
+            "valid": 0,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH",
+          "300750.SZ"
+        ]
+      },
+      "ma_cross|broker_reference_common_2024": {
+        "n_nominal": 6,
+        "n_effective": 4,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "300750.SZ": {
+            "oos_windows": 0,
+            "valid": 0,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH",
+          "300750.SZ"
+        ]
+      },
+      "ma_cross|research_scenario_high_cost": {
+        "n_nominal": 6,
+        "n_effective": 4,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "300750.SZ": {
+            "oos_windows": 0,
+            "valid": 0,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH",
+          "300750.SZ"
+        ]
+      },
+      "mean_reversion|simulation_placeholder": {
+        "n_nominal": 6,
+        "n_effective": 4,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 2
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "300750.SZ": {
+            "oos_windows": 0,
+            "valid": 0,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH",
+          "300750.SZ"
+        ]
+      },
+      "mean_reversion|broker_reference_common_2024": {
+        "n_nominal": 6,
+        "n_effective": 4,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 2
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "300750.SZ": {
+            "oos_windows": 0,
+            "valid": 0,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH",
+          "300750.SZ"
+        ]
+      },
+      "mean_reversion|research_scenario_high_cost": {
+        "n_nominal": 6,
+        "n_effective": 4,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 2
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "300750.SZ": {
+            "oos_windows": 0,
+            "valid": 0,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH",
+          "300750.SZ"
+        ]
+      }
+    },
+    "new": {
+      "ma_cross|simulation_placeholder": {
+        "n_nominal": 6,
+        "n_effective": 5,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "300750.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH"
+        ]
+      },
+      "ma_cross|broker_reference_common_2024": {
+        "n_nominal": 6,
+        "n_effective": 5,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "300750.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH"
+        ]
+      },
+      "ma_cross|research_scenario_high_cost": {
+        "n_nominal": 6,
+        "n_effective": 5,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "300750.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          }
+        },
+        "absent": [
+          "600519.SH"
+        ]
+      },
+      "mean_reversion|simulation_placeholder": {
+        "n_nominal": 6,
+        "n_effective": 5,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 2
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "300750.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH"
+        ]
+      },
+      "mean_reversion|broker_reference_common_2024": {
+        "n_nominal": 6,
+        "n_effective": 5,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 2
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "300750.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH"
+        ]
+      },
+      "mean_reversion|research_scenario_high_cost": {
+        "n_nominal": 6,
+        "n_effective": 5,
+        "per_symbol": {
+          "600519.SH": {
+            "oos_windows": 5,
+            "valid": 0,
+            "sel_failed": 5,
+            "zero_trade": 0
+          },
+          "000001.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 2
+          },
+          "601318.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "300750.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          },
+          "000858.SZ": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 1
+          },
+          "600900.SH": {
+            "oos_windows": 5,
+            "valid": 5,
+            "sel_failed": 0,
+            "zero_trade": 0
+          }
+        },
+        "absent": [
+          "600519.SH"
+        ]
+      }
+    }
+  },
+  "effective_pool_note": "n_effective = 在纯样本外至少贡献 1 个有效观测的标的数；absent 列出贡献 0 的标的",
+  "window_join": {
+    "ma_cross|simulation_placeholder": {
+      "n_common_keys": 25,
+      "n_both_valid": 20,
+      "n_only_old_valid": 0,
+      "n_only_new_valid": 0,
+      "n_sign_flip": 0,
+      "median_abs_delta": 0.012383,
+      "max_abs_delta": 0.05539,
+      "delta_pp": [
+        1.47,
+        0.0,
+        0.09,
+        2.43,
+        1.61,
+        0.26,
+        1.93,
+        0.28,
+        1.24,
+        1.77,
+        2.39,
+        1.04,
+        0.16,
+        0.49,
+        1.21,
+        1.63,
+        5.54,
+        3.63,
+        0.27,
+        1.24
+      ],
+      "rows": [
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": -0.052516,
+          "new_ret": -0.037863,
+          "delta": 0.014653,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.010143,
+          "new_ret": -0.009242,
+          "delta": 0.000901,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.031144,
+          "new_ret": -0.006851,
+          "delta": 0.024293,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.056609,
+          "new_ret": 0.040519,
+          "delta": -0.01609,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.007545,
+          "new_ret": 0.004968,
+          "delta": -0.002577,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.082948,
+          "new_ret": 0.06362,
+          "delta": -0.019328,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.014601,
+          "new_ret": -0.011791,
+          "delta": 0.00281,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.059357,
+          "new_ret": -0.046978,
+          "delta": 0.012379,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.0509,
+          "new_ret": 0.03317,
+          "delta": -0.01773,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-02-05",
+          "old_ret": 0.078535,
+          "new_ret": 0.05465,
+          "delta": -0.023885,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-05-27",
+          "old_ret": -0.042905,
+          "new_ret": -0.032531,
+          "delta": 0.010374,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-09-10",
+          "old_ret": -0.00791,
+          "new_ret": -0.006315,
+          "delta": 0.001595,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-01-05",
+          "old_ret": -0.018562,
+          "new_ret": -0.013663,
+          "delta": 0.004899,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-04-29",
+          "old_ret": -0.047978,
+          "new_ret": -0.035872,
+          "delta": 0.012106,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-01-13",
+          "old_ret": -0.048914,
+          "new_ret": -0.032635,
+          "delta": 0.016279,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.153091,
+          "new_ret": 0.097701,
+          "delta": -0.05539,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.109519,
+          "new_ret": 0.073262,
+          "delta": -0.036257,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.012403,
+          "new_ret": -0.009734,
+          "delta": 0.002669,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.026662,
+          "new_ret": -0.014275,
+          "delta": 0.012387,
+          "sign_flip": false
+        }
+      ]
+    },
+    "ma_cross|broker_reference_common_2024": {
+      "n_common_keys": 25,
+      "n_both_valid": 20,
+      "n_only_old_valid": 0,
+      "n_only_new_valid": 0,
+      "n_sign_flip": 0,
+      "median_abs_delta": 0.012421,
+      "max_abs_delta": 0.055397,
+      "delta_pp": [
+        1.47,
+        0.0,
+        0.09,
+        2.42,
+        1.61,
+        0.26,
+        1.93,
+        0.28,
+        1.24,
+        1.77,
+        2.39,
+        1.04,
+        0.16,
+        0.49,
+        1.21,
+        1.63,
+        5.54,
+        3.63,
+        0.27,
+        1.25
+      ],
+      "rows": [
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": -0.052284,
+          "new_ret": -0.03763,
+          "delta": 0.014654,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.009985,
+          "new_ret": -0.009084,
+          "delta": 0.000901,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.030951,
+          "new_ret": -0.006733,
+          "delta": 0.024218,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.056725,
+          "new_ret": 0.040637,
+          "delta": -0.016088,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.007624,
+          "new_ret": 0.005045,
+          "delta": -0.002579,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.083059,
+          "new_ret": 0.063737,
+          "delta": -0.019322,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.014528,
+          "new_ret": -0.011719,
+          "delta": 0.002809,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.0591,
+          "new_ret": -0.04672,
+          "delta": 0.01238,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.05101,
+          "new_ret": 0.033281,
+          "delta": -0.017729,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-02-05",
+          "old_ret": 0.078658,
+          "new_ret": 0.054772,
+          "delta": -0.023886,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-05-27",
+          "old_ret": -0.042711,
+          "new_ret": -0.032337,
+          "delta": 0.010374,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-09-10",
+          "old_ret": -0.007832,
+          "new_ret": -0.006238,
+          "delta": 0.001594,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-01-05",
+          "old_ret": -0.018483,
+          "new_ret": -0.013585,
+          "delta": 0.004898,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-04-29",
+          "old_ret": -0.04775,
+          "new_ret": -0.035643,
+          "delta": 0.012107,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-01-13",
+          "old_ret": -0.048838,
+          "new_ret": -0.032559,
+          "delta": 0.016279,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.153219,
+          "new_ret": 0.097822,
+          "delta": -0.055397,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.109641,
+          "new_ret": 0.07338,
+          "delta": -0.036261,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.012327,
+          "new_ret": -0.009656,
+          "delta": 0.002671,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.026549,
+          "new_ret": -0.014088,
+          "delta": 0.012461,
+          "sign_flip": false
+        }
+      ]
+    },
+    "ma_cross|research_scenario_high_cost": {
+      "n_common_keys": 25,
+      "n_both_valid": 20,
+      "n_only_old_valid": 0,
+      "n_only_new_valid": 0,
+      "n_sign_flip": 0,
+      "median_abs_delta": 0.010511,
+      "max_abs_delta": 0.053443,
+      "delta_pp": [
+        1.4,
+        0.0,
+        0.01,
+        2.74,
+        1.67,
+        0.24,
+        1.95,
+        0.29,
+        1.23,
+        1.44,
+        0.83,
+        0.97,
+        0.13,
+        0.51,
+        1.13,
+        1.63,
+        5.34,
+        3.62,
+        0.26,
+        0.63
+      ],
+      "rows": [
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": -0.064057,
+          "new_ret": -0.050065,
+          "delta": 0.013992,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.017694,
+          "new_ret": -0.017634,
+          "delta": 6e-05,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.040948,
+          "new_ret": -0.013516,
+          "delta": 0.027432,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.050769,
+          "new_ret": 0.03403,
+          "delta": -0.016739,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.003327,
+          "new_ret": 0.000976,
+          "delta": -0.002351,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.077124,
+          "new_ret": 0.057598,
+          "delta": -0.019526,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.018481,
+          "new_ret": -0.015589,
+          "delta": 0.002892,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.07293,
+          "new_ret": -0.060584,
+          "delta": 0.012346,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.040941,
+          "new_ret": 0.026505,
+          "delta": -0.014436,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-02-05",
+          "old_ret": 0.072548,
+          "new_ret": 0.064297,
+          "delta": -0.008251,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-05-27",
+          "old_ret": -0.053006,
+          "new_ret": -0.043265,
+          "delta": 0.009741,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-09-10",
+          "old_ret": -0.011724,
+          "new_ret": -0.010377,
+          "delta": 0.001347,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-01-05",
+          "old_ret": -0.022578,
+          "new_ret": -0.017475,
+          "delta": 0.005103,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-04-29",
+          "old_ret": -0.059201,
+          "new_ret": -0.047919,
+          "delta": 0.011282,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-01-13",
+          "old_ret": -0.052903,
+          "new_ret": -0.036643,
+          "delta": 0.01626,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.144733,
+          "new_ret": 0.09129,
+          "delta": -0.053443,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.103186,
+          "new_ret": 0.066939,
+          "delta": -0.036247,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.016451,
+          "new_ret": -0.013856,
+          "delta": 0.002595,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.033733,
+          "new_ret": -0.027478,
+          "delta": 0.006255,
+          "sign_flip": false
+        }
+      ]
+    },
+    "mean_reversion|simulation_placeholder": {
+      "n_common_keys": 25,
+      "n_both_valid": 20,
+      "n_only_old_valid": 0,
+      "n_only_new_valid": 0,
+      "n_sign_flip": 0,
+      "median_abs_delta": 0.007033,
+      "max_abs_delta": 0.055576,
+      "delta_pp": [
+        0.88,
+        0.8,
+        0.5,
+        1.09,
+        0.0,
+        1.51,
+        0.49,
+        2.07,
+        0.42,
+        5.56,
+        0.0,
+        0.49,
+        0.12,
+        0.09,
+        3.48,
+        1.83,
+        0.0,
+        1.93,
+        1.98,
+        0.61
+      ],
+      "rows": [
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.032312,
+          "new_ret": 0.023535,
+          "delta": -0.008777,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.029623,
+          "new_ret": 0.021622,
+          "delta": -0.008001,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.015809,
+          "new_ret": 0.010854,
+          "delta": -0.004955,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": 0.037238,
+          "new_ret": 0.026346,
+          "delta": -0.010892,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.055716,
+          "new_ret": 0.040579,
+          "delta": -0.015137,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.016165,
+          "new_ret": 0.011294,
+          "delta": -0.004871,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.086044,
+          "new_ret": -0.065386,
+          "delta": 0.020658,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": 0.009179,
+          "new_ret": 0.004932,
+          "delta": -0.004247,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.172333,
+          "new_ret": -0.116757,
+          "delta": 0.055576,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-02-05",
+          "old_ret": -0.002223,
+          "new_ret": -0.002203,
+          "delta": 2e-05,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-05-27",
+          "old_ret": -0.020654,
+          "new_ret": -0.015775,
+          "delta": 0.004879,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-09-10",
+          "old_ret": -0.009894,
+          "new_ret": -0.008674,
+          "delta": 0.00122,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-01-05",
+          "old_ret": -0.007339,
+          "new_ret": -0.008235,
+          "delta": -0.000896,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-04-29",
+          "old_ret": 0.114055,
+          "new_ret": 0.079302,
+          "delta": -0.034753,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.047402,
+          "new_ret": 0.029089,
+          "delta": -0.018313,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.059918,
+          "new_ret": 0.040655,
+          "delta": -0.019263,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.077331,
+          "new_ret": -0.05758,
+          "delta": 0.019751,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.02454,
+          "new_ret": -0.018475,
+          "delta": 0.006065,
+          "sign_flip": false
+        }
+      ]
+    },
+    "mean_reversion|broker_reference_common_2024": {
+      "n_common_keys": 25,
+      "n_both_valid": 20,
+      "n_only_old_valid": 0,
+      "n_only_new_valid": 0,
+      "n_sign_flip": 0,
+      "median_abs_delta": 0.007033,
+      "max_abs_delta": 0.055574,
+      "delta_pp": [
+        0.88,
+        0.8,
+        0.5,
+        1.09,
+        0.0,
+        1.51,
+        0.49,
+        2.07,
+        0.42,
+        5.56,
+        0.0,
+        0.49,
+        0.12,
+        0.09,
+        3.48,
+        1.83,
+        0.0,
+        1.93,
+        1.98,
+        0.61
+      ],
+      "rows": [
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.032435,
+          "new_ret": 0.023657,
+          "delta": -0.008778,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.029662,
+          "new_ret": 0.021662,
+          "delta": -0.008,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.01589,
+          "new_ret": 0.010935,
+          "delta": -0.004955,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": 0.037358,
+          "new_ret": 0.026466,
+          "delta": -0.010892,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.055911,
+          "new_ret": 0.040768,
+          "delta": -0.015143,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.016276,
+          "new_ret": 0.011403,
+          "delta": -0.004873,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.086007,
+          "new_ret": -0.065349,
+          "delta": 0.020658,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": 0.009366,
+          "new_ret": 0.005119,
+          "delta": -0.004247,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.172261,
+          "new_ret": -0.116687,
+          "delta": 0.055574,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-02-05",
+          "old_ret": -0.002144,
+          "new_ret": -0.002124,
+          "delta": 2e-05,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-05-27",
+          "old_ret": -0.020577,
+          "new_ret": -0.015696,
+          "delta": 0.004881,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-09-10",
+          "old_ret": -0.009695,
+          "new_ret": -0.008476,
+          "delta": 0.001219,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-01-05",
+          "old_ret": -0.007104,
+          "new_ret": -0.008003,
+          "delta": -0.000899,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-04-29",
+          "old_ret": 0.114263,
+          "new_ret": 0.07951,
+          "delta": -0.034753,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.047562,
+          "new_ret": 0.029248,
+          "delta": -0.018314,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.060076,
+          "new_ret": 0.040813,
+          "delta": -0.019263,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.077174,
+          "new_ret": -0.057422,
+          "delta": 0.019752,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.024386,
+          "new_ret": -0.01832,
+          "delta": 0.006066,
+          "sign_flip": false
+        }
+      ]
+    },
+    "mean_reversion|research_scenario_high_cost": {
+      "n_common_keys": 25,
+      "n_both_valid": 20,
+      "n_only_old_valid": 0,
+      "n_only_new_valid": 0,
+      "n_sign_flip": 0,
+      "median_abs_delta": 0.009185,
+      "max_abs_delta": 0.055695,
+      "delta_pp": [
+        1.04,
+        0.8,
+        0.49,
+        1.14,
+        0.0,
+        1.49,
+        4.84,
+        2.07,
+        0.46,
+        5.57,
+        0.03,
+        0.45,
+        0.01,
+        0.55,
+        3.72,
+        1.91,
+        0.0,
+        1.93,
+        1.96,
+        0.57
+      ],
+      "rows": [
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.025996,
+          "new_ret": 0.015628,
+          "delta": -0.010368,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.027753,
+          "new_ret": 0.019751,
+          "delta": -0.008002,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.011829,
+          "new_ret": 0.006955,
+          "delta": -0.004874,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": 0.031032,
+          "new_ret": 0.019617,
+          "delta": -0.011415,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000001.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.045422,
+          "new_ret": 0.030518,
+          "delta": -0.014904,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.010421,
+          "new_ret": 0.058808,
+          "delta": 0.048387,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-08-26",
+          "old_ret": -0.08807,
+          "new_ret": -0.067379,
+          "delta": 0.020691,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.000803,
+          "new_ret": -0.005378,
+          "delta": -0.004575,
+          "sign_flip": false
+        },
+        {
+          "symbol": "000858.SZ",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.176162,
+          "new_ret": -0.120467,
+          "delta": 0.055695,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-02-05",
+          "old_ret": -0.006239,
+          "new_ret": -0.006491,
+          "delta": -0.000252,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-05-27",
+          "old_ret": -0.024365,
+          "new_ret": -0.01984,
+          "delta": 0.004525,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2025-09-10",
+          "old_ret": -0.019691,
+          "new_ret": -0.019775,
+          "delta": -8.4e-05,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-01-05",
+          "old_ret": -0.018797,
+          "new_ret": -0.01333,
+          "delta": 0.005467,
+          "sign_flip": false
+        },
+        {
+          "symbol": "600900.SH",
+          "oos_start": "2026-04-29",
+          "old_ret": 0.103835,
+          "new_ret": 0.066675,
+          "delta": -0.03716,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-01-13",
+          "old_ret": 0.039045,
+          "new_ret": 0.019916,
+          "delta": -0.019129,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-05-12",
+          "old_ret": 0.0,
+          "new_ret": 0.0,
+          "delta": 0.0,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-08-26",
+          "old_ret": 0.051617,
+          "new_ret": 0.032302,
+          "delta": -0.019315,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2025-12-17",
+          "old_ret": -0.085599,
+          "new_ret": -0.066003,
+          "delta": 0.019596,
+          "sign_flip": false
+        },
+        {
+          "symbol": "601318.SH",
+          "oos_start": "2026-04-14",
+          "old_ret": -0.032754,
+          "new_ret": -0.027071,
+          "delta": 0.005683,
+          "sign_flip": false
+        }
+      ]
+    }
+  },
+  "prediction_check": {
+    "checks": {
+      "P1_gate": {
+        "predicted": "6/6 全部通过数据闸门（v1 拦下 300750，乘性下最小收盘 18.62）",
+        "contamination": "already_seen",
+        "scoreable": false,
+        "actual": {
+          "600519.SH": true,
+          "000001.SZ": true,
+          "601318.SH": true,
+          "300750.SZ": true,
+          "000858.SZ": true,
+          "600900.SH": true
+        },
+        "held": true
+      },
+      "P2_moutai_still_absent": {
+        "predicted": "600519 的 5 个纯样本外窗口仍然 sel_ok=False，OOS 有效观测 = 0。理由：乘性口径下 2021 年后前复权价回到千元以上，一手 > 10 万，与价格缺陷无关",
+        "contamination": "already_seen",
+        "scoreable": false,
+        "actual": {
+          "oos_windows": 5,
+          "valid": 0,
+          "sel_failed": 5,
+          "zero_trade": 0
+        },
+        "held": true
+      },
+      "P3_oos_n": {
+        "predicted": "主格 OOS 有效观测从 20 升到 25（宁德 +5，茅台仍 0）",
+        "contamination": "already_seen",
+        "scoreable": false,
+        "actual": {
+          "old": 20,
+          "new": 25
+        },
+        "held": true
+      },
+      "P4_median": {
+        "predicted": "主格 OOS 中位变化幅度 < 1pp，且仍为负",
+        "contamination": "unseen",
+        "scoreable": true,
+        "actual": {
+          "delta": 0.004422,
+          "delta_pp": 0.442,
+          "new_median": -0.006851
+        },
+        "held": true
+      },
+      "P5_verdict": {
+        "predicted": "判定仍为 R4_INCONCLUSIVE",
+        "contamination": "unseen",
+        "scoreable": true,
+        "actual": {
+          "old": "R4_INCONCLUSIVE",
+          "new": "R4_INCONCLUSIVE"
+        },
+        "held": true
+      },
+      "P6_window_flips": {
+        "predicted": "4 只共有标的 20 个窗口里，收益符号翻转数 >= 1 且 <= 6",
+        "contamination": "unseen",
+        "scoreable": true,
+        "actual": {
+          "n_both_valid": 20,
+          "n_sign_flip": 0
+        },
+        "held": false
+      }
+    },
+    "n_scoreable": 3,
+    "n_held_among_scoreable": 2,
+    "missed_among_scoreable": [
+      "P6_window_flips"
+    ],
+    "missed_any": [
+      "P6_window_flips"
+    ],
+    "note": "scoreable=false 的条目在冻结前已从日志看到，不计入命中率；missed_any 仍全部列出"
+  }
+}

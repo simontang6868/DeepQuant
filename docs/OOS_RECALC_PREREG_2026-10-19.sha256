@@ -1,0 +1,6 @@
+# 冻结指纹（重算预登记，先于任何重算结果）
+5f2e709b06e6ffcb14f54f22f5b1452a2cd0d629183fc5dae5462eb7b62051e0  docs/oos_recalc_prereg_2026-10-19.json
+d762544cdba7f51f28c9ce48e8bd8e8ef6f587c1c59215adb64144866d0f1232  docs/OOS_RECALC_PREREG_2026-10-19.md
+
+# frozen_at 2026-10-19T22:09:00+08:00
+# 说明：本文件在生成时已含 verdict_rules 段（逐字抄自 v1），哈希为含该段之后的最终值

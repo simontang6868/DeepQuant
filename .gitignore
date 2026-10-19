@@ -39,6 +39,13 @@ htmlcov/
 !/data/benchmark/
 !/data/benchmark/*.csv
 
+# 例外：样本外结果重算的数据池（2026-10-19）
+# 为什么破例：重算预登记按 sha256 锁定这 6 个文件（见 docs/OOS_RECALC_PREREG_V1.1_2026-10-19.sha256）。
+# 数据不入库，别人就无法验证"跑的是不是这一份"，sha256 锁就成了自证。
+# 乘性口径的完整目录 data/qfq_mult/（302 只）仍然不入库，这里只放检验用到的那 6 只（约 0.8 MB）。
+!/data/oos_recalc_pool_2017/
+!/data/oos_recalc_pool_2017/*.csv
+
 # 常见数据文件后缀，防止误提交到其他位置
 *.parquet
 *.sqlite
