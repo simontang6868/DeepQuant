@@ -1,0 +1,111 @@
+{
+  "spec_version": "oos-prereg-v1",
+  "frozen_at": "2026-10-19T20:20:00+08:00",
+  "frozen_by": "B-line",
+  "status": "FROZEN_BEFORE_RESULTS",
+
+  "question": "2017-2024 上按 v3 口径选出来的参数，在 2025-01-02 ~ 2026-10-16 这 431 个从没参与过任何选择的交易日里，还成立吗？",
+  "answered_exactly_once": true,
+  "single_use_note": "这份数据只能回答这一次。看到结果后不得改窗口/换池/降 min_trades/加长 OOS 再重跑——那就是用样本外数据调设计，样本外就不存在了。",
+
+  "data": {
+    "kind": "tencent_kline_qfq_cached",
+    "note": "用 data/step75_ext 的延伸文件（已验证与 data/step75 在重叠区间比值恒为 1.000000，即无前复权基准漂移）",
+    "source_dir": "data/step75_ext",
+    "benchmark": {
+      "path": "data/benchmark/hs300_daily.csv",
+      "code": "sh000300",
+      "purpose": "逐窗 buy&hold 超额，仅描述，不参与判定"
+    },
+    "pool": [
+      {"code": "600519.SH", "name": "贵州茅台", "sha256": "a059d06b2e0b97838d90e1a2bc42fe83d3ead7293e32ede833611e337ab9c22a"},
+      {"code": "000001.SZ", "name": "平安银行", "sha256": "f0276c6d34c2eaabd5749b5f96c8ff0f3cfc588d524f4997858c9bda980f35a6"},
+      {"code": "601318.SH", "name": "中国平安", "sha256": "330ee7bebf8674704d1a085748c54a1ece770c49c217ff7efd3d9c67f23e8279"},
+      {"code": "300750.SZ", "name": "宁德时代", "sha256": "81eed72357b72863fc89b65c4a395ffabf4787d3a6265c3080bae2cceb84ca44"},
+      {"code": "000858.SZ", "name": "五粮液", "sha256": "11e977032426385c0ed5386520a6d52785101fd532b573ac3b685ab63e9027c9"},
+      {"code": "600900.SH", "name": "长江电力", "sha256": "f5e32bd517c919c31c63925f71fd08d66f38c732974cb4f2b767c0a017e7c12b"}
+    ],
+    "benchmark_sha256": "a25057d953187fdbd1149c274d3ab3296e36d1d09eb0a45b096c624c49ac9d3e",
+    "data_gate": "validate_daily_extended 原样应用，ERROR 级一律阻断；阻断结果照实记录，不为凑样本放宽"
+  },
+
+  "design": {
+    "design_version": "oos75-v3",
+    "start": "20170101",
+    "end": "20261016",
+    "train_periods": 150,
+    "oos_window": 75,
+    "step": 75,
+    "min_trades": 2,
+    "initial_cash": 100000.0,
+    "price_limit_mode": "board",
+    "fee_presets": [
+      "simulation_placeholder",
+      "broker_reference_common_2024",
+      "research_scenario_high_cost"
+    ],
+    "ma_grid": {"fast": [3, 5, 10, 20], "slow": [15, 25, 40, 60], "max_combinations": 50},
+    "mr_grid": {"fast": [10, 20, 30, 50], "slow": [15, 20, 25], "threshold_scale": 0.1, "max_combinations": 50},
+    "frozen_reason": "以上每一项都沿用 2026-10-18 起生效的 v3 口径，一个字未改。改任何一项，本次检验就不再是「同一策略在样本外」的检验。"
+  },
+
+  "evaluations": {
+    "E1": {
+      "role": "primary",
+      "kind": "rolling_windows",
+      "rule": "窗口按 step=75 从序列第 0 根推进；取 oos_start >= 2025-01-02 的窗口为样本外；跨 2024-12-31 的边界窗口单独列出、不计入样本外",
+      "expected_n_windows": 5,
+      "why": "与 IS 同口径同代码，唯一差别是多了尾巴上的数据；前 23 个窗口与 2024-12-31 版逐窗完全重合，可当复制检查"
+    },
+    "E2": {
+      "role": "secondary_confirmatory",
+      "kind": "single_holdout",
+      "train_range": ["2017-01-03", "2024-12-31"],
+      "oos_range": ["2025-01-02", "2026-10-16"],
+      "rule": "参数只在训练段选一次，然后整段 431 日按同一组参数持有，不再重选",
+      "why": "E1 因 step 对齐会丢掉尾部约 49 根；E2 吃掉全部 431 根，且「一次选择、全程不调」是最干净的样本外定义"
+    }
+  },
+
+  "primary_cell": ["ma_cross", "simulation_placeholder"],
+  "why_primary": "simulation_placeholder 是历史主口径（三档费率里唯一不含券商真实佣金假设的基准档），ma_cross 是主力策略族。先定主检验再跑，避免从 6 个格子里挑最好看的那个报告。",
+  "secondary_cells_note": "其余 5 个 (策略×费率) 格子全部报告，但一律标注为次级；若次级与主检验方向相反，只记录不作为结论。",
+
+  "metrics": {
+    "primary": "OOS 窗口累计收益的中位数（pooled，按 cell）",
+    "secondary": [
+      "OOS 正收益窗口占比",
+      "OOS 零成交窗口占比",
+      "OOS 中位最大回撤",
+      "OOS 相对沪深300 buy&hold 的逐窗超额中位数",
+      "E2 的 431 日单窗口累计收益（扣费）"
+    ]
+  },
+
+  "predicted_before_run": {
+    "gate_blocks": ["300750.SZ"],
+    "gate_reason": "2018-06 上市初期 qfq 非正价，invalid_price 是 ERROR 级；v3 闸门会拦，这是正确结果",
+    "participating_symbols": 5,
+    "zero_trade_ratio_estimate": "偏高（历史口径下多数窗口 OOS 零成交，因为 75 日窗口里 60 日慢线平均只交叉 1 次多）",
+    "expected_verdict": "NO_POWER 或 INCONCLUSIVE 的概率合计高于 CONSISTENT / IMPROVED",
+    "prediction_is_falsifiable": "若实际 zero_trade_ratio < 0.5 且 OOS 中位数显著偏离 IS 分布，则我这条预测错了，需在报告里明写「预测错误」。"
+  },
+
+  "verdict_rules_ordered_first_match_wins": [
+    {"id": "R0_NO_POWER", "when": "zero_trade_ratio >= 0.50 或 n_valid_oos_obs < 20", "verdict": "NO_POWER", "meaning": "这批数据没有判别力，既不能否证也不能证实；禁止据此裁决策略，也禁止据此决定扩池"},
+    {"id": "R1_REFUTED", "when": "e1_median < 0 且 e1_pos_ratio <= 0.25 且 e2_ret < 0", "verdict": "REFUTED", "meaning": "样本外为负且方向一致，策略在该池上不成立"},
+    {"id": "R2_IMPROVED", "when": "e1_median > is_p90 且 e2_ret > 0", "verdict": "IMPROVED", "meaning": "样本外好于样本内 p90，需先排除数据/口径错误再谈结论"},
+    {"id": "R3_CONSISTENT", "when": "is_p10 <= e1_median <= is_p90 且 sign(e1_median) == sign(e2_ret) 且 e1_median != 0", "verdict": "CONSISTENT", "meaning": "样本外落在样本内分布内且方向一致，无衰减证据"},
+    {"id": "R4_INCONCLUSIVE", "when": "其余", "verdict": "INCONCLUSIVE", "meaning": "方向不一致或落在分布边界外，样本量不足以判定，需扩样本"}
+  ],
+
+  "forbidden_after_seeing_results": [
+    "改 OOS 窗口长度（75 → 50/100/125）",
+    "改 step 让尾部落进窗口",
+    "降 min_trades（2 → 1/0）以提高成交窗口占比",
+    "换股票池或加新标的",
+    "只报告 6 个格子里表现最好的",
+    "在 E1 与 E2 结论冲突时只引用其中一个而不声明冲突",
+    "把 NO_POWER 写成「策略无效」或「策略有效」"
+  ]
+}
