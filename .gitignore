@@ -90,3 +90,5 @@ backend/data/
 backend/data/**
 .workbuddy/
 probe_out/*.log
+/data/raw/
+/data/oos_recalc_pool*/
