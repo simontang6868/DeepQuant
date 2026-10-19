@@ -1,0 +1,116 @@
+{
+  "prereg_id": "stage0-survivorship-2026-10-19",
+  "version": "1.1",
+  "frozen_at": "2026-10-19T21:55:00",
+  "status": "FROZEN_BEFORE_RESULTS",
+  "supersedes": {
+    "file": "docs/stage0_prereg_2026-10-19.json",
+    "version": "1.0",
+    "sha256": "8e35d7622900761a0fb34ea5a2044d69e1304fbea37177d4db1b4846291dbf3b",
+    "note": "v1.0 文件本身不改、不删，保留为审计痕迹；本文件只改数据层，判据/分组/参数一个未动"
+  },
+  "amendment": {
+    "reason": "发现行情口径缺陷：腾讯/东财 qfq 为加性口径 qfq_t = raw_t − 未来累计分红_t，累计分红超过历史价位时价位趋零甚至为负（300750.SZ 2018-06-11 close=-2.07；600809.SH 2018-11-26 close=-0.46；000568.SZ 2016 段最低 -12.98）。价位过零后日收益率分母失去意义，且该误差随「持有期长度 × 分红率」单调放大 —— 恰好与「在市 vs 退市」分组相关（在市股历史更长、分红更多），会冒充幸存者偏差。",
+    "results_seen_before_amendment": "无。改口径前只跑过两次冒烟：① --only B --limit 3（000748/600005/000033，全部 too_short，0 有效窗口）；② --only A --limit 5（4 只出 90 个窗口、1 只被数据闸门拦）。两次都没有产生任何 A/B 组间统计量，也没有产生可解读的裁定。",
+    "change": "行情层从加性前复权换成乘性前复权 qfq_mult_t = hfq_t × (raw_anchor / hfq_anchor)；anchor 取两组共同的最新交易日。脚本 scripts/repair_qfq_mult.py，清单 docs/QFQ_MULT_MANIFEST_2026-10-19.json（逐只 scale / 行数 / sha256）。",
+    "unchanged": [
+      "两组的成员定义与数量（A=50 只 csi300 样本，B=2017 年后退市全量 262 只）",
+      "策略、参数网格、min_train/min_oos/min_trades/max_combinations（逐项复制 MA_GRID）",
+      "费率 simulation_placeholder、初始资金 100000、区间 2017-01-01~2024-12-31、board 涨跌停",
+      "观测单元与有效窗口判据",
+      "Mann-Whitney U 单侧（B<A）、α=0.05、S0/S1/S2/S3 四条判定及其优先级",
+      "必报项与已知局限"
+    ],
+    "known_cost": "13 只退市股（11 只 hfq 锚点非正、2 只腾讯 hfq 无数据）与 1 只在市股（688981.SH 腾讯 hfq 无数据）无法生成乘性口径，整只缺席，逐条进 skipped，不做任何填充。缺席名单见 docs/QFQ_ARTIFACT_AUDIT_2026-10-19.json 与结果文件 skipped 段。"
+  },
+  "question": "把 2017 年后退市的 262 只股票补进池之后，策略在这批失败样本上的表现，与 csi300 样本中的在市股相比是否更差？即：幸存者偏差有没有把既有结论撑高？",
+  "what_this_is_not": [
+    "不是策略有效性检验（不给『策略有效/无效』结论）",
+    "不是 PIT 池（修的是退市缺失，不是指数成分选择）",
+    "不是全市场研究（在市值仅取 csi300 等距样本 50 只，退市侧才是全量 262 只）",
+    "不是样本外检验（区间与 b50_v3 历史结论重叠，属探索性分析）"
+  ],
+  "design": {
+    "arms": {
+      "A_listed": {
+        "label": "在市组",
+        "definition": "data/step75/universe/csi300_50.json 的 50 只（2026-10-17 抓取的 000300 当日成分等距抽样）",
+        "expected_n": 50
+      },
+      "B_delisted": {
+        "label": "退市组",
+        "definition": "docs/DELIST_UNIVERSE_2026-10-19.json 中 delist_date >= 2017-01-01 且 status=usable 的全部标的",
+        "expected_n": 262
+      }
+    },
+    "data_layer": {
+      "price_convention": "multiplicative_qfq",
+      "recipe": "qfq_mult_t = hfq_t × (raw_anchor / hfq_anchor)",
+      "source": "腾讯 fqkline(hfq) + 腾讯 kline(raw，仅取锚点)",
+      "manifest": "docs/QFQ_MULT_MANIFEST_2026-10-19.json",
+      "rationale": "后复权本身是乘性的，其收益率即正确的前复权收益率；缩放只改水平值，不改任何收益率"
+    },
+    "merged_pool_note": "两组并集构成『时点无关池』的最小可用形态：每只标的只在自己上市至退市日的行情上跑，不存在『用今天还活着的标的去看历史』这一步。",
+    "strategy": "ma_cross",
+    "params_grid": {
+      "fast_candidates": [3, 5, 10, 20],
+      "slow_candidates": [15, 25, 40, 60],
+      "min_train_periods": 150,
+      "min_oos_periods": 75,
+      "min_trades": 2,
+      "max_combinations": 50
+    },
+    "fee_preset": "simulation_placeholder",
+    "initial_cash": 100000.0,
+    "date_range": ["2017-01-01", "2024-12-31"],
+    "price_limit_mode": "board",
+    "params_frozen_reason": "全部取值逐项复制 data/step75/research.py 的 MA_GRID 与常量，一个都不改（R2/R11：不得在看到结果后调参）"
+  },
+  "observation_unit": "每只标的的每个 walk-forward 窗口的 cumulative_return，且必须满足 selection_success & oos_success & final_equity 非 None & oos_is_complete",
+  "primary_test": {
+    "name": "Mann-Whitney U（单侧，B < A）",
+    "effect_size": "median(B) - median(A)",
+    "alpha": 0.05
+  },
+  "decision_rules": [
+    {
+      "id": "S0",
+      "label": "INSUFFICIENT_DATA",
+      "condition": "任一组有效窗口数 < 30",
+      "meaning": "样本不足，不出结论"
+    },
+    {
+      "id": "S1",
+      "label": "SURVIVORSHIP_MATERIAL",
+      "condition": "p_one_sided < 0.05 且 median(B) < median(A)",
+      "meaning": "退市股上的表现显著更差 → 幸存者偏差把既有结论撑高了，既有收益类结论必须下调"
+    },
+    {
+      "id": "S2",
+      "label": "SURVIVORSHIP_REVERSED",
+      "condition": "p_two_sided < 0.05 且 median(B) > median(A)",
+      "meaning": "退市股上的表现反而更好 → 与『幸存者偏差撑高结论』的直觉相反，需单独解释"
+    },
+    {
+      "id": "S3",
+      "label": "SURVIVORSHIP_IMMATERIAL",
+      "condition": "以上皆不满足",
+      "meaning": "无法证明两组有差异；这不等于『偏差不存在』，只等于『这批数据测不出来』"
+    }
+  ],
+  "mandatory_reporting": [
+    "两组的有效窗口数、零成交窗口数、数据质量闸门拦截清单",
+    "两组的 median / mean / p25 / p75 / 亏损窗口占比",
+    "按退市年份分层的趋势（2017-2026 逐年）",
+    "A 组结果与历史 b50_v3 是否一致的装置校验说明",
+    "任何被跳过的标的及其原因，一条都不许静默省略",
+    "加性口径与乘性口径的对照（同一批标的，两套口径下的买入持有收益差）"
+  ],
+  "hard_constraints": [
+    "参数在看到结果后不得修改；若必须改，须新开 v2 预登记并声明旧结果作废",
+    "不得因为 B 组结果不理想而回头改 A 组口径",
+    "不得把本结果表述为『策略在全市场无效』——在市值只取 50 只",
+    "no_quote / fail 的标的不得做任何价格填充",
+    "两套口径的结果都必须落盘，不得只留一套（便于事后判断口径影响）"
+  ]
+}

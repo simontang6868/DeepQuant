@@ -1,0 +1,2639 @@
+{
+  "generated_at": "2026-10-19T21:11:48",
+  "purpose": "PIT 阶段 0：把已退市股票补进池，构造时点无关池（每个时点只用当时已上市且未退市的标的）。仅补 2017 年后退市的，早年退市股行情源不可得（见 no_quote）。",
+  "source": "akshare stock_info_sh_delist / stock_info_sz_delist + stock_zh_a_hist_tx(qfq)",
+  "since": "2017-01-01",
+  "counts": {
+    "listed_total": 364,
+    "picked": 262,
+    "downloaded_now": 0,
+    "cached": 262,
+    "usable": 262,
+    "no_quote": 0,
+    "fail": 0,
+    "unique_files": 262
+  },
+  "note": "行情文件在 data/delist/（不入库）。本清单入库，供复现时按其重建。no_quote 的标的不做任何价格填充——宁可缺口显式化，不要伪造数据。usable = downloaded_now + cached，即真正有行情的标的数。",
+  "symbols": [
+    {
+      "code": "000748",
+      "name": "长城信息",
+      "market": "sz",
+      "list_date": "1997-07-04",
+      "delist_date": "2017-01-18",
+      "status": "cached",
+      "n_rows": 152,
+      "span": null
+    },
+    {
+      "code": "600005",
+      "name": "武钢股份",
+      "market": "sh",
+      "list_date": "1999-08-03",
+      "delist_date": "2017-02-14",
+      "status": "cached",
+      "n_rows": 186,
+      "span": null
+    },
+    {
+      "code": "000033",
+      "name": "新都退",
+      "market": "sz",
+      "list_date": "1994-01-03",
+      "delist_date": "2017-07-07",
+      "status": "cached",
+      "n_rows": 30,
+      "span": null
+    },
+    {
+      "code": "300372",
+      "name": "欣泰退",
+      "market": "sz",
+      "list_date": "2014-01-27",
+      "delist_date": "2017-08-28",
+      "status": "cached",
+      "n_rows": 153,
+      "span": null
+    },
+    {
+      "code": "000916",
+      "name": "华北高速",
+      "market": "sz",
+      "list_date": "1999-09-27",
+      "delist_date": "2017-12-25",
+      "status": "cached",
+      "n_rows": 217,
+      "span": null
+    },
+    {
+      "code": "200053",
+      "name": "深基地Ｂ",
+      "market": "sz",
+      "list_date": "1995-07-28",
+      "delist_date": "2018-06-15",
+      "status": "cached",
+      "n_rows": 469,
+      "span": null
+    },
+    {
+      "code": "600432",
+      "name": "退市吉恩",
+      "market": "sh",
+      "list_date": "2003-09-05",
+      "delist_date": "2018-07-13",
+      "status": "cached",
+      "n_rows": 282,
+      "span": null
+    },
+    {
+      "code": "600806",
+      "name": "退市昆机",
+      "market": "sh",
+      "list_date": "1994-01-03",
+      "delist_date": "2018-07-13",
+      "status": "cached",
+      "n_rows": 344,
+      "span": null
+    },
+    {
+      "code": "000511",
+      "name": "烯碳退",
+      "market": "sz",
+      "list_date": "1993-05-18",
+      "delist_date": "2018-07-18",
+      "status": "cached",
+      "n_rows": 211,
+      "span": null
+    },
+    {
+      "code": "000979",
+      "name": "中弘退",
+      "market": "sz",
+      "list_date": "2000-06-16",
+      "delist_date": "2018-12-28",
+      "status": "cached",
+      "n_rows": 526,
+      "span": null
+    },
+    {
+      "code": "600270",
+      "name": "外运发展",
+      "market": "sh",
+      "list_date": "2000-12-28",
+      "delist_date": "2018-12-28",
+      "status": "cached",
+      "n_rows": 662,
+      "span": null
+    },
+    {
+      "code": "600680",
+      "name": "*ST上普",
+      "market": "sh",
+      "list_date": "1994-10-20",
+      "delist_date": "2019-05-24",
+      "status": "cached",
+      "n_rows": 561,
+      "span": null
+    },
+    {
+      "code": "200418",
+      "name": "小天鹅Ｂ",
+      "market": "sz",
+      "list_date": "1996-07-18",
+      "delist_date": "2019-05-27",
+      "status": "cached",
+      "n_rows": 782,
+      "span": null
+    },
+    {
+      "code": "000418",
+      "name": "小天鹅Ａ",
+      "market": "sz",
+      "list_date": "1997-03-28",
+      "delist_date": "2019-06-21",
+      "status": "cached",
+      "n_rows": 782,
+      "span": null
+    },
+    {
+      "code": "000693",
+      "name": "华泽退",
+      "market": "sz",
+      "list_date": "1997-02-26",
+      "delist_date": "2019-07-09",
+      "status": "cached",
+      "n_rows": 92,
+      "span": null
+    },
+    {
+      "code": "002070",
+      "name": "众和退",
+      "market": "sz",
+      "list_date": "2006-10-12",
+      "delist_date": "2019-07-09",
+      "status": "cached",
+      "n_rows": 383,
+      "span": null
+    },
+    {
+      "code": "600401",
+      "name": "退市海润",
+      "market": "sh",
+      "list_date": "2003-09-24",
+      "delist_date": "2019-07-15",
+      "status": "cached",
+      "n_rows": 520,
+      "span": null
+    },
+    {
+      "code": "002477",
+      "name": "雏鹰退",
+      "market": "sz",
+      "list_date": "2010-09-15",
+      "delist_date": "2019-10-16",
+      "status": "cached",
+      "n_rows": 838,
+      "span": null
+    },
+    {
+      "code": "002018",
+      "name": "华信退",
+      "market": "sz",
+      "list_date": "2004-07-13",
+      "delist_date": "2019-11-01",
+      "status": "cached",
+      "n_rows": 821,
+      "span": null
+    },
+    {
+      "code": "002680",
+      "name": "长生退",
+      "market": "sz",
+      "list_date": "2012-06-05",
+      "delist_date": "2019-11-27",
+      "status": "cached",
+      "n_rows": 721,
+      "span": null
+    },
+    {
+      "code": "002143",
+      "name": "印纪退",
+      "market": "sz",
+      "list_date": "2007-07-20",
+      "delist_date": "2019-11-29",
+      "status": "cached",
+      "n_rows": 693,
+      "span": null
+    },
+    {
+      "code": "600747",
+      "name": "退市大控",
+      "market": "sh",
+      "list_date": "1996-09-16",
+      "delist_date": "2019-12-13",
+      "status": "cached",
+      "n_rows": 826,
+      "span": null
+    },
+    {
+      "code": "000018",
+      "name": "神城A退",
+      "market": "sz",
+      "list_date": "1992-06-16",
+      "delist_date": "2020-01-07",
+      "status": "cached",
+      "n_rows": 940,
+      "span": null
+    },
+    {
+      "code": "200018",
+      "name": "神城B退",
+      "market": "sz",
+      "list_date": "1992-06-16",
+      "delist_date": "2020-01-07",
+      "status": "cached",
+      "n_rows": 938,
+      "span": null
+    },
+    {
+      "code": "600240",
+      "name": "退市华业",
+      "market": "sh",
+      "list_date": "2000-06-28",
+      "delist_date": "2020-02-06",
+      "status": "cached",
+      "n_rows": 969,
+      "span": null
+    },
+    {
+      "code": "600074",
+      "name": "退市保千",
+      "market": "sh",
+      "list_date": "1997-06-23",
+      "delist_date": "2020-06-03",
+      "status": "cached",
+      "n_rows": 728,
+      "span": null
+    },
+    {
+      "code": "601558",
+      "name": "退市锐电",
+      "market": "sh",
+      "list_date": "2011-01-13",
+      "delist_date": "2020-07-03",
+      "status": "cached",
+      "n_rows": 1067,
+      "span": null
+    },
+    {
+      "code": "002604",
+      "name": "龙力退",
+      "market": "sz",
+      "list_date": "2011-07-28",
+      "delist_date": "2020-07-15",
+      "status": "cached",
+      "n_rows": 745,
+      "span": null
+    },
+    {
+      "code": "002509",
+      "name": "天茂退",
+      "market": "sz",
+      "list_date": "2010-11-23",
+      "delist_date": "2020-07-20",
+      "status": "cached",
+      "n_rows": 849,
+      "span": null
+    },
+    {
+      "code": "200160",
+      "name": "东沣B退",
+      "market": "sz",
+      "list_date": "2000-09-29",
+      "delist_date": "2020-07-21",
+      "status": "cached",
+      "n_rows": 689,
+      "span": null
+    },
+    {
+      "code": "300104",
+      "name": "乐视退",
+      "market": "sz",
+      "list_date": "2010-08-12",
+      "delist_date": "2020-07-21",
+      "status": "cached",
+      "n_rows": 500,
+      "span": null
+    },
+    {
+      "code": "300028",
+      "name": "金亚退",
+      "market": "sz",
+      "list_date": "2009-10-30",
+      "delist_date": "2020-08-03",
+      "status": "cached",
+      "n_rows": 544,
+      "span": null
+    },
+    {
+      "code": "002220",
+      "name": "天宝退",
+      "market": "sz",
+      "list_date": "2008-02-28",
+      "delist_date": "2020-08-11",
+      "status": "cached",
+      "n_rows": 1078,
+      "span": null
+    },
+    {
+      "code": "600175",
+      "name": "退市美都",
+      "market": "sh",
+      "list_date": "1999-04-08",
+      "delist_date": "2020-08-17",
+      "status": "cached",
+      "n_rows": 998,
+      "span": null
+    },
+    {
+      "code": "300090",
+      "name": "盛运退",
+      "market": "sz",
+      "list_date": "2010-06-25",
+      "delist_date": "2020-08-25",
+      "status": "cached",
+      "n_rows": 963,
+      "span": null
+    },
+    {
+      "code": "300156",
+      "name": "神雾退",
+      "market": "sz",
+      "list_date": "2011-01-07",
+      "delist_date": "2020-08-25",
+      "status": "cached",
+      "n_rows": 939,
+      "span": null
+    },
+    {
+      "code": "600069",
+      "name": "退市银鸽",
+      "market": "sh",
+      "list_date": "1997-04-30",
+      "delist_date": "2020-08-28",
+      "status": "cached",
+      "n_rows": 1002,
+      "span": null
+    },
+    {
+      "code": "900951",
+      "name": "退市大化",
+      "market": "sh",
+      "list_date": "1997-10-21",
+      "delist_date": "2020-08-28",
+      "status": "cached",
+      "n_rows": 1103,
+      "span": null
+    },
+    {
+      "code": "300216",
+      "name": "千山退",
+      "market": "sz",
+      "list_date": "2011-05-11",
+      "delist_date": "2020-09-16",
+      "status": "cached",
+      "n_rows": 810,
+      "span": null
+    },
+    {
+      "code": "300431",
+      "name": "暴风退",
+      "market": "sz",
+      "list_date": "2015-03-24",
+      "delist_date": "2020-11-10",
+      "status": "cached",
+      "n_rows": 956,
+      "span": null
+    },
+    {
+      "code": "900956",
+      "name": "东贝Ｂ股",
+      "market": "sh",
+      "list_date": "1999-07-15",
+      "delist_date": "2020-11-23",
+      "status": "cached",
+      "n_rows": 1107,
+      "span": null
+    },
+    {
+      "code": "000939",
+      "name": "凯迪退",
+      "market": "sz",
+      "list_date": "1999-09-23",
+      "delist_date": "2020-12-17",
+      "status": "cached",
+      "n_rows": 685,
+      "span": null
+    },
+    {
+      "code": "600317",
+      "name": "营口港",
+      "market": "sh",
+      "list_date": "2002-01-31",
+      "delist_date": "2021-01-29",
+      "status": "cached",
+      "n_rows": 1215,
+      "span": null
+    },
+    {
+      "code": "600687",
+      "name": "退市刚泰",
+      "market": "sh",
+      "list_date": "1993-11-08",
+      "delist_date": "2021-03-04",
+      "status": "cached",
+      "n_rows": 1068,
+      "span": null
+    },
+    {
+      "code": "600086",
+      "name": "退市金钰",
+      "market": "sh",
+      "list_date": "1997-06-06",
+      "delist_date": "2021-03-18",
+      "status": "cached",
+      "n_rows": 1039,
+      "span": null
+    },
+    {
+      "code": "600677",
+      "name": "*ST航通",
+      "market": "sh",
+      "list_date": "1993-09-28",
+      "delist_date": "2021-03-18",
+      "status": "cached",
+      "n_rows": 1052,
+      "span": null
+    },
+    {
+      "code": "600247",
+      "name": "*ST成城",
+      "market": "sh",
+      "list_date": "2000-11-23",
+      "delist_date": "2021-03-22",
+      "status": "cached",
+      "n_rows": 1244,
+      "span": null
+    },
+    {
+      "code": "600978",
+      "name": "*ST宜生",
+      "market": "sh",
+      "list_date": "2004-08-24",
+      "delist_date": "2021-03-22",
+      "status": "cached",
+      "n_rows": 1234,
+      "span": null
+    },
+    {
+      "code": "000662",
+      "name": "天夏退",
+      "market": "sz",
+      "list_date": "1996-12-16",
+      "delist_date": "2021-04-12",
+      "status": "cached",
+      "n_rows": 1140,
+      "span": null
+    },
+    {
+      "code": "600701",
+      "name": "退市工新",
+      "market": "sh",
+      "list_date": "1996-05-28",
+      "delist_date": "2021-05-06",
+      "status": "cached",
+      "n_rows": 890,
+      "span": null
+    },
+    {
+      "code": "002071",
+      "name": "长城退",
+      "market": "sz",
+      "list_date": "2006-10-12",
+      "delist_date": "2021-05-07",
+      "status": "cached",
+      "n_rows": 1044,
+      "span": null
+    },
+    {
+      "code": "600891",
+      "name": "退市秋林",
+      "market": "sh",
+      "list_date": "1996-03-25",
+      "delist_date": "2021-05-12",
+      "status": "cached",
+      "n_rows": 1030,
+      "span": null
+    },
+    {
+      "code": "200168",
+      "name": "*ST舜喆B",
+      "market": "sz",
+      "list_date": "2000-10-27",
+      "delist_date": "2021-05-26",
+      "status": "cached",
+      "n_rows": 881,
+      "span": null
+    },
+    {
+      "code": "002450",
+      "name": "康得退",
+      "market": "sz",
+      "list_date": "2010-07-16",
+      "delist_date": "2021-05-31",
+      "status": "cached",
+      "n_rows": 666,
+      "span": null
+    },
+    {
+      "code": "600485",
+      "name": "*ST信威",
+      "market": "sh",
+      "list_date": "2003-08-07",
+      "delist_date": "2021-06-01",
+      "status": "cached",
+      "n_rows": 355,
+      "span": null
+    },
+    {
+      "code": "002711",
+      "name": "欧浦退",
+      "market": "sz",
+      "list_date": "2014-01-27",
+      "delist_date": "2021-07-15",
+      "status": "cached",
+      "n_rows": 1012,
+      "span": null
+    },
+    {
+      "code": "200986",
+      "name": "粤华包Ｂ",
+      "market": "sz",
+      "list_date": "2000-07-06",
+      "delist_date": "2021-07-21",
+      "status": "cached",
+      "n_rows": 914,
+      "span": null
+    },
+    {
+      "code": "600614",
+      "name": "退市鹏起",
+      "market": "sh",
+      "list_date": "1992-08-28",
+      "delist_date": "2021-07-22",
+      "status": "cached",
+      "n_rows": 921,
+      "span": null
+    },
+    {
+      "code": "600634",
+      "name": "退市富控",
+      "market": "sh",
+      "list_date": "1993-03-04",
+      "delist_date": "2021-07-22",
+      "status": "cached",
+      "n_rows": 1016,
+      "span": null
+    },
+    {
+      "code": "000760",
+      "name": "斯太退",
+      "market": "sz",
+      "list_date": "1997-06-27",
+      "delist_date": "2021-07-23",
+      "status": "cached",
+      "n_rows": 1062,
+      "span": null
+    },
+    {
+      "code": "002359",
+      "name": "北讯退",
+      "market": "sz",
+      "list_date": "2010-02-10",
+      "delist_date": "2021-07-23",
+      "status": "cached",
+      "n_rows": 1042,
+      "span": null
+    },
+    {
+      "code": "300362",
+      "name": "天翔退",
+      "market": "sz",
+      "list_date": "2014-01-21",
+      "delist_date": "2021-08-30",
+      "status": "cached",
+      "n_rows": 810,
+      "span": null
+    },
+    {
+      "code": "600068",
+      "name": "葛洲坝",
+      "market": "sh",
+      "list_date": "1997-05-26",
+      "delist_date": "2021-09-13",
+      "status": "cached",
+      "n_rows": 1370,
+      "span": null
+    },
+    {
+      "code": "600723",
+      "name": "首商股份",
+      "market": "sh",
+      "list_date": "1996-07-16",
+      "delist_date": "2021-10-22",
+      "status": "cached",
+      "n_rows": 1380,
+      "span": null
+    },
+    {
+      "code": "000780",
+      "name": "ST平能",
+      "market": "sz",
+      "list_date": "1997-06-06",
+      "delist_date": "2022-01-24",
+      "status": "cached",
+      "n_rows": 1435,
+      "span": null
+    },
+    {
+      "code": "002619",
+      "name": "*ST艾格",
+      "market": "sz",
+      "list_date": "2011-09-29",
+      "delist_date": "2022-04-28",
+      "status": "cached",
+      "n_rows": 1237,
+      "span": null
+    },
+    {
+      "code": "600145",
+      "name": "退市新亿",
+      "market": "sh",
+      "list_date": "1999-09-23",
+      "delist_date": "2022-04-28",
+      "status": "cached",
+      "n_rows": 422,
+      "span": null
+    },
+    {
+      "code": "000835",
+      "name": "长动退",
+      "market": "sz",
+      "list_date": "1999-06-25",
+      "delist_date": "2022-05-23",
+      "status": "cached",
+      "n_rows": 1413,
+      "span": null
+    },
+    {
+      "code": "000585",
+      "name": "东电退",
+      "market": "sz",
+      "list_date": "1995-12-13",
+      "delist_date": "2022-05-24",
+      "status": "cached",
+      "n_rows": 1339,
+      "span": null
+    },
+    {
+      "code": "603157",
+      "name": "退市拉夏",
+      "market": "sh",
+      "list_date": "2017-09-25",
+      "delist_date": "2022-05-24",
+      "status": "cached",
+      "n_rows": 1109,
+      "span": null
+    },
+    {
+      "code": "603996",
+      "name": "退市中新",
+      "market": "sh",
+      "list_date": "2015-12-22",
+      "delist_date": "2022-05-24",
+      "status": "cached",
+      "n_rows": 1530,
+      "span": null
+    },
+    {
+      "code": "600291",
+      "name": "退市西水",
+      "market": "sh",
+      "list_date": "2000-07-31",
+      "delist_date": "2022-06-14",
+      "status": "cached",
+      "n_rows": 1514,
+      "span": null
+    },
+    {
+      "code": "600695",
+      "name": "退市绿庭",
+      "market": "sh",
+      "list_date": "1993-12-15",
+      "delist_date": "2022-06-15",
+      "status": "cached",
+      "n_rows": 1488,
+      "span": null
+    },
+    {
+      "code": "000687",
+      "name": "华讯退",
+      "market": "sz",
+      "list_date": "1997-02-21",
+      "delist_date": "2022-06-17",
+      "status": "cached",
+      "n_rows": 1535,
+      "span": null
+    },
+    {
+      "code": "002260",
+      "name": "德奥退",
+      "market": "sz",
+      "list_date": "2008-07-16",
+      "delist_date": "2022-06-17",
+      "status": "cached",
+      "n_rows": 493,
+      "span": null
+    },
+    {
+      "code": "600091",
+      "name": "退市明科",
+      "market": "sh",
+      "list_date": "1997-07-04",
+      "delist_date": "2022-06-21",
+      "status": "cached",
+      "n_rows": 1475,
+      "span": null
+    },
+    {
+      "code": "600652",
+      "name": "退市游久",
+      "market": "sh",
+      "list_date": "1990-12-19",
+      "delist_date": "2022-06-21",
+      "status": "cached",
+      "n_rows": 1543,
+      "span": null
+    },
+    {
+      "code": "600890",
+      "name": "退市中房",
+      "market": "sh",
+      "list_date": "1996-03-18",
+      "delist_date": "2022-06-21",
+      "status": "cached",
+      "n_rows": 1155,
+      "span": null
+    },
+    {
+      "code": "002473",
+      "name": "圣莱退",
+      "market": "sz",
+      "list_date": "2010-09-10",
+      "delist_date": "2022-06-22",
+      "status": "cached",
+      "n_rows": 1367,
+      "span": null
+    },
+    {
+      "code": "002618",
+      "name": "丹邦退",
+      "market": "sz",
+      "list_date": "2011-09-20",
+      "delist_date": "2022-06-22",
+      "status": "cached",
+      "n_rows": 1552,
+      "span": null
+    },
+    {
+      "code": "300178",
+      "name": "腾邦退",
+      "market": "sz",
+      "list_date": "2011-02-15",
+      "delist_date": "2022-06-22",
+      "status": "cached",
+      "n_rows": 1511,
+      "span": null
+    },
+    {
+      "code": "600209",
+      "name": "退市罗顿",
+      "market": "sh",
+      "list_date": "1999-03-25",
+      "delist_date": "2022-06-22",
+      "status": "cached",
+      "n_rows": 1216,
+      "span": null
+    },
+    {
+      "code": "600275",
+      "name": "退市昌鱼",
+      "market": "sh",
+      "list_date": "2000-08-10",
+      "delist_date": "2022-06-22",
+      "status": "cached",
+      "n_rows": 1501,
+      "span": null
+    },
+    {
+      "code": "600856",
+      "name": "退市中天",
+      "market": "sh",
+      "list_date": "1994-04-25",
+      "delist_date": "2022-06-22",
+      "status": "cached",
+      "n_rows": 1381,
+      "span": null
+    },
+    {
+      "code": "002147",
+      "name": "新光退",
+      "market": "sz",
+      "list_date": "2007-08-08",
+      "delist_date": "2022-06-23",
+      "status": "cached",
+      "n_rows": 1351,
+      "span": null
+    },
+    {
+      "code": "002770",
+      "name": "科迪退",
+      "market": "sz",
+      "list_date": "2015-06-30",
+      "delist_date": "2022-06-23",
+      "status": "cached",
+      "n_rows": 1456,
+      "span": null
+    },
+    {
+      "code": "600093",
+      "name": "退市易见",
+      "market": "sh",
+      "list_date": "1997-06-26",
+      "delist_date": "2022-06-23",
+      "status": "cached",
+      "n_rows": 1484,
+      "span": null
+    },
+    {
+      "code": "000502",
+      "name": "绿景退",
+      "market": "sz",
+      "list_date": "1992-11-23",
+      "delist_date": "2022-06-27",
+      "status": "cached",
+      "n_rows": 1518,
+      "span": null
+    },
+    {
+      "code": "002447",
+      "name": "晨鑫退",
+      "market": "sz",
+      "list_date": "2010-07-13",
+      "delist_date": "2022-06-27",
+      "status": "cached",
+      "n_rows": 1271,
+      "span": null
+    },
+    {
+      "code": "002684",
+      "name": "猛狮退",
+      "market": "sz",
+      "list_date": "2012-06-12",
+      "delist_date": "2022-06-27",
+      "status": "cached",
+      "n_rows": 1336,
+      "span": null
+    },
+    {
+      "code": "300064",
+      "name": "金刚退",
+      "market": "sz",
+      "list_date": "2010-03-26",
+      "delist_date": "2022-06-27",
+      "status": "cached",
+      "n_rows": 1512,
+      "span": null
+    },
+    {
+      "code": "000611",
+      "name": "天首退",
+      "market": "sz",
+      "list_date": "1996-10-08",
+      "delist_date": "2022-06-28",
+      "status": "cached",
+      "n_rows": 1316,
+      "span": null
+    },
+    {
+      "code": "002464",
+      "name": "众应退",
+      "market": "sz",
+      "list_date": "2010-08-31",
+      "delist_date": "2022-06-28",
+      "status": "cached",
+      "n_rows": 1235,
+      "span": null
+    },
+    {
+      "code": "300325",
+      "name": "德威退",
+      "market": "sz",
+      "list_date": "2012-06-01",
+      "delist_date": "2022-06-28",
+      "status": "cached",
+      "n_rows": 1467,
+      "span": null
+    },
+    {
+      "code": "000613",
+      "name": "东海A退",
+      "market": "sz",
+      "list_date": "1997-01-28",
+      "delist_date": "2022-06-29",
+      "status": "cached",
+      "n_rows": 1409,
+      "span": null
+    },
+    {
+      "code": "200613",
+      "name": "东海B退",
+      "market": "sz",
+      "list_date": "1996-10-08",
+      "delist_date": "2022-06-29",
+      "status": "cached",
+      "n_rows": 1408,
+      "span": null
+    },
+    {
+      "code": "300023",
+      "name": "宝德退",
+      "market": "sz",
+      "list_date": "2009-10-30",
+      "delist_date": "2022-06-29",
+      "status": "cached",
+      "n_rows": 1544,
+      "span": null
+    },
+    {
+      "code": "300038",
+      "name": "数知退",
+      "market": "sz",
+      "list_date": "2010-01-08",
+      "delist_date": "2022-06-30",
+      "status": "cached",
+      "n_rows": 1281,
+      "span": null
+    },
+    {
+      "code": "300367",
+      "name": "网力退",
+      "market": "sz",
+      "list_date": "2014-01-29",
+      "delist_date": "2022-06-30",
+      "status": "cached",
+      "n_rows": 1414,
+      "span": null
+    },
+    {
+      "code": "600146",
+      "name": "退市环球",
+      "market": "sh",
+      "list_date": "1999-07-07",
+      "delist_date": "2022-06-30",
+      "status": "cached",
+      "n_rows": 1202,
+      "span": null
+    },
+    {
+      "code": "600870",
+      "name": "退市厦华",
+      "market": "sh",
+      "list_date": "1995-02-28",
+      "delist_date": "2022-06-30",
+      "status": "cached",
+      "n_rows": 1318,
+      "span": null
+    },
+    {
+      "code": "000673",
+      "name": "当代退",
+      "market": "sz",
+      "list_date": "1997-01-24",
+      "delist_date": "2022-07-04",
+      "status": "cached",
+      "n_rows": 1338,
+      "span": null
+    },
+    {
+      "code": "300202",
+      "name": "聚龙退",
+      "market": "sz",
+      "list_date": "2011-04-15",
+      "delist_date": "2022-07-04",
+      "status": "cached",
+      "n_rows": 1551,
+      "span": null
+    },
+    {
+      "code": "300312",
+      "name": "邦讯退",
+      "market": "sz",
+      "list_date": "2012-05-08",
+      "delist_date": "2022-07-04",
+      "status": "cached",
+      "n_rows": 1478,
+      "span": null
+    },
+    {
+      "code": "600090",
+      "name": "退市济堂",
+      "market": "sh",
+      "list_date": "1997-06-16",
+      "delist_date": "2022-07-07",
+      "status": "cached",
+      "n_rows": 1528,
+      "span": null
+    },
+    {
+      "code": "600385",
+      "name": "退市金泰",
+      "market": "sh",
+      "list_date": "2001-07-23",
+      "delist_date": "2022-07-07",
+      "status": "cached",
+      "n_rows": 1479,
+      "span": null
+    },
+    {
+      "code": "600555",
+      "name": "退市海创",
+      "market": "sh",
+      "list_date": "2001-03-28",
+      "delist_date": "2022-07-14",
+      "status": "cached",
+      "n_rows": 1550,
+      "span": null
+    },
+    {
+      "code": "600896",
+      "name": "退市海医",
+      "market": "sh",
+      "list_date": "1996-05-03",
+      "delist_date": "2022-07-25",
+      "status": "cached",
+      "n_rows": 1418,
+      "span": null
+    },
+    {
+      "code": "600260",
+      "name": "*ST凯乐",
+      "market": "sh",
+      "list_date": "2000-07-06",
+      "delist_date": "2023-02-15",
+      "status": "cached",
+      "n_rows": 1710,
+      "span": null
+    },
+    {
+      "code": "002013",
+      "name": "中航机电",
+      "market": "sz",
+      "list_date": "2004-07-05",
+      "delist_date": "2023-03-17",
+      "status": "cached",
+      "n_rows": 1656,
+      "span": null
+    },
+    {
+      "code": "600139",
+      "name": "*ST西源",
+      "market": "sh",
+      "list_date": "1998-02-25",
+      "delist_date": "2023-03-27",
+      "status": "cached",
+      "n_rows": 1639,
+      "span": null
+    },
+    {
+      "code": "600311",
+      "name": "*ST荣华",
+      "market": "sh",
+      "list_date": "2001-06-26",
+      "delist_date": "2023-03-27",
+      "status": "cached",
+      "n_rows": 1717,
+      "span": null
+    },
+    {
+      "code": "000587",
+      "name": "*ST金洲",
+      "market": "sz",
+      "list_date": "1996-04-25",
+      "delist_date": "2023-04-03",
+      "status": "cached",
+      "n_rows": 1700,
+      "span": null
+    },
+    {
+      "code": "002499",
+      "name": "科林退",
+      "market": "sz",
+      "list_date": "2010-11-09",
+      "delist_date": "2023-04-18",
+      "status": "cached",
+      "n_rows": 1630,
+      "span": null
+    },
+    {
+      "code": "300330",
+      "name": "计通退",
+      "market": "sz",
+      "list_date": "2012-06-19",
+      "delist_date": "2023-05-24",
+      "status": "cached",
+      "n_rows": 1666,
+      "span": null
+    },
+    {
+      "code": "300309",
+      "name": "吉艾退",
+      "market": "sz",
+      "list_date": "2012-04-10",
+      "delist_date": "2023-05-30",
+      "status": "cached",
+      "n_rows": 1697,
+      "span": null
+    },
+    {
+      "code": "600466",
+      "name": "*ST蓝光",
+      "market": "sh",
+      "list_date": "2001-02-12",
+      "delist_date": "2023-06-06",
+      "status": "cached",
+      "n_rows": 1772,
+      "span": null
+    },
+    {
+      "code": "000150",
+      "name": "*ST宜康",
+      "market": "sz",
+      "list_date": "2000-08-07",
+      "delist_date": "2023-06-09",
+      "status": "cached",
+      "n_rows": 1759,
+      "span": null
+    },
+    {
+      "code": "600122",
+      "name": "*ST宏图",
+      "market": "sh",
+      "list_date": "1998-04-20",
+      "delist_date": "2023-06-26",
+      "status": "cached",
+      "n_rows": 1567,
+      "span": null
+    },
+    {
+      "code": "600532",
+      "name": "退市未来",
+      "market": "sh",
+      "list_date": "2002-10-31",
+      "delist_date": "2023-06-28",
+      "status": "cached",
+      "n_rows": 1738,
+      "span": null
+    },
+    {
+      "code": "600781",
+      "name": "退市辅仁",
+      "market": "sh",
+      "list_date": "1996-12-18",
+      "delist_date": "2023-06-28",
+      "status": "cached",
+      "n_rows": 1738,
+      "span": null
+    },
+    {
+      "code": "600242",
+      "name": "退市中昌",
+      "market": "sh",
+      "list_date": "2000-12-07",
+      "delist_date": "2023-06-29",
+      "status": "cached",
+      "n_rows": 1611,
+      "span": null
+    },
+    {
+      "code": "600767",
+      "name": "退市运盛",
+      "market": "sh",
+      "list_date": "1996-11-15",
+      "delist_date": "2023-06-29",
+      "status": "cached",
+      "n_rows": 1769,
+      "span": null
+    },
+    {
+      "code": "000540",
+      "name": "*ST中天",
+      "market": "sz",
+      "list_date": "1994-02-02",
+      "delist_date": "2023-06-30",
+      "status": "cached",
+      "n_rows": 1430,
+      "span": null
+    },
+    {
+      "code": "601258",
+      "name": "*ST庞大",
+      "market": "sh",
+      "list_date": "2011-04-28",
+      "delist_date": "2023-06-30",
+      "status": "cached",
+      "n_rows": 1788,
+      "span": null
+    },
+    {
+      "code": "002781",
+      "name": "奇信退",
+      "market": "sz",
+      "list_date": "2015-12-22",
+      "delist_date": "2023-07-05",
+      "status": "cached",
+      "n_rows": 1679,
+      "span": null
+    },
+    {
+      "code": "300336",
+      "name": "新文退",
+      "market": "sz",
+      "list_date": "2012-07-10",
+      "delist_date": "2023-07-05",
+      "status": "cached",
+      "n_rows": 1730,
+      "span": null
+    },
+    {
+      "code": "000606",
+      "name": "顺利退",
+      "market": "sz",
+      "list_date": "1996-10-04",
+      "delist_date": "2023-07-06",
+      "status": "cached",
+      "n_rows": 1642,
+      "span": null
+    },
+    {
+      "code": "000806",
+      "name": "银河退",
+      "market": "sz",
+      "list_date": "1998-04-16",
+      "delist_date": "2023-07-06",
+      "status": "cached",
+      "n_rows": 1525,
+      "span": null
+    },
+    {
+      "code": "300273",
+      "name": "和佳退",
+      "market": "sz",
+      "list_date": "2011-10-26",
+      "delist_date": "2023-07-06",
+      "status": "cached",
+      "n_rows": 1708,
+      "span": null
+    },
+    {
+      "code": "688086",
+      "name": "退市紫晶",
+      "market": "sh",
+      "list_date": "2020-02-26",
+      "delist_date": "2023-07-07",
+      "status": "cached",
+      "n_rows": 781,
+      "span": null
+    },
+    {
+      "code": "688555",
+      "name": "退市泽达",
+      "market": "sh",
+      "list_date": "2020-06-23",
+      "delist_date": "2023-07-07",
+      "status": "cached",
+      "n_rows": 699,
+      "span": null
+    },
+    {
+      "code": "002417",
+      "name": "深南退",
+      "market": "sz",
+      "list_date": "2010-06-01",
+      "delist_date": "2023-07-10",
+      "status": "cached",
+      "n_rows": 1680,
+      "span": null
+    },
+    {
+      "code": "200152",
+      "name": "山航B退",
+      "market": "sz",
+      "list_date": "2000-09-12",
+      "delist_date": "2023-07-10",
+      "status": "cached",
+      "n_rows": 1783,
+      "span": null
+    },
+    {
+      "code": "300392",
+      "name": "腾信退",
+      "market": "sz",
+      "list_date": "2014-09-10",
+      "delist_date": "2023-07-10",
+      "status": "cached",
+      "n_rows": 1548,
+      "span": null
+    },
+    {
+      "code": "000038",
+      "name": "大通退",
+      "market": "sz",
+      "list_date": "1994-08-08",
+      "delist_date": "2023-07-12",
+      "status": "cached",
+      "n_rows": 1434,
+      "span": null
+    },
+    {
+      "code": "002411",
+      "name": "必康退",
+      "market": "sz",
+      "list_date": "2010-05-25",
+      "delist_date": "2023-07-12",
+      "status": "cached",
+      "n_rows": 1617,
+      "span": null
+    },
+    {
+      "code": "300526",
+      "name": "中潜退",
+      "market": "sz",
+      "list_date": "2016-08-02",
+      "delist_date": "2023-07-12",
+      "status": "cached",
+      "n_rows": 1505,
+      "span": null
+    },
+    {
+      "code": "002751",
+      "name": "易尚退",
+      "market": "sz",
+      "list_date": "2015-04-24",
+      "delist_date": "2023-07-13",
+      "status": "cached",
+      "n_rows": 1756,
+      "span": null
+    },
+    {
+      "code": "300089",
+      "name": "文化退",
+      "market": "sz",
+      "list_date": "2010-06-25",
+      "delist_date": "2023-07-13",
+      "status": "cached",
+      "n_rows": 1568,
+      "span": null
+    },
+    {
+      "code": "300356",
+      "name": "光一退",
+      "market": "sz",
+      "list_date": "2012-10-09",
+      "delist_date": "2023-07-13",
+      "status": "cached",
+      "n_rows": 1682,
+      "span": null
+    },
+    {
+      "code": "000667",
+      "name": "ST美置",
+      "market": "sz",
+      "list_date": "1996-12-05",
+      "delist_date": "2023-07-14",
+      "status": "cached",
+      "n_rows": 1786,
+      "span": null
+    },
+    {
+      "code": "600393",
+      "name": "ST粤泰",
+      "market": "sh",
+      "list_date": "2001-03-19",
+      "delist_date": "2023-07-18",
+      "status": "cached",
+      "n_rows": 1728,
+      "span": null
+    },
+    {
+      "code": "600077",
+      "name": "*ST宋都",
+      "market": "sh",
+      "list_date": "1997-05-20",
+      "delist_date": "2023-07-25",
+      "status": "cached",
+      "n_rows": 1809,
+      "span": null
+    },
+    {
+      "code": "000918",
+      "name": "*ST嘉凯",
+      "market": "sz",
+      "list_date": "1999-07-20",
+      "delist_date": "2023-07-28",
+      "status": "cached",
+      "n_rows": 1749,
+      "span": null
+    },
+    {
+      "code": "300297",
+      "name": "蓝盾退",
+      "market": "sz",
+      "list_date": "2012-03-15",
+      "delist_date": "2023-07-31",
+      "status": "cached",
+      "n_rows": 1784,
+      "span": null
+    },
+    {
+      "code": "000732",
+      "name": "ST泰禾",
+      "market": "sz",
+      "list_date": "1997-07-04",
+      "delist_date": "2023-08-04",
+      "status": "cached",
+      "n_rows": 1785,
+      "span": null
+    },
+    {
+      "code": "002118",
+      "name": "*ST紫鑫",
+      "market": "sz",
+      "list_date": "2007-03-02",
+      "delist_date": "2023-08-04",
+      "status": "cached",
+      "n_rows": 1772,
+      "span": null
+    },
+    {
+      "code": "002113",
+      "name": "*ST天润",
+      "market": "sz",
+      "list_date": "2007-02-08",
+      "delist_date": "2023-08-11",
+      "status": "cached",
+      "n_rows": 1518,
+      "span": null
+    },
+    {
+      "code": "002503",
+      "name": "*ST搜特",
+      "market": "sz",
+      "list_date": "2010-11-17",
+      "delist_date": "2023-08-11",
+      "status": "cached",
+      "n_rows": 1792,
+      "span": null
+    },
+    {
+      "code": "000671",
+      "name": "ST阳光城",
+      "market": "sz",
+      "list_date": "1996-12-18",
+      "delist_date": "2023-08-16",
+      "status": "cached",
+      "n_rows": 1791,
+      "span": null
+    },
+    {
+      "code": "002504",
+      "name": "*ST弘高",
+      "market": "sz",
+      "list_date": "2010-11-18",
+      "delist_date": "2023-08-21",
+      "status": "cached",
+      "n_rows": 1639,
+      "span": null
+    },
+    {
+      "code": "000616",
+      "name": "*ST海投",
+      "market": "sz",
+      "list_date": "1996-11-08",
+      "delist_date": "2023-08-23",
+      "status": "cached",
+      "n_rows": 1688,
+      "span": null
+    },
+    {
+      "code": "000666",
+      "name": "经纬纺机",
+      "market": "sz",
+      "list_date": "1996-12-10",
+      "delist_date": "2023-10-26",
+      "status": "cached",
+      "n_rows": 1698,
+      "span": null
+    },
+    {
+      "code": "600290",
+      "name": "*ST华仪",
+      "market": "sh",
+      "list_date": "2000-11-06",
+      "delist_date": "2024-01-16",
+      "status": "cached",
+      "n_rows": 1877,
+      "span": null
+    },
+    {
+      "code": "002776",
+      "name": "*ST柏龙",
+      "market": "sz",
+      "list_date": "2015-06-26",
+      "delist_date": "2024-01-25",
+      "status": "cached",
+      "n_rows": 1887,
+      "span": null
+    },
+    {
+      "code": "000046",
+      "name": "*ST泛海",
+      "market": "sz",
+      "list_date": "1994-09-12",
+      "delist_date": "2024-02-07",
+      "status": "cached",
+      "n_rows": 1879,
+      "span": null
+    },
+    {
+      "code": "002740",
+      "name": "*ST爱迪",
+      "market": "sz",
+      "list_date": "2015-01-22",
+      "delist_date": "2024-03-04",
+      "status": "cached",
+      "n_rows": 1821,
+      "span": null
+    },
+    {
+      "code": "002002",
+      "name": "ST鸿达",
+      "market": "sz",
+      "list_date": "2004-06-25",
+      "delist_date": "2024-03-18",
+      "status": "cached",
+      "n_rows": 1891,
+      "span": null
+    },
+    {
+      "code": "603555",
+      "name": "ST贵人",
+      "market": "sh",
+      "list_date": "2014-01-24",
+      "delist_date": "2024-03-29",
+      "status": "cached",
+      "n_rows": 1896,
+      "span": null
+    },
+    {
+      "code": "002089",
+      "name": "新海退",
+      "market": "sz",
+      "list_date": "2006-11-30",
+      "delist_date": "2024-04-18",
+      "status": "cached",
+      "n_rows": 1778,
+      "span": null
+    },
+    {
+      "code": "603603",
+      "name": "退市博天",
+      "market": "sh",
+      "list_date": "2017-02-17",
+      "delist_date": "2024-04-25",
+      "status": "cached",
+      "n_rows": 1598,
+      "span": null
+    },
+    {
+      "code": "000005",
+      "name": "ST星源",
+      "market": "sz",
+      "list_date": "1990-12-10",
+      "delist_date": "2024-04-26",
+      "status": "cached",
+      "n_rows": 1984,
+      "span": null
+    },
+    {
+      "code": "000416",
+      "name": "*ST民控",
+      "market": "sz",
+      "list_date": "1996-07-19",
+      "delist_date": "2024-06-05",
+      "status": "cached",
+      "n_rows": 2000,
+      "span": null
+    },
+    {
+      "code": "002699",
+      "name": "*ST美盛",
+      "market": "sz",
+      "list_date": "2012-09-11",
+      "delist_date": "2024-06-05",
+      "status": "cached",
+      "n_rows": 1885,
+      "span": null
+    },
+    {
+      "code": "600823",
+      "name": "*ST世茂",
+      "market": "sh",
+      "list_date": "1994-02-04",
+      "delist_date": "2024-06-14",
+      "status": "cached",
+      "n_rows": 2028,
+      "span": null
+    },
+    {
+      "code": "600306",
+      "name": "退市商城",
+      "market": "sh",
+      "list_date": "2000-12-26",
+      "delist_date": "2024-06-26",
+      "status": "cached",
+      "n_rows": 1895,
+      "span": null
+    },
+    {
+      "code": "600321",
+      "name": "正源股份",
+      "market": "sh",
+      "list_date": "2001-05-24",
+      "delist_date": "2024-06-27",
+      "status": "cached",
+      "n_rows": 1928,
+      "span": null
+    },
+    {
+      "code": "000996",
+      "name": "中期退",
+      "market": "sz",
+      "list_date": "2000-07-18",
+      "delist_date": "2024-06-28",
+      "status": "cached",
+      "n_rows": 2012,
+      "span": null
+    },
+    {
+      "code": "002087",
+      "name": "新纺退",
+      "market": "sz",
+      "list_date": "2006-11-30",
+      "delist_date": "2024-06-28",
+      "status": "cached",
+      "n_rows": 2026,
+      "span": null
+    },
+    {
+      "code": "600647",
+      "name": "退市同达",
+      "market": "sh",
+      "list_date": "1993-05-04",
+      "delist_date": "2024-07-03",
+      "status": "cached",
+      "n_rows": 1994,
+      "span": null
+    },
+    {
+      "code": "600766",
+      "name": "退市园城",
+      "market": "sh",
+      "list_date": "1996-10-28",
+      "delist_date": "2024-07-03",
+      "status": "cached",
+      "n_rows": 1921,
+      "span": null
+    },
+    {
+      "code": "603133",
+      "name": "退市碳元",
+      "market": "sh",
+      "list_date": "2017-03-20",
+      "delist_date": "2024-07-03",
+      "status": "cached",
+      "n_rows": 1736,
+      "span": null
+    },
+    {
+      "code": "002433",
+      "name": "太安退",
+      "market": "sz",
+      "list_date": "2010-06-18",
+      "delist_date": "2024-07-05",
+      "status": "cached",
+      "n_rows": 1996,
+      "span": null
+    },
+    {
+      "code": "900953",
+      "name": "凯马Ｂ",
+      "market": "sh",
+      "list_date": "1998-06-24",
+      "delist_date": "2024-07-05",
+      "status": "cached",
+      "n_rows": 2049,
+      "span": null
+    },
+    {
+      "code": "600220",
+      "name": "ST阳光",
+      "market": "sh",
+      "list_date": "1999-09-27",
+      "delist_date": "2024-07-10",
+      "status": "cached",
+      "n_rows": 2044,
+      "span": null
+    },
+    {
+      "code": "000961",
+      "name": "ST中南",
+      "market": "sz",
+      "list_date": "2000-03-01",
+      "delist_date": "2024-07-11",
+      "status": "cached",
+      "n_rows": 2013,
+      "span": null
+    },
+    {
+      "code": "600836",
+      "name": "*ST易连",
+      "market": "sh",
+      "list_date": "1994-02-24",
+      "delist_date": "2024-07-11",
+      "status": "cached",
+      "n_rows": 2046,
+      "span": null
+    },
+    {
+      "code": "300282",
+      "name": "三盛退",
+      "market": "sz",
+      "list_date": "2011-12-29",
+      "delist_date": "2024-07-18",
+      "status": "cached",
+      "n_rows": 1933,
+      "span": null
+    },
+    {
+      "code": "600277",
+      "name": "ST亿利",
+      "market": "sh",
+      "list_date": "2000-07-25",
+      "delist_date": "2024-07-18",
+      "status": "cached",
+      "n_rows": 1906,
+      "span": null
+    },
+    {
+      "code": "300742",
+      "name": "越博退",
+      "market": "sz",
+      "list_date": "2018-05-08",
+      "delist_date": "2024-07-22",
+      "status": "cached",
+      "n_rows": 1468,
+      "span": null
+    },
+    {
+      "code": "000971",
+      "name": "*ST高升",
+      "market": "sz",
+      "list_date": "2000-04-27",
+      "delist_date": "2024-07-24",
+      "status": "cached",
+      "n_rows": 1944,
+      "span": null
+    },
+    {
+      "code": "300116",
+      "name": "*ST保力",
+      "market": "sz",
+      "list_date": "2010-09-02",
+      "delist_date": "2024-07-25",
+      "status": "cached",
+      "n_rows": 1887,
+      "span": null
+    },
+    {
+      "code": "300799",
+      "name": "左江退",
+      "market": "sz",
+      "list_date": "2019-10-29",
+      "delist_date": "2024-07-29",
+      "status": "cached",
+      "n_rows": 1101,
+      "span": null
+    },
+    {
+      "code": "002621",
+      "name": "*ST美吉",
+      "market": "sz",
+      "list_date": "2011-09-29",
+      "delist_date": "2024-08-05",
+      "status": "cached",
+      "n_rows": 1822,
+      "span": null
+    },
+    {
+      "code": "600565",
+      "name": "ST迪马",
+      "market": "sh",
+      "list_date": "2002-07-23",
+      "delist_date": "2024-08-07",
+      "status": "cached",
+      "n_rows": 2043,
+      "span": null
+    },
+    {
+      "code": "000836",
+      "name": "ST富通",
+      "market": "sz",
+      "list_date": "1997-09-29",
+      "delist_date": "2024-08-12",
+      "status": "cached",
+      "n_rows": 1814,
+      "span": null
+    },
+    {
+      "code": "000982",
+      "name": "中银绒业",
+      "market": "sz",
+      "list_date": "2000-07-06",
+      "delist_date": "2024-08-12",
+      "status": "cached",
+      "n_rows": 1842,
+      "span": null
+    },
+    {
+      "code": "002610",
+      "name": "ST爱康",
+      "market": "sz",
+      "list_date": "2011-08-15",
+      "delist_date": "2024-08-12",
+      "status": "cached",
+      "n_rows": 1857,
+      "span": null
+    },
+    {
+      "code": "002325",
+      "name": "*ST洪涛",
+      "market": "sz",
+      "list_date": "2009-12-22",
+      "delist_date": "2024-08-15",
+      "status": "cached",
+      "n_rows": 2061,
+      "span": null
+    },
+    {
+      "code": "002435",
+      "name": "ST长康",
+      "market": "sz",
+      "list_date": "2010-06-18",
+      "delist_date": "2024-08-15",
+      "status": "cached",
+      "n_rows": 2038,
+      "span": null
+    },
+    {
+      "code": "600112",
+      "name": "*ST天成",
+      "market": "sh",
+      "list_date": "1997-11-27",
+      "delist_date": "2024-08-15",
+      "status": "cached",
+      "n_rows": 1981,
+      "span": null
+    },
+    {
+      "code": "002280",
+      "name": "ST联络",
+      "market": "sz",
+      "list_date": "2009-08-21",
+      "delist_date": "2024-08-16",
+      "status": "cached",
+      "n_rows": 1875,
+      "span": null
+    },
+    {
+      "code": "002288",
+      "name": "*ST超华",
+      "market": "sz",
+      "list_date": "2009-09-03",
+      "delist_date": "2024-08-19",
+      "status": "cached",
+      "n_rows": 1954,
+      "span": null
+    },
+    {
+      "code": "300262",
+      "name": "*ST巴安",
+      "market": "sz",
+      "list_date": "2011-09-16",
+      "delist_date": "2024-08-19",
+      "status": "cached",
+      "n_rows": 2040,
+      "span": null
+    },
+    {
+      "code": "200054",
+      "name": "建车B",
+      "market": "sz",
+      "list_date": "1995-07-25",
+      "delist_date": "2024-08-22",
+      "status": "cached",
+      "n_rows": 2041,
+      "span": null
+    },
+    {
+      "code": "002341",
+      "name": "ST新纶",
+      "market": "sz",
+      "list_date": "2010-01-22",
+      "delist_date": "2024-08-23",
+      "status": "cached",
+      "n_rows": 2007,
+      "span": null
+    },
+    {
+      "code": "002665",
+      "name": "ST航高",
+      "market": "sz",
+      "list_date": "2012-03-27",
+      "delist_date": "2024-08-26",
+      "status": "cached",
+      "n_rows": 1932,
+      "span": null
+    },
+    {
+      "code": "000976",
+      "name": "*ST华铁",
+      "market": "sz",
+      "list_date": "2000-06-01",
+      "delist_date": "2024-08-27",
+      "status": "cached",
+      "n_rows": 2021,
+      "span": null
+    },
+    {
+      "code": "600297",
+      "name": "广汇汽车",
+      "market": "sh",
+      "list_date": "2000-11-16",
+      "delist_date": "2024-08-28",
+      "status": "cached",
+      "n_rows": 2075,
+      "span": null
+    },
+    {
+      "code": "002505",
+      "name": "鹏都农牧",
+      "market": "sz",
+      "list_date": "2010-11-18",
+      "delist_date": "2024-08-30",
+      "status": "cached",
+      "n_rows": 1874,
+      "span": null
+    },
+    {
+      "code": "000023",
+      "name": "*ST深天",
+      "market": "sz",
+      "list_date": "1993-04-29",
+      "delist_date": "2024-09-02",
+      "status": "cached",
+      "n_rows": 1998,
+      "span": null
+    },
+    {
+      "code": "002502",
+      "name": "ST鼎龙",
+      "market": "sz",
+      "list_date": "2010-11-17",
+      "delist_date": "2024-09-05",
+      "status": "cached",
+      "n_rows": 1912,
+      "span": null
+    },
+    {
+      "code": "000861",
+      "name": "海印股份",
+      "market": "sz",
+      "list_date": "1998-10-28",
+      "delist_date": "2024-09-18",
+      "status": "cached",
+      "n_rows": 2078,
+      "span": null
+    },
+    {
+      "code": "300495",
+      "name": "*ST美尚",
+      "market": "sz",
+      "list_date": "2015-12-22",
+      "delist_date": "2024-09-20",
+      "status": "cached",
+      "n_rows": 1956,
+      "span": null
+    },
+    {
+      "code": "002308",
+      "name": "*ST威创",
+      "market": "sz",
+      "list_date": "2009-11-27",
+      "delist_date": "2024-09-27",
+      "status": "cached",
+      "n_rows": 2037,
+      "span": null
+    },
+    {
+      "code": "000413",
+      "name": "ST旭电",
+      "market": "sz",
+      "list_date": "1996-09-25",
+      "delist_date": "2024-10-11",
+      "status": "cached",
+      "n_rows": 1983,
+      "span": null
+    },
+    {
+      "code": "200413",
+      "name": "ST东旭B",
+      "market": "sz",
+      "list_date": "1996-07-08",
+      "delist_date": "2024-10-11",
+      "status": "cached",
+      "n_rows": 1983,
+      "span": null
+    },
+    {
+      "code": "600213",
+      "name": "*ST亚星",
+      "market": "sh",
+      "list_date": "1999-08-31",
+      "delist_date": "2024-10-17",
+      "status": "cached",
+      "n_rows": 2090,
+      "span": null
+    },
+    {
+      "code": "600898",
+      "name": "*ST美讯",
+      "market": "sh",
+      "list_date": "1996-04-18",
+      "delist_date": "2025-02-10",
+      "status": "cached",
+      "n_rows": 2146,
+      "span": null
+    },
+    {
+      "code": "600837",
+      "name": "海通证券",
+      "market": "sh",
+      "list_date": "1994-02-24",
+      "delist_date": "2025-03-04",
+      "status": "cached",
+      "n_rows": 2189,
+      "span": null
+    },
+    {
+      "code": "600083",
+      "name": "*ST博信",
+      "market": "sh",
+      "list_date": "1997-06-06",
+      "delist_date": "2025-03-05",
+      "status": "cached",
+      "n_rows": 2173,
+      "span": null
+    },
+    {
+      "code": "600225",
+      "name": "退市卓朗",
+      "market": "sh",
+      "list_date": "2000-01-27",
+      "delist_date": "2025-03-06",
+      "status": "cached",
+      "n_rows": 2072,
+      "span": null
+    },
+    {
+      "code": "603963",
+      "name": "*ST大药",
+      "market": "sh",
+      "list_date": "2017-09-22",
+      "delist_date": "2025-03-21",
+      "status": "cached",
+      "n_rows": 1783,
+      "span": null
+    },
+    {
+      "code": "000040",
+      "name": "*ST旭蓝",
+      "market": "sz",
+      "list_date": "1994-08-08",
+      "delist_date": "2025-04-30",
+      "status": "cached",
+      "n_rows": 2111,
+      "span": null
+    },
+    {
+      "code": "300117",
+      "name": "*ST嘉寓",
+      "market": "sz",
+      "list_date": "2010-09-02",
+      "delist_date": "2025-04-30",
+      "status": "cached",
+      "n_rows": 2217,
+      "span": null
+    },
+    {
+      "code": "600070",
+      "name": "*ST富润",
+      "market": "sh",
+      "list_date": "1997-06-04",
+      "delist_date": "2025-04-30",
+      "status": "cached",
+      "n_rows": 2212,
+      "span": null
+    },
+    {
+      "code": "600811",
+      "name": "*ST东方",
+      "market": "sh",
+      "list_date": "1994-01-06",
+      "delist_date": "2025-04-30",
+      "status": "cached",
+      "n_rows": 2173,
+      "span": null
+    },
+    {
+      "code": "300630",
+      "name": "普利退",
+      "market": "sz",
+      "list_date": "2017-03-28",
+      "delist_date": "2025-05-22",
+      "status": "cached",
+      "n_rows": 1909,
+      "span": null
+    },
+    {
+      "code": "600705",
+      "name": "中航产融",
+      "market": "sh",
+      "list_date": "1996-05-16",
+      "delist_date": "2025-05-27",
+      "status": "cached",
+      "n_rows": 2245,
+      "span": null
+    },
+    {
+      "code": "601028",
+      "name": "玉龙股份",
+      "market": "sh",
+      "list_date": "2011-11-07",
+      "delist_date": "2025-05-27",
+      "status": "cached",
+      "n_rows": 2172,
+      "span": null
+    },
+    {
+      "code": "300108",
+      "name": "*ST吉药",
+      "market": "sz",
+      "list_date": "2010-08-25",
+      "delist_date": "2025-05-29",
+      "status": "cached",
+      "n_rows": 2059,
+      "span": null
+    },
+    {
+      "code": "002750",
+      "name": "龙津退",
+      "market": "sz",
+      "list_date": "2015-03-24",
+      "delist_date": "2025-06-27",
+      "status": "cached",
+      "n_rows": 2275,
+      "span": null
+    },
+    {
+      "code": "600804",
+      "name": "退市鹏博",
+      "market": "sh",
+      "list_date": "1994-01-03",
+      "delist_date": "2025-07-03",
+      "status": "cached",
+      "n_rows": 2253,
+      "span": null
+    },
+    {
+      "code": "603003",
+      "name": "退市龙宇",
+      "market": "sh",
+      "list_date": "2012-08-17",
+      "delist_date": "2025-07-03",
+      "status": "cached",
+      "n_rows": 2266,
+      "span": null
+    },
+    {
+      "code": "002336",
+      "name": "人乐退",
+      "market": "sz",
+      "list_date": "2010-01-13",
+      "delist_date": "2025-07-04",
+      "status": "cached",
+      "n_rows": 2254,
+      "span": null
+    },
+    {
+      "code": "900957",
+      "name": "*ST凌云B",
+      "market": "sh",
+      "list_date": "2000-07-28",
+      "delist_date": "2025-07-04",
+      "status": "cached",
+      "n_rows": 2288,
+      "span": null
+    },
+    {
+      "code": "000584",
+      "name": "工智退",
+      "market": "sz",
+      "list_date": "1995-11-28",
+      "delist_date": "2025-07-11",
+      "status": "cached",
+      "n_rows": 2071,
+      "span": null
+    },
+    {
+      "code": "600387",
+      "name": "退市海越",
+      "market": "sh",
+      "list_date": "2004-02-18",
+      "delist_date": "2025-07-11",
+      "status": "cached",
+      "n_rows": 2180,
+      "span": null
+    },
+    {
+      "code": "000622",
+      "name": "恒立退",
+      "market": "sz",
+      "list_date": "1996-11-07",
+      "delist_date": "2025-07-16",
+      "status": "cached",
+      "n_rows": 2243,
+      "span": null
+    },
+    {
+      "code": "300208",
+      "name": "中程退",
+      "market": "sz",
+      "list_date": "2011-04-26",
+      "delist_date": "2025-07-21",
+      "status": "cached",
+      "n_rows": 2204,
+      "span": null
+    },
+    {
+      "code": "600462",
+      "name": "退市九有",
+      "market": "sh",
+      "list_date": "2003-09-03",
+      "delist_date": "2025-07-21",
+      "status": "cached",
+      "n_rows": 2106,
+      "span": null
+    },
+    {
+      "code": "600190",
+      "name": "退市锦港",
+      "market": "sh",
+      "list_date": "1999-06-09",
+      "delist_date": "2025-07-28",
+      "status": "cached",
+      "n_rows": 2258,
+      "span": null
+    },
+    {
+      "code": "601989",
+      "name": "中国重工",
+      "market": "sh",
+      "list_date": "2009-12-16",
+      "delist_date": "2025-09-05",
+      "status": "cached",
+      "n_rows": 2196,
+      "span": null
+    },
+    {
+      "code": "000627",
+      "name": "*ST天茂",
+      "market": "sz",
+      "list_date": "1996-11-12",
+      "delist_date": "2025-09-30",
+      "status": "cached",
+      "n_rows": 2264,
+      "span": null
+    },
+    {
+      "code": "300280",
+      "name": "紫天退",
+      "market": "sz",
+      "list_date": "2011-12-29",
+      "delist_date": "2025-10-14",
+      "status": "cached",
+      "n_rows": 2076,
+      "span": null
+    },
+    {
+      "code": "000851",
+      "name": "*ST高鸿",
+      "market": "sz",
+      "list_date": "1998-06-09",
+      "delist_date": "2025-11-11",
+      "status": "cached",
+      "n_rows": 2362,
+      "span": null
+    },
+    {
+      "code": "603388",
+      "name": "*ST元成",
+      "market": "sh",
+      "list_date": "2017-03-24",
+      "delist_date": "2025-12-05",
+      "status": "cached",
+      "n_rows": 2093,
+      "span": null
+    },
+    {
+      "code": "200771",
+      "name": "杭汽轮Ｂ",
+      "market": "sz",
+      "list_date": "1998-04-28",
+      "delist_date": "2025-12-22",
+      "status": "cached",
+      "n_rows": 2340,
+      "span": null
+    },
+    {
+      "code": "600200",
+      "name": "退市苏吴",
+      "market": "sh",
+      "list_date": "1999-04-01",
+      "delist_date": "2025-12-31",
+      "status": "cached",
+      "n_rows": 2354,
+      "span": null
+    },
+    {
+      "code": "300379",
+      "name": "东通退",
+      "market": "sz",
+      "list_date": "2014-01-28",
+      "delist_date": "2026-01-22",
+      "status": "cached",
+      "n_rows": 2412,
+      "span": null
+    },
+    {
+      "code": "002231",
+      "name": "*ST奥维",
+      "market": "sz",
+      "list_date": "2008-05-12",
+      "delist_date": "2026-03-27",
+      "status": "cached",
+      "n_rows": 2385,
+      "span": null
+    },
+    {
+      "code": "603056",
+      "name": "德邦股份",
+      "market": "sh",
+      "list_date": "2018-01-16",
+      "delist_date": "2026-03-31",
+      "status": "cached",
+      "n_rows": 1931,
+      "span": null
+    },
+    {
+      "code": "300391",
+      "name": "长药退",
+      "market": "sz",
+      "list_date": "2014-08-01",
+      "delist_date": "2026-04-13",
+      "status": "cached",
+      "n_rows": 2356,
+      "span": null
+    },
+    {
+      "code": "300344",
+      "name": "立方退",
+      "market": "sz",
+      "list_date": "2012-08-01",
+      "delist_date": "2026-04-22",
+      "status": "cached",
+      "n_rows": 2377,
+      "span": null
+    },
+    {
+      "code": "600355",
+      "name": "*ST精伦",
+      "market": "sh",
+      "list_date": "2002-06-13",
+      "delist_date": "2026-04-27",
+      "status": "cached",
+      "n_rows": 2487,
+      "span": null
+    },
+    {
+      "code": "000638",
+      "name": "*ST万方",
+      "market": "sz",
+      "list_date": "1996-11-26",
+      "delist_date": "2026-06-03",
+      "status": "cached",
+      "n_rows": 2218,
+      "span": null
+    },
+    {
+      "code": "688287",
+      "name": "退市观典",
+      "market": "sh",
+      "list_date": "2022-05-25",
+      "delist_date": "2026-06-10",
+      "status": "cached",
+      "n_rows": 963,
+      "span": null
+    },
+    {
+      "code": "600421",
+      "name": "退市华嵘",
+      "market": "sh",
+      "list_date": "2004-06-07",
+      "delist_date": "2026-06-26",
+      "status": "cached",
+      "n_rows": 2450,
+      "span": null
+    },
+    {
+      "code": "600599",
+      "name": "退市熊猫",
+      "market": "sh",
+      "list_date": "2001-08-28",
+      "delist_date": "2026-06-26",
+      "status": "cached",
+      "n_rows": 2506,
+      "span": null
+    },
+    {
+      "code": "600636",
+      "name": "退市国化",
+      "market": "sh",
+      "list_date": "1993-03-16",
+      "delist_date": "2026-06-29",
+      "status": "cached",
+      "n_rows": 2215,
+      "span": null
+    },
+    {
+      "code": "600696",
+      "name": "退市岩石",
+      "market": "sh",
+      "list_date": "1993-12-06",
+      "delist_date": "2026-06-29",
+      "status": "cached",
+      "n_rows": 2421,
+      "span": null
+    },
+    {
+      "code": "600608",
+      "name": "退市沪科",
+      "market": "sh",
+      "list_date": "1992-03-27",
+      "delist_date": "2026-07-03",
+      "status": "cached",
+      "n_rows": 2464,
+      "span": null
+    },
+    {
+      "code": "605081",
+      "name": "退市太和",
+      "market": "sh",
+      "list_date": "2021-02-09",
+      "delist_date": "2026-07-03",
+      "status": "cached",
+      "n_rows": 1271,
+      "span": null
+    },
+    {
+      "code": "600193",
+      "name": "退市创兴",
+      "market": "sh",
+      "list_date": "1999-05-27",
+      "delist_date": "2026-07-06",
+      "status": "cached",
+      "n_rows": 2454,
+      "span": null
+    },
+    {
+      "code": "300029",
+      "name": "天龙退",
+      "market": "sz",
+      "list_date": "2009-12-25",
+      "delist_date": "2026-07-10",
+      "status": "cached",
+      "n_rows": 2517,
+      "span": null
+    },
+    {
+      "code": "000004",
+      "name": "国华退",
+      "market": "sz",
+      "list_date": "1990-12-01",
+      "delist_date": "2026-07-14",
+      "status": "cached",
+      "n_rows": 2317,
+      "span": null
+    },
+    {
+      "code": "002808",
+      "name": "恒久退",
+      "market": "sz",
+      "list_date": "2016-08-12",
+      "delist_date": "2026-07-14",
+      "status": "cached",
+      "n_rows": 2370,
+      "span": null
+    },
+    {
+      "code": "002898",
+      "name": "赛隆退",
+      "market": "sz",
+      "list_date": "2017-09-12",
+      "delist_date": "2026-07-17",
+      "status": "cached",
+      "n_rows": 2107,
+      "span": null
+    },
+    {
+      "code": "200706",
+      "name": "瓦轴B",
+      "market": "sz",
+      "list_date": "1997-03-25",
+      "delist_date": "2026-10-16",
+      "status": "cached",
+      "n_rows": 2447,
+      "span": null
+    },
+    {
+      "code": "601059",
+      "name": "信达证券",
+      "market": "sh",
+      "list_date": "2023-02-01",
+      "delist_date": "2026-10-19",
+      "status": "cached",
+      "n_rows": 861,
+      "span": null
+    },
+    {
+      "code": "601198",
+      "name": "东兴证券",
+      "market": "sh",
+      "list_date": "2015-02-26",
+      "delist_date": "2026-10-19",
+      "status": "cached",
+      "n_rows": 2580,
+      "span": null
+    }
+  ]
+}
