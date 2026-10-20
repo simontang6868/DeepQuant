@@ -1,0 +1,18 @@
+{
+  "prereg_version": "gate5-turnover-segmented-v5.0",
+  "prereg_sha256": "7c0c89916b0c56905c421db1d5860dd3fdadf5c2302928d1ad68290d44957775",
+  "files": {
+    "monthly_paired.csv": {
+      "sha256": "a28b007822e74d20181e2607cfcf4f358fdef93c610a2c8ee89394148633a9b5",
+      "bytes": 24694
+    },
+    "sensitivity.csv": {
+      "sha256": "5edce0be7236acb8986d0d7230c69d7c1633bd9ba091f8daf0496b9b58cea8d6",
+      "bytes": 344
+    },
+    "summary.json": {
+      "sha256": "b8cb419b29c7ed022c4822ca7cab342612c657a7e42fff385a012b52fe405088",
+      "bytes": 4926
+    }
+  }
+}
