@@ -26,6 +26,7 @@ docs/GATE1_PREREGISTRATION.sha256    -text
 
 # ---- 原始实验产物（只读归档，不得因 checkout 改变一个字节） ----
 gate1_out/** -text
+gate2_out/** -text
 
 # ---- 功效测量结果（会被预登记引用，需字节稳定以便引哈希） ----
 docs/STAGE3_SIGMA_D*.md   -text

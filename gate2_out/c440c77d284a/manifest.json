@@ -1,0 +1,18 @@
+{
+  "prereg_version": "gate2-reversal-v2.0",
+  "prereg_sha256": "c440c77d284ae9c12f7fc555dd56c6f44e021cf967b0bc3d8e6b2ee7b39cdf87",
+  "files": {
+    "monthly_paired.csv": {
+      "sha256": "73b78cfe4b7a25de1369eeb4e1716889776d5db884921c3786be1e65d62bcb8d",
+      "bytes": 8862
+    },
+    "sensitivity.csv": {
+      "sha256": "79056fd103217d9fd01c183f3a7ba88eb2e0fbe347d113c38a18fbf1c65c9ba9",
+      "bytes": 317
+    },
+    "summary.json": {
+      "sha256": "d4ff468c61e79878aef15233801ea01ad8c277bc7db87aca0a2fbfec5ab95148",
+      "bytes": 3238
+    }
+  }
+}
