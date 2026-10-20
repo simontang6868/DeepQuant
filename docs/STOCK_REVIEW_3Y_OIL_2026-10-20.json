@@ -1,0 +1,262 @@
+{
+  "generated_at": "2026-10-20T01:45:00",
+  "window": {
+    "start_requested": "2023-10-16",
+    "end": "2026-10-16",
+    "start_effective": "2023-10-16"
+  },
+  "basis_note": "total_return_basis = 乘性前复权（分红按除权日收盘价再投资），是持有者财富变化；price_only_basis = 不复权，即 K 线涨跌幅，高分红股会被除权跳空系统性压低。基准 hs300 为价格指数，不含股息。",
+  "benchmark_hs300": {
+    "n_days": 728,
+    "start_date": "2023-10-16",
+    "end_date": "2026-10-16",
+    "start_close": 3626.597,
+    "end_close": 4170.613,
+    "total_return": 0.150007,
+    "annualized": 0.047647,
+    "max_drawdown": -0.176622,
+    "mdd_peak_date": "2026-06-22",
+    "mdd_trough_date": "2026-10-15",
+    "ann_volatility": 0.182376,
+    "calmar": 0.2698,
+    "calendar_years": {
+      "2023": -0.053904,
+      "2024": 0.146833,
+      "2025": 0.176631,
+      "2026": -0.099208
+    }
+  },
+  "stocks": [
+    {
+      "code": "600938.SH",
+      "name": "中国海油",
+      "total_return_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 19.4298,
+        "end_close": 34.74,
+        "total_return": 0.787975,
+        "annualized": 0.213511,
+        "max_drawdown": -0.341458,
+        "mdd_peak_date": "2026-03-03",
+        "mdd_trough_date": "2026-07-02",
+        "ann_volatility": 0.290817,
+        "calmar": 0.6253,
+        "calendar_years": {
+          "2023": 0.027679,
+          "2024": 0.412423,
+          "2025": 0.057736,
+          "2026": 0.16456
+        }
+      },
+      "price_only_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 20.87,
+        "end_close": 34.74,
+        "total_return": 0.66459,
+        "annualized": 0.184955,
+        "max_drawdown": -0.383783,
+        "mdd_peak_date": "2026-03-03",
+        "mdd_trough_date": "2026-07-02",
+        "ann_volatility": 0.333923,
+        "calmar": 0.4819,
+        "calendar_years": {
+          "2023": 0.004792,
+          "2024": 0.407248,
+          "2025": 0.022704,
+          "2026": 0.151093
+        }
+      },
+      "dividend_contribution_pp": 12.34,
+      "price_basis_ratio_start": 1.0741
+    },
+    {
+      "code": "600968.SH",
+      "name": "海油发展",
+      "total_return_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 2.9522,
+        "end_close": 4.03,
+        "total_return": 0.365084,
+        "annualized": 0.109205,
+        "max_drawdown": -0.353135,
+        "mdd_peak_date": "2026-03-04",
+        "mdd_trough_date": "2026-06-30",
+        "ann_volatility": 0.300724,
+        "calmar": 0.3092,
+        "calendar_years": {
+          "2023": -0.097012,
+          "2024": 0.498087,
+          "2025": -0.064103,
+          "2026": 0.078232
+        }
+      },
+      "price_only_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 3.18,
+        "end_close": 4.03,
+        "total_return": 0.267296,
+        "annualized": 0.082085,
+        "max_drawdown": -0.408526,
+        "mdd_peak_date": "2026-03-04",
+        "mdd_trough_date": "2026-06-30",
+        "ann_volatility": 0.331022,
+        "calmar": 0.2009,
+        "calendar_years": {
+          "2023": -0.103774,
+          "2024": 0.498246,
+          "2025": -0.100703,
+          "2026": 0.049479
+        }
+      },
+      "dividend_contribution_pp": 9.78,
+      "price_basis_ratio_start": 1.0772
+    },
+    {
+      "code": "601808.SH",
+      "name": "中海油服",
+      "total_return_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 14.9895,
+        "end_close": 12.79,
+        "total_return": -0.146736,
+        "annualized": -0.051475,
+        "max_drawdown": -0.400519,
+        "mdd_peak_date": "2026-03-04",
+        "mdd_trough_date": "2026-06-26",
+        "ann_volatility": 0.262076,
+        "calmar": -0.1285,
+        "calendar_years": {
+          "2023": -0.089076,
+          "2024": 0.048036,
+          "2025": -0.053416,
+          "2026": -0.055796
+        }
+      },
+      "price_only_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 16.33,
+        "end_close": 12.79,
+        "total_return": -0.216779,
+        "annualized": -0.07815,
+        "max_drawdown": -0.47824,
+        "mdd_peak_date": "2026-03-04",
+        "mdd_trough_date": "2026-06-26",
+        "ann_volatility": 0.316362,
+        "calmar": -0.1634,
+        "calendar_years": {
+          "2023": -0.104715,
+          "2024": 0.043092,
+          "2025": -0.079344,
+          "2026": -0.089031
+        }
+      },
+      "dividend_contribution_pp": 7.0,
+      "price_basis_ratio_start": 1.0894
+    },
+    {
+      "code": "600583.SH",
+      "name": "海油工程",
+      "total_return_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 5.8988,
+        "end_close": 6.43,
+        "total_return": 0.090052,
+        "annualized": 0.029132,
+        "max_drawdown": -0.355722,
+        "mdd_peak_date": "2026-03-03",
+        "mdd_trough_date": "2026-06-30",
+        "ann_volatility": 0.263883,
+        "calmar": 0.0819,
+        "calendar_years": {
+          "2023": -0.046077,
+          "2024": -0.044571,
+          "2025": 0.031918,
+          "2026": 0.159018
+        }
+      },
+      "price_only_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 6.29,
+        "end_close": 6.43,
+        "total_return": 0.022258,
+        "annualized": 0.007358,
+        "max_drawdown": -0.423165,
+        "mdd_peak_date": "2026-03-03",
+        "mdd_trough_date": "2026-06-30",
+        "ann_volatility": 0.331514,
+        "calmar": 0.0174,
+        "calendar_years": {
+          "2023": -0.055644,
+          "2024": -0.079125,
+          "2025": 0.003656,
+          "2026": 0.17122
+        }
+      },
+      "dividend_contribution_pp": 6.78,
+      "price_basis_ratio_start": 1.0663
+    },
+    {
+      "code": "600871.SH",
+      "name": "石化油服",
+      "total_return_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 2.0428,
+        "end_close": 2.07,
+        "total_return": 0.013315,
+        "annualized": 0.004415,
+        "max_drawdown": -0.502038,
+        "mdd_peak_date": "2026-03-04",
+        "mdd_trough_date": "2026-07-07",
+        "ann_volatility": 0.33297,
+        "calmar": 0.0088,
+        "calendar_years": {
+          "2023": -0.092324,
+          "2024": 0.101715,
+          "2025": 0.05282,
+          "2026": -0.037523
+        }
+      },
+      "price_only_basis": {
+        "n_days": 728,
+        "start_date": "2023-10-16",
+        "end_date": "2026-10-16",
+        "start_close": 2.04,
+        "end_close": 2.07,
+        "total_return": 0.014706,
+        "annualized": 0.004874,
+        "max_drawdown": -0.529274,
+        "mdd_peak_date": "2026-03-04",
+        "mdd_trough_date": "2026-07-07",
+        "ann_volatility": 0.365572,
+        "calmar": 0.0092,
+        "calendar_years": {
+          "2023": -0.102941,
+          "2024": 0.114754,
+          "2025": 0.058824,
+          "2026": -0.041667
+        }
+      },
+      "dividend_contribution_pp": -0.14,
+      "price_basis_ratio_start": 0.9986,
+      "price_basis_note": "比值 0.9986 略低于 1，落在不复权价 2 位小数的舍入容差内（±0.0025），非基准不一致；分红贡献量级仍可读，但不宜精确到 pp 后一位。"
+    }
+  ]
+}

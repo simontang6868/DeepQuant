@@ -1,0 +1,39 @@
+# 本文件自身也必须字节稳定（否则策略文件自己被转换，语义虽不变但会污染 diff）
+.gitattributes -text
+
+# 行尾归一化策略
+# 背景：Windows 上 git 默认 core.autocrlf=true，会把仓库里的 LF 在 checkout 时转成 CRLF。
+# 对普通源码无影响，但对「按字节做 sha256 冻结」的文档是致命的：
+# 同一个 commit，Windows clone 出来哈希与冻结记录不符，契约测试必红。
+# 因此下面这些文件显式关闭行尾转换（-text），保证任何平台取到的字节完全一致。
+
+# ---- 预登记文档与其冻结哈希（sha256 按字节计算） ----
+# 用通配而非逐条列举：逐条列举会漏掉以后新增的冻结文件（本文件第一版就漏了
+# ARCHIVE_MANIFEST_2026-10-20.sha256，它 checkout 后被转成 CRLF，
+# 导致标准 sha256sum -c 全部误报）。字符类 [Pp][Rr]… 兼容大小写混用的历史文件名。
+
+# 所有冻结指纹文件（含以后新增的），一律不做转换
+docs/*.sha256 -text
+*.sha256      -text
+
+# 预登记正文（md 给人读，json 是本体），大小写混用故用字符类
+docs/*[Pp][Rr][Ee][Rr][Ee][Gg]*.md   -text
+docs/*[Pp][Rr][Ee][Rr][Ee][Gg]*.json -text
+
+# 以下几条是显式兜底（通配已覆盖，保留以说明它们为何必须字节稳定）
+docs/GATE1_PREREGISTRATION.md        -text
+docs/GATE1_PREREGISTRATION.sha256    -text
+
+# ---- 原始实验产物（只读归档，不得因 checkout 改变一个字节） ----
+gate1_out/** -text
+
+# ---- 二进制：禁止任何形式的转换 ----
+*.parquet binary
+*.zip      binary
+*.png      binary
+*.jpg      binary
+*.ico      binary
+*.woff     binary
+*.woff2    binary
+*.db       binary
+*.sqlite3  binary

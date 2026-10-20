@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-10-20T14:24:35",
+  "purpose": "把加性前复权（qfq_t = raw_t - 未来累计分红_t）换成乘性前复权（hfq_t × raw_anchor/hfq_anchor）",
+  "recipe": "qfq_mult_t = hfq_t * (raw_anchor / hfq_anchor)，anchor 取两组共同的最新交易日",
+  "source": {
+    "hfq": "web.ifzq.gtimg.cn fqkline/get ... ,hfq",
+    "raw": "web.ifzq.gtimg.cn kline/kline（仅取锚点）"
+  },
+  "range": [
+    "2016-01-01",
+    "2026-10-16"
+  ],
+  "counts": {
+    "requested": 1,
+    "by_status": {
+      "no_quote": 1
+    }
+  },
+  "symbols": [
+    {
+      "code": "688981.SH",
+      "group": "listed",
+      "file": "data/qfq_mult/listed/688981.SH.qfq.csv",
+      "status": "no_quote",
+      "reason": "腾讯 hfq 无数据"
+    }
+  ]
+}
