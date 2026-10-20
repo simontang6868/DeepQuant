@@ -1,0 +1,1376 @@
+{
+  "aggregate_by_stock": {
+    "return_diff": {
+      "unit": "stock",
+      "n": 8,
+      "k_favorable": 3,
+      "ratio": 0.375,
+      "p_two_sided": 0.726562,
+      "significant": false,
+      "note": "以票为单位（n=8），避免把同时间的高相关窗口当作独立样本"
+    },
+    "drawdown_diff": {
+      "unit": "stock",
+      "n": 8,
+      "k_favorable": 8,
+      "ratio": 1.0,
+      "p_two_sided": 0.007812,
+      "significant": true,
+      "note": "以票为单位（n=8），避免把同时间的高相关窗口当作独立样本"
+    },
+    "reading": "收益维度与回撤维度给出**相反的画面**：若前者不显著而后者显著，说明这套择时的作用更接近「控回撤」而非「提收益」。"
+  },
+  "generated_at": "2026-10-20T02:14:52",
+  "prereg_sha256": "c000159fd4dd18f481f18a4d160408748c2776ab6894ed59d7852fe4bd9a642a",
+  "window": {
+    "start": "2023-10-16",
+    "end": "2026-10-16"
+  },
+  "fees_primary": "FEE_PRESET_REFERENCE",
+  "J3_correlation": {
+    "codes": [
+      "600938.SH",
+      "600968.SH",
+      "601808.SH",
+      "600583.SH",
+      "600871.SH",
+      "601699.SH",
+      "002165.SZ",
+      "601668.SH"
+    ],
+    "labels": [
+      "中国海油(600938)",
+      "海油发展(600968)",
+      "中海油服(601808)",
+      "海油工程(600583)",
+      "石化油服(600871)",
+      "潞安环能(601699)",
+      "红宝丽(002165)",
+      "中国建筑(601668)"
+    ],
+    "matrix": [
+      [
+        1.0,
+        0.6095,
+        0.6424,
+        0.5629,
+        0.5047,
+        0.4405,
+        0.0821,
+        0.2941
+      ],
+      [
+        0.6095,
+        1.0,
+        0.6786,
+        0.7033,
+        0.6102,
+        0.3863,
+        0.1732,
+        0.3094
+      ],
+      [
+        0.6424,
+        0.6786,
+        1.0,
+        0.7228,
+        0.6703,
+        0.4267,
+        0.2081,
+        0.3676
+      ],
+      [
+        0.5629,
+        0.7033,
+        0.7228,
+        1.0,
+        0.6062,
+        0.4197,
+        0.2013,
+        0.3592
+      ],
+      [
+        0.5047,
+        0.6102,
+        0.6703,
+        0.6062,
+        1.0,
+        0.3437,
+        0.2546,
+        0.3042
+      ],
+      [
+        0.4405,
+        0.3863,
+        0.4267,
+        0.4197,
+        0.3437,
+        1.0,
+        0.1424,
+        0.2967
+      ],
+      [
+        0.0821,
+        0.1732,
+        0.2081,
+        0.2013,
+        0.2546,
+        0.1424,
+        1.0,
+        0.2038
+      ],
+      [
+        0.2941,
+        0.3094,
+        0.3676,
+        0.3592,
+        0.3042,
+        0.2967,
+        0.2038,
+        1.0
+      ]
+    ],
+    "mean_corr_all": 0.4116,
+    "mean_corr_oil5": 0.6311,
+    "n_days": 727
+  },
+  "J3_verdict": "SELECTION_MATERIALS",
+  "stocks": [
+    {
+      "code": "600938.SH",
+      "name": "中国海油",
+      "n_days": 728,
+      "status": "ok",
+      "n_windows_requested": 7,
+      "n_windows_valid": 7,
+      "pairs": [
+        {
+          "window_index": 0,
+          "oos_start": "2024-05-29",
+          "oos_end": "2024-09-11",
+          "timing": -0.068616,
+          "buy_hold": -0.139049,
+          "diff": 0.070433,
+          "timing_mdd": 0.186919,
+          "buy_hold_mdd": 0.24333,
+          "mdd_diff": -0.056411,
+          "trades": 2,
+          "fees": 195.65
+        },
+        {
+          "window_index": 1,
+          "oos_start": "2024-09-12",
+          "oos_end": "2025-01-06",
+          "timing": 0.106363,
+          "buy_hold": 0.129245,
+          "diff": -0.022882,
+          "timing_mdd": 0.073999,
+          "buy_hold_mdd": 0.147064,
+          "mdd_diff": -0.073065,
+          "trades": 1,
+          "fees": 130.85
+        },
+        {
+          "window_index": 2,
+          "oos_start": "2025-01-07",
+          "oos_end": "2025-04-30",
+          "timing": -0.064912,
+          "buy_hold": -0.115917,
+          "diff": 0.051005,
+          "timing_mdd": 0.105109,
+          "buy_hold_mdd": 0.185341,
+          "mdd_diff": -0.080232,
+          "trades": 1,
+          "fees": 118.74
+        },
+        {
+          "window_index": 3,
+          "oos_start": "2025-05-06",
+          "oos_end": "2025-08-19",
+          "timing": 0.012069,
+          "buy_hold": 0.038399,
+          "diff": -0.02633,
+          "timing_mdd": 0.059309,
+          "buy_hold_mdd": 0.052266,
+          "mdd_diff": 0.007042,
+          "trades": 2,
+          "fees": 205.1
+        },
+        {
+          "window_index": 4,
+          "oos_start": "2025-08-20",
+          "oos_end": "2025-12-10",
+          "timing": 0.108737,
+          "buy_hold": 0.105453,
+          "diff": 0.003284,
+          "timing_mdd": 0.050574,
+          "buy_hold_mdd": 0.051469,
+          "mdd_diff": -0.000895,
+          "trades": 1,
+          "fees": 108.31
+        },
+        {
+          "window_index": 5,
+          "oos_start": "2025-12-11",
+          "oos_end": "2026-04-07",
+          "timing": 0.261812,
+          "buy_hold": 0.339789,
+          "diff": -0.077976,
+          "timing_mdd": 0.096223,
+          "buy_hold_mdd": 0.097764,
+          "mdd_diff": -0.001541,
+          "trades": 1,
+          "fees": 119.76
+        },
+        {
+          "window_index": 6,
+          "oos_start": "2026-04-08",
+          "oos_end": "2026-07-27",
+          "timing": -0.01381,
+          "buy_hold": -0.127572,
+          "diff": 0.113762,
+          "timing_mdd": 0.044919,
+          "buy_hold_mdd": 0.291817,
+          "mdd_diff": -0.246898,
+          "trades": 1,
+          "fees": 118.0
+        }
+      ],
+      "timing_median": 0.012069,
+      "buyhold_median": 0.038399,
+      "diff_median": 0.003284,
+      "mean_trades_per_window": 1.29,
+      "total_fees": 996.41,
+      "J1": {
+        "n_nonzero": 7,
+        "n_positive": 4,
+        "pos_ratio": 0.5714,
+        "p_one_sided_positive": 0.5,
+        "p_two_sided": 1.0,
+        "verdict": "INCONCLUSIVE"
+      },
+      "ci_timing": {
+        "median": 0.012069,
+        "lo": -0.064912,
+        "hi": 0.108737,
+        "n": 7
+      },
+      "ci_buyhold": {
+        "median": 0.038399,
+        "lo": -0.127572,
+        "hi": 0.129245,
+        "n": 7
+      },
+      "j4_mdd_diff_median": -0.056411,
+      "J4_drawdown": {
+        "n_nonzero": 7,
+        "n_timing_lower": 6,
+        "lower_ratio": 0.8571,
+        "p_two_sided": 0.125,
+        "mdd_diff_median": -0.056411,
+        "timing_mdd_median": 0.073999,
+        "buyhold_mdd_median": 0.147064,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "code": "600968.SH",
+      "name": "海油发展",
+      "n_days": 728,
+      "status": "ok",
+      "n_windows_requested": 7,
+      "n_windows_valid": 7,
+      "pairs": [
+        {
+          "window_index": 0,
+          "oos_start": "2024-05-29",
+          "oos_end": "2024-09-11",
+          "timing": -0.015132,
+          "buy_hold": -0.085709,
+          "diff": 0.070577,
+          "timing_mdd": 0.105955,
+          "buy_hold_mdd": 0.131705,
+          "mdd_diff": -0.025749,
+          "trades": 1,
+          "fees": 126.4
+        },
+        {
+          "window_index": 1,
+          "oos_start": "2024-09-12",
+          "oos_end": "2025-01-06",
+          "timing": -0.112195,
+          "buy_hold": 0.069668,
+          "diff": -0.181863,
+          "timing_mdd": 0.131825,
+          "buy_hold_mdd": 0.156915,
+          "mdd_diff": -0.02509,
+          "trades": 3,
+          "fees": 302.61
+        },
+        {
+          "window_index": 2,
+          "oos_start": "2025-01-07",
+          "oos_end": "2025-04-30",
+          "timing": -0.046546,
+          "buy_hold": -0.043055,
+          "diff": -0.003491,
+          "timing_mdd": 0.139522,
+          "buy_hold_mdd": 0.206531,
+          "mdd_diff": -0.067009,
+          "trades": 2,
+          "fees": 197.57
+        },
+        {
+          "window_index": 3,
+          "oos_start": "2025-05-06",
+          "oos_end": "2025-08-19",
+          "timing": -0.002819,
+          "buy_hold": 0.028476,
+          "diff": -0.031295,
+          "timing_mdd": 0.060381,
+          "buy_hold_mdd": 0.083556,
+          "mdd_diff": -0.023175,
+          "trades": 2,
+          "fees": 201.85
+        },
+        {
+          "window_index": 4,
+          "oos_start": "2025-08-20",
+          "oos_end": "2025-12-10",
+          "timing": -0.045353,
+          "buy_hold": -0.040367,
+          "diff": -0.004987,
+          "timing_mdd": 0.07271,
+          "buy_hold_mdd": 0.091372,
+          "mdd_diff": -0.018661,
+          "trades": 1,
+          "fees": 98.33
+        },
+        {
+          "window_index": 5,
+          "oos_start": "2025-12-11",
+          "oos_end": "2026-04-07",
+          "timing": 0.151405,
+          "buy_hold": 0.158285,
+          "diff": -0.00688,
+          "timing_mdd": 0.18858,
+          "buy_hold_mdd": 0.19354,
+          "mdd_diff": -0.00496,
+          "trades": 1,
+          "fees": 113.54
+        },
+        {
+          "window_index": 6,
+          "oos_start": "2026-04-08",
+          "oos_end": "2026-07-27",
+          "timing": 0.009063,
+          "buy_hold": -0.102151,
+          "diff": 0.111214,
+          "timing_mdd": 0.0,
+          "buy_hold_mdd": 0.207571,
+          "mdd_diff": -0.207571,
+          "trades": 0,
+          "fees": 25.51
+        }
+      ],
+      "timing_median": -0.015132,
+      "buyhold_median": -0.040367,
+      "diff_median": -0.004987,
+      "mean_trades_per_window": 1.43,
+      "total_fees": 1065.81,
+      "J1": {
+        "n_nonzero": 7,
+        "n_positive": 2,
+        "pos_ratio": 0.2857,
+        "p_one_sided_positive": 0.9375,
+        "p_two_sided": 0.453125,
+        "verdict": "INCONCLUSIVE"
+      },
+      "ci_timing": {
+        "median": -0.015132,
+        "lo": -0.046546,
+        "hi": 0.009063,
+        "n": 7
+      },
+      "ci_buyhold": {
+        "median": -0.040367,
+        "lo": -0.085709,
+        "hi": 0.069668,
+        "n": 7
+      },
+      "j4_mdd_diff_median": -0.02509,
+      "J4_drawdown": {
+        "n_nonzero": 7,
+        "n_timing_lower": 7,
+        "lower_ratio": 1.0,
+        "p_two_sided": 0.015625,
+        "mdd_diff_median": -0.02509,
+        "timing_mdd_median": 0.105955,
+        "buyhold_mdd_median": 0.156915,
+        "verdict": "TIMING_LOWERS_DRAWDOWN"
+      }
+    },
+    {
+      "code": "601808.SH",
+      "name": "中海油服",
+      "n_days": 728,
+      "status": "ok",
+      "n_windows_requested": 7,
+      "n_windows_valid": 7,
+      "pairs": [
+        {
+          "window_index": 0,
+          "oos_start": "2024-05-29",
+          "oos_end": "2024-09-11",
+          "timing": 0.004572,
+          "buy_hold": -0.239052,
+          "diff": 0.243624,
+          "timing_mdd": 0.00015,
+          "buy_hold_mdd": 0.23675,
+          "mdd_diff": -0.2366,
+          "trades": 1,
+          "fees": 100.79
+        },
+        {
+          "window_index": 1,
+          "oos_start": "2024-09-12",
+          "oos_end": "2025-01-06",
+          "timing": -0.007182,
+          "buy_hold": 0.13393,
+          "diff": -0.141112,
+          "timing_mdd": 0.04437,
+          "buy_hold_mdd": 0.14378,
+          "mdd_diff": -0.09941,
+          "trades": 4,
+          "fees": 404.23
+        },
+        {
+          "window_index": 2,
+          "oos_start": "2025-01-07",
+          "oos_end": "2025-04-30",
+          "timing": -0.186717,
+          "buy_hold": -0.1223,
+          "diff": -0.064418,
+          "timing_mdd": 0.219979,
+          "buy_hold_mdd": 0.170033,
+          "mdd_diff": 0.049946,
+          "trades": 3,
+          "fees": 276.75
+        },
+        {
+          "window_index": 3,
+          "oos_start": "2025-05-06",
+          "oos_end": "2025-08-19",
+          "timing": -0.0157,
+          "buy_hold": 0.040446,
+          "diff": -0.056146,
+          "timing_mdd": 0.052979,
+          "buy_hold_mdd": 0.053721,
+          "mdd_diff": -0.000742,
+          "trades": 0,
+          "fees": 25.63
+        },
+        {
+          "window_index": 4,
+          "oos_start": "2025-08-20",
+          "oos_end": "2025-12-10",
+          "timing": -0.038663,
+          "buy_hold": -0.017333,
+          "diff": -0.02133,
+          "timing_mdd": 0.062796,
+          "buy_hold_mdd": 0.069373,
+          "mdd_diff": -0.006576,
+          "trades": 2,
+          "fees": 196.26
+        },
+        {
+          "window_index": 5,
+          "oos_start": "2025-12-11",
+          "oos_end": "2026-04-07",
+          "timing": 0.119594,
+          "buy_hold": 0.136156,
+          "diff": -0.016562,
+          "timing_mdd": 0.180649,
+          "buy_hold_mdd": 0.21468,
+          "mdd_diff": -0.034031,
+          "trades": 1,
+          "fees": 110.64
+        },
+        {
+          "window_index": 6,
+          "oos_start": "2026-04-08",
+          "oos_end": "2026-07-27",
+          "timing": 0.016167,
+          "buy_hold": -0.170925,
+          "diff": 0.187091,
+          "timing_mdd": 0.039536,
+          "buy_hold_mdd": 0.255988,
+          "mdd_diff": -0.216453,
+          "trades": 0,
+          "fees": 25.77
+        }
+      ],
+      "timing_median": -0.007182,
+      "buyhold_median": -0.017333,
+      "diff_median": -0.02133,
+      "mean_trades_per_window": 1.57,
+      "total_fees": 1140.07,
+      "J1": {
+        "n_nonzero": 7,
+        "n_positive": 2,
+        "pos_ratio": 0.2857,
+        "p_one_sided_positive": 0.9375,
+        "p_two_sided": 0.453125,
+        "verdict": "INCONCLUSIVE"
+      },
+      "ci_timing": {
+        "median": -0.007182,
+        "lo": -0.038663,
+        "hi": 0.016167,
+        "n": 7
+      },
+      "ci_buyhold": {
+        "median": -0.017333,
+        "lo": -0.170925,
+        "hi": 0.13393,
+        "n": 7
+      },
+      "j4_mdd_diff_median": -0.034031,
+      "J4_drawdown": {
+        "n_nonzero": 7,
+        "n_timing_lower": 6,
+        "lower_ratio": 0.8571,
+        "p_two_sided": 0.125,
+        "mdd_diff_median": -0.034031,
+        "timing_mdd_median": 0.052979,
+        "buyhold_mdd_median": 0.170033,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "code": "600583.SH",
+      "name": "海油工程",
+      "n_days": 728,
+      "status": "ok",
+      "n_windows_requested": 7,
+      "n_windows_valid": 7,
+      "pairs": [
+        {
+          "window_index": 0,
+          "oos_start": "2024-05-29",
+          "oos_end": "2024-09-11",
+          "timing": 0.0,
+          "buy_hold": -0.179685,
+          "diff": 0.179685,
+          "timing_mdd": 0.0,
+          "buy_hold_mdd": 0.177952,
+          "mdd_diff": -0.177952,
+          "trades": 0,
+          "fees": 0.0
+        },
+        {
+          "window_index": 1,
+          "oos_start": "2024-09-12",
+          "oos_end": "2025-01-06",
+          "timing": -0.127941,
+          "buy_hold": 0.075476,
+          "diff": -0.203417,
+          "timing_mdd": 0.127941,
+          "buy_hold_mdd": 0.10143,
+          "mdd_diff": 0.026511,
+          "trades": 3,
+          "fees": 274.13
+        },
+        {
+          "window_index": 2,
+          "oos_start": "2025-01-07",
+          "oos_end": "2025-04-30",
+          "timing": -0.082235,
+          "buy_hold": -0.018968,
+          "diff": -0.063267,
+          "timing_mdd": 0.157226,
+          "buy_hold_mdd": 0.157968,
+          "mdd_diff": -0.000743,
+          "trades": 2,
+          "fees": 197.51
+        },
+        {
+          "window_index": 3,
+          "oos_start": "2025-05-06",
+          "oos_end": "2025-08-19",
+          "timing": -0.090216,
+          "buy_hold": 0.060241,
+          "diff": -0.150457,
+          "timing_mdd": 0.108957,
+          "buy_hold_mdd": 0.029074,
+          "mdd_diff": 0.079883,
+          "trades": 5,
+          "fees": 519.02
+        },
+        {
+          "window_index": 4,
+          "oos_start": "2025-08-20",
+          "oos_end": "2025-12-10",
+          "timing": -0.015406,
+          "buy_hold": -0.023663,
+          "diff": 0.008257,
+          "timing_mdd": 0.063589,
+          "buy_hold_mdd": 0.062636,
+          "mdd_diff": 0.000953,
+          "trades": 1,
+          "fees": 100.62
+        },
+        {
+          "window_index": 5,
+          "oos_start": "2025-12-11",
+          "oos_end": "2026-04-07",
+          "timing": 0.15996,
+          "buy_hold": 0.214044,
+          "diff": -0.054083,
+          "timing_mdd": 0.197142,
+          "buy_hold_mdd": 0.219791,
+          "mdd_diff": -0.022649,
+          "trades": 1,
+          "fees": 113.95
+        },
+        {
+          "window_index": 6,
+          "oos_start": "2026-04-08",
+          "oos_end": "2026-07-27",
+          "timing": 0.024237,
+          "buy_hold": -0.126568,
+          "diff": 0.150805,
+          "timing_mdd": 0.063859,
+          "buy_hold_mdd": 0.250188,
+          "mdd_diff": -0.186329,
+          "trades": 1,
+          "fees": 123.84
+        }
+      ],
+      "timing_median": -0.015406,
+      "buyhold_median": -0.018968,
+      "diff_median": -0.054083,
+      "mean_trades_per_window": 1.86,
+      "total_fees": 1329.07,
+      "J1": {
+        "n_nonzero": 7,
+        "n_positive": 3,
+        "pos_ratio": 0.4286,
+        "p_one_sided_positive": 0.773438,
+        "p_two_sided": 1.0,
+        "verdict": "INCONCLUSIVE"
+      },
+      "ci_timing": {
+        "median": -0.015406,
+        "lo": -0.090216,
+        "hi": 0.024237,
+        "n": 7
+      },
+      "ci_buyhold": {
+        "median": -0.018968,
+        "lo": -0.126568,
+        "hi": 0.075476,
+        "n": 7
+      },
+      "j4_mdd_diff_median": -0.000743,
+      "J4_drawdown": {
+        "n_nonzero": 7,
+        "n_timing_lower": 4,
+        "lower_ratio": 0.5714,
+        "p_two_sided": 1.0,
+        "mdd_diff_median": -0.000743,
+        "timing_mdd_median": 0.108957,
+        "buyhold_mdd_median": 0.157968,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "code": "600871.SH",
+      "name": "石化油服",
+      "n_days": 728,
+      "status": "ok",
+      "n_windows_requested": 7,
+      "n_windows_valid": 7,
+      "pairs": [
+        {
+          "window_index": 0,
+          "oos_start": "2024-05-29",
+          "oos_end": "2024-09-11",
+          "timing": -0.017387,
+          "buy_hold": -0.046676,
+          "diff": 0.029289,
+          "timing_mdd": 0.061665,
+          "buy_hold_mdd": 0.075069,
+          "mdd_diff": -0.013405,
+          "trades": 1,
+          "fees": 100.67
+        },
+        {
+          "window_index": 1,
+          "oos_start": "2024-09-12",
+          "oos_end": "2025-01-06",
+          "timing": -0.035054,
+          "buy_hold": 0.11344,
+          "diff": -0.148494,
+          "timing_mdd": 0.156215,
+          "buy_hold_mdd": 0.130238,
+          "mdd_diff": 0.025977,
+          "trades": 3,
+          "fees": 313.39
+        },
+        {
+          "window_index": 2,
+          "oos_start": "2025-01-07",
+          "oos_end": "2025-04-30",
+          "timing": -0.027057,
+          "buy_hold": -0.070426,
+          "diff": 0.043369,
+          "timing_mdd": 0.048286,
+          "buy_hold_mdd": 0.136381,
+          "mdd_diff": -0.088095,
+          "trades": 2,
+          "fees": 200.67
+        },
+        {
+          "window_index": 3,
+          "oos_start": "2025-05-06",
+          "oos_end": "2025-08-19",
+          "timing": 0.000365,
+          "buy_hold": 0.078136,
+          "diff": -0.077771,
+          "timing_mdd": 0.096542,
+          "buy_hold_mdd": 0.068918,
+          "mdd_diff": 0.027624,
+          "trades": 2,
+          "fees": 231.93
+        },
+        {
+          "window_index": 4,
+          "oos_start": "2025-08-20",
+          "oos_end": "2025-12-10",
+          "timing": -0.076889,
+          "buy_hold": 0.053636,
+          "diff": -0.130525,
+          "timing_mdd": 0.138535,
+          "buy_hold_mdd": 0.157328,
+          "mdd_diff": -0.018794,
+          "trades": 3,
+          "fees": 292.89
+        },
+        {
+          "window_index": 5,
+          "oos_start": "2025-12-11",
+          "oos_end": "2026-04-07",
+          "timing": 0.154634,
+          "buy_hold": 0.327606,
+          "diff": -0.172972,
+          "timing_mdd": 0.323347,
+          "buy_hold_mdd": 0.317698,
+          "mdd_diff": 0.005649,
+          "trades": 1,
+          "fees": 113.61
+        },
+        {
+          "window_index": 6,
+          "oos_start": "2026-04-08",
+          "oos_end": "2026-07-27",
+          "timing": 0.018179,
+          "buy_hold": -0.215324,
+          "diff": 0.233503,
+          "timing_mdd": 0.046675,
+          "buy_hold_mdd": 0.284142,
+          "mdd_diff": -0.237467,
+          "trades": 0,
+          "fees": 25.47
+        }
+      ],
+      "timing_median": -0.017387,
+      "buyhold_median": 0.053636,
+      "diff_median": -0.077771,
+      "mean_trades_per_window": 1.71,
+      "total_fees": 1278.63,
+      "J1": {
+        "n_nonzero": 7,
+        "n_positive": 3,
+        "pos_ratio": 0.4286,
+        "p_one_sided_positive": 0.773438,
+        "p_two_sided": 1.0,
+        "verdict": "INCONCLUSIVE"
+      },
+      "ci_timing": {
+        "median": -0.017387,
+        "lo": -0.035054,
+        "hi": 0.018179,
+        "n": 7
+      },
+      "ci_buyhold": {
+        "median": 0.053636,
+        "lo": -0.070426,
+        "hi": 0.11344,
+        "n": 7
+      },
+      "j4_mdd_diff_median": -0.013405,
+      "J4_drawdown": {
+        "n_nonzero": 7,
+        "n_timing_lower": 4,
+        "lower_ratio": 0.5714,
+        "p_two_sided": 1.0,
+        "mdd_diff_median": -0.013405,
+        "timing_mdd_median": 0.096542,
+        "buyhold_mdd_median": 0.136381,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "code": "601699.SH",
+      "name": "潞安环能",
+      "n_days": 728,
+      "status": "ok",
+      "n_windows_requested": 7,
+      "n_windows_valid": 7,
+      "pairs": [
+        {
+          "window_index": 0,
+          "oos_start": "2024-05-29",
+          "oos_end": "2024-09-11",
+          "timing": -0.037835,
+          "buy_hold": -0.292526,
+          "diff": 0.254691,
+          "timing_mdd": 0.037835,
+          "buy_hold_mdd": 0.290386,
+          "mdd_diff": -0.252551,
+          "trades": 1,
+          "fees": 98.47
+        },
+        {
+          "window_index": 1,
+          "oos_start": "2024-09-12",
+          "oos_end": "2025-01-06",
+          "timing": -0.171605,
+          "buy_hold": 0.039832,
+          "diff": -0.211437,
+          "timing_mdd": 0.171605,
+          "buy_hold_mdd": 0.142192,
+          "mdd_diff": 0.029413,
+          "trades": 2,
+          "fees": 174.53
+        },
+        {
+          "window_index": 2,
+          "oos_start": "2025-01-07",
+          "oos_end": "2025-04-30",
+          "timing": -0.026492,
+          "buy_hold": -0.148799,
+          "diff": 0.122307,
+          "timing_mdd": 0.031682,
+          "buy_hold_mdd": 0.146225,
+          "mdd_diff": -0.114543,
+          "trades": 1,
+          "fees": 99.2
+        },
+        {
+          "window_index": 3,
+          "oos_start": "2025-05-06",
+          "oos_end": "2025-08-19",
+          "timing": 0.094053,
+          "buy_hold": 0.148084,
+          "diff": -0.054031,
+          "timing_mdd": 0.049121,
+          "buy_hold_mdd": 0.052701,
+          "mdd_diff": -0.003581,
+          "trades": 5,
+          "fees": 500.66
+        },
+        {
+          "window_index": 4,
+          "oos_start": "2025-08-20",
+          "oos_end": "2025-12-10",
+          "timing": -0.005702,
+          "buy_hold": -0.041484,
+          "diff": 0.035782,
+          "timing_mdd": 0.070118,
+          "buy_hold_mdd": 0.157361,
+          "mdd_diff": -0.087243,
+          "trades": 1,
+          "fees": 101.2
+        },
+        {
+          "window_index": 5,
+          "oos_start": "2025-12-11",
+          "oos_end": "2026-04-07",
+          "timing": 0.054391,
+          "buy_hold": 0.042884,
+          "diff": 0.011507,
+          "timing_mdd": 0.059622,
+          "buy_hold_mdd": 0.09775,
+          "mdd_diff": -0.038128,
+          "trades": 1,
+          "fees": 104.9
+        },
+        {
+          "window_index": 6,
+          "oos_start": "2026-04-08",
+          "oos_end": "2026-07-27",
+          "timing": -0.099704,
+          "buy_hold": 0.094661,
+          "diff": -0.194364,
+          "timing_mdd": 0.156354,
+          "buy_hold_mdd": 0.172971,
+          "mdd_diff": -0.016617,
+          "trades": 2,
+          "fees": 212.45
+        }
+      ],
+      "timing_median": -0.026492,
+      "buyhold_median": 0.039832,
+      "diff_median": 0.011507,
+      "mean_trades_per_window": 1.86,
+      "total_fees": 1291.41,
+      "J1": {
+        "n_nonzero": 7,
+        "n_positive": 4,
+        "pos_ratio": 0.5714,
+        "p_one_sided_positive": 0.5,
+        "p_two_sided": 1.0,
+        "verdict": "INCONCLUSIVE"
+      },
+      "ci_timing": {
+        "median": -0.026492,
+        "lo": -0.099704,
+        "hi": 0.054391,
+        "n": 7
+      },
+      "ci_buyhold": {
+        "median": 0.039832,
+        "lo": -0.148799,
+        "hi": 0.094661,
+        "n": 7
+      },
+      "j4_mdd_diff_median": -0.038128,
+      "J4_drawdown": {
+        "n_nonzero": 7,
+        "n_timing_lower": 6,
+        "lower_ratio": 0.8571,
+        "p_two_sided": 0.125,
+        "mdd_diff_median": -0.038128,
+        "timing_mdd_median": 0.059622,
+        "buyhold_mdd_median": 0.146225,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "code": "002165.SZ",
+      "name": "红宝丽",
+      "n_days": 728,
+      "status": "ok",
+      "n_windows_requested": 7,
+      "n_windows_valid": 7,
+      "pairs": [
+        {
+          "window_index": 0,
+          "oos_start": "2024-05-29",
+          "oos_end": "2024-09-11",
+          "timing": -0.136205,
+          "buy_hold": -0.082897,
+          "diff": -0.053308,
+          "timing_mdd": 0.136205,
+          "buy_hold_mdd": 0.106464,
+          "mdd_diff": 0.02974,
+          "trades": 4,
+          "fees": 390.02
+        },
+        {
+          "window_index": 1,
+          "oos_start": "2024-09-12",
+          "oos_end": "2025-01-06",
+          "timing": 0.21573,
+          "buy_hold": 0.181642,
+          "diff": 0.034088,
+          "timing_mdd": 0.219872,
+          "buy_hold_mdd": 0.267942,
+          "mdd_diff": -0.04807,
+          "trades": 2,
+          "fees": 245.01
+        },
+        {
+          "window_index": 2,
+          "oos_start": "2025-01-07",
+          "oos_end": "2025-04-30",
+          "timing": 1.32967,
+          "buy_hold": 1.676266,
+          "diff": -0.346597,
+          "timing_mdd": 0.120856,
+          "buy_hold_mdd": 0.121277,
+          "mdd_diff": -0.000421,
+          "trades": 1,
+          "fees": 127.03
+        },
+        {
+          "window_index": 3,
+          "oos_start": "2025-05-06",
+          "oos_end": "2025-08-19",
+          "timing": -0.119784,
+          "buy_hold": -0.230499,
+          "diff": 0.110715,
+          "timing_mdd": 0.130074,
+          "buy_hold_mdd": 0.337832,
+          "mdd_diff": -0.207758,
+          "trades": 2,
+          "fees": 201.91
+        },
+        {
+          "window_index": 4,
+          "oos_start": "2025-08-20",
+          "oos_end": "2025-12-10",
+          "timing": -0.184856,
+          "buy_hold": -0.168486,
+          "diff": -0.01637,
+          "timing_mdd": 0.258223,
+          "buy_hold_mdd": 0.249701,
+          "mdd_diff": 0.008522,
+          "trades": 3,
+          "fees": 262.63
+        },
+        {
+          "window_index": 5,
+          "oos_start": "2025-12-11",
+          "oos_end": "2026-04-07",
+          "timing": 0.048655,
+          "buy_hold": 0.234725,
+          "diff": -0.18607,
+          "timing_mdd": 0.351144,
+          "buy_hold_mdd": 0.34168,
+          "mdd_diff": 0.009464,
+          "trades": 3,
+          "fees": 338.5
+        },
+        {
+          "window_index": 6,
+          "oos_start": "2026-04-08",
+          "oos_end": "2026-07-27",
+          "timing": -0.34121,
+          "buy_hold": -0.320172,
+          "diff": -0.021038,
+          "timing_mdd": 0.357307,
+          "buy_hold_mdd": 0.405971,
+          "mdd_diff": -0.048664,
+          "trades": 3,
+          "fees": 260.99
+        }
+      ],
+      "timing_median": -0.119784,
+      "buyhold_median": -0.082897,
+      "diff_median": -0.021038,
+      "mean_trades_per_window": 2.57,
+      "total_fees": 1826.09,
+      "J1": {
+        "n_nonzero": 7,
+        "n_positive": 2,
+        "pos_ratio": 0.2857,
+        "p_one_sided_positive": 0.9375,
+        "p_two_sided": 0.453125,
+        "verdict": "INCONCLUSIVE"
+      },
+      "ci_timing": {
+        "median": -0.119784,
+        "lo": -0.184856,
+        "hi": 0.21573,
+        "n": 7
+      },
+      "ci_buyhold": {
+        "median": -0.082897,
+        "lo": -0.230499,
+        "hi": 0.234725,
+        "n": 7
+      },
+      "j4_mdd_diff_median": -0.000421,
+      "J4_drawdown": {
+        "n_nonzero": 7,
+        "n_timing_lower": 4,
+        "lower_ratio": 0.5714,
+        "p_two_sided": 1.0,
+        "mdd_diff_median": -0.000421,
+        "timing_mdd_median": 0.219872,
+        "buyhold_mdd_median": 0.267942,
+        "verdict": "INCONCLUSIVE"
+      }
+    },
+    {
+      "code": "601668.SH",
+      "name": "中国建筑",
+      "n_days": 728,
+      "status": "ok",
+      "n_windows_requested": 7,
+      "n_windows_valid": 7,
+      "pairs": [
+        {
+          "window_index": 0,
+          "oos_start": "2024-05-29",
+          "oos_end": "2024-09-11",
+          "timing": 0.009753,
+          "buy_hold": -0.083716,
+          "diff": 0.093469,
+          "timing_mdd": 0.029176,
+          "buy_hold_mdd": 0.109086,
+          "mdd_diff": -0.07991,
+          "trades": 2,
+          "fees": 206.68
+        },
+        {
+          "window_index": 1,
+          "oos_start": "2024-09-12",
+          "oos_end": "2025-01-06",
+          "timing": -0.024422,
+          "buy_hold": 0.132194,
+          "diff": -0.156616,
+          "timing_mdd": 0.062945,
+          "buy_hold_mdd": 0.091396,
+          "mdd_diff": -0.028451,
+          "trades": 3,
+          "fees": 303.22
+        },
+        {
+          "window_index": 2,
+          "oos_start": "2025-01-07",
+          "oos_end": "2025-04-30",
+          "timing": -0.001016,
+          "buy_hold": -0.031824,
+          "diff": 0.030808,
+          "timing_mdd": 0.005787,
+          "buy_hold_mdd": 0.08297,
+          "mdd_diff": -0.077182,
+          "trades": 1,
+          "fees": 101.6
+        },
+        {
+          "window_index": 3,
+          "oos_start": "2025-05-06",
+          "oos_end": "2025-08-19",
+          "timing": 0.00987,
+          "buy_hold": 0.028064,
+          "diff": -0.018194,
+          "timing_mdd": 0.039891,
+          "buy_hold_mdd": 0.056693,
+          "mdd_diff": -0.016802,
+          "trades": 2,
+          "fees": 203.99
+        },
+        {
+          "window_index": 4,
+          "oos_start": "2025-08-20",
+          "oos_end": "2025-12-10",
+          "timing": -0.018915,
+          "buy_hold": -0.045351,
+          "diff": 0.026435,
+          "timing_mdd": 0.037645,
+          "buy_hold_mdd": 0.074154,
+          "mdd_diff": -0.036509,
+          "trades": 1,
+          "fees": 100.53
+        },
+        {
+          "window_index": 5,
+          "oos_start": "2025-12-11",
+          "oos_end": "2026-04-07",
+          "timing": -0.037514,
+          "buy_hold": -0.032851,
+          "diff": -0.004662,
+          "timing_mdd": 0.051799,
+          "buy_hold_mdd": 0.04931,
+          "mdd_diff": 0.00249,
+          "trades": 2,
+          "fees": 200.38
+        },
+        {
+          "window_index": 6,
+          "oos_start": "2026-04-08",
+          "oos_end": "2026-07-27",
+          "timing": 0.000283,
+          "buy_hold": -0.020073,
+          "diff": 0.020356,
+          "timing_mdd": 0.02133,
+          "buy_hold_mdd": 0.091809,
+          "mdd_diff": -0.070479,
+          "trades": 1,
+          "fees": 125.87
+        }
+      ],
+      "timing_median": -0.001016,
+      "buyhold_median": -0.031824,
+      "diff_median": 0.020356,
+      "mean_trades_per_window": 1.71,
+      "total_fees": 1242.27,
+      "J1": {
+        "n_nonzero": 7,
+        "n_positive": 4,
+        "pos_ratio": 0.5714,
+        "p_one_sided_positive": 0.5,
+        "p_two_sided": 1.0,
+        "verdict": "INCONCLUSIVE"
+      },
+      "ci_timing": {
+        "median": -0.001016,
+        "lo": -0.024422,
+        "hi": 0.009753,
+        "n": 7
+      },
+      "ci_buyhold": {
+        "median": -0.031824,
+        "lo": -0.045351,
+        "hi": 0.028064,
+        "n": 7
+      },
+      "j4_mdd_diff_median": -0.036509,
+      "J4_drawdown": {
+        "n_nonzero": 7,
+        "n_timing_lower": 6,
+        "lower_ratio": 0.8571,
+        "p_two_sided": 0.125,
+        "mdd_diff_median": -0.036509,
+        "timing_mdd_median": 0.037645,
+        "buyhold_mdd_median": 0.08297,
+        "verdict": "INCONCLUSIVE"
+      }
+    }
+  ],
+  "J2_pairs": [
+    {
+      "vs": "600968.SH",
+      "vs_name": "海油发展",
+      "cnooc_better": false,
+      "disjoint": false,
+      "verdict": "NOT_DISTINGUISHABLE",
+      "cnooc_ci": {
+        "median": 0.012069,
+        "lo": -0.064912,
+        "hi": 0.108737,
+        "n": 7
+      },
+      "vs_ci": {
+        "median": -0.015132,
+        "lo": -0.046546,
+        "hi": 0.009063,
+        "n": 7
+      }
+    },
+    {
+      "vs": "601808.SH",
+      "vs_name": "中海油服",
+      "cnooc_better": false,
+      "disjoint": false,
+      "verdict": "NOT_DISTINGUISHABLE",
+      "cnooc_ci": {
+        "median": 0.012069,
+        "lo": -0.064912,
+        "hi": 0.108737,
+        "n": 7
+      },
+      "vs_ci": {
+        "median": -0.007182,
+        "lo": -0.038663,
+        "hi": 0.016167,
+        "n": 7
+      }
+    },
+    {
+      "vs": "600583.SH",
+      "vs_name": "海油工程",
+      "cnooc_better": false,
+      "disjoint": false,
+      "verdict": "NOT_DISTINGUISHABLE",
+      "cnooc_ci": {
+        "median": 0.012069,
+        "lo": -0.064912,
+        "hi": 0.108737,
+        "n": 7
+      },
+      "vs_ci": {
+        "median": -0.015406,
+        "lo": -0.090216,
+        "hi": 0.024237,
+        "n": 7
+      }
+    },
+    {
+      "vs": "600871.SH",
+      "vs_name": "石化油服",
+      "cnooc_better": false,
+      "disjoint": false,
+      "verdict": "NOT_DISTINGUISHABLE",
+      "cnooc_ci": {
+        "median": 0.012069,
+        "lo": -0.064912,
+        "hi": 0.108737,
+        "n": 7
+      },
+      "vs_ci": {
+        "median": -0.017387,
+        "lo": -0.035054,
+        "hi": 0.018179,
+        "n": 7
+      }
+    },
+    {
+      "vs": "601699.SH",
+      "vs_name": "潞安环能",
+      "cnooc_better": false,
+      "disjoint": false,
+      "verdict": "NOT_DISTINGUISHABLE",
+      "cnooc_ci": {
+        "median": 0.012069,
+        "lo": -0.064912,
+        "hi": 0.108737,
+        "n": 7
+      },
+      "vs_ci": {
+        "median": -0.026492,
+        "lo": -0.099704,
+        "hi": 0.054391,
+        "n": 7
+      }
+    },
+    {
+      "vs": "002165.SZ",
+      "vs_name": "红宝丽",
+      "cnooc_better": false,
+      "disjoint": false,
+      "verdict": "NOT_DISTINGUISHABLE",
+      "cnooc_ci": {
+        "median": 0.012069,
+        "lo": -0.064912,
+        "hi": 0.108737,
+        "n": 7
+      },
+      "vs_ci": {
+        "median": -0.119784,
+        "lo": -0.184856,
+        "hi": 0.21573,
+        "n": 7
+      }
+    },
+    {
+      "vs": "601668.SH",
+      "vs_name": "中国建筑",
+      "cnooc_better": false,
+      "disjoint": false,
+      "verdict": "NOT_DISTINGUISHABLE",
+      "cnooc_ci": {
+        "median": 0.012069,
+        "lo": -0.064912,
+        "hi": 0.108737,
+        "n": 7
+      },
+      "vs_ci": {
+        "median": -0.001016,
+        "lo": -0.024422,
+        "hi": 0.009753,
+        "n": 7
+      }
+    }
+  ],
+  "J2_verdict": "UNDISTINGUISHABLE",
+  "J1_verdict_counts": {
+    "INCONCLUSIVE": 8
+  },
+  "disclaimer": "本研究不预测未来收益，不构成任何买卖建议。所有数字均为历史样本外窗口的描述性统计，窗口级统计不等于连续账户收益（R12）。"
+}

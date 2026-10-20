@@ -1,0 +1,80 @@
+{
+  "prereg_version": "1.0",
+  "frozen_at": "2026-10-20T02:05:00",
+  "title": "中国海油 vs 其余 7 只：择时有效性与选股可区分性",
+  "answers_not_given": [
+    "不预测任何标的的未来收益",
+    "不给出买入/卖出建议"
+  ],
+  "universe": {
+    "codes": [
+      "600938.SH",
+      "600968.SH",
+      "601808.SH",
+      "600583.SH",
+      "600871.SH",
+      "601699.SH",
+      "002165.SZ",
+      "601668.SH"
+    ],
+    "quote_basis": "qfq_mult_multiplicative",
+    "note": "中国海油数据起点 2022-04-21，决定可比窗口上限"
+  },
+  "window": {
+    "start": "2023-10-16",
+    "end": "2026-10-16",
+    "reason": "8 只全部覆盖的最长近端区间"
+  },
+  "strategy": {
+    "name": "ma_cross_walkforward",
+    "copied_from": "data/step75/research.py MA_GRID",
+    "fast_candidates": [3, 5, 10, 20],
+    "slow_candidates": [15, 25, 40, 60],
+    "min_train_periods": 150,
+    "min_oos_periods": 75,
+    "min_trades": 2,
+    "max_combinations": 50,
+    "initial_cash": 100000.0
+  },
+  "fees": {
+    "primary": "FEE_PRESET_REFERENCE",
+    "sensitivity": "FEE_PRESET_HIGH_COST",
+    "excluded": "FEE_PRESET_SIMULATION (placeholder, not real rates)"
+  },
+  "benchmark": {
+    "name": "buy_and_hold_same_window_same_fees"
+  },
+  "criteria": {
+    "J1_timing_adds_value": {
+      "method": "paired_sign_test_binomial_exact",
+      "positive": "TIMING_ADDS_VALUE",
+      "negative": "TIMING_DESTROYS_VALUE",
+      "otherwise": "INCONCLUSIVE",
+      "alpha": 0.05,
+      "note": "正差比例>0.5 且 p<0.05 才算增强；<0.5 且 p<0.05 才算破坏"
+    },
+    "J2_best_distinguishable": {
+      "method": "bootstrap_median_ci",
+      "n_bootstrap": 10000,
+      "seed": 20261020,
+      "ci": 0.95,
+      "per_pair": "DISTINGUISHABLE / NOT_DISTINGUISHABLE",
+      "overall_best_clear": "中国海油 CI 与其余 7 只全部不重叠",
+      "overall_undistinguishable": "与全部 7 只都重叠 → 不得宣称中国海油最好"
+    },
+    "J3_selection_value": {
+      "method": "pearson_daily_return_correlation_matrix",
+      "threshold": 0.5,
+      "ge": "SELECTION_LOW_VALUE",
+      "lt": "SELECTION_MATERIALS",
+      "extra": "油气 5 只子块内部平均相关"
+    }
+  },
+  "power_declaration": {
+    "expected_windows_per_stock": 7,
+    "expected_J2": "UNDISTINGUISHABLE",
+    "expected_J1": "INCONCLUSIVE",
+    "rule": "若 J2 得 BEST_CLEAR，先怀疑脚本算错，而非宣称发现好标的"
+  },
+  "red_lines": ["R2", "R3", "R5", "R11", "R12"]
+}
