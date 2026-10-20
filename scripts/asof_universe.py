@@ -51,6 +51,56 @@ class UniverseError(ValueError):
     pass
 
 
+# ---------------------------------------------------------------- 板块与涨跌幅
+# ⚠️ 创业板涨跌幅在 2020-08-24（注册制改革首批）由 10% 改为 20%。
+#    写死一个常数会让 2020 年前的所有创业板涨跌停判错（±10% 与 ±20% 差一倍）。
+GEM_20PCT_START = "2020-08-24"
+
+# A 股代码前缀（沪深两市）。北交所（8/4 开头、430）不在本项目数据源内。
+A_SHARE_PREFIX = ("600", "601", "603", "605", "688", "689",
+                  "000", "001", "002", "003", "300", "301")
+# B 股：沪市 900xxx（美元）、深市 200xxx（港币）—— **不属于 A 股宇宙**
+B_SHARE_PREFIX = ("200", "900")
+
+
+def board_of(code: str) -> str:
+    """返回板块标签。不认识的返回 'unknown'（**不猜**）。"""
+    c = code.split(".")[0]
+    if len(c) != 6 or not c.isdigit():
+        return "unknown"
+    if c.startswith(B_SHARE_PREFIX):
+        return "b_share"
+    if c.startswith(("688", "689")):
+        return "star"          # 科创板
+    if c.startswith(("300", "301")):
+        return "gem"           # 创业板
+    if c.startswith(("600", "601", "603", "605", "000", "001", "002", "003")):
+        return "main"          # 主板 / 原中小板
+    if c.startswith(("8", "4")) or c.startswith("430"):
+        return "bse"           # 北交所（本项目不含）
+    return "unknown"
+
+
+def is_a_share(code: str) -> bool:
+    """是否属于 A 股宇宙。**显式排除 B 股**——Gate 6 是靠 ADJ 缺失被动排除的，那是隐式规则。"""
+    return board_of(code) in ("main", "gem", "star")
+
+
+def limit_ratio(code: str, day: str) -> float:
+    """某日该标的的涨跌幅限制。
+
+    主板 10%；科创板 20%；创业板 2020-08-24 前 10%、之后 20%。
+    ⚠️ ST 股是 5%，但本项目**无历史 ST 标记**，故按 10%/20% 判 → 会漏判 ST 的涨跌停。
+       这是已知限制，已在 `ASOF_UNIVERSE_AUDIT` 登记，不在代码里假装解决。
+    """
+    b = board_of(code)
+    if b == "star":
+        return 0.20
+    if b == "gem":
+        return 0.20 if day >= GEM_20PCT_START else 0.10
+    return 0.10
+
+
 @dataclass(frozen=True)
 class EligibilityRule:
     """入池规则的显式表达。任何一项都不能隐含在代码分支里。"""
@@ -58,6 +108,11 @@ class EligibilityRule:
     require_price_on_date: bool = True  # 当日必须有行情（=可定价）
     exclude_suspended: bool = True      # 排除停牌（当日无行情即视为不可交易）
     min_history_days: int = 0         # 最低历史长度（0=不限）
+    # 宇宙范围：'a_share' = 显式排除 B 股/北交所；'all' = 不过滤（仅供旧实验复现）
+    scope: str = "a_share"
+    # 是否要求 ADJ 也覆盖（研究层需要复权价，交易层需要不复权价，两者缺一不可）
+    require_adj_coverage: bool = False
+    adj_dir: str = ""                 # require_adj_coverage=True 时用
 
     # ⚠️ 刻意**不提供** include_after_last_data 选项（原设计有，已删除）。
     #    原因：允许"序列已终止"的标的入池，当日无价就只能用最后价估值，
@@ -71,6 +126,8 @@ class EligibilityRule:
             "require_price_on_date": self.require_price_on_date,
             "exclude_suspended": self.exclude_suspended,
             "min_history_days": self.min_history_days,
+            "scope": self.scope,
+            "require_adj_coverage": self.require_adj_coverage,
         }
 
 
@@ -168,8 +225,17 @@ class AsOfUniverse:
         """返回当日**可投资**的标的。规则全部显式，不做任何隐式放宽。"""
         rule = rule or EligibilityRule()
         out: list[str] = []
+        adj_ok: set[str] | None = None
+        if rule.require_adj_coverage:
+            if not rule.adj_dir:
+                raise UniverseError("require_adj_coverage=True 必须给 adj_dir")
+            adj_ok = _adj_codes(rule.adj_dir)
         for code, sp in self.spans.items():
             if sp.n_days == 0:
+                continue
+            if rule.scope == "a_share" and not is_a_share(code):
+                continue
+            if adj_ok is not None and code not in adj_ok:
                 continue
             if sp.n_days < rule.min_history_days:
                 continue
@@ -250,7 +316,134 @@ class AsOfUniverse:
         return out
 
 
+# ---------------------------------------------------------------- 可成交性
+class TradabilityIndex:
+    """按需读取 OHLC，判定"某日能不能真的成交"。
+
+    为什么单独一层：`AsOfUniverse` 回答"谁在池里"，本类回答"池里的人能不能买到/卖出"。
+    两者混在一起会让"涨跌停买不到"被误当成"不在池内"——又是一次"未知伪装成不存在"。
+
+    判定口径（全部显式，可单测）：
+      - 涨停 = 当日收盘涨幅 >= 涨跌幅限制 - TOL
+      - 跌停 = 当日收盘跌幅 <= -(涨跌幅限制 - TOL)
+      - 一字板 = 开=高=低=收 且 涨停/跌停（**完全无法成交**）
+      - 豁免：上市后前 5 个交易日、长停牌复牌首日（均无涨跌幅限制）
+    """
+
+    TOL = 0.005          # 0.5% 容差：涨跌停价四舍五入到分、以及 ST 的 5% 未区分
+    WARMUP_DAYS = 5      # 新股上市前 5 日无涨跌幅限制（创业板/科创板）
+    RESUME_GAP_DAYS = 5  # 间隔 > 5 自然日视为复牌，首日无涨跌幅限制
+
+    def __init__(self, exec_dir: str, event_dates: dict[str, set[str]] | None = None):
+        self.exec_dir = exec_dir
+        self.event_dates = event_dates or {}
+        self._cache: dict[str, dict[str, tuple[float, float, float, float, float]]] = {}
+
+    def _bars(self, code: str) -> dict[str, tuple[float, float, float, float, float]]:
+        if code in self._cache:
+            return self._cache[code]
+        import csv
+        path = os.path.join(self.exec_dir, f"{code}.exec.csv")
+        out: dict[str, tuple[float, float, float, float, float]] = {}
+        if os.path.exists(path):
+            with open(path, encoding="utf-8", newline="") as f:
+                rd = csv.reader(f)
+                hdr = [h.strip().lower() for h in (next(rd, None) or [])]
+                idx = {h: hdr.index(h) for h in ("date", "open", "high", "low", "close", "volume")
+                       if h in hdr}
+                if len(idx) == 6:
+                    for row in rd:
+                        try:
+                            out[row[idx["date"]][:10]] = tuple(
+                                float(row[idx[k]]) for k in ("open", "high", "low", "close", "volume"))
+                        except (ValueError, IndexError):
+                            continue
+        self._cache[code] = out
+        return out
+
+    def _prev(self, code: str, day: str) -> str | None:
+        bars = self._bars(code)
+        keys = sorted(bars)
+        i = bisect.bisect_left(keys, day)
+        return keys[i - 1] if i > 0 else None
+
+    def _exempt(self, code: str, day: str, prev: str) -> bool:
+        """是否有涨跌幅豁免（新股前 5 日 / 复牌首日 / 除权日）。"""
+        bars = self._bars(code)
+        keys = sorted(bars)
+        i = bisect.bisect_left(keys, day)
+        if i < self.WARMUP_DAYS:                 # 上市后前 5 个交易日
+            return True
+        import datetime as dt
+        try:
+            gap = (dt.date.fromisoformat(day) - dt.date.fromisoformat(prev)).days
+        except ValueError:
+            gap = 1
+        if gap > self.RESUME_GAP_DAYS:           # 复牌首日
+            return True
+        ev = self.event_dates.get(code) or set()
+        if day in ev or prev in ev:              # 除权日价格本就要跳
+            return True
+        return False
+
+    def flags(self, code: str, day: str) -> dict:
+        """返回当日可成交性诊断。"""
+        bars = self._bars(code)
+        bar = bars.get(day)
+        if bar is None:
+            return {"tradable": False, "reason": "no_bar"}
+        prev = self._prev(code, day)
+        if prev is None:
+            return {"tradable": False, "reason": "no_prev"}
+        o, h, l, c, v = bar
+        pc = bars[prev][3]
+        if pc <= 0:
+            return {"tradable": False, "reason": "bad_prev_close"}
+        ret = c / pc - 1.0
+        lim = limit_ratio(code, day)
+        if self._exempt(code, day, prev):
+            return {"tradable": True, "reason": "exempt", "ret": ret, "limit": lim}
+        up = ret >= lim - self.TOL
+        down = ret <= -(lim - self.TOL)
+        one_word = (abs(o - h) < 1e-6 and abs(h - l) < 1e-6 and abs(l - c) < 1e-6)
+        if one_word and (up or down):
+            return {"tradable": False, "reason": "one_word_board",
+                    "ret": ret, "limit": lim, "dir": "up" if up else "down"}
+        if up:
+            return {"tradable": False, "reason": "limit_up", "ret": ret, "limit": lim}
+        if down:
+            return {"tradable": False, "reason": "limit_down", "ret": ret, "limit": lim}
+        return {"tradable": True, "reason": "ok", "ret": ret, "limit": lim}
+
+    def blocked(self, code: str, day: str) -> str | None:
+        """不可成交时返回原因，可成交返回 None。"""
+        f = self.flags(code, day)
+        return None if f["tradable"] else f["reason"]
+
+    def blocked_share(self, codes: list[str], day: str) -> dict:
+        """当日池内被阻塞的比例与原因分布（用于审计"涨跌停到底影响多少"）。"""
+        from collections import Counter
+        cnt = Counter()
+        for c in codes:
+            r = self.blocked(c, day)
+            if r:
+                cnt[r] += 1
+        return {"date": day, "n": len(codes), "n_blocked": sum(cnt.values()),
+                "by_reason": dict(cnt)}
+
+
 # ---------------------------------------------------------------- 内部工具
+_ADJ_CACHE: dict[str, set[str]] = {}
+
+
+def _adj_codes(adj_dir: str) -> set[str]:
+    """ADJ 目录下的代码集合（缓存）。"""
+    if adj_dir not in _ADJ_CACHE:
+        _ADJ_CACHE[adj_dir] = {os.path.basename(p).replace(".qfq.csv", "")
+                               for p in glob.glob(os.path.join(adj_dir, "*.qfq.csv"))}
+    return _ADJ_CACHE[adj_dir]
+
+
 def _read_dates(path: str) -> list[str]:
     """只读 date 列。数据量大（5,472 文件），必须轻量。"""
     import csv
