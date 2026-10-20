@@ -1,0 +1,14 @@
+{
+  "prereg_version": "gate6-reversal-allasof-v6.0",
+  "prereg_sha256": "b8c4f1ecba44cb44e384761949072661f1d001e8cd8962b4b5e73abd3c9ec673",
+  "files": {
+    "monthly_paired.csv": {
+      "sha256": "0d878750e8cbb4ded3fb427aa3c71a043b73c3a900373b19e827bf802be0f851",
+      "bytes": 18427
+    },
+    "summary.json": {
+      "sha256": "c5c7e4761325a4557e5df8c2e26b9c167958d752e0e4622cb75f6822298a4ec7",
+      "bytes": 5345
+    }
+  }
+}

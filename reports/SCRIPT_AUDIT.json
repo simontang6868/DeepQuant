@@ -1,0 +1,1573 @@
+{
+ "n_scripts": 77,
+ "rows": [
+  {
+   "script": "audit_delist_price_spikes.py",
+   "lines": 163,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "docs/DELIST_PRICE_SPIKES_2026-10-19.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "audit_equity_bond_spread.py",
+   "lines": 473,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "audit_qfq_artifact.py",
+   "lines": 127,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "audit_qfq_mult_drift.py",
+   "lines": 216,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "docs/QFQ_MULT_DRIFT_AUDIT_2026-10-19.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "audit_scripts.py",
+   "lines": 255,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": false,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [
+    "data/_",
+    "data/served"
+   ],
+   "protected_writes": [],
+   "defaults": {
+    "--report": "reports/SCRIPT_AUDIT.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "b15_summarize.py",
+   "lines": 160,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "b20_window_benchmark.py",
+   "lines": 439,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "b_verify_and_extend.py",
+   "lines": 159,
+   "checks": {
+    "has_main": false,
+    "has_argparse": false,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "capital_policy_ab.py",
+   "lines": 337,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "capital_tier_resolve.py",
+   "lines": 171,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "docs/CAPITAL_TIER_TABLE_2026-10-19.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "champion_backtest.py",
+   "lines": 191,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "cnooc_compare.py",
+   "lines": 403,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "cross_source_check.py",
+   "lines": 243,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "design_probe_report.py",
+   "lines": 166,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "diag_oos_zero_median.py",
+   "lines": 197,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "effective_pool_check.py",
+   "lines": 164,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "docs/EFFECTIVE_POOL_GATE_2026-10-19.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "expansion_report.py",
+   "lines": 321,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "external_validity_audit.py",
+   "lines": 419,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "./external_validity_out"
+   },
+   "manual": []
+  },
+  {
+   "script": "fetch_delist_quotes.py",
+   "lines": 171,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "fetch_dividends_all.py",
+   "lines": 117,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--report": "data/div_all_report.json"
+   },
+   "manual": [
+    "复权 vs 不复权的使用边界需人工确认",
+    "单位口径（元/10股、股/10股）需人工确认"
+   ]
+  },
+  {
+   "script": "fetch_dividends_sina.py",
+   "lines": 174,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "data/exec/_div_cache_sina",
+    "--report": "data/exec/_div_sina_report.json"
+   },
+   "manual": [
+    "复权 vs 不复权的使用边界需人工确认",
+    "单位口径（元/10股、股/10股）需人工确认"
+   ]
+  },
+  {
+   "script": "fetch_exec_prices.py",
+   "lines": 405,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "data/exec",
+    "--report": "None"
+   },
+   "manual": [
+    "复权 vs 不复权的使用边界需人工确认",
+    "单位口径（元/10股、股/10股）需人工确认"
+   ]
+  },
+  {
+   "script": "fetch_stage0_quotes.py",
+   "lines": 133,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "gate1_candidate_audit.py",
+   "lines": 118,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "gate1_report.py",
+   "lines": 66,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "gate1_run.py",
+   "lines": 884,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "gate1_trigger_reachability.py",
+   "lines": 406,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "gate3_delist_attribution.py",
+   "lines": 260,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "gate3_leg_diag.py",
+   "lines": 120,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "gate3_pool_coverage.py",
+   "lines": 108,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--report": "docs/GATE3_POOL_COVERAGE_2026-10-20.json"
+   },
+   "manual": [
+    "日期边界（上市/退市/停牌/窗口首尾）需人工确认"
+   ]
+  },
+  {
+   "script": "gate3_pool_manifest.py",
+   "lines": 184,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--report": "docs/GATE3_DATA_MANIFEST_2026-10-20.json"
+   },
+   "manual": [
+    "日期边界（上市/退市/停牌/窗口首尾）需人工确认"
+   ]
+  },
+  {
+   "script": "history_audit.py",
+   "lines": 261,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "None"
+   },
+   "manual": []
+  },
+  {
+   "script": "import_pool.py",
+   "lines": 570,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "long_horizon_caliber_recalc.py",
+   "lines": 201,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "docs/LONG_HORIZON_CALIBER_RECALC_2026-10-19.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "market_state_risk.py",
+   "lines": 280,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "统计口径（t/MDE/自由度）需人工复核",
+    "方向定义（谁做多谁做空）需人工确认为预登记原文"
+   ]
+  },
+  {
+   "script": "market_state_risk_v2.py",
+   "lines": 157,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "统计口径（t/MDE/自由度）需人工复核",
+    "方向定义（谁做多谁做空）需人工确认为预登记原文"
+   ]
+  },
+  {
+   "script": "oos_2026_run.py",
+   "lines": 569,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "oos_recalc_compare.py",
+   "lines": 252,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "p2_1_financial_pit_check.py",
+   "lines": 177,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "pool_size_curve.py",
+   "lines": 159,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "portfolio_lot_sim.py",
+   "lines": 333,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--tag": "recent",
+    "--report": "None"
+   },
+   "manual": [
+    "整手取整与现金残留需人工确认（已由 PC6 覆盖部分）"
+   ]
+  },
+  {
+   "script": "pre2016_event_gap_diag.py",
+   "lines": 148,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--report": "docs/GATE3_EVENT_GAP_DIAG_2026-10-20.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "prepare_daily_data.py",
+   "lines": 233,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "prepare_equity_bond_spread_data.py",
+   "lines": 159,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "prepare_us_ebs_data.py",
+   "lines": 413,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "price_jump_recount.py",
+   "lines": 228,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "property_checks.py",
+   "lines": 458,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--report": "reports/PROPERTY_CHECKS.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "rebuild_adj_from_exec.py",
+   "lines": 633,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "data/qfq_rebuilt",
+    "--report": "None"
+   },
+   "manual": [
+    "复权 vs 不复权的使用边界需人工确认",
+    "单位口径（元/10股、股/10股）需人工确认"
+   ]
+  },
+  {
+   "script": "reject_attribution.py",
+   "lines": 127,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "render_daily_check_dashboard.py",
+   "lines": 429,
+   "checks": {
+    "has_main": false,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "render_equity_bond_spread_dashboard.py",
+   "lines": 319,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "render_us_ebs_dashboard.py",
+   "lines": 477,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "repair_qfq_mult.py",
+   "lines": 264,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "return_shape.py",
+   "lines": 278,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "run_daily_check.py",
+   "lines": 210,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "run_equity_bond_spread.py",
+   "lines": 193,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "run_gate2_reversal.py",
+   "lines": 332,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "统计口径（t/MDE/自由度）需人工复核",
+    "方向定义（谁做多谁做空）需人工确认为预登记原文"
+   ]
+  },
+  {
+   "script": "run_gate3_longsample.py",
+   "lines": 384,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "统计口径（t/MDE/自由度）需人工复核",
+    "方向定义（谁做多谁做空）需人工确认为预登记原文"
+   ]
+  },
+  {
+   "script": "run_gate4_lowvol.py",
+   "lines": 338,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "统计口径（t/MDE/自由度）需人工复核",
+    "方向定义（谁做多谁做空）需人工确认为预登记原文"
+   ]
+  },
+  {
+   "script": "run_gate5_turnover.py",
+   "lines": 326,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "统计口径（t/MDE/自由度）需人工复核",
+    "方向定义（谁做多谁做空）需人工确认为预登记原文"
+   ]
+  },
+  {
+   "script": "run_gate6_allasof.py",
+   "lines": 347,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "统计口径（t/MDE/自由度）需人工复核",
+    "方向定义（谁做多谁做空）需人工确认为预登记原文"
+   ]
+  },
+  {
+   "script": "run_us_ebs_study.py",
+   "lines": 211,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "selftest_effective_pool.py",
+   "lines": 176,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "stage0_capital_confound.py",
+   "lines": 365,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "docs/STAGE0_CAPITAL_CONFOUND_2026-10-19.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "stage0_sensitivity.py",
+   "lines": 139,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "stage0_survivorship_probe.py",
+   "lines": 515,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "stage3_sigma_d.py",
+   "lines": 333,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "docs/STAGE3_SIGMA_D_2026-10-20.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "start_deepquant.py",
+   "lines": 434,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "stat_power.py",
+   "lines": 244,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "stock_review_3y.py",
+   "lines": 297,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--out": "docs/STOCK_REVIEW_3Y_2026-10-20.json"
+   },
+   "manual": []
+  },
+  {
+   "script": "strategy_turnover_diag.py",
+   "lines": 163,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "universe_preflight.py",
+   "lines": 133,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "us_sensitivity.py",
+   "lines": 88,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": false,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  },
+  {
+   "script": "verify_archive.py",
+   "lines": 246,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "日期边界（上市/退市/停牌/窗口首尾）需人工确认"
+   ]
+  },
+  {
+   "script": "verify_exec_all.py",
+   "lines": 130,
+   "checks": {
+    "has_main": true,
+    "has_argparse": false,
+    "has_tryexcept": true,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": [
+    "日期边界（上市/退市/停牌/窗口首尾）需人工确认"
+   ]
+  },
+  {
+   "script": "verify_exec_long_overlap.py",
+   "lines": 131,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": true,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {
+    "--report": "None"
+   },
+   "manual": [
+    "日期边界（上市/退市/停牌/窗口首尾）需人工确认"
+   ]
+  },
+  {
+   "script": "window_skew.py",
+   "lines": 161,
+   "checks": {
+    "has_main": true,
+    "has_argparse": true,
+    "has_tryexcept": false,
+    "has_docstring": true,
+    "arg_out": false,
+    "no_syspath_hack": true,
+    "paths_exist": true,
+    "no_protected_write": true,
+    "deterministic_hint": true
+   },
+   "missing_paths": [],
+   "protected_writes": [],
+   "defaults": {},
+   "manual": []
+  }
+ ],
+ "fail_counts": {
+  "has_main": 2,
+  "has_argparse": 28,
+  "has_tryexcept": 47,
+  "has_docstring": 0,
+  "arg_out": 56,
+  "no_syspath_hack": 39,
+  "paths_exist": 1,
+  "no_protected_write": 0,
+  "deterministic_hint": 0
+ }
+}
