@@ -98,14 +98,22 @@ def month_end_positions(calendar: pd.DatetimeIndex, start: str, end: str) -> lis
     return [months[key] for key in sorted(months)]
 
 
-def scores_at(pos: int, close_df: pd.DataFrame) -> pd.Series:
-    """信号日位置 pos 的动量分数（照抄 platform cross_section 的窗口定义）。
+def scores_at(
+    pos: int,
+    close_df: pd.DataFrame,
+    lookback: int = LOOKBACK,
+    skip: int = SKIP,
+    min_valid_days: int | None = None,
+) -> pd.Series:
+    """信号日位置 pos 的横向排序分数（默认照抄 platform cross_section 的动量窗口）。
 
     窗口 = [pos - (skip+lookback-1), pos - skip]，两端含。
     端点 p_start = 窗口首日 close，p_end = 窗口末日 close，分数 = p_end/p_start - 1。
     """
-    start = pos - (SKIP + LOOKBACK - 1)
-    end = pos - SKIP
+    if min_valid_days is None:
+        min_valid_days = math.ceil(lookback * MIN_VALID_RATIO)
+    start = pos - (skip + lookback - 1)
+    end = pos - skip
     if start < 0:
         return pd.Series(dtype=float)
     win = close_df.iloc[start : end + 1]
@@ -113,7 +121,7 @@ def scores_at(pos: int, close_df: pd.DataFrame) -> pd.Series:
     valid_days = win.notna().sum(axis=0)
     p_start = win.iloc[0]
     p_end = win.iloc[-1]
-    ok = (valid_days >= MIN_VALID_DAYS) & p_start.notna() & p_end.notna()
+    ok = (valid_days >= min_valid_days) & p_start.notna() & p_end.notna()
     # P1/P2：信号日本身必须可定价（有行且为正）
     signal_row = close_df.iloc[pos]
     ok &= signal_row.notna()
@@ -136,6 +144,9 @@ def measure(
     start: str,
     end: str,
     mode: str = "long_only",
+    lookback: int = LOOKBACK,
+    skip: int = SKIP,
+    direction: str = "momentum",
 ) -> dict:
     """在一个估计窗口内计算各 k 的配对月度超额序列统计量。"""
     positions = month_end_positions(calendar, start, end)
@@ -147,7 +158,7 @@ def measure(
 
     for i in range(len(positions) - 1):
         pos, nxt = positions[i], positions[i + 1]
-        sc = scores_at(pos, close_df)
+        sc = scores_at(pos, close_df, lookback=lookback, skip=skip)
         if len(sc) < 3:
             continue
         rets = period_return(pos, nxt, close_ffill)
@@ -158,7 +169,10 @@ def measure(
         pool_sizes.append(n_pool)
         r_pool = rets.loc[pool]
         r_bench = float(r_pool.mean())
-        ranked = sc.loc[pool].sort_values(ascending=False)
+        # 方向：momentum = 做多高分（赢家）；reversal = 做多低分（输家，即反转）
+        ranked = sc.loc[pool].sort_values(
+            ascending=False if direction == "momentum" else True
+        )
         for k in ks:
             kk = min(k, n_pool)
             if mode == "long_short":
@@ -234,6 +248,14 @@ def main(argv: list[str] | None = None) -> int:
         default="long_only",
         help="long_only=top-k vs 全池等权（Gate 1 口径）；long_short=0.5(top-k)−0.5(bottom-k) 自融资",
     )
+    ap.add_argument("--lookback", type=int, default=LOOKBACK, help="排序窗口交易日数（默认 60）")
+    ap.add_argument("--skip", type=int, default=SKIP, help="窗口末端跳过交易日数（默认 5）")
+    ap.add_argument(
+        "--direction",
+        choices=["momentum", "reversal"],
+        default="momentum",
+        help="momentum=做多过去涨的；reversal=做多过去跌的（短期反转）",
+    )
     args = ap.parse_args(argv)
 
     ks = [int(x) for x in args.ks.split(",") if x.strip()]
@@ -244,7 +266,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"[sigma_d] 池目录 {args.pool_dir}")
     print(f"[sigma_d] 标的 {close_df.shape[1]} 只 | 日历 {len(calendar)} 个交易日 "
           f"({calendar[0].date()} ~ {calendar[-1].date()})")
-    print(f"[sigma_d] 参数 lookback={LOOKBACK} skip={SKIP} min_valid={MIN_VALID_DAYS}/{LOOKBACK}")
+    _mvd = math.ceil(args.lookback * MIN_VALID_RATIO)
+    print(f"[sigma_d] 参数 lookback={args.lookback} skip={args.skip} "
+          f"min_valid={_mvd}/{args.lookback} direction={args.direction}")
     print(f"[sigma_d] 持仓数 k = {ks}")
     print(f"[sigma_d] 模式 mode = {args.mode}"
           + ("（多空 0.5×top-k − 0.5×bottom-k，自融资）" if args.mode == "long_short"
@@ -257,11 +281,15 @@ def main(argv: list[str] | None = None) -> int:
         "n_symbols": int(close_df.shape[1]),
         "calendar": [str(calendar[0].date()), str(calendar[-1].date())],
         "scoring_params": {
-            "lookback": LOOKBACK,
-            "skip": SKIP,
+            "lookback": args.lookback,
+            "skip": args.skip,
+            "direction": args.direction,
             "min_valid_ratio": MIN_VALID_RATIO,
-            "min_valid_days": MIN_VALID_DAYS,
-            "source": "照抄 Gate 1 预登记 v1.3（scripts 内不含任何可调项）",
+            "min_valid_days": _mvd,
+            "source": (
+                "默认 60/5 照抄 Gate 1 预登记 v1.3；"
+                "lookback/skip/direction 为显式命令行参数，改动即改变实验定义"
+            ),
         },
         "discipline": {
             "purpose": "仅用于功效/MDE 计算（方差信息，无方向性）",
@@ -276,7 +304,8 @@ def main(argv: list[str] | None = None) -> int:
             print(f"!! 未知窗口 {wname}，跳过", file=sys.stderr)
             continue
         start, end = WINDOWS[wname]
-        res = measure(close_df, close_ffill, calendar, ks, start, end, mode=args.mode)
+        res = measure(close_df, close_ffill, calendar, ks, start, end, mode=args.mode,
+                      lookback=args.lookback, skip=args.skip, direction=args.direction)
         report["windows"][wname] = res
         print(f"=== {wname}  ({start} ~ {end}) ===")
         print(f"  月份 n={res.get('n_months')} | 当月池规模 中位 {res.get('pool_size_median')} "
