@@ -1,0 +1,223 @@
+{
+  "generated_at": "2026-10-20T20:52:28",
+  "pool_dir": "data/qfq_rebuilt_broad",
+  "n_symbols": 549,
+  "calendar": [
+    "2016-01-04",
+    "2026-10-16"
+  ],
+  "scoring_params": {
+    "lookback": 60,
+    "skip": 5,
+    "min_valid_ratio": 0.9,
+    "min_valid_days": 54,
+    "source": "照抄 Gate 1 预登记 v1.3（scripts 内不含任何可调项）"
+  },
+  "discipline": {
+    "purpose": "仅用于功效/MDE 计算（方差信息，无方向性）",
+    "mean_d_usage": "禁止用于设计决策；JSON 中仅供审计，stdout 不打印"
+  },
+  "windows": {
+    "IS": {
+      "window": [
+        "2016-05-01",
+        "2020-12-31"
+      ],
+      "n_months": 55,
+      "pool_size_median": 416,
+      "pool_size_min": 352,
+      "pool_size_max": 470,
+      "per_k": {
+        "10": {
+          "n": 55,
+          "sigma_d": 0.068078,
+          "sigma_d_pp": 6.8078,
+          "mean_weight_diff_sq": 0.09756986,
+          "sigma_idio_implied_pp": 21.7945,
+          "mde_at_n_pp": 0.0257,
+          "n_required_for_030pp": 4042,
+          "n_required_for_050pp": 1456,
+          "mean_d_audit_only_forbidden_for_design": 0.00940478
+        },
+        "20": {
+          "n": 55,
+          "sigma_d": 0.05274,
+          "sigma_d_pp": 5.274,
+          "mean_weight_diff_sq": 0.04756986,
+          "sigma_idio_implied_pp": 24.1812,
+          "mde_at_n_pp": 0.0199,
+          "n_required_for_030pp": 2426,
+          "n_required_for_050pp": 874,
+          "mean_d_audit_only_forbidden_for_design": 0.00872706
+        },
+        "50": {
+          "n": 55,
+          "sigma_d": 0.035084,
+          "sigma_d_pp": 3.5084,
+          "mean_weight_diff_sq": 0.01756986,
+          "sigma_idio_implied_pp": 26.4679,
+          "mde_at_n_pp": 0.0133,
+          "n_required_for_030pp": 1074,
+          "n_required_for_050pp": 387,
+          "mean_d_audit_only_forbidden_for_design": 0.00677855
+        },
+        "110": {
+          "n": 55,
+          "sigma_d": 0.022602,
+          "sigma_d_pp": 2.2602,
+          "mean_weight_diff_sq": 0.00666077,
+          "sigma_idio_implied_pp": 27.6933,
+          "mde_at_n_pp": 0.0085,
+          "n_required_for_030pp": 446,
+          "n_required_for_050pp": 161,
+          "mean_d_audit_only_forbidden_for_design": 0.00583861
+        },
+        "200": {
+          "n": 55,
+          "sigma_d": 0.013712,
+          "sigma_d_pp": 1.3712,
+          "mean_weight_diff_sq": 0.00256986,
+          "sigma_idio_implied_pp": 27.0484,
+          "mde_at_n_pp": 0.0052,
+          "n_required_for_030pp": 164,
+          "n_required_for_050pp": 60,
+          "mean_d_audit_only_forbidden_for_design": 0.00372604
+        }
+      }
+    },
+    "OOS_GATE1": {
+      "window": [
+        "2021-01-01",
+        "2024-12-31"
+      ],
+      "n_months": 47,
+      "pool_size_median": 421,
+      "pool_size_min": 336,
+      "pool_size_max": 466,
+      "per_k": {
+        "10": {
+          "n": 47,
+          "sigma_d": 0.104197,
+          "sigma_d_pp": 10.4197,
+          "mean_weight_diff_sq": 0.09757135,
+          "sigma_idio_implied_pp": 33.3574,
+          "mde_at_n_pp": 0.0426,
+          "n_required_for_030pp": 9469,
+          "n_required_for_050pp": 3409,
+          "mean_d_audit_only_forbidden_for_design": 0.00069282
+        },
+        "20": {
+          "n": 47,
+          "sigma_d": 0.074946,
+          "sigma_d_pp": 7.4946,
+          "mean_weight_diff_sq": 0.04757135,
+          "sigma_idio_implied_pp": 34.3619,
+          "mde_at_n_pp": 0.0306,
+          "n_required_for_030pp": 4899,
+          "n_required_for_050pp": 1764,
+          "mean_d_audit_only_forbidden_for_design": -0.00303354
+        },
+        "50": {
+          "n": 47,
+          "sigma_d": 0.053219,
+          "sigma_d_pp": 5.3219,
+          "mean_weight_diff_sq": 0.01757135,
+          "sigma_idio_implied_pp": 40.148,
+          "mde_at_n_pp": 0.0217,
+          "n_required_for_030pp": 2471,
+          "n_required_for_050pp": 890,
+          "mean_d_audit_only_forbidden_for_design": -0.00590356
+        },
+        "110": {
+          "n": 47,
+          "sigma_d": 0.034045,
+          "sigma_d_pp": 3.4045,
+          "mean_weight_diff_sq": 0.00666226,
+          "sigma_idio_implied_pp": 41.71,
+          "mde_at_n_pp": 0.0139,
+          "n_required_for_030pp": 1011,
+          "n_required_for_050pp": 364,
+          "mean_d_audit_only_forbidden_for_design": -0.00163094
+        },
+        "200": {
+          "n": 47,
+          "sigma_d": 0.023257,
+          "sigma_d_pp": 2.3257,
+          "mean_weight_diff_sq": 0.00257135,
+          "sigma_idio_implied_pp": 45.8642,
+          "mde_at_n_pp": 0.0095,
+          "n_required_for_030pp": 472,
+          "n_required_for_050pp": 170,
+          "mean_d_audit_only_forbidden_for_design": 0.00070419
+        }
+      }
+    },
+    "FULL": {
+      "window": [
+        "2016-05-01",
+        "2026-12-31"
+      ],
+      "n_months": 125,
+      "pool_size_median": 396,
+      "pool_size_min": 297,
+      "pool_size_max": 470,
+      "per_k": {
+        "10": {
+          "n": 125,
+          "sigma_d": 0.096872,
+          "sigma_d_pp": 9.6872,
+          "mean_weight_diff_sq": 0.09744145,
+          "sigma_idio_implied_pp": 31.0333,
+          "mde_at_n_pp": 0.0243,
+          "n_required_for_030pp": 8185,
+          "n_required_for_050pp": 2947,
+          "mean_d_audit_only_forbidden_for_design": 0.01157291
+        },
+        "20": {
+          "n": 125,
+          "sigma_d": 0.078568,
+          "sigma_d_pp": 7.8568,
+          "mean_weight_diff_sq": 0.04744145,
+          "sigma_idio_implied_pp": 36.0718,
+          "mde_at_n_pp": 0.0197,
+          "n_required_for_030pp": 5384,
+          "n_required_for_050pp": 1939,
+          "mean_d_audit_only_forbidden_for_design": 0.00786562
+        },
+        "50": {
+          "n": 125,
+          "sigma_d": 0.05554,
+          "sigma_d_pp": 5.554,
+          "mean_weight_diff_sq": 0.01744145,
+          "sigma_idio_implied_pp": 42.0548,
+          "mde_at_n_pp": 0.0139,
+          "n_required_for_030pp": 2691,
+          "n_required_for_050pp": 969,
+          "mean_d_audit_only_forbidden_for_design": 0.0038262
+        },
+        "110": {
+          "n": 125,
+          "sigma_d": 0.032347,
+          "sigma_d_pp": 3.2347,
+          "mean_weight_diff_sq": 0.00653236,
+          "sigma_idio_implied_pp": 40.0224,
+          "mde_at_n_pp": 0.0081,
+          "n_required_for_030pp": 913,
+          "n_required_for_050pp": 329,
+          "mean_d_audit_only_forbidden_for_design": 0.00423053
+        },
+        "200": {
+          "n": 125,
+          "sigma_d": 0.019097,
+          "sigma_d_pp": 1.9097,
+          "mean_weight_diff_sq": 0.00244145,
+          "sigma_idio_implied_pp": 38.6489,
+          "mde_at_n_pp": 0.0048,
+          "n_required_for_030pp": 319,
+          "n_required_for_050pp": 115,
+          "mean_d_audit_only_forbidden_for_design": 0.00304966
+        }
+      }
+    }
+  }
+}
