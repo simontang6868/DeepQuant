@@ -1,0 +1,18 @@
+{
+  "prereg_version": "gate4-lowvol-segmented-v4.0",
+  "prereg_sha256": "94988f7c57d1e5f41c78d16330b704204d7453b39cdee4b34d0b40da6826687d",
+  "files": {
+    "monthly_paired.csv": {
+      "sha256": "744a85eda5b0a550c9c0984853dac3cb4f4611a8240d4581c2e0a49ef0803694",
+      "bytes": 23593
+    },
+    "sensitivity.csv": {
+      "sha256": "98229434a35df6b7dd3d5b47a2d6710b2c7f87fbded742e1b65fdfaaf2c2778f",
+      "bytes": 403
+    },
+    "summary.json": {
+      "sha256": "7ef219e9ee44e57401f6d96ba376899bb4c84b22cb7470f15714eb6acc0c48c8",
+      "bytes": 5451
+    }
+  }
+}
