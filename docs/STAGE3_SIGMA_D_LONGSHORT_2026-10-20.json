@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-10-20T20:59:55",
+  "pool_dir": "data/qfq_rebuilt_broad",
+  "n_symbols": 549,
+  "calendar": [
+    "2016-01-04",
+    "2026-10-16"
+  ],
+  "scoring_params": {
+    "lookback": 60,
+    "skip": 5,
+    "min_valid_ratio": 0.9,
+    "min_valid_days": 54,
+    "source": "照抄 Gate 1 预登记 v1.3（scripts 内不含任何可调项）"
+  },
+  "discipline": {
+    "purpose": "仅用于功效/MDE 计算（方差信息，无方向性）",
+    "mean_d_usage": "禁止用于设计决策；JSON 中仅供审计，stdout 不打印"
+  },
+  "mode": "long_short",
+  "windows": {
+    "FULL": {
+      "window": [
+        "2016-05-01",
+        "2026-12-31"
+      ],
+      "n_months": 125,
+      "pool_size_median": 396,
+      "pool_size_min": 297,
+      "pool_size_max": 470,
+      "per_k": {
+        "20": {
+          "n": 125,
+          "sigma_d": 0.061718,
+          "sigma_d_pp": 6.1718,
+          "mean_weight_diff_sq": 0.025,
+          "sigma_idio_implied_pp": 39.0339,
+          "mde_at_n_pp": 0.0155,
+          "n_required_for_030pp": 3322,
+          "n_required_for_050pp": 1196,
+          "mean_d_audit_only_forbidden_for_design": 0.01432849
+        },
+        "50": {
+          "n": 125,
+          "sigma_d": 0.045793,
+          "sigma_d_pp": 4.5793,
+          "mean_weight_diff_sq": 0.01,
+          "sigma_idio_implied_pp": 45.7926,
+          "mde_at_n_pp": 0.0115,
+          "n_required_for_030pp": 1829,
+          "n_required_for_050pp": 659,
+          "mean_d_audit_only_forbidden_for_design": 0.00743307
+        },
+        "110": {
+          "n": 125,
+          "sigma_d": 0.030111,
+          "sigma_d_pp": 3.0111,
+          "mean_weight_diff_sq": 0.00454545,
+          "sigma_idio_implied_pp": 44.6614,
+          "mde_at_n_pp": 0.0075,
+          "n_required_for_030pp": 791,
+          "n_required_for_050pp": 285,
+          "mean_d_audit_only_forbidden_for_design": 0.00488931
+        },
+        "200": {
+          "n": 125,
+          "sigma_d": 0.021011,
+          "sigma_d_pp": 2.1011,
+          "mean_weight_diff_sq": 0.00268263,
+          "sigma_idio_implied_pp": 40.5658,
+          "mde_at_n_pp": 0.0053,
+          "n_required_for_030pp": 385,
+          "n_required_for_050pp": 139,
+          "mean_d_audit_only_forbidden_for_design": 0.00325646
+        }
+      }
+    }
+  }
+}

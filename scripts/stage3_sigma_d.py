@@ -135,6 +135,7 @@ def measure(
     ks: list[int],
     start: str,
     end: str,
+    mode: str = "long_only",
 ) -> dict:
     """在一个估计窗口内计算各 k 的配对月度超额序列统计量。"""
     positions = month_end_positions(calendar, start, end)
@@ -160,6 +161,22 @@ def measure(
         ranked = sc.loc[pool].sort_values(ascending=False)
         for k in ks:
             kk = min(k, n_pool)
+            if mode == "long_short":
+                # 多空：0.5×top-k − 0.5×bottom-k（自融资，零净暴露）。
+                # 设计理由（先验，非从数据挑）：σ_d 主要由风格共同波动驱动，
+                # 做空等量"输家"可对冲市值/波动/行业暴露，从而压低 σ_d。
+                # 这是个股排序信号的【标准】检验方式（组合排序多空价差），
+                # 与 Gate 1 的单边多头不可直接比较，属于不同的设计。
+                kk_eff = min(kk, n_pool // 2)
+                top_idx = ranked.index[:kk_eff]
+                bot_idx = ranked.index[-kk_eff:]
+                r_long = float(r_pool.loc[top_idx].mean())
+                r_short = float(r_pool.loc[bot_idx].mean())
+                per_k[k]["d"].append(0.5 * (r_long - r_short))
+                # 多空组合的权重差平方和：多头每只 +0.5/k、空头每只 −0.5/k，其余 0。
+                #   Σ(Δw)² = k(0.5/k)² + k(0.5/k)² = 0.5/k
+                per_k[k]["wss"].append(0.5 / kk_eff)
+                continue
             r_strat = float(r_pool.loc[ranked.index[:kk]].mean())
             per_k[k]["d"].append(r_strat - r_bench)
             # 权重差平方和：策略 = top-k 等权，基准 = 全池等权，策略是基准的【子集】。
@@ -211,6 +228,12 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--ks", default="10,20,50,100,200", help="持仓数列表（逗号分隔）")
     ap.add_argument("--windows", default="IS,FULL", help="估计窗口：IS/OOS_GATE1/OOS_NEW/FULL")
     ap.add_argument("--out", default="docs/STAGE3_SIGMA_D_2026-10-20.json")
+    ap.add_argument(
+        "--mode",
+        choices=["long_only", "long_short"],
+        default="long_only",
+        help="long_only=top-k vs 全池等权（Gate 1 口径）；long_short=0.5(top-k)−0.5(bottom-k) 自融资",
+    )
     args = ap.parse_args(argv)
 
     ks = [int(x) for x in args.ks.split(",") if x.strip()]
@@ -223,6 +246,9 @@ def main(argv: list[str] | None = None) -> int:
           f"({calendar[0].date()} ~ {calendar[-1].date()})")
     print(f"[sigma_d] 参数 lookback={LOOKBACK} skip={SKIP} min_valid={MIN_VALID_DAYS}/{LOOKBACK}")
     print(f"[sigma_d] 持仓数 k = {ks}")
+    print(f"[sigma_d] 模式 mode = {args.mode}"
+          + ("（多空 0.5×top-k − 0.5×bottom-k，自融资）" if args.mode == "long_short"
+             else "（top-k vs 全池等权，Gate 1 口径）"))
     print()
 
     report = {
@@ -241,6 +267,7 @@ def main(argv: list[str] | None = None) -> int:
             "purpose": "仅用于功效/MDE 计算（方差信息，无方向性）",
             "mean_d_usage": "禁止用于设计决策；JSON 中仅供审计，stdout 不打印",
         },
+        "mode": args.mode,
         "windows": {},
     }
 
@@ -249,7 +276,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"!! 未知窗口 {wname}，跳过", file=sys.stderr)
             continue
         start, end = WINDOWS[wname]
-        res = measure(close_df, close_ffill, calendar, ks, start, end)
+        res = measure(close_df, close_ffill, calendar, ks, start, end, mode=args.mode)
         report["windows"][wname] = res
         print(f"=== {wname}  ({start} ~ {end}) ===")
         print(f"  月份 n={res.get('n_months')} | 当月池规模 中位 {res.get('pool_size_median')} "
