@@ -1,0 +1,265 @@
+{
+  "stocks": [
+    {
+      "code": "000001.SZ",
+      "name": "平安银行",
+      "sha256": "9815cdbe2ef0572d79d1dd6a68e3f8fbf08af5b6c70b198e08c2c093249bf5d6"
+    },
+    {
+      "code": "000301.SZ",
+      "name": "东方盛虹",
+      "sha256": "227c1c8dd289508f25adf1388f9b0d817fb21d6e743c1739d93a6f1225bd74b1"
+    },
+    {
+      "code": "000568.SZ",
+      "name": "泸州老窖",
+      "sha256": "7730fdaba2af62439d37b62f69e9d018b34926f89b1108a2124a532a7c987a8b"
+    },
+    {
+      "code": "000657.SZ",
+      "name": "中钨高新",
+      "sha256": "cdfa95b250814749f2848f2c764f6f55eb67ab101f878f5834c6e045625b9b25"
+    },
+    {
+      "code": "000807.SZ",
+      "name": "云铝股份",
+      "sha256": "7bcedf2a53c66a94e89c07805393af70ae2513ff6df03e65ac7203faaf3d8669"
+    },
+    {
+      "code": "000858.SZ",
+      "name": "五粮液",
+      "sha256": "149b2b2549017f55c28a9db8bd9407589301c79356ec08d90fa3e88521cf8cb4"
+    },
+    {
+      "code": "000977.SZ",
+      "name": "浪潮信息",
+      "sha256": "b12f05f555807d9a1eda26f4567dbf155134ffc4a4bb42ecf3b193a66e7af70c"
+    },
+    {
+      "code": "001979.SZ",
+      "name": "招商蛇口",
+      "sha256": "f517f0561fdf1668578232b1332237bf801836057315b154365faae7e4482143"
+    },
+    {
+      "code": "002074.SZ",
+      "name": "国轩高科",
+      "sha256": "bb2d866e57848bfd517a63f2389830a670e15289105e87bffd67f16455933f2e"
+    },
+    {
+      "code": "002241.SZ",
+      "name": "歌尔股份",
+      "sha256": "df3f7901aefd6cead377ab2e2de21e8965fe1aa33e01be916a9dc5511a508b08"
+    },
+    {
+      "code": "002415.SZ",
+      "name": "海康威视",
+      "sha256": "b3826c0bcba84b74f3aab23c60abfe097209a9322530918df1b682ef5389106c"
+    },
+    {
+      "code": "002493.SZ",
+      "name": "荣盛石化",
+      "sha256": "796b7316fdde9a043e4337098faf4df0b72f7e137d410b111e5f0f42473cde41"
+    },
+    {
+      "code": "002625.SZ",
+      "name": "光启技术",
+      "sha256": "678496c1da14be3595ed0e903c3cbe46eb4d34584a1ef712d9e69ac98502081f"
+    },
+    {
+      "code": "002916.SZ",
+      "name": "深南电路",
+      "sha256": "40469ab97ea6325817d15c2361c7c5d689e051f8f4354d3d9260de4c3eb6befc"
+    },
+    {
+      "code": "300059.SZ",
+      "name": "东方财富",
+      "sha256": "98e72465d611e8e1b4c8e8a6cbc03d466803200a1b30fb97422f26227f133182"
+    },
+    {
+      "code": "300316.SZ",
+      "name": "晶盛机电",
+      "sha256": "9325e416e5a6973022b311110ab1bf233233788be1d562be533507944587829e"
+    },
+    {
+      "code": "300442.SZ",
+      "name": "润泽科技",
+      "sha256": "e9455792c40b8a080107dea1c58b0cd84df9897371d5e7a1be9834f2754b0b7d"
+    },
+    {
+      "code": "300661.SZ",
+      "name": "圣邦股份",
+      "sha256": "08b72cd56f5d786a834738e099b41126b7461a8d43b8967a43bee5583c28a942"
+    },
+    {
+      "code": "300896.SZ",
+      "name": "爱美客",
+      "sha256": "b6ec4c884d067b22f8b63e266b58d4cfee21728a58234be64e13e2764b4f1783"
+    },
+    {
+      "code": "600000.SH",
+      "name": "浦发银行",
+      "sha256": "caebb6f7845c23d2b6c7960554a3376e9f76396e776c663a0938118773f2fef2"
+    },
+    {
+      "code": "600018.SH",
+      "name": "上港集团",
+      "sha256": "e5684b12421d9760b081e6ed33fc4666bcf000ebf0322c24cf847a2e36f75350"
+    },
+    {
+      "code": "600028.SH",
+      "name": "中国石化",
+      "sha256": "ec137ffed96e9409b55be634fa0819c281c19eada40af9802b811d191f39c74b"
+    },
+    {
+      "code": "600048.SH",
+      "name": "保利发展",
+      "sha256": "3345db7ebc09e25c0e8782eb8715c72a268708abae49f4b34044c6d80e93d93d"
+    },
+    {
+      "code": "600104.SH",
+      "name": "上汽集团",
+      "sha256": "3a47a6d7812aed5f6df75722f1d85ddf9c65a2fef5bda219ae4f4e3d5e3e3986"
+    },
+    {
+      "code": "600176.SH",
+      "name": "中国巨石",
+      "sha256": "041e413b0373779f18289c3836befcb9bbcf734848fff87c3521ed26eb20ec56"
+    },
+    {
+      "code": "600233.SH",
+      "name": "圆通速递",
+      "sha256": "477a0d3539283d983cccb8630e348806571b918048626452f646097ea3b1a77f"
+    },
+    {
+      "code": "600415.SH",
+      "name": "小商品城",
+      "sha256": "a0d0242aa1ef356a4e2670e35d91ef0830cdd1c296039c2b795c5b3e0790acb0"
+    },
+    {
+      "code": "600489.SH",
+      "name": "中金黄金",
+      "sha256": "20e05fc921d645d2473343833b401bfcedf6595d244de897d5d41485cf375bfe"
+    },
+    {
+      "code": "600519.SH",
+      "name": "贵州茅台",
+      "sha256": "4e6811eacf2dc57cb3c0af369aaab28601e426b290d8df982bc3e76509c9b26f"
+    },
+    {
+      "code": "600570.SH",
+      "name": "恒生电子",
+      "sha256": "85031c99ebc9d9df0972111c6cf734190f82c44479a5f2d4c30f0ecdc9458b40"
+    },
+    {
+      "code": "600674.SH",
+      "name": "川投能源",
+      "sha256": "d1ada6c39985c523b68089e0e1598ad1771d0e23951bac5bfa2af6b267cfd346"
+    },
+    {
+      "code": "600809.SH",
+      "name": "山西汾酒",
+      "sha256": "1155aa39cfa0e3228eecd02dff08262c316cba90e41ef8bbc84c3c2329776caa"
+    },
+    {
+      "code": "600900.SH",
+      "name": "长江电力",
+      "sha256": "5eda7a22f9ddd9516206203629a56f4b1fccead47f27c86484068e4d814c0a6f"
+    },
+    {
+      "code": "600938.SH",
+      "name": "中国海油",
+      "sha256": "e360bfbb82475f72fbabeb11ba839226c87ddbbae166b76a17ae68ff7c13af96"
+    },
+    {
+      "code": "601009.SH",
+      "name": "南京银行",
+      "sha256": "d2bb26593a57b23d0dad9a4e38e40cac082470a24129b595e67d75d2eb54a280"
+    },
+    {
+      "code": "601066.SH",
+      "name": "中信建投",
+      "sha256": "ba5332f96614ca495a165161cf1abc34453eec2db0ca9b290527740e81d2da7f"
+    },
+    {
+      "code": "601127.SH",
+      "name": "赛力斯",
+      "sha256": "a78166dcdf6e4e71d7d170f54ea9aab3b899ce36f0b3c5c46782a607c1225fb8"
+    },
+    {
+      "code": "601211.SH",
+      "name": "国泰海通",
+      "sha256": "0c4216aaf77d7fc924fbba90909a5c7b81877eed8dee44ed1788debedd77ab42"
+    },
+    {
+      "code": "601318.SH",
+      "name": "中国平安",
+      "sha256": "9c50fb9bc3a5860620fe90b92421b37598589292e14b873c9293cd863a014e21"
+    },
+    {
+      "code": "601319.SH",
+      "name": "中国人保",
+      "sha256": "077bd037c2c432605ab189f4fd3db8afb48843e3e88cb17f9ffc87cbe850df8b"
+    },
+    {
+      "code": "601398.SH",
+      "name": "工商银行",
+      "sha256": "e088cf008a51b48dd4240af39e3fe5fcc470877316129a48d9b5d31a81f5c9e4"
+    },
+    {
+      "code": "601628.SH",
+      "name": "中国人寿",
+      "sha256": "b0884ec5e634ced700f07aae5c32db4a76eb7a1e4d80a4208eb06e766747b453"
+    },
+    {
+      "code": "601689.SH",
+      "name": "拓普集团",
+      "sha256": "3e677a1ccdabcbcd2e0a3d7f04eacf6084dc01bc813b3630f4d6541afe96f9ca"
+    },
+    {
+      "code": "601800.SH",
+      "name": "中国交建",
+      "sha256": "a93be7f7e503c7aeb11e46134e3d233273ab6221273f7296526e2b58ff4f63bf"
+    },
+    {
+      "code": "601872.SH",
+      "name": "招商轮船",
+      "sha256": "d4749d470aae6a23240ce033728f8477a3a3f16aff3bf39e539b22437a943108"
+    },
+    {
+      "code": "601899.SH",
+      "name": "紫金矿业",
+      "sha256": "9602fe0fab964596a824ad1a303aea31f6b1447dc278b9cf452db60c924ba1f8"
+    },
+    {
+      "code": "601988.SH",
+      "name": "中国银行",
+      "sha256": "9430f2aa0d6b6a8f3d11868a65a973fde8abf04ae5559230bb07888661535394"
+    },
+    {
+      "code": "603288.SH",
+      "name": "海天味业",
+      "sha256": "ad18070dc466b624cd88387fe0ecc8b76e425822db3df31af6da4b5b272aa477"
+    },
+    {
+      "code": "603893.SH",
+      "name": "瑞芯微",
+      "sha256": "148537cfd65e8ea4afa788ae3406c654076ee8b0de3d031be54762010d14fbb2"
+    },
+    {
+      "code": "688009.SH",
+      "name": "中国通号",
+      "sha256": "ae85ad7a195089af5e92a44fc04cc710f9289b7322fbd82f2f83338985b44ea6"
+    },
+    {
+      "code": "688082.SH",
+      "name": "盛美上海",
+      "sha256": "97f8e976ce2cea3aba07ec2f87ecdb9e6b846ffb0126ef690d53da5d3c2d3345"
+    },
+    {
+      "code": "688271.SH",
+      "name": "联影医疗",
+      "sha256": "f818f4450224374023c0f182f12c840e506e8676580964526f66d43e62284d25"
+    }
+  ],
+  "skipped": []
+}
