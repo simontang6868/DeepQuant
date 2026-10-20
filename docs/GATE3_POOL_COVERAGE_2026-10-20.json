@@ -1,0 +1,1742 @@
+{
+  "pool_dir": "data/qfq_rebuilt_broad_long",
+  "n_symbols": 532,
+  "params": {
+    "lookback": 21,
+    "skip": 1,
+    "k_main": 110,
+    "min_valid_ratio": 0.9
+  },
+  "n_months": 262,
+  "months": [
+    {
+      "month": "2005-01",
+      "n_pool": 217,
+      "k_used": 108,
+      "frac_used": 0.4977
+    },
+    {
+      "month": "2005-02",
+      "n_pool": 216,
+      "k_used": 108,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2005-03",
+      "n_pool": 221,
+      "k_used": 110,
+      "frac_used": 0.4977
+    },
+    {
+      "month": "2005-04",
+      "n_pool": 213,
+      "k_used": 106,
+      "frac_used": 0.4977
+    },
+    {
+      "month": "2005-05",
+      "n_pool": 196,
+      "k_used": 98,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2005-06",
+      "n_pool": 202,
+      "k_used": 101,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2005-07",
+      "n_pool": 205,
+      "k_used": 102,
+      "frac_used": 0.4976
+    },
+    {
+      "month": "2005-08",
+      "n_pool": 216,
+      "k_used": 108,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2005-09",
+      "n_pool": 205,
+      "k_used": 102,
+      "frac_used": 0.4976
+    },
+    {
+      "month": "2005-10",
+      "n_pool": 187,
+      "k_used": 93,
+      "frac_used": 0.4973
+    },
+    {
+      "month": "2005-11",
+      "n_pool": 187,
+      "k_used": 93,
+      "frac_used": 0.4973
+    },
+    {
+      "month": "2005-12",
+      "n_pool": 192,
+      "k_used": 96,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2006-01",
+      "n_pool": 173,
+      "k_used": 86,
+      "frac_used": 0.4971
+    },
+    {
+      "month": "2006-02",
+      "n_pool": 159,
+      "k_used": 79,
+      "frac_used": 0.4969
+    },
+    {
+      "month": "2006-03",
+      "n_pool": 158,
+      "k_used": 79,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2006-04",
+      "n_pool": 151,
+      "k_used": 75,
+      "frac_used": 0.4967
+    },
+    {
+      "month": "2006-05",
+      "n_pool": 146,
+      "k_used": 73,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2006-06",
+      "n_pool": 155,
+      "k_used": 77,
+      "frac_used": 0.4968
+    },
+    {
+      "month": "2006-07",
+      "n_pool": 164,
+      "k_used": 82,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2006-08",
+      "n_pool": 202,
+      "k_used": 101,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2006-09",
+      "n_pool": 201,
+      "k_used": 100,
+      "frac_used": 0.4975
+    },
+    {
+      "month": "2006-10",
+      "n_pool": 193,
+      "k_used": 96,
+      "frac_used": 0.4974
+    },
+    {
+      "month": "2006-11",
+      "n_pool": 205,
+      "k_used": 102,
+      "frac_used": 0.4976
+    },
+    {
+      "month": "2006-12",
+      "n_pool": 199,
+      "k_used": 99,
+      "frac_used": 0.4975
+    },
+    {
+      "month": "2007-01",
+      "n_pool": 203,
+      "k_used": 101,
+      "frac_used": 0.4975
+    },
+    {
+      "month": "2007-02",
+      "n_pool": 212,
+      "k_used": 106,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2007-03",
+      "n_pool": 208,
+      "k_used": 104,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2007-04",
+      "n_pool": 189,
+      "k_used": 94,
+      "frac_used": 0.4974
+    },
+    {
+      "month": "2007-05",
+      "n_pool": 191,
+      "k_used": 95,
+      "frac_used": 0.4974
+    },
+    {
+      "month": "2007-06",
+      "n_pool": 197,
+      "k_used": 98,
+      "frac_used": 0.4975
+    },
+    {
+      "month": "2007-07",
+      "n_pool": 217,
+      "k_used": 108,
+      "frac_used": 0.4977
+    },
+    {
+      "month": "2007-08",
+      "n_pool": 218,
+      "k_used": 109,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2007-09",
+      "n_pool": 222,
+      "k_used": 110,
+      "frac_used": 0.4955
+    },
+    {
+      "month": "2007-10",
+      "n_pool": 226,
+      "k_used": 110,
+      "frac_used": 0.4867
+    },
+    {
+      "month": "2007-11",
+      "n_pool": 225,
+      "k_used": 110,
+      "frac_used": 0.4889
+    },
+    {
+      "month": "2007-12",
+      "n_pool": 205,
+      "k_used": 102,
+      "frac_used": 0.4976
+    },
+    {
+      "month": "2008-01",
+      "n_pool": 216,
+      "k_used": 108,
+      "frac_used": 0.5
+    },
+    {
+      "month": "2008-02",
+      "n_pool": 229,
+      "k_used": 110,
+      "frac_used": 0.4803
+    },
+    {
+      "month": "2008-03",
+      "n_pool": 229,
+      "k_used": 110,
+      "frac_used": 0.4803
+    },
+    {
+      "month": "2008-04",
+      "n_pool": 234,
+      "k_used": 110,
+      "frac_used": 0.4701
+    },
+    {
+      "month": "2008-05",
+      "n_pool": 217,
+      "k_used": 108,
+      "frac_used": 0.4977
+    },
+    {
+      "month": "2008-06",
+      "n_pool": 215,
+      "k_used": 107,
+      "frac_used": 0.4977
+    },
+    {
+      "month": "2008-07",
+      "n_pool": 242,
+      "k_used": 110,
+      "frac_used": 0.4545
+    },
+    {
+      "month": "2008-08",
+      "n_pool": 250,
+      "k_used": 110,
+      "frac_used": 0.44
+    },
+    {
+      "month": "2008-09",
+      "n_pool": 250,
+      "k_used": 110,
+      "frac_used": 0.44
+    },
+    {
+      "month": "2008-10",
+      "n_pool": 254,
+      "k_used": 110,
+      "frac_used": 0.4331
+    },
+    {
+      "month": "2008-11",
+      "n_pool": 251,
+      "k_used": 110,
+      "frac_used": 0.4382
+    },
+    {
+      "month": "2008-12",
+      "n_pool": 246,
+      "k_used": 110,
+      "frac_used": 0.4472
+    },
+    {
+      "month": "2009-01",
+      "n_pool": 256,
+      "k_used": 110,
+      "frac_used": 0.4297
+    },
+    {
+      "month": "2009-02",
+      "n_pool": 256,
+      "k_used": 110,
+      "frac_used": 0.4297
+    },
+    {
+      "month": "2009-03",
+      "n_pool": 256,
+      "k_used": 110,
+      "frac_used": 0.4297
+    },
+    {
+      "month": "2009-04",
+      "n_pool": 254,
+      "k_used": 110,
+      "frac_used": 0.4331
+    },
+    {
+      "month": "2009-05",
+      "n_pool": 241,
+      "k_used": 110,
+      "frac_used": 0.4564
+    },
+    {
+      "month": "2009-06",
+      "n_pool": 243,
+      "k_used": 110,
+      "frac_used": 0.4527
+    },
+    {
+      "month": "2009-07",
+      "n_pool": 261,
+      "k_used": 110,
+      "frac_used": 0.4215
+    },
+    {
+      "month": "2009-08",
+      "n_pool": 255,
+      "k_used": 110,
+      "frac_used": 0.4314
+    },
+    {
+      "month": "2009-09",
+      "n_pool": 258,
+      "k_used": 110,
+      "frac_used": 0.4264
+    },
+    {
+      "month": "2009-10",
+      "n_pool": 257,
+      "k_used": 110,
+      "frac_used": 0.428
+    },
+    {
+      "month": "2009-11",
+      "n_pool": 261,
+      "k_used": 110,
+      "frac_used": 0.4215
+    },
+    {
+      "month": "2009-12",
+      "n_pool": 264,
+      "k_used": 110,
+      "frac_used": 0.4167
+    },
+    {
+      "month": "2010-01",
+      "n_pool": 270,
+      "k_used": 110,
+      "frac_used": 0.4074
+    },
+    {
+      "month": "2010-02",
+      "n_pool": 276,
+      "k_used": 110,
+      "frac_used": 0.3986
+    },
+    {
+      "month": "2010-03",
+      "n_pool": 274,
+      "k_used": 110,
+      "frac_used": 0.4015
+    },
+    {
+      "month": "2010-04",
+      "n_pool": 283,
+      "k_used": 110,
+      "frac_used": 0.3887
+    },
+    {
+      "month": "2010-05",
+      "n_pool": 272,
+      "k_used": 110,
+      "frac_used": 0.4044
+    },
+    {
+      "month": "2010-06",
+      "n_pool": 271,
+      "k_used": 110,
+      "frac_used": 0.4059
+    },
+    {
+      "month": "2010-07",
+      "n_pool": 295,
+      "k_used": 110,
+      "frac_used": 0.3729
+    },
+    {
+      "month": "2010-08",
+      "n_pool": 291,
+      "k_used": 110,
+      "frac_used": 0.378
+    },
+    {
+      "month": "2010-09",
+      "n_pool": 302,
+      "k_used": 110,
+      "frac_used": 0.3642
+    },
+    {
+      "month": "2010-10",
+      "n_pool": 304,
+      "k_used": 110,
+      "frac_used": 0.3618
+    },
+    {
+      "month": "2010-11",
+      "n_pool": 304,
+      "k_used": 110,
+      "frac_used": 0.3618
+    },
+    {
+      "month": "2010-12",
+      "n_pool": 321,
+      "k_used": 110,
+      "frac_used": 0.3427
+    },
+    {
+      "month": "2011-01",
+      "n_pool": 319,
+      "k_used": 110,
+      "frac_used": 0.3448
+    },
+    {
+      "month": "2011-02",
+      "n_pool": 313,
+      "k_used": 110,
+      "frac_used": 0.3514
+    },
+    {
+      "month": "2011-03",
+      "n_pool": 315,
+      "k_used": 110,
+      "frac_used": 0.3492
+    },
+    {
+      "month": "2011-04",
+      "n_pool": 308,
+      "k_used": 110,
+      "frac_used": 0.3571
+    },
+    {
+      "month": "2011-05",
+      "n_pool": 302,
+      "k_used": 110,
+      "frac_used": 0.3642
+    },
+    {
+      "month": "2011-06",
+      "n_pool": 315,
+      "k_used": 110,
+      "frac_used": 0.3492
+    },
+    {
+      "month": "2011-07",
+      "n_pool": 330,
+      "k_used": 110,
+      "frac_used": 0.3333
+    },
+    {
+      "month": "2011-08",
+      "n_pool": 329,
+      "k_used": 110,
+      "frac_used": 0.3343
+    },
+    {
+      "month": "2011-09",
+      "n_pool": 334,
+      "k_used": 110,
+      "frac_used": 0.3293
+    },
+    {
+      "month": "2011-10",
+      "n_pool": 335,
+      "k_used": 110,
+      "frac_used": 0.3284
+    },
+    {
+      "month": "2011-11",
+      "n_pool": 343,
+      "k_used": 110,
+      "frac_used": 0.3207
+    },
+    {
+      "month": "2011-12",
+      "n_pool": 334,
+      "k_used": 110,
+      "frac_used": 0.3293
+    },
+    {
+      "month": "2012-01",
+      "n_pool": 337,
+      "k_used": 110,
+      "frac_used": 0.3264
+    },
+    {
+      "month": "2012-02",
+      "n_pool": 356,
+      "k_used": 110,
+      "frac_used": 0.309
+    },
+    {
+      "month": "2012-03",
+      "n_pool": 345,
+      "k_used": 110,
+      "frac_used": 0.3188
+    },
+    {
+      "month": "2012-04",
+      "n_pool": 327,
+      "k_used": 110,
+      "frac_used": 0.3364
+    },
+    {
+      "month": "2012-05",
+      "n_pool": 348,
+      "k_used": 110,
+      "frac_used": 0.3161
+    },
+    {
+      "month": "2012-06",
+      "n_pool": 334,
+      "k_used": 110,
+      "frac_used": 0.3293
+    },
+    {
+      "month": "2012-07",
+      "n_pool": 375,
+      "k_used": 110,
+      "frac_used": 0.2933
+    },
+    {
+      "month": "2012-08",
+      "n_pool": 375,
+      "k_used": 110,
+      "frac_used": 0.2933
+    },
+    {
+      "month": "2012-09",
+      "n_pool": 374,
+      "k_used": 110,
+      "frac_used": 0.2941
+    },
+    {
+      "month": "2012-10",
+      "n_pool": 371,
+      "k_used": 110,
+      "frac_used": 0.2965
+    },
+    {
+      "month": "2012-11",
+      "n_pool": 373,
+      "k_used": 110,
+      "frac_used": 0.2949
+    },
+    {
+      "month": "2012-12",
+      "n_pool": 369,
+      "k_used": 110,
+      "frac_used": 0.2981
+    },
+    {
+      "month": "2013-01",
+      "n_pool": 372,
+      "k_used": 110,
+      "frac_used": 0.2957
+    },
+    {
+      "month": "2013-02",
+      "n_pool": 385,
+      "k_used": 110,
+      "frac_used": 0.2857
+    },
+    {
+      "month": "2013-03",
+      "n_pool": 376,
+      "k_used": 110,
+      "frac_used": 0.2926
+    },
+    {
+      "month": "2013-04",
+      "n_pool": 375,
+      "k_used": 110,
+      "frac_used": 0.2933
+    },
+    {
+      "month": "2013-05",
+      "n_pool": 361,
+      "k_used": 110,
+      "frac_used": 0.3047
+    },
+    {
+      "month": "2013-06",
+      "n_pool": 362,
+      "k_used": 110,
+      "frac_used": 0.3039
+    },
+    {
+      "month": "2013-07",
+      "n_pool": 361,
+      "k_used": 110,
+      "frac_used": 0.3047
+    },
+    {
+      "month": "2013-08",
+      "n_pool": 363,
+      "k_used": 110,
+      "frac_used": 0.303
+    },
+    {
+      "month": "2013-09",
+      "n_pool": 364,
+      "k_used": 110,
+      "frac_used": 0.3022
+    },
+    {
+      "month": "2013-10",
+      "n_pool": 370,
+      "k_used": 110,
+      "frac_used": 0.2973
+    },
+    {
+      "month": "2013-11",
+      "n_pool": 367,
+      "k_used": 110,
+      "frac_used": 0.2997
+    },
+    {
+      "month": "2013-12",
+      "n_pool": 363,
+      "k_used": 110,
+      "frac_used": 0.303
+    },
+    {
+      "month": "2014-01",
+      "n_pool": 363,
+      "k_used": 110,
+      "frac_used": 0.303
+    },
+    {
+      "month": "2014-02",
+      "n_pool": 369,
+      "k_used": 110,
+      "frac_used": 0.2981
+    },
+    {
+      "month": "2014-03",
+      "n_pool": 360,
+      "k_used": 110,
+      "frac_used": 0.3056
+    },
+    {
+      "month": "2014-04",
+      "n_pool": 355,
+      "k_used": 110,
+      "frac_used": 0.3099
+    },
+    {
+      "month": "2014-05",
+      "n_pool": 361,
+      "k_used": 110,
+      "frac_used": 0.3047
+    },
+    {
+      "month": "2014-06",
+      "n_pool": 359,
+      "k_used": 110,
+      "frac_used": 0.3064
+    },
+    {
+      "month": "2014-07",
+      "n_pool": 359,
+      "k_used": 110,
+      "frac_used": 0.3064
+    },
+    {
+      "month": "2014-08",
+      "n_pool": 347,
+      "k_used": 110,
+      "frac_used": 0.317
+    },
+    {
+      "month": "2014-09",
+      "n_pool": 345,
+      "k_used": 110,
+      "frac_used": 0.3188
+    },
+    {
+      "month": "2014-10",
+      "n_pool": 346,
+      "k_used": 110,
+      "frac_used": 0.3179
+    },
+    {
+      "month": "2014-11",
+      "n_pool": 332,
+      "k_used": 110,
+      "frac_used": 0.3313
+    },
+    {
+      "month": "2014-12",
+      "n_pool": 329,
+      "k_used": 110,
+      "frac_used": 0.3343
+    },
+    {
+      "month": "2015-01",
+      "n_pool": 342,
+      "k_used": 110,
+      "frac_used": 0.3216
+    },
+    {
+      "month": "2015-02",
+      "n_pool": 349,
+      "k_used": 110,
+      "frac_used": 0.3152
+    },
+    {
+      "month": "2015-03",
+      "n_pool": 348,
+      "k_used": 110,
+      "frac_used": 0.3161
+    },
+    {
+      "month": "2015-04",
+      "n_pool": 333,
+      "k_used": 110,
+      "frac_used": 0.3303
+    },
+    {
+      "month": "2015-05",
+      "n_pool": 343,
+      "k_used": 110,
+      "frac_used": 0.3207
+    },
+    {
+      "month": "2015-06",
+      "n_pool": 325,
+      "k_used": 110,
+      "frac_used": 0.3385
+    },
+    {
+      "month": "2015-07",
+      "n_pool": 227,
+      "k_used": 110,
+      "frac_used": 0.4846
+    },
+    {
+      "month": "2015-08",
+      "n_pool": 313,
+      "k_used": 110,
+      "frac_used": 0.3514
+    },
+    {
+      "month": "2015-09",
+      "n_pool": 319,
+      "k_used": 110,
+      "frac_used": 0.3448
+    },
+    {
+      "month": "2015-10",
+      "n_pool": 323,
+      "k_used": 110,
+      "frac_used": 0.3406
+    },
+    {
+      "month": "2015-11",
+      "n_pool": 337,
+      "k_used": 110,
+      "frac_used": 0.3264
+    },
+    {
+      "month": "2015-12",
+      "n_pool": 358,
+      "k_used": 110,
+      "frac_used": 0.3073
+    },
+    {
+      "month": "2016-01",
+      "n_pool": 362,
+      "k_used": 110,
+      "frac_used": 0.3039
+    },
+    {
+      "month": "2016-02",
+      "n_pool": 362,
+      "k_used": 110,
+      "frac_used": 0.3039
+    },
+    {
+      "month": "2016-03",
+      "n_pool": 355,
+      "k_used": 110,
+      "frac_used": 0.3099
+    },
+    {
+      "month": "2016-04",
+      "n_pool": 352,
+      "k_used": 110,
+      "frac_used": 0.3125
+    },
+    {
+      "month": "2016-05",
+      "n_pool": 366,
+      "k_used": 110,
+      "frac_used": 0.3005
+    },
+    {
+      "month": "2016-06",
+      "n_pool": 378,
+      "k_used": 110,
+      "frac_used": 0.291
+    },
+    {
+      "month": "2016-07",
+      "n_pool": 378,
+      "k_used": 110,
+      "frac_used": 0.291
+    },
+    {
+      "month": "2016-08",
+      "n_pool": 392,
+      "k_used": 110,
+      "frac_used": 0.2806
+    },
+    {
+      "month": "2016-09",
+      "n_pool": 383,
+      "k_used": 110,
+      "frac_used": 0.2872
+    },
+    {
+      "month": "2016-10",
+      "n_pool": 378,
+      "k_used": 110,
+      "frac_used": 0.291
+    },
+    {
+      "month": "2016-11",
+      "n_pool": 393,
+      "k_used": 110,
+      "frac_used": 0.2799
+    },
+    {
+      "month": "2016-12",
+      "n_pool": 380,
+      "k_used": 110,
+      "frac_used": 0.2895
+    },
+    {
+      "month": "2017-01",
+      "n_pool": 387,
+      "k_used": 110,
+      "frac_used": 0.2842
+    },
+    {
+      "month": "2017-02",
+      "n_pool": 392,
+      "k_used": 110,
+      "frac_used": 0.2806
+    },
+    {
+      "month": "2017-03",
+      "n_pool": 393,
+      "k_used": 110,
+      "frac_used": 0.2799
+    },
+    {
+      "month": "2017-04",
+      "n_pool": 388,
+      "k_used": 110,
+      "frac_used": 0.2835
+    },
+    {
+      "month": "2017-05",
+      "n_pool": 375,
+      "k_used": 110,
+      "frac_used": 0.2933
+    },
+    {
+      "month": "2017-06",
+      "n_pool": 375,
+      "k_used": 110,
+      "frac_used": 0.2933
+    },
+    {
+      "month": "2017-07",
+      "n_pool": 377,
+      "k_used": 110,
+      "frac_used": 0.2918
+    },
+    {
+      "month": "2017-08",
+      "n_pool": 388,
+      "k_used": 110,
+      "frac_used": 0.2835
+    },
+    {
+      "month": "2017-09",
+      "n_pool": 393,
+      "k_used": 110,
+      "frac_used": 0.2799
+    },
+    {
+      "month": "2017-10",
+      "n_pool": 397,
+      "k_used": 110,
+      "frac_used": 0.2771
+    },
+    {
+      "month": "2017-11",
+      "n_pool": 404,
+      "k_used": 110,
+      "frac_used": 0.2723
+    },
+    {
+      "month": "2017-12",
+      "n_pool": 398,
+      "k_used": 110,
+      "frac_used": 0.2764
+    },
+    {
+      "month": "2018-01",
+      "n_pool": 401,
+      "k_used": 110,
+      "frac_used": 0.2743
+    },
+    {
+      "month": "2018-02",
+      "n_pool": 376,
+      "k_used": 110,
+      "frac_used": 0.2926
+    },
+    {
+      "month": "2018-03",
+      "n_pool": 401,
+      "k_used": 110,
+      "frac_used": 0.2743
+    },
+    {
+      "month": "2018-04",
+      "n_pool": 405,
+      "k_used": 110,
+      "frac_used": 0.2716
+    },
+    {
+      "month": "2018-05",
+      "n_pool": 406,
+      "k_used": 110,
+      "frac_used": 0.2709
+    },
+    {
+      "month": "2018-06",
+      "n_pool": 406,
+      "k_used": 110,
+      "frac_used": 0.2709
+    },
+    {
+      "month": "2018-07",
+      "n_pool": 423,
+      "k_used": 110,
+      "frac_used": 0.26
+    },
+    {
+      "month": "2018-08",
+      "n_pool": 432,
+      "k_used": 110,
+      "frac_used": 0.2546
+    },
+    {
+      "month": "2018-09",
+      "n_pool": 431,
+      "k_used": 110,
+      "frac_used": 0.2552
+    },
+    {
+      "month": "2018-10",
+      "n_pool": 429,
+      "k_used": 110,
+      "frac_used": 0.2564
+    },
+    {
+      "month": "2018-11",
+      "n_pool": 442,
+      "k_used": 110,
+      "frac_used": 0.2489
+    },
+    {
+      "month": "2018-12",
+      "n_pool": 453,
+      "k_used": 110,
+      "frac_used": 0.2428
+    },
+    {
+      "month": "2019-01",
+      "n_pool": 455,
+      "k_used": 110,
+      "frac_used": 0.2418
+    },
+    {
+      "month": "2019-02",
+      "n_pool": 457,
+      "k_used": 110,
+      "frac_used": 0.2407
+    },
+    {
+      "month": "2019-03",
+      "n_pool": 451,
+      "k_used": 110,
+      "frac_used": 0.2439
+    },
+    {
+      "month": "2019-04",
+      "n_pool": 427,
+      "k_used": 110,
+      "frac_used": 0.2576
+    },
+    {
+      "month": "2019-05",
+      "n_pool": 441,
+      "k_used": 110,
+      "frac_used": 0.2494
+    },
+    {
+      "month": "2019-06",
+      "n_pool": 451,
+      "k_used": 110,
+      "frac_used": 0.2439
+    },
+    {
+      "month": "2019-07",
+      "n_pool": 445,
+      "k_used": 110,
+      "frac_used": 0.2472
+    },
+    {
+      "month": "2019-08",
+      "n_pool": 451,
+      "k_used": 110,
+      "frac_used": 0.2439
+    },
+    {
+      "month": "2019-09",
+      "n_pool": 451,
+      "k_used": 110,
+      "frac_used": 0.2439
+    },
+    {
+      "month": "2019-10",
+      "n_pool": 448,
+      "k_used": 110,
+      "frac_used": 0.2455
+    },
+    {
+      "month": "2019-11",
+      "n_pool": 448,
+      "k_used": 110,
+      "frac_used": 0.2455
+    },
+    {
+      "month": "2019-12",
+      "n_pool": 449,
+      "k_used": 110,
+      "frac_used": 0.245
+    },
+    {
+      "month": "2020-01",
+      "n_pool": 456,
+      "k_used": 110,
+      "frac_used": 0.2412
+    },
+    {
+      "month": "2020-02",
+      "n_pool": 459,
+      "k_used": 110,
+      "frac_used": 0.2397
+    },
+    {
+      "month": "2020-03",
+      "n_pool": 458,
+      "k_used": 110,
+      "frac_used": 0.2402
+    },
+    {
+      "month": "2020-04",
+      "n_pool": 434,
+      "k_used": 110,
+      "frac_used": 0.2535
+    },
+    {
+      "month": "2020-05",
+      "n_pool": 445,
+      "k_used": 110,
+      "frac_used": 0.2472
+    },
+    {
+      "month": "2020-06",
+      "n_pool": 439,
+      "k_used": 110,
+      "frac_used": 0.2506
+    },
+    {
+      "month": "2020-07",
+      "n_pool": 449,
+      "k_used": 110,
+      "frac_used": 0.245
+    },
+    {
+      "month": "2020-08",
+      "n_pool": 450,
+      "k_used": 110,
+      "frac_used": 0.2444
+    },
+    {
+      "month": "2020-09",
+      "n_pool": 445,
+      "k_used": 110,
+      "frac_used": 0.2472
+    },
+    {
+      "month": "2020-10",
+      "n_pool": 446,
+      "k_used": 110,
+      "frac_used": 0.2466
+    },
+    {
+      "month": "2020-11",
+      "n_pool": 452,
+      "k_used": 110,
+      "frac_used": 0.2434
+    },
+    {
+      "month": "2020-12",
+      "n_pool": 450,
+      "k_used": 110,
+      "frac_used": 0.2444
+    },
+    {
+      "month": "2021-01",
+      "n_pool": 447,
+      "k_used": 110,
+      "frac_used": 0.2461
+    },
+    {
+      "month": "2021-02",
+      "n_pool": 446,
+      "k_used": 110,
+      "frac_used": 0.2466
+    },
+    {
+      "month": "2021-03",
+      "n_pool": 449,
+      "k_used": 110,
+      "frac_used": 0.245
+    },
+    {
+      "month": "2021-04",
+      "n_pool": 428,
+      "k_used": 110,
+      "frac_used": 0.257
+    },
+    {
+      "month": "2021-05",
+      "n_pool": 444,
+      "k_used": 110,
+      "frac_used": 0.2477
+    },
+    {
+      "month": "2021-06",
+      "n_pool": 445,
+      "k_used": 110,
+      "frac_used": 0.2472
+    },
+    {
+      "month": "2021-07",
+      "n_pool": 448,
+      "k_used": 110,
+      "frac_used": 0.2455
+    },
+    {
+      "month": "2021-08",
+      "n_pool": 451,
+      "k_used": 110,
+      "frac_used": 0.2439
+    },
+    {
+      "month": "2021-09",
+      "n_pool": 452,
+      "k_used": 110,
+      "frac_used": 0.2434
+    },
+    {
+      "month": "2021-10",
+      "n_pool": 452,
+      "k_used": 110,
+      "frac_used": 0.2434
+    },
+    {
+      "month": "2021-11",
+      "n_pool": 452,
+      "k_used": 110,
+      "frac_used": 0.2434
+    },
+    {
+      "month": "2021-12",
+      "n_pool": 452,
+      "k_used": 110,
+      "frac_used": 0.2434
+    },
+    {
+      "month": "2022-01",
+      "n_pool": 454,
+      "k_used": 110,
+      "frac_used": 0.2423
+    },
+    {
+      "month": "2022-02",
+      "n_pool": 453,
+      "k_used": 110,
+      "frac_used": 0.2428
+    },
+    {
+      "month": "2022-03",
+      "n_pool": 449,
+      "k_used": 110,
+      "frac_used": 0.245
+    },
+    {
+      "month": "2022-04",
+      "n_pool": 430,
+      "k_used": 110,
+      "frac_used": 0.2558
+    },
+    {
+      "month": "2022-05",
+      "n_pool": 407,
+      "k_used": 110,
+      "frac_used": 0.2703
+    },
+    {
+      "month": "2022-06",
+      "n_pool": 411,
+      "k_used": 110,
+      "frac_used": 0.2676
+    },
+    {
+      "month": "2022-07",
+      "n_pool": 416,
+      "k_used": 110,
+      "frac_used": 0.2644
+    },
+    {
+      "month": "2022-08",
+      "n_pool": 420,
+      "k_used": 110,
+      "frac_used": 0.2619
+    },
+    {
+      "month": "2022-09",
+      "n_pool": 423,
+      "k_used": 110,
+      "frac_used": 0.26
+    },
+    {
+      "month": "2022-10",
+      "n_pool": 425,
+      "k_used": 110,
+      "frac_used": 0.2588
+    },
+    {
+      "month": "2022-11",
+      "n_pool": 425,
+      "k_used": 110,
+      "frac_used": 0.2588
+    },
+    {
+      "month": "2022-12",
+      "n_pool": 423,
+      "k_used": 110,
+      "frac_used": 0.26
+    },
+    {
+      "month": "2023-01",
+      "n_pool": 425,
+      "k_used": 110,
+      "frac_used": 0.2588
+    },
+    {
+      "month": "2023-02",
+      "n_pool": 419,
+      "k_used": 110,
+      "frac_used": 0.2625
+    },
+    {
+      "month": "2023-03",
+      "n_pool": 419,
+      "k_used": 110,
+      "frac_used": 0.2625
+    },
+    {
+      "month": "2023-04",
+      "n_pool": 400,
+      "k_used": 110,
+      "frac_used": 0.275
+    },
+    {
+      "month": "2023-05",
+      "n_pool": 391,
+      "k_used": 110,
+      "frac_used": 0.2813
+    },
+    {
+      "month": "2023-06",
+      "n_pool": 383,
+      "k_used": 110,
+      "frac_used": 0.2872
+    },
+    {
+      "month": "2023-07",
+      "n_pool": 386,
+      "k_used": 110,
+      "frac_used": 0.285
+    },
+    {
+      "month": "2023-08",
+      "n_pool": 386,
+      "k_used": 110,
+      "frac_used": 0.285
+    },
+    {
+      "month": "2023-09",
+      "n_pool": 387,
+      "k_used": 110,
+      "frac_used": 0.2842
+    },
+    {
+      "month": "2023-10",
+      "n_pool": 387,
+      "k_used": 110,
+      "frac_used": 0.2842
+    },
+    {
+      "month": "2023-11",
+      "n_pool": 386,
+      "k_used": 110,
+      "frac_used": 0.285
+    },
+    {
+      "month": "2023-12",
+      "n_pool": 382,
+      "k_used": 110,
+      "frac_used": 0.288
+    },
+    {
+      "month": "2024-01",
+      "n_pool": 379,
+      "k_used": 110,
+      "frac_used": 0.2902
+    },
+    {
+      "month": "2024-02",
+      "n_pool": 378,
+      "k_used": 110,
+      "frac_used": 0.291
+    },
+    {
+      "month": "2024-03",
+      "n_pool": 377,
+      "k_used": 110,
+      "frac_used": 0.2918
+    },
+    {
+      "month": "2024-04",
+      "n_pool": 339,
+      "k_used": 110,
+      "frac_used": 0.3245
+    },
+    {
+      "month": "2024-05",
+      "n_pool": 349,
+      "k_used": 110,
+      "frac_used": 0.3152
+    },
+    {
+      "month": "2024-06",
+      "n_pool": 343,
+      "k_used": 110,
+      "frac_used": 0.3207
+    },
+    {
+      "month": "2024-07",
+      "n_pool": 333,
+      "k_used": 110,
+      "frac_used": 0.3303
+    },
+    {
+      "month": "2024-08",
+      "n_pool": 334,
+      "k_used": 110,
+      "frac_used": 0.3293
+    },
+    {
+      "month": "2024-09",
+      "n_pool": 329,
+      "k_used": 110,
+      "frac_used": 0.3343
+    },
+    {
+      "month": "2024-10",
+      "n_pool": 331,
+      "k_used": 110,
+      "frac_used": 0.3323
+    },
+    {
+      "month": "2024-11",
+      "n_pool": 332,
+      "k_used": 110,
+      "frac_used": 0.3313
+    },
+    {
+      "month": "2024-12",
+      "n_pool": 336,
+      "k_used": 110,
+      "frac_used": 0.3274
+    },
+    {
+      "month": "2025-01",
+      "n_pool": 333,
+      "k_used": 110,
+      "frac_used": 0.3303
+    },
+    {
+      "month": "2025-02",
+      "n_pool": 332,
+      "k_used": 110,
+      "frac_used": 0.3313
+    },
+    {
+      "month": "2025-03",
+      "n_pool": 326,
+      "k_used": 110,
+      "frac_used": 0.3374
+    },
+    {
+      "month": "2025-04",
+      "n_pool": 308,
+      "k_used": 110,
+      "frac_used": 0.3571
+    },
+    {
+      "month": "2025-05",
+      "n_pool": 310,
+      "k_used": 110,
+      "frac_used": 0.3548
+    },
+    {
+      "month": "2025-06",
+      "n_pool": 313,
+      "k_used": 110,
+      "frac_used": 0.3514
+    },
+    {
+      "month": "2025-07",
+      "n_pool": 315,
+      "k_used": 110,
+      "frac_used": 0.3492
+    },
+    {
+      "month": "2025-08",
+      "n_pool": 312,
+      "k_used": 110,
+      "frac_used": 0.3526
+    },
+    {
+      "month": "2025-09",
+      "n_pool": 314,
+      "k_used": 110,
+      "frac_used": 0.3503
+    },
+    {
+      "month": "2025-10",
+      "n_pool": 314,
+      "k_used": 110,
+      "frac_used": 0.3503
+    },
+    {
+      "month": "2025-11",
+      "n_pool": 307,
+      "k_used": 110,
+      "frac_used": 0.3583
+    },
+    {
+      "month": "2025-12",
+      "n_pool": 305,
+      "k_used": 110,
+      "frac_used": 0.3607
+    },
+    {
+      "month": "2026-01",
+      "n_pool": 305,
+      "k_used": 110,
+      "frac_used": 0.3607
+    },
+    {
+      "month": "2026-02",
+      "n_pool": 305,
+      "k_used": 110,
+      "frac_used": 0.3607
+    },
+    {
+      "month": "2026-03",
+      "n_pool": 304,
+      "k_used": 110,
+      "frac_used": 0.3618
+    },
+    {
+      "month": "2026-04",
+      "n_pool": 295,
+      "k_used": 110,
+      "frac_used": 0.3729
+    },
+    {
+      "month": "2026-05",
+      "n_pool": 293,
+      "k_used": 110,
+      "frac_used": 0.3754
+    },
+    {
+      "month": "2026-06",
+      "n_pool": 293,
+      "k_used": 110,
+      "frac_used": 0.3754
+    },
+    {
+      "month": "2026-07",
+      "n_pool": 293,
+      "k_used": 110,
+      "frac_used": 0.3754
+    },
+    {
+      "month": "2026-08",
+      "n_pool": 294,
+      "k_used": 110,
+      "frac_used": 0.3741
+    },
+    {
+      "month": "2026-09",
+      "n_pool": 290,
+      "k_used": 110,
+      "frac_used": 0.3793
+    },
+    {
+      "month": "2026-10",
+      "n_pool": 290,
+      "k_used": 110,
+      "frac_used": 0.3793
+    }
+  ],
+  "by_year": [
+    {
+      "year": "2005",
+      "months": 12,
+      "n_pool_median": 205.0,
+      "n_pool_min": 187,
+      "k_used_median": 102.0
+    },
+    {
+      "year": "2006",
+      "months": 12,
+      "n_pool_median": 168.5,
+      "n_pool_min": 146,
+      "k_used_median": 84.0
+    },
+    {
+      "year": "2007",
+      "months": 12,
+      "n_pool_median": 210.0,
+      "n_pool_min": 189,
+      "k_used_median": 105.0
+    },
+    {
+      "year": "2008",
+      "months": 12,
+      "n_pool_median": 238.0,
+      "n_pool_min": 215,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2009",
+      "months": 12,
+      "n_pool_median": 256.0,
+      "n_pool_min": 241,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2010",
+      "months": 12,
+      "n_pool_median": 287.0,
+      "n_pool_min": 270,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2011",
+      "months": 12,
+      "n_pool_median": 324.0,
+      "n_pool_min": 302,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2012",
+      "months": 12,
+      "n_pool_median": 362.5,
+      "n_pool_min": 327,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2013",
+      "months": 12,
+      "n_pool_median": 365.5,
+      "n_pool_min": 361,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2014",
+      "months": 12,
+      "n_pool_median": 357.0,
+      "n_pool_min": 329,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2015",
+      "months": 12,
+      "n_pool_median": 335.0,
+      "n_pool_min": 227,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2016",
+      "months": 12,
+      "n_pool_median": 378.0,
+      "n_pool_min": 352,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2017",
+      "months": 12,
+      "n_pool_median": 390.0,
+      "n_pool_min": 375,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2018",
+      "months": 12,
+      "n_pool_median": 414.5,
+      "n_pool_min": 376,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2019",
+      "months": 12,
+      "n_pool_median": 450.0,
+      "n_pool_min": 427,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2020",
+      "months": 12,
+      "n_pool_median": 449.5,
+      "n_pool_min": 434,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2021",
+      "months": 12,
+      "n_pool_median": 448.5,
+      "n_pool_min": 428,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2022",
+      "months": 12,
+      "n_pool_median": 424.0,
+      "n_pool_min": 407,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2023",
+      "months": 12,
+      "n_pool_median": 387.0,
+      "n_pool_min": 382,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2024",
+      "months": 12,
+      "n_pool_median": 337.5,
+      "n_pool_min": 329,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2025",
+      "months": 12,
+      "n_pool_median": 313.5,
+      "n_pool_min": 305,
+      "k_used_median": 110.0
+    },
+    {
+      "year": "2026",
+      "months": 10,
+      "n_pool_median": 293.5,
+      "n_pool_min": 290,
+      "k_used_median": 110.0
+    }
+  ],
+  "note": "本诊断只统计池覆盖与信号可用数，不含任何收益计算。"
+}

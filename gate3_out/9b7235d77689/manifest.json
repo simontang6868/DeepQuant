@@ -1,0 +1,22 @@
+{
+  "prereg_version": "gate3-reversal-longsample-v3.0",
+  "prereg_sha256": "9b7235d77689f7d4ee59e3485439d9c126e45384e67bf82d0e8b55820956aeda",
+  "files": {
+    "monthly_paired.csv": {
+      "sha256": "389fac60362c3145771ecd0a0361515986c9b00212b3af2c77353034c6141dad",
+      "bytes": 8369
+    },
+    "sensitivity.csv": {
+      "sha256": "78506443f0f4b77df21b54433ffa1d7a6c0cb120f31e82474a0d988a28c562bf",
+      "bytes": 390
+    },
+    "gate2_rerun_2016_2026.csv": {
+      "sha256": "49d9fd899e35ac15efdea0262e27ba9793d7bff57b2db914cfc75819ecae1f4e",
+      "bytes": 9739
+    },
+    "summary.json": {
+      "sha256": "f6e35b67067ccfd7eea9fd3a416c73237717e5c3458afa66a0b18651e876e24d",
+      "bytes": 4759
+    }
+  }
+}

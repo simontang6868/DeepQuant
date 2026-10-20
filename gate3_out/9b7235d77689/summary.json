@@ -1,0 +1,222 @@
+{
+  "prereg_version": "gate3-reversal-longsample-v3.0",
+  "prereg_sha256": "9b7235d77689f7d4ee59e3485439d9c126e45384e67bf82d0e8b55820956aeda",
+  "pool": {
+    "dir": "data/qfq_rebuilt_broad_long",
+    "n_in_dir": 549,
+    "n_excluded": 17,
+    "n_used": 532
+  },
+  "excluded": [
+    "600515.SH",
+    "000725.SZ",
+    "000301.SZ",
+    "000425.SZ",
+    "000776.SZ",
+    "600066.SH",
+    "600115.SH",
+    "600660.SH",
+    "000760.SZ",
+    "600077.SH",
+    "600213.SH",
+    "600225.SH",
+    "600277.SH",
+    "600401.SH",
+    "600705.SH",
+    "000038.SZ",
+    "900956.SH"
+  ],
+  "window": [
+    "2007-01-01",
+    "2015-12-31"
+  ],
+  "params": {
+    "lookback": 21,
+    "skip": 1,
+    "k": 110,
+    "direction": "reversal",
+    "rebalance": "monthly",
+    "min_valid_ratio": 0.9
+  },
+  "main": {
+    "n": 108,
+    "mean_d": 0.0048414844,
+    "sd_d": 0.0237687707,
+    "se": 0.002287151,
+    "t_stat": 2.1168188621,
+    "p_one_sided": 0.0171376119,
+    "mde_pp": 0.0064076823,
+    "win_ratio": 0.5925925926,
+    "min_d": -0.0837677652,
+    "max_d": 0.0825719034
+  },
+  "judgement": {
+    "verdict": "SUCCESS",
+    "label": "通过",
+    "rule_hits": [
+      "n=108 >= 100",
+      "MDE=0.641pp <= 1.42pp",
+      "mean(d)=0.004841 > 0",
+      "t=2.1168 >= 1.645"
+    ]
+  },
+  "k_frac_median": 0.347,
+  "n_pool_median": 317.0,
+  "yearly_descriptive": {
+    "2007": {
+      "n": 12,
+      "mean_d_pp": 0.9281,
+      "win_ratio": 0.5833
+    },
+    "2008": {
+      "n": 12,
+      "mean_d_pp": 1.0856,
+      "win_ratio": 0.6667
+    },
+    "2009": {
+      "n": 12,
+      "mean_d_pp": 0.6992,
+      "win_ratio": 0.6667
+    },
+    "2010": {
+      "n": 12,
+      "mean_d_pp": 0.3514,
+      "win_ratio": 0.5833
+    },
+    "2011": {
+      "n": 12,
+      "mean_d_pp": 0.4563,
+      "win_ratio": 0.75
+    },
+    "2012": {
+      "n": 12,
+      "mean_d_pp": 0.7075,
+      "win_ratio": 0.5833
+    },
+    "2013": {
+      "n": 12,
+      "mean_d_pp": -0.1941,
+      "win_ratio": 0.5
+    },
+    "2014": {
+      "n": 12,
+      "mean_d_pp": -0.0118,
+      "win_ratio": 0.4167
+    },
+    "2015": {
+      "n": 12,
+      "mean_d_pp": 0.3352,
+      "win_ratio": 0.5833
+    }
+  },
+  "control_2005_2006_descriptive": {
+    "n": 23,
+    "mean_d": 0.0026997608,
+    "sd_d": 0.0244520322,
+    "se": 0.0050986012,
+    "t_stat": 0.5295101039,
+    "p_one_sided": 0.2982258186,
+    "mde_pp": 0.0142842411,
+    "win_ratio": 0.4782608696,
+    "min_d": -0.0385738416,
+    "max_d": 0.0423768098
+  },
+  "cost_descriptive": {
+    "one_way_0.1pct": {
+      "mean_net_pp": 0.2841,
+      "t_net": 1.2424
+    },
+    "one_way_0.3pct": {
+      "mean_net_pp": -0.1159,
+      "t_net": -0.5065
+    }
+  },
+  "sensitivity_descriptive": [
+    {
+      "param": "k",
+      "value": 50,
+      "n": 108,
+      "mean_d": 0.0056621734,
+      "t_stat": 1.8026583912,
+      "sd_d": 0.0326423645,
+      "mde_pp": 0.008799862
+    },
+    {
+      "param": "k",
+      "value": 110,
+      "n": 108,
+      "mean_d": 0.0048414844,
+      "t_stat": 2.1168188621,
+      "sd_d": 0.0237687707,
+      "mde_pp": 0.0064076823
+    },
+    {
+      "param": "k",
+      "value": 200,
+      "n": 108,
+      "mean_d": 0.0040466022,
+      "t_stat": 2.2443130803,
+      "sd_d": 0.0187378154,
+      "mde_pp": 0.0050514168
+    },
+    {
+      "param": "skip",
+      "value": 0,
+      "n": 108,
+      "mean_d": 0.0034309364,
+      "t_stat": 1.4976789301,
+      "sd_d": 0.0238070636,
+      "mde_pp": 0.0064180055
+    },
+    {
+      "param": "skip",
+      "value": 1,
+      "n": 108,
+      "mean_d": 0.0048414844,
+      "t_stat": 2.1168188621,
+      "sd_d": 0.0237687707,
+      "mde_pp": 0.0064076823
+    },
+    {
+      "param": "skip",
+      "value": 5,
+      "n": 108,
+      "mean_d": 0.0035287395,
+      "t_stat": 1.4828566291,
+      "sd_d": 0.0247304666,
+      "mde_pp": 0.0066669402
+    }
+  ],
+  "gate2_rerun_descriptive": {
+    "pool_n": 548,
+    "stats": {
+      "n": 125,
+      "mean_d": -0.0039818683,
+      "sd_d": 0.026174853,
+      "se": 0.00234115,
+      "t_stat": -1.7008172295,
+      "p_one_sided": 0.9555113435,
+      "mde_pp": 0.0065589659,
+      "win_ratio": 0.432,
+      "min_d": -0.0674727345,
+      "max_d": 0.0850248191
+    },
+    "verdict_by_gate3_rule": {
+      "verdict": "FAILURE",
+      "label": "失败",
+      "rule_hits": [
+        "mean(d)=-0.003982 <= 0",
+        "t=-1.7008 < 1.645",
+        "n=125, MDE=0.656pp（均满足前提）"
+      ]
+    },
+    "gate2_recorded": {
+      "mean_d_pp": -0.3846,
+      "t_stat": -1.6415,
+      "n": 125,
+      "verdict": "FAILURE"
+    },
+    "note": "数据修复后的重跑，属路线图『修 bug 后重跑不是新实验』；不改变 Gate 2 既有结论标签。"
+  },
+  "note": "分年/敏感性/成本档/2005-2006 对照均为描述性，不参与判定（预登记 §4）。"
+}

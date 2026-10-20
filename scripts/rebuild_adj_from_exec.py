@@ -205,6 +205,55 @@ def _slim(r: dict) -> dict:
     return {k: r.get(k) for k in ("EX_DIVIDEND_DATE", "PRETAX_BONUS_RMB", "BONUS_IT_RATIO", "BONUS_RATIO", "IMPL_PLAN_PROFILE")}
 
 
+def load_events_sina(code: str, cache_dir: str, start: str, end: str) -> tuple[list[dict], list[dict]]:
+    """读新浪 F10 分红缓存（`scripts/fetch_dividends_sina.py` 产物）并规整成事件。
+
+    **为什么需要第二源**：东财 `RPT_SHAREBONUS_DET` 对**退市股全部返回空**（宽池 549 只里 249 只），
+    而 A4 判据对"零事件"标的不适用 → 那 249 只的 ADJ 实际是未复权原价，
+    每次 10送10/10转10 都留下 −50% 假跌幅，且**从未被涨跌停判据检查过**。
+    新浪 F10 覆盖退市股，且直接给出「除权除息日」，是唯一能把 249 只补齐的免费源。
+
+    单位：新浪表头是「每 10 股」的送股/转增/派息，与东财口径一致，直接 /10。
+    """
+    path = os.path.join(cache_dir, f"{code}.div.json")
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"缺少新浪分红缓存: {path}")
+    with open(path, encoding="utf-8") as f:
+        rows = json.load(f)
+    events, dropped = [], []
+    for r in rows:
+        ex = str(r.get("ex_date") or "")[:10]
+        if len(ex) != 10:
+            dropped.append({"row": r, "reason": "no_ex_date"})
+            continue
+        if "实施" not in str(r.get("progress") or ""):
+            dropped.append({"row": r, "reason": f"not_implemented:{r.get('progress')}"})
+            continue
+        if ex < start or ex > end:
+            dropped.append({"row": r, "reason": "out_of_range"})
+            continue
+        d = float(r.get("div10") or 0) / 10.0
+        b = (float(r.get("bonus10") or 0) + float(r.get("transfer10") or 0)) / 10.0
+        if d < 0 or b < 0:
+            dropped.append({"row": r, "reason": "negative_component"})
+            continue
+        if d == 0 and b == 0:
+            dropped.append({"row": r, "reason": "zero_event"})
+            continue
+        events.append(
+            {
+                "ex_date": ex,
+                "div_per_share": round(d, 6),
+                "share_ratio": round(b, 6),
+                "plan": f"10送{r.get('bonus10')}转{r.get('transfer10')}派{r.get('div10')}",
+                "source": "sina",
+                "report_date": str(r.get("announce_date") or "")[:10],
+            }
+        )
+    events.sort(key=lambda e: e["ex_date"])
+    return events, dropped
+
+
 def read_exec(path: str) -> list[dict]:
     with open(path, encoding="utf-8") as f:
         rows = list(csv.reader(f))
@@ -468,11 +517,13 @@ def process_one(code: str, args) -> dict:
         rec["error"] = f"too_few_rows:{len(exec_rows)}"
         return rec
     try:
-        raw = fetch_dividends(code, args.div_cache, offline=args.offline)
-    except Exception as exc:  # noqa: BLE001
+        events, dropped = _load_events(code, exec_rows, args)
+    except Exception as exc:  # noqa: BLE001 - 单只取数失败不中断全池
         rec["error"] = f"div_fetch:{type(exc).__name__}: {exc}"
         return rec
-    events, dropped = normalize_events(raw, exec_rows[0]["date"], exec_rows[-1]["date"])
+    if events is None:
+        rec["error"] = "div_source_unavailable"
+        return rec
     try:
         adj_rows, diags = build_adj(exec_rows, events, code)
     except ValueError as exc:
@@ -482,7 +533,28 @@ def process_one(code: str, args) -> dict:
     v = validate(code, exec_rows, adj_rows, events, diags)
     v["dropped_events"] = len(dropped)
     v["events"] = diags
+    v["div_source"] = args.div_source
     return v
+
+
+def _load_events(code: str, exec_rows: list[dict], args) -> tuple[list[dict] | None, list[dict]]:
+    """按 `--div-source` 取事件。em=东财（默认，行为与 P1-4 完全一致）；sina=新浪（覆盖退市股）。"""
+    start, end = exec_rows[0]["date"], exec_rows[-1]["date"]
+    if args.div_source == "sina":
+        try:
+            return load_events_sina(code, args.div_sina_cache, start, end)
+        except FileNotFoundError:
+            return None, []
+    raw = fetch_dividends(code, args.div_cache, offline=args.offline)
+    if args.div_source == "merge" and not raw:
+        # 东财对**退市股**全部返回空（宽池 549 只里 249 只）。这些标的一律改用新浪，
+        # 其余保持东财——这样 300 只在市标的的事件口径与 Gate 2 完全一致，
+        # 2016-2026 段可以当作**回归测试**：修正数据后原结论必须原样复现。
+        try:
+            return load_events_sina(code, args.div_sina_cache, start, end)
+        except FileNotFoundError:
+            return None, []
+    return normalize_events(raw, start, end)
 
 
 def load_codes(args) -> list[str]:
@@ -499,6 +571,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--pool-manifest", default="data/pool_manifest.json")
     ap.add_argument("--exec-dir", default="data/exec")
     ap.add_argument("--div-cache", default="data/exec/_div_cache")
+    ap.add_argument(
+        "--div-source",
+        choices=["em", "sina", "merge"],
+        default="em",
+        help="事件源：em=东财（默认，与 P1-4 一致）；sina=新浪；merge=东财优先、东财为空时用新浪（宽池用这个）",
+    )
+    ap.add_argument("--div-sina-cache", default="data/exec/_div_cache_sina")
     ap.add_argument("--out", default="data/qfq_rebuilt")
     ap.add_argument("--offline", action="store_true", help="只用分红缓存，不联网")
     ap.add_argument("--workers", type=int, default=3)
