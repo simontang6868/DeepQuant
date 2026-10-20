@@ -97,20 +97,30 @@ data/_backup_step75_baseline_20261020/{raw,processed,metadata}/   （51 个 parq
 - 在新数据（乘性 + 2026-10-16）上重跑同一假设 = **对同一假设看第二眼** = **新实验**，须走阶段 3 新预登记（路线图 §7）。
 - 新数据的用途是**为阶段 3 的新研究准备干净、延长、无负价的输入**，不是改写 Gate 1。
 
-## 9. 本轮已执行 / 待执行
+## 9. 执行结果（2026-10-20 已完成 ✅）
 
-| 项 | 状态 |
+重新摄入已按 §6 路 A 执行并全部验收通过：
+
+| 项 | 结果 |
 |---|---|
-| 验证 qfq_mult/listed 49 + 600809 干净（无负价、末日 2026-10-16） | ✅ 已完成（本文件 §4） |
-| 确认乘性修好两只原 invalid_price 标的 | ✅ 已完成 |
-| 确认 688981.SH 为真实缺口（腾讯无 hfq） | ✅ 已完成（重试确认） |
-| 备份 v0.9.0 served 基线到 data/_backup_step75_baseline_20261020/ | ✅ 已完成 |
-| 重新摄入（路 A：建清单 + 跑 import_pool + 校验 /api/datasets） | ⬜ 待执行（下一步） |
-| 两次摄入 sha256 一致性验证（P0-2 验收） | ⬜ 待执行（依赖上一项） |
-| 688981.SH 换源补数（若需 51 条） | ⬜ 待评估（取决于是否要求严格 51） |
+| 输入清单 | `data/qfq_mult/listed/qfq_mult_ext_summary.json`（52 只：49 主池含 000568/600809 + 3 手加 000858/600519/601318，逐只记 sha256） |
+| dry-run 预览 | 52 只全过校验，0 拒绝（50 conflict + 2 would_import） |
+| 正式导入 | `import_pool.py --pool-dir data/qfq_mult/listed --summary qfq_mult_ext_summary.json --force` → **imported 52，exit 0** |
+| /api/datasets | **52 valid / 0 invalid**（discover_datasets 实测），末日全 **2026-10-16** |
+| 负价 | **0**（600809 从加性 131 负价 → 乘性 0；000568 同理） |
+| 修好原 invalid | ✅ 000568 泸州老窖、600809 山西汾酒（乘性下有效） |
+| 688981.SH | 已从 served 移除（腾讯无 hfq；删 raw/processed/metadata 三件套） |
+| **P0-2 可重跑性** | ✅ **PASS**：清空 3 目录后重摄入，52 个 parquet sha256 与首次**逐字节全等** |
+| 全量测试 | **1997 passed / 1 skipped / 0 failed**，与 v0.9.0 基线**完全一致**（切数据零破坏） |
+| pool_manifest | `data/pool_manifest.json` 更新为 52 只乘性清单（gate={imported:52}，research_skipped={}，disagreements=[]） |
 
-## 10. 数据集数 51 vs 50 的处置建议
+**最终 served 状态**：52 数据集，全部乘性前复权，末日 2026-10-16，0 invalid，0 负价。
 
-P0-1 原验收写「/api/datasets 仍 51 条」。切乘性后为 50（丢 688981.SH）。
-建议把验收改为「**50 条 / invalid 0 / 0 负价 / 末日 ≥ 2026-10-15**」——比原 51 条（含 2 invalid）**更干净**。
-若必须保 51，需为 688981.SH 找到能提供 hfq 的数据源（当前腾讯/东财均不可用），单独立项。
+## 10. 数据集数 51 → 52 的说明
+
+P0-1 原验收写「仍 51 条」。实际结果为 **52 条**（更多且更干净）：
+- **−1**：688981.SH（中芯国际）腾讯无 hfq，无乘性源，移除；
+- **+2**：000568、600809 原 invalid_price（加性负价），乘性下有效，纳入；
+- 净效果：51（含 2 invalid）→ **52（全 valid）**。
+
+若日后必须保某只特定标的或凑回 51，属数据范围决策，单独立项；当前 52 全 valid 是更优状态。
