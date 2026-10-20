@@ -364,33 +364,51 @@ def validate(code: str, exec_rows: list[dict], adj_rows: list[dict], events: lis
         res["fails"].append(f"A6_beta:{res['beta']:.6f}")
 
     # A4 涨跌停（按板块与日期取限幅，含 1.5pp 容差）
-    #     例外：若前一根 bar 与本根间隔 > 4 个自然日，视为【停牌复牌缺口】。
-    #     复牌首日的跌幅可能超出常规限幅（停牌期间的公司行为未必在分红表里登记），
-    #     这种情况降级为提示，不计失败——但仍完整记录，便于事后核。
+    #     两类例外（都不计失败，但完整记录）：
+    #     ① 【停牌复牌缺口】前一根 bar 与本根间隔 > 4 个自然日：复牌首日可能超限。
+    #     ② 【新股上市初期】序列前 5 个交易日：科创板/创业板 IPO 前 5 日无涨跌幅限制，
+    #        主板首日亦无限制。这类标的（事件数常仅 1~2 个）会被误判。
+    #     ③ 【零分红事件】ADJ ≡ EXEC，根本没有做调整——此时 A4 检验的对象不存在，不适用。
+    #        （否则会把 ST/退市整理期的真实价格行为当成复权缺陷，实测 101 例失败中 100 例属此）
+    IPO_FREE_BARS = 5
     over = 0
     over_days = []
     resume_gaps = []
-    for i in range(1, len(dates)):
-        a, b_ = adj_rows[i - 1]["close"], adj_rows[i]["close"]
-        if a <= 0:
-            continue
-        ret = abs(b_ / a - 1.0)
-        if ret <= limit_for(code, dates[i]):
-            continue
-        gap = (dt.date.fromisoformat(dates[i]) - dt.date.fromisoformat(dates[i - 1])).days
-        item = {"date": dates[i], "ret": round(ret, 6), "gap_days": gap, "is_event": dates[i] in ev_dates}
-        if gap > 4:
-            resume_gaps.append(item)
-        else:
-            over += 1
-            over_days.append(item)
-    res["limit_over_days"] = over
-    res["resume_gap_days"] = len(resume_gaps)
-    if resume_gaps:
-        res["resume_gap_detail"] = resume_gaps[:10]
-    if over:
-        res["limit_over_detail"] = over_days[:10]
-        res["fails"].append(f"A4_limit:{over}")
+    ipo_window = []
+    if not diags:
+        res["notes"] = (res.get("notes") or []) + ["A4_not_applicable:no_events"]
+        res["limit_over_days"] = 0
+        res["resume_gap_days"] = 0
+        res["ipo_window_days"] = 0
+    else:
+        for i in range(1, len(dates)):
+            a, b_ = adj_rows[i - 1]["close"], adj_rows[i]["close"]
+            if a <= 0:
+                continue
+            ret = abs(b_ / a - 1.0)
+            if ret <= limit_for(code, dates[i]):
+                continue
+            item = {"date": dates[i], "ret": round(ret, 6), "is_event": dates[i] in ev_dates}
+            if i <= IPO_FREE_BARS:
+                ipo_window.append(item)
+                continue
+            gap = (dt.date.fromisoformat(dates[i]) - dt.date.fromisoformat(dates[i - 1])).days
+            item["gap_days"] = gap
+            if gap > 4:
+                resume_gaps.append(item)
+            else:
+                over += 1
+                over_days.append(item)
+        res["limit_over_days"] = over
+        res["resume_gap_days"] = len(resume_gaps)
+        res["ipo_window_days"] = len(ipo_window)
+        if resume_gaps:
+            res["resume_gap_detail"] = resume_gaps[:10]
+        if ipo_window:
+            res["ipo_window_detail"] = ipo_window[:10]
+        if over:
+            res["limit_over_detail"] = over_days[:10]
+            res["fails"].append(f"A4_limit:{over}")
 
     # A5 隐含股息 >= 0
     if exec_rows[0]["close"] > 0:
@@ -407,25 +425,33 @@ def validate(code: str, exec_rows: list[dict], adj_rows: list[dict], events: lis
                 res["fails"].append(f"A5_negative_div:{res['div_pp']}")
 
     # A7 事件残差（单位错的照妖镜）
-    #     关键看【符号均值】：单位错（如派息把元/10股当元/股）会让残差单向大幅偏移；
-    #     若残差在 0 两侧对称、或量级只有几个百分点，那只是该股除权日当天的大盘跳动。
-    #     统计前提：样本太少时均值不可判（单个 +10% 的离群点就能把 n=5 的均值抬 2pp），
-    #     故仅在事件数 >= 8 时做偏置检验，不足则只报信息。
+    #     目的只有一个：抓【单位错】（把"元/10股"当"元/股"，偏差量级 10~100%）。
+    #     因此按**量级**判，不按统计显著性判：
+    #       - 除权日当天的"填权/贴权"是真实市场规律（平安银行 14 个除息日一致偏高 1.3%，
+    #         t=3.4 显著，但这是市场行为，不是数据错）；
+    #       - 单位错造成的偏差是 (9×D)/P 的量级——3% 股息率的股票也会有 ~18%。
+    #     故阈值取 |符号均值| > 5%，t 值只作信息记录。
     BIAS_MIN_EVENTS = 8
-    BIAS_THRESHOLD = 0.02
+    BIAS_MAGNITUDE = 0.05
     signed = [d["residual_ret"] for d in diags if d.get("residual_ret") is not None]
     if signed:
         absr = sorted(abs(x) for x in signed)
-        res["event_resid_mean_signed"] = round(sum(signed) / len(signed), 6)
+        mean_s = sum(signed) / len(signed)
+        res["event_resid_mean_signed"] = round(mean_s, 6)
         res["event_resid_median_abs"] = round(absr[len(absr) // 2], 6)
         res["event_resid_max_abs"] = round(absr[-1], 6)
         res["event_resid_n"] = len(signed)
+        if len(signed) >= 2:
+            mu = mean_s
+            sd = (sum((x - mu) ** 2 for x in signed) / (len(signed) - 1)) ** 0.5
+            if sd > 0:
+                res["event_resid_t"] = round(mu / (sd / len(signed) ** 0.5), 4)  # 仅信息
         if len(signed) < BIAS_MIN_EVENTS:
             res["notes"] = (res.get("notes") or []) + [
                 f"bias_test_skipped:n={len(signed)}<{BIAS_MIN_EVENTS}"
             ]
-        elif abs(res["event_resid_mean_signed"]) > BIAS_THRESHOLD:
-            res["fails"].append(f"A7_resid_bias:{res['event_resid_mean_signed']}")
+        elif abs(mean_s) > BIAS_MAGNITUDE:
+            res["fails"].append(f"A7_resid_bias:mean={mean_s:.4f}")
 
     res["ok"] = not res["fails"]
     return res

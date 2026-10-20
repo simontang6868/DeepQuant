@@ -120,8 +120,11 @@ def probe_gap(sym: str, start: str, first_seen: str) -> str | None:
 
 
 def read_adj_series(code: str, adj_dir: str) -> dict[str, float] | None:
-    """读 ADJ 源（data/qfq_mult/listed/<code>.qfq.csv）为 {date: close}。"""
+    """读 ADJ 源为 {date: close}。先在 adj_dir 找，找不到再试同级 delist/ 目录（退市标的）。"""
     path = os.path.join(adj_dir, f"{code}.qfq.csv")
+    if not os.path.exists(path):
+        alt = os.path.join(os.path.dirname(adj_dir.rstrip("/\\")), "delist", f"{code}.qfq.csv")
+        path = alt if os.path.exists(alt) else path
     if not os.path.exists(path):
         return None
     with open(path, encoding="utf-8") as f:
@@ -210,8 +213,12 @@ def validate_rows(code: str, rows: list[list[str]], args, do_probe: bool = True)
         rec["flags"].append("bad_date_order")
 
     # S1: 末日期
-    if rec["end"] < args.end:
+    #     退市标的的序列必然止于退市日——对它们 stale_end 是**正确行为**，不是缺陷。
+    #     用 --allow-stale-end 明确声明，而不是把阈值调宽（调宽会掩盖主池数据过期）。
+    if rec["end"] < args.end and not args.allow_stale_end:
         rec["flags"].append(f"stale_end:{rec['end']}")
+    elif rec["end"] < args.end:
+        rec.setdefault("notes", []).append(f"delisted_end:{rec['end']}")
 
     # S1b: 分页截断探测（起点明显晚于请求起点时才探，省请求）。
     #      真实长期停牌会造成缺口但缺口里无数据；缺口里探到数据 = 分页漏取。
@@ -325,6 +332,11 @@ def main(argv: list[str] | None = None) -> int:
         "--verify-only",
         action="store_true",
         help="不联网：只读 --out 下已有的 *.exec.csv 跑全部哨兵并出报告（可在任何终端复现）",
+    )
+    ap.add_argument(
+        "--allow-stale-end",
+        action="store_true",
+        help="允许序列提前结束（用于退市标的：止于退市日是正确行为，不是缺陷）",
     )
     args = ap.parse_args(argv)
 
