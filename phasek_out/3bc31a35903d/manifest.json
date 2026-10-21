@@ -1,0 +1,16 @@
+{
+ "experiment": "phasek-low-turnover-v1",
+ "prereg_sha256": "3bc31a35903dc36590ac8b5231abc62ff34ba3afa089d355166c0956f9983d12",
+ "script_sha256": "7ee613e86b0c041aaba508055f68f3702dd765b68a42b64f222d7634922b2338",
+ "files": {
+  "monthly.csv": {
+   "sha256": "56fecf485f97f9c0cab56b821fbda8f5a0ce096f0bffdd1f1d726f0e5d0a08db",
+   "bytes": 20526
+  },
+  "summary.json": {
+   "sha256": "82846fa036d685a41b320ae1ec800f140358d5139612f7cd07dcdeeb40ee40ba",
+   "bytes": 3139
+  }
+ },
+ "runtime_sec": 112.8
+}

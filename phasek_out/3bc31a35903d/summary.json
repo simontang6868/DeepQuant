@@ -1,0 +1,150 @@
+{
+ "experiment": "phasek-low-turnover-v1",
+ "prereg_sha256": "3bc31a35903dc36590ac8b5231abc62ff34ba3afa089d355166c0956f9983d12",
+ "design": {
+  "periods": [
+   1,
+   2,
+   3,
+   6
+  ],
+  "capital": 30000000.0,
+  "comm_rate": 0.003,
+  "nw_primary_lag": 6,
+  "impact_upper_pp": 0.000784,
+  "net_def": "net = f_inv × alpha − 2·(churn/m)·0.003·100 − 0.000784"
+ },
+ "reconciliation": {
+  "m1_vs_phaseI": "max|diff| < 1e-6"
+ },
+ "by_period": {
+  "1": {
+   "turnover_pct_month": 19.204306,
+   "comm_pp": 0.115226,
+   "alpha_pp": 0.163411,
+   "f_inv_mean": 0.948013,
+   "net_pp": 0.039891,
+   "t_nw6": 1.346895,
+   "t_nw3": 1.194556,
+   "t_iid": 0.891651,
+   "alpha_retention": 1.0,
+   "segments": {
+    "2007-2015": {
+     "n": 108,
+     "net_pp": 0.029849,
+     "t_nw6": 0.764794
+    },
+    "2016-2026": {
+     "n": 129,
+     "net_pp": 0.048299,
+     "t_nw6": 1.111301
+    }
+   },
+   "seg_ok": false,
+   "n_hold_median": 1937,
+   "missing_price_months": 0,
+   "pass_AB": false
+  },
+  "2": {
+   "turnover_pct_month": 11.316683,
+   "comm_pp": 0.0679,
+   "alpha_pp": 0.121827,
+   "f_inv_mean": 0.947976,
+   "net_pp": 0.04596,
+   "t_nw6": 1.432771,
+   "t_nw3": 1.341876,
+   "t_iid": 1.036981,
+   "alpha_retention": 0.745525,
+   "segments": {
+    "2007-2015": {
+     "n": 108,
+     "net_pp": -0.005785,
+     "t_nw6": -0.118895
+    },
+    "2016-2026": {
+     "n": 129,
+     "net_pp": 0.089281,
+     "t_nw6": 2.223546
+    }
+   },
+   "seg_ok": false,
+   "n_hold_median": 1937,
+   "missing_price_months": 0,
+   "pass_AB": false
+  },
+  "3": {
+   "turnover_pct_month": 8.036216,
+   "comm_pp": 0.048217,
+   "alpha_pp": 0.1017,
+   "f_inv_mean": 0.949219,
+   "net_pp": 0.046705,
+   "t_nw6": 1.298473,
+   "t_nw3": 1.193247,
+   "t_iid": 1.021225,
+   "alpha_retention": 0.622357,
+   "segments": {
+    "2007-2015": {
+     "n": 108,
+     "net_pp": -0.000629,
+     "t_nw6": -0.011556
+    },
+    "2016-2026": {
+     "n": 129,
+     "net_pp": 0.086334,
+     "t_nw6": 1.907936
+    }
+   },
+   "seg_ok": false,
+   "n_hold_median": 1916,
+   "missing_price_months": 0,
+   "pass_AB": false
+  },
+  "6": {
+   "turnover_pct_month": 4.510854,
+   "comm_pp": 0.027065,
+   "alpha_pp": 0.045051,
+   "f_inv_mean": 0.95011,
+   "net_pp": 0.014132,
+   "t_nw6": 0.403289,
+   "t_nw3": 0.321005,
+   "t_iid": 0.27979,
+   "alpha_retention": 0.275691,
+   "segments": {
+    "2007-2015": {
+     "n": 108,
+     "net_pp": -0.016268,
+     "t_nw6": -0.256555
+    },
+    "2016-2026": {
+     "n": 129,
+     "net_pp": 0.039583,
+     "t_nw6": 1.154036
+    }
+   },
+   "seg_ok": false,
+   "n_hold_median": 1884,
+   "missing_price_months": 0,
+   "pass_AB": false
+  }
+ },
+ "verdict": "LOW_TURNOVER_INSUFFICIENT",
+ "net_m1_pp": 0.039891,
+ "best_net_other_pp": 0.046705,
+ "diagnostics": {
+  "q5_flipflop_rate": 0.228722,
+  "q5_flipflop_n": 18868,
+  "q5_flipflop_den": 82493,
+  "predicted_retention": {
+   "1": 1.0,
+   "2": 0.65,
+   "3": 0.4225,
+   "6": 0.116029
+  }
+ },
+ "prereg_defects": [
+  {
+   "item": "§3.2 未规定建仓首期的换手",
+   "handling": "首期 churn 取 1.0（视作替换既有组合），与后续各期同用 2× 系数；不改判据，且在报告中说明。"
+  }
+ ]
+}
