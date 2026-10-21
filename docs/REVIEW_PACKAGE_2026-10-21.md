@@ -100,6 +100,7 @@ qfq_all    5,444 文件 / 15,677,xxx 行 / dir_sha256 53f43f39…
 | 19 | **阶段 N 审计**（只读复核） | 无（审计非实验） | `reports/STAGE_REPORT_CORE_AUDIT.md` | 发现 0.3% 是**压力参数** | — | 真实等价单边费率 **0.051%**；盈亏平衡 **0.3864%** |
 | 20 | **阶段 O** 费率口径（三套并报） | `ac7aa283` | `phaseo_out/ac7aa2830ab0/` | **`EXECUTABLE_UNDER_BASE_FEES`** | **M0** | BASE@3000万 **+0.1360（t=+4.04）**；STRESS +0.0424（t=1.27）；盈亏平衡 **0.4129%** |
 | 21 | **阶段 P** 分段相等性 | `3d19f750` | `phasep_out/3d19f7508e10/` | **`SEGMENT_DIFFERENCE_NOT_DETECTED`** | — | β1 −0.0144pp（t=−0.216）；**MDE 0.1866pp**；MAX5 衰减 **t=−2.28** 是唯一被检出的 |
+| 22 | **阶段 Q** 增量信息 | `ae7fc45a` | `phaseq_out/ae7fc45acab0/` | **SURGE `INCREMENTAL_CONFIRMED`**／MAX5 `INCREMENTAL_ABSORBED`（线性控制时） | — | SURGE 三种设定 t=−2.04/−2.00/−2.01；**MAX5 保留率 −0.109**，层内设定下才 t=−2.91 |
 
 **⚠️ 关于「成本后不可使用」这一结论的口径（阶段 N + O，必须一起引用）**：
 - 阶段 I/J/K/L 的 `ABSORBED` 判定全部基于 **0.3% 单边费率**，那是 A 股真实综合成本

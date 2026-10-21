@@ -1,0 +1,15 @@
+{
+ "experiment": "phaseq-incremental-information-v1",
+ "prereg_sha256": "ae7fc45acab06e991e997b7a1fac836ce6f17ebdd736935e612ccfb4e510fb1c",
+ "files": {
+  "monthly.csv": {
+   "sha256": "ecd47ffe579c25ef5155d933c62143a8097ab764c084c9a548388dc8d03bb01d",
+   "bytes": 15051
+  },
+  "summary.json": {
+   "sha256": "ba624f6f87d1eae0e6f175386a0e9fa033012acbd2a98f126ac6ea7b9023f46f",
+   "bytes": 5440
+  }
+ },
+ "runtime_sec": 144.1
+}

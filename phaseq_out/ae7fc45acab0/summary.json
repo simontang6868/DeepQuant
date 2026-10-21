@@ -1,0 +1,247 @@
+{
+ "experiment": "phaseq-incremental-information-v1",
+ "prereg_sha256": "ae7fc45acab06e991e997b7a1fac836ce6f17ebdd736935e612ccfb4e510fb1c",
+ "kind": "confirmatory（主检验：MAX5 / SURGE 两个并列主假设）+ exploratory（副检验）",
+ "frozen": {
+  "win": 21,
+  "top_n": 5,
+  "nw_lag": 3,
+  "t_crit": 1.96,
+  "cross_section_transform": "rank z-score",
+  "vol_layers": 5,
+  "n_months": 237
+ },
+ "rev_definitions": {
+  "REV1（阶段N，单日）": "ret[pos] —— ⚠️ 单日收益基本是噪声，等于没控制",
+  "REV21（本阶段，修正）": "P[pos-1]/P[pos-WIN] - 1，与项目反转定义一致"
+ },
+ "reproduction_gate": {
+  "target": "阶段 N 探索性 FM（REV=单日）",
+  "passed": true,
+  "tolerance": {
+   "mean": 0.0001,
+   "t": 0.001
+  },
+  "got": {
+   "MAX5": {
+    "coef_pp_per_sd": -0.209127,
+    "t_nw": -1.2871
+   },
+   "SURGE": {
+    "coef_pp_per_sd": -0.232875,
+    "t_nw": -2.8327
+   },
+   "VOL": {
+    "coef_pp_per_sd": -0.114457,
+    "t_nw": -0.7012
+   },
+   "REV": {
+    "coef_pp_per_sd": 0.029855,
+    "t_nw": 0.3485
+   }
+  },
+  "expect": {
+   "MAX5": {
+    "coef_pp_per_sd": -0.209127,
+    "t_nw": -1.2871
+   },
+   "SURGE": {
+    "coef_pp_per_sd": -0.232875,
+    "t_nw": -2.8327
+   },
+   "VOL": {
+    "coef_pp_per_sd": -0.114457,
+    "t_nw": -0.7012
+   },
+   "REV": {
+    "coef_pp_per_sd": 0.029855,
+    "t_nw": 0.3485
+   }
+  }
+ },
+ "main_test_REV21": {
+  "n_months": 237,
+  "coefficients": {
+   "MAX5": {
+    "n_months": 237,
+    "n_valid": 237,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "coef_pp_per_sd": 0.042414,
+    "t_iid": 0.2884,
+    "t_nw": 0.254,
+    "p_nw": 0.799526
+   },
+   "SURGE": {
+    "n_months": 237,
+    "n_valid": 237,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "coef_pp_per_sd": -0.16457,
+    "t_iid": -2.1867,
+    "t_nw": -2.0377,
+    "p_nw": 0.041584
+   },
+   "VOL": {
+    "n_months": 237,
+    "n_valid": 237,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "coef_pp_per_sd": -0.312741,
+    "t_iid": -1.7806,
+    "t_nw": -1.8252,
+    "p_nw": 0.067978
+   },
+   "REV": {
+    "n_months": 237,
+    "n_valid": 237,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "coef_pp_per_sd": -0.281474,
+    "t_iid": -2.6906,
+    "t_nw": -3.1477,
+    "p_nw": 0.001645
+   }
+  },
+  "verdicts": {
+   "MAX5": "INCREMENTAL_ABSORBED",
+   "SURGE": "INCREMENTAL_CONFIRMED",
+   "VOL": "INCREMENTAL_ABSORBED",
+   "REV": "INCREMENTAL_CONFIRMED"
+  }
+ },
+ "S1_univariate": {
+  "MAX5": {
+   "n_months": 237,
+   "n_valid": 237,
+   "has_nonfinite": false,
+   "insufficient": false,
+   "coef_pp_per_sd": -0.388358,
+   "t_iid": -3.3162,
+   "t_nw": -4.269,
+   "p_nw": 2e-05
+  },
+  "SURGE": {
+   "n_months": 237,
+   "n_valid": 237,
+   "has_nonfinite": false,
+   "insufficient": false,
+   "coef_pp_per_sd": -0.409426,
+   "t_iid": -4.6709,
+   "t_nw": -4.3346,
+   "p_nw": 1.5e-05
+  },
+  "VOL": {
+   "n_months": 237,
+   "n_valid": 237,
+   "has_nonfinite": false,
+   "insufficient": false,
+   "coef_pp_per_sd": -0.267618,
+   "t_iid": -2.1594,
+   "t_nw": -3.0496,
+   "p_nw": 0.002291
+  },
+  "REV": {
+   "n_months": 237,
+   "n_valid": 237,
+   "has_nonfinite": false,
+   "insufficient": false,
+   "coef_pp_per_sd": -0.484457,
+   "t_iid": -4.3156,
+   "t_nw": -4.5132,
+   "p_nw": 6e-06
+  }
+ },
+ "S4_retention_ratio": {
+  "MAX5": -0.1092,
+  "SURGE": 0.402,
+  "VOL": 1.1686,
+  "REV": 0.581
+ },
+ "S2_within_vol_layers": {
+  "MAX5": {
+   "n_months": 1185,
+   "n_valid": 1185,
+   "has_nonfinite": false,
+   "insufficient": false,
+   "coef_pp_per_sd": -0.161652,
+   "t_iid": -3.9416,
+   "t_nw": -2.9081,
+   "p_nw": 0.003637
+  },
+  "SURGE": {
+   "n_months": 1185,
+   "n_valid": 1185,
+   "has_nonfinite": false,
+   "insufficient": false,
+   "coef_pp_per_sd": -0.119985,
+   "t_iid": -3.0569,
+   "t_nw": -2.0012,
+   "p_nw": 0.045368
+  },
+  "REV": {
+   "n_months": 1185,
+   "n_valid": 1185,
+   "has_nonfinite": false,
+   "insufficient": false,
+   "coef_pp_per_sd": -0.105902,
+   "t_iid": -1.9846,
+   "t_nw": -1.3154,
+   "p_nw": 0.188365
+  }
+ },
+ "S2_note": "层内不控制 VOL（VOL 由层吸收），故只有 3 个斜率；共 1185 个层-月单元",
+ "S3_tradable": {
+  "n_months": 237,
+  "coefficients": {
+   "MAX5": {
+    "n_months": 237,
+    "n_valid": 237,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "coef_pp_per_sd": -0.002633,
+    "t_iid": -0.018,
+    "t_nw": -0.016,
+    "p_nw": 0.987246
+   },
+   "SURGE": {
+    "n_months": 237,
+    "n_valid": 237,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "coef_pp_per_sd": -0.16118,
+    "t_iid": -2.1639,
+    "t_nw": -2.0075,
+    "p_nw": 0.044696
+   },
+   "VOL": {
+    "n_months": 237,
+    "n_valid": 237,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "coef_pp_per_sd": -0.329991,
+    "t_iid": -1.8924,
+    "t_nw": -1.9445,
+    "p_nw": 0.051839
+   },
+   "REV": {
+    "n_months": 237,
+    "n_valid": 237,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "coef_pp_per_sd": -0.28621,
+    "t_iid": -2.7359,
+    "t_nw": -3.2555,
+    "p_nw": 0.001132
+   }
+  }
+ },
+ "honest_limits": [
+  "两个并列主假设不做多重检验校正（不同变量的不同命题），两个 p 值都完整报告",
+  "FM 施加线性假设；S2 的层内回归部分缓解",
+  "⚠️ 预期方向被阶段 N 的探索性结果污染 —— 见预登记 §4 的声明",
+  "本阶段测信息含量，不是可执行性；显著 ≠ 可交易",
+  "全部样本内"
+ ],
+ "runtime_sec": 144.1
+}
