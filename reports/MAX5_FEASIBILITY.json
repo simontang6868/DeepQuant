@@ -1,0 +1,42 @@
+{
+ "script": "check_max5_feasibility",
+ "purpose": "只验变量可构造性，不计算任何未来收益（反 data-snooping）",
+ "params": {
+  "win": 21,
+  "top_n": 5,
+  "high_win": 250,
+  "min_valid": 19
+ },
+ "data": {
+  "n_symbols": 5444,
+  "n_days": 5311,
+  "range": [
+   "2004-12-01",
+   "2026-10-16"
+  ]
+ },
+ "R1_daily_return": {
+  "n_nonpos_price": 0,
+  "max_abs_ret": 2.61307238673074
+ },
+ "R2_coverage": {
+  "mean": 0.9686988045317569,
+  "min": 0.5366814377154111,
+  "n_months": 237,
+  "n_pool_median": 2562
+ },
+ "R3_max5_distribution_pp": {
+  "min": 0.4120459134085324,
+  "p25": 2.472299885297339,
+  "med": 3.232335533043719,
+  "p75": 4.3209746781002245,
+  "max": 12.809836951325615
+ },
+ "R4_rank_corr": {
+  "vs_vol21": 0.8795603866240713,
+  "vs_rev21": -0.511278447391037,
+  "vs_pth250": 0.18089016321114776,
+  "note": "逐月横截面 Spearman 的算术平均；不是时间序列相关"
+ },
+ "verdict_hint": "MAX5 与波动率的相关若 >0.8，必须先排除'只是 Gate 4 的影子'再预登记"
+}
