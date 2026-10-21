@@ -1,0 +1,103 @@
+{
+ "script": "audit_cost_addendum",
+ "kind": "审计 / 探索性分析",
+ "cost_scenarios": {
+  "base_after_cash_and_impact_pp": 0.145136,
+  "turnover_mean": 0.187824,
+  "k_hold": 1937,
+  "scenarios": {
+   "advalorem_0.03pct": {
+    "cost_pp": 0.011269,
+    "net_pp": 0.133866
+   },
+   "advalorem_0.05pct": {
+    "cost_pp": 0.018782,
+    "net_pp": 0.126353
+   },
+   "advalorem_0.10pct": {
+    "cost_pp": 0.037565,
+    "net_pp": 0.107571
+   },
+   "advalorem_0.30pct": {
+    "cost_pp": 0.112694,
+    "net_pp": 0.032441
+   },
+   "a_share_advalorem": {
+    "cost_pp": 0.019158,
+    "net_pp": 0.125978,
+    "note": "佣金双边+印花税仅卖出+过户费双边"
+   }
+  },
+  "min_commission_scenario": {
+   "W_1000万": {
+    "per_trade_yuan": 5162.6,
+    "advalorem_per_trade_yuan": 1.29,
+    "effective_per_trade_yuan": 5.0,
+    "trades_per_month": 728.0,
+    "cost_pp": 0.046148,
+    "net_pp": 0.098987,
+    "note": "最低佣金 5 元/笔（情景，取决于券商）"
+   },
+   "W_3000万": {
+    "per_trade_yuan": 15487.9,
+    "advalorem_per_trade_yuan": 3.87,
+    "effective_per_trade_yuan": 5.0,
+    "trades_per_month": 728.0,
+    "cost_pp": 0.021894,
+    "net_pp": 0.123242,
+    "note": "最低佣金 5 元/笔（情景，取决于券商）"
+   }
+  },
+  "upper_bound_no_cash_residual": {
+   "base_pp": 0.163137,
+   "net_at_0_05pct": 0.144355,
+   "net_at_0_30pct": 0.050443,
+   "note": "仅作对照，对应资金足够大、无整手取整残留的理想情况"
+  }
+ },
+ "incremental_fama_macbeth": {
+  "MAX5": {
+   "mean_pp_per_sd": -0.209127,
+   "t_iid": -1.3826,
+   "t_nw": -1.2871,
+   "n_months": 237
+  },
+  "SURGE": {
+   "mean_pp_per_sd": -0.232875,
+   "t_iid": -2.9646,
+   "t_nw": -2.8327,
+   "n_months": 237
+  },
+  "VOL": {
+   "mean_pp_per_sd": -0.114457,
+   "t_iid": -0.684,
+   "t_nw": -0.7012,
+   "n_months": 237
+  },
+  "REV": {
+   "mean_pp_per_sd": 0.029855,
+   "t_iid": 0.3655,
+   "t_nw": 0.3485,
+   "n_months": 237
+  }
+ },
+ "double_sort": {
+  "by_MAX5_quintile_pp": {
+   "Q1": 1.599425,
+   "Q2": 1.905611,
+   "Q3": 1.803415,
+   "Q4": 1.404483,
+   "Q5": 0.515454
+  },
+  "by_SURGE_quintile_pp": {
+   "Q1": 1.857768,
+   "Q2": 1.768633,
+   "Q3": 1.589938,
+   "Q4": 1.31749,
+   "Q5": 0.693963
+  },
+  "spread_Q1_minus_Q5_MAX5_pp": 1.083971,
+  "spread_Q1_minus_Q5_SURGE_pp": 1.163805,
+  "note": "单变量（未控制）边际，用于与回归的增量斜率对照"
+ }
+}
