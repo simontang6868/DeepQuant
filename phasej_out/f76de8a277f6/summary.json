@@ -1,0 +1,183 @@
+{
+ "experiment": "phasej-impact-cost-v1",
+ "prereg_sha256": "f76de8a277f6574795cb8b78b8a91745a8f1dd5b2152a62ed37af567ebca5f62",
+ "prereg_version": "1.0",
+ "model_note": "无盘中数据，冲击成本是**模型估计**，不是实测。模型A=Amihud线性(无参数)；模型B=平方根，只报打平η*，不猜η",
+ "data_fact": "exec_all 的 volume 单位是「手」→ DV = volume × 100 × close",
+ "design": {
+  "capital_tiers": [
+   1500000.0,
+   3000000.0,
+   5000000.0,
+   10000000.0,
+   30000000.0
+  ],
+  "comm_rate": 0.003,
+  "t_crit": 1.96,
+  "win": 21,
+  "net_def": "net = f_inv × alpha_V1 − 2·to·0.003·100 − impact"
+ },
+ "v1_reconciliation": {
+  "vs_phasei_monthly": "max|diff| < 1e-6",
+  "alpha_v1_pp": 0.163411
+ },
+ "liquidity_distribution": {
+  "participation_median": 5.43803e-05,
+  "participation_p90": 0.0002873877,
+  "participation_p99": 0.0010724579,
+  "participation_max": 0.0298250206,
+  "adv_median": 71433984.0,
+  "adv_p10": 17172164.0,
+  "illiq_median": 2e-10,
+  "illiq_p90": 1e-09
+ },
+ "by_capital": {
+  "150万": {
+   "budget": 1500000.0,
+   "n": 237,
+   "alpha_v1_pp": 0.16341052,
+   "f_inv_median": 0.77383867,
+   "cash_drag_pp": 0.03590939,
+   "comm_pp": 0.11269419,
+   "impact_A_pp": 8.78e-05,
+   "impact_B_eta1_pp": 0.00768218,
+   "net_A_pp": 0.01471914,
+   "t_net_A": 0.52907798,
+   "t_net_A_iid": 0.39073877,
+   "net_B_eta1_pp": 0.00712475,
+   "t_net_B_eta1": 0.25648934,
+   "se_nw_A_pp": 2.78203555,
+   "breakeven_eta_mean0": 1.92743903,
+   "breakeven_eta_t196": -959.18532418
+  },
+  "300万": {
+   "budget": 3000000.0,
+   "n": 237,
+   "alpha_v1_pp": 0.16341052,
+   "f_inv_median": 0.79690467,
+   "cash_drag_pp": 0.03123243,
+   "comm_pp": 0.11269419,
+   "impact_A_pp": 0.00011255,
+   "impact_B_eta1_pp": 0.00775697,
+   "net_A_pp": 0.01937135,
+   "t_net_A": 0.67576069,
+   "t_net_A_iid": 0.50040775,
+   "net_B_eta1_pp": 0.01172693,
+   "t_net_B_eta1": 0.40995911,
+   "se_nw_A_pp": 2.86659891,
+   "breakeven_eta_mean0": 2.51179383,
+   "breakeven_eta_t196": -975.64802656
+  },
+  "500万": {
+   "budget": 5000000.0,
+   "n": 237,
+   "alpha_v1_pp": 0.16341052,
+   "f_inv_median": 0.8243384,
+   "cash_drag_pp": 0.02637659,
+   "comm_pp": 0.11269419,
+   "impact_A_pp": 0.0001542,
+   "impact_B_eta1_pp": 0.00868715,
+   "net_A_pp": 0.02418554,
+   "t_net_A": 0.81853185,
+   "t_net_A_iid": 0.60868005,
+   "net_B_eta1_pp": 0.01565259,
+   "t_net_B_eta1": 0.53114192,
+   "se_nw_A_pp": 2.95474678,
+   "breakeven_eta_mean0": 2.80180971,
+   "breakeven_eta_t196": -893.71684982
+  },
+  "1000万": {
+   "budget": 10000000.0,
+   "n": 237,
+   "alpha_v1_pp": 0.16341052,
+   "f_inv_median": 0.8768095,
+   "cash_drag_pp": 0.01800125,
+   "comm_pp": 0.11269419,
+   "impact_A_pp": 0.00027359,
+   "impact_B_eta1_pp": 0.01131169,
+   "net_A_pp": 0.03244149,
+   "t_net_A": 1.04235785,
+   "t_net_A_iid": 0.77846843,
+   "net_B_eta1_pp": 0.02140339,
+   "t_net_B_eta1": 0.69000189,
+   "se_nw_A_pp": 3.11231821,
+   "breakeven_eta_mean0": 2.89214872,
+   "breakeven_eta_t196": -719.23318348
+  },
+  "3000万": {
+   "budget": 30000000.0,
+   "n": 237,
+   "alpha_v1_pp": 0.16341052,
+   "f_inv_median": 0.952537,
+   "cash_drag_pp": 0.00750962,
+   "comm_pp": 0.11269419,
+   "impact_A_pp": 0.00078376,
+   "impact_B_eta1_pp": 0.01899561,
+   "net_A_pp": 0.04242295,
+   "t_net_A": 1.26875466,
+   "t_net_A_iid": 0.94606371,
+   "net_B_eta1_pp": 0.0242111,
+   "t_net_B_eta1": 0.72713925,
+   "se_nw_A_pp": 3.34366824,
+   "breakeven_eta_mean0": 2.27456336,
+   "breakeven_eta_t196": -460.47307697
+  }
+ },
+ "verdict": "NET_AFTER_EXECUTION_ABSORBED",
+ "pass_by_w": [
+  false,
+  false,
+  false,
+  false,
+  false
+ ],
+ "attribution_best_tier": {
+  "budget": 30000000.0,
+  "alpha_v1_pp": 0.163411,
+  "cash_drag_pp": -0.00751,
+  "comm_pp": -0.112694,
+  "impact_A_pp": -0.00078376,
+  "impact_B_eta1_pp": -0.018996,
+  "net_pp": 0.042423,
+  "t_net": 1.268755
+ },
+ "breakeven_eta": {
+  "150万": {
+   "mean0": 1.9274,
+   "t196": -959.1853
+  },
+  "300万": {
+   "mean0": 2.5118,
+   "t196": -975.648
+  },
+  "500万": {
+   "mean0": 2.8018,
+   "t196": -893.7168
+  },
+  "1000万": {
+   "mean0": 2.8921,
+   "t196": -719.2332
+  },
+  "3000万": {
+   "mean0": 2.2746,
+   "t196": -460.4731
+  }
+ },
+ "eta_reference_range": [
+  0.1,
+  1.0
+ ],
+ "segments_at_best": {
+  "2007-2015": {
+   "n": 108,
+   "net_pp": 0.035234,
+   "t_nw": 0.822505
+  },
+  "2016-2026": {
+   "n": 129,
+   "net_pp": 0.048442,
+   "t_nw": 0.970615
+  }
+ },
+ "descriptive_cash_drag_vs_bench_pp": 0.068978
+}

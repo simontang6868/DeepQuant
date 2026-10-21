@@ -1,0 +1,16 @@
+{
+ "experiment": "phasej-impact-cost-v1",
+ "prereg_sha256": "f76de8a277f6574795cb8b78b8a91745a8f1dd5b2152a62ed37af567ebca5f62",
+ "script_sha256": "ebe8ebd6c271666b9d8af9924c4d9baf31e570881c9d557ea91ffd4460788aeb",
+ "files": {
+  "monthly.csv": {
+   "sha256": "6f1961bdc2709c98b637ef545a8a90e2f76b3e2f1983974c827e35dffb859235",
+   "bytes": 21560
+  },
+  "summary.json": {
+   "sha256": "668387620473742798ee58f3cbb05012833fc32e30b36556ea800e5fc5aeec37",
+   "bytes": 4148
+  }
+ },
+ "runtime_sec": 157.2
+}
