@@ -1,0 +1,15 @@
+{
+ "experiment": "phaser-surge-impact-v1",
+ "prereg_sha256": "7b5e7643e8ca2c48c077a206cf8e84d0b006e2d1f1d4a1ef7c54225247483e11",
+ "files": {
+  "monthly.csv": {
+   "sha256": "d1f5d3157ab8c2487a5c148ba4776686c7c39e8f924b6ee03226b16a96fd3015",
+   "bytes": 8412
+  },
+  "summary.json": {
+   "sha256": "cd7bb11f0c73a5125794e17d7b82f90eb896ab8be6253be3100737485e154bff",
+   "bytes": 19410
+  }
+ },
+ "runtime_sec": 282.1
+}

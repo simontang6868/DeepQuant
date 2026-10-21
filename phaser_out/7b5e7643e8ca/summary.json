@@ -1,0 +1,937 @@
+{
+ "experiment": "phaser-surge-impact-v1",
+ "prereg_sha256": "7b5e7643e8ca2c48c077a206cf8e84d0b006e2d1f1d4a1ef7c54225247483e11",
+ "kind": "confirmatory（补 SURGE 唯一未建模的摩擦：冲击成本）",
+ "frozen_from": "阶段 L（信号/构造/V1约束/窗口）+ 阶段 J（冲击模型）+ 阶段I（容量）",
+ "reproduction_gate": {
+  "months": 237,
+  "expect": 237,
+  "max_abs_diff": 4.97907519630969e-07,
+  "passed": true
+ },
+ "turnover_one_side_mean": 0.244144,
+ "fee_scenarios": [
+  {
+   "id": "EM_DEFAULT",
+   "name": "东方财富 官方默认（万2.5全佣+5元）",
+   "comm": 0.00025,
+   "min_comm": 5.0,
+   "all_in": false
+  },
+  {
+   "id": "ZY_DEFAULT",
+   "name": "中原证券 默认（万3+5元）",
+   "comm": 0.0003,
+   "min_comm": 5.0,
+   "all_in": false
+  },
+  {
+   "id": "QMT_WAN1",
+   "name": "量化协商 万1（含5元）",
+   "comm": 0.0001,
+   "min_comm": 5.0,
+   "all_in": false
+  },
+  {
+   "id": "QMT_WAN1_NO5",
+   "name": "量化协商 万1 + 免五 ⚠️合规存疑",
+   "comm": 0.0001,
+   "min_comm": 0.0,
+   "all_in": false
+  },
+  {
+   "id": "STRESS_03",
+   "name": "阶段 L 压力口径 0.3%（对照，阶段L原式）",
+   "comm": 0.003,
+   "min_comm": 0.0,
+   "all_in": true
+  }
+ ],
+ "results_by_capital": {
+  "1000万": {
+   "EM_DEFAULT": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.03549,
+     "t_iid": 1.0998,
+     "t_nw": 1.1728,
+     "p_nw": 0.240884,
+     "ci95_pp": [
+      -0.023823,
+      0.094803
+     ],
+     "cost_commission_pp": 0.060031,
+     "impact_A_pp": 0.000405
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.008548,
+     "t_iid": 0.2664,
+     "t_nw": 0.288,
+     "p_nw": 0.773381,
+     "ci95_pp": [
+      -0.049636,
+      0.066732
+     ],
+     "impact_B_eta1_pp": 0.027347,
+     "cost_commission_pp": 0.060031
+    }
+   },
+   "ZY_DEFAULT": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.03549,
+     "t_iid": 1.0998,
+     "t_nw": 1.1728,
+     "p_nw": 0.240884,
+     "ci95_pp": [
+      -0.023823,
+      0.094803
+     ],
+     "cost_commission_pp": 0.060031,
+     "impact_A_pp": 0.000405
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.008548,
+     "t_iid": 0.2664,
+     "t_nw": 0.288,
+     "p_nw": 0.773381,
+     "ci95_pp": [
+      -0.049636,
+      0.066732
+     ],
+     "impact_B_eta1_pp": 0.027347,
+     "cost_commission_pp": 0.060031
+    }
+   },
+   "QMT_WAN1": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.03549,
+     "t_iid": 1.0998,
+     "t_nw": 1.1728,
+     "p_nw": 0.240884,
+     "ci95_pp": [
+      -0.023823,
+      0.094803
+     ],
+     "cost_commission_pp": 0.060031,
+     "impact_A_pp": 0.000405
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.008548,
+     "t_iid": 0.2664,
+     "t_nw": 0.288,
+     "p_nw": 0.773381,
+     "ci95_pp": [
+      -0.049636,
+      0.066732
+     ],
+     "impact_B_eta1_pp": 0.027347,
+     "cost_commission_pp": 0.060031
+    }
+   },
+   "QMT_WAN1_NO5": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.077943,
+     "t_iid": 2.4264,
+     "t_nw": 2.625,
+     "p_nw": 0.008665,
+     "ci95_pp": [
+      0.019746,
+      0.136141
+     ],
+     "cost_commission_pp": 0.017578,
+     "impact_A_pp": 0.000405
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.051001,
+     "t_iid": 1.5957,
+     "t_nw": 1.7456,
+     "p_nw": 0.080881,
+     "ci95_pp": [
+      -0.006264,
+      0.108266
+     ],
+     "impact_B_eta1_pp": 0.027347,
+     "cost_commission_pp": 0.017578
+    }
+   },
+   "STRESS_03": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.050965,
+     "t_iid": -1.5858,
+     "t_nw": -1.7451,
+     "p_nw": 0.08097,
+     "ci95_pp": [
+      -0.108206,
+      0.006277
+     ],
+     "cost_commission_pp": 0.146486,
+     "impact_A_pp": 0.000405
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.077907,
+     "t_iid": -2.4345,
+     "t_nw": -2.7035,
+     "p_nw": 0.006861,
+     "ci95_pp": [
+      -0.134388,
+      -0.021425
+     ],
+     "impact_B_eta1_pp": 0.027347,
+     "cost_commission_pp": 0.146486
+    }
+   }
+  },
+  "3000万": {
+   "EM_DEFAULT": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.07028,
+     "t_iid": 2.035,
+     "t_nw": 2.1958,
+     "p_nw": 0.028107,
+     "ci95_pp": [
+      0.007547,
+      0.133013
+     ],
+     "cost_commission_pp": 0.030765,
+     "impact_A_pp": 0.001198
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.024729,
+     "t_iid": 0.7212,
+     "t_nw": 0.7906,
+     "p_nw": 0.429194,
+     "ci95_pp": [
+      -0.03658,
+      0.086038
+     ],
+     "impact_B_eta1_pp": 0.046748,
+     "cost_commission_pp": 0.030765
+    }
+   },
+   "ZY_DEFAULT": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.069187,
+     "t_iid": 2.0039,
+     "t_nw": 2.1651,
+     "p_nw": 0.030381,
+     "ci95_pp": [
+      0.006554,
+      0.13182
+     ],
+     "cost_commission_pp": 0.031858,
+     "impact_A_pp": 0.001198
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.023636,
+     "t_iid": 0.6895,
+     "t_nw": 0.7565,
+     "p_nw": 0.449321,
+     "ci95_pp": [
+      -0.037598,
+      0.08487
+     ],
+     "impact_B_eta1_pp": 0.046748,
+     "cost_commission_pp": 0.031858
+    }
+   },
+   "QMT_WAN1": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.071447,
+     "t_iid": 2.0679,
+     "t_nw": 2.2274,
+     "p_nw": 0.02592,
+     "ci95_pp": [
+      0.008578,
+      0.134316
+     ],
+     "cost_commission_pp": 0.029598,
+     "impact_A_pp": 0.001198
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.025896,
+     "t_iid": 0.7551,
+     "t_nw": 0.8266,
+     "p_nw": 0.408444,
+     "ci95_pp": [
+      -0.035505,
+      0.087296
+     ],
+     "impact_B_eta1_pp": 0.046748,
+     "cost_commission_pp": 0.029598
+    }
+   },
+   "QMT_WAN1_NO5": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.083467,
+     "t_iid": 2.4198,
+     "t_nw": 2.6207,
+     "p_nw": 0.008774,
+     "ci95_pp": [
+      0.021043,
+      0.14589
+     ],
+     "cost_commission_pp": 0.017578,
+     "impact_A_pp": 0.001198
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.037916,
+     "t_iid": 1.1068,
+     "t_nw": 1.2163,
+     "p_nw": 0.223857,
+     "ci95_pp": [
+      -0.023182,
+      0.099013
+     ],
+     "impact_B_eta1_pp": 0.046748,
+     "cost_commission_pp": 0.017578
+    }
+   },
+   "STRESS_03": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.045441,
+     "t_iid": -1.3171,
+     "t_nw": -1.4494,
+     "p_nw": 0.147218,
+     "ci95_pp": [
+      -0.106889,
+      0.016007
+     ],
+     "cost_commission_pp": 0.146486,
+     "impact_A_pp": 0.001198
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.090992,
+     "t_iid": -2.6525,
+     "t_nw": -2.9523,
+     "p_nw": 0.003154,
+     "ci95_pp": [
+      -0.151401,
+      -0.030583
+     ],
+     "impact_B_eta1_pp": 0.046748,
+     "cost_commission_pp": 0.146486
+    }
+   }
+  },
+  "5000万": {
+   "EM_DEFAULT": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.075324,
+     "t_iid": 2.136,
+     "t_nw": 2.319,
+     "p_nw": 0.020395,
+     "ci95_pp": [
+      0.011661,
+      0.138987
+     ],
+     "cost_commission_pp": 0.026373,
+     "impact_A_pp": 0.001993
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.017059,
+     "t_iid": 0.4875,
+     "t_nw": 0.5378,
+     "p_nw": 0.590745,
+     "ci95_pp": [
+      -0.045118,
+      0.079237
+     ],
+     "impact_B_eta1_pp": 0.060257,
+     "cost_commission_pp": 0.026373
+    }
+   },
+   "ZY_DEFAULT": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.073601,
+     "t_iid": 2.0876,
+     "t_nw": 2.2685,
+     "p_nw": 0.023298,
+     "ci95_pp": [
+      0.01001,
+      0.137192
+     ],
+     "cost_commission_pp": 0.028095,
+     "impact_A_pp": 0.001993
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.015337,
+     "t_iid": 0.4383,
+     "t_nw": 0.4838,
+     "p_nw": 0.628525,
+     "ci95_pp": [
+      -0.046796,
+      0.077469
+     ],
+     "impact_B_eta1_pp": 0.060257,
+     "cost_commission_pp": 0.028095
+    }
+   },
+   "QMT_WAN1": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.078683,
+     "t_iid": 2.2296,
+     "t_nw": 2.4126,
+     "p_nw": 0.015839,
+     "ci95_pp": [
+      0.014761,
+      0.142605
+     ],
+     "cost_commission_pp": 0.023013,
+     "impact_A_pp": 0.001993
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.020419,
+     "t_iid": 0.5832,
+     "t_nw": 0.6419,
+     "p_nw": 0.520934,
+     "ci95_pp": [
+      -0.041928,
+      0.082766
+     ],
+     "impact_B_eta1_pp": 0.060257,
+     "cost_commission_pp": 0.023013
+    }
+   },
+   "QMT_WAN1_NO5": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.084118,
+     "t_iid": 2.3859,
+     "t_nw": 2.5903,
+     "p_nw": 0.00959,
+     "ci95_pp": [
+      0.020467,
+      0.147769
+     ],
+     "cost_commission_pp": 0.017578,
+     "impact_A_pp": 0.001993
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.025854,
+     "t_iid": 0.7389,
+     "t_nw": 0.8148,
+     "p_nw": 0.415172,
+     "ci95_pp": [
+      -0.036335,
+      0.088042
+     ],
+     "impact_B_eta1_pp": 0.060257,
+     "cost_commission_pp": 0.017578
+    }
+   },
+   "STRESS_03": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.04479,
+     "t_iid": -1.2701,
+     "t_nw": -1.4005,
+     "p_nw": 0.161352,
+     "ci95_pp": [
+      -0.107472,
+      0.017892
+     ],
+     "cost_commission_pp": 0.146486,
+     "impact_A_pp": 0.001993
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.103054,
+     "t_iid": -2.9406,
+     "t_nw": -3.2798,
+     "p_nw": 0.001039,
+     "ci95_pp": [
+      -0.164639,
+      -0.041469
+     ],
+     "impact_B_eta1_pp": 0.060257,
+     "cost_commission_pp": 0.146486
+    }
+   }
+  },
+  "10000万": {
+   "EM_DEFAULT": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.075983,
+     "t_iid": 2.1135,
+     "t_nw": 2.3061,
+     "p_nw": 0.021104,
+     "ci95_pp": [
+      0.011404,
+      0.140562
+     ],
+     "cost_commission_pp": 0.024903,
+     "impact_A_pp": 0.003983
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.00518,
+     "t_iid": -0.1453,
+     "t_nw": -0.1608,
+     "p_nw": 0.872265,
+     "ci95_pp": [
+      -0.068332,
+      0.057971
+     ],
+     "impact_B_eta1_pp": 0.085146,
+     "cost_commission_pp": 0.024903
+    }
+   },
+   "ZY_DEFAULT": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.073541,
+     "t_iid": 2.0456,
+     "t_nw": 2.2328,
+     "p_nw": 0.025565,
+     "ci95_pp": [
+      0.008984,
+      0.138099
+     ],
+     "cost_commission_pp": 0.027344,
+     "impact_A_pp": 0.003983
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.007622,
+     "t_iid": -0.2137,
+     "t_nw": -0.2366,
+     "p_nw": 0.812967,
+     "ci95_pp": [
+      -0.070762,
+      0.055518
+     ],
+     "impact_B_eta1_pp": 0.085146,
+     "cost_commission_pp": 0.027344
+    }
+   },
+   "QMT_WAN1": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.082089,
+     "t_iid": 2.2825,
+     "t_nw": 2.4861,
+     "p_nw": 0.012916,
+     "ci95_pp": [
+      0.017371,
+      0.146808
+     ],
+     "cost_commission_pp": 0.018796,
+     "impact_A_pp": 0.003983
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.000926,
+     "t_iid": 0.026,
+     "t_nw": 0.0287,
+     "p_nw": 0.977092,
+     "ci95_pp": [
+      -0.062291,
+      0.064143
+     ],
+     "impact_B_eta1_pp": 0.085146,
+     "cost_commission_pp": 0.018796
+    }
+   },
+   "QMT_WAN1_NO5": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.083307,
+     "t_iid": 2.317,
+     "t_nw": 2.5258,
+     "p_nw": 0.011542,
+     "ci95_pp": [
+      0.018663,
+      0.147952
+     ],
+     "cost_commission_pp": 0.017578,
+     "impact_A_pp": 0.003983
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": 0.002144,
+     "t_iid": 0.0601,
+     "t_nw": 0.0665,
+     "p_nw": 0.946981,
+     "ci95_pp": [
+      -0.061045,
+      0.065333
+     ],
+     "impact_B_eta1_pp": 0.085146,
+     "cost_commission_pp": 0.017578
+    }
+   },
+   "STRESS_03": {
+    "A_amihud": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.045601,
+     "t_iid": -1.268,
+     "t_nw": -1.4032,
+     "p_nw": 0.160553,
+     "ci95_pp": [
+      -0.109295,
+      0.018094
+     ],
+     "cost_commission_pp": 0.146486,
+     "impact_A_pp": 0.003983
+    },
+    "B_sqrt_eta1": {
+     "n": 237,
+     "n_valid": 237,
+     "has_nonfinite": false,
+     "insufficient": false,
+     "net_pp": -0.126764,
+     "t_iid": -3.5471,
+     "t_nw": -3.9597,
+     "p_nw": 7.5e-05,
+     "ci95_pp": [
+      -0.189511,
+      -0.064017
+     ],
+     "impact_B_eta1_pp": 0.085146,
+     "cost_commission_pp": 0.146486
+    }
+   }
+  }
+ },
+ "participation": [
+  {
+   "capital": 10000000.0,
+   "k_median": 1798,
+   "f_inv_median": 0.875664,
+   "participation_median": 7.800936145940796e-05,
+   "participation_p90": 0.00024034644884523003,
+   "participation_p99": 0.0006442729872651369,
+   "participation_max": 0.0009998248424381018
+  },
+  {
+   "capital": 30000000.0,
+   "k_median": 1833,
+   "f_inv_median": 0.951901,
+   "participation_median": 0.00022715140949003398,
+   "participation_p90": 0.0007188452989794313,
+   "participation_p99": 0.001932818940840653,
+   "participation_max": 0.002999474760144949
+  },
+  {
+   "capital": 50000000.0,
+   "k_median": 1833,
+   "f_inv_median": 0.970753,
+   "participation_median": 0.0003785856533795595,
+   "participation_p90": 0.0011980754788964987,
+   "participation_p99": 0.003221364766359315,
+   "participation_max": 0.0049991244450211525
+  },
+  {
+   "capital": 100000000.0,
+   "k_median": 1834,
+   "f_inv_median": 0.985465,
+   "participation_median": 0.000757171306759119,
+   "participation_p90": 0.0023961509577929974,
+   "participation_p99": 0.00644272953271863,
+   "participation_max": 0.009998248890042305
+  }
+ ],
+ "breakeven_eta": [
+  {
+   "capital": 10000000.0,
+   "breakeven_eta": 1.2978
+  },
+  {
+   "capital": 30000000.0,
+   "breakeven_eta": 1.5034
+  },
+  {
+   "capital": 50000000.0,
+   "breakeven_eta": 1.25
+  },
+  {
+   "capital": 100000000.0,
+   "breakeven_eta": 0.8924
+  }
+ ],
+ "criteria": {
+  "pass_A_by_capital": [
+   false,
+   true,
+   true,
+   true
+  ],
+  "pass_B_by_capital": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "verdict": "SURGE_SCALE_DEPENDENT"
+ },
+ "segments_descriptive": {
+  "2007-2015": {
+   "1000万": {
+    "n": 108,
+    "n_valid": 108,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "net_pp": 0.113457,
+    "t_iid": 2.4993,
+    "t_nw": 2.6337,
+    "p_nw": 0.008446,
+    "ci95_pp": [
+     0.029023,
+     0.19789
+    ]
+   },
+   "3000万": {
+    "n": 108,
+    "n_valid": 108,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "net_pp": 0.141248,
+    "t_iid": 2.9128,
+    "t_nw": 3.0852,
+    "p_nw": 0.002034,
+    "ci95_pp": [
+     0.051514,
+     0.230982
+    ]
+   },
+   "5000万": {
+    "n": 108,
+    "n_valid": 108,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "net_pp": 0.142131,
+    "t_iid": 2.8918,
+    "t_nw": 3.064,
+    "p_nw": 0.002184,
+    "ci95_pp": [
+     0.051213,
+     0.23305
+    ]
+   },
+   "10000万": {
+    "n": 108,
+    "n_valid": 108,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "net_pp": 0.140056,
+    "t_iid": 2.8218,
+    "t_nw": 2.9909,
+    "p_nw": 0.002782,
+    "ci95_pp": [
+     0.048273,
+     0.231839
+    ]
+   }
+  },
+  "2016-2026": {
+   "1000万": {
+    "n": 129,
+    "n_valid": 129,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "net_pp": -0.029784,
+    "t_iid": -0.6639,
+    "t_nw": -0.7725,
+    "p_nw": 0.439844,
+    "ci95_pp": [
+     -0.105356,
+     0.045789
+    ]
+   },
+   "3000万": {
+    "n": 129,
+    "n_valid": 129,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "net_pp": 0.010865,
+    "t_iid": 0.2249,
+    "t_nw": 0.2608,
+    "p_nw": 0.794265,
+    "ci95_pp": [
+     -0.070798,
+     0.092528
+    ]
+   },
+   "5000万": {
+    "n": 129,
+    "n_valid": 129,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "net_pp": 0.019392,
+    "t_iid": 0.3903,
+    "t_nw": 0.4535,
+    "p_nw": 0.650172,
+    "ci95_pp": [
+     -0.064414,
+     0.103198
+    ]
+   },
+   "10000万": {
+    "n": 129,
+    "n_valid": 129,
+    "has_nonfinite": false,
+    "insufficient": false,
+    "net_pp": 0.02234,
+    "t_iid": 0.4377,
+    "t_nw": 0.5098,
+    "p_nw": 0.610184,
+    "ci95_pp": [
+     -0.063547,
+     0.108227
+    ]
+   }
+  }
+ },
+ "honest_limits": [
+  "冲击仍是**模型**，无盘中数据；两模型在 exQ5 上相差 25 倍",
+  "显著 ≠ 可交易（纪律 7）；全部样本内",
+  "分段只作描述性：阶段 P 已确立两段各自显著 ≠ 稳定",
+  "⚠️ 预期方向部分建立在上一轮券商费率测算（情景分析、无预登记）之上",
+  "最低佣金按『每只一个委托』计，实盘合并委托会更低 → 偏保守"
+ ],
+ "runtime_sec": 282.1
+}
