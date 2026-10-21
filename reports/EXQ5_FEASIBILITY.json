@@ -1,0 +1,36 @@
+{
+ "script": "check_exq5_feasibility",
+ "purpose": "从阶段 F 的构造代数推导「排除 Q5」的 alpha 与容量；不是独立检验",
+ "identity": "alpha_exQ5 ≡ 0.25 × (R_bench − R_Q5)（严格恒等式，非发现）",
+ "n_months": 237,
+ "alpha": {
+  "mean_pp": 0.230703,
+  "t_nw": 6.357163,
+  "p": 2.0551348923933684e-10
+ },
+ "identity_max_abs_diff": 6.808789643208968e-17,
+ "turnover_approx_one_side": 0.183252,
+ "capacity": {
+  "n_hold_median": 1948,
+  "w_1lot_median": 2915001.0,
+  "w_1lot_p90": 7342371.0,
+  "w_equal_median": 57831263.99999999,
+  "w_equal_p90": 625052613.0,
+  "lot_coverage": 0.997367
+ },
+ "D3_segment": {
+  "2007-2015": {
+   "n": 108,
+   "mean_pp": 0.237627,
+   "t_nw": 5.192768
+  },
+  "2016-2026": {
+   "n": 129,
+   "mean_pp": 0.224905,
+   "t_nw": 4.117268
+  }
+ },
+ "econ_abs_0_30pp": false,
+ "econ_net_0_1pct": true,
+ "verdict_hint": "significant_but_capital_blocked"
+}
