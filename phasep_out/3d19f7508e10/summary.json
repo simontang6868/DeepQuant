@@ -1,0 +1,179 @@
+{
+ "experiment": "phasep-segment-equality-v1",
+ "prereg_sha256": "3d19f7508e109d17420f2d13cfb811b893e68c555ed6e6130ceadcce465e15d9",
+ "kind": "confirmatory（主检验）+ exploratory（副检验）",
+ "frozen_items": {
+  "split_date": "2016-01-01",
+  "nw_lag": 3,
+  "t_crit": 1.96,
+  "finite_sample_c": "n/(n-2)",
+  "mde_coefficient": 2.8016
+ },
+ "main_series": {
+  "path": "phaseo_out\\ac7aa2830ab0\\monthly.csv",
+  "column": "net_BASE_3000w",
+  "sha256": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+  "phase_o_prereg": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+  "n": 237
+ },
+ "reproduction_gate": {
+  "target": "phaseo_out/ac7aa2830ab0/summary.json::segments_BASE_3000w",
+  "passed": true,
+  "segments": {
+   "2007-2015": {
+    "n": 108,
+    "mean_pp": 0.143784,
+    "t_nw": 3.3173
+   },
+   "2016-2026": {
+    "n": 129,
+    "mean_pp": 0.129408,
+    "t_nw": 2.5813
+   }
+  },
+  "expect": {
+   "2007-2015": {
+    "n": 108,
+    "mean_pp": 0.143784,
+    "t_nw": 3.3173
+   },
+   "2016-2026": {
+    "n": 129,
+    "mean_pp": 0.129408,
+    "t_nw": 2.5813
+   }
+  },
+  "cross_path_diff": {
+   "two_mean_subtraction": -0.0143767,
+   "regression_beta1": -0.0143767,
+   "abs_gap": 0.0
+  }
+ },
+ "main_test": {
+  "n": 237,
+  "lag": 3,
+  "alpha_early_pp": 0.143784,
+  "alpha_late_pp": 0.129408,
+  "beta1_pp": -0.014377,
+  "se_nw_pp": 0.066608,
+  "t_nw": -0.2158,
+  "p": 0.829112,
+  "ci95_pp": [
+   -0.144928,
+   0.116175
+  ],
+  "mde_pp": 0.186609,
+  "abs_ratio_over_mde": 0.077,
+  "power_at_observed": 0.0553,
+  "power_against_complete_vanishing": 0.5788,
+  "verdict": "SEGMENT_DIFFERENCE_NOT_DETECTED",
+  "detected": false
+ },
+ "positive_control": {
+  "series": "phasel_out/9ffc3710cf6f/monthly.csv::alpha_v1_pp",
+  "reported_decay_pp": -0.129203,
+  "beta1_pp": -0.129203,
+  "se_nw_pp": 0.065902,
+  "t_nw": -1.9605,
+  "p": 0.049934,
+  "ci95_pp": [
+   -0.258371,
+   -3.5e-05
+  ],
+  "mde_pp": 0.184631,
+  "power_at_observed": 0.5003,
+  "margin_over_crit": 0.0005,
+  "detected": true,
+  "power_note": "⚠️ 正对照**擦边通过**（|t| − 1.96 = +0.0005，事后功效仅 50%，等于抛硬币）→ 检验对 0.13pp 量级只有约五成把握，主检验的「未检出」**仅有弱信息量**"
+ },
+ "secondary_exploratory": {
+  "S1": {
+   "label": "exQ5 毛 alpha（V1，未扣费）",
+   "source": "phasei_out\\8f5c35121fdb\\monthly.csv::alpha_v1_pp",
+   "n": 237,
+   "alpha_early_pp": 0.171527,
+   "alpha_late_pp": 0.156615,
+   "beta1_pp": -0.014912,
+   "se_pp": 0.07108,
+   "t_nw": -0.2098,
+   "p": 0.8338,
+   "ci95_pp": [
+    -0.154229,
+    0.124404
+   ],
+   "mde_pp": 0.199137,
+   "abs_ratio_over_mde": 0.0749,
+   "scale_applied": 1.0,
+   "power_at_observed": 0.0551
+  },
+  "S2": {
+   "label": "exQ5 净（STRESS @3000万）",
+   "source": "phaseo_out\\ac7aa2830ab0\\monthly.csv::net_STRESS_3000w",
+   "n": 237,
+   "alpha_early_pp": 0.035404,
+   "alpha_late_pp": 0.048299,
+   "beta1_pp": 0.012894,
+   "se_pp": 0.066133,
+   "t_nw": 0.195,
+   "p": 0.8454,
+   "ci95_pp": [
+    -0.116727,
+    0.142516
+   ],
+   "mde_pp": 0.185279,
+   "abs_ratio_over_mde": 0.0696,
+   "scale_applied": 1.0,
+   "power_at_observed": 0.0544
+  },
+  "S3": {
+   "label": "MAX5 层内价差 Δ（阶段 F）",
+   "source": "phasef_out\\aec46d88bbda\\monthly.csv::delta",
+   "n": 237,
+   "alpha_early_pp": 1.272247,
+   "alpha_late_pp": 0.295303,
+   "beta1_pp": -0.976943,
+   "se_pp": 0.428622,
+   "t_nw": -2.2793,
+   "p": 0.0227,
+   "ci95_pp": [
+    -1.817042,
+    -0.136845
+   ],
+   "mde_pp": 1.200827,
+   "abs_ratio_over_mde": 0.8136,
+   "scale_applied": 100.0,
+   "power_at_observed": 0.6252
+  },
+  "S4": {
+   "label": "SURGE 可成交 alpha（=正对照）",
+   "source": "phasel_out\\9ffc3710cf6f\\monthly.csv::alpha_v1_pp",
+   "n": 237,
+   "alpha_early_pp": 0.176383,
+   "alpha_late_pp": 0.04718,
+   "beta1_pp": -0.129203,
+   "se_pp": 0.065902,
+   "t_nw": -1.9605,
+   "p": 0.0499,
+   "ci95_pp": [
+    -0.258371,
+    -3.5e-05
+   ],
+   "mde_pp": 0.184631,
+   "abs_ratio_over_mde": 0.6998,
+   "scale_applied": 1.0,
+   "power_at_observed": 0.5003
+  }
+ },
+ "unit_and_definition_notes": [
+  "副检验 S3（阶段F delta）产物单位为**小数**，本阶段 ×100 转为 pp；已用门控核对缩放后全样本均值 = 阶段F main.mean_pp 0.7404926",
+  "副检验 S2 与阶段 J segments_at_best 差约 0.0002pp：阶段 J 用逐月 Amihud 冲击，阶段 O 用 3,000 万档的常量上界 0.000784pp，故略有差异（可解释）",
+  "所有报告的 se / MDE / CI 与所在列**同单位**（pp）"
+ ],
+ "honest_limits": [
+  "主检验的「未检出」不等于「证明相等」（纪律 8）",
+  "副检验全部为描述性，不参与判定、不参与多重检验校正",
+  "本阶段只读已冻结产物，不重算选股/组合",
+  "所有序列均为样本内；前瞻样本外验证仍然缺失"
+ ],
+ "runtime_sec": 0.0
+}

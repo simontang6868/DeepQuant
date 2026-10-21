@@ -1,0 +1,15 @@
+{
+ "experiment": "phasep-segment-equality-v1",
+ "prereg_sha256": "3d19f7508e109d17420f2d13cfb811b893e68c555ed6e6130ceadcce465e15d9",
+ "files": {
+  "monthly.csv": {
+   "sha256": "cc84bfe52090b64364927cc64887313505481ba3970120ec76d7c24fcb15f51c",
+   "bytes": 6399
+  },
+  "summary.json": {
+   "sha256": "c19f898cba0e08d28775a5e6eae65bba6eb1f961addfe89314e8a658a97b47fb",
+   "bytes": 4863
+  }
+ },
+ "runtime_sec": 0.0
+}
