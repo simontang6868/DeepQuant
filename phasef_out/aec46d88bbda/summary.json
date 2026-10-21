@@ -1,0 +1,229 @@
+{
+  "experiment": "phasef-max5-within-vol-v1.0",
+  "prereg_sha256": "aec46d88bbdaa207c14f183bd9275f1952f21b66a15fd762aea127aefd22071e",
+  "question": "在波动率相同的股票之间，MAX5 还能预测收益吗？",
+  "rationale": "MAX5 vs 21 日 VOL 秩相关 0.88（0.88²≈0.77）；Gate 4 已 FAIL，故必须分层",
+  "params": {
+    "win": 21,
+    "top_n": 5,
+    "min_valid": 19,
+    "n_layer": 5,
+    "n_group": 5,
+    "min_per_group": 5,
+    "min_layers": 3,
+    "nw_lag": 3,
+    "min_n": 150,
+    "t_crit": 1.96,
+    "econ_min_pp": 0.3
+  },
+  "window": {
+    "start": "2007-01-01",
+    "end_signal": "2026-09-30",
+    "end_hold": "2026-10-31"
+  },
+  "verify": {
+    "prereg_sha256": "aec46d88bbdaa207c14f183bd9275f1952f21b66a15fd762aea127aefd22071e",
+    "feas_rank_corr_vs_vol": 0.8795603866240713,
+    "exec_acceptance": {
+      "n_have": 5472,
+      "n_target": 5472
+    },
+    "n_qfq_files": 5444,
+    "params_hardcoded": true
+  },
+  "max5_selfcheck": {
+    "got_pp": 3.2323,
+    "expected_pp": 3.232335533043719,
+    "rel_diff": 0.0
+  },
+  "main": {
+    "n": 237,
+    "mean": 0.0074049258,
+    "mean_pp": 0.7404925843,
+    "se_nw": 0.0021724394,
+    "se_nw_pp": 0.2172439412,
+    "t_nw": 3.4085764613,
+    "p": 0.0006530278,
+    "lag": 3,
+    "n_eff": 234,
+    "variance_fell_back_to_g0": false,
+    "judgement": {
+      "verdict": "MAX5_EFFECT_CONFIRMED",
+      "rule_hits": [
+        "n=237 >= 150",
+        "|NW t|=3.4086 >= 1.96",
+        "Δ=+0.7405pp >= 0.3pp，方向：低 MAX5 跑赢（文献方向）"
+      ]
+    }
+  },
+  "descriptive_raw_max5": {
+    "n": 237,
+    "mean": 0.0107995736,
+    "mean_pp": 1.0799573579,
+    "se_nw": 0.0025957415,
+    "se_nw_pp": 0.2595741467,
+    "t_nw": 4.1604966112,
+    "p": 3.17556e-05,
+    "lag": 3,
+    "n_eff": 234,
+    "variance_fell_back_to_g0": false,
+    "note": "不分层的原始 MAX5 价差，仅对照，不参与判定"
+  },
+  "absorption": {
+    "raw_pp": 1.079957,
+    "within_vol_pp": 0.740493,
+    "ratio": 0.685668
+  },
+  "diagnostics": {
+    "D1_by_layer": {
+      "L1": {
+        "n_months": 237,
+        "mean_pp": -0.002923
+      },
+      "L2": {
+        "n_months": 237,
+        "mean_pp": 0.002595
+      },
+      "L3": {
+        "n_months": 237,
+        "mean_pp": 0.007681
+      },
+      "L4": {
+        "n_months": 237,
+        "mean_pp": 0.010528
+      },
+      "L5": {
+        "n_months": 237,
+        "mean_pp": 0.019155
+      }
+    },
+    "D3_segment": {
+      "2007-2015": {
+        "n": 108,
+        "mean_pp": 1.272247,
+        "t_nw": 3.606448
+      },
+      "2016-2026": {
+        "n": 129,
+        "mean_pp": 0.295303,
+        "t_nw": 1.222053
+      }
+    },
+    "D4_yearly": {
+      "2007": {
+        "n": 12,
+        "delta_pp": 1.288052
+      },
+      "2008": {
+        "n": 12,
+        "delta_pp": 2.067849
+      },
+      "2009": {
+        "n": 12,
+        "delta_pp": 1.533136
+      },
+      "2010": {
+        "n": 12,
+        "delta_pp": 0.601997
+      },
+      "2011": {
+        "n": 12,
+        "delta_pp": 1.307823
+      },
+      "2012": {
+        "n": 12,
+        "delta_pp": 0.817932
+      },
+      "2013": {
+        "n": 12,
+        "delta_pp": -0.148899
+      },
+      "2014": {
+        "n": 12,
+        "delta_pp": 0.568735
+      },
+      "2015": {
+        "n": 12,
+        "delta_pp": 3.413594
+      },
+      "2016": {
+        "n": 12,
+        "delta_pp": 0.922994
+      },
+      "2017": {
+        "n": 12,
+        "delta_pp": -0.285389
+      },
+      "2018": {
+        "n": 12,
+        "delta_pp": 1.240586
+      },
+      "2019": {
+        "n": 12,
+        "delta_pp": 0.337426
+      },
+      "2020": {
+        "n": 12,
+        "delta_pp": -0.651794
+      },
+      "2021": {
+        "n": 12,
+        "delta_pp": -0.122043
+      },
+      "2022": {
+        "n": 12,
+        "delta_pp": 1.857616
+      },
+      "2023": {
+        "n": 12,
+        "delta_pp": -0.64032
+      },
+      "2024": {
+        "n": 12,
+        "delta_pp": 0.832529
+      },
+      "2025": {
+        "n": 12,
+        "delta_pp": -0.77658
+      },
+      "2026": {
+        "n": 9,
+        "delta_pp": 0.612645
+      }
+    },
+    "D5_vol_clean": {
+      "q1_vol_median": 0.026320648656580688,
+      "pool_vol_median": 0.02694173413252625
+    },
+    "D6_rank_corr": {
+      "mean": 0.87956,
+      "min": 0.694884,
+      "max": 0.969736
+    }
+  },
+  "turnover_cost": {
+    "one_side_per_month": 0.614776,
+    "cost": {
+      "0.1pct": {
+        "cost_pp_month": 0.123,
+        "cost_pp_year": 1.4755,
+        "net_pp_month": 0.6175,
+        "t_net": 2.8368
+      },
+      "0.3pct": {
+        "cost_pp_month": 0.3689,
+        "cost_pp_year": 4.4264,
+        "net_pp_month": 0.3716,
+        "t_net": 1.7071
+      }
+    }
+  },
+  "limitations": [
+    "不做个股层面涨停剔除（分组价差是统计量，非可交易组合）；阶段 C 已量化 −5.83%/−7.09%",
+    "分层用等频排序分段，层内 Q1/Q5 各约 n_pool/25 只",
+    "MAX5 用 21 日前 5 大日收益（Zhu & Zhang 2020 的中国口径），不提供敏感性变体",
+    "冲击成本未建模；ST 无历史标记；after_last_data 中退市与抓取截断不可区分",
+    "2005-2006 不可用（左截断）"
+  ],
+  "note": "分层后不显著 ⇒ MAX_EFFECT_ABSORBED_BY_VOL，这条线关闭。"
+}

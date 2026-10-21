@@ -1,0 +1,16 @@
+{
+  "experiment": "phasef-max5-within-vol-v1.0",
+  "prereg_sha256": "aec46d88bbdaa207c14f183bd9275f1952f21b66a15fd762aea127aefd22071e",
+  "script_sha256": "362aebbf58ad9fde6425b848a640cfbe3ce979aad9d48dda7a6c05eb5ec3af67",
+  "files": {
+    "monthly.csv": {
+      "sha256": "d8bbd55dad2ee752882411d196269358386fbe1b6f07004406ae708d2f042b98",
+      "bytes": 31427
+    },
+    "summary.json": {
+      "sha256": "a4fad43ab7ec1d2abe82506fef3ba62e8a65acb7d6878d3d908b114ec74b875a",
+      "bytes": 5265
+    }
+  },
+  "runtime_sec": 43.3
+}
