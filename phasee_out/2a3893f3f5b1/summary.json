@@ -1,0 +1,216 @@
+{
+  "experiment": "phasee-longonly-alpha-v1.0",
+  "prereg_sha256": "2a3893f3f5b1fee006477b920fe93d40de72e61783460b49d7a6c635460c023b",
+  "phase_c_prereg_sha256": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+  "question": "去掉空头腿后，反转还剩多少 alpha？",
+  "benchmark": "池内等权（当月 n_pool 全部标的，同 fwd 定义）",
+  "alpha_definition": "R_long − R_bench，算术差",
+  "v0_reproduction": {
+    "n": {
+      "expected": 237,
+      "actual": 237,
+      "ok": true
+    },
+    "mean_d": {
+      "expected": 0.65818965,
+      "actual": 0.65818965,
+      "ok": true
+    },
+    "mean_spread": {
+      "expected": 1.3163793,
+      "actual": 1.3163793,
+      "ok": true
+    },
+    "t_stat": {
+      "expected": 4.1110485798,
+      "actual": 4.11104858,
+      "ok": true
+    }
+  },
+  "reproduction_note": "预登记 §1.1 原写'逐月比对 longs_c 集合'，但阶段 C 产物只存逐月汇总、未存持仓明细。改用 mean(d)/spread/t 逐位复现——d 是持仓的确定性函数，d 一致即持仓一致。",
+  "window": {
+    "start": "2007-01-01",
+    "end_signal": "2026-09-30",
+    "end_hold": "2026-10-31"
+  },
+  "params": {
+    "k_frac": 0.2,
+    "min_listed_days": 252,
+    "nw_lag": 3,
+    "min_n": 150,
+    "t_crit": 1.96,
+    "econ_min_pp": 0.3,
+    "beta_neutralized": false,
+    "lot": 100
+  },
+  "verify": {
+    "prereg_sha256": "2a3893f3f5b1fee006477b920fe93d40de72e61783460b49d7a6c635460c023b",
+    "phase_c_prereg_sha256": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+    "exec_acceptance": {
+      "n_have": 5472,
+      "n_target": 5472
+    },
+    "n_qfq_files": 5444,
+    "params_hardcoded": true
+  },
+  "main": {
+    "n": 237,
+    "mean": 0.0027669859,
+    "mean_pp": 0.2766985907,
+    "se_nw": 0.0014552975,
+    "se_nw_pp": 0.1455297492,
+    "t_nw": 1.9013197797,
+    "p": 0.0572601398,
+    "lag": 3,
+    "n_eff": 234,
+    "variance_fell_back_to_g0": false,
+    "judgement": {
+      "verdict": "LONGONLY_ALPHA_NOT_DETECTED",
+      "rule_hits": [
+        "n=237 >= 150",
+        "|NW t|=1.9013 < 1.96",
+        "|alpha|=0.2767pp"
+      ]
+    }
+  },
+  "turnover_cost": {
+    "one_side_per_month": 0.818359,
+    "cost": {
+      "0.1pct": {
+        "cost_pp_month": 0.1637,
+        "cost_pp_year": 1.9641,
+        "net_pp_month": 0.113,
+        "t_net": 0.7398
+      },
+      "0.3pct": {
+        "cost_pp_month": 0.491,
+        "cost_pp_year": 5.8922,
+        "net_pp_month": -0.2143,
+        "t_net": -1.4027
+      }
+    }
+  },
+  "capacity": {
+    "w_1lot_median": 723523.0,
+    "w_1lot_p90": 2293929.0,
+    "w_equal_median": 5555718.0,
+    "w_equal_p90": 60102000.0,
+    "lot_coverage": 0.996834
+  },
+  "diagnostics": {
+    "D1_mean_r_long_pp": 1.733589,
+    "D1_mean_r_bench_pp": 1.45689,
+    "D2_win_ratio": 0.50211,
+    "D3_segment": {
+      "2007-2015": {
+        "n": 108,
+        "alpha_pp": 0.534561,
+        "t": 2.291299,
+        "nw_t": 2.263112
+      },
+      "2016-2026": {
+        "n": 129,
+        "alpha_pp": 0.060814,
+        "t": 0.303383,
+        "nw_t": 0.358589
+      }
+    },
+    "D4_yearly": {
+      "2007": {
+        "n": 12,
+        "alpha_pp": 0.957655
+      },
+      "2008": {
+        "n": 12,
+        "alpha_pp": 0.922018
+      },
+      "2009": {
+        "n": 12,
+        "alpha_pp": 0.123662
+      },
+      "2010": {
+        "n": 12,
+        "alpha_pp": 0.351233
+      },
+      "2011": {
+        "n": 12,
+        "alpha_pp": 0.721617
+      },
+      "2012": {
+        "n": 12,
+        "alpha_pp": 0.860375
+      },
+      "2013": {
+        "n": 12,
+        "alpha_pp": -0.217573
+      },
+      "2014": {
+        "n": 12,
+        "alpha_pp": -0.265898
+      },
+      "2015": {
+        "n": 12,
+        "alpha_pp": 1.357958
+      },
+      "2016": {
+        "n": 12,
+        "alpha_pp": 0.072725
+      },
+      "2017": {
+        "n": 12,
+        "alpha_pp": -0.409027
+      },
+      "2018": {
+        "n": 12,
+        "alpha_pp": 0.563728
+      },
+      "2019": {
+        "n": 12,
+        "alpha_pp": 0.471916
+      },
+      "2020": {
+        "n": 12,
+        "alpha_pp": -0.306501
+      },
+      "2021": {
+        "n": 12,
+        "alpha_pp": -0.548741
+      },
+      "2022": {
+        "n": 12,
+        "alpha_pp": 0.44302
+      },
+      "2023": {
+        "n": 12,
+        "alpha_pp": -0.785575
+      },
+      "2024": {
+        "n": 12,
+        "alpha_pp": 0.590709
+      },
+      "2025": {
+        "n": 12,
+        "alpha_pp": -0.122279
+      },
+      "2026": {
+        "n": 9,
+        "alpha_pp": 0.911698
+      }
+    },
+    "D5_beta": 1.034549,
+    "D5_corr": 0.971037,
+    "D6_alpha_vs_spread": {
+      "alpha_pp": 0.276699,
+      "spread_pp": 1.316379
+    }
+  },
+  "limitations": [
+    "等权基准不是可投资指数（无对应 ETF），系统性偏小盘",
+    "不做 beta 中性化（预登记 §5 划界）；beta>1 时 alpha 含风险补偿",
+    "冲击成本未建模；T+1 未建模",
+    "容量按一手成本算，整手约束下等权需 W≥k×max(lot)",
+    "ST 无历史标记；after_last_data 中退市与抓取截断不可区分",
+    "2005-2006 不可用于跨期比较（左截断）"
+  ],
+  "note": "本实验的 alpha 不是可实现收益；M4 在本实验通过且成本后仍显著之前仍为 ❌。"
+}

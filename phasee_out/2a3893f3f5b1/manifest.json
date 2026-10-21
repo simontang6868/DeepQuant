@@ -1,0 +1,16 @@
+{
+  "experiment": "phasee-longonly-alpha-v1.0",
+  "prereg_sha256": "2a3893f3f5b1fee006477b920fe93d40de72e61783460b49d7a6c635460c023b",
+  "script_sha256": "f6b1f651fb201230bf9d0beacf84f81dc99842c32c686e8e845eedb5a7f1e7e6",
+  "files": {
+    "monthly.csv": {
+      "sha256": "282bfc94861ad50e5b642fa85fa3b88309511f5685eb060683ee001f6f487e7d",
+      "bytes": 26824
+    },
+    "summary.json": {
+      "sha256": "4eff3f228421d007bc1c2419c60badd5587ecdbd2e133d433d93cbdc34b674eb",
+      "bytes": 5273
+    }
+  },
+  "runtime_sec": 76.2
+}
