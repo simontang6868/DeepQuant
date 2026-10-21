@@ -107,6 +107,19 @@ def read_events_sina(code: str) -> set[str]:
     return out
 
 
+def read_exec_simple(code: str) -> pd.DataFrame | None:
+    """读 EXEC（真不复权）的 date + close。PC2 用它区分"ADJ 重建错误"与"真实行情"。"""
+    p = os.path.join(EXEC_ALL, f"{code}.exec.csv")
+    if not os.path.exists(p):
+        return None
+    try:
+        df = pd.read_csv(p, usecols=lambda c: c in ("date", "close"))
+        df["date"] = pd.to_datetime(df["date"].astype(str))
+        return df.dropna().sort_values("date").reset_index(drop=True)
+    except Exception:  # noqa: BLE001
+        return None
+
+
 # ---------------------------------------------------------------- PC1
 def pc1_prices_positive() -> None:
     """前复权价格必须为正。乘性复权若有加性残留会出负价（P1-2 的历史 bug）。"""
@@ -127,8 +140,79 @@ def pc1_prices_positive() -> None:
 
 
 # ---------------------------------------------------------------- PC2
+# ================================================================ PC2 核心判据
+def pc2_scan(adj: pd.DataFrame, exec_df: pd.DataFrame | None, events: set[str],
+             limit: float, warmup: int = 5, resume_gap: int = 5,
+             fatal_mult: float = 2.2, tol: float = TOL) -> dict:
+    """PC2 的判据，抽成**纯函数**，供主检查与变异测试共用。
+
+    ## 语义（第四版，2026-10-21）
+
+    这条检查抓的是"**有没有未处理的除权**"，不是"涨跌停有没有被违反"。
+    因此它必须区分三件事：
+
+    | 现象 | 判定 | 理由 |
+    |---|---|---|
+    | 非除权日**下跌**超过除权量级 | **FAIL** | 除权必然使价格向下跳，这是 D-1 的形态（000616.SZ 2008-05-09 −37.7%，10送2转3 未复权） |
+    | 非除权日**上涨**超过除权量级，且 EXEC 同日涨同样幅度 | INFO（`up_no_limit`） | **上涨不可能是除权**。EXEC 也跳 → 真实行情（重组复牌当日无涨跌幅限制，如 000738.SZ 2010-10-15 +30.27%） |
+    | 非除权日**上涨**超过除权量级，但 EXEC 没跳 | **FAIL** | ADJ 自己造出来的涨幅 → ADJ 重建错误 |
+
+    ## 为什么第三版（只用 |ret|）不够
+
+    第三版把"上涨"和"下跌"一视同仁，于是在全 A 5,444 只上把 000738.SZ 的重组复牌
+    (+30.27%) 判成 FAIL。**除权不可能让价格上涨**，这条常识第三版没用上。
+    只看 |ret| 的检查在 549 只池上碰巧干净，一扩到全 A 就暴露——
+    这也是"检查器自己写错、通过率是假的"的第 N 次。
+    """
+    if adj is None or len(adj) < 30:
+        return {"fatal": [], "up_no_limit": [], "warn": 0}
+
+    px = adj["close"].astype(float).values
+    dates = pd.to_datetime(adj["date"])
+    ret = px[1:] / px[:-1] - 1.0
+    dstr = dates.dt.strftime("%Y-%m-%d").values
+    gap = dates.diff().dt.days.values[1:]
+    fatal_lim, warn_lim = limit * fatal_mult, limit * tol
+
+    ex_ret: dict[str, float] = {}
+    if exec_df is not None and len(exec_df) >= 2:
+        ep = exec_df["close"].astype(float).values
+        ed = exec_df["date"].dt.strftime("%Y-%m-%d").values
+        r = ep[1:] / ep[:-1] - 1.0
+        ex_ret = {ed[i]: float(r[i - 1]) for i in range(1, len(r) + 1)}
+
+    fatal, up_no_limit, warn = [], [], 0
+    for i in range(warmup, len(ret) + 1):
+        d = str(dstr[i])
+        if d in events or str(dstr[i - 1]) in events:      # 除权日本身就要跳
+            continue
+        g = gap[i - 1]
+        if not (g == g) or g > resume_gap:                  # 长期停牌后复牌
+            continue
+        r = float(ret[i - 1])
+        a = abs(r)
+        if a <= warn_lim:
+            continue
+        if a <= fatal_lim:
+            warn += 1
+            continue
+        if r < 0:
+            fatal.append({"date": d, "ret": round(r, 4), "lim": round(fatal_lim, 4),
+                          "kind": "ex_div_magnitude_drop"})
+            continue
+        er = ex_ret.get(d)
+        if er is not None and abs(er - r) > 0.02:
+            fatal.append({"date": d, "ret": round(r, 4), "lim": round(fatal_lim, 4),
+                          "kind": "adj_vs_exec_mismatch", "exec_ret": round(er, 4)})
+        else:
+            up_no_limit.append({"date": d, "ret": round(r, 4),
+                                "exec_ret": (round(er, 4) if er is not None else None),
+                                "exec_missing": er is None})
+    return {"fatal": fatal, "up_no_limit": up_no_limit, "warn": warn}
+
+
 def pc2_no_limit_violation(sample: int = 250, seed: int = 20261021) -> None:
-    """ADJ 在**非除权日**不得出现"除权量级"的跳变。
+    """ADJ 在**非除权日**不得出现"除权量级"的跳变（判据见 `pc2_scan`）。
 
     ⚠️ 判据设计的三次自纠（保留过程，因为这是本条检查最重要的部分）：
 
@@ -140,45 +224,36 @@ def pc2_no_limit_violation(sample: int = 250, seed: int = 20261021) -> None:
        这说明：拿"涨跌停"当标尺抓不到真正的错误，只会抓到**涨跌停价四舍五入**
        与**复牌/股改无限制**的噪声。
 
-    **判据的语义应该是"有没有未处理的除权"**：D-1 那个真实缺陷是 000616.SZ
-    2008-05-09 的 **−37.7%**（10送2转3 未复权，理论 −33.3%）。
-    因此本检查分两档：
-      - **FAIL 档**：|ret| > 涨跌停 × 2.2（主板 22%、双创 44%）—— 这是除权量级；
-      - **WARN 档**：|ret| > 涨跌停原值但不达 FAIL —— 只计数报告，不判失败
-        （含舍入、复牌无限制、ST 摘帽等已知噪声）。
+    4. **2026-10-21 第四次修**：全 A 扩到 5,444 只后出现 1 处 FAIL——
+       000738.SZ 2010-10-15 **+30.27%**，是重组复牌当日无涨跌幅限制的真实行情
+       （EXEC 同日也涨 30.2651%，`adj/exec` 比值恒定 0.956871，ADJ 重建无误）。
+       第三版用 `|ret|` 当标尺，把"上涨"也算进除权量级 → **除权不可能让价格上涨**，
+       这条常识没用上。现改为按方向 + EXEC 交叉判定，见 `pc2_scan` 的语义表。
     """
     paths = sorted(glob.glob(os.path.join(ADJ_ALL, "*.qfq.csv")))
     random.Random(seed).shuffle(paths)
-    fatal, warn, checked = [], 0, 0
+    fatal, up_list, warn, checked = [], [], 0, 0
     for p in paths[:sample]:
         code = os.path.basename(p).replace(".qfq.csv", "")
         df = read_adj(code)
         if df is None or len(df) < 30:
             continue
         checked += 1
-        px = df["close"].astype(float).values
-        dates = df["date"].values
-        ret = px[1:] / px[:-1] - 1.0
-        ev = read_events_sina(code)
-        dstr = pd.Series(dates).dt.strftime("%Y-%m-%d").values
-        gap = pd.Series(dates).diff().dt.days.values[1:]
-        lim = limit_of(code)
-        fatal_lim, warn_lim = lim * 2.2, lim * TOL
-        for i in range(6, len(ret) + 1):          # 前 5 个交易日无涨跌幅限制
-            if dstr[i] in ev or dstr[i - 1] in ev:  # 除权日本身就要跳
-                continue
-            if not (gap[i - 1] == gap[i - 1]) or gap[i - 1] > 5:  # 长期停牌后复牌
-                continue
-            a = abs(float(ret[i - 1]))
-            if a > fatal_lim:
-                fatal.append({"code": code, "date": str(dstr[i]),
-                              "ret": round(float(ret[i - 1]), 4), "lim": fatal_lim})
-            elif a > warn_lim:
-                warn += 1
+        r = pc2_scan(df, read_exec_simple(code), read_events_sina(code), limit_of(code))
+        for f in r["fatal"]:
+            fatal.append({"code": code, **f})
+        for u in r["up_no_limit"]:
+            up_list.append({"code": code, **u})
+        warn += r["warn"]
+    up_desc = ""
+    if up_list:
+        s = up_list[:3]
+        up_desc = (f"；上涨超量级但 EXEC 同幅 {len(up_list)} 处"
+                   f"{('：' + str(s)) if s else ''}（真实复牌/无涨跌幅限制，不判失败）")
     record("PC2", "ADJ 非除权日无除权量级跳变", not fatal,
-           f"抽样 {checked} 只；除权量级(主板>22%、双创>44%)跳变 {len(fatal)} 处"
-           f"{('：' + str(fatal[:4])) if fatal else ''}；"
-           f"贴边噪声(涨跌停~2.2×) {warn} 处（舍入/复牌，不判失败）", checked)
+           f"抽样 {checked} 只；下跌超量级(主板>22%、双创>44%) {len(fatal)} 处"
+           f"{('：' + str(fatal[:4])) if fatal else ''}"
+           f"{up_desc}；贴边噪声 {warn} 处（舍入/复牌，不判失败）", checked)
 
 
 # ---------------------------------------------------------------- PC3
