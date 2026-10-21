@@ -1,0 +1,30 @@
+{
+  "experiment": "phasec-universe-attribution-v1.1",
+  "prereg_sha256": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+  "data": {
+    "adj_dir": "data/qfq_all",
+    "exec_dir": "data/exec_all",
+    "n_adj": 5444,
+    "n_exec_acceptance": {
+      "n_have": 5472,
+      "n_target": 5472,
+      "n_missing": 0,
+      "v2_bad": []
+    }
+  },
+  "files": {
+    "five_cells.csv": {
+      "sha256": "8b63085e64afa85b675ca2e15691c92be45b6ead1242a4d60bbdef6096aff113",
+      "bytes": 123854
+    },
+    "paired_diffs.csv": {
+      "sha256": "50bb98dbd20580ec0497aaefef8eed822d87a640d43585eb5281ce594a26139e",
+      "bytes": 43001
+    },
+    "summary.json": {
+      "sha256": "3a7bda15b13b2476a84a2796baf5dacce1280ac0a4c9a2ada3146b4adeb6e4be",
+      "bytes": 31494
+    }
+  },
+  "runtime_sec": 85.2
+}
