@@ -1,0 +1,16 @@
+{
+ "experiment": "phaseo-fee-convention-v1",
+ "prereg_sha256": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+ "script_sha256": "b95b4bbfd3749b44aaf9ceb2028265d7b517887f73bd8a7d3af1147b345c5947",
+ "files": {
+  "monthly.csv": {
+   "sha256": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+   "bytes": 29949
+  },
+  "summary.json": {
+   "sha256": "05bdc615bece3c2f6a35f4b5f5a989d3ddd23b2ec1e5df1192c3a6dbe8e19329",
+   "bytes": 3844
+  }
+ },
+ "runtime_sec": 136.3
+}

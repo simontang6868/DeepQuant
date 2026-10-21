@@ -1,0 +1,184 @@
+{
+ "experiment": "phaseo-fee-convention-v1",
+ "prereg_sha256": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+ "kind": "正式预登记实验（费率口径为**外生事实**，多口径同时报告非调参）",
+ "frozen_from_phase_I": [
+  "信号 MAX5",
+  "池 as-of全A+252日",
+  "窗口 2007-2026",
+  "构造 排除最高MAX5 20%",
+  "基准 池内等权",
+  "V1 成交约束",
+  "NW(3) 双侧 1.96"
+ ],
+ "fee_conventions": {
+  "BASE": {
+   "commission_bilateral": 0.00025,
+   "stamp_duty_sell_only": 0.0005,
+   "transfer_bilateral": 1e-05,
+   "equivalent_symmetric_one_side": 0.00051,
+   "note": "不对称：印花税仅卖出方"
+  },
+  "STRESS": {
+   "one_side_symmetric": 0.003
+  },
+  "CONSERVATIVE": {
+   "min_commission_yuan_per_trade": 5.0
+  }
+ },
+ "results": {
+  "W_1000万|BASE": {
+   "n": 237,
+   "finv_mean": 0.884015,
+   "cost_pp": 0.019158,
+   "net_pp": 0.125467,
+   "se_nw_pp_input": 0.031351,
+   "se_iid_pp_input": 0.041665,
+   "t_nw": 4.0021,
+   "t_iid": 3.0113,
+   "ci95_nw": [
+    0.06402,
+    0.186915
+   ],
+   "ci95_iid": [
+    0.043803,
+    0.207131
+   ]
+  },
+  "W_1000万|STRESS": {
+   "n": 237,
+   "finv_mean": 0.884015,
+   "cost_pp": 0.112694,
+   "net_pp": 0.031931,
+   "se_nw_pp_input": 0.031124,
+   "se_iid_pp_input": 0.041676,
+   "t_nw": 1.0259,
+   "t_iid": 0.7662,
+   "ci95_nw": [
+    -0.029071,
+    0.092934
+   ],
+   "ci95_iid": [
+    -0.049753,
+    0.113616
+   ]
+  },
+  "W_1000万|CONSERVATIVE": {
+   "n": 237,
+   "finv_mean": 0.884015,
+   "cost_pp": 0.046552,
+   "net_pp": 0.098073,
+   "se_nw_pp_input": 0.031482,
+   "se_iid_pp_input": 0.041716,
+   "t_nw": 3.1152,
+   "t_iid": 2.351,
+   "ci95_nw": [
+    0.036369,
+    0.159778
+   ],
+   "ci95_iid": [
+    0.01631,
+    0.179837
+   ]
+  },
+  "W_3000万|BASE": {
+   "n": 237,
+   "finv_mean": 0.948013,
+   "cost_pp": 0.019158,
+   "net_pp": 0.135959,
+   "se_nw_pp_input": 0.033665,
+   "se_iid_pp_input": 0.044839,
+   "t_nw": 4.0386,
+   "t_iid": 3.0321,
+   "ci95_nw": [
+    0.069976,
+    0.201942
+   ],
+   "ci95_iid": [
+    0.048074,
+    0.223844
+   ]
+  },
+  "W_3000万|STRESS": {
+   "n": 237,
+   "finv_mean": 0.948013,
+   "cost_pp": 0.112694,
+   "net_pp": 0.042423,
+   "se_nw_pp_input": 0.033438,
+   "se_iid_pp_input": 0.044848,
+   "t_nw": 1.2687,
+   "t_iid": 0.9459,
+   "ci95_nw": [
+    -0.023116,
+    0.107962
+   ],
+   "ci95_iid": [
+    -0.045479,
+    0.130324
+   ]
+  },
+  "W_3000万|CONSERVATIVE": {
+   "n": 237,
+   "finv_mean": 0.948013,
+   "cost_pp": 0.023631,
+   "net_pp": 0.131486,
+   "se_nw_pp_input": 0.033718,
+   "se_iid_pp_input": 0.044856,
+   "t_nw": 3.8996,
+   "t_iid": 2.9313,
+   "ci95_nw": [
+    0.0654,
+    0.197573
+   ],
+   "ci95_iid": [
+    0.043569,
+    0.219403
+   ]
+  }
+ },
+ "segments_BASE_3000w": {
+  "2007-2015": {
+   "n": 108,
+   "net_pp": 0.143784,
+   "t_nw": 3.3173,
+   "enough": true
+  },
+  "2016-2026": {
+   "n": 129,
+   "net_pp": 0.129408,
+   "t_nw": 2.5813,
+   "enough": true
+  }
+ },
+ "criteria": {
+  "A_stat": true,
+  "B_stable": true,
+  "C_conservative_positive": true,
+  "D_disclosure_required": true,
+  "verdict": "EXECUTABLE_UNDER_BASE_FEES"
+ },
+ "verdict": "EXECUTABLE_UNDER_BASE_FEES",
+ "breakeven": {
+  "commission_bilateral_pct": 0.3869,
+  "equivalent_symmetric_one_side_pct": 0.4129
+ },
+ "capacity": {
+  "1000万": {
+   "uninvested_median": 0.12319,
+   "weight_mae_pp_median": 0.005273,
+   "covered_median": 0.984514
+  },
+  "3000万": {
+   "uninvested_median": 0.047463,
+   "weight_mae_pp_median": 0.002294,
+   "covered_median": 0.999373
+  }
+ },
+ "reproduction_gate": "V1 alpha 逐月复现阶段 I（max|diff| < 1e-6）",
+ "honest_limits": [
+  "BASE 的 0.025% 佣金是**情景值**，非所有账户可得的报价",
+  "样本内，无前瞻样本外验证",
+  "A∧B∧C 通过**不等于**可交易（纪律 7：显著 ≠ 可交易）",
+  "STRESS 口径下仍不显著，必须同时披露"
+ ]
+}
