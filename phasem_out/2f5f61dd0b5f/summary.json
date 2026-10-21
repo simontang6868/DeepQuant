@@ -1,0 +1,82 @@
+{
+ "experiment": "phasem-surge-ratio-v1",
+ "prereg_sha256": "2f5f61dd0b5f510b9b54a17739f2cb7675c35aa1b21e052b1da67bda4f4a9cd2",
+ "question": "SURGE 的单边/多空比是多少？为 §5.1 补第三个独立支撑",
+ "reproduction_gate": {
+  "v0_pool_avoid_pp": 0.185844,
+  "v1_pool_avoid_pp": 0.106057,
+  "expected": {
+   "v0_avoid": 0.1858,
+   "v1_avoid": 0.1061
+  },
+  "tol": 0.0001,
+  "passed": true
+ },
+ "by_version": {
+  "V0": {
+   "n": 237,
+   "spread_pp": 0.721571,
+   "spread_t": 2.850544,
+   "alpha_buy_pp": 0.270364,
+   "alpha_buy_t": 2.055257,
+   "alpha_avoid_pp": 0.111699,
+   "alpha_avoid_t": 3.432161,
+   "ratio_buy": 0.374688,
+   "ratio_avoid": 0.1548,
+   "ratio_buy_ci95": null
+  },
+  "V1": {
+   "n": 237,
+   "spread_pp": 0.383875,
+   "spread_t": 1.731825,
+   "alpha_buy_pp": 0.25717,
+   "alpha_buy_t": 1.833213,
+   "alpha_avoid_pp": 0.163559,
+   "alpha_avoid_t": 2.943415,
+   "ratio_buy": 0.669932,
+   "ratio_avoid": 0.426074,
+   "ratio_buy_ci95": null
+  }
+ },
+ "ratio_buy_bootstrap95": {
+  "V0": [
+   0.1607,
+   0.4736
+  ],
+  "V1": [
+   0.3406,
+   1.0615
+  ]
+ },
+ "criteria": {
+  "H1_ratio_buy_in_range": false,
+  "H2_avoid_gt_buy": false,
+  "verdict": "SHORT_SIDE_REJECTED"
+ },
+ "verdict": "SHORT_SIDE_REJECTED",
+ "cross_signal": {
+  "reversal": {
+   "spread_pp": 1.3164,
+   "alpha_pp": 0.2767,
+   "ratio": 0.21,
+   "source": "阶段 E / 阶段 C D格"
+  },
+  "max5": {
+   "spread_pp": 0.7405,
+   "alpha_pp": 0.1813,
+   "ratio": 0.245,
+   "source": "阶段 G / 阶段 F"
+  },
+  "surge": {
+   "spread_pp": 0.721571,
+   "alpha_pp": 0.270364,
+   "ratio": 0.374688,
+   "source": "本阶段"
+  }
+ },
+ "note": "ratio_buy 用买型单边（与阶段 G 可比）；ratio_avoid 另报。alpha_avoid ≡ 0.25×(R_bench−R_Q5) 是恒等式，但 ratio_avoid 不是常数。",
+ "honest_limits": [
+  "同一批数据，无样本外证据",
+  "分层口径的 spread 与阶段 L 报的全池 avoid 不是同一个量，不可混用"
+ ]
+}

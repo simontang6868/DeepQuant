@@ -1,0 +1,16 @@
+{
+ "experiment": "phasem-surge-ratio-v1",
+ "prereg_sha256": "2f5f61dd0b5f510b9b54a17739f2cb7675c35aa1b21e052b1da67bda4f4a9cd2",
+ "script_sha256": "c37650847dd86d23800ddcd968926fdaa7f10032d93fe4e82b133de50d90018c",
+ "files": {
+  "monthly.csv": {
+   "sha256": "e6d240139521f3f86a1c7a80ad906dda848f80f4dce55f05fdd1041473c93fe9",
+   "bytes": 7740
+  },
+  "summary.json": {
+   "sha256": "7b556e5e0e3435179f352dbc67749dc2d3cf9958ad5801624ef13db238026689",
+   "bytes": 1945
+  }
+ },
+ "runtime_sec": 141.3
+}

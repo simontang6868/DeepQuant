@@ -1,0 +1,168 @@
+{
+ "script": "self_audit_review",
+ "purpose": "评审包 §10 三条质疑的自查（评审者提问之前先自查）",
+ "multiple_testing": {
+  "n_tests": 17,
+  "bonferroni_alpha": 0.0029411764705882353,
+  "bonferroni_t": 2.9738,
+  "holm": {
+   "阶段 C 池效应": {
+    "p": 0.0,
+    "threshold": 0.00294118,
+    "reject": true
+   },
+   "阶段 H 排除Q5(评估)": {
+    "p": 0.0,
+    "threshold": 0.003125,
+    "reject": true
+   },
+   "阶段 C-2 剔不可成交": {
+    "p": 5.3e-07,
+    "threshold": 0.00333333,
+    "reject": true
+   },
+   "阶段 I exQ5可成交": {
+    "p": 5.95e-06,
+    "threshold": 0.00357143,
+    "reject": true
+   },
+   "Gate 6 反转全A": {
+    "p": 1.155e-05,
+    "threshold": 0.00384615,
+    "reject": true
+   },
+   "阶段 F MAX5分层": {
+    "p": 0.00065201,
+    "threshold": 0.00416667,
+    "reject": true
+   },
+   "阶段 L SURGE": {
+    "p": 0.00174806,
+    "threshold": 0.00454545,
+    "reject": true
+   },
+   "Gate 3 反转2007-2015": {
+    "p": 0.03425985,
+    "threshold": 0.005,
+    "reject": false
+   },
+   "阶段 E 反转单边": {
+    "p": 0.05730201,
+    "threshold": 0.00555556,
+    "reject": false
+   },
+   "阶段 G MAX5单边": {
+    "p": 0.07773198,
+    "threshold": 0.00625,
+    "reject": false
+   },
+   "Gate 2 反转2016-2026": {
+    "p": 0.10059,
+    "threshold": 0.00714286,
+    "reject": false
+   },
+   "阶段 K 降换手(最好档)": {
+    "p": 0.15185784,
+    "threshold": 0.00833333,
+    "reject": false
+   },
+   "阶段 J 冲击成本": {
+    "p": 0.20444106,
+    "threshold": 0.01,
+    "reject": false
+   },
+   "Gate 4 低波动": {
+    "p": 0.38539433,
+    "threshold": 0.0125,
+    "reject": false
+   },
+   "阶段 C-3 成交延迟": {
+    "p": 0.55050738,
+    "threshold": 0.01666667,
+    "reject": false
+   },
+   "Gate 1 月频动量": {
+    "p": 0.56935614,
+    "threshold": 0.025,
+    "reject": false
+   },
+   "Gate 5 活跃度": {
+    "p": 0.87682132,
+    "threshold": 0.05,
+    "reject": false
+   }
+  },
+  "survived": [
+   "阶段 C 池效应",
+   "阶段 H 排除Q5(评估)",
+   "阶段 C-2 剔不可成交",
+   "阶段 I exQ5可成交",
+   "Gate 6 反转全A",
+   "阶段 F MAX5分层",
+   "阶段 L SURGE"
+  ]
+ },
+ "stability_tests": {
+  "阶段 I exQ5 alpha": {
+   "n_early": 108,
+   "n_late": 129,
+   "mean_early_pp": 0.171527,
+   "mean_late_pp": 0.156615,
+   "diff_late_minus_early_pp": -0.014912,
+   "welch_t": -0.1591,
+   "p": 0.8736006170554061,
+   "reading": "两段之差**不显著** → '不衰减'目前只是'没被拒绝'，不能反过来宣称'证明不衰减'"
+  },
+  "阶段 J 净值(m=1)": {
+   "error": "样本不足"
+  },
+  "阶段 K 净值(m=2)": {
+   "n_early": 108,
+   "n_late": 129,
+   "mean_early_pp": -0.005785,
+   "mean_late_pp": 0.089281,
+   "diff_late_minus_early_pp": 0.095066,
+   "welch_t": 1.0877,
+   "p": 0.2767316421125236,
+   "reading": "两段之差**不显著** → '不衰减'目前只是'没被拒绝'，不能反过来宣称'证明不衰减'"
+  },
+  "阶段 L SURGE alpha": {
+   "n_early": 108,
+   "n_late": 129,
+   "mean_early_pp": 0.176383,
+   "mean_late_pp": 0.04718,
+   "diff_late_minus_early_pp": -0.129203,
+   "welch_t": -1.7722,
+   "p": 0.07636242473811897,
+   "reading": "两段之差**不显著** → '不衰减'目前只是'没被拒绝'，不能反过来宣称'证明不衰减'"
+  }
+ },
+ "phase_f_aggregation": {
+  "i_weighted_by_layer": {
+   "n": 237,
+   "mean_pp": 0.740493,
+   "t_nw": 3.408576
+  },
+  "ii_equal_layer": {
+   "n": 237,
+   "mean_pp": 0.740732,
+   "t_nw": 3.409729
+  },
+  "iii_median_layer": {
+   "n": 237,
+   "mean_pp": 0.625235,
+   "t_nw": 2.935578
+  },
+  "iv_mid_layers_only": {
+   "n": 237,
+   "mean_pp": 0.693488,
+   "t_nw": 2.662181
+  },
+  "v_pool_unstratified": {
+   "n": 237,
+   "mean_pp": 1.079957,
+   "t_nw": 4.160497
+  }
+ },
+ "runtime_sec": 48.0
+}
