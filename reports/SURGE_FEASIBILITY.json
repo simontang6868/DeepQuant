@@ -1,0 +1,47 @@
+{
+ "script": "check_surge_feasibility",
+ "purpose": "只验变量可构造性与共线性；**未计算任何未来收益**",
+ "definition": "SURGE = mean(近21日成交额) / mean(前21日成交额)",
+ "n_months": 237,
+ "n_pool_median": 2562,
+ "coverage_median": 0.996933,
+ "coverage_min": 0.952448,
+ "distribution": {
+  "min": {
+   "median": 0.183257,
+   "min": 1.9e-05,
+   "max": 0.491937
+  },
+  "p25": {
+   "median": 0.693882,
+   "min": 0.338053,
+   "max": 2.301711
+  },
+  "med": {
+   "median": 0.933677,
+   "min": 0.440663,
+   "max": 3.134727
+  },
+  "p75": {
+   "median": 1.298121,
+   "min": 0.621404,
+   "max": 4.31246
+  },
+  "max": {
+   "median": 34.206429,
+   "min": 3.410531,
+   "max": 2990.533691
+  }
+ },
+ "spearman_median": {
+  "波动率(21日)": 0.351305,
+  "MAX5": 0.460682,
+  "21日反转(过去收益)": 0.48095
+ },
+ "collinearity_warning": {
+  "波动率(21日)": false,
+  "MAX5": false,
+  "21日反转(过去收益)": false
+ },
+ "elapsed_sec": 95.3
+}

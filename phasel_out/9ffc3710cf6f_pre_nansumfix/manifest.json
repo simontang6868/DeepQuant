@@ -1,0 +1,16 @@
+{
+ "experiment": "phasel-surge-avoid-v1",
+ "prereg_sha256": "9ffc3710cf6f2c43390d0ef0f91f663909eca44967c00214b4958b578b8c995c",
+ "script_sha256": "e96d4185fec894a917f58822ef0279764c96c17c4025a6dfbeb90d310509ba52",
+ "files": {
+  "monthly.csv": {
+   "sha256": "a5b8ddd35d73a99a797e6ec535d7f8e48feb0ec6c6007b2048057c60eeea178b",
+   "bytes": 14082
+  },
+  "summary.json": {
+   "sha256": "2a9afbbd2c18c5e34e0e33c25d4b75dd2ac97d8359a0a7b3e52a787eea4903fc",
+   "bytes": 2314
+  }
+ },
+ "runtime_sec": 138.5
+}

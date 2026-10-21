@@ -1,0 +1,107 @@
+{
+ "experiment": "phasel-surge-avoid-v1",
+ "prereg_sha256": "9ffc3710cf6f2c43390d0ef0f91f663909eca44967c00214b4958b578b8c995c",
+ "definition": "SURGE = mean(近21日成交额) / mean(前21日成交额)；两窗口均需 ≥19 有效日",
+ "V0_unconstrained": {
+  "n": 237,
+  "mean_pp": 0.185844,
+  "t_nw": 5.315991
+ },
+ "V1_executable": {
+  "n": 237,
+  "mean_pp": 0.106057,
+  "t_nw": 3.129485,
+  "delta_vs_v0_pp": -0.079787,
+  "drop_total": 6709,
+  "drop_reasons": {
+   "limit_up": 5011,
+   "no_bar": 1408,
+   "one_word_board_up": 282,
+   "after_last_data": 8
+  }
+ },
+ "segments": {
+  "2007-2015": {
+   "n": 108,
+   "mean_pp": 0.176383,
+   "t_nw": 3.714094,
+   "enough": true
+  },
+  "2016-2026": {
+   "n": 129,
+   "mean_pp": 0.04718,
+   "t_nw": 1.042422,
+   "enough": true
+  }
+ },
+ "turnover_one_side": 0.240941,
+ "cost": {
+  "0.1pct": {
+   "cost_pp_month": 0.048188,
+   "cost_pp_year": 0.578258,
+   "net_pp_month": 0.057869,
+   "t_net": 1.567152
+  },
+  "0.3pct": {
+   "cost_pp_month": 0.144564,
+   "cost_pp_year": 1.734774,
+   "net_pp_month": -0.038507,
+   "t_net": -1.042824
+  }
+ },
+ "criteria": {
+  "A_stat": true,
+  "B_stable": false,
+  "C_cost": false,
+  "D_magnitude": false,
+  "verdict": "SURGE_AVOID_ABSORBED"
+ },
+ "verdict": "SURGE_AVOID_ABSORBED",
+ "econ_min_pp": 0.3,
+ "vol_stratified": {
+  "mean_pp": 0.059524,
+  "t_nw": 2.162666,
+  "retention": 0.561248,
+  "ABSORBED_BY_VOL": false
+ },
+ "collinearity_recheck": {
+  "vol": 0.352492,
+  "max5": 0.477451
+ },
+ "surge_median": 0.932367,
+ "diagnostics": {
+  "r_q5_mean_pp": 0.694738,
+  "r_q5_negative_share": 0.464135,
+  "yearly": {
+   "2007": 0.23058,
+   "2008": 0.16657,
+   "2009": 0.109253,
+   "2010": 0.200993,
+   "2011": 0.256594,
+   "2012": 0.187879,
+   "2013": 0.033743,
+   "2014": 0.04233,
+   "2015": 0.359503,
+   "2016": 0.202656,
+   "2017": 0.027859,
+   "2018": 0.112093,
+   "2019": -0.023427,
+   "2020": -0.147792,
+   "2021": 0.00715,
+   "2022": 0.240277,
+   "2023": -0.15127,
+   "2024": 0.203259,
+   "2025": 0.036063,
+   "2026": 0.000419
+  }
+ },
+ "capacity_desc": {
+  "capital": 30000000.0,
+  "uninvested_median": 0.048099,
+  "covered_median": 0.999397
+ },
+ "honest_limits": [
+  "同一批数据上的检验，不提供样本外证据。",
+  "冲击成本未建模（阶段 J 已证明在 3000 万量级可忽略，沿用其上界）。"
+ ]
+}
