@@ -1,0 +1,20 @@
+{
+  "experiment": "phasec2-suspension-gap-v1.0",
+  "prereg_sha256": "953c32fdc5565d3fa471553f7706815de981706af33cb83039f1c64bb2cf99d3",
+  "script_sha256": "7d945bfc776511f373dbb871f492f8384c0169276fff94e833e2997f337fba5f",
+  "files": {
+    "cells.csv": {
+      "sha256": "e9748b17fd3d7cf1d78d3cf899eae1efc06c6b59d9685edcff58761a6796320a",
+      "bytes": 24661
+    },
+    "dropped_stats.csv": {
+      "sha256": "e34d657b51efabda1a35c6f2a64779485aa1248e1c1006873827d9d29eed62f5",
+      "bytes": 16822
+    },
+    "summary.json": {
+      "sha256": "b2f07a01c042317b11e56ce7df131937fce82424309f27a4325f5114e6fe6984",
+      "bytes": 6534
+    }
+  },
+  "runtime_sec": 90.2
+}

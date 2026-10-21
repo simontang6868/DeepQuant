@@ -1,0 +1,259 @@
+{
+  "experiment": "phasec2-suspension-gap-v1.0",
+  "prereg_sha256": "953c32fdc5565d3fa471553f7706815de981706af33cb83039f1c64bb2cf99d3",
+  "phase_c_prereg_sha256": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+  "question": "建仓/平仓日停牌与序列终止若按不可成交剔除，效应变化多少？",
+  "window": {
+    "start": "2007-01-01",
+    "end_signal": "2026-09-30",
+    "end_hold": "2026-10-31"
+  },
+  "params": {
+    "k_frac": 0.2,
+    "k_fixed_cross": 110,
+    "min_listed_days": 252,
+    "min_pool": 10,
+    "nw_lag": 3,
+    "min_n": 150,
+    "min_nw_eff": 100,
+    "t_crit": 1.96,
+    "econ_min_pp": 0.3
+  },
+  "verify": {
+    "prereg_sha256": "953c32fdc5565d3fa471553f7706815de981706af33cb83039f1c64bb2cf99d3",
+    "phase_c_prereg_sha256": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+    "phase_c_summary_sha256": "58c384000d9eeaac90d766b047823a727e9b1eae254fd6c83cc71f2c306e0fd7",
+    "exec_acceptance": {
+      "n_have": 5472,
+      "n_target": 5472,
+      "n_missing": 0,
+      "v2_bad": []
+    },
+    "n_qfq_files": 5444,
+    "params_hardcoded": true
+  },
+  "v0_reproduction": {
+    "n": {
+      "expected": 237,
+      "actual": 237,
+      "tol": 0,
+      "ok": true
+    },
+    "mean_d": {
+      "expected": 0.65818965,
+      "actual": 0.65818965,
+      "tol": 1e-06,
+      "ok": true
+    },
+    "mean_spread": {
+      "expected": 1.3163793,
+      "actual": 1.3163793,
+      "tol": 1e-06,
+      "ok": true
+    },
+    "t_stat": {
+      "expected": 4.1110485798,
+      "actual": 4.11104858,
+      "tol": 1e-06,
+      "ok": true
+    }
+  },
+  "cells": {
+    "V0_D": {
+      "n": 237,
+      "mean_d": 0.0065818965,
+      "mean_spread": 0.013163793,
+      "sd_d": 0.0246474851,
+      "se": 0.0016010262,
+      "t_stat": 4.1110485798,
+      "p_two_sided": 3.93866e-05,
+      "mde_pp": 0.004485435,
+      "win_ratio": 0.6033755274,
+      "min_d": -0.0984517881,
+      "max_d": 0.1472655839
+    },
+    "V1_D": {
+      "n": 237,
+      "mean_d": 0.0071166189,
+      "mean_spread": 0.0142332378,
+      "sd_d": 0.0249621704,
+      "se": 0.0016214672,
+      "t_stat": 4.3889995574,
+      "p_two_sided": 1.13873e-05,
+      "mde_pp": 0.0045427025,
+      "win_ratio": 0.6075949367,
+      "min_d": -0.0981132549,
+      "max_d": 0.1474026217
+    },
+    "V0_B": {
+      "n": 237,
+      "mean_d": 0.009433193,
+      "mean_spread": 0.018866386,
+      "sd_d": 0.0364333003,
+      "se": 0.0023665972,
+      "t_stat": 3.9859732397,
+      "p_two_sided": 6.72041e-05,
+      "mde_pp": 0.0066302586,
+      "win_ratio": 0.6329113924,
+      "min_d": -0.1399761546,
+      "max_d": 0.2125939708
+    },
+    "V1_B": {
+      "n": 237,
+      "mean_d": 0.0105508672,
+      "mean_spread": 0.0211017345,
+      "sd_d": 0.0367923496,
+      "se": 0.0023899199,
+      "t_stat": 4.4147367136,
+      "p_two_sided": 1.01133e-05,
+      "mde_pp": 0.0066955997,
+      "win_ratio": 0.6371308017,
+      "min_d": -0.1373689529,
+      "max_d": 0.2123111322
+    }
+  },
+  "turnover_cost": {
+    "V0": {
+      "one_side_per_month": 0.805241,
+      "cost": {
+        "0.1pct": {
+          "cost_pp_month": 0.161,
+          "cost_pp_year": 1.9326,
+          "net_pp_month": 0.4971,
+          "t_net": 3.1051
+        },
+        "0.3pct": {
+          "cost_pp_month": 0.4831,
+          "cost_pp_year": 5.7977,
+          "net_pp_month": 0.175,
+          "t_net": 1.0933
+        }
+      }
+    },
+    "V1": {
+      "one_side_per_month": 0.806782,
+      "cost": {
+        "0.1pct": {
+          "cost_pp_month": 0.1614,
+          "cost_pp_year": 1.9363,
+          "net_pp_month": 0.5503,
+          "t_net": 3.3939
+        },
+        "0.3pct": {
+          "cost_pp_month": 0.4841,
+          "cost_pp_year": 5.8088,
+          "net_pp_month": 0.2276,
+          "t_net": 1.4036
+        }
+      }
+    }
+  },
+  "main_test": {
+    "comparison": "spread(V1) − spread(V0)",
+    "n_pairs": 237,
+    "n": 237,
+    "mean": 0.0010694448,
+    "mean_pp": 0.1069444754,
+    "se_nw": 0.0002132542,
+    "se_nw_pp": 0.0213254175,
+    "t_nw": 5.0148830724,
+    "p": 5.307e-07,
+    "lag": 3,
+    "n_eff": 234,
+    "variance_fell_back_to_g0": false,
+    "judgement": {
+      "verdict": "SUSPENSION_EFFECT_SMALL_BUT_SIGNIFICANT",
+      "rule_hits": [
+        "n=237 >= 150",
+        "|NW t|=5.0149 >= 1.96",
+        "|mean|=0.1069pp < 0.3pp"
+      ]
+    }
+  },
+  "cross_validation_B": {
+    "n_pairs": 237,
+    "n": 237,
+    "mean": 0.0022353485,
+    "mean_pp": 0.2235348501,
+    "se_nw": 0.0004264242,
+    "se_nw_pp": 0.042642417,
+    "t_nw": 5.2420773955,
+    "p": 1.588e-07,
+    "lag": 3,
+    "n_eff": 234,
+    "variance_fell_back_to_g0": false,
+    "reading": "两构造一致（同号）"
+  },
+  "diagnostics": {
+    "D1_dropped_by_year": {
+      "long": {
+        "2007": 42,
+        "2008": 27,
+        "2009": 23,
+        "2010": 17,
+        "2011": 30,
+        "2012": 31,
+        "2013": 15,
+        "2014": 21,
+        "2015": 16,
+        "2016": 11,
+        "2017": 23,
+        "2018": 24,
+        "2019": 10,
+        "2020": 14,
+        "2021": 8,
+        "2022": 41,
+        "2023": 43,
+        "2024": 11,
+        "2025": 9,
+        "2026": 9
+      },
+      "short": {
+        "2007": 133,
+        "2008": 91,
+        "2009": 113,
+        "2010": 73,
+        "2011": 121,
+        "2012": 120,
+        "2013": 135,
+        "2014": 250,
+        "2015": 307,
+        "2016": 219,
+        "2017": 143,
+        "2018": 64,
+        "2019": 32,
+        "2020": 25,
+        "2021": 41,
+        "2022": 24,
+        "2023": 16,
+        "2024": 26,
+        "2025": 52,
+        "2026": 29
+      }
+    },
+    "D2_dropped_long_fwd_pp": 1.2249,
+    "D2_kept_long_fwd_pp": 1.74514,
+    "D3_dropped_short_fwd_pp": 5.7034,
+    "D3_kept_short_fwd_pp": 0.321817,
+    "D4_corr_ratio_vs_delta": 0.445842,
+    "D4_mean_dropped_ratio": 0.013325,
+    "D5_leg_median": {
+      "long": [
+        484,
+        478
+      ],
+      "short": [
+        486,
+        469
+      ]
+    }
+  },
+  "limitations": [
+    "只做剔除，不做顺延成交；顺延会改收益起算点、与 Gate 6 不可比（预登记 §0.1 已声明）",
+    "剔除不补位，腿规模略缩",
+    "after_last_data 里'退市'与'抓取截断'不可区分（本数据集已知 249 只退市名单，另有 3 只 UNKNOWN）",
+    "ST 无历史标记，5% 涨跌幅未区分",
+    "做空腿不可得（M4 结构阻塞），d 不是可实现组合收益"
+  ],
+  "note": "本实验只影响 D 格的水平值；spread(B)−spread(A) 的配对差由两格共同承受，部分抵消。"
+}
