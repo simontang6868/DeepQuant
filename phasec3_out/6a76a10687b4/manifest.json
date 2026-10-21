@@ -1,0 +1,20 @@
+{
+  "experiment": "phasec3-execution-lag-v1.0",
+  "prereg_sha256": "6a76a10687b468156e6a953c86f3974384399b45b0f3c882f913345492c75b37",
+  "script_sha256": "60613c6b9869831f4022a66e2245a47c8c83cb5e3e9a44b3e884be690f4baaf0",
+  "files": {
+    "cells.csv": {
+      "sha256": "4ff8f9338a2499d691984f996bb3affa311eb84442ece559daf3c5fb3d6f58fe",
+      "bytes": 28924
+    },
+    "decomposed.csv": {
+      "sha256": "0600a24b4135ed64fe92e8b292eea6a46f27f5afc5a27d53052efec3ec7024b7",
+      "bytes": 31431
+    },
+    "summary.json": {
+      "sha256": "c27b3cbf415d6bc18fa15ff11e21b714c46993f8ef776571868aaf9111222981",
+      "bytes": 115933
+    }
+  },
+  "runtime_sec": 108.4
+}
