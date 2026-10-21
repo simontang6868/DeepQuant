@@ -1,0 +1,224 @@
+{
+  "experiment": "phaseg-max5-longonly-v1.0",
+  "prereg_sha256": "e7da0f9ff3f1afae9af3785f3118e51732adb3cd0986c0ecf0679f32b2f64487",
+  "phase_f_prereg_sha256": "aec46d88bbdaa207c14f183bd9275f1952f21b66a15fd762aea127aefd22071e",
+  "phase_f_spread_pp": 0.7404925843,
+  "question": "只买低 MAX5 的股票，相对池内等权还剩多少 alpha？",
+  "params": {
+    "win": 21,
+    "top_n": 5,
+    "n_layer": 5,
+    "n_group": 5,
+    "nw_lag": 3,
+    "min_n": 150,
+    "t_crit": 1.96,
+    "econ_min_pp": 0.3,
+    "beta_neutralized": false,
+    "lot": 100
+  },
+  "window": {
+    "start": "2007-01-01",
+    "end_signal": "2026-09-30",
+    "end_hold": "2026-10-31"
+  },
+  "verify": {
+    "prereg_sha256": "e7da0f9ff3f1afae9af3785f3118e51732adb3cd0986c0ecf0679f32b2f64487",
+    "phase_f_prereg_sha256": "aec46d88bbdaa207c14f183bd9275f1952f21b66a15fd762aea127aefd22071e",
+    "phase_f_summary_sha256": "a4fad43ab7ec1d2abe82506fef3ba62e8a65acb7d6878d3d908b114ec74b875a",
+    "exec_acceptance": {
+      "n_have": 5472,
+      "n_target": 5472
+    },
+    "n_qfq_files": 5444,
+    "params_hardcoded": true
+  },
+  "max5_selfcheck": {
+    "got_pp": 3.232336,
+    "phase_f_pp": 3.2323,
+    "rel_diff": 1.099e-05
+  },
+  "main": {
+    "portfolio": "V1 = 分层后各层内最低 MAX5 20% 的并集，等权",
+    "n": 237,
+    "mean": 0.0018130838,
+    "mean_pp": 0.1813083784,
+    "se_nw": 0.0010277943,
+    "se_nw_pp": 0.102779431,
+    "t_nw": 1.7640531446,
+    "p": 0.0777230321,
+    "lag": 3,
+    "n_eff": 234,
+    "variance_fell_back_to_g0": false,
+    "judgement": {
+      "verdict": "MAX5_LONGONLY_NOT_EXECUTABLE",
+      "rule_hits": [
+        "n=237 >= 150",
+        "|NW t|=1.7641 < 1.96",
+        "alpha=+0.1813pp 不显著，而阶段 F 多空价差 +0.7405pp 显著",
+        "→ 多空价差是真的，但单边拿不到"
+      ],
+      "note": "这是预登记 §3.1 预写的档位：效应在空头侧，非多头侧"
+    }
+  },
+  "ratio_alpha_to_spread": 0.244848,
+  "controls": {
+    "V0_raw_Q1": {
+      "n": 237,
+      "mean": 0.0015625469,
+      "mean_pp": 0.1562546905,
+      "se_nw": 0.0012908792,
+      "se_nw_pp": 0.1290879238,
+      "t_nw": 1.2104516511,
+      "p": 0.2261056325,
+      "lag": 3,
+      "n_eff": 234,
+      "variance_fell_back_to_g0": false,
+      "note": "全池最低 MAX5 20%，最自然可执行"
+    },
+    "V_L5_high_vol_Q1": {
+      "n": 237,
+      "mean": -0.0001443639,
+      "mean_pp": -0.0144363861,
+      "se_nw": 0.0015519641,
+      "se_nw_pp": 0.1551964099,
+      "t_nw": -0.0930201033,
+      "p": 0.9258875904,
+      "lag": 3,
+      "n_eff": 234,
+      "variance_fell_back_to_g0": false,
+      "note": "仅最高波动层内 Q1"
+    }
+  },
+  "turnover_cost": {
+    "one_side_per_month": 0.791042,
+    "cost": {
+      "0.1pct": {
+        "cost_pp_month": 0.1582,
+        "cost_pp_year": 1.8985,
+        "net_pp_month": 0.0231,
+        "t_net": 0.2187
+      },
+      "0.3pct": {
+        "cost_pp_month": 0.4746,
+        "cost_pp_year": 5.6955,
+        "net_pp_month": -0.2933,
+        "t_net": -2.7767
+      }
+    }
+  },
+  "capacity": {
+    "w_1lot_median": 668068.0,
+    "w_1lot_p90": 1998134.0,
+    "w_equal_median": 5065444.0,
+    "w_equal_p90": 62075160.0,
+    "lot_coverage": 0.997111
+  },
+  "diagnostics": {
+    "D3_segment": {
+      "2007-2015": {
+        "n": 108,
+        "mean_pp": 0.40845,
+        "t_nw": 2.327919
+      },
+      "2016-2026": {
+        "n": 129,
+        "mean_pp": -0.008857,
+        "t_nw": -0.08216
+      }
+    },
+    "D4_yearly": {
+      "2007": {
+        "n": 12,
+        "alpha_pp": 0.239942
+      },
+      "2008": {
+        "n": 12,
+        "alpha_pp": 0.763583
+      },
+      "2009": {
+        "n": 12,
+        "alpha_pp": 0.238304
+      },
+      "2010": {
+        "n": 12,
+        "alpha_pp": 0.167524
+      },
+      "2011": {
+        "n": 12,
+        "alpha_pp": 0.544898
+      },
+      "2012": {
+        "n": 12,
+        "alpha_pp": 0.344185
+      },
+      "2013": {
+        "n": 12,
+        "alpha_pp": -0.155432
+      },
+      "2014": {
+        "n": 12,
+        "alpha_pp": 0.075194
+      },
+      "2015": {
+        "n": 12,
+        "alpha_pp": 1.457849
+      },
+      "2016": {
+        "n": 12,
+        "alpha_pp": 0.026476
+      },
+      "2017": {
+        "n": 12,
+        "alpha_pp": -0.039865
+      },
+      "2018": {
+        "n": 12,
+        "alpha_pp": 0.441968
+      },
+      "2019": {
+        "n": 12,
+        "alpha_pp": 0.052668
+      },
+      "2020": {
+        "n": 12,
+        "alpha_pp": -0.311809
+      },
+      "2021": {
+        "n": 12,
+        "alpha_pp": -0.255785
+      },
+      "2022": {
+        "n": 12,
+        "alpha_pp": 0.56062
+      },
+      "2023": {
+        "n": 12,
+        "alpha_pp": -0.454717
+      },
+      "2024": {
+        "n": 12,
+        "alpha_pp": 0.196277
+      },
+      "2025": {
+        "n": 12,
+        "alpha_pp": -0.515515
+      },
+      "2026": {
+        "n": 9,
+        "alpha_pp": 0.272632
+      }
+    },
+    "D5_beta": 1.017988,
+    "D5_corr": 0.985257,
+    "D6_v1_vol_pp": 2.626875,
+    "D6_pool_vol_pp": 2.693691,
+    "D6_ratio": 0.975195
+  },
+  "limitations": [
+    "冲击成本未建模；T+1 未建模；不做 beta 中性化（预登记 §7）",
+    "L5 层流动性最差，其高 alpha 很可能被冲击成本吃掉（D2 只作诊断）",
+    "容量按一手成本算，整手约束下等权需 W≥k×max(lot)",
+    "ST 无历史标记；after_last_data 中退市与抓取截断不可区分；2005-2006 左截断"
+  ],
+  "note": "alpha 不是可实现收益；若判定 NOT_EXECUTABLE，MAX5 这条路与 21 日反转同命。"
+}

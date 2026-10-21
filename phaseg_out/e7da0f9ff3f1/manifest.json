@@ -1,0 +1,16 @@
+{
+  "experiment": "phaseg-max5-longonly-v1.0",
+  "prereg_sha256": "e7da0f9ff3f1afae9af3785f3118e51732adb3cd0986c0ecf0679f32b2f64487",
+  "script_sha256": "c321904c6f8f956666d91f7bcd33bebd415284524aa3274d58f07e2839961a8c",
+  "files": {
+    "monthly.csv": {
+      "sha256": "917aff3aaed2a7ad7dea1271a561ec96be6e03c2f7e0969ce65bf08e5eedf243",
+      "bytes": 30442
+    },
+    "summary.json": {
+      "sha256": "89a4a37d087c6c3f29dc5a9e552bda70398b05eadba2043b0ba8eeeb70965a8c",
+      "bytes": 5573
+    }
+  },
+  "runtime_sec": 72.4
+}
