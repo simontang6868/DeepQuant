@@ -1,0 +1,26 @@
+{
+ "experiment": "phasei-exq5-formal-v1",
+ "prereg_sha256": "8f5c35121fdb81398aa3a75cb780e4273dee88c2f5684b0ba8e3028d8fdd78e1",
+ "script_sha256": "a17ae20537dc38a4902a45aed2bdd53c429b89337a6940bf315c13e3ca7b7884",
+ "data": {
+  "adj_dir": "data/qfq_all",
+  "exec_dir": "data/exec_all",
+  "n_adj": 5444,
+  "n_exec": 5472
+ },
+ "files": {
+  "monthly.csv": {
+   "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a",
+   "bytes": 17445
+  },
+  "capacity.csv": {
+   "sha256": "0fbffc9cce13a6095d880d9c2cc7be8a270eeeadc145a824e660181cf23aa879",
+   "bytes": 232
+  },
+  "summary.json": {
+   "sha256": "8281cae5cfb804f4d61231175be7713965d7f992aa016044bd5d13e7f34fe39b",
+   "bytes": 6849
+  }
+ },
+ "runtime_sec": 78.6
+}

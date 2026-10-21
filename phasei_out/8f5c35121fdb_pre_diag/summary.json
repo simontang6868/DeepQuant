@@ -1,0 +1,309 @@
+{
+ "experiment": "phasei-exq5-formal-v1",
+ "prereg_sha256": "8f5c35121fdb81398aa3a75cb780e4273dee88c2f5684b0ba8e3028d8fdd78e1",
+ "prereg_version": "1.0",
+ "design": {
+  "win": 21,
+  "top_n": 5,
+  "min_valid": 19,
+  "n_group": 5,
+  "exclude_frac": 0.2,
+  "pool": "as-of 全 A + 252 日",
+  "window": "2007-01-01 ~ 2026-09-30",
+  "nw_lag": 3,
+  "t_crit": 1.96,
+  "primary_cost": 0.003
+ },
+ "independence": {
+  "split_mismatch_months": 0,
+  "max5_median_mean_pp": 3.232336,
+  "note": "分组用 searchsorted 边界定位、MAX5 用 np.partition，均与阶段 F 算法不同"
+ },
+ "reproduction_gate": {
+  "passed": true,
+  "checks": {
+   "n_months": {
+    "expected": 237,
+    "actual": 237,
+    "diff": 0,
+    "ok": true
+   },
+   "alpha_mean_pp": {
+    "expected": 0.230703,
+    "actual": 0.230703,
+    "diff": 4.264e-07,
+    "ok": true
+   },
+   "t_nw": {
+    "expected": 6.357163,
+    "actual": 6.357163,
+    "diff": 2.973e-07,
+    "ok": true
+   },
+   "seg_2007_2015_pp": {
+    "expected": 0.237627,
+    "actual": 0.237627,
+    "diff": 6.2e-09,
+    "ok": true
+   },
+   "seg_2016_2026_pp": {
+    "expected": 0.224905,
+    "actual": 0.224905,
+    "diff": 3.742e-07,
+    "ok": true
+   }
+  }
+ },
+ "V0_unconstrained": {
+  "n": 237,
+  "mean": 0.002307,
+  "mean_pp": 0.230703,
+  "se_nw": 0.000363,
+  "se_nw_pp": 0.03629,
+  "t_nw": 6.357163,
+  "p": 0.0,
+  "lag": 3,
+  "n_eff": 234,
+  "variance_fell_back_to_g0": 0,
+  "segments": {
+   "2007-2015": {
+    "n": 108,
+    "mean_pp": 0.237627,
+    "t_nw": 5.192768,
+    "enough": 1
+   },
+   "2016-2026": {
+    "n": 129,
+    "mean_pp": 0.224905,
+    "t_nw": 4.117268,
+    "enough": 1
+   }
+  }
+ },
+ "V1_executable": {
+  "n": 237,
+  "mean": 0.001634,
+  "mean_pp": 0.163411,
+  "se_nw": 0.000361,
+  "se_nw_pp": 0.036086,
+  "t_nw": 4.528365,
+  "p": 6e-06,
+  "lag": 3,
+  "n_eff": 234,
+  "variance_fell_back_to_g0": 0,
+  "segments": {
+   "2007-2015": {
+    "n": 108,
+    "mean_pp": 0.171527,
+    "t_nw": 3.825805,
+    "enough": 1
+   },
+   "2016-2026": {
+    "n": 129,
+    "mean_pp": 0.156615,
+    "t_nw": 2.863358,
+    "enough": 1
+   }
+  },
+  "delta_vs_v0_pp": -0.067292,
+  "drop_total": 5998,
+  "drop_share": 0.01103,
+  "drop_reasons": {
+   "limit_up": 4367,
+   "no_bar": 1424,
+   "one_word_board_up": 199,
+   "after_last_data": 8
+  }
+ },
+ "turnover": {
+  "v0_one_side": 0.183252,
+  "v1_one_side": 0.18862
+ },
+ "V2_counter": {
+  "sell_blocked": 10296,
+  "sell_total": 533733,
+  "share": 0.019291,
+  "by_reason": {
+   "no_bar": 5807,
+   "limit_down": 4292,
+   "one_word_board": 123,
+   "after_last_data": 74
+  },
+  "note": "只计数，不重算 alpha（预登记 §2 的 V2 因前视问题降级，见 prereg_defects）"
+ },
+ "cost": {
+  "0.1pct": {
+   "cost_pp_month": 0.037724,
+   "cost_pp_year": 0.452687,
+   "net_pp_month": 0.125687,
+   "t_net": 2.596073
+  },
+  "0.3pct": {
+   "cost_pp_month": 0.113172,
+   "cost_pp_year": 1.358061,
+   "net_pp_month": 0.050239,
+   "t_net": 1.037689
+  }
+ },
+ "criteria": {
+  "A_stat": true,
+  "B_stable": true,
+  "C_cost": false,
+  "verdict": "EXQ5_COST_ABSORBED"
+ },
+ "verdict": "EXQ5_COST_ABSORBED",
+ "capacity": {
+  "tiers": {
+   "150万": {
+    "budget": 1500000.0,
+    "covered_median": 0.5912486659551761,
+    "uninvested_median": 0.22616133333333333,
+    "weight_mae_pp_median": 0.01850924630924631,
+    "k_median": 1249
+   },
+   "300万": {
+    "budget": 3000000.0,
+    "covered_median": 0.7874608150470219,
+    "uninvested_median": 0.2030953333333333,
+    "weight_mae_pp_median": 0.012346918238993707,
+    "k_median": 1583
+   },
+   "500万": {
+    "budget": 5000000.0,
+    "covered_median": 0.9044222539229672,
+    "uninvested_median": 0.17566159999999997,
+    "weight_mae_pp_median": 0.008877763466042155,
+    "k_median": 1714
+   },
+   "1000万": {
+    "budget": 10000000.0,
+    "covered_median": 0.984514312529329,
+    "uninvested_median": 0.12319049999999998,
+    "weight_mae_pp_median": 0.005272670487106013,
+    "k_median": 1894
+   },
+   "3000万": {
+    "budget": 30000000.0,
+    "covered_median": 0.9993730407523511,
+    "uninvested_median": 0.04746300000000003,
+    "weight_mae_pp_median": 0.0022942548189938874,
+    "k_median": 1936
+   }
+  },
+  "m1_capital": 10000000.0,
+  "max_uninvested": 0.05,
+  "max_weight_mae_pp": 0.5,
+  "feasible": false
+ },
+ "maturity": "M0",
+ "affordable_subset": {
+  "budget": 10000000.0,
+  "n": 237,
+  "mean_pp": 0.178368,
+  "t_nw": 3.768583,
+  "note": "描述性，不参与判定；剔除规则按一手金额、不按信号值"
+ },
+ "diagnostics": {
+  "r_q5_mean_pp": 0.529591,
+  "r_q5_negative_share": 0.481013,
+  "q5_persistence_median": 0.364545,
+  "yearly": {
+   "2007": {
+    "n": 12,
+    "mean_pp": 0.232811
+   },
+   "2008": {
+    "n": 12,
+    "mean_pp": 0.250422
+   },
+   "2009": {
+    "n": 12,
+    "mean_pp": 0.208796
+   },
+   "2010": {
+    "n": 12,
+    "mean_pp": 0.082754
+   },
+   "2011": {
+    "n": 12,
+    "mean_pp": 0.29372
+   },
+   "2012": {
+    "n": 12,
+    "mean_pp": 0.209932
+   },
+   "2013": {
+    "n": 12,
+    "mean_pp": -0.182978
+   },
+   "2014": {
+    "n": 12,
+    "mean_pp": 0.352896
+   },
+   "2015": {
+    "n": 12,
+    "mean_pp": 0.095393
+   },
+   "2016": {
+    "n": 12,
+    "mean_pp": 0.265056
+   },
+   "2017": {
+    "n": 12,
+    "mean_pp": 0.209072
+   },
+   "2018": {
+    "n": 12,
+    "mean_pp": 0.262267
+   },
+   "2019": {
+    "n": 12,
+    "mean_pp": 0.018069
+   },
+   "2020": {
+    "n": 12,
+    "mean_pp": 0.038672
+   },
+   "2021": {
+    "n": 12,
+    "mean_pp": 0.218039
+   },
+   "2022": {
+    "n": 12,
+    "mean_pp": 0.359572
+   },
+   "2023": {
+    "n": 12,
+    "mean_pp": 0.164537
+   },
+   "2024": {
+    "n": 12,
+    "mean_pp": 0.094584
+   },
+   "2025": {
+    "n": 12,
+    "mean_pp": 0.020887
+   },
+   "2026": {
+    "n": 9,
+    "mean_pp": 0.043811
+   }
+  }
+ },
+ "prereg_defects": [
+  {
+   "item": "§2 的 V2（平仓日剔除）",
+   "problem": "持有型构造没有明确平仓日；若要按 nxt 日能否卖出决定是否持有，则需要用到 nxt 日信息才能定当期持仓 = 前视。",
+   "handling": "降级为计数器（只报调仓日不可卖出比例），不重算 alpha。V2 本来就是描述性、不参与判定，故不影响结论。"
+  },
+  {
+   "item": "§2.2 的独立性要求自相矛盾",
+   "problem": "同一段既写「不许 import `run_phase_f_max5.split_equal`」，又写「两者结果必须逐元素一致」——不 import 就无从比较。",
+   "handling": "按更强的那条执行：import 仅用于交叉校验，生产实现用本文件的 `split_equal_indep`（searchsorted 边界定位）。交叉校验结果见 independence.split_mismatch_months（应为 0）。"
+  }
+ ],
+ "honest_limits": [
+  "exQ5 是在同一批数据上由阶段 F 的构造代数推出的，本阶段只提供「实现独立 + 判据前置 + 可成交口径」，**不提供样本外证据**。",
+  "alpha_exQ5 ≡ 0.25×(R_bench−R_Q5) 是恒等式，不是新因子。"
+ ]
+}
