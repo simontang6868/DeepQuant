@@ -1,0 +1,16 @@
+{
+ "experiment": "phaseS-exq5-modern-era-v1",
+ "prereg_sha256": "f098a59fb1b584eda3ce69a8ecfc890b1be93cae9091bf2ba776469f949f2371",
+ "script_sha256": "ccbcabdd27c4d1d6334e68eb849258e2fb4fd351a2fe68fbf81e51f6bece1889",
+ "files": {
+  "monthly.csv": {
+   "sha256": "3333efe96ac0db29d1568057678eda5187d0c03b42c1e508f5eb8736bd24da91",
+   "bytes": 42100
+  },
+  "summary.json": {
+   "sha256": "ee182b59ca44e4a711260faf3b874fbef5a887cd97170f8a2281be5ec17a33d6",
+   "bytes": 12352
+  }
+ },
+ "runtime_sec": 1.1
+}
