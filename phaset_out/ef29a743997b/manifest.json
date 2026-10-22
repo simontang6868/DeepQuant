@@ -1,0 +1,55 @@
+{
+ "prereg_sha256": "ef29a743997b5371bf7f1bad5aa5880563867591859e48dea787407122139f4e",
+ "inputs": {
+  "phases_out\\f098a59fb1b5\\monthly.csv": "3333efe96ac0db29d1568057678eda5187d0c03b42c1e508f5eb8736bd24da91",
+  "phaseo_out\\ac7aa2830ab0\\monthly.csv": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+  "phasej_out\\f76de8a277f6\\monthly.csv": "6f1961bdc2709c98b637ef545a8a90e2f76b3e2f1983974c827e35dffb859235"
+ },
+ "outputs": {
+  "monthly_csv_sha256": "e9ef1d8b0f5dde817ce1af15a765e3b9fbea588311c94ebe7c4b624a52141e07",
+  "summary_json_sha256": "2e59832d701a278d2e058c1c4ca0608679274ff63d8a7df757ffcbd94ec1e5e7"
+ },
+ "constants": {
+  "APRIORI_EXTREME": [
+   "2016-01",
+   "2016-02",
+   "2020-02",
+   "2020-03",
+   "2024-01",
+   "2024-02"
+  ],
+  "TOPK": [
+   1,
+   3,
+   6
+  ],
+  "LAGS": [
+   0,
+   1,
+   3,
+   6
+  ],
+  "ALT_SPLITS": [
+   "2013-01-01",
+   "2014-01-01",
+   "2015-01-01",
+   "2017-01-01",
+   "2018-01-01",
+   "2019-01-01"
+  ],
+  "SPLIT_PASS_MIN": 4,
+  "N_ADV_GROUP": 5,
+  "ADV_RATIO_MAX": 3.0,
+  "IDENTITY_TOL": 1e-12,
+  "NW_LAG": 3,
+  "T_CRIT": 1.96,
+  "Z_POWER80": 2.8016,
+  "ADV_WIN": 21,
+  "ADV_MIN_VALID": 19
+ },
+ "panel": {
+  "months": 237,
+  "n_skip": {},
+  "split_mismatch_months": 0
+ }
+}
