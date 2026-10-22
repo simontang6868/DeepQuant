@@ -30,10 +30,28 @@ import urllib.error
 OWNER = "simontang6868"
 REPO = "DeepQuant"
 BRANCH = "workbuddy/2026-10-20-consolidated"
-# 上次 API 推送后的远端头；每次推送成功后必须更新此值（或用 --remote-head 覆盖）。
+# 上次 API 推送后的远端头。优先从 .git/api_push_remote_head 读（每次推送成功后自动
+# 更新，避免"脚本里写着自己的 sha"这种自我指涉）；该文件不存在时退回此常量。
 EXPECTED_REMOTE_HEAD = "5e18980d3eb61782836749c61843f119de28dde4"
+STATE_FILE = ".git/api_push_remote_head"
 
 BASE = f"https://api.github.com/repos/{OWNER}/{REPO}"
+
+
+def read_expected_head() -> str:
+    try:
+        with open(STATE_FILE, encoding="utf-8") as f:
+            return f.read().strip()
+    except OSError:
+        return EXPECTED_REMOTE_HEAD
+
+
+def write_expected_head(sha: str) -> None:
+    try:
+        with open(STATE_FILE, "w", encoding="utf-8") as f:
+            f.write(sha + "\n")
+    except OSError:
+        pass
 
 
 def get_token() -> str:
@@ -64,7 +82,7 @@ def api(method: str, path: str, body: dict | None, tok: str) -> dict:
 
 def parse_args(argv: list[str]) -> tuple[list[str], str, str]:
     files: list[str] = []
-    remote_head = EXPECTED_REMOTE_HEAD
+    remote_head = read_expected_head()
     message_file = ""
     i = 0
     while i < len(argv):
@@ -116,7 +134,8 @@ def main() -> int:
     upd = api("PATCH", f"/git/refs/heads/{BRANCH}",
               {"sha": new_commit["sha"], "force": False}, tok)
     print("ref now:", upd["object"]["sha"])
-    print("PUSH OK - 记得把 EXPECTED_REMOTE_HEAD 更新为新的远端头")
+    write_expected_head(upd["object"]["sha"])
+    print("PUSH OK - 已把新远端头写入 .git/api_push_remote_head")
     return 0
 
 
