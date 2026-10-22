@@ -1,0 +1,23 @@
+{
+ "prereg_sha256": "b97d66d91989ba6b35ccbb41c41feab5909f34ffcc4bf40003a651f3dbb894af",
+ "prereg_md": "docs/PHASE_U_NW_LAG_AUDIT_PREREG_2026-10-22.md",
+ "inputs": {
+  "gate6_out/b8c4f1ecba44/monthly_paired.csv": "6ffb6bbb56d4b271e2d85c7ff987ebca1eb1e14aeadb117ba531ba655c1c0c42",
+  "phasei_out/8f5c35121fdb/monthly.csv": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a",
+  "phasef_out/aec46d88bbda/monthly.csv": "d8bbd55dad2ee752882411d196269358386fbe1b6f07004406ae708d2f042b98",
+  "phasel_out/9ffc3710cf6f/monthly.csv": "e302874f3eaa984640dcb42b2570dfb05ab442ddfdb67e5ae267dfabcd874d5f",
+  "phaseo_out/ac7aa2830ab0/monthly.csv": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+  "phases_out/f098a59fb1b5/monthly.csv": "3333efe96ac0db29d1568057678eda5187d0c03b42c1e508f5eb8736bd24da91",
+  "phasee_out/2a3893f3f5b1/monthly.csv": "282bfc94861ad50e5b642fa85fa3b88309511f5685eb060683ee001f6f487e7d",
+  "phaseg_out/e7da0f9ff3f1/monthly.csv": "917aff3aaed2a7ad7dea1271a561ec96be6e03c2f7e0969ce65bf08e5eedf243"
+ },
+ "python": "3.13.14",
+ "numpy": "2.5.4",
+ "runtime_sec": 0.07,
+ "outputs": [
+  "summary.json",
+  "profiles.csv",
+  "manifest.json",
+  "run.log"
+ ]
+}
