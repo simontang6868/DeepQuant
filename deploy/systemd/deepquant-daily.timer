@@ -1,0 +1,17 @@
+[Unit]
+Description=DeepQuant daily chain timer (Asia/Shanghai, trading days)
+
+[Timer]
+# 17:10：收盘 15:00 之后、行情源日线通常已更新（实测 16:30 后可取）。
+# 留 2 小时余量，避免"数据源还没出全就走"——那种情况会被月末校验拦住，
+# 但会白跑一次昂贵的 ADJ 重建。
+OnCalendar=Mon..Fri 17:10:00
+# ⚠️ Persistent=true 是关键：机器在 17:10 关机/休眠时，下次开机立刻补跑。
+#    没有它，一次断电就等于漏一期，而漏掉的那期**补不回来**（超过 3 天即判漏跑）。
+Persistent=true
+RandomizedDelaySec=120
+AccuracySec=1min
+Unit=deepquant-daily.service
+
+[Install]
+WantedBy=timers.target

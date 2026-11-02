@@ -1,0 +1,19 @@
+[Unit]
+Description=DeepQuant heartbeat alert (in-machine check)
+After=deepquant-daily.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=/opt/deepquant
+EnvironmentFile=/opt/deepquant/env
+Environment=HOME=/home/deepquant
+ExecStart=/opt/deepquant/.venv/bin/python /opt/deepquant/deploy/bin/heartbeat_alert.py
+TimeoutStartSec=120
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-alert
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,30 @@
+[Unit]
+Description=DeepQuant daily chain (update -> verify -> decide -> heartbeat)
+Documentation=file:///opt/deepquant/deploy/README.md
+Wants=network-online.target
+After=network-online.target
+# 失败时不要无限重试：数据源故障重试只会把失败时刻推迟，日志里还会多出几条
+# 看起来像"偶发"的失败。失败就让 timer 的 OnFailure / 外部监控去报。
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=/opt/deepquant
+EnvironmentFile=/opt/deepquant/env
+ExecStart=/opt/deepquant/deploy/bin/daily_chain.sh
+# 一次全量增量更新 + 可能的 ADJ 重建，实测在本机约 6~10 分钟。
+# 给到 1 小时是为了容忍行情源变慢，而不是让它真的跑一小时。
+TimeoutStartSec=3600
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+# 证据引擎不下单、不接券商，因此不需要任何凭证；
+# 这里显式把 HOME 指到服务用户家目录，避免 akshare 缓存写到 /root。
+Environment=HOME=/home/deepquant
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-daily
+
+[Install]
+WantedBy=multi-user.target

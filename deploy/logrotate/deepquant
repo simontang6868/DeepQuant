@@ -1,0 +1,11 @@
+/opt/deepquant/var/log/*.log {
+    daily
+    rotate 30
+    missingok
+    notifempty
+    compress
+    delaycompress
+    create 0640 deepquant deepquant
+    # 日志里有股票代码与路径，没有凭证；但仍按 0640 处理，
+    # 因为"以后有人往里打调试信息"是常态。
+}

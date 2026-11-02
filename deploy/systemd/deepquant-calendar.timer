@@ -1,0 +1,14 @@
+[Unit]
+Description=DeepQuant trading calendar refresh timer
+
+[Timer]
+# 每月 1 日 09:00。三个理由：
+#  1. 交易所每年 12 月公布次年休市安排，1 月初刷新一次就够；
+#  2. 日历一旦缺月，月末判定会**失败关闭**（拒绝出决策），所以宁可提前刷；
+#  3. 放在月初而不是月末，避免和决策窗口抢时间。
+OnCalendar=*-*-01 09:00:00
+Persistent=true
+Unit=deepquant-calendar.service
+
+[Install]
+WantedBy=timers.target

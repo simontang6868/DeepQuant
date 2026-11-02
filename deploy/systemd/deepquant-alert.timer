@@ -1,0 +1,12 @@
+[Unit]
+Description=DeepQuant heartbeat alert timer
+
+[Timer]
+# 17:40：给日更链 30 分钟余量。若 17:10 那次还在跑，这一条会看到旧心跳并报警，
+# 那其实是有用的信号（跑得太久通常意味着行情源变慢）。
+OnCalendar=Mon..Fri 17:40:00
+Persistent=true
+Unit=deepquant-alert.service
+
+[Install]
+WantedBy=timers.target
