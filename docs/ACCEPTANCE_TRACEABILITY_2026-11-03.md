@@ -16,7 +16,7 @@
 | 1.3-a | `--dry-run` 不写任何文件 | **PASS** | `sp5/tests/test_phase1_forward_hardening.py::test_dry_run_writes_nothing`、`::test_dry_run_on_stale_data_also_writes_nothing` |
 | 1.3-b | 台账不可覆盖；`--force` 先备份 + 更正日志 | **PASS** | `::test_ledger_immutable_refuses_second_run`、`::test_force_backs_up_and_appends_correction` |
 | 1.3-c | 补跑显式标记，不得用决策日之后价格算信号 | **PASS** | `::test_late_run_is_marked_and_counted`、`::test_late_run_flag_rejected_when_not_late` |
-| 1.3-d | 决策日判定与文档一致 | **PASS（今日重写）** | `test_month_end_calendar.py` 全 22 条；⚠️ 契约已改为「决策日来自独立日历」，见 §3 |
+| 1.3-d | 决策日判定与文档一致 | **PASS（今日重写）** | `test_month_end_calendar.py` 全 28 条；⚠️ 契约已改为「决策日来自独立日历」，见 §3 |
 | 1.3-e | 次日未知时 `PENDING_NO_CALENDAR` | **PASS** | `::test_next_td_unknown_is_pending_not_judged_on_decision_day` |
 | 1.3-f | 台账记录代码来源三字段 | **PASS** | `::test_record_carries_provenance_and_data_last_date` |
 | 1.3-g | 每次运行写心跳 | **PASS** | `::test_heartbeat_written_on_success`、`::test_heartbeat_written_on_stale_abort` |
@@ -134,6 +134,6 @@
 
 | 阶段 | 判定 | 说明 |
 | --- | --- | --- |
-| Phase 1 | `PASS_WITH_GAPS` | 8/9 条款 PASS；G1 未通过（缺机器） |
-| Phase 2 | `PASS_WITH_GAPS` | 21/25 条款 PASS；2.2-c/2.2-d/2.9-b 未实现 |
+| Phase 1 | `PASS_WITH_GAPS` | 1.3 的 **9 条全部 PASS**；**G1 未通过**（缺机器） |
+| Phase 2 | `PASS_WITH_GAPS` | **31/34 条款 PASS**；2.2-c / 2.2-d / 2.9-b 未实现 |
 | G1 / G2 | `NOT_PASSED` | 两者同卡「没有一台每天醒着的机器」 |
