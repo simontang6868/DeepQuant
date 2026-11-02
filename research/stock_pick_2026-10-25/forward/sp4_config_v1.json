@@ -1,0 +1,68 @@
+{
+ "version": "sp4-v1",
+ "frozen_at": "2026-10-26",
+ "strategy": {
+  "universe": "A股（qfq_all 全量，含已退市股）",
+  "price_filter": [
+   1.0,
+   50.0
+  ],
+  "liquidity_filter": "amt20 > 500 万",
+  "band": "amt20 全市场分位 < 20%",
+  "f3_filter_entry": "f3pct <= 0.70",
+  "f3_rule_exit": "持仓股 f3pct > 0.70 即卖出",
+  "n_hold": 5,
+  "entry_rule": "池内按 amt20 降序取前 5 只（确定性；替代原随机买入）",
+  "exit_refill_rule": "按 amt20 降序补入，排除已持有",
+  "signal_time": "每月最后一个交易日收盘后",
+  "execution": "次月首个交易日收盘价",
+  "stock_weight": 0.25,
+  "cash_yield_annual": 0.03,
+  "rebalance_rule": "每月末把股票权重调回 25%（不做则不成立）"
+ },
+ "cost": {
+  "commission_rate": 0.00025,
+  "min_commission": 5.0,
+  "stamp_duty_sell": 0.0005,
+  "transfer_fee": 1e-05,
+  "spread_scenario": 0.001,
+  "note": "显性费用 + 0.10% 价差（S2 档）"
+ },
+ "benchmark": {
+  "primary": "等权持有全部可买股票（档内等权）",
+  "secondary": "中证红利全收益 H00922"
+ },
+ "metrics": [
+  "累计收益",
+  "年化几何收益",
+  "日频MDD",
+  "年化波动",
+  "Calmar",
+  "月换手",
+  "实际成本",
+  "相对基准超额",
+  "配对差（vs 同换手随机）"
+ ],
+ "validation": {
+  "min_observation_months": 36,
+  "interim_review_every_months": 12,
+  "success_criteria": {
+   "annual_net_gt": 0.08,
+   "mdd_daily_ge": -0.2,
+   "excess_vs_benchmark_gt": 0.0
+  },
+  "invalidation_criteria": [
+   "连续 24 个月相对档内等权超额 < -5pp",
+   "日频 MDD 突破 -25%",
+   "档内可买股票数连续 6 个月 < 100",
+   "小盘流动性溢价（最小档 - 最大档）近 5 年 < 0"
+  ],
+  "no_peeking_rule": "观察期内不得因结果好坏提前结束或改参数"
+ },
+ "known_limitations": [
+  "买入规则由随机改为确定性（amt20 降序），与回测口径不同，但审计已证买入规则对期望无贡献",
+  "ST 历史状态不可回溯，未做 ST 过滤",
+  "成本未用真实交割单校准",
+  "仅能证明观察期内表现，不保证未来"
+ ]
+}

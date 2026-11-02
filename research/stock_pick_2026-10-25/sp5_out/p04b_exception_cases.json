@@ -1,0 +1,35 @@
+{
+  "paths_with_fill_fail": 50,
+  "fill_fail_months": 3610,
+  "paths_with_gap": 50,
+  "gap_day_total": 75740,
+  "worst_drawdown_path": 26,
+  "worst_drawdown": -0.20645838420931517,
+  "examples": [
+    {
+      "path": 0,
+      "gap_days": 2107,
+      "fill_fail_months": 94
+    },
+    {
+      "path": 1,
+      "gap_days": 732,
+      "fill_fail_months": 36
+    },
+    {
+      "path": 2,
+      "gap_days": 2887,
+      "fill_fail_months": 142
+    },
+    {
+      "path": 3,
+      "gap_days": 2084,
+      "fill_fail_months": 95
+    },
+    {
+      "path": 4,
+      "gap_days": 1969,
+      "fill_fail_months": 97
+    }
+  ]
+}

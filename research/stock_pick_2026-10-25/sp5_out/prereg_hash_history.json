@@ -1,0 +1,6 @@
+{
+  "v1.0": "163c5726eac4b612f0632fe450957410d905adce8c4538203698f0459aaad05d",
+  "v1.1": "dc6530a3509e81164877f5dad2257c490a2918b381f975f072b03434bfe5f523",
+  "note": "v1.1 拆分成交/回撤判定；v1.2 主口径窗口切至 2023-01（44 月），并登记 EXECUTABLE_WINDOW_FOUND 不可达与 MDE 上限",
+  "v1.2": "32ecc9a6794948f08e9544bf083ff75a741f1e61ca1fcee8cc7f33fa6c8805ed"
+}

@@ -1,0 +1,78 @@
+{
+  "path": 26,
+  "weight": 0.2,
+  "ann": 0.08407086685897802,
+  "mdd": -0.20645838420931517,
+  "peak_date": "20080311",
+  "trough_date": "20081104",
+  "peak_nav": 152863.30484000497,
+  "trough_nav": 121303.39391784156,
+  "trading_days_peak_to_trough": 168,
+  "windows_in_drawdown": [
+    {
+      "month": "20080331",
+      "ret": 2.01
+    },
+    {
+      "month": "20080430",
+      "ret": -1.64
+    },
+    {
+      "month": "20080530",
+      "ret": -4.55
+    },
+    {
+      "month": "20080630",
+      "ret": 2.17
+    },
+    {
+      "month": "20080731",
+      "ret": -5.77
+    },
+    {
+      "month": "20080829",
+      "ret": -1.56
+    },
+    {
+      "month": "20080926",
+      "ret": -7.52
+    },
+    {
+      "month": "20081031",
+      "ret": 5.02
+    }
+  ],
+  "worst_window": {
+    "month": "20080926",
+    "ret_pct": -7.517225608393529,
+    "buy": "20081006",
+    "end": "20081103"
+  },
+  "worst_window_holdings": [
+    {
+      "code": "600340",
+      "ret_pct": -41.66672963245609
+    },
+    {
+      "code": "000815",
+      "ret_pct": -41.19760354616406
+    },
+    {
+      "code": "600571",
+      "ret_pct": -29.50823559166641
+    },
+    {
+      "code": "600081",
+      "ret_pct": -27.671228265825988
+    },
+    {
+      "code": "002031",
+      "ret_pct": -22.85007318285379
+    }
+  ],
+  "worst_window_n_holdings": 5,
+  "worst_window_negative_share": 100.0,
+  "silent_fill_days_path26": 80388,
+  "miss_codes_path26": 0,
+  "ghost_slot_share_pct": 1.127
+}

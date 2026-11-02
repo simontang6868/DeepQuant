@@ -1,0 +1,10 @@
+{
+  "files_scanned": 17,
+  "files_with_hits": 3,
+  "hits_total": 17,
+  "hits_annotated": 17,
+  "hits_unannotated": 0,
+  "unannotated_by_pattern": {},
+  "verdict": "DOC_CONSISTENT",
+  "unannotated_examples": []
+}

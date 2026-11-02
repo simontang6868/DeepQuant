@@ -1,0 +1,40 @@
+{
+  "version": "exec-v1",
+  "frozen_at": "2026-11-03",
+  "note": "执行层与申报相关配置。刻意与 sp4_config_v1.json（策略参数）分开：后者哈希已冻结（d4dacb71），不得因执行层需要而改动。本文件中每个数值都带 _source_<键名>，指向产生它的代码位置；tests/execution/test_execution_config.py 会断言两者一致——申报材料里的数字因此可被机械核查，而不是靠人抄。",
+  "reporting": {
+    "max_orders_per_day": 12,
+    "_source_max_orders_per_day": "execution.risk_gate.RiskLimits.for_strategy_capital(max_daily_orders=12)；Phase 1 决策 D2",
+    "rate_per_second": 2.0,
+    "_source_rate_per_second": "execution.rate_limit.RateLimiter(rate_per_second=...)；本文件定义，为申报而设（代码无硬编码，完全由本配置赋值）",
+    "burst": 2,
+    "_source_burst": "execution.rate_limit.RateLimiter(burst=...)；本文件定义。取 2 而非更大，是因为本策略开盘只需发 ≤10 笔，大突发没有用途",
+    "single_order_window_seconds": 6.0,
+    "_source_single_order_window_seconds": "由上两项推得并经 test_single_order_window_claim_is_consistent 实测：12 笔 ÷ 2 笔/秒 ≈ 6 秒（含突发容量）",
+    "order_time": "09:35",
+    "reprice_points": ["10:30", "14:30"],
+    "max_reprice_attempts": 2,
+    "_source_max_reprice_attempts": "docs/PHASE2_ACCEPTANCE_CRITERIA_2026-11-02.md 2.2-d 预登记值；⚠️ 调度器尚未实现",
+    "max_carry_days": 10,
+    "_source_max_carry_days": "同上 2.2-c 预登记值；⚠️ 顺延逻辑尚未实现",
+    "_rate_rationale": "月度调仓，单日最多 12 笔，按 2 笔/秒约 6 秒发完。选这个值不是因为它快，而是因为它慢到不会触碰任何券商流控；策略本身不是高频。",
+    "_connection_status": "⚠️ 限速器已实现（22 条测试），但尚未接入发单循环——Phase 2 没有会发单的循环（SHADOW 不发送、LIVE 未启用）。因此本文件中的 rate_per_second/burst 目前是**设计上限**，不是运行时保证。必须在 Phase 3 接入后、申报提交前重新确认。"
+  },
+  "order": {
+    "lot_size": 100,
+    "_source_lot_size": "execution.planner.PlanInput.lot_size 默认值",
+    "price_deviation": 0.003,
+    "_source_price_deviation": "execution.planner.DEFAULT_PRICE_DEVIATION；对手价最多让 0.3%（无盘口数据，属近似，Phase 3 用真实成交价校准）"
+  },
+  "strategy_ref": {
+    "config_path": "forward/sp4_config_v1.json",
+    "config_sha256": "d4dacb71",
+    "n_hold": 5,
+    "_note": "策略参数只引用不复制。复制会让两处各自漂移，而漂移了没人会发现。"
+  },
+  "safety": {
+    "live_enabled": false,
+    "requires_live_authorization": true,
+    "note": "LIVE_ENABLED 全程 false。agent 不创建/修改/延期 live_authorization.json。"
+  }
+}

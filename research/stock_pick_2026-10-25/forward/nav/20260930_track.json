@@ -1,0 +1,83 @@
+{
+  "decision": "20260930",
+  "execution_day": "20261008",
+  "end_day": "20261016",
+  "selftest": true,
+  "counts_toward_observation": false,
+  "selftest_source": "ledger.counts_toward_observation",
+  "decision_mode": "SELFTEST",
+  "decision_late_run": false,
+  "capital": 100000.0,
+  "weight": 0.25,
+  "fills": {
+    "top5:603193": {
+      "fill_d": "20261008",
+      "fill_p": 19.43,
+      "status": "FILLED"
+    },
+    "top5:301336": {
+      "fill_d": "20261008",
+      "fill_p": 40.67,
+      "status": "FILLED"
+    },
+    "top5:301202": {
+      "fill_d": "20261008",
+      "fill_p": 34.75,
+      "status": "FILLED"
+    },
+    "top5:000597": {
+      "fill_d": "20261008",
+      "fill_p": 4.78,
+      "status": "FILLED"
+    },
+    "top5:002692": {
+      "fill_d": "20261008",
+      "fill_p": 4.33,
+      "status": "FILLED"
+    },
+    "rand5:300389": {
+      "fill_d": "20261008",
+      "fill_p": 12.61,
+      "status": "FILLED"
+    },
+    "rand5:300447": {
+      "fill_d": "20261008",
+      "fill_p": 13.86,
+      "status": "FILLED"
+    },
+    "rand5:301584": {
+      "fill_d": "20261008",
+      "fill_p": 18.52,
+      "status": "FILLED"
+    },
+    "rand5:600125": {
+      "fill_d": "20261008",
+      "fill_p": 5.230746,
+      "status": "FILLED"
+    },
+    "rand5:603022": {
+      "fill_d": "20261008",
+      "fill_p": 9.08,
+      "status": "FILLED"
+    }
+  },
+  "summary": {
+    "top5": {
+      "days": 6,
+      "ann": -0.2530792620659539,
+      "mdd": -0.0206343300941495,
+      "final": 0.9928503645664682,
+      "vol": 0.1008936467096632,
+      "calmar": -12.264961397400056
+    },
+    "rand5": {
+      "days": 6,
+      "ann": -0.18357588842806127,
+      "mdd": -0.008054628954006104,
+      "final": 0.9950250071034403,
+      "vol": 0.039794361860224677,
+      "calmar": -22.791352584498227
+    }
+  },
+  "note": "成交价取自历史实际收盘；FORWARD 记录须待建仓日收盘后数据到位方可回填"
+}

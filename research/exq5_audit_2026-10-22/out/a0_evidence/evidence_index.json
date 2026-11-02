@@ -1,0 +1,721 @@
+{
+ "summary": {
+  "generated_at": "2026-10-23 16:56:06",
+  "repo": "D:\\DeepQuant power by txm\\DeepQuant-main",
+  "git": {
+   "head": "5cfed94a4283defe5adf68f8e963262bda93286d",
+   "branch": "workbuddy/2026-10-20-consolidated",
+   "tracked_modified": "",
+   "staged": ""
+  },
+  "n_items": 79,
+  "n_missing": 0,
+  "problems": [],
+  "phase_checks": [
+   {
+    "phase": "I",
+    "prereg": "docs/PHASE_I_EXQ5_PREREG_2026-10-21.md",
+    "sha256": "8f5c35121fdb81398aa3a75cb780e4273dee88c2f5684b0ba8e3028d8fdd78e1",
+    "sidecar": "8f5c35121fdb81398aa3a75cb780e4273dee88c2f5684b0ba8e3028d8fdd78e1",
+    "sidecar_ok": true,
+    "run_dir": "8f5c35121fdb",
+    "prefix_ok": true
+   },
+   {
+    "phase": "J",
+    "prereg": "docs/PHASE_J_IMPACT_PREREG_2026-10-21.md",
+    "sha256": "f76de8a277f6574795cb8b78b8a91745a8f1dd5b2152a62ed37af567ebca5f62",
+    "sidecar": "f76de8a277f6574795cb8b78b8a91745a8f1dd5b2152a62ed37af567ebca5f62",
+    "sidecar_ok": true,
+    "run_dir": "f76de8a277f6",
+    "prefix_ok": true
+   },
+   {
+    "phase": "O",
+    "prereg": "docs/PHASE_O_FEE_CONVENTION_PREREG_2026-10-21.md",
+    "sha256": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+    "sidecar": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+    "sidecar_ok": true,
+    "run_dir": "ac7aa2830ab0",
+    "prefix_ok": true
+   },
+   {
+    "phase": "S",
+    "prereg": "docs/PHASE_S_EXQ5_MODERN_PREREG_2026-10-22.md",
+    "sha256": "f098a59fb1b584eda3ce69a8ecfc890b1be93cae9091bf2ba776469f949f2371",
+    "sidecar": "f098a59fb1b584eda3ce69a8ecfc890b1be93cae9091bf2ba776469f949f2371",
+    "sidecar_ok": true,
+    "run_dir": "f098a59fb1b5",
+    "prefix_ok": true
+   },
+   {
+    "phase": "T",
+    "prereg": "docs/PHASE_T_EXQ5_ROBUSTNESS_PREREG_2026-10-22.md",
+    "sha256": "ef29a743997b5371bf7f1bad5aa5880563867591859e48dea787407122139f4e",
+    "sidecar": "ef29a743997b5371bf7f1bad5aa5880563867591859e48dea787407122139f4e",
+    "sidecar_ok": true,
+    "run_dir": "ef29a743997b",
+    "prefix_ok": true
+   },
+   {
+    "phase": "U",
+    "prereg": "docs/PHASE_U_NW_LAG_AUDIT_PREREG_2026-10-22.md",
+    "sha256": "b97d66d91989ba6b35ccbb41c41feab5909f34ffcc4bf40003a651f3dbb894af",
+    "sidecar": "b97d66d91989ba6b35ccbb41c41feab5909f34ffcc4bf40003a651f3dbb894af",
+    "sidecar_ok": true,
+    "run_dir": "b97d66d91989",
+    "prefix_ok": true
+   }
+  ],
+  "data": [
+   {
+    "name": "exec_all",
+    "path": "data/exec_all",
+    "n_files": 5478,
+    "bytes": 752306552,
+    "fingerprint_recorded": "b52ef0b3"
+   },
+   {
+    "name": "qfq_all",
+    "path": "data/qfq_all",
+    "n_files": 5447,
+    "bytes": 956707541,
+    "fingerprint_recorded": "53f43f39"
+   }
+  ]
+ },
+ "items": [
+  {
+   "category": "prereg",
+   "path": "docs/PHASE_I_EXQ5_PREREG_2026-10-21.md",
+   "exists": true,
+   "bytes": 10068,
+   "sha256": "8f5c35121fdb81398aa3a75cb780e4273dee88c2f5684b0ba8e3028d8fdd78e1",
+   "note": "阶段 I"
+  },
+  {
+   "category": "product",
+   "path": "phasei_out/8f5c35121fdb\\monthly.csv",
+   "exists": true,
+   "bytes": 17445,
+   "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a",
+   "note": "阶段 I"
+  },
+  {
+   "category": "product",
+   "path": "phasei_out/8f5c35121fdb\\summary.json",
+   "exists": true,
+   "bytes": 7529,
+   "sha256": "fcf36b7a64331251f4cfd6c48df84739ee91132fa9a7e39f95cb9a551b745e09",
+   "note": "阶段 I"
+  },
+  {
+   "category": "product",
+   "path": "phasei_out/8f5c35121fdb\\manifest.json",
+   "exists": true,
+   "bytes": 756,
+   "sha256": "d8f4c2e3cd41a2998a7ac68c8f455cac78326c619bf3ad5bcc14a194574527bb",
+   "note": "阶段 I"
+  },
+  {
+   "category": "production_script",
+   "path": "scripts/run_phase_i_exq5.py",
+   "exists": true,
+   "bytes": 35124,
+   "sha256": "d15f55a0c8887220f083a1fb02b5ba369ae65d8a9d15fbff52ab8aee04bacaf8",
+   "note": "阶段 I 生成脚本"
+  },
+  {
+   "category": "prereg",
+   "path": "docs/PHASE_J_IMPACT_PREREG_2026-10-21.md",
+   "exists": true,
+   "bytes": 8526,
+   "sha256": "f76de8a277f6574795cb8b78b8a91745a8f1dd5b2152a62ed37af567ebca5f62",
+   "note": "阶段 J"
+  },
+  {
+   "category": "product",
+   "path": "phasej_out/f76de8a277f6\\monthly.csv",
+   "exists": true,
+   "bytes": 21560,
+   "sha256": "6f1961bdc2709c98b637ef545a8a90e2f76b3e2f1983974c827e35dffb859235",
+   "note": "阶段 J"
+  },
+  {
+   "category": "product",
+   "path": "phasej_out/f76de8a277f6\\summary.json",
+   "exists": true,
+   "bytes": 4442,
+   "sha256": "24391a20a5e4e82ecbfa643e6d31daee7f7c6ec8662e31dee3486e8836f08c0a",
+   "note": "阶段 J"
+  },
+  {
+   "category": "product",
+   "path": "phasej_out/f76de8a277f6\\manifest.json",
+   "exists": true,
+   "bytes": 499,
+   "sha256": "c0c0bcafa30451c997d285a31e79190cfeb31b6c135a3b25898e0d0b124aab31",
+   "note": "阶段 J"
+  },
+  {
+   "category": "production_script",
+   "path": "scripts/run_phase_j_impact.py",
+   "exists": true,
+   "bytes": 24378,
+   "sha256": "b6d8d67b251b89b3a2c8463a5e3d0c900e6832c08ff8432c89259b88a9bbb2ca",
+   "note": "阶段 J 生成脚本"
+  },
+  {
+   "category": "prereg",
+   "path": "docs/PHASE_O_FEE_CONVENTION_PREREG_2026-10-21.md",
+   "exists": true,
+   "bytes": 5604,
+   "sha256": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+   "note": "阶段 O"
+  },
+  {
+   "category": "product",
+   "path": "phaseo_out/ac7aa2830ab0\\monthly.csv",
+   "exists": true,
+   "bytes": 29949,
+   "sha256": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+   "note": "阶段 O"
+  },
+  {
+   "category": "product",
+   "path": "phaseo_out/ac7aa2830ab0\\summary.json",
+   "exists": true,
+   "bytes": 3844,
+   "sha256": "05bdc615bece3c2f6a35f4b5f5a989d3ddd23b2ec1e5df1192c3a6dbe8e19329",
+   "note": "阶段 O"
+  },
+  {
+   "category": "product",
+   "path": "phaseo_out/ac7aa2830ab0\\manifest.json",
+   "exists": true,
+   "bytes": 502,
+   "sha256": "0655f497576fb0a0a2f6ad5726c050765074af863a857b6428a4bb4310c65a8b",
+   "note": "阶段 O"
+  },
+  {
+   "category": "production_script",
+   "path": "scripts/run_phase_o_fee_convention.py",
+   "exists": true,
+   "bytes": 17081,
+   "sha256": "b95b4bbfd3749b44aaf9ceb2028265d7b517887f73bd8a7d3af1147b345c5947",
+   "note": "阶段 O 生成脚本"
+  },
+  {
+   "category": "prereg",
+   "path": "docs/PHASE_S_EXQ5_MODERN_PREREG_2026-10-22.md",
+   "exists": true,
+   "bytes": 8683,
+   "sha256": "f098a59fb1b584eda3ce69a8ecfc890b1be93cae9091bf2ba776469f949f2371",
+   "note": "阶段 S"
+  },
+  {
+   "category": "product",
+   "path": "phases_out/f098a59fb1b5\\monthly.csv",
+   "exists": true,
+   "bytes": 42100,
+   "sha256": "3333efe96ac0db29d1568057678eda5187d0c03b42c1e508f5eb8736bd24da91",
+   "note": "阶段 S"
+  },
+  {
+   "category": "product",
+   "path": "phases_out/f098a59fb1b5\\summary.json",
+   "exists": true,
+   "bytes": 12352,
+   "sha256": "ee182b59ca44e4a711260faf3b874fbef5a887cd97170f8a2281be5ec17a33d6",
+   "note": "阶段 S"
+  },
+  {
+   "category": "product",
+   "path": "phases_out/f098a59fb1b5\\manifest.json",
+   "exists": true,
+   "bytes": 501,
+   "sha256": "9170e75516ee42b191aefc2b0638e6c8458895d076fcd2945bb20eb3f7d96d1a",
+   "note": "阶段 S"
+  },
+  {
+   "category": "production_script",
+   "path": "scripts/run_phase_s_exq5_modern.py",
+   "exists": true,
+   "bytes": 14870,
+   "sha256": "ccbcabdd27c4d1d6334e68eb849258e2fb4fd351a2fe68fbf81e51f6bece1889",
+   "note": "阶段 S 生成脚本"
+  },
+  {
+   "category": "prereg",
+   "path": "docs/PHASE_T_EXQ5_ROBUSTNESS_PREREG_2026-10-22.md",
+   "exists": true,
+   "bytes": 10445,
+   "sha256": "ef29a743997b5371bf7f1bad5aa5880563867591859e48dea787407122139f4e",
+   "note": "阶段 T"
+  },
+  {
+   "category": "product",
+   "path": "phaset_out/ef29a743997b\\monthly.csv",
+   "exists": true,
+   "bytes": 7126,
+   "sha256": "e9ef1d8b0f5dde817ce1af15a765e3b9fbea588311c94ebe7c4b624a52141e07",
+   "note": "阶段 T"
+  },
+  {
+   "category": "product",
+   "path": "phaset_out/ef29a743997b\\summary.json",
+   "exists": true,
+   "bytes": 14221,
+   "sha256": "2e59832d701a278d2e058c1c4ca0608679274ff63d8a7df757ffcbd94ec1e5e7",
+   "note": "阶段 T"
+  },
+  {
+   "category": "product",
+   "path": "phaset_out/ef29a743997b\\manifest.json",
+   "exists": true,
+   "bytes": 1233,
+   "sha256": "35ca6a8d8eca0b94fecc87e94ab6477c0bad074206894dfa93fac6349b87d3cd",
+   "note": "阶段 T"
+  },
+  {
+   "category": "production_script",
+   "path": "scripts/run_phase_t_exq5_robustness.py",
+   "exists": true,
+   "bytes": 24632,
+   "sha256": "311189c4225e4375c11b14ec8613b2ea215b1fad42dd7954c14d115334ec9112",
+   "note": "阶段 T 生成脚本"
+  },
+  {
+   "category": "prereg",
+   "path": "docs/PHASE_U_NW_LAG_AUDIT_PREREG_2026-10-22.md",
+   "exists": true,
+   "bytes": 10493,
+   "sha256": "b97d66d91989ba6b35ccbb41c41feab5909f34ffcc4bf40003a651f3dbb894af",
+   "note": "阶段 U"
+  },
+  {
+   "category": "product",
+   "path": "phaseu_out/b97d66d91989\\profiles.csv",
+   "exists": true,
+   "bytes": 8767,
+   "sha256": "03f335a456d328b072daad413ffca0759a3e31a64486f4c1fef4396a9da561db",
+   "note": "阶段 U"
+  },
+  {
+   "category": "product",
+   "path": "phaseu_out/b97d66d91989\\summary.json",
+   "exists": true,
+   "bytes": 38318,
+   "sha256": "860ff22fceb0b74bd0045a0bb3126889edbf06d6e7e0fadc81c7c86f2f751d15",
+   "note": "阶段 U"
+  },
+  {
+   "category": "product",
+   "path": "phaseu_out/b97d66d91989\\manifest.json",
+   "exists": true,
+   "bytes": 1194,
+   "sha256": "dd1fea5a64c0bfe4b12ca295ce571fc96e4b362daa3e2f03a82d2b57c8b20902",
+   "note": "阶段 U"
+  },
+  {
+   "category": "production_script",
+   "path": "scripts/run_phase_u_nw_lag_audit.py",
+   "exists": true,
+   "bytes": 21504,
+   "sha256": "cf166e8fe30c7df4e9b4b472704f8b69a48e2b112a487699612d92bbe9cb9972",
+   "note": "阶段 U 生成脚本"
+  },
+  {
+   "category": "result_report",
+   "path": "docs/PHASE_I_RESULT_REPORT_2026-10-21.md",
+   "exists": true,
+   "bytes": 9907,
+   "sha256": "7021f6bc00b4755aee180b34ffa9ccfca08d0198a8741d4e05156316fc0b992b",
+   "note": ""
+  },
+  {
+   "category": "result_report",
+   "path": "docs/PHASE_J_RESULT_REPORT_2026-10-21.md",
+   "exists": true,
+   "bytes": 8127,
+   "sha256": "9cd75bd0dbcaee701abc6c8e8317beba6ab28480e72e59a80334edb245ca999e",
+   "note": ""
+  },
+  {
+   "category": "result_report",
+   "path": "docs/PHASE_O_RESULT_REPORT_2026-10-21.md",
+   "exists": true,
+   "bytes": 6358,
+   "sha256": "5ecdf8286ee80ae1a57508ce03329d8754eb5b5f202efb9b784dfc8d36ae44b8",
+   "note": ""
+  },
+  {
+   "category": "result_report",
+   "path": "docs/PHASE_S_RESULT_REPORT_2026-10-22.md",
+   "exists": true,
+   "bytes": 9387,
+   "sha256": "19f27268fbd415c35373ed5955652e0dec93052563d4f75ece4df651fd3e0d62",
+   "note": ""
+  },
+  {
+   "category": "result_report",
+   "path": "docs/PHASE_T_RESULT_REPORT_2026-10-22.md",
+   "exists": true,
+   "bytes": 12514,
+   "sha256": "cd7f76c44abfbc18ebecdd007ad0c4fd86a894d4dd1d61bb5fdcd24e85135599",
+   "note": ""
+  },
+  {
+   "category": "result_report",
+   "path": "docs/PHASE_U_RESULT_REPORT_2026-10-22.md",
+   "exists": true,
+   "bytes": 11657,
+   "sha256": "1b20b2a653a70b8a18aff0e8701d33e52ab86efea47904f048e4ec08ad58a7fb",
+   "note": ""
+  },
+  {
+   "category": "result_report",
+   "path": "docs/PHASE_U_AUDIT_ADDENDUM_2026-10-22.md",
+   "exists": true,
+   "bytes": 3239,
+   "sha256": "5ac32bdc0072583cae403a70383b277d60ede40c327c3a29db5035c9c497fee1",
+   "note": ""
+  },
+  {
+   "category": "recon_report",
+   "path": "reports/BROKER_FEE_CALCULATION.json",
+   "exists": true,
+   "bytes": 11497,
+   "sha256": "919fde391919dcb5eb8a832cbedd1ac3ac7b2a45581315120c75946cc44374f0",
+   "note": ""
+  },
+  {
+   "category": "recon_report",
+   "path": "reports/EXQ5_FEASIBILITY.json",
+   "exists": true,
+   "bytes": 910,
+   "sha256": "cfaed6fcaab4ab7e8ea6f102305cbbb8310270e5016a7c7b53fd26a20977ba20",
+   "note": ""
+  },
+  {
+   "category": "recon_report",
+   "path": "reports/COST_SENSITIVITY_AUDIT.md",
+   "exists": true,
+   "bytes": 5309,
+   "sha256": "66346c6fd0b3bd36dab08767fce27be132e4f8f43780d58e58ad8f32d6a69f77",
+   "note": ""
+  },
+  {
+   "category": "recon_report",
+   "path": "reports/PROPERTY_CHECKS.json",
+   "exists": true,
+   "bytes": 1842,
+   "sha256": "0fba90f30d633635a62f2419aca78149c9e3fa1ddaf75f1cb445ed90a2ad62c2",
+   "note": ""
+  },
+  {
+   "category": "recon_report",
+   "path": "docs/ARCHIVE_MANIFEST_2026-10-21.md",
+   "exists": true,
+   "bytes": 5179,
+   "sha256": "ad870c51f12704e837197650b4197b4aa1642e69d2cc93b5e20f80c0b4854ea2",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_AUDIT_FINAL_REPORT.md",
+   "exists": true,
+   "bytes": 8730,
+   "sha256": "3eb56f71238e9a6d669695c35122c79d34aec0f076755a940744eb058f7adabf",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_BASELINE_REPRODUCTION.md",
+   "exists": true,
+   "bytes": 6682,
+   "sha256": "fd319bb95e76594a3475358282f0f2121ab9f9c064d0542f973758597d79b96d",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_CAPACITY_AND_COST_AUDIT.md",
+   "exists": true,
+   "bytes": 6275,
+   "sha256": "3dd1f0cd02635ed768c38192f23b41df6c70fe82da305544baa02760e470ecc8",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_EXECUTION_ASSUMPTIONS_AUDIT.md",
+   "exists": true,
+   "bytes": 5807,
+   "sha256": "c726d37027b3416f1b21918ec9c4fd401331fe7b569f6a63c7c411bd4b7db13a",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_FORWARD_VALIDATION_PROTOCOL.md",
+   "exists": true,
+   "bytes": 6296,
+   "sha256": "75d5591abaac4343b7056c162616d2305924b0ecbfd8b167a1325d3b51d658e2",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_STATISTICAL_ROBUSTNESS_AUDIT.md",
+   "exists": true,
+   "bytes": 5763,
+   "sha256": "ae36a24f3c5fa0c9c3c17a42e8636673cfd79c3ca53a6e4715ca7182f1fb0b8b",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_STOCK_AND_LIQUIDITY_AUDIT.md",
+   "exists": true,
+   "bytes": 7118,
+   "sha256": "fd48d82616e9878587e895b915ada70714960579d2e7b8bde65cb3ea86e3cbf8",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_TIME_CONCENTRATION_AUDIT.md",
+   "exists": true,
+   "bytes": 4929,
+   "sha256": "d1d6601e477bb1d322d7458b4aa228614470a063768955dd29ba5367d1c455f6",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\FWD_LEDGER_BUILD_NOTE.md",
+   "exists": true,
+   "bytes": 5173,
+   "sha256": "8710e876c023d3af6f5506911d201cd1ba30dcf19594d980db06052cf7ff3c3c",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\EXQ5_LEDGER_RECONCILIATION.md",
+   "exists": true,
+   "bytes": 5266,
+   "sha256": "bc084b3b7e45f3563d8bacb331c8110ed6c3245eb25ff656e6b2501cd6cd2f6e",
+   "note": ""
+  },
+  {
+   "category": "audit_doc",
+   "path": "research\\exq5_audit_2026-10-22\\VIBE_TRADING_REPO_ASSESSMENT.md",
+   "exists": true,
+   "bytes": 9517,
+   "sha256": "918e57b77854a75c4573159ac4b85339d34980adb526e4e760bb6a02aa4c4c11",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/audit_common.py",
+   "exists": true,
+   "bytes": 7890,
+   "sha256": "13c2c96ef442d987a69ac969e617fc6dd4a76e7edeec3454ae3b7eb869a719b6",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/a1_baseline_repro.py",
+   "exists": true,
+   "bytes": 23695,
+   "sha256": "3f4b7a122dbea1e4b339acdc0e96bf12cb65c79007a75b3e7177daa816e76643",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/a2_time_concentration.py",
+   "exists": true,
+   "bytes": 9458,
+   "sha256": "906800486c0d1174d1bbd166f256352463f99ce7a2bed1dc23d85c77c1bbb1b8",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/a3_panel_rebuild.py",
+   "exists": true,
+   "bytes": 30737,
+   "sha256": "5846a0588222c5bbc1f1818fb546141e6e267cfa6978ecc0fccb233f481dfd74",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/a4_capacity_cost.py",
+   "exists": true,
+   "bytes": 10669,
+   "sha256": "a2ae459efb5523a53597954bcdd36ba8a83754251eaf9b10793a03ae339e3018",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/a6_stat_robustness.py",
+   "exists": true,
+   "bytes": 14006,
+   "sha256": "f31427617c6e54eba3245371a83c0997abba94042e8bd2aad610829f6e185c89",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/fwd_ledger.py",
+   "exists": true,
+   "bytes": 13434,
+   "sha256": "4146c0fb555c3089b0e83dff7a7473d0b97b4fa9e83ce8b36cdfff9d8d6f9085",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/a5_ledger_recon.py",
+   "exists": true,
+   "bytes": 9522,
+   "sha256": "6dbea7b8cbda26d83314d5695faa950501a1a76b3bd1e105d6a160b1a3162790",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/tests/test_audit.py",
+   "exists": true,
+   "bytes": 9293,
+   "sha256": "b2b5bbe13e5cc8c396e45a0dc327379f8dff9a8848bf0f4a1db9139514ec6cf3",
+   "note": ""
+  },
+  {
+   "category": "audit_script",
+   "path": "research\\exq5_audit_2026-10-22\\scripts/tests/test_fwd_ledger.py",
+   "exists": true,
+   "bytes": 5180,
+   "sha256": "fe4550528359b517e42dd8e4bcf11dd642787c4ea442e5f709e4b57697b4e46d",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a1_baseline/repro_table.csv",
+   "exists": true,
+   "bytes": 8105,
+   "sha256": "425bcd3d5ace69384c955e450386004c1b6c7c5075c67e9fa82e136ee8bc3769",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a1_baseline/repro_detail.json",
+   "exists": true,
+   "bytes": 19433,
+   "sha256": "4784883d419eac950b6ad1962ceb6cd6d2f4cf52bbdf34c17d3b680d508c1e16",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a2_time/concentration.json",
+   "exists": true,
+   "bytes": 5646,
+   "sha256": "7cf8fb479a35a46803edf13a524ba86715b45f538d625168d8d430d0ad40a5ef",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a2_time/monthly_table.csv",
+   "exists": true,
+   "bytes": 13101,
+   "sha256": "12965c308800580487c94c0d13cb777fa5f314fd2df62c72487e936fdfed2310",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a2_time/rolling.csv",
+   "exists": true,
+   "bytes": 16253,
+   "sha256": "f1a0821165a86ffacc491e0f34bcef6ad8efc3d997321c493ae7e902d5122b5c",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a3_panel/summary.json",
+   "exists": true,
+   "bytes": 7977,
+   "sha256": "f002ee07db68f3fc6183dc142b58e30658811a7c89b05d456800317e667ffe04",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a3_panel/adv_groups.csv",
+   "exists": true,
+   "bytes": 539,
+   "sha256": "5d32d5da6e3fd839dbd04dc1b3d423e3b41f6caa66e61462de8d8d41f86593cb",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a3_panel/per_stock_contrib.csv",
+   "exists": true,
+   "bytes": 141759,
+   "sha256": "cd54b70699583adff7afb035b942fbb89c7e18a5defe1745d3d0e2f6763b2e81",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a4_capacity/summary.json",
+   "exists": true,
+   "bytes": 10382,
+   "sha256": "22081e6d72900f50ba48a72e4a0a75a082b555102c5a0e8ad7720a49a6d72d73",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a4_capacity/cost_factors.csv",
+   "exists": true,
+   "bytes": 1926,
+   "sha256": "7529f61706fe2aa8b8cca7db28e36a77dee77dd4c2841cdc9222c15e9f09adae",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a6_stat/summary.json",
+   "exists": true,
+   "bytes": 10581,
+   "sha256": "c84e4587f5d94f1e467448f003b47c0cfb5a52f258be4fedf12aac0382ffaa18",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a6_stat/grid_full.csv",
+   "exists": true,
+   "bytes": 2131,
+   "sha256": "19239a5d82f4be826ee821ba8aace2065832fb55dfdf77a29c791624bedce4d4",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a3_panel/keep_lists.csv",
+   "exists": true,
+   "bytes": 32409740,
+   "sha256": "9501013f4ddba805ed0028fa0be2d41fa60c18a9b62482e6428932a27b2dcf00",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a5_ledger/summary.json",
+   "exists": true,
+   "bytes": 2164,
+   "sha256": "7f3fa14a4a242303ff1f7c366aa2107a523a77beaad6764dde0c8abf1b95cbf6",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a5_ledger/monthly_BASE_drift.csv",
+   "exists": true,
+   "bytes": 28476,
+   "sha256": "dede77c5a78f3a64e4ea76a48fccd1f6df1e678a8a546a38dce7343c0ffc8b71",
+   "note": ""
+  },
+  {
+   "category": "audit_output",
+   "path": "research\\exq5_audit_2026-10-22\\out/a5_ledger/monthly_BASE_rebalance.csv",
+   "exists": true,
+   "bytes": 28288,
+   "sha256": "565295c6ac6d6e0205f23d72d154678b0457646837f582ae5724e0efb849b998",
+   "note": ""
+  }
+ ]
+}

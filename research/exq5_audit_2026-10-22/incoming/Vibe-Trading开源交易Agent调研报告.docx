@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Error>
+	<Code>SignatureDoesNotMatch</Code>
+	<Message>The Signature you specified is invalid.</Message>
+	<Resource>/smh2mf8nq7i9cemv/AAAAAAAAAAAAAAquGxmrV-sVKbLaSUfn28062c0c9bcea8cb00065e7b5721c21d.docx</Resource>
+	<RequestId>NmFkYWY2MDlfYzg0ZjdiMGJfYTU2Nl80OTlmZDA2</RequestId>
+	<TraceId>OGVmYzZiMmQzYjA2OWNhODk0NTRkMTBiOWVmMDAxODc0OWRkZjk0ZDM1NmI1M2E2MTRlY2MzZDhmNmI5MWI1OTQyYWVlY2QwZTk2MDVmZDQ3MmI2Y2I4ZmI5ZmM4ODFjNWUzMTJiNDQ5MjAyZTI4YmY3YzA0ODBkODE4ZjJmYmU=</TraceId>
+</Error>
+

@@ -1,0 +1,67 @@
+{
+  "source": "szse.cn 名称变更(简称变更) via akshare stock_info_sz_change_name",
+  "raw_rows": 7498,
+  "raw_codes": 3129,
+  "date_range": [
+    "1994-01-03",
+    "2026-10-23"
+  ],
+  "rows_containing_ST": 2282,
+  "month_end_count": 261,
+  "month_end_range": [
+    "2004-12-31",
+    "2026-08-31"
+  ],
+  "coverage_by_market": {
+    "OTHER": {
+      "code_months": 141,
+      "codes": 1,
+      "codes_with_name_history": 0,
+      "code_share_with_history": 0.0
+    },
+    "SH": {
+      "code_months": 339237,
+      "codes": 2401,
+      "codes_with_name_history": 0,
+      "code_share_with_history": 0.0
+    },
+    "SZ": {
+      "code_months": 434621,
+      "codes": 3034,
+      "codes_with_name_history": 3021,
+      "code_share_with_history": 0.9957
+    }
+  },
+  "sz_st_share_by_year": {
+    "2004": 0.0182,
+    "2005": 0.0166,
+    "2006": 0.0214,
+    "2007": 0.025,
+    "2008": 0.0238,
+    "2009": 0.024,
+    "2010": 0.0254,
+    "2011": 0.0233,
+    "2012": 0.0226,
+    "2013": 0.0128,
+    "2014": 0.0075,
+    "2015": 0.0082,
+    "2016": 0.0105,
+    "2017": 0.0104,
+    "2018": 0.0112,
+    "2019": 0.0212,
+    "2020": 0.0341,
+    "2021": 0.0367,
+    "2022": 0.0326,
+    "2023": 0.0301,
+    "2024": 0.0373,
+    "2025": 0.0513,
+    "2026": 0.0575
+  },
+  "limitation": [
+    "仅深市（000/001/002/003/300/301/302）；沪市无带日期的历史简称变更接口",
+    "从未改名的股票不在表内 —— 对 is_st 无害（从未改名 ⇒ 从未 ST）",
+    "月末口径；月内进出 ST 不建模",
+    "未区分 *ST / ST / SST，统一按含 'ST' 处理（与『排除 ST』的投资含义一致）"
+  ],
+  "verdict": "SZ_ONLY_AVAILABLE"
+}

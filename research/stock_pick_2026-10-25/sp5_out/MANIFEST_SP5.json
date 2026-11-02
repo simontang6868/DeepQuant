@@ -1,0 +1,217 @@
+{
+  "05_SP5_任务书.md": {
+    "exists": true,
+    "bytes": 22643,
+    "sha256": "006fdee7533769713efa7c705e332b9add338fd40fd6597a120591b725498e80"
+  },
+  "06_P2-1_前瞻评估方案_冻结v1.0.md": {
+    "exists": true,
+    "bytes": 6093,
+    "sha256": "629af37436acae75eb473f3c9322da0807611e4a94bd75cc4e35b14ca319b38a"
+  },
+  "SP5_预登记.md": {
+    "exists": true,
+    "bytes": 9948,
+    "sha256": "32ecc9a6794948f08e9544bf083ff75a741f1e61ca1fcee8cc7f33fa6c8805ed"
+  },
+  "04_最终方案.md": {
+    "exists": true,
+    "bytes": 14133,
+    "sha256": "90dce01bc5517c8d4cdefad3ff394c636e384b209109a35c6bfeede62793ccab"
+  },
+  "reports/STAGE_REPORT_SP4_INDEPENDENT_AUDIT.md": {
+    "exists": true,
+    "bytes": 22381,
+    "sha256": "1936bee90eb2e702fb54d0e4c15d964cde690e1864adbfcc809dd110cf5905ab"
+  },
+  "reports/SP5_PROGRESS.md": {
+    "exists": true,
+    "bytes": 11785,
+    "sha256": "ff3db1ad035cbab0b4a8e7dd5c51b80570cfb80206616c269363e5ab2986a5a3"
+  },
+  "reports/SP5_TRADABILITY_CONSTRAINT_AUDIT.md": {
+    "exists": true,
+    "bytes": 9012,
+    "sha256": "dc3cb0a3368e66714e20ae0072ae1e46cdc7532dd11ccf3798b458c08faf0acd"
+  },
+  "reports/SP5_ST_EFFECT_AUDIT.md": {
+    "exists": true,
+    "bytes": 7886,
+    "sha256": "64aa11699694275fb4d61291ef5900c1844f43fddf0e0b23ec45f0cb417010da"
+  },
+  "reports/SP5_POSITION_DD_ROBUSTNESS.md": {
+    "exists": true,
+    "bytes": 12073,
+    "sha256": "8b229aec88570e8a5f030f950a57704d3a9538969b88daf9bf257787aade954f"
+  },
+  "reports/SP5_EXECUTABLE_WINDOW_AUDIT.md": {
+    "exists": true,
+    "bytes": 11057,
+    "sha256": "349925a6723942865bda78e75dad25526b7c6c611f594979be5fdf2a9b2d28c7"
+  },
+  "reports/SP5_INDUSTRY_EXPOSURE_AUDIT.md": {
+    "exists": true,
+    "bytes": 6075,
+    "sha256": "ecc19f646e54c6fb5d3dfc290fea0f9e341f385b04b1dbbe624bacaf18263d68"
+  },
+  "scripts/sp5/st_sz_build.py": {
+    "exists": true,
+    "bytes": 6136,
+    "sha256": "5095f2f8122844e45cd808606c9ff1978a4f09314f042511aa740ca307d3200e"
+  },
+  "scripts/sp5/st_exposure_probe.py": {
+    "exists": true,
+    "bytes": 4747,
+    "sha256": "a3dcdb27e498e8a83f5e7d42affa0c64fd2400b0a03e96096b1d8898dbcb581d"
+  },
+  "scripts/sp5/wording_audit.py": {
+    "exists": true,
+    "bytes": 4949,
+    "sha256": "2acea291164c6b1cbe6264ee32dfb25e53df7dd1f1f5afa9babfd5a8ca22fb01"
+  },
+  "scripts/sp5/fill_engine.py": {
+    "exists": true,
+    "bytes": 10558,
+    "sha256": "2e7bdbd30426c8eae9073de1b2d14a5fa2133aa1b42e024a8481f70c07dd1db1"
+  },
+  "scripts/sp5/p03_tradability.py": {
+    "exists": true,
+    "bytes": 20273,
+    "sha256": "0f7dfe5869d3868ea5e6e188dc71c32e4e86d48dea2f9717885bbcdc8c073624"
+  },
+  "scripts/sp5/p03_diag.py": {
+    "exists": true,
+    "bytes": 6062,
+    "sha256": "2b7e96b3f524f4faf487067b722abed30780b90adcdce268d6d7da688e1993a1"
+  },
+  "scripts/sp5/p02c_st_effect.py": {
+    "exists": true,
+    "bytes": 17459,
+    "sha256": "fd48d42bce46f422ce1b711262e858372c5fe7b84017885e2854fc175d689461"
+  },
+  "scripts/sp5/p04_position_dd.py": {
+    "exists": true,
+    "bytes": 15074,
+    "sha256": "de47e75cfbde3cf8c06d0100bb5e4c4f47872c84ebe7cff5c36b04543f0dd43f"
+  },
+  "scripts/sp5/p11_exec_window.py": {
+    "exists": true,
+    "bytes": 22066,
+    "sha256": "068a982204657b58a9e4164adb8616acc25266a1a4b2af0ee08764f829c1258c"
+  },
+  "scripts/sp5/p12_industry_map.py": {
+    "exists": true,
+    "bytes": 3642,
+    "sha256": "fde9212e3a1bcbd0798524dcc40491d6c8cf61d0abacdc1ac7bf6383489191ab"
+  },
+  "scripts/sp5/p12_industry.py": {
+    "exists": true,
+    "bytes": 10158,
+    "sha256": "432c8f8e25966c5bbac0f253aac8c7e5a55bee60be7ffc1e6f47a6194bffca44"
+  },
+  "scripts/sp5/tests/test_p11_exec_window.py": {
+    "exists": true,
+    "bytes": 6093,
+    "sha256": "167f5bff9e547029399c41bd4084e5f30ff3645ff0a0c8794308b30e736eda9c"
+  },
+  "scripts/sp5/tests/test_p04_ledger.py": {
+    "exists": true,
+    "bytes": 2760,
+    "sha256": "767c04175c8900ba951eb44ecea0f2e2ed6b882c9183ee95e70be9e824b66d98"
+  },
+  "scripts/sp5/tests/test_fill_engine.py": {
+    "exists": true,
+    "bytes": 6056,
+    "sha256": "feb23cf72aa90dafc3a5a360203c355b80c38ed254213021086acce9f2340ac2"
+  },
+  "scripts/sp5/tests/test_sp5.py": {
+    "exists": true,
+    "bytes": 4047,
+    "sha256": "3b9fba48757a117fa84790cf4b5f9cb92305e9f61b3e924ab0c67e32e7f2e844"
+  },
+  "data/st_sz_monthly.parquet": {
+    "exists": true,
+    "bytes": 316061,
+    "sha256": "976c8f594b3bb22822cd114ad7f3998bd235a78084984ff252a0c18228bb19a4"
+  },
+  "sp5_out/sp5_st_coverage.json": {
+    "exists": true,
+    "bytes": 1727,
+    "sha256": "81e8e942b7446bef4e8d7c36338aa12f6db86b3aad294f9456455f662ef9f9c6"
+  },
+  "sp5_out/sp5_st_exposure.json": {
+    "exists": true,
+    "bytes": 3924,
+    "sha256": "d2045637dbd46a1f7947552a46730787ddfdc890294e309acec90570bd902bd0"
+  },
+  "sp5_out/wording_audit.csv": {
+    "exists": true,
+    "bytes": 4155,
+    "sha256": "6f6a4c9c18e4bec235e1090e3881c94458ef9039e6d73ef206910b84b6bb94a8"
+  },
+  "sp5_out/wording_audit.json": {
+    "exists": true,
+    "bytes": 222,
+    "sha256": "2f4b72f84b24a19335602420e8c85b1b03741ef03eb53209841842bdd31ba931"
+  },
+  "sp5_out/SP5_TASK_BACKLOG.csv": {
+    "exists": true,
+    "bytes": 1752,
+    "sha256": "df0bd92156ca5f08e5ef7f7444f7b0facb257a670d3bb41bf43566b3a29f1537"
+  },
+  "sp5_out/sp5_tradability.json": {
+    "exists": true,
+    "bytes": 5109,
+    "sha256": "3cf90bf671bc9812be10f38f313b98d8bf5b1578a495bb24dc989855b2b7ab12"
+  },
+  "sp5_out/sp5_fill_ledger.csv": {
+    "exists": true,
+    "bytes": 4705408,
+    "sha256": "7279fcef75f4a0345a36cbbdd0ae9f2a57bf44b7c332bc8586ccb61def286487"
+  },
+  "sp5_out/sp5_p03_diag.json": {
+    "exists": true,
+    "bytes": 793,
+    "sha256": "79b11cc3fce09cd805f5a59b71d195ea456b11ade7df080c4942ec4ee4606014"
+  },
+  "sp5_out/sp5_st_effect.json": {
+    "exists": true,
+    "bytes": 3860,
+    "sha256": "3cb7a5156863c622b0c158f743abcd31e3852d9696bd5d8748d8ec1203e97cd9"
+  },
+  "sp5_out/prereg_hash_history.json": {
+    "exists": true,
+    "bytes": 396,
+    "sha256": "ded6b4999d10fcb8bcc7f20fc2faba26333ecd5a927e11c508b966d996f8e692"
+  },
+  "sp5_out/sp5_position_dd.json": {
+    "exists": true,
+    "bytes": 11616,
+    "sha256": "177d82fc4d899de132fd571a287107db8ccc4c455fc4e822a552ee674b3a6d50"
+  },
+  "sp5_out/sp5_nav_recon_p0_2005.csv": {
+    "exists": true,
+    "bytes": 544113,
+    "sha256": "9eb461e03ca41abbbcf972d78f6331ab2dad8186f05e25786ed292c8082c7ecf"
+  },
+  "sp5_out/sp5_nav_recon_p0_2021.csv": {
+    "exists": true,
+    "bytes": 143649,
+    "sha256": "cc4a0a081b2eb1ddefdd19202e908794a4220b18a7ef71b182b1c27385d400f5"
+  },
+  "sp5_out/sp5_exec_window.json": {
+    "exists": true,
+    "bytes": 30319,
+    "sha256": "970d6be3d9f6a34a1d346d814671520ba369fd2562748475266f4d171acce845"
+  },
+  "sp5_out/sp5_exec_monthly.csv": {
+    "exists": true,
+    "bytes": 1901,
+    "sha256": "c17603e8666922e83288a09231ceaebf36dfccf16e7abc00d590f38ee8161e6a"
+  },
+  "sp5_out/sp5_industry.json": {
+    "exists": true,
+    "bytes": 4865,
+    "sha256": "817cca6ad6b6480807c51065a2417e1f3c279bcb4a7f09b41dff31f747726d6c"
+  }
+}

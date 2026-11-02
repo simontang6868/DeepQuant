@@ -1,0 +1,28 @@
+{
+  "q1_daily_mdd_repro": {
+    "paths": 12,
+    "ann100_median": 0.30247814952483154,
+    "mdd25_median": -0.21938119673750733,
+    "mdd25_p10": -0.246003474826,
+    "mdd25_p90": -0.1825190870584064,
+    "audit_reference": -0.2243,
+    "gap_pp": 0.4918803262492659
+  },
+  "q2_no_bar": {
+    "no_bar_orders": 2940,
+    "by_kind": {
+      "GAP_IN_RANGE": 2940
+    },
+    "note": "AFTER_LAST_TRADE = 决策后已退市/长期停牌；GAP_IN_RANGE = 真停牌；BEFORE_LISTING 不应出现（面板已按上市过滤）"
+  },
+  "q3_one_word": {
+    "one_word_orders": {
+      "buy": 428,
+      "sell": 396,
+      "sh": 238,
+      "sz": 586
+    },
+    "sh5_extra_fails": 0,
+    "note": "沪市 5% 双界只对『一字但涨幅 5%~10%』的事件新增失败；若沪市无一字，则为 0"
+  }
+}

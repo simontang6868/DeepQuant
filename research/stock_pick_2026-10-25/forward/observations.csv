@@ -1,0 +1,3 @@
+﻿date,signal_time,data_version,pool_size,n_hold_target,target_holdings,prev_holdings,n_swaps,est_cost_rate,nav_model,mdd_model,benchmark_nav,strategy_hash,note
+20260930,2026-11-02 16:18:47,qfq_all/exec_all @ 20260930,758,5,603193|301336|301202|000597|002692,603193|301336|301202|000597|002692,0,0.000755,,,,d4dacb7113cc,SELFTEST；买入规则=amt20降序；计入观察期=False
+20261030,2026-11-02 17:00:02,qfq_all/exec_all @ 20261030,800,5,600990|603977|002012|301329|600191,,0,0.0,,,,d4dacb7113cc,LATE_RUN；买入规则=amt20降序；计入观察期=True

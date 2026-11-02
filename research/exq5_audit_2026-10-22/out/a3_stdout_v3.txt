@@ -1,0 +1,37 @@
+A3 面板重建 + 独立分解（ADV / 个股 / 执行诊断）
+      读入 1000/5444 … 12s
+      读入 2000/5444 … 23s
+      读入 3000/5444 … 30s
+      读入 4000/5444 … 43s
+      读入 5000/5444 … 50s
+[C] ADJ 载入 5444 只 × 5311 天 (2004-12-01 ~ 2026-10-16)  58s
+      读入成交额 1000/5472 … 13s
+      读入成交额 2000/5472 … 23s
+      读入成交额 3000/5472 … 30s
+      读入成交额 4000/5472 … 44s
+      读入成交额 5000/5472 … 53s
+[J] 美元成交额载入 5472 只 × 5311 天  62s
+[A3] 面板重建 237 月，127s
+
+[G3'] 复现闸门：独立重算 V0 alpha vs phasei monthly.csv
+  237 月最大差 4.98e-07pp ✓
+
+[1] V1 过滤（复用冻结 filter_v1/stream_bars）
+      扫描 1000/5359 … 12s
+      扫描 2000/5359 … 22s
+      扫描 3000/5359 … 29s
+      扫描 4000/5359 … 42s
+      扫描 5000/5359 … 49s
+[C] EXEC 流式扫描完成 5359 只  50s （627810 个检查点）
+  需扫 5359 只
+  换手对账（vs 阶段 O 记录 to）最大差 4.97e-07  alpha_v1 对账最大差 4.97e-07
+
+[2] 容量与成本（独立实现）
+Traceback (most recent call last):
+  File "D:\DeepQuant power by txm\DeepQuant-main\research\exq5_audit_2026-10-22\scripts\a3_panel_rebuild.py", line 569, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "D:\DeepQuant power by txm\DeepQuant-main\research\exq5_audit_2026-10-22\scripts\a3_panel_rebuild.py", line 295, in main
+    dec_excl.append(dc["n_excluded"]); dec_lotshare.append(dc["excluded_lotshare"])
+                                                           ~~^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'excluded_lotshare'

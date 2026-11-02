@@ -1,0 +1,12 @@
+﻿id,priority,task,status,verdict,dependency,artifact
+P0-1,P0,回撤表述修正与全库一致性,DONE,DOC_CONSISTENT,none,04_最终方案.md(阅读须知+§5标注); reports/STAGE_REPORT_SP4_INDEPENDENT_AUDIT.md(情景假设标注); sp5_out/wording_audit.json
+P0-2a,P0,ST数据可得性核查与深市真值表,DONE,SZ_ONLY_AVAILABLE,none,data/st_sz_monthly.parquet; sp5_out/sp5_st_coverage.json
+P0-2b,P0,ST暴露度描述统计（档内池）,DONE,EXPOSURE_MEASURED,none,sp5_out/sp5_st_exposure.json
+P0-2c,P0,ST三组对照（深市B/C；沪市不可验证）,DONE,ST_PARTIAL_CANNOT_VERIFY(深市 MATERIAL),P0-2a;P0-2b,reports/SP5_ST_EFFECT_AUDIT.md
+P0-3,P0,涨跌停/停牌/未成交约束,DONE,FILL_ABSORBED,P0-2a,reports/SP5_TRADABILITY_CONSTRAINT_AUDIT.md; sp5_out/sp5_fill_ledger.csv; sp5_out/sp5_tradability.json
+P0-4,P0,20%仓位四道验证（真实账本）,DONE,DD_ROBUST_20PCT(尾部署 4% 破界/收益 5-of-7 未达 8%),P0-3,reports/SP5_POSITION_DD_ROBUSTNESS.md; sp5_out/sp5_position_dd.json; sp5_out/sp5_nav_recon_p0_*.csv
+P1-1,P1,三口径可执行区间（2023-01 起 44 月）,DONE,ALL_MONTHS_EXECUTABLE|RETURN_BELOW_8PCT|EXPLORATORY_ONLY_WINDOW_LT_60M,P0-4,reports/SP5_EXECUTABLE_WINDOW_AUDIT.md; sp5_out/sp5_exec_window.json; sp5_out/sp5_exec_monthly.csv
+P1-2,P1,行业暴露审计（东财496细分行业,覆盖97.45%）,DONE,INDUSTRY_DIVERSIFIED|INDUSTRY_NOT_DRIVER,P1-1,reports/SP5_INDUSTRY_EXPOSURE_AUDIT.md; sp5_out/sp5_industry.json; sp5_out/industry_map.json
+P2-1,P2,前瞻评估方案冻结,DONE,SPEC_FROZEN（四层判定/功效表/停止规则）,none,06_P2-1_前瞻评估方案_冻结v1.0.md
+P1-3,P1,真实纸面前瞻（决策+成交回填+逐日盯市）端到端闭环,DONE,PIPELINE_READY|ENTRY_RULE_CANNOT_VERIFY|CONFIG_PRICE_FILTER_MISMATCH（系统就绪；观察期待累积；每日16:30定时任务已建）,P2-1,forward/ledger/; scripts/sp5/p13b_forward_track.py; forward/nav/
+CLOSE,ALL,SP-5机制阶段结题（整合7份分报告）,DONE,MECHANISM_PHASE_CLOSED（观察期未开始，待2026-11月初真实FORWARD）,P1-3,reports/SP5_结题报告_机制阶段.md

@@ -1,0 +1,366 @@
+{
+ "capital_table": [
+  {
+   "w_wan": "1000万",
+   "fee": "BASE",
+   "gross_alpha_v1_pp": 0.163411,
+   "net_pp": 0.125467,
+   "t_nw": 4.0021,
+   "t_iid": 3.0113,
+   "cost_pp": 0.019158,
+   "uninvested_median_pct": 12.319049999999997,
+   "uninvested_mean_pct": 11.598501265822785,
+   "to_mean": 0.18782366244725737,
+   "orders_per_month": 711.476033350211,
+   "min_comm_effect_pp": 0.0,
+   "n": 237
+  },
+  {
+   "w_wan": "1000万",
+   "fee": "STRESS",
+   "gross_alpha_v1_pp": 0.163411,
+   "net_pp": 0.031931,
+   "t_nw": 1.0259,
+   "t_iid": 0.7662,
+   "cost_pp": 0.112694,
+   "uninvested_median_pct": 12.319049999999997,
+   "uninvested_mean_pct": 11.598501265822785,
+   "to_mean": 0.18782366244725737,
+   "orders_per_month": 711.476033350211,
+   "min_comm_effect_pp": 0.0,
+   "n": 237
+  },
+  {
+   "w_wan": "1000万",
+   "fee": "CONSERVATIVE",
+   "gross_alpha_v1_pp": 0.163411,
+   "net_pp": 0.098073,
+   "t_nw": 3.1152,
+   "t_iid": 2.351,
+   "cost_pp": 0.046552,
+   "uninvested_median_pct": 12.319049999999997,
+   "uninvested_mean_pct": 11.598501265822785,
+   "to_mean": 0.18782366244725737,
+   "orders_per_month": 711.476033350211,
+   "min_comm_effect_pp": 0.027394,
+   "n": 237
+  },
+  {
+   "w_wan": "3000万",
+   "fee": "BASE",
+   "gross_alpha_v1_pp": 0.163411,
+   "net_pp": 0.135959,
+   "t_nw": 4.0386,
+   "t_iid": 3.0321,
+   "cost_pp": 0.019158,
+   "uninvested_median_pct": 4.746300000000003,
+   "uninvested_mean_pct": 5.198688199718706,
+   "to_mean": 0.18782366244725737,
+   "orders_per_month": 727.2532209957806,
+   "min_comm_effect_pp": 0.0,
+   "n": 237
+  },
+  {
+   "w_wan": "3000万",
+   "fee": "STRESS",
+   "gross_alpha_v1_pp": 0.163411,
+   "net_pp": 0.042423,
+   "t_nw": 1.2687,
+   "t_iid": 0.9459,
+   "cost_pp": 0.112694,
+   "uninvested_median_pct": 4.746300000000003,
+   "uninvested_mean_pct": 5.198688199718706,
+   "to_mean": 0.18782366244725737,
+   "orders_per_month": 727.2532209957806,
+   "min_comm_effect_pp": 0.0,
+   "n": 237
+  },
+  {
+   "w_wan": "3000万",
+   "fee": "CONSERVATIVE",
+   "gross_alpha_v1_pp": 0.163411,
+   "net_pp": 0.131486,
+   "t_nw": 3.8996,
+   "t_iid": 2.9313,
+   "cost_pp": 0.023631,
+   "uninvested_median_pct": 4.746300000000003,
+   "uninvested_mean_pct": 5.198688199718706,
+   "to_mean": 0.18782366244725737,
+   "orders_per_month": 727.2532209957806,
+   "min_comm_effect_pp": 0.004472999999999998,
+   "n": 237
+  }
+ ],
+ "extended_tiers": [
+  {
+   "w_wan": "5000万",
+   "convention": "a_broker惯例",
+   "fee": "BASE",
+   "net_pp": 0.1359589270600464,
+   "t_nw": 4.03862470240823,
+   "impact_pp": 0.000784,
+   "finv_used": 0.9480131476793249
+  },
+  {
+   "w_wan": "5000万",
+   "convention": "a_broker惯例",
+   "fee": "CONSERVATIVE",
+   "net_pp": 0.1359589270600464,
+   "t_nw": 4.03862470240823,
+   "impact_pp": 0.000784,
+   "finv_used": 0.9480131476793249
+  },
+  {
+   "w_wan": "5000万",
+   "convention": "b_独立容量+线性冲击",
+   "fee": "BASE",
+   "net_pp": 0.13820198567652803,
+   "t_nw": 3.9515698530842776,
+   "impact_pp": 0.0013066666666666667,
+   "finv_used": 0.97096962
+  },
+  {
+   "w_wan": "5000万",
+   "convention": "b_独立容量+线性冲击",
+   "fee": "CONSERVATIVE",
+   "net_pp": 0.13820198567652803,
+   "t_nw": 3.9515698530842767,
+   "impact_pp": 0.0013066666666666667,
+   "finv_used": 0.97096962
+  },
+  {
+   "w_wan": "5000万",
+   "convention": "b_独立容量+√冲击",
+   "fee": "BASE",
+   "net_pp": 0.13849651269538582,
+   "t_nw": 3.9599911799048715,
+   "impact_pp": 0.0010121396478088717,
+   "finv_used": 0.97096962
+  },
+  {
+   "w_wan": "5000万",
+   "convention": "b_独立容量+√冲击",
+   "fee": "CONSERVATIVE",
+   "net_pp": 0.13849651269538582,
+   "t_nw": 3.9599911799048724,
+   "impact_pp": 0.0010121396478088717,
+   "finv_used": 0.97096962
+  },
+  {
+   "w_wan": "10000万",
+   "convention": "a_broker惯例",
+   "fee": "BASE",
+   "net_pp": 0.1359589270600464,
+   "t_nw": 4.03862470240823,
+   "impact_pp": 0.000784,
+   "finv_used": 0.9480131476793249
+  },
+  {
+   "w_wan": "10000万",
+   "convention": "a_broker惯例",
+   "fee": "CONSERVATIVE",
+   "net_pp": 0.1359589270600464,
+   "t_nw": 4.03862470240823,
+   "impact_pp": 0.000784,
+   "finv_used": 0.9480131476793249
+  },
+  {
+   "w_wan": "10000万",
+   "convention": "b_独立容量+线性冲击",
+   "fee": "BASE",
+   "net_pp": 0.139283541114053,
+   "t_nw": 3.9233385395838525,
+   "impact_pp": 0.0026133333333333334,
+   "finv_used": 0.98558448
+  },
+  {
+   "w_wan": "10000万",
+   "convention": "b_独立容量+线性冲击",
+   "fee": "CONSERVATIVE",
+   "net_pp": 0.139283541114053,
+   "t_nw": 3.9233385395838525,
+   "impact_pp": 0.0026133333333333334,
+   "finv_used": 0.98558448
+  },
+  {
+   "w_wan": "10000万",
+   "convention": "b_独立容量+√冲击",
+   "fee": "BASE",
+   "net_pp": 0.14046549283043952,
+   "t_nw": 3.9566317534391016,
+   "impact_pp": 0.0014313816169468341,
+   "finv_used": 0.98558448
+  },
+  {
+   "w_wan": "10000万",
+   "convention": "b_独立容量+√冲击",
+   "fee": "CONSERVATIVE",
+   "net_pp": 0.14046549283043952,
+   "t_nw": 3.9566317534391016,
+   "impact_pp": 0.0014313816169468341,
+   "finv_used": 0.98558448
+  }
+ ],
+ "cost_factors": [
+  {
+   "factor": "佣金费率（万2.5 双边）",
+   "in_model": "是（BASE/CONS）",
+   "method": "2×to×费率×100",
+   "source": "东方财富官方协议（broker doc §0）",
+   "type": "实证（官方文件）",
+   "overlap_risk": "与最低佣金互斥（取 max）"
+  },
+  {
+   "factor": "最低佣金 5 元/笔",
+   "in_model": "是（仅 CONSERVATIVE）",
+   "method": "单笔 max(金额×费率, 5元)；n_trades=2×to×k",
+   "source": "券商官方协议",
+   "type": "实证（官方文件）",
+   "overlap_risk": "与从价佣金取 max，无重复"
+  },
+  {
+   "factor": "印花税 0.05% 仅卖出",
+   "in_model": "是（BASE/CONS）",
+   "method": "to×0.0005×100",
+   "source": "2023-08-28 税制（broker doc §0）",
+   "type": "实证（税制）",
+   "overlap_risk": "无"
+  },
+  {
+   "factor": "过户费 0.001% 双边",
+   "in_model": "是（BASE/CONS）",
+   "method": "2×to×0.00001×100",
+   "source": "2022-04-29 起沪深均收",
+   "type": "实证（规费）",
+   "overlap_risk": "无"
+  },
+  {
+   "factor": "买卖价差（spread）",
+   "in_model": "否",
+   "method": "N/A",
+   "source": "无盘中/盘口数据",
+   "type": "未建模",
+   "overlap_risk": "与冲击成本部分重叠（若未来建模需避免双算）"
+  },
+  {
+   "factor": "市场冲击（Amihud 线性）",
+   "in_model": "是（阶段 O 常数上界）",
+   "method": "Σ w_i×ILLIQ_i×P；O 用样本均值常数 0.000784pp",
+   "source": "Amihud 2002（无自由参数）",
+   "type": "模型估计",
+   "overlap_risk": "与 √ 模型二选一（S 阶段改收 √ 后作为敏感性）"
+  },
+  {
+   "factor": "市场冲击（√ 模型 η=1）",
+   "in_model": "是（阶段 S 起）",
+   "method": "η×σ×√(P/ADV) 加权；S 用 3000万全样本常数 0.018996pp",
+   "source": "文献最悲观端 η=1",
+   "type": "模型假设",
+   "overlap_risk": "常数法会高估后段冲击（S 已披露，方向保守）"
+  },
+  {
+   "factor": "建仓日涨跌停/停牌",
+   "in_model": "是（V1 剔除）",
+   "method": "flags_fast 判定，BLOCK_LONG 四类",
+   "source": "exec 真实 OHLC",
+   "type": "实证",
+   "overlap_risk": "ST 股 5% 限制无历史标记 → 漏判（已知限制）"
+  },
+  {
+   "factor": "平仓日不可卖出",
+   "in_model": "否（V2 计数器 1.93%）",
+   "method": "只计数不重算",
+   "source": "exec 真实 OHLC",
+   "type": "已披露缺口",
+   "overlap_risk": "无"
+  },
+  {
+   "factor": "T+1 执行缺口（收益期自信号日收盘起算）",
+   "in_model": "否",
+   "method": "A3 诊断：月均 −0.0108pp（冻结口径高估）",
+   "source": "A3 面板重建",
+   "type": "审计诊断（新）",
+   "overlap_risk": "与冲击/价差部分同向"
+  },
+  {
+   "factor": "持有期内退市",
+   "in_model": "否",
+   "method": "A3 诊断（见 exec_diagnostics）",
+   "source": "span.last vs 月末",
+   "type": "审计诊断（新）",
+   "overlap_risk": "无"
+  },
+  {
+   "factor": "整手/现金约束",
+   "in_model": "是（capacity_of）",
+   "method": "可负担子集 + floor 整手；finv 缩放 alpha",
+   "source": "阶段 I 预登记 §5",
+   "type": "规则（写死）",
+   "overlap_risk": "无"
+  }
+ ],
+ "cash_decomposition_from_a3": {
+  "150万": {
+   "uninvested_median": 0.22616133333333333,
+   "rounding_residual_median": 0.22616133333333333,
+   "counterfactual_all_buy_median": 0.7645946666666666,
+   "n_excluded_median": 831,
+   "excluded_lot_share_median": 0.6770618170492709
+  },
+  "300万": {
+   "uninvested_median": 0.2030953333333333,
+   "rounding_residual_median": 0.20309533333333327,
+   "counterfactual_all_buy_median": 0.47652533333333336,
+   "n_excluded_median": 435,
+   "excluded_lot_share_median": 0.46097668267576947
+  },
+  "500万": {
+   "uninvested_median": 0.17566159999999997,
+   "rounding_residual_median": 0.17566160000000003,
+   "counterfactual_all_buy_median": 0.2907588,
+   "n_excluded_median": 200,
+   "excluded_lot_share_median": 0.27354613324919924
+  },
+  "1000万": {
+   "uninvested_median": 0.12319049999999998,
+   "rounding_residual_median": 0.12319050000000002,
+   "counterfactual_all_buy_median": 0.14616620000000002,
+   "n_excluded_median": 32,
+   "excluded_lot_share_median": 0.0787349727896215
+  },
+  "3000万": {
+   "uninvested_median": 0.04746300000000003,
+   "rounding_residual_median": 0.047463000000000026,
+   "counterfactual_all_buy_median": 0.04810196666666666,
+   "n_excluded_median": 1,
+   "excluded_lot_share_median": 0.011826758054385713
+  },
+  "5000万": {
+   "uninvested_median": 0.029030380000000022,
+   "rounding_residual_median": 0.02903038000000003,
+   "counterfactual_all_buy_median": 0.029163640000000046,
+   "n_excluded_median": 1,
+   "excluded_lot_share_median": 0.00921049988953827
+  },
+  "10000万": {
+   "uninvested_median": 0.014415520000000015,
+   "rounding_residual_median": 0.014415519999999954,
+   "counterfactual_all_buy_median": 0.014592770000000033,
+   "n_excluded_median": 0,
+   "excluded_lot_share_median": 0.0
+  }
+ },
+ "broker_em_default_3000w": {
+  "n": 237,
+  "net_pp": 0.131344,
+  "t_iid": 2.9281,
+  "t_nw": 3.8952,
+  "p_nw": 9.8e-05,
+  "ci95_pp": [
+   0.065253,
+   0.197434
+  ],
+  "cost_pp": 0.023773
+ },
+ "note": "扩展档为审计诊断（C 类），非预登记口径；两种冲击惯例并列报告"
+}

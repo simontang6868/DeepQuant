@@ -1,0 +1,6 @@
+﻿impl,file,spread,min_comm,roundtrip_on_build,buy_pct,sell_pct,roundtrip_pct,eff_comm_pct,comparable,note
+A 回测账本,scripts/sp5/p04_position_dd.py,0（默认 spread_side=0.0）,"有 max(5,…)",否（按实际买卖方向）,0.101,0.151,0.252,0.1,基准口径,机制阶段全部数字由此产生
+B 前瞻决策估算,scripts/sp5/p13_forward.py:244-245,0.001（S2 档，半边 0.05%）,"有 max(5,…)",**是**（建仓即计买+卖）,0.151,0.201,0.352,0.1,偏保守（建仓不卖出却计卖出费）,台账 est_total=75.5 元 = 5×17.60
+C 前瞻实际回填,scripts/sp5/p13b_forward_track.py:89-99,0.001（半边 0.05%）,"有 max(5,…)",否（逐笔按方向）,0.151,0.201,0.352,0.1,可与 B 对照（B 高估约 1 倍）,与 A 的差异仅价差 0.10%
+D V-B 配置驱动,scripts/audit/sp4_forward.py:158,含在魔数内（不可分解）,**未建模**,按换手只数×单只费率,0.0102,0.0102,0.0204,,**不可比**（未处理最低佣金，10 万资金下低估 3~4 倍）,0.000204 无推导过程，无法复算
+E 横截面因子,scripts/run_phase_c.py:628 cost_of(),无,**未建模**,不适用（月度 2×单边换手×费率）,,,,,**不可直接用于组合账本**,用于因子层净收益，费率由调用方传入

@@ -1,0 +1,179 @@
+{
+  "months_total": 217,
+  "months_with_sz_pool_ge20": 212,
+  "pool_size_median": 444.0,
+  "pool_sz_median": 273.0,
+  "st_count_median_in_sz_pool": 9.0,
+  "st_share_of_sz_pool_median": 0.0537,
+  "st_share_of_sz_pool_p90": 0.1238,
+  "st_share_of_sz_pool_max": 0.2421,
+  "months_with_zero_st_in_sz_pool": 7,
+  "sh_side": "无法计算（无沪市历史 ST 表）",
+  "by_year": [
+    {
+      "yr": "2007",
+      "months": 11,
+      "pool_med": 108.0,
+      "pool_sz_med": 56.0,
+      "st_med": 4.0,
+      "st_share_med": 0.0972
+    },
+    {
+      "yr": "2008",
+      "months": 7,
+      "pool_med": 52.0,
+      "pool_sz_med": 29.0,
+      "st_med": 1.0,
+      "st_share_med": 0.0405
+    },
+    {
+      "yr": "2009",
+      "months": 12,
+      "pool_med": 172.5,
+      "pool_sz_med": 110.0,
+      "st_med": 9.0,
+      "st_share_med": 0.0846
+    },
+    {
+      "yr": "2010",
+      "months": 12,
+      "pool_med": 169.0,
+      "pool_sz_med": 127.0,
+      "st_med": 7.5,
+      "st_share_med": 0.0656
+    },
+    {
+      "yr": "2011",
+      "months": 7,
+      "pool_med": 92.0,
+      "pool_sz_med": 71.0,
+      "st_med": 3.0,
+      "st_share_med": 0.037
+    },
+    {
+      "yr": "2012",
+      "months": 4,
+      "pool_med": 38.0,
+      "pool_sz_med": 33.0,
+      "st_med": 1.0,
+      "st_share_med": 0.0328
+    },
+    {
+      "yr": "2013",
+      "months": 12,
+      "pool_med": 202.5,
+      "pool_sz_med": 143.0,
+      "st_med": 2.0,
+      "st_share_med": 0.0179
+    },
+    {
+      "yr": "2014",
+      "months": 12,
+      "pool_med": 329.0,
+      "pool_sz_med": 245.5,
+      "st_med": 2.5,
+      "st_share_med": 0.0082
+    },
+    {
+      "yr": "2015",
+      "months": 12,
+      "pool_med": 335.5,
+      "pool_sz_med": 241.5,
+      "st_med": 2.0,
+      "st_share_med": 0.0086
+    },
+    {
+      "yr": "2016",
+      "months": 12,
+      "pool_med": 423.0,
+      "pool_sz_med": 250.0,
+      "st_med": 3.5,
+      "st_share_med": 0.0142
+    },
+    {
+      "yr": "2017",
+      "months": 12,
+      "pool_med": 467.5,
+      "pool_sz_med": 304.0,
+      "st_med": 4.0,
+      "st_share_med": 0.0129
+    },
+    {
+      "yr": "2018",
+      "months": 12,
+      "pool_med": 452.0,
+      "pool_sz_med": 254.5,
+      "st_med": 6.5,
+      "st_share_med": 0.0292
+    },
+    {
+      "yr": "2019",
+      "months": 12,
+      "pool_med": 520.5,
+      "pool_sz_med": 278.5,
+      "st_med": 14.5,
+      "st_share_med": 0.0504
+    },
+    {
+      "yr": "2020",
+      "months": 12,
+      "pool_med": 587.5,
+      "pool_sz_med": 296.5,
+      "st_med": 41.0,
+      "st_share_med": 0.132
+    },
+    {
+      "yr": "2021",
+      "months": 12,
+      "pool_med": 631.0,
+      "pool_sz_med": 346.5,
+      "st_med": 35.0,
+      "st_share_med": 0.0925
+    },
+    {
+      "yr": "2022",
+      "months": 12,
+      "pool_med": 723.5,
+      "pool_sz_med": 434.5,
+      "st_med": 30.0,
+      "st_share_med": 0.0697
+    },
+    {
+      "yr": "2023",
+      "months": 12,
+      "pool_med": 751.0,
+      "pool_sz_med": 437.0,
+      "st_med": 33.5,
+      "st_share_med": 0.0746
+    },
+    {
+      "yr": "2024",
+      "months": 12,
+      "pool_med": 794.5,
+      "pool_sz_med": 487.5,
+      "st_med": 27.5,
+      "st_share_med": 0.059
+    },
+    {
+      "yr": "2025",
+      "months": 12,
+      "pool_med": 849.5,
+      "pool_sz_med": 513.5,
+      "st_med": 46.5,
+      "st_share_med": 0.1053
+    },
+    {
+      "yr": "2026",
+      "months": 8,
+      "pool_med": 809.0,
+      "pool_sz_med": 472.5,
+      "st_med": 63.5,
+      "st_share_med": 0.127
+    }
+  ],
+  "caveat": [
+    "仅深市，不能外推到沪市（沪市占面板 43.9% 的 code-month）",
+    "ST 占比是『档内池子』口径，不等于『随机抽 5 只』的实际持有占比",
+    "本脚本不做收益，只回答暴露度"
+  ]
+}

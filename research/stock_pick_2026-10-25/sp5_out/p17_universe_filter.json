@@ -1,0 +1,165 @@
+{
+  "accounts": {
+    "d4_strict": {
+      "ok_buy": 3037,
+      "pool": 459,
+      "targets": [
+        {
+          "amt20": 53709755.4,
+          "board": "SZ_MAIN",
+          "close": 5.86,
+          "code": "000721",
+          "name": "西安饮食"
+        },
+        {
+          "amt20": 53550794.9,
+          "board": "SZ_MAIN",
+          "close": 2.36,
+          "code": "000659",
+          "name": "珠海中富"
+        },
+        {
+          "amt20": 53549058.8,
+          "board": "SH_MAIN",
+          "close": 2.1,
+          "code": "601996",
+          "name": "丰林集团"
+        },
+        {
+          "amt20": 53535915.9,
+          "board": "SZ_MAIN",
+          "close": 15.89,
+          "code": "001209",
+          "name": "洪兴股份"
+        },
+        {
+          "amt20": 53362228.3,
+          "board": "SZ_MAIN",
+          "close": 33.0,
+          "code": "001223",
+          "name": "欧克科技"
+        }
+      ]
+    },
+    "d4_with_gem": {
+      "ok_buy": 4390,
+      "pool": 674,
+      "targets": [
+        {
+          "amt20": 51868393.5,
+          "board": "SH_MAIN",
+          "close": 13.84,
+          "code": "603237",
+          "name": "五芳斋"
+        },
+        {
+          "amt20": 51861820.6,
+          "board": "SZ_MAIN",
+          "close": 5.22,
+          "code": "000153",
+          "name": "丰原药业"
+        },
+        {
+          "amt20": 51696291.9,
+          "board": "GEM",
+          "close": 9.53,
+          "code": "300183",
+          "name": "东软载波"
+        },
+        {
+          "amt20": 51690106.4,
+          "board": "GEM",
+          "close": 6.06,
+          "code": "300887",
+          "name": "谱尼测试"
+        },
+        {
+          "amt20": 51675349.0,
+          "board": "SZ_MAIN",
+          "close": 14.34,
+          "code": "000777",
+          "name": "中核科技"
+        }
+      ]
+    },
+    "unfiltered": {
+      "ok_buy": 5153,
+      "pool": 800,
+      "rand5": [
+        "300388",
+        "300425",
+        "301618",
+        "600137",
+        "601515"
+      ],
+      "targets": [
+        {
+          "amt20": 52360739.6,
+          "board": "SH_MAIN",
+          "close": 15.7,
+          "code": "600990",
+          "name": "四创电子"
+        },
+        {
+          "amt20": 52325612.0,
+          "board": "SH_MAIN",
+          "close": 9.41,
+          "code": "603977",
+          "name": "国泰集团"
+        },
+        {
+          "amt20": 52318277.5,
+          "board": "SZ_MAIN",
+          "close": 5.41,
+          "code": "002012",
+          "name": "凯恩股份"
+        },
+        {
+          "amt20": 52305462.1,
+          "board": "GEM",
+          "close": 16.25,
+          "code": "301329",
+          "name": "信音电子"
+        },
+        {
+          "amt20": 52277284.0,
+          "board": "SH_MAIN",
+          "close": 7.77,
+          "code": "600191",
+          "name": "华资实业"
+        }
+      ]
+    }
+  },
+  "asof": "20261030",
+  "baseline_ok_buy": 5194,
+  "overlap": {
+    "unfiltered_vs_d4_strict_pool_jaccard": 0.537241,
+    "unfiltered_vs_d4_strict_top5": 0,
+    "unfiltered_vs_d4_with_gem_pool_jaccard": 0.8425,
+    "unfiltered_vs_d4_with_gem_top5": 0
+  },
+  "single_factor_contribution": {
+    "board_only_strict": {
+      "dropped": 1979,
+      "ok_buy": 3174
+    },
+    "board_only_with_gem": {
+      "dropped": 586,
+      "ok_buy": 4567
+    },
+    "has_quote": {
+      "dropped": 0,
+      "ok_buy": 5153
+    },
+    "not_delisting": {
+      "dropped": 0,
+      "ok_buy": 5153
+    },
+    "not_st": {
+      "dropped": 188,
+      "ok_buy": 4965
+    }
+  },
+  "universe_state_asof": "20261102"
+}

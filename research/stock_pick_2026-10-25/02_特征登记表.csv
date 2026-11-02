@@ -1,0 +1,19 @@
+﻿factor_id,name,formula,window,economic_mechanism,expected_direction,test_order,test_count_in_family,status,verdict,low_alpha_pp,low_t,high_alpha_pp,high_t,family_gate_2.64,note
+F1,日内收益均值,"mean(close/open - 1, 20)",20,散户日内追高后被反转,方向不明（故双向报告）,3,1,tested,EXCLUSION_ONLY,+0.515,1.02,-3.987,-5.05,pass,"高端剔除后 t=-3.69 仍显著；但与 ret20 秩相关 0.82，信息大半重叠"
+F2,振幅,"mean(TrueRange,20) / close",20,多空分歧大→后续偏弱,高→差（预登记）,1,1,tested,NO_EDGE_DUPLICATE,-0.830,-1.64,-1.764,-2.38,fail,"实测方向相反；与VOL20秩相关0.893（低波动已FAIL）；分5组倒U形；低端年化7.94% vs 全池16.19%"
+F3,换手加速度,"mean(volume,5) / mean(volume,60)",5/60,放量是情绪而非基本面,过高→差（预登记）,5,1,tested,EXCLUSION_STRONG,+0.536,0.77,-3.787,-6.97,pass,"最强；剔最好5%月份后t=-5.78；与已有因子最高相关仅0.45（独立信息）；排除30%后年化+3.47pp超随机95%"
+F4,日收益偏度,"m3 / m2^1.5, 20日",20,彩票型偏好→被高估,高→差（预登记）,4,1,tested,EDGE_WEAK,-0.615,-1.36,-1.427,-2.29,fail,"未过族门槛；剔最好5%月份后t仅-0.51；低端年化4.00%"
+F5,量价相关性,"corr(daily_ret, volume, 20)",20,量增价跌=派发,负相关→差（预登记）,2,1,tested,NO_EDGE,+0.274,0.60,-0.536,-0.83,fail,"两端均无信号；分段方向不一致（IS低端+1.242 t=1.91 但OOS1 -2.359 t=-3.60）"
+F6,距60日高点回撤,"close / max(close,60) - 1",60,与W9「远低于均线」同源但更短窗,深回撤→待验,6,1,tested,EXCLUSION_MODERATE,-0.566,-0.69,-2.260,-4.24,pass,"与ret20相关0.65；低端IS +1.495(t=1.97)但OOS转负；须与W10「远低于均线规则被买入不动支配」对照"
+,对照组,,,,,,,,,,,,,
+VOL20,20日波动率,std(daily_ret,20)*sqrt(20),20,低波动异象,低→好,0,0,reference,FAIL_IN_PRIOR,,,,,,Gate 4: +0.166pp t=0.868 已否决；本课题仅作重复性对照
+REV21,21日反转,close(t)/close(t-21)-1,21,短期反转,低→好,0,0,baseline,B2,,,,,,项目Gate6 PASS 但现代段T_FRAGILE；作为基线B2
+MAX5,近5日最大单日涨幅,max(daily_ret,5),5,彩票/极端值偏好,高→差,0,0,reference,NOT_EXECUTABLE,,,,,,项目结论：单边不可执行
+,组合层（阶段3）,,,,,,,,,,,,,
+EX30,排除F3最高30%后等权,,,,,,1,done,POSITIVE,,,,,,"年化20.99% vs 全池17.52% vs 随机排除17.52%；三段一致 +4.24/+3.14/+2.10pp"
+TOP5,F3最低5只,,,,,,1,done,NOT_EXECUTABLE,,,,,,"年化17.84%，未超随机5只95%分位23.36%；MDD -90.39%"
+,检验纪律,,,,,,,,,,,,,
+,,族错误率,6 个候选为一个族 Bonferroni z=2.64,,,,,alpha=0.05,,,,,单次1.96仅参考
+,,方向报告,双向报告不预设正负,,,,,rule,,,,,,
+,,主指标,单边多头Top5 相对全池等权,,,,,rule,,,,,不用多空价差
+,,每轮只测1因子,逐个检验逐个报告,,,,,rule,,,,,,

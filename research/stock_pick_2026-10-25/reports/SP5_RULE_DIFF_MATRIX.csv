@@ -1,0 +1,16 @@
+﻿rule_name,frozen_value,historical_actual_value,current_forward_value,evidence_location,impact,final_disposition
+price_filter,[1.0, 50.0],between(1.0, 200.0),"宇宙差8.6%-12.7%(441-645只); 最终池差72-125只; **top5目标0/5重合(20260430/20260630/20260831/20260930 四截面)**; 机制: 1-50池⊂1-200池, 但1-200的top5 liqpct=0.1987~0.1996 紧贴0.20阈值, 收紧口径后分位重算即越界 (见 reports/SP5_RULE_VERSION_AUDIT.md §7 更正说明)","RULE_VERSION_UNRESOLVED (影响升级): 两口径目标选择完全不同, 属两个策略, 不得合并为同一策略的样本外结论; 前瞻须阻塞至正式裁决",宇宙差8.6%-12.7%(441-645只); 最终候选池差1-6只; top5目标100%一致(4截面5/5),RULE_VERSION_UNRESOLVED: 两口径独立并存, 不合并为同一策略的正式样本外结论
+entry_rule,amt20降序前5(确定性),池内随机5只,top5(amt20降序)+rand5(固定种子)双记,SP5_预登记.md §2; forward/sp4_config_v1.json entry_rule; scripts/sp5/p13_entry_rule_check.py,top5-rand5=+0.221pp/月(t=0.28), 95%CI[-1.33,+1.77]pp, MDE 2.22pp/月,ENTRY_RULE_CANNOT_VERIFY: 双口径并记, 既不证等价也不证有偏
+n_hold,5,5,5,SP5_预登记.md §2; sp4_config_v1.json,无,CONSISTENT
+f3_filter_entry,f3pct<=0.70,f3pct<=0.70,f3pct<=0.70,SP5_预登记.md §2; sp4_config_v1.json; p13_forward.py:63,无,CONSISTENT
+liquidity_band,amt20全市场分位<20%,<20%,<20%,SP5_预登记.md §2; p13_forward.py:63,无,CONSISTENT
+amt_min,amt20>500万(5e6),5e6,5e6,SP5_预登记.md §2; p13_forward.py:64,无,CONSISTENT
+stock_weight,0.25,0.25,0.25,SP5_预登记.md §2; sp4_config_v1.json; p13_forward.py:67,无,CONSISTENT
+cash_yield_annual,0.03,0.03,0.03,SP5_预登记.md §2; sp4_config_v1.json; p13_forward.py:67,无,CONSISTENT
+cost_model_explicit,万2.5+最低5元+印花0.05%卖出+过户0.001%双边,同,同(另含价差0.10% S2档),sp4_config_v1.json cost; scripts/sp5/p13b_forward_track.py:89-99,见P1-1成本口径统一,见P1-1
+universe,qfq_all全量(含已退市股),同,同,SP5_预登记.md §2; sp4_config_v1.json,无,CONSISTENT
+st_filter,未做(历史ST不可回溯),未做,未做,SP5_预登记.md §2; 结题报告§6,一致缺失,CONSISTENT_ABSENCE
+fwd20_usage,前瞻不使用,回测使用(隐含幸存者偏差),前瞻不使用,scripts/sp5/p13_forward.py 模块文档第1条,前瞻池略大于回测(无fwd20.notna过滤),DOCUMENTED_DIFF
+rebalance_rule,月末把股票权重调回25%,同,同,SP5_预登记.md §2; sp4_config_v1.json,无,CONSISTENT
+config_hash_enforcement,启动须校验预登记/任务书sha256,未实现,仅记录config_sha256未断言,SP5_预登记.md §9; p13_forward.py:215(读哈希但未断言),配置被改无法被脚本拦截,PARTIAL: 仅记录未强制校验(见P0-3门禁)
+git_provenance,代码须有提交哈希可溯,所有SP-5脚本均未纳入git,ledger未含代码commit哈希,git ls-files返回空; p13_forward.py无commit哈希写入,代码改动无法精确溯源,TRACEABILITY_GAP(见P0-3门禁)

@@ -1,0 +1,53 @@
+{
+ "tests": [
+  {
+   "code": "601398",
+   "name": "工商银行",
+   "months": 45,
+   "median_abs_pp": 0.2821,
+   "frac_gt3pp": 0.0,
+   "cum_tdx_pp": 182.99,
+   "cum_qfq_pp": 139.28,
+   "A_median<0.3": true,
+   "B_big<1%": true,
+   "C_cum<2pp": true
+  },
+  {
+   "code": "600985",
+   "name": "淮北矿业",
+   "months": 45,
+   "median_abs_pp": 1.5572,
+   "frac_gt3pp": 0.1778,
+   "cum_tdx_pp": 23.92,
+   "cum_qfq_pp": 38.48,
+   "A_median<0.3": false,
+   "B_big<1%": false,
+   "C_cum<2pp": true
+  },
+  {
+   "code": "000651",
+   "name": "格力电器",
+   "months": 45,
+   "median_abs_pp": 1.2783,
+   "frac_gt3pp": 0.1778,
+   "cum_tdx_pp": 25.16,
+   "cum_qfq_pp": 46.72,
+   "A_median<0.3": false,
+   "B_big<1%": false,
+   "C_cum<2pp": true
+  },
+  {
+   "code": "601857",
+   "name": "中国石油",
+   "months": 45,
+   "median_abs_pp": 1.8136,
+   "frac_gt3pp": 0.3111,
+   "cum_tdx_pp": 109.77,
+   "cum_qfq_pp": 204.79,
+   "A_median<0.3": false,
+   "B_big<1%": false,
+   "C_cum<2pp": true
+  }
+ ],
+ "pass": false
+}

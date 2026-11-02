@@ -1,0 +1,111 @@
+{
+  "date": "20260930",
+  "record_time": "2026-11-02 16:18:47",
+  "mode": "SELFTEST",
+  "counts_toward_observation": false,
+  "late_run": false,
+  "late_calendar_days": 0,
+  "code_sha": "adbbae74668301b49071afbe08616ed25c9c1277d57f88271261df6b040be496",
+  "code_sha_algo": "sha256",
+  "git_commit": "NOT_IN_GIT",
+  "code_in_git": false,
+  "code_path": "scripts/sp5/p13_forward.py",
+  "data_last_date": "20261016",
+  "config_sha256": "d4dacb7113cc72eebb88ccbf84ca692a5deafb21f0ad5e3a0434e5ae7d85fa9a",
+  "config_path": "forward/sp4_config_v1.json",
+  "data_snapshot": "qfq_all/exec_all @ 20260930",
+  "signal_pool_n": 758,
+  "signal_pool_n_close50": 686,
+  "amt20_range_top5_pct": 0.0013912763328973732,
+  "target_holds": [
+    "603193",
+    "301336",
+    "301202",
+    "000597",
+    "002692"
+  ],
+  "target_holds_rand5": [
+    "300389",
+    "300447",
+    "301584",
+    "600125",
+    "603022"
+  ],
+  "target_holds_close50": [
+    "603135",
+    "300946",
+    "000715",
+    "600713",
+    "600055"
+  ],
+  "prev_holdings": [
+    "603193",
+    "301336",
+    "301202",
+    "000597",
+    "002692"
+  ],
+  "n_swaps": 0,
+  "orders": [
+    {
+      "code": "603193",
+      "side": "buy",
+      "shares": 200,
+      "ref_close": 19.43
+    },
+    {
+      "code": "301336",
+      "side": "buy",
+      "shares": 100,
+      "ref_close": 40.67
+    },
+    {
+      "code": "301202",
+      "side": "buy",
+      "shares": 100,
+      "ref_close": 34.75
+    },
+    {
+      "code": "000597",
+      "side": "buy",
+      "shares": 1000,
+      "ref_close": 4.78
+    },
+    {
+      "code": "002692",
+      "side": "buy",
+      "shares": 1100,
+      "ref_close": 4.33
+    }
+  ],
+  "fill_status": {
+    "603193": "FILLED",
+    "301336": "FILLED",
+    "301202": "FILLED",
+    "000597": "FILLED",
+    "002692": "FILLED"
+  },
+  "fill_price": {},
+  "fees": {
+    "est_total": 75.5,
+    "comm_rate": 0.00025,
+    "comm_min": 5.0,
+    "transfer": 1e-05,
+    "stamp_sell": 0.0005,
+    "spread": 0.001
+  },
+  "nav": 100000.0,
+  "cash": 100000.0,
+  "stock_weight": 0.0,
+  "n_positions": 0,
+  "unfilled_orders": [],
+  "target_weight": 0.25,
+  "notes": [
+    "纸面前瞻：未接真实下单，nav/cash 为初始值，待次一交易日收盘后回填",
+    "池筛选不含 fwd20（前瞻不知道未来），故池子略大于回测口径",
+    "price_filter 主口径 1-200（回测实现）；冻结配置写的 1-50 作为对照列",
+    "entry_rule 判定 ENTRY_RULE_CANNOT_VERIFY：top5 与 rand5 的差异 CI 达 3pp，故两套都记",
+    "mode=SELFTEST；late_run=False；计入观察期=False"
+  ],
+  "ledger_sha256": "6bf1543d6d2b1947"
+}

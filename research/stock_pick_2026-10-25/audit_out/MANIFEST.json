@@ -1,0 +1,267 @@
+{
+ "generated_at": "2026-10-26T02:18:04",
+ "python": "3.13.14",
+ "task": "SP-4 独立审计与前瞻验证准备",
+ "prereg": {
+  "file": "SP4_预登记.md",
+  "sha256": "eca95862ae1cd05452883917be5b4dbdd4c9affc7d68a7854fec3c999b68f0f8"
+ },
+ "forward_config": {
+  "file": "forward/sp4_config_v1.json",
+  "sha256": "d4dacb7113cc72eebb88ccbf84ca692a5deafb21f0ad5e3a0434e5ae7d85fa9a"
+ },
+ "seeds": {
+  "main": 20261026,
+  "sensitivity": [
+   20261027,
+   11111,
+   99999
+  ]
+ },
+ "scripts": [
+  {
+   "path": "scripts/audit/audit_sp4_controls.py",
+   "bytes": 13896,
+   "sha256": "71c404d47e93b2415b523384cc11f64fdd5a11462b48d58f0b1939139451d540"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_cost_f3.py",
+   "bytes": 11327,
+   "sha256": "793430739a8cdde8bc79bd46194cc0d04b2673d28bd403d7c735af0c30eb442a"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_daily.py",
+   "bytes": 12420,
+   "sha256": "175e190cb9d257e743b841b21450e2628b6390b2c4b469afd078a95f18d9df7c"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_diag.py",
+   "bytes": 7082,
+   "sha256": "5be80adb43078941b7de163d4fbcb8ab8bda7a399d106ba870b7bca8da3864bc"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_dump.py",
+   "bytes": 8001,
+   "sha256": "844cd1e808ebb74b7638b7e1a47aa8d6ed532ce80896d74b12ff3e8a0b7691a5"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_position.py",
+   "bytes": 15066,
+   "sha256": "8e0a2d41f5348e48279c20cbbe628548af701414705f641af521bdce2bfe0c1c"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_seed.py",
+   "bytes": 5052,
+   "sha256": "afa0dd621895e756e97c4e9fab46e2d025d50f2bf42d6db8efcd6ed66558669b"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_survivor.py",
+   "bytes": 10258,
+   "sha256": "3cf50a549415b7836867193586b65de3772f558d56c772dd7ccc1af73ad5809e"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_tradability.py",
+   "bytes": 7463,
+   "sha256": "2906bfb14d84fd51f7fa7cd1453c48182fb7cb661a98e26071f7cf5b0081c2c7"
+  },
+  {
+   "path": "scripts/audit/audit_sp4_trunc_impact.py",
+   "bytes": 5885,
+   "sha256": "0ba1242b6912aff7eb2f54cf6d8d202d0e5df246d92ce9684a76ed5077abb688"
+  },
+  {
+   "path": "scripts/audit/build_panel_trunc.py",
+   "bytes": 8023,
+   "sha256": "3c8720de5d0626500a3894bbc95e468406e8def5b37456cc7fa9d6909759d32d"
+  },
+  {
+   "path": "scripts/audit/sp4_forward.py",
+   "bytes": 9297,
+   "sha256": "e34df3fb52c7d2ab40e337c603f1e18bb5680cb0903ea7fc10453de9aad301b5"
+  },
+  {
+   "path": "scripts/audit/tests/test_sp4_audit.py",
+   "bytes": 10586,
+   "sha256": "cb0ada3556aa88b40e78605679d23c8b0d64d9266e609a24b9e13c4a6e3e6d64"
+  }
+ ],
+ "inputs": [
+  {
+   "path": "data/panel_monthly.parquet",
+   "bytes": 89597326,
+   "sha256": "935e0da2b4252f8736c2dc1d60789a36ea02f1760059165b25e698a3b6d7b977"
+  },
+  {
+   "path": "data/panel_monthly_trunc.parquet",
+   "bytes": 90104216,
+   "sha256": "9271b38cb636dbf485189119209360e6d540785d80bb2b084a3eb636bb4a9582"
+  },
+  {
+   "path": "out/sp4_result.json",
+   "bytes": 1569,
+   "sha256": "c836a718672f4562d48b51d4d22d86cbd82a8b6c6e8bfff9b54d49439e22e778"
+  },
+  {
+   "path": "SP4_预登记.md",
+   "bytes": 3991,
+   "sha256": "eca95862ae1cd05452883917be5b4dbdd4c9affc7d68a7854fec3c999b68f0f8"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "audit_out/sp4_controls.json",
+   "bytes": 7256,
+   "sha256": "1587db5eb4ac3ba0337fbada2bf745dd9afdf5c89fa9b43d31d70930b307c1cd"
+  },
+  {
+   "path": "audit_out/sp4_cost.json",
+   "bytes": 2079,
+   "sha256": "18ca32280873b6994f6df3c61103af9191d184141b92c7a138add5af13396130"
+  },
+  {
+   "path": "audit_out/sp4_daily_audit.json",
+   "bytes": 14948,
+   "sha256": "8138b3d38c2a1c923b56ec856ff1caa72d1fe533f2b3fb1c5027f84919866561"
+  },
+  {
+   "path": "audit_out/sp4_diag.json",
+   "bytes": 2417,
+   "sha256": "fff4ef2c15872e2657ee9a64002534451c3913177bd68c55a316fbc585b91745"
+  },
+  {
+   "path": "audit_out/sp4_f3_evidence.json",
+   "bytes": 1567,
+   "sha256": "e760f24ae33bfa3cf973dfa91bb491e7aa3f6a0b785046222c4c7e799e2cea64"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p000.json",
+   "bytes": 43212,
+   "sha256": "7492f7c2a2ffda8f323c807cd98b716da4941ed876854eb5062527636b8540c7"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p001.json",
+   "bytes": 43212,
+   "sha256": "12b4a531811cda1da4c91e256f6ca3fa91a41613896c66b574793ce25f72da8e"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p002.json",
+   "bytes": 43212,
+   "sha256": "c2b84c3d0de42d0598ae938fb6d803113cba39ff94b76ab13666e34c7cdeb4f3"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p003.json",
+   "bytes": 43212,
+   "sha256": "d6245812ea746a4e497c90f0de19b5567fa272a98c99933ae166f03ef85b0e0c"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p004.json",
+   "bytes": 43212,
+   "sha256": "c796f1b61b7e21badb32e793e9d8b4a529b53c4d20cad5603d823f508fcab2a1"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p005.json",
+   "bytes": 43212,
+   "sha256": "81e5de22a4c873f9af034d36e4069d35546ba60046a01d3e5193d07040207cfe"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p006.json",
+   "bytes": 43212,
+   "sha256": "4234c39a8cf51a215178a8b489370cdc9f067e38b1881f7175efb51cc2fb922e"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p007.json",
+   "bytes": 43212,
+   "sha256": "1df697e0ca0d85a2dd3e307b78d4a660fad7fa7b55f987a40b3872d5b2f3cd5d"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p008.json",
+   "bytes": 43212,
+   "sha256": "8873722e1e0c6cac5434707efc72be6bfc7cbab9419676953c98ab9dca1293b5"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p009.json",
+   "bytes": 43212,
+   "sha256": "84c2d3da042cb12ef27f7471b40ff3e2b73b8a7a16c96d6916ed1266d6bd5251"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p010.json",
+   "bytes": 43212,
+   "sha256": "3b034649d16f77f0c41e70208c5e9b10703830c3f08f2da76da4c22d9282e589"
+  },
+  {
+   "path": "audit_out/sp4_holdings_p011.json",
+   "bytes": 43212,
+   "sha256": "5fef47567e89b2d2b2e65d7f14c6fb51bcee737b8559f7155123d1a262ceddca"
+  },
+  {
+   "path": "audit_out/sp4_months.json",
+   "bytes": 15681,
+   "sha256": "059bc7c0938234feb9282f0fe1e9d69fe35551ca8e93b5d6ecc3b218513c16d8"
+  },
+  {
+   "path": "audit_out/sp4_position_audit.json",
+   "bytes": 24478,
+   "sha256": "d8f02192eaf1c3b5f3f3fa140dc2fa8c7f6fc861ac928bfa4032dc0fef49de83"
+  },
+  {
+   "path": "audit_out/sp4_seed_sensitivity.json",
+   "bytes": 1296,
+   "sha256": "77ec36bfff1910f774ae0d3c20d667a028db9b5d1bad1c97bb70cc16aa6548f9"
+  },
+  {
+   "path": "audit_out/sp4_survivor.json",
+   "bytes": 2711,
+   "sha256": "bdb09a632ce0ec4bcaabfabac8748fa4b892a87583a9ce8c3b1a8711b77c1966"
+  },
+  {
+   "path": "audit_out/sp4_tradability.json",
+   "bytes": 6678,
+   "sha256": "3c55e5f0678a32ad7b2430a72e7072144ef557e2dc85c5436e5875de99ff20a2"
+  },
+  {
+   "path": "audit_out/sp4_trunc_impact.json",
+   "bytes": 962,
+   "sha256": "676df590d302542fd9fbfe3d29659684d9a9735e1663340253a29047191651a6"
+  },
+  {
+   "path": "audit_out/sp4_monthly.npz",
+   "bytes": 1213350,
+   "sha256": "364ce8cc3a6f42b3e7e05d766267587bf300bca1dc5b79d1cd7f4eb2d29f0123"
+  },
+  {
+   "path": "audit_out/sp4_tradability_by_month.csv",
+   "bytes": 22444,
+   "sha256": "d27ba137af49582df4de9b0ebe1144941b4242cff93f53f4fbaa0cff66316d52"
+  },
+  {
+   "path": "reports/SP4_CONTROL_GROUP_RESULTS.csv",
+   "bytes": 882,
+   "sha256": "69f695ef53c9a3deb2aa75670c313891ab20f1e4db7670aa22c9d4ee838143f6"
+  },
+  {
+   "path": "reports/SP4_COST_SCENARIOS.csv",
+   "bytes": 732,
+   "sha256": "2996dd7168930e8e2cb10b8cfb4cffc3417c17e1efc7019c6eb3fc372a922a89"
+  },
+  {
+   "path": "reports/SP4_DAILY_NAV_RECONCILIATION.csv",
+   "bytes": 29756,
+   "sha256": "8365b14ecf28a344725b844ad430145a86cf404653a9f76ed12f2d48f6790e4c"
+  },
+  {
+   "path": "forward/sp4_config_v1.json",
+   "bytes": 2116,
+   "sha256": "d4dacb7113cc72eebb88ccbf84ca692a5deafb21f0ad5e3a0434e5ae7d85fa9a"
+  },
+  {
+   "path": "forward/observations.csv",
+   "bytes": 350,
+   "sha256": "dc20cd0ce1198d1172047a8dc467007b4ca11e413eed71281c42d96dc44119cf"
+  }
+ ],
+ "data_scale": {
+  "qfq_all_files": 5444,
+  "delist_files": 262
+ },
+ "note": "本阶段未执行 git 提交，以上 sha256 用于替代 commit hash 定位代码与产物版本。"
+}

@@ -1,0 +1,381 @@
+{
+  "task_id": "SP-1",
+  "task_name": "A股日频选股的单边多头可执行性",
+  "version": "1.1",
+  "created_at": "2026-10-25T23:55:00+08:00",
+  "owner_request": "个股交易，不愿意低频，愿意看基本面，专注 A 股选股",
+  "capital": {
+    "budget_cny": 100000,
+    "broker": {
+      "commission_rate": 0.00025,
+      "commission_min_cny": 5.0,
+      "stamp_duty_sell": 0.0005,
+      "transfer_fee_both": 1e-05
+    },
+    "note": "ETF 无印花税；个股有卖出印花税 0.05%"
+  },
+  "universe": {
+    "market": "A_SHARE",
+    "exclude": [
+      "ST 或 *ST",
+      "上市不足 250 个交易日",
+      "当日停牌",
+      "买入日涨停或卖出日跌停（不可成交）",
+      "股价 > 200 元（10万/5只=2万，需至少买 1 手）"
+    ],
+    "survivorship": "用 data/delist 补齐退市股"
+  },
+  "timing": {
+    "decision": "each trading day after close (t)",
+    "execution": "t+1 close",
+    "horizon_days": 20,
+    "calendar": "A股交易日历",
+    "information_cutoff": "t 日收盘价与 t 日已公告财报（按公告日入库）"
+  },
+  "label": {
+    "formula": "fwd_ret_i(t) = P_i(t+20) / P_i(t+1) - 1",
+    "price_basis": "后复权（含分红）",
+    "unit": "decimal, report in pp",
+    "drop_rules": {
+      "未到期": "丢弃",
+      "停牌跨越 t+1 或 t+20": "丢弃并记录比例",
+      "除权日 t±2": "保留但单独诊断"
+    },
+    "task_type": "ranking"
+  },
+  "portfolio": {
+    "n_hold": 5,
+    "weighting": "equal",
+    "target_monthly_turnover": 0.3,
+    "max_monthly_turnover": 0.5,
+    "turnover_control": "buffer_zone",
+    "buffer_multiplier": 1.5,
+    "cost_annual_at_target": 0.0037,
+    "cost_annual_at_max": 0.0061
+  },
+  "cost_physics": {
+    "full_turnover_rate_by_n": {
+      "1": 0.00102,
+      "2": 0.00102,
+      "3": 0.00102,
+      "5": 0.00102,
+      "10": 0.00152,
+      "20": 0.00252,
+      "30": 0.00352
+    },
+    "annual_cost_full_turnover_5hold": {
+      "daily_244": 0.2489,
+      "weekly_50": 0.051,
+      "biweekly_25": 0.0255,
+      "monthly_12": 0.0122
+    },
+    "verdict": "日频换手不可行（24.89%/年）；日频决策+月换手30%可行（0.37%/年）"
+  },
+  "baselines": {
+    "B0": "等权持有全A（剔除不可交易）",
+    "B1": "随机选 5 只，月换 30%，200 次重复取分布（最关键基线）",
+    "B2": "月频 REV21 取前 5（+0.708pp/月，iid t=4.39，项目已证）"
+  },
+  "validation": {
+    "in_sample": [
+      "2005",
+      "2017"
+    ],
+    "oos_1": [
+      "2018",
+      "2021"
+    ],
+    "oos_2": [
+      "2022",
+      "2026"
+    ],
+    "significance_first_round": 1.96,
+    "significance_subsequent": "Bonferroni",
+    "must_report": [
+      "mean",
+      "t",
+      "MDE",
+      "post_hoc_power",
+      "daily_mdd",
+      "turnover",
+      "net_vs_gross_gap"
+    ],
+    "forbidden": [
+      "全样本调参后报全样本结果",
+      "按样本外择优参数",
+      "用 spread（多空价差）当主指标",
+      "把层B基本面过滤说成已回测验证"
+    ]
+  },
+  "gates": {
+    "A1_beat_random": "t>=1.96 且 优于 B1 的 95% 分位",
+    "A2_beat_existing": "净年化 > B2",
+    "A3_direction_robust": "3档参数方向一致 且 剔最好5%月份后仍>0",
+    "A4_out_of_sample": "2018-2026 样本外 net alpha > 0",
+    "A5_cost_ok": "月换手<=50% 且 年化成本<=0.61%",
+    "A6_drawdown": "日频 MDD >= -0.20",
+    "A7_net_return_absolute": "年化 > 0.08",
+    "A7b_excess_over_beta": "同区间相对等权全A 超额 > 0",
+    "A8_calmar": ">= 0.40",
+    "verdict_rule": "A1 & A4 & A5 & A6 为否决项；A2/A3/A7/A7b/A8 报告但不单独否决"
+  },
+  "benchmark_universe_ew": {
+    "source": "research/stock_pick_2026-10-25/out/bench_universe_ew.json",
+    "month_end_rebalance": true,
+    "segments": {
+      "IS_2005_2017": {
+        "annual_with_div": 0.2194,
+        "annual_no_div": 0.1217,
+        "div_pp": 0.0977,
+        "mdd_monthly": -0.6771,
+        "n_stocks": 1992
+      },
+      "OOS1_2018_2021": {
+        "annual_with_div": 0.0759,
+        "annual_no_div": 0.0246,
+        "div_pp": 0.0513,
+        "mdd_monthly": -0.3098,
+        "n_stocks": 3794
+      },
+      "OOS2_2022_2026": {
+        "annual_with_div": 0.0546,
+        "annual_no_div": 0.0182,
+        "div_pp": 0.0364,
+        "mdd_monthly": -0.2617,
+        "n_stocks": 5019
+      },
+      "FULL_2005_2026": {
+        "annual_with_div": 0.1538,
+        "annual_no_div": 0.0797,
+        "div_pp": 0.0741,
+        "mdd_monthly": -0.6771,
+        "n_stocks": 2996
+      }
+    },
+    "implication": "10% 目标在 OOS2 需 +4.5pp/年超额；等权全A近5年MDD -26.17% 已破 20% 上限，故需 Calmar>=0.50（等权全A仅0.21）"
+  },
+  "factors": {
+    "retired_not_to_retest": [
+      "REV21_as_new",
+      "MAX5",
+      "LOW_VOL",
+      "ACTIVITY",
+      "SURGE",
+      "MOM20_cross_sectional",
+      "MOM20_time_series"
+    ],
+    "candidates": [
+      {
+        "id": "F2",
+        "name": "振幅 TrueRange/close",
+        "order": 1,
+        "expected": "高振幅 -> 未来更差"
+      },
+      {
+        "id": "F5",
+        "name": "量价相关性 corr(ret,volume) 20日",
+        "order": 2,
+        "expected": "负相关 -> 更差"
+      },
+      {
+        "id": "F1",
+        "name": "日内/隔夜收益分解",
+        "order": 3,
+        "expected": "待验"
+      },
+      {
+        "id": "F4",
+        "name": "日收益偏度 20日",
+        "order": 4,
+        "expected": "高偏度 -> 更差"
+      },
+      {
+        "id": "F3",
+        "name": "换手率加速度 turn_5d/turn_60d",
+        "order": 5,
+        "expected": "过高 -> 更差"
+      },
+      {
+        "id": "F6",
+        "name": "距60日高点回撤",
+        "order": 6,
+        "expected": "待验，慢速版已被 W10 证伪"
+      }
+    ],
+    "rule": "每轮只检验 1 个主因子，逐个走完整流程"
+  },
+  "data_constraints": {
+    "price_volume": {
+      "source": "data/exec_all + data/qfq_all",
+      "backtestable": true
+    },
+    "fundamentals": {
+      "source": "tdx_screener",
+      "backtestable": false,
+      "reason": "只返回当日快照；单只财报 15KB token，5472 只不可行",
+      "usage": "仅当前决策层过滤",
+      "evidence_level": "先验约束，无历史验证"
+    }
+  },
+  "known_risks": [
+    {
+      "risk": "ADJ 复权错误",
+      "severity": "high",
+      "mitigation": "阶段1 用 100 只随机样本与通达信后复权核验，不通过则停止",
+      "evidence": "W9: qfq_all vs TDX 窗口内最大偏离 36.5%"
+    },
+    {
+      "risk": "volume 单位是手",
+      "severity": "medium",
+      "mitigation": "成交额 = volume*100*close，单测钉住"
+    },
+    {
+      "risk": "10万整手约束",
+      "severity": "medium",
+      "mitigation": "剔除股价>200元"
+    }
+  ],
+  "confirmed_parameters": {
+    "confirmed_at": "2026-10-26T00:06:00+08:00",
+    "user_words": "按建议走，年化大于10个点。其他接受。",
+    "n_hold": 5,
+    "monthly_turnover_target": 0.3,
+    "monthly_turnover_max": 0.5,
+    "execution": "t+1 close",
+    "accept_daily_decision_monthly_turnover_as_highfreq": true,
+    "annual_return_target_net": 0.08,
+    "fundamentals_only_for_current_decision": true,
+    "note_target_upgraded": "用户将年化目标从建议的 5% 上调至 10%；已在 gates 中新增 A7b/A8 防 beta 冒充",
+    "target_history": "建议5% -> 用户10%(00:24) -> 用户8%(00:53)"
+  },
+  "stage_status": {
+    "stage0_task_design": "done",
+    "stage1_data_prep": "done",
+    "stage2_feature": "done",
+    "stage3_model": "done",
+    "stage4_evaluation": "done",
+    "stage5_monitoring": "ready"
+  },
+  "updated_at": "2026-10-26T00:06:00+08:00",
+  "data_decision": {
+    "price_source": "data/exec_all + data/qfq_all",
+    "tdx_daily_rejected": true,
+    "reason": "TDX 后复权日收益与真实收益系统性不一致（100只中86只不一致率>30%）；本地源自洽且48,434个除权日仅1例异常",
+    "adj_validation": {
+      "ex_days_checked": 48434,
+      "ex_days_err_gt_10pct": 1,
+      "non_ex_inconsistency_rate": 0.000104
+    },
+    "needs_recheck": [
+      "W9",
+      "W10",
+      "W11",
+      "R1",
+      "R2",
+      "R3"
+    ]
+  },
+  "stage_results": {
+    "factor_layer": {
+      "n_candidates": 6,
+      "low_side_significant": 0,
+      "high_side_negative": 6,
+      "family_gate": "z=2.64",
+      "strong_exclusion": [
+        "F3",
+        "F1",
+        "F6"
+      ],
+      "no_edge": [
+        "F2",
+        "F4",
+        "F5"
+      ]
+    },
+    "portfolio_layer": {
+      "exclude_top30_f3_annual": 0.2099,
+      "base_annual": 0.1752,
+      "random_exclude_annual": 0.1752,
+      "excess_pp": 0.0347,
+      "beats_random_p95": true,
+      "hold5_annual": 0.1784,
+      "random5_p95": 0.2336,
+      "hold5_executable": false,
+      "verdict": "FACTOR_REAL_BUT_CARRIER_MISMATCH"
+    }
+  },
+  "sp2_result": {
+    "verdict": "SELL_SIGNAL_VALID_TARGET_MISSED",
+    "c2_annual": 0.1851,
+    "c1_annual": 0.1541,
+    "c0_annual": 0.1147,
+    "c2_minus_c1_pp": 0.031,
+    "win_rate": 0.67,
+    "turnover_monthly": 0.281,
+    "segments": {
+      "IS": {
+        "c2": 0.278,
+        "win": 0.68
+      },
+      "OOS1": {
+        "c2": 0.0958,
+        "win": 0.595
+      },
+      "OOS2": {
+        "c2": 0.0592,
+        "win": 0.54,
+        "mdd": -0.3281
+      }
+    },
+    "gates": {
+      "P1": true,
+      "P2": true,
+      "P3": false,
+      "P4": true,
+      "P5": false
+    },
+    "vol_drag_pp": {
+      "k5": 0.0883,
+      "k50": 0.0674
+    },
+    "findings": [
+      "F3卖出信号全样本有效(+3.10pp,67%胜率)但逐段衰减至54%",
+      "波动拖累6.7~8.8pp是最大收益漏损",
+      "A股分散化对降波动无效:5只38.9%→50只34.1%(全池33.4%)",
+      "加只数净效果为负(成本+5.4pp/年,几何+2.26pp)"
+    ]
+  },
+  "final_scheme": {
+    "name": "低流动性档(<20%) + F3卖出 + 25%仓位",
+    "pool": "A股, 价1~50元, amt20>500万, F3分位<=70%, 流动性分位<20%",
+    "n_hold": 5,
+    "stock_weight": 0.25,
+    "rebalance": "monthly trigger (F3 pct>70%)",
+    "full_100pct": {
+      "annual": 0.3035,
+      "mdd": -0.6238
+    },
+    "full_25pct": {
+      "annual": 0.1084,
+      "mdd": -0.1782,
+      "conservative": 0.1034
+    },
+    "oos2_100pct": {
+      "annual": 0.1646,
+      "mdd": -0.2903
+    },
+    "oos2_25pct": {
+      "annual": 0.071,
+      "mdd": -0.0675
+    },
+    "return_decomposition": {
+      "small_cap_premium_pp_full": 0.177,
+      "small_cap_premium_pp_oos2": 0.111,
+      "must_turnover_pp_full": 0.1567,
+      "must_turnover_pp_oos2": 0.1627,
+      "f3_increment_pp_full": 0.0377,
+      "f3_increment_pp_oos2": 0.0123
+    },
+    "honest_note": "收益主体是小盘流动性beta不是选股alpha；F3增量近5年仅+1.23pp(胜率52%)；真实预期区间7~11%"
+  }
+}

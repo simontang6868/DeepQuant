@@ -1,0 +1,82 @@
+{
+ "n_months": 237,
+ "window": [
+  "2007-01-31",
+  "2026-09-30"
+ ],
+ "W": 30000000.0,
+ "modes": {
+  "drift": {
+   "BASE": {
+    "mean_fee_pp": 0.01914805891946527,
+    "mean_fee_ex_first_pp": 0.01912033827307821,
+    "mean_recorded_pp": 0.019239216101694916,
+    "mean_diff_pp": -0.00011887782861670675,
+    "max_abs_diff_pp": 0.013638888805335654,
+    "cum_fee_pp": 4.5380899639132695,
+    "cum_recorded_pp": 4.540455,
+    "ratio_fee_to_recorded": 0.9938210669297366
+   },
+   "CONSERVATIVE": {
+    "mean_fee_pp": 0.019162508441327285,
+    "mean_fee_ex_first_pp": 0.019134849021727775,
+    "mean_recorded_pp": 0.023730957627118646,
+    "mean_diff_pp": -0.004596108605390869,
+    "max_abs_diff_pp": 0.017296456602295247,
+    "cum_fee_pp": 4.541514500594567,
+    "cum_recorded_pp": 5.600506,
+    "ratio_fee_to_recorded": 0.8063243516081858
+   }
+  },
+  "rebalance": {
+   "BASE": {
+    "mean_fee_pp": 0.0221350741874791,
+    "mean_fee_ex_first_pp": 0.022120010385448027,
+    "mean_recorded_pp": 0.019239216101694916,
+    "mean_diff_pp": 0.002880794283753113,
+    "max_abs_diff_pp": 0.027739067342164157,
+    "cum_fee_pp": 5.246012582432547,
+    "cum_recorded_pp": 4.540455,
+    "ratio_fee_to_recorded": 1.1497355333255663
+   },
+   "CONSERVATIVE": {
+    "mean_fee_pp": 0.028772695103331605,
+    "mean_fee_ex_first_pp": 0.02878575681365584,
+    "mean_recorded_pp": 0.023730957627118646,
+    "mean_diff_pp": 0.005054799186537198,
+    "max_abs_diff_pp": 0.027785759147935796,
+    "cum_fee_pp": 6.8191287394895905,
+    "cum_recorded_pp": 5.600506,
+    "ratio_fee_to_recorded": 1.2130044335320376
+   }
+  }
+ },
+ "trade_stats": {
+  "drift|BASE": {
+   "buys": 95817,
+   "sells": 91743,
+   "unsellable_at_last_px": 6223,
+   "lot_reject": 324
+  },
+  "drift|CONSERVATIVE": {
+   "buys": 95817,
+   "sells": 91743,
+   "unsellable_at_last_px": 6223,
+   "lot_reject": 324
+  },
+  "rebalance|BASE": {
+   "buys": 274221,
+   "sells": 188251,
+   "unsellable_at_last_px": 6220,
+   "lot_skip_buy": 101784,
+   "cash_short": 108
+  },
+  "rebalance|CONSERVATIVE": {
+   "buys": 273370,
+   "sells": 188024,
+   "unsellable_at_last_px": 6219,
+   "lot_skip_buy": 102599,
+   "cash_short": 111
+  }
+ }
+}

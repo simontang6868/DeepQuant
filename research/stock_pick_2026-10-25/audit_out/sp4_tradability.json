@@ -1,0 +1,299 @@
+{
+ "cross_check_pool_mismatch": 250,
+ "by_year": [
+  {
+   "yr": "2005",
+   "months": 9,
+   "band_n_med": 255,
+   "buyable_n_med": 0,
+   "band_ok_rate_med": 0.0,
+   "pool_n_med": 0,
+   "pool_n_min": 0,
+   "months_pool_lt_K": 9,
+   "c2_ann": -0.03474415492368982,
+   "band_amt20_med_wan": 47.29085072786005
+  },
+  {
+   "yr": "2006",
+   "months": 12,
+   "band_n_med": 246,
+   "buyable_n_med": 0,
+   "band_ok_rate_med": 0.0,
+   "pool_n_med": 0,
+   "pool_n_min": 0,
+   "months_pool_lt_K": 12,
+   "c2_ann": 0.6698485553913868,
+   "band_amt20_med_wan": 151.24596838248476
+  },
+  {
+   "yr": "2007",
+   "months": 12,
+   "band_n_med": 252,
+   "buyable_n_med": 141,
+   "band_ok_rate_med": 0.5515873015873016,
+   "pool_n_med": 100,
+   "pool_n_min": 0,
+   "months_pool_lt_K": 1,
+   "c2_ann": 1.3094570844167666,
+   "band_amt20_med_wan": 557.5636859932408
+  },
+  {
+   "yr": "2008",
+   "months": 12,
+   "band_n_med": 282,
+   "buyable_n_med": 14,
+   "band_ok_rate_med": 0.05059316569954868,
+   "pool_n_med": 10,
+   "pool_n_min": 0,
+   "months_pool_lt_K": 6,
+   "c2_ann": -0.3106654324316812,
+   "band_amt20_med_wan": 276.77136913809613
+  },
+  {
+   "yr": "2009",
+   "months": 12,
+   "band_n_med": 303,
+   "buyable_n_med": 233,
+   "band_ok_rate_med": 0.7719275238782157,
+   "pool_n_med": 172,
+   "pool_n_min": 30,
+   "months_pool_lt_K": 0,
+   "c2_ann": 1.3761505840947568,
+   "band_amt20_med_wan": 904.19335854311
+  },
+  {
+   "yr": "2010",
+   "months": 12,
+   "band_n_med": 326,
+   "buyable_n_med": 250,
+   "band_ok_rate_med": 0.7577108849404864,
+   "pool_n_med": 169,
+   "pool_n_min": 137,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.21035329597748165,
+   "band_amt20_med_wan": 780.0809576536262
+  },
+  {
+   "yr": "2011",
+   "months": 12,
+   "band_n_med": 396,
+   "buyable_n_med": 73,
+   "band_ok_rate_med": 0.20162084201369018,
+   "pool_n_med": 54,
+   "pool_n_min": 0,
+   "months_pool_lt_K": 5,
+   "c2_ann": -0.20114745833173436,
+   "band_amt20_med_wan": 324.57433908475014
+  },
+  {
+   "yr": "2012",
+   "months": 12,
+   "band_n_med": 461,
+   "buyable_n_med": 0,
+   "band_ok_rate_med": 0.0,
+   "pool_n_med": 0,
+   "pool_n_min": 0,
+   "months_pool_lt_K": 8,
+   "c2_ann": 0.15902947359998454,
+   "band_amt20_med_wan": 259.78739329023597
+  },
+  {
+   "yr": "2013",
+   "months": 12,
+   "band_n_med": 475,
+   "buyable_n_med": 289,
+   "band_ok_rate_med": 0.6056485355648535,
+   "pool_n_med": 202,
+   "pool_n_min": 11,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.5288325727173818,
+   "band_amt20_med_wan": 574.3227106378687
+  },
+  {
+   "yr": "2014",
+   "months": 12,
+   "band_n_med": 467,
+   "buyable_n_med": 404,
+   "band_ok_rate_med": 0.8616189707109934,
+   "pool_n_med": 329,
+   "pool_n_min": 164,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.8031414314259034,
+   "band_amt20_med_wan": 947.9069760986117
+  },
+  {
+   "yr": "2015",
+   "months": 12,
+   "band_n_med": 458,
+   "buyable_n_med": 454,
+   "band_ok_rate_med": 0.999001996007984,
+   "pool_n_med": 336,
+   "pool_n_min": 299,
+   "months_pool_lt_K": 0,
+   "c2_ann": 1.4894200996608995,
+   "band_amt20_med_wan": 4679.174525531502
+  },
+  {
+   "yr": "2016",
+   "months": 12,
+   "band_n_med": 525,
+   "buyable_n_med": 525,
+   "band_ok_rate_med": 0.9981036503382872,
+   "pool_n_med": 423,
+   "pool_n_min": 359,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.5193304688848396,
+   "band_amt20_med_wan": 3011.336195278865
+  },
+  {
+   "yr": "2017",
+   "months": 12,
+   "band_n_med": 596,
+   "buyable_n_med": 577,
+   "band_ok_rate_med": 0.9727100969206233,
+   "pool_n_med": 467,
+   "pool_n_min": 390,
+   "months_pool_lt_K": 0,
+   "c2_ann": -0.18592043755811044,
+   "band_amt20_med_wan": 1664.3447188932323
+  },
+  {
+   "yr": "2018",
+   "months": 12,
+   "band_n_med": 671,
+   "buyable_n_med": 591,
+   "band_ok_rate_med": 0.8725767187305649,
+   "pool_n_med": 452,
+   "pool_n_min": 338,
+   "months_pool_lt_K": 0,
+   "c2_ann": -0.11916903354708269,
+   "band_amt20_med_wan": 901.8117326665115
+  },
+  {
+   "yr": "2019",
+   "months": 12,
+   "band_n_med": 719,
+   "buyable_n_med": 682,
+   "band_ok_rate_med": 0.9492179105828065,
+   "pool_n_med": 520,
+   "pool_n_min": 464,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.3144710125860082,
+   "band_amt20_med_wan": 1193.185614049115
+  },
+  {
+   "yr": "2020",
+   "months": 12,
+   "band_n_med": 764,
+   "buyable_n_med": 746,
+   "band_ok_rate_med": 0.9769227288233533,
+   "pool_n_med": 587,
+   "pool_n_min": 553,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.1702588291175272,
+   "band_amt20_med_wan": 1619.797787479006
+  },
+  {
+   "yr": "2021",
+   "months": 12,
+   "band_n_med": 860,
+   "buyable_n_med": 829,
+   "band_ok_rate_med": 0.9616813212762707,
+   "pool_n_med": 631,
+   "pool_n_min": 550,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.38114803063400426,
+   "band_amt20_med_wan": 1475.7441657193804
+  },
+  {
+   "yr": "2022",
+   "months": 12,
+   "band_n_med": 934,
+   "buyable_n_med": 925,
+   "band_ok_rate_med": 0.9864794664794665,
+   "pool_n_med": 727,
+   "pool_n_min": 629,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.24719328251314987,
+   "band_amt20_med_wan": 1913.7236917229889
+  },
+  {
+   "yr": "2023",
+   "months": 12,
+   "band_n_med": 991,
+   "buyable_n_med": 981,
+   "band_ok_rate_med": 0.9934338964719733,
+   "pool_n_med": 753,
+   "pool_n_min": 680,
+   "months_pool_lt_K": 0,
+   "c2_ann": -0.033561419926692704,
+   "band_amt20_med_wan": 2100.858938212986
+  },
+  {
+   "yr": "2024",
+   "months": 12,
+   "band_n_med": 1016,
+   "buyable_n_med": 1012,
+   "band_ok_rate_med": 0.9955718177344292,
+   "pool_n_med": 796,
+   "pool_n_min": 677,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.2197733437410483,
+   "band_amt20_med_wan": 2652.1422070909784
+  },
+  {
+   "yr": "2025",
+   "months": 12,
+   "band_n_med": 1026,
+   "buyable_n_med": 1026,
+   "band_ok_rate_med": 1.0,
+   "pool_n_med": 856,
+   "pool_n_min": 673,
+   "months_pool_lt_K": 0,
+   "c2_ann": 0.505334129520239,
+   "band_amt20_med_wan": 4204.630738988742
+  },
+  {
+   "yr": "2026",
+   "months": 8,
+   "band_n_med": 1035,
+   "buyable_n_med": 1035,
+   "band_ok_rate_med": 1.0,
+   "pool_n_med": 820,
+   "pool_n_min": 715,
+   "months_pool_lt_K": 0,
+   "c2_ann": -0.1762748590692645,
+   "band_amt20_med_wan": 4725.217060180283
+  }
+ ],
+ "zero_position": {
+  "share_month_path": 0.026011673151750972,
+  "n_full_zero_months": 4,
+  "full_zero_months": [
+   "20050531",
+   "20051130",
+   "20051230",
+   "20081031"
+  ],
+  "market_ret_in_zero_months": 0.10286093153539758,
+  "market_ret_otherwise": 0.018561827173383994
+ },
+ "segments_c2": {
+  "full": {
+   "months": 257,
+   "ann": 0.3034838770138151
+  },
+  "y2015": {
+   "months": 140,
+   "ann": 0.2517737898839677
+  },
+  "y2018": {
+   "months": 104,
+   "ann": 0.17373460288586162
+  },
+  "y2022": {
+   "months": 56,
+   "ann": 0.16464821338491142
+  }
+ }
+}
