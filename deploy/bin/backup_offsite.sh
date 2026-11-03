@@ -5,7 +5,8 @@
 #   - 台账 / 观测表 / 配置 / 交易日历 / 更正日志 —— 不可重建，必须异地一份
 #   - data/qfq_all、data/exec_all —— 可由行情源重建，备份它们只会挤占空间与带宽
 #
-# 传输目标二选一（都不配就**失败退出**，不静默跳过）：
+# 传输目标（按优先级取**第一个已配置**的通道，都不配就**失败退出**，不静默跳过）：
+#   DEEPQUANT_BACKUP_EMAIL  收件邮箱（走 notify_mail.py，SMTP 配置见 env）
 #   DEEPQUANT_BACKUP_RSYNC  形如  user@host:/srv/deepquant-backup
 #   DEEPQUANT_BACKUP_RCLONE 形如  myremote:deepquant-backup
 #
@@ -14,6 +15,9 @@
 set -uo pipefail
 
 REPO="${DEEPQUANT_HOME:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)}"
+# 显式落到仓库内：从 /root 之类不可进入的目录启动时，find 结束会报
+# "Failed to restore initial working directory"——无害但会被误读成错误。
+cd "$REPO" || exit 70
 FWD="$REPO/research/stock_pick_2026-10-25/forward"
 VAR="$REPO/var/backup"
 KEEP_DAYS="${DEEPQUANT_BACKUP_KEEP_DAYS:-30}"
@@ -72,7 +76,18 @@ echo "[backup] 打包完成 $OUT（$n_in_tar 个文件，$(du -h "$OUT" | cut -f
 
 # ---- 3. 送出本机 ----
 sent=0
-if [ -n "${DEEPQUANT_BACKUP_RSYNC:-}" ]; then
+if [ -n "${DEEPQUANT_BACKUP_EMAIL:-}" ]; then
+  echo "[backup] 邮件 → $DEEPQUANT_BACKUP_EMAIL"
+  if python3 "$REPO/deploy/bin/notify_mail.py" \
+        --subject "DeepQuant 证据备份 $TS（$(hostname)）" \
+        --body-file <(printf '归档：%s\n文件数：%s\n时间：%s\n主机：%s\n\n本邮件由 backup_offsite.sh 自动发送；行情数据不入邮件（可由行情源重建）。\n' \
+            "$OUT" "$n_in_tar" "$TS" "$(hostname)") \
+        --attach "$OUT"; then
+    sent=1
+  else
+    echo "[backup] ⚠️ 邮件通道失败 rc=$?（配置缺失或 SMTP 拒绝）"
+  fi
+elif [ -n "${DEEPQUANT_BACKUP_RSYNC:-}" ]; then
   echo "[backup] rsync → $DEEPQUANT_BACKUP_RSYNC"
   rsync -az --timeout=300 "$OUT" "$DEEPQUANT_BACKUP_RSYNC/" && sent=1
 elif [ -n "${DEEPQUANT_BACKUP_RCLONE:-}" ]; then

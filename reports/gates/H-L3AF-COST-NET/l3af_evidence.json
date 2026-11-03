@@ -1,0 +1,1179 @@
+{
+ "experiment_id": "H-L3AF-EVIDENCE",
+ "prereg_sha256": "ed2a03162ce3907bef3e75b839a201cfad0799973ff14b0a145a51eb60d58cb8",
+ "sheet_version": "L3AF-CURRENT-v2",
+ "econ_threshold_pp": 0.3,
+ "econ_threshold_source": "docs/PHASE_C_UNIVERSE_PREREG_2026-10-21.md 第 156 行",
+ "econ_threshold_defect": {
+  "code": "D2",
+  "detail": "docs/PHASE_C2_SUSPEND_PREREG_2026-10-21.md 第 93 行写「0.30pp/月 等于阶段 C 主检验经济门槛的一半」，即隐含 C 的门槛是 0.60；而 PHASE_C 第 156 行、PHASE_E 第 86 行、PHASE_F 第 116 行三处都说 C 的门槛是 0.30。4 份文件中 3 份一致、1 份矛盾。",
+  "impact": "对 7 条正面结论的 S2 判定**无影响**：受门槛约束的只有 phasec_d（1.94）、phasec2_d（0.107）、phasef_delta（0.740），无论门槛取 0.30 还是 0.60，三条的过/不过都不变。",
+  "handling": "采用 0.30（三份文件一致），把矛盾作为记录缺陷保留，不改原文"
+ },
+ "cards": [
+  {
+   "id": "gate6_d",
+   "family": "H_reversal",
+   "registered_verdict": "全 A as-of 口径的 d 均值为 +0.71pp（t=+4.39 iid／+4.64 NW3），MDE 0.43pp、事后功效 100%，但 |效应|/MDE 只有 1.66 倍。",
+   "quotability": "QUOTABLE_MARGINAL",
+   "question": "反转信号在 as-of 全A 池、全样本上 d 是否为正",
+   "null": "H0: E[判定量] = 0（无差异/无增量）",
+   "effect_pp": 0.7084456860759494,
+   "unit": "pp/月",
+   "n": 237,
+   "window": "2007-02~2026-10（n=237）",
+   "mde_pp": 0.42735496187998556,
+   "p": 5.668407884527412e-06,
+   "t_nw3": 4.644339275666975,
+   "statistics": {
+    "S1": {
+     "status": "PASS",
+     "p": 5.668407884527412e-06,
+     "t_nw3": 4.644339275666975,
+     "m": 25,
+     "four_corrections": {
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "by": true
+     },
+     "note": "S1 只回答「不像噪声」，不回答「有多大用」"
+    },
+    "S2": {
+     "status": "NOT_GRADED",
+     "threshold_pp": null,
+     "reference_pp": 0.3,
+     "effect_pp": 0.7084456860759494,
+     "clears_borrowed_reference": true,
+     "reason": "该条目所在阶段未预登记经济意义门槛（0.30pp/月 出自阶段 C，其后 E/F/G 复用，不回溯覆盖更早的 Gate 系列）",
+     "note": "参照值只作披露，不构成过/不过；更不得用效应/MDE 比值代替"
+    },
+    "S3": {
+     "status": "ABSENT",
+     "path": "no_net_construct",
+     "note": "判定量是价差/差值/回归系数，不存在该条目的净收益版本"
+    },
+    "S4": {
+     "status": "ABSENT",
+     "requirements": {
+      "out_of_sample": false,
+      "fill_model": false,
+      "capacity": false,
+      "risk_analysis": false
+     },
+     "detail": {
+      "out_of_sample": "无前瞻样本；全部为历史样本内（窗口止于 2026-09）",
+      "fill_model": "只有阶段 J 的 Amihud 冲击**上限常数** 0.000784pp，不是成交回放",
+      "capacity": "只有覆盖率/未投资比例的描述性统计，无冲击-容量最优点",
+      "risk_analysis": "只到 MDD 与仓位上限，无流动性/集中度/尾部压力"
+     },
+     "note": "S4 是「能不能下单」，与 S1/S2/S3 完全不同的问题"
+    }
+   },
+   "allowed_wording": "全 A as-of 口径的 d 均值为 +0.71pp（t=+4.39 iid／+4.64 NW3），MDE 0.43pp、事后功效 100%，但 |效应|/MDE 只有 1.66 倍。",
+   "limits_of_use": [
+    "头条 +4.39 是 iid t，同序列 NW3 为 +4.64，引用时须同列两数",
+    "这是横截面月度差距，不是可交易组合的账户收益",
+    "d 与文献 spread 差 2 倍"
+   ],
+   "artifact": {
+    "path": "gate6_out/b8c4f1ecba44/monthly_paired.csv",
+    "sha256": "6ffb6bbb56d4b271e2d85c7ff987ebca1eb1e14aeadb117ba531ba655c1c0c42"
+   },
+   "corrections": {
+    "FP_m24": {
+     "adjusted_p": 0.0001360417892286579,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "IND_m25": {
+     "adjusted_p": 0.0001417101971131853,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "L3AC_m27": {
+     "adjusted_p": 0.00015304701288224013,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "ALL_m29": {
+     "adjusted_p": 0.00016438382865129495,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "cost_convention": "无（本条判定量不含成本）",
+   "multiplicity_convention": "m=25（独立随机变量口径）；Bonferroni/Holm/BH/BY 四种并列",
+   "has_cost_evidence": false,
+   "has_oos_evidence": false,
+   "tradability_allowed": false,
+   "status": "QUOTABLE_STAT_ONLY"
+  },
+  {
+   "id": "phasec2_d",
+   "family": "H_pool_increment",
+   "registered_verdict": "停牌效应的增量 +0.11pp（t=+5.01）、MDE 0.06pp，|效应|/MDE 1.79 倍；池效应本身的水平是 +0.66pp，不是本条的增量。",
+   "quotability": "QUOTABLE_MARGINAL",
+   "question": "加入停牌约束后 spread 的增量是否为零",
+   "null": "H0: E[判定量] = 0（无差异/无增量）",
+   "effect_pp": 0.10694447497890297,
+   "unit": "pp/月",
+   "n": 237,
+   "window": "2007-02~2026-10（n=237）",
+   "mde_pp": 0.059745289624686955,
+   "p": 1.042990002819018e-06,
+   "t_nw3": 5.014883064138538,
+   "statistics": {
+    "S1": {
+     "status": "PASS",
+     "p": 1.042990002819018e-06,
+     "t_nw3": 5.014883064138538,
+     "m": 25,
+     "four_corrections": {
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "by": true
+     },
+     "note": "S1 只回答「不像噪声」，不回答「有多大用」"
+    },
+    "S2": {
+     "status": "FAIL",
+     "threshold_pp": 0.3,
+     "source": "PHASE_C2_SUSPEND_PREREG §0.30pp 依据",
+     "effect_pp": 0.10694447497890297,
+     "note": "门槛为事前规定，非事后选取"
+    },
+    "S3": {
+     "status": "ABSENT",
+     "path": "no_net_construct",
+     "note": "判定量是价差/差值/回归系数，不存在该条目的净收益版本"
+    },
+    "S4": {
+     "status": "ABSENT",
+     "requirements": {
+      "out_of_sample": false,
+      "fill_model": false,
+      "capacity": false,
+      "risk_analysis": false
+     },
+     "detail": {
+      "out_of_sample": "无前瞻样本；全部为历史样本内（窗口止于 2026-09）",
+      "fill_model": "只有阶段 J 的 Amihud 冲击**上限常数** 0.000784pp，不是成交回放",
+      "capacity": "只有覆盖率/未投资比例的描述性统计，无冲击-容量最优点",
+      "risk_analysis": "只到 MDD 与仓位上限，无流动性/集中度/尾部压力"
+     },
+     "note": "S4 是「能不能下单」，与 S1/S2/S3 完全不同的问题"
+    }
+   },
+   "allowed_wording": "停牌效应的增量 +0.11pp（t=+5.01）、MDE 0.06pp，|效应|/MDE 1.79 倍；池效应本身的水平是 +0.66pp，不是本条的增量。",
+   "limits_of_use": [
+    "检验的是相对基准格的增量，不是停牌效应的绝对规模",
+    "统计显著但量级小：0.11pp/月 对一个组合的实际影响需另算"
+   ],
+   "artifact": {
+    "path": "phasec2_out/953c32fdc556/cells.csv",
+    "sha256": "e9748b17fd3d7cf1d78d3cf899eae1efc06c6b59d9685edcff58761a6796320a"
+   },
+   "corrections": {
+    "FP_m24": {
+     "adjusted_p": 2.503176006765643e-05,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "IND_m25": {
+     "adjusted_p": 2.6074750070475448e-05,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "L3AC_m27": {
+     "adjusted_p": 2.8160730076113484e-05,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "ALL_m29": {
+     "adjusted_p": 3.024671008175152e-05,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "cost_convention": "无（本条判定量不含成本）",
+   "multiplicity_convention": "m=25（独立随机变量口径）；Bonferroni/Holm/BH/BY 四种并列",
+   "has_cost_evidence": false,
+   "has_oos_evidence": false,
+   "tradability_allowed": false,
+   "status": "QUOTABLE_STAT_ONLY"
+  },
+  {
+   "id": "phasec_d",
+   "family": "H_pool_effect",
+   "registered_verdict": "池效应的判定量 spread(B)−spread(A) 为 +1.94pp（t=+6.37）、MDE 0.85pp，|效应|/MDE 2.27 倍；格 A 自身的水平是 +0.01pp，与本条的差值不可混用。",
+   "quotability": "QUOTABLE",
+   "question": "池效应：spread(B) 与 spread(A) 之差是否为零",
+   "null": "H0: E[判定量] = 0（无差异/无增量）",
+   "effect_pp": 1.9389677751054852,
+   "unit": "pp/月",
+   "n": 237,
+   "window": "2007-01~2026-09（n=237）",
+   "mde_pp": 0.8531160961524931,
+   "p": 9.934532578330494e-10,
+   "t_nw3": 6.367494580438122,
+   "statistics": {
+    "S1": {
+     "status": "PASS",
+     "p": 9.934532578330494e-10,
+     "t_nw3": 6.367494580438122,
+     "m": 25,
+     "four_corrections": {
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "by": true
+     },
+     "note": "S1 只回答「不像噪声」，不回答「有多大用」"
+    },
+    "S2": {
+     "status": "PASS",
+     "threshold_pp": 0.3,
+     "source": "PHASE_C_UNIVERSE_PREREG §经济意义门槛",
+     "effect_pp": 1.9389677751054852,
+     "note": "门槛为事前规定，非事后选取"
+    },
+    "S3": {
+     "status": "ABSENT",
+     "path": "no_net_construct",
+     "note": "判定量是价差/差值/回归系数，不存在该条目的净收益版本"
+    },
+    "S4": {
+     "status": "ABSENT",
+     "requirements": {
+      "out_of_sample": false,
+      "fill_model": false,
+      "capacity": false,
+      "risk_analysis": false
+     },
+     "detail": {
+      "out_of_sample": "无前瞻样本；全部为历史样本内（窗口止于 2026-09）",
+      "fill_model": "只有阶段 J 的 Amihud 冲击**上限常数** 0.000784pp，不是成交回放",
+      "capacity": "只有覆盖率/未投资比例的描述性统计，无冲击-容量最优点",
+      "risk_analysis": "只到 MDD 与仓位上限，无流动性/集中度/尾部压力"
+     },
+     "note": "S4 是「能不能下单」，与 S1/S2/S3 完全不同的问题"
+    }
+   },
+   "allowed_wording": "池效应的判定量 spread(B)−spread(A) 为 +1.94pp（t=+6.37）、MDE 0.85pp，|效应|/MDE 2.27 倍；格 A 自身的水平是 +0.01pp，与本条的差值不可混用。",
+   "limits_of_use": [
+    "该值是两格 spread 之差，不是任何单一组合的收益水平",
+    "spread 与 d 差 2 倍，跨文献引用须换算"
+   ],
+   "artifact": {
+    "path": "phasec_out/3a01759a37f0/five_cells.csv",
+    "sha256": "c0fd1cef94c0b12ba684b0bc39d673e27e678bad122a2b18c9e9080034a3f5a2"
+   },
+   "corrections": {
+    "FP_m24": {
+     "adjusted_p": 2.3842878187993184e-08,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "IND_m25": {
+     "adjusted_p": 2.4836331445826234e-08,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "L3AC_m27": {
+     "adjusted_p": 2.6823237961492335e-08,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "ALL_m29": {
+     "adjusted_p": 2.8810144477158432e-08,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "cost_convention": "无（本条判定量不含成本）",
+   "multiplicity_convention": "m=25（独立随机变量口径）；Bonferroni/Holm/BH/BY 四种并列",
+   "has_cost_evidence": false,
+   "has_oos_evidence": false,
+   "tradability_allowed": false,
+   "status": "QUOTABLE_STAT_ONLY"
+  },
+  {
+   "id": "phasef_delta",
+   "family": "H_max5_layer",
+   "registered_verdict": "MAX5 的 delta 为 +0.74pp（t=+3.41），MDE 0.61pp，|效应|/MDE 1.22 倍，是本项目最接近可引用的横截面结论。",
+   "quotability": "QUOTABLE_MARGINAL",
+   "question": "MAX5 五分层中最高与最低层的 delta 是否为零",
+   "null": "H0: E[判定量] = 0（无差异/无增量）",
+   "effect_pp": 0.740492584556962,
+   "unit": "pp/月",
+   "n": 237,
+   "window": "2007-02~2026-10（n=237）",
+   "mde_pp": 0.6086306256988808,
+   "p": 0.0007677795015819844,
+   "t_nw3": 3.408576462140064,
+   "statistics": {
+    "S1": {
+     "status": "PASS",
+     "p": 0.0007677795015819844,
+     "t_nw3": 3.408576462140064,
+     "m": 25,
+     "four_corrections": {
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "by": true
+     },
+     "note": "S1 只回答「不像噪声」，不回答「有多大用」"
+    },
+    "S2": {
+     "status": "PASS",
+     "threshold_pp": 0.3,
+     "source": "PHASE_F_MAX5_PREREG",
+     "effect_pp": 0.740492584556962,
+     "note": "门槛为事前规定，非事后选取"
+    },
+    "S3": {
+     "status": "ABSENT",
+     "path": "no_net_construct",
+     "note": "判定量是价差/差值/回归系数，不存在该条目的净收益版本"
+    },
+    "S4": {
+     "status": "ABSENT",
+     "requirements": {
+      "out_of_sample": false,
+      "fill_model": false,
+      "capacity": false,
+      "risk_analysis": false
+     },
+     "detail": {
+      "out_of_sample": "无前瞻样本；全部为历史样本内（窗口止于 2026-09）",
+      "fill_model": "只有阶段 J 的 Amihud 冲击**上限常数** 0.000784pp，不是成交回放",
+      "capacity": "只有覆盖率/未投资比例的描述性统计，无冲击-容量最优点",
+      "risk_analysis": "只到 MDD 与仓位上限，无流动性/集中度/尾部压力"
+     },
+     "note": "S4 是「能不能下单」，与 S1/S2/S3 完全不同的问题"
+    }
+   },
+   "allowed_wording": "MAX5 的 delta 为 +0.74pp（t=+3.41），MDE 0.61pp，|效应|/MDE 1.22 倍，是本项目最接近可引用的横截面结论。",
+   "limits_of_use": [
+    "1.22 倍仍低于 2 倍门槛，只能作为「可引用且须标 MDE」处理",
+    "delta 是两格 d 之差，不是组合收益"
+   ],
+   "artifact": {
+    "path": "phasef_out/aec46d88bbda/monthly.csv",
+    "sha256": "d8bbd55dad2ee752882411d196269358386fbe1b6f07004406ae708d2f042b98"
+   },
+   "corrections": {
+    "FP_m24": {
+     "adjusted_p": 0.018426708037967626,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "IND_m25": {
+     "adjusted_p": 0.01919448753954961,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "L3AC_m27": {
+     "adjusted_p": 0.020730046542713577,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "ALL_m29": {
+     "adjusted_p": 0.02226560554587755,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "cost_convention": "无（本条判定量不含成本）",
+   "multiplicity_convention": "m=25（独立随机变量口径）；Bonferroni/Holm/BH/BY 四种并列",
+   "has_cost_evidence": false,
+   "has_oos_evidence": false,
+   "tradability_allowed": false,
+   "status": "QUOTABLE_STAT_ONLY"
+  },
+  {
+   "id": "phasei_v0",
+   "family": "D_exq5",
+   "registered_verdict": "",
+   "quotability": null,
+   "question": "NOT_RECORDED",
+   "null": "H0: E[判定量] = 0（无差异/无增量）",
+   "effect_pp": 0.23070257383966244,
+   "unit": "pp/月",
+   "n": 237,
+   "window": "2007-01~2026-09（n=237）",
+   "mde_pp": 0.10167055595830553,
+   "p": 1.05216887760739e-09,
+   "t_nw3": 6.357163337773591,
+   "statistics": {
+    "S1": {
+     "status": "PASS",
+     "p": 1.05216887760739e-09,
+     "t_nw3": 6.357163337773591,
+     "m": 25,
+     "four_corrections": {
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "by": true
+     },
+     "note": "S1 只回答「不像噪声」，不回答「有多大用」"
+    },
+    "S2": {
+     "status": "NOT_GRADED",
+     "threshold_pp": null,
+     "reference_pp": 0.3,
+     "effect_pp": 0.23070257383966244,
+     "clears_borrowed_reference": false,
+     "reason": "该条目所在阶段未预登记经济意义门槛（0.30pp/月 出自阶段 C，其后 E/F/G 复用，不回溯覆盖更早的 Gate 系列）",
+     "note": "参照值只作披露，不构成过/不过；更不得用效应/MDE 比值代替"
+    },
+    "S3": {
+     "status": "ABSENT",
+     "path": "no_turnover_for_v0",
+     "note": "V0 持仓含不可成交标的，其逐月换手**未落盘**；用 V1 的换手代替属于「换手沿用别的信号」，禁止"
+    },
+    "S4": {
+     "status": "ABSENT",
+     "requirements": {
+      "out_of_sample": false,
+      "fill_model": false,
+      "capacity": false,
+      "risk_analysis": false
+     },
+     "detail": {
+      "out_of_sample": "无前瞻样本；全部为历史样本内（窗口止于 2026-09）",
+      "fill_model": "只有阶段 J 的 Amihud 冲击**上限常数** 0.000784pp，不是成交回放",
+      "capacity": "只有覆盖率/未投资比例的描述性统计，无冲击-容量最优点",
+      "risk_analysis": "只到 MDD 与仓位上限，无流动性/集中度/尾部压力"
+     },
+     "note": "S4 是「能不能下单」，与 S1/S2/S3 完全不同的问题"
+    }
+   },
+   "allowed_wording": null,
+   "limits_of_use": [],
+   "artifact": {
+    "path": "phasei_out/8f5c35121fdb/monthly.csv",
+    "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a"
+   },
+   "corrections": {
+    "FP_m24": {
+     "adjusted_p": 2.5252053062577362e-08,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "IND_m25": {
+     "adjusted_p": 2.6304221940184753e-08,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "L3AC_m27": {
+     "adjusted_p": 2.8408559695399533e-08,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "ALL_m29": {
+     "adjusted_p": 3.0512897450614315e-08,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "cost_convention": "毛利 alpha；成本档见 statistics.S3.tiers",
+   "multiplicity_convention": "m=25（独立随机变量口径）；Bonferroni/Holm/BH/BY 四种并列",
+   "has_cost_evidence": false,
+   "has_oos_evidence": false,
+   "tradability_allowed": false,
+   "status": "QUOTABLE_STAT_ONLY"
+  },
+  {
+   "id": "phasei_v1",
+   "family": "D_exq5",
+   "registered_verdict": "",
+   "quotability": null,
+   "question": "NOT_RECORDED",
+   "null": "H0: E[判定量] = 0（无差异/无增量）",
+   "effect_pp": 0.1634105358649789,
+   "unit": "pp/月",
+   "n": 237,
+   "window": "2007-01~2026-09（n=237）",
+   "mde_pp": 0.10109851876006822,
+   "p": 9.435983315166961e-06,
+   "t_nw3": 4.52836463772356,
+   "statistics": {
+    "S1": {
+     "status": "PASS",
+     "p": 9.435983315166961e-06,
+     "t_nw3": 4.52836463772356,
+     "m": 25,
+     "four_corrections": {
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "by": true
+     },
+     "note": "S1 只回答「不像噪声」，不回答「有多大用」"
+    },
+    "S2": {
+     "status": "NOT_GRADED",
+     "threshold_pp": null,
+     "reference_pp": 0.3,
+     "effect_pp": 0.1634105358649789,
+     "clears_borrowed_reference": false,
+     "reason": "该条目所在阶段未预登记经济意义门槛（0.30pp/月 出自阶段 C，其后 E/F/G 复用，不回溯覆盖更早的 Gate 系列）",
+     "note": "参照值只作披露，不构成过/不过；更不得用效应/MDE 比值代替"
+    },
+    "S3": {
+     "status": "TIER_DEPENDENT",
+     "path": "reconstructed_l3af",
+     "primary_tier": "T_0p3",
+     "primary_significant": false,
+     "tiers": [
+      {
+       "tier": "T_0p3",
+       "rate_pct": 0.3,
+       "net_pp_month": 0.050716338396624476,
+       "t_iid": 1.0473962441240943,
+       "t_nw3": 1.4161576150480295,
+       "significant_iid": false,
+       "significant_nw3": false
+      },
+      {
+       "tier": "T_0p1",
+       "rate_pct": 0.1,
+       "net_pp_month": 0.12584580337552745,
+       "t_iid": 2.599670119632989,
+       "t_nw3": 3.4989890801078674,
+       "significant_iid": true,
+       "significant_nw3": true
+      },
+      {
+       "tier": "T_1e8",
+       "rate_pct": 0.051000000000000004,
+       "net_pp_month": 0.14425252229535865,
+       "t_iid": 2.9797975142899165,
+       "t_nw3": 4.004631217506986,
+       "significant_iid": true,
+       "significant_nw3": true
+      },
+      {
+       "tier": "T_3e7",
+       "rate_pct": 0.0585,
+       "net_pp_month": 0.1414351673586498,
+       "t_iid": 2.921624252760465,
+       "t_nw3": 3.9273854816491136,
+       "significant_iid": true,
+       "significant_nw3": true
+      },
+      {
+       "tier": "T_1e7",
+       "rate_pct": 0.12340000000000001,
+       "net_pp_month": 0.11705565597299578,
+       "t_iid": 2.418095359253145,
+       "t_nw3": 3.256753842475298,
+       "significant_iid": true,
+       "significant_nw3": true
+      }
+     ],
+     "note": "预登记主成本档（0.3%）下不显著 ⇒ 冻结判定 EXQ5_COST_ABSORBED 不变；真实费率档下显著，但那是**敏感性**，不是判定"
+    },
+    "S4": {
+     "status": "ABSENT",
+     "requirements": {
+      "out_of_sample": false,
+      "fill_model": false,
+      "capacity": false,
+      "risk_analysis": false
+     },
+     "detail": {
+      "out_of_sample": "无前瞻样本；全部为历史样本内（窗口止于 2026-09）",
+      "fill_model": "只有阶段 J 的 Amihud 冲击**上限常数** 0.000784pp，不是成交回放",
+      "capacity": "只有覆盖率/未投资比例的描述性统计，无冲击-容量最优点",
+      "risk_analysis": "只到 MDD 与仓位上限，无流动性/集中度/尾部压力"
+     },
+     "note": "S4 是「能不能下单」，与 S1/S2/S3 完全不同的问题"
+    }
+   },
+   "allowed_wording": null,
+   "limits_of_use": [],
+   "artifact": {
+    "path": "phasei_out/8f5c35121fdb/monthly.csv",
+    "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a"
+   },
+   "corrections": {
+    "FP_m24": {
+     "adjusted_p": 0.00022646359956400705,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "IND_m25": {
+     "adjusted_p": 0.00023589958287917402,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "L3AC_m27": {
+     "adjusted_p": 0.00025477154950950793,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "ALL_m29": {
+     "adjusted_p": 0.00027364351613984187,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "cost_convention": "毛利 alpha；成本档见 statistics.S3.tiers",
+   "multiplicity_convention": "m=25（独立随机变量口径）；Bonferroni/Holm/BH/BY 四种并列",
+   "has_cost_evidence": false,
+   "has_oos_evidence": false,
+   "tradability_allowed": false,
+   "status": "QUOTABLE_STAT_WITH_TIER_DEPENDENT_COST"
+  },
+  {
+   "id": "phaseo_netBASE",
+   "family": "H_net_base",
+   "registered_verdict": "3000 万档、BASE 费率（单边 0.051%）下净 alpha 为 +0.14pp（t=+4.04），MDE 0.09pp，|效应|/MDE 1.44 倍。",
+   "quotability": "QUOTABLE_MARGINAL",
+   "question": "BASE 费率、3000 万资金下净 alpha 是否为正",
+   "null": "H0: E[判定量] = 0（无差异/无增量）",
+   "effect_pp": 0.13595891139240507,
+   "unit": "pp/月",
+   "n": 237,
+   "window": "2007-01~2026-09（n=237）",
+   "mde_pp": 0.09431490815721953,
+   "p": 7.273409740837666e-05,
+   "t_nw3": 4.0386243659593175,
+   "statistics": {
+    "S1": {
+     "status": "PASS",
+     "p": 7.273409740837666e-05,
+     "t_nw3": 4.0386243659593175,
+     "m": 25,
+     "four_corrections": {
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "by": true
+     },
+     "note": "S1 只回答「不像噪声」，不回答「有多大用」"
+    },
+    "S2": {
+     "status": "NOT_GRADED",
+     "threshold_pp": null,
+     "reference_pp": 0.3,
+     "effect_pp": 0.13595891139240507,
+     "clears_borrowed_reference": false,
+     "reason": "判定量已是扣成本净收益；0.30pp 门槛的理由是「= 0.1% 档月度成本的 2 倍」，该理由对已扣成本的量不成立，且从未为净收益预登记过门槛",
+     "note": "参照值只作披露，不构成过/不过；更不得用效应/MDE 比值代替"
+    },
+    "S3": {
+     "status": "PASS",
+     "path": "judged_on_net_series",
+     "note": "该条判定量即扣成本净收益，成本口径与资金档随条目登记",
+     "tiers": null
+    },
+    "S4": {
+     "status": "ABSENT",
+     "requirements": {
+      "out_of_sample": false,
+      "fill_model": false,
+      "capacity": false,
+      "risk_analysis": false
+     },
+     "detail": {
+      "out_of_sample": "无前瞻样本；全部为历史样本内（窗口止于 2026-09）",
+      "fill_model": "只有阶段 J 的 Amihud 冲击**上限常数** 0.000784pp，不是成交回放",
+      "capacity": "只有覆盖率/未投资比例的描述性统计，无冲击-容量最优点",
+      "risk_analysis": "只到 MDD 与仓位上限，无流动性/集中度/尾部压力"
+     },
+     "note": "S4 是「能不能下单」，与 S1/S2/S3 完全不同的问题"
+    }
+   },
+   "allowed_wording": "3000 万档、BASE 费率（单边 0.051%）下净 alpha 为 +0.14pp（t=+4.04），MDE 0.09pp，|效应|/MDE 1.44 倍。",
+   "limits_of_use": [
+    "1.44 倍仍低于 2 倍门槛，引用必须同时给 MDE",
+    "EXECUTABLE_UNDER_BASE_FEES 不等于「可用」：换到压力费率档后净 alpha 逼近 0",
+    "该序列与 phasev 完全同一份数字，不能当作两次独立验证"
+   ],
+   "artifact": {
+    "path": "phaseo_out/ac7aa2830ab0/monthly.csv",
+    "sha256": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152"
+   },
+   "corrections": {
+    "FP_m24": {
+     "adjusted_p": 0.00174561833780104,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "IND_m25": {
+     "adjusted_p": 0.0018183524352094165,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "L3AC_m27": {
+     "adjusted_p": 0.00196382063002617,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    "ALL_m29": {
+     "adjusted_p": 0.002109288824842923,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "cost_convention": "净收益：3000 万 / BASE（佣金 0.025% 双边 + 印花 0.05% 仅卖出 + 过户 0.001% 双边，等价单边 0.051%）+ 冲击上限 0.000784pp",
+   "multiplicity_convention": "m=25（独立随机变量口径）；Bonferroni/Holm/BH/BY 四种并列",
+   "has_cost_evidence": true,
+   "has_oos_evidence": false,
+   "tradability_allowed": false,
+   "status": "QUOTABLE_WITH_COST_EVIDENCE"
+  }
+ ],
+ "not_quotable_but_registered": [
+  {
+   "id": "gate1_d",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "Gate 1 窗口的 d 均值为 −0.40pp（t=−0.57 iid／−0.61 NW3），MDE 1.82pp 是效应本身的 4.6 倍，该窗口对 1pp 量级没有分辨力。"
+  },
+  {
+   "id": "gate2_d",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "Gate 2 的 d 均值为 −0.38pp（t=−1.64 iid／−1.59 NW3），MDE 0.68pp、事后功效 36%：未检出，但不足以判「无效应」。"
+  },
+  {
+   "id": "gate3_d",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "EXPLORATORY",
+   "registered_verdict": "Gate 3 判定窗口（n=108）的 d 均值为 +0.48pp（t=+2.28）、MDE 0.59pp，|效应|/MDE 0.81 倍；另一次重跑给出 −0.40pp、t=−1.69、n=125，两者窗口不同，不可混引。单条显著但多重检验未通过，只能记为待验证的方向性观察。"
+  },
+  {
+   "id": "gate4_d",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "Gate 4 的 d 均值为 +0.17pp（t=+0.87 iid／+0.97 NW3），MDE 0.48pp、事后功效 16%，无法判断。"
+  },
+  {
+   "id": "gate5_d",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "Gate 5 的 d 均值为 +0.02pp（t=+0.16 iid／+0.15 NW3），MDE 0.43pp、事后功效 5%：这里的「没有证据」等于「没有分辨力」。"
+  },
+  {
+   "id": "l3_test",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "折均收益为 +4.00%/折（t=+1.74 iid／+1.42 NW3），MDE 7.89%/折、事后功效 29%。"
+  },
+  {
+   "id": "l3p_test",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "折均收益为 +5.28%/折（t=+2.00 iid／+1.92 NW3），MDE 7.72%/折、事后功效 48%。"
+  },
+  {
+   "id": "l3r_delta",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "选择效应的月均为 −0.33pp（t=−0.96），MDE 0.95pp、事后功效 16%：测不出来，不等于没有。"
+  },
+  {
+   "id": "l3s_ic",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "截面 IC 均值为 −0.023（t=−1.71），MDE_IC 0.038、事后功效 40%：IC 路线同样无法判断。"
+  },
+  {
+   "id": "phasec3_d",
+   "S1": "FAIL",
+   "S2": "FAIL",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "滞后成本的增量 +0.05pp（t=+0.60）、MDE 0.22pp、事后功效 9%，无法判断（登记表同样写成 +0.66pp）。"
+  },
+  {
+   "id": "phasee_alpha",
+   "S1": "FAIL",
+   "S2": "FAIL",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "非流动性的单边 alpha 为 +0.28pp（t=+1.90），MDE 0.41pp、事后功效 48%：未检出且功效不足。"
+  },
+  {
+   "id": "phaseg_alpha",
+   "S1": "FAIL",
+   "S2": "FAIL",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "MAX5 的单边 alpha 为 +0.18pp（t=+1.76），MDE 0.29pp、事后功效 42%：不可执行，且未检出。"
+  },
+  {
+   "id": "phasej_netA",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "FAIL",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "NOT_GRADED",
+   "registered_verdict": "执行成本后的净 alpha 只剩 +0.03pp（t=+1.04），MDE 0.09pp、事后功效 18%：毛效应被成本吸收。"
+  },
+  {
+   "id": "phasek_m1net",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "FAIL",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "NOT_GRADED",
+   "registered_verdict": "降换手方案 m1 的净收益为 +0.04pp（t=+1.19），MDE 0.09pp、事后功效 22%：省下的佣金约等于 alpha 衰减。"
+  },
+  {
+   "id": "phasel_alpha",
+   "S1": "PASS",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "QUOTABLE_STAT_ONLY",
+   "quotability": "NULL_CONFIRMED",
+   "registered_verdict": "SURGE 避让后的 alpha 只剩 +0.11pp（t=+3.13），MDE 0.09pp、事后功效 88%：判「净效应被吸收」，即确认无增量。"
+  },
+  {
+   "id": "phasem_spread",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "NOT_GRADED",
+   "registered_verdict": "空头腿 spread 为 +0.72pp（t=+2.85）、MDE 0.71pp；判定由区间规则给出，序列均值不是判定量。"
+  },
+  {
+   "id": "phasep_late",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "NOT_GRADED",
+   "registered_verdict": "晚段净 alpha 的回归系数为 +0.13pp（t=+2.58，n=129），MDE 0.14pp；全样本回归分母是 237，效应量本身一致。"
+  },
+  {
+   "id": "phaseq_max5",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "UNDERPOWERED",
+   "registered_verdict": "控制波动率后 MAX5 的增量系数为 +0.04pp（t=+0.25），MDE 0.47pp、事后功效 6%：增量被吸收。"
+  },
+  {
+   "id": "phaser_alpha",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "ABSENT",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "NOT_GRADED",
+   "registered_verdict": "SURGE 的 alpha 为 +0.11pp（t=+3.13）、MDE 0.09pp，随资金规模衰减到不显著；判定由多门槛规则给出，非单一均值。"
+  },
+  {
+   "id": "phases_net",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "FAIL",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "EXPLORATORY",
+   "registered_verdict": "现代段净 alpha 为 +0.11pp（t=+1.58 iid／+2.22 NW3），MDE 0.14pp、事后功效 60%：单条显著但多重检验未通过，只能记为待验证的方向性观察。"
+  },
+  {
+   "id": "phaset_net",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "FAIL",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "EXPLORATORY",
+   "registered_verdict": "同一序列的稳健性检查判 T_FRAGILE：剔除极端月后显著性消失，现代段的 +0.11pp（MDE 0.14pp）不承重，且多重检验未通过——只能记为待验证的方向性观察。"
+  },
+  {
+   "id": "phasev_net",
+   "S1": "FAIL",
+   "S2": "NOT_GRADED",
+   "S3": "FAIL",
+   "S4": "ABSENT",
+   "status": "NOT_QUOTABLE_STAT",
+   "quotability": "NOT_GRADED",
+   "registered_verdict": "同一份净 alpha 为 +0.14pp（MDE 0.09pp），但换到压力费率后大幅衰减：结论对成本口径敏感，不能脱离口径单独引用。"
+  }
+ ],
+ "counts": {
+  "n_positive": 7,
+  "by_status": {
+   "QUOTABLE_STAT_ONLY": 5,
+   "QUOTABLE_STAT_WITH_TIER_DEPENDENT_COST": 1,
+   "QUOTABLE_WITH_COST_EVIDENCE": 1
+  },
+  "S1_PASS": 7,
+  "S2_PASS": 2,
+  "S3_PASS": 1,
+  "S4_PASS": 0
+ },
+ "global_limits": [
+  "全部结论都在历史样本内产生（窗口止于 2026-09），不存在前瞻期证据。",
+  "「统计显著」不等于「经济有意义」；「样本内净收益为正」不等于「可实盘」。",
+  "本清单只覆盖 L3u 登记在册的 27 条 + L3af 纳入的 phasei 2 条；不在家族内的实验（如 phaseu 只读审计）不在此校正范围内。",
+  "研究历史无法完整恢复：尝试过但未报告的策略/窗口/成本档位没有落盘，因此不能声称已校正全部研究者自由度。",
+  "m=25 依赖「同一随机变量只占一个名额」这一判据；若改用 m=27/29，7 条正面结论的集合不变（G9B 验证），变化只出现在 phasel_alpha（非正面）。"
+ ],
+ "inputs": {
+  "phasei_monthly": {
+   "path": "phasei_out/8f5c35121fdb/monthly.csv",
+   "sha256_raw": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a",
+   "sha256_lf": "66388f5b0c5b309aadfd872962a935f039adb451caa9a065185fccf1b9fc50d6",
+   "matched_via": "raw",
+   "eol_converted": true,
+   "declared_eol_converted": false,
+   "crlf_count": 238,
+   "mode": "raw"
+  },
+  "phasei_summary": {
+   "path": "phasei_out/8f5c35121fdb/summary.json",
+   "sha256_raw": "fcf36b7a64331251f4cfd6c48df84739ee91132fa9a7e39f95cb9a551b745e09",
+   "sha256_lf": "33d919386bf8477a7124f7409ecdd4e67fc5f4cf04c176aa819161ca0fdbc253",
+   "matched_via": "raw",
+   "eol_converted": true,
+   "declared_eol_converted": true,
+   "crlf_count": 322,
+   "mode": "raw"
+  },
+  "phasei_manifest": {
+   "path": "phasei_out/8f5c35121fdb/manifest.json",
+   "sha256_raw": "d8f4c2e3cd41a2998a7ac68c8f455cac78326c619bf3ad5bcc14a194574527bb",
+   "sha256_lf": "5a7eacaabcbf2e2acf4a189e5ce312d232d827f4d76d2e5f7afa951e2015cd0f",
+   "matched_via": "raw",
+   "eol_converted": true,
+   "declared_eol_converted": false,
+   "crlf_count": 26,
+   "mode": "raw"
+  },
+  "phaseo_monthly": {
+   "path": "phaseo_out/ac7aa2830ab0/monthly.csv",
+   "sha256_raw": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+   "sha256_lf": "7ac7ce242ff072f4d0a7de6803b614d1cbb618b5269ee66ae87ff1acf671ce33",
+   "matched_via": "raw",
+   "eol_converted": true,
+   "declared_eol_converted": false,
+   "crlf_count": 238,
+   "mode": "raw"
+  },
+  "phaseo_summary": {
+   "path": "phaseo_out/ac7aa2830ab0/summary.json",
+   "sha256_raw": "05bdc615bece3c2f6a35f4b5f5a989d3ddd23b2ec1e5df1192c3a6dbe8e19329",
+   "sha256_lf": "05bdc615bece3c2f6a35f4b5f5a989d3ddd23b2ec1e5df1192c3a6dbe8e19329",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "phaseo_manifest": {
+   "path": "phaseo_out/ac7aa2830ab0/manifest.json",
+   "sha256_raw": "0655f497576fb0a0a2f6ad5726c050765074af863a857b6428a4bb4310c65a8b",
+   "sha256_lf": "0655f497576fb0a0a2f6ad5726c050765074af863a857b6428a4bb4310c65a8b",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "phaseo_prereg_doc": {
+   "path": "docs/PHASE_O_FEE_CONVENTION_PREREG_2026-10-21.md",
+   "sha256_raw": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+   "sha256_lf": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3u_prereg": {
+   "path": "docs/gates/l3u_prereg.json",
+   "sha256_raw": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+   "sha256_lf": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3v_claims": {
+   "path": "docs/gates/l3v_claims.json",
+   "sha256_raw": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+   "sha256_lf": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3ab_decisions": {
+   "path": "docs/gates/l3ab_family_decisions.json",
+   "sha256_raw": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75",
+   "sha256_lf": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3ad_prereg": {
+   "path": "docs/gates/l3ad_prereg.json",
+   "sha256_raw": "a5d86c50e85c8644257fb7f259986fa79cee7a2cf75751b592f38793f2ee3e26",
+   "sha256_lf": "a5d86c50e85c8644257fb7f259986fa79cee7a2cf75751b592f38793f2ee3e26",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3ad_result": {
+   "path": "reports/gates/H-L3AD-INDEPENDENCE/l3ad_independence.json",
+   "sha256": "f54b0615b0d3e0ec7b89441832466d647d5eab4e6cf785c75b4d5a152af5b743",
+   "mode": "SELF"
+  },
+  "l3z_multiplicity": {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+   "sha256_raw": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc",
+   "sha256_lf": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3z_lag": {
+   "path": "reports/L3Z_LAG_SENSITIVITY.json",
+   "sha256_raw": "b60428758948e261bdd4ee9b26165376ac9a4810e5c888780c1fba56a7f1a4f6",
+   "sha256_lf": "b60428758948e261bdd4ee9b26165376ac9a4810e5c888780c1fba56a7f1a4f6",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "phase_c_prereg_doc": {
+   "path": "docs/PHASE_C_UNIVERSE_PREREG_2026-10-21.md",
+   "sha256_raw": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+   "sha256_lf": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  }
+ },
+ "gates": []
+}

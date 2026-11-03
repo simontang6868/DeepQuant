@@ -1,0 +1,1160 @@
+{
+  "elapsed_seconds": 74.423,
+  "hypothesis_id": "H-L3-MACROSS-000001",
+  "prior_verdicts": {
+    "L1a": "L1A_REJECTED_BOUNDS",
+    "L1b": "L1B_BLOCKED_PREREQUISITE",
+    "L2": "L2_REJECTED_EXTREME_DEPENDENCE"
+  },
+  "result": {
+    "checks": [
+      {
+        "actual": 27,
+        "detail": "完成 27 折（要求 ≥8）；失败 0 折",
+        "name": "可用折数达标",
+        "passed": true,
+        "threshold": 8
+      },
+      {
+        "actual": 0,
+        "detail": "测试窗两两不重叠，折数可作为独立证据",
+        "name": "测试窗互不重叠",
+        "passed": true,
+        "threshold": 0
+      },
+      {
+        "actual": {
+          "test_return_mean": 0.039953099629629625,
+          "train_positive_ratio": 0.8148148148148148
+        },
+        "detail": "训练正收益折占比 81.48%、测试均值 +0.0400",
+        "name": "样本内外未出现符号背离",
+        "passed": true,
+        "threshold": {
+          "min_train_positive_ratio": 0.6,
+          "test_return_mean": ">0"
+        }
+      },
+      {
+        "actual": 0.37037037037037035,
+        "detail": "10/27 折训练正而测试负（占比 37.04%）",
+        "name": "「训练正、测试负」折占比未超限",
+        "passed": true,
+        "threshold": 0.5
+      },
+      {
+        "actual": 0.5185185185185185,
+        "detail": "14/27 折正收益（占比 51.85%）",
+        "name": "正收益折占比达标",
+        "passed": false,
+        "threshold": 0.6
+      }
+    ],
+    "folds": [
+      {
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "error": "",
+        "fold": 1,
+        "params_changed": null,
+        "test": {
+          "end": "2012-11-16",
+          "start": "2012-05-16",
+          "trading_days": 126
+        },
+        "test_closed_trades": 4,
+        "test_max_drawdown": 0.040083638785312806,
+        "test_return": 0.02976293199999991,
+        "train": {
+          "end": "2012-05-15",
+          "start": "2010-01-04",
+          "trading_days": 504
+        },
+        "train_closed_trades": 19,
+        "train_return": -0.19506619999999997,
+        "warmup_start": "2010-01-04",
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.19506619999999997 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "error": "",
+        "fold": 2,
+        "params_changed": false,
+        "test": {
+          "end": "2013-05-30",
+          "start": "2012-11-19",
+          "trading_days": 126
+        },
+        "test_closed_trades": 3,
+        "test_max_drawdown": 0.26807124501165663,
+        "test_return": 0.26470119400000014,
+        "train": {
+          "end": "2012-11-16",
+          "start": "2010-09-17",
+          "trading_days": 504
+        },
+        "train_closed_trades": 19,
+        "train_return": -0.10086102400000008,
+        "warmup_start": "2010-01-12",
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.10086102400000008 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "error": "",
+        "fold": 3,
+        "params_changed": false,
+        "test": {
+          "end": "2013-12-09",
+          "start": "2013-05-31",
+          "trading_days": 126
+        },
+        "test_closed_trades": 5,
+        "test_max_drawdown": 0.13397253760034025,
+        "test_return": 0.10052130000000004,
+        "train": {
+          "end": "2013-05-30",
+          "start": "2011-04-07",
+          "trading_days": 504
+        },
+        "train_closed_trades": 18,
+        "train_return": 0.14836379200000005,
+        "warmup_start": "2010-10-08",
+        "wfe": 0.6775325613138817,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 40
+        },
+        "error": "",
+        "fold": 4,
+        "params_changed": true,
+        "test": {
+          "end": "2014-06-17",
+          "start": "2013-12-10",
+          "trading_days": 126
+        },
+        "test_closed_trades": 2,
+        "test_max_drawdown": 0.14350136400000002,
+        "test_return": -0.036313119000000005,
+        "train": {
+          "end": "2013-12-09",
+          "start": "2011-10-21",
+          "trading_days": 504
+        },
+        "train_closed_trades": 8,
+        "train_return": 0.3709450000000001,
+        "warmup_start": "2011-04-15",
+        "wfe": -0.09789353947350685,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 5,
+        "params_changed": true,
+        "test": {
+          "end": "2014-12-19",
+          "start": "2014-06-18",
+          "trading_days": 126
+        },
+        "test_closed_trades": 0,
+        "test_max_drawdown": 0.10796635084648125,
+        "test_return": 0.3411683339999998,
+        "train": {
+          "end": "2014-06-17",
+          "start": "2012-05-16",
+          "trading_days": 504
+        },
+        "train_closed_trades": 3,
+        "train_return": 0.6510485570000002,
+        "warmup_start": "2011-10-31",
+        "wfe": 0.5240290149356704,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 6,
+        "params_changed": false,
+        "test": {
+          "end": "2015-06-29",
+          "start": "2014-12-22",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.153112968798152,
+        "test_return": 0.21249640000000003,
+        "train": {
+          "end": "2014-12-19",
+          "start": "2012-11-19",
+          "trading_days": 504
+        },
+        "train_closed_trades": 4,
+        "train_return": 1.2386808939999998,
+        "warmup_start": "2012-05-25",
+        "wfe": 0.17155055917089174,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 40
+        },
+        "error": "",
+        "fold": 7,
+        "params_changed": true,
+        "test": {
+          "end": "2015-12-31",
+          "start": "2015-06-30",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.09350678241333954,
+        "test_return": 0.07126239999999995,
+        "train": {
+          "end": "2015-06-29",
+          "start": "2013-05-31",
+          "trading_days": 504
+        },
+        "train_closed_trades": 5,
+        "train_return": 1.0768698999999997,
+        "warmup_start": "2012-11-27",
+        "wfe": 0.0661754962228956,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 40
+        },
+        "error": "",
+        "fold": 8,
+        "params_changed": false,
+        "test": {
+          "end": "2016-07-08",
+          "start": "2016-01-04",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.05508687622284092,
+        "test_return": 0.009461340000000096,
+        "train": {
+          "end": "2015-12-31",
+          "start": "2013-12-10",
+          "trading_days": 504
+        },
+        "train_closed_trades": 5,
+        "train_return": 0.7738369,
+        "warmup_start": "2013-06-13",
+        "wfe": 0.012226529905720566,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 40
+        },
+        "error": "",
+        "fold": 9,
+        "params_changed": false,
+        "test": {
+          "end": "2017-01-12",
+          "start": "2016-07-11",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.060974454350848334,
+        "test_return": -0.01713920000000002,
+        "train": {
+          "end": "2016-07-08",
+          "start": "2014-06-18",
+          "trading_days": 504
+        },
+        "train_closed_trades": 5,
+        "train_return": 0.5516807000000001,
+        "warmup_start": "2013-12-18",
+        "wfe": -0.031067245963108763,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 25
+        },
+        "error": "",
+        "fold": 10,
+        "params_changed": true,
+        "test": {
+          "end": "2017-07-21",
+          "start": "2017-01-13",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.026178717372711314,
+        "test_return": 0.24305935600000006,
+        "train": {
+          "end": "2017-01-12",
+          "start": "2014-12-22",
+          "trading_days": 504
+        },
+        "train_closed_trades": 8,
+        "train_return": 0.2969028,
+        "warmup_start": "2014-06-26",
+        "wfe": 0.8186495917182325,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 25
+        },
+        "error": "",
+        "fold": 11,
+        "params_changed": true,
+        "test": {
+          "end": "2018-01-23",
+          "start": "2017-07-24",
+          "trading_days": 126
+        },
+        "test_closed_trades": 3,
+        "test_max_drawdown": 0.15699131625889975,
+        "test_return": 0.18411779799999994,
+        "train": {
+          "end": "2017-07-21",
+          "start": "2015-06-30",
+          "trading_days": 504
+        },
+        "train_closed_trades": 9,
+        "train_return": 0.31933593300000007,
+        "warmup_start": "2014-12-30",
+        "wfe": 0.5765646110361151,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 5,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 12,
+        "params_changed": true,
+        "test": {
+          "end": "2018-08-01",
+          "start": "2018-01-24",
+          "trading_days": 126
+        },
+        "test_closed_trades": 0,
+        "test_max_drawdown": 0.0,
+        "test_return": 0.0,
+        "train": {
+          "end": "2018-01-23",
+          "start": "2016-01-04",
+          "trading_days": 504
+        },
+        "train_closed_trades": 4,
+        "train_return": 0.580900016,
+        "warmup_start": "2015-07-08",
+        "wfe": 0.0,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 13,
+        "params_changed": true,
+        "test": {
+          "end": "2019-02-12",
+          "start": "2018-08-02",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.1070342732018803,
+        "test_return": 0.017825917999999996,
+        "train": {
+          "end": "2018-08-01",
+          "start": "2016-07-11",
+          "trading_days": 504
+        },
+        "train_closed_trades": 3,
+        "train_return": 0.2886183,
+        "warmup_start": "2016-01-12",
+        "wfe": 0.06176295127509238,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 14,
+        "params_changed": true,
+        "test": {
+          "end": "2019-08-14",
+          "start": "2019-02-13",
+          "trading_days": 126
+        },
+        "test_closed_trades": 0,
+        "test_max_drawdown": 0.07070496429158508,
+        "test_return": 0.09755719000000007,
+        "train": {
+          "end": "2019-02-12",
+          "start": "2017-01-13",
+          "trading_days": 504
+        },
+        "train_closed_trades": 4,
+        "train_return": 0.5263298379999999,
+        "warmup_start": "2016-07-19",
+        "wfe": 0.18535371350160865,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 15,
+        "params_changed": false,
+        "test": {
+          "end": "2020-02-25",
+          "start": "2019-08-15",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.07394296223342807,
+        "test_return": -0.03381919999999994,
+        "train": {
+          "end": "2019-08-14",
+          "start": "2017-07-24",
+          "trading_days": 504
+        },
+        "train_closed_trades": 3,
+        "train_return": 0.4341672879999998,
+        "warmup_start": "2017-01-23",
+        "wfe": -0.07789439908241072,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 16,
+        "params_changed": false,
+        "test": {
+          "end": "2020-08-27",
+          "start": "2020-02-26",
+          "trading_days": 126
+        },
+        "test_closed_trades": 4,
+        "test_max_drawdown": 0.16179247986116438,
+        "test_return": -0.07893328,
+        "train": {
+          "end": "2020-02-25",
+          "start": "2018-01-24",
+          "trading_days": 504
+        },
+        "train_closed_trades": 5,
+        "train_return": 0.44423940000000006,
+        "warmup_start": "2017-08-01",
+        "wfe": -0.17768185352312285,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 17,
+        "params_changed": false,
+        "test": {
+          "end": "2021-03-09",
+          "start": "2020-08-28",
+          "trading_days": 126
+        },
+        "test_closed_trades": 0,
+        "test_max_drawdown": 0.0,
+        "test_return": 0.0,
+        "train": {
+          "end": "2020-08-27",
+          "start": "2018-08-02",
+          "trading_days": 504
+        },
+        "train_closed_trades": 9,
+        "train_return": 0.3305857640000003,
+        "warmup_start": "2018-02-01",
+        "wfe": 0.0,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 18,
+        "params_changed": true,
+        "test": {
+          "end": "2021-09-08",
+          "start": "2021-03-10",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.1255764787912399,
+        "test_return": -0.030204600000000026,
+        "train": {
+          "end": "2021-03-09",
+          "start": "2019-02-13",
+          "trading_days": 504
+        },
+        "train_closed_trades": 2,
+        "train_return": 0.519620873,
+        "warmup_start": "2018-08-10",
+        "wfe": -0.05812814990594118,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 19,
+        "params_changed": false,
+        "test": {
+          "end": "2022-03-22",
+          "start": "2021-09-09",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.13048146300000008,
+        "test_return": -0.08670490000000008,
+        "train": {
+          "end": "2021-09-08",
+          "start": "2019-08-15",
+          "trading_days": 504
+        },
+        "train_closed_trades": 3,
+        "train_return": 0.31795510000000005,
+        "warmup_start": "2019-02-21",
+        "wfe": -0.2726954214604517,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 20,
+        "params_changed": false,
+        "test": {
+          "end": "2022-09-23",
+          "start": "2022-03-23",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.08061931266562178,
+        "test_return": -0.03466530000000001,
+        "train": {
+          "end": "2022-03-22",
+          "start": "2020-02-26",
+          "trading_days": 504
+        },
+        "train_closed_trades": 3,
+        "train_return": 0.41505290000000006,
+        "warmup_start": "2019-08-23",
+        "wfe": -0.0835201970640369,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 21,
+        "params_changed": false,
+        "test": {
+          "end": "2023-04-04",
+          "start": "2022-09-26",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.11340854094628083,
+        "test_return": 0.03782059999999987,
+        "train": {
+          "end": "2022-09-23",
+          "start": "2020-08-28",
+          "trading_days": 504
+        },
+        "train_closed_trades": 3,
+        "train_return": -0.14469549999999998,
+        "warmup_start": "2020-03-05",
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.14469549999999998 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 22,
+        "params_changed": true,
+        "test": {
+          "end": "2023-10-13",
+          "start": "2023-04-06",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.10024171806243318,
+        "test_return": -0.08102719999999997,
+        "train": {
+          "end": "2023-04-04",
+          "start": "2021-03-10",
+          "trading_days": 504
+        },
+        "train_closed_trades": 5,
+        "train_return": -0.10622050000000005,
+        "warmup_start": "2020-09-07",
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.10622050000000005 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "best_params": {
+          "fast_window": 5,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 23,
+        "params_changed": true,
+        "test": {
+          "end": "2024-04-19",
+          "start": "2023-10-16",
+          "trading_days": 126
+        },
+        "test_closed_trades": 1,
+        "test_max_drawdown": 0.0767108054406892,
+        "test_return": 0.08603721699999989,
+        "train": {
+          "end": "2023-10-13",
+          "start": "2021-09-09",
+          "trading_days": 504
+        },
+        "train_closed_trades": 6,
+        "train_return": -0.12744830000000007,
+        "warmup_start": "2021-03-18",
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.12744830000000007 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 24,
+        "params_changed": true,
+        "test": {
+          "end": "2024-10-29",
+          "start": "2024-04-22",
+          "trading_days": 126
+        },
+        "test_closed_trades": 3,
+        "test_max_drawdown": 0.12396619999999996,
+        "test_return": -0.11212533999999985,
+        "train": {
+          "end": "2024-04-19",
+          "start": "2022-03-23",
+          "trading_days": 504
+        },
+        "train_closed_trades": 4,
+        "train_return": 0.06962575899999979,
+        "warmup_start": "2021-09-17",
+        "wfe": -1.6104002543081821,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 40
+        },
+        "error": "",
+        "fold": 25,
+        "params_changed": true,
+        "test": {
+          "end": "2025-05-08",
+          "start": "2024-10-30",
+          "trading_days": 126
+        },
+        "test_closed_trades": 3,
+        "test_max_drawdown": 0.07330302186761407,
+        "test_return": -0.06403589999999992,
+        "train": {
+          "end": "2024-10-29",
+          "start": "2022-09-26",
+          "trading_days": 504
+        },
+        "train_closed_trades": 9,
+        "train_return": 0.14688186000000014,
+        "warmup_start": "2022-03-31",
+        "wfe": -0.4359687438598603,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 60
+        },
+        "error": "",
+        "fold": 26,
+        "params_changed": true,
+        "test": {
+          "end": "2025-11-11",
+          "start": "2025-05-09",
+          "trading_days": 126
+        },
+        "test_closed_trades": 2,
+        "test_max_drawdown": 0.11548031778162196,
+        "test_return": 0.0582014500000001,
+        "train": {
+          "end": "2025-05-08",
+          "start": "2023-04-06",
+          "trading_days": 504
+        },
+        "train_closed_trades": 11,
+        "train_return": 0.009350299999999923,
+        "warmup_start": "2022-10-11",
+        "wfe": 6.224554292375708,
+        "wfe_reason": ""
+      },
+      {
+        "best_params": {
+          "fast_window": 5,
+          "slow_window": 25
+        },
+        "error": "",
+        "fold": 27,
+        "params_changed": true,
+        "test": {
+          "end": "2026-05-22",
+          "start": "2025-11-12",
+          "trading_days": 126
+        },
+        "test_closed_trades": 6,
+        "test_max_drawdown": 0.10096244584706436,
+        "test_return": -0.10029169999999998,
+        "train": {
+          "end": "2025-11-11",
+          "start": "2023-10-16",
+          "trading_days": 504
+        },
+        "train_closed_trades": 11,
+        "train_return": 0.2053565100000001,
+        "warmup_start": "2023-04-14",
+        "wfe": -0.48837847896811226,
+        "wfe_reason": ""
+      }
+    ],
+    "hypothesis_id": "H-L3-MACROSS-000001",
+    "limitations": [
+      "前置未满足：L1a=L1A_REJECTED_BOUNDS、L1b=L1B_BLOCKED_PREREQUISITE、L2=L2_REJECTED_EXTREME_DEPENDENCE。本次 Walk-Forward 仅用于量化折间一致性，**不构成放行结论**。",
+      "若**不计**前置，本闸门判定链给出的终态是 `L3_REJECTED_INCONSISTENT_FOLDS`（该结论同样不构成放行依据，此处只用于说明本闸门自身的判断）。",
+      "**折收益不可拼成连续净值**：每折资金重置、从空仓起步，折间没有资金连续性；把折收益复利相乘得到的数不是任何真实账户的收益。`naive_sum_of_fold_returns` 只是粗参照，不可用于谈「年化」或「累计收益」。",
+      "**本闸门的「样本外」只针对参数选择**：整段历史在 L1a/L2 阶段已被看过，所以折不是真正的「未见过的未来数据」，它测的是**参数随时间的稳健性**，不构成前瞻样本外证据。",
+      "预热 120 个交易日：训练窗起点之前的数据仅用于让滚动指标有值，不计入任何收益；每折测试窗仍从空仓起步，因此「折首踏空/踏错」的成本由该折承担。",
+      "训练窗固定 504 个交易日滚动：早期折可用的历史少于后期折，折间训练样本量不等（这是 rolling 的固有特征，不是数据问题）。"
+    ],
+    "notes": [
+      "前序终态（读自各自结果文件）：L1a=L1A_REJECTED_BOUNDS、L1b=L1B_BLOCKED_PREREQUISITE、L2=L2_REJECTED_EXTREME_DEPENDENCE"
+    ],
+    "overlap": {
+      "details": [],
+      "independent": true,
+      "overlap_pairs": 0
+    },
+    "param_selection": {
+      "changes": 15,
+      "comparisons": 26,
+      "distinct_param_sets": 10,
+      "most_common": {
+        "fast_window": 3,
+        "slow_window": 60
+      },
+      "most_common_count": 5,
+      "param_stability": 0.18518518518518517,
+      "sequence": [
+        {
+          "fold": 1,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 2,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 3,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 4,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 5,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 6,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 7,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 8,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 9,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 10,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 25
+          }
+        },
+        {
+          "fold": 11,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 25
+          }
+        },
+        {
+          "fold": 12,
+          "params": {
+            "fast_window": 5,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 13,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 14,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 15,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 16,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 17,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 18,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 19,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 20,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 21,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 22,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 23,
+          "params": {
+            "fast_window": 5,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 24,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 25,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 26,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 27,
+          "params": {
+            "fast_window": 5,
+            "slow_window": 25
+          }
+        }
+      ]
+    },
+    "preliminary_verdict": "L3_REJECTED_INCONSISTENT_FOLDS",
+    "spec": {
+      "digest": "39f82eca52fe6483a2266c909cfdf16d7494c9a372e56057cf4c1303ff28fdb1",
+      "hypothesis": {
+        "boundaries": {
+          "max_in_sample_drawdown": 0.25,
+          "max_oos_degradation": 0.5,
+          "max_out_sample_drawdown": 0.25,
+          "min_closed_trades": 10,
+          "min_in_sample_return": 0.58,
+          "min_out_sample_return": 0.0
+        },
+        "boundary_basis": "沿用 L1a 契约（H-L1A-MACROSS-000001）的边界，不因 L3 结果调整；L3 不使用这些边界判定，只用 in_sample/out_sample 界定数据来源。",
+        "constraints": [
+          [
+            "fast_window",
+            "slow_window"
+          ]
+        ],
+        "data": {
+          "research_path": "data/qfq_all/000001.SZ.qfq.csv",
+          "source_note": "研究层=qfq（复权，算收益）；交易层=exec（真不复权，仅做跨源一致性抽检）",
+          "symbol": "000001.SZ",
+          "trading_path": "data/exec_all/000001.SZ.exec.csv"
+        },
+        "declared_grid_points": 15,
+        "excluded_by_constraint": 1,
+        "grid_size": 15,
+        "hypothesis_id": "H-L3-MACROSS-000001",
+        "in_sample": {
+          "end": "2021-12-31",
+          "start": "2016-01-01"
+        },
+        "initial_cash": 100000.0,
+        "out_sample": {
+          "end": "2026-06-30",
+          "start": "2022-01-01"
+        },
+        "param_grid": {
+          "fast_window": [
+            3,
+            5,
+            10,
+            20
+          ],
+          "slow_window": [
+            15,
+            25,
+            40,
+            60
+          ]
+        },
+        "selection_metric": "cumulative_return",
+        "spec_version": "l1a-hypothesis-v1",
+        "strategy_id": "ma_cross",
+        "title": "双均线（ma_cross）在 000001.SZ 上的滚动窗口一致性（L3）",
+        "walk_forward": {
+          "basis": "train=504（约两年交易日）/test=126（约半年）/step=126 使测试窗首尾相接且互不重叠；min_folds=8 要求至少跨四年，否则折数不足以谈一致性；正收益折占比 0.6 对应「十折里至少六折为正」，WFE 0.3 对应「样本外保留三成训练收益」；跨度从 2010-01-01 起，避开 2005-2006 的数据稀疏期。上述阈值在跑之前写定，不因结果调整。",
+          "max_divergent_fold_ratio": 0.5,
+          "min_folds": 8,
+          "min_median_wfe": 0.3,
+          "min_positive_fold_ratio": 0.6,
+          "min_test_days": 60,
+          "min_train_positive_ratio": 0.6,
+          "mode": "rolling",
+          "span_end": "2026-10-16",
+          "span_start": "2010-01-01",
+          "step_days": 126,
+          "test_days": 126,
+          "train_days": 504
+        }
+      },
+      "walk_forward": {
+        "basis": "train=504（约两年交易日）/test=126（约半年）/step=126 使测试窗首尾相接且互不重叠；min_folds=8 要求至少跨四年，否则折数不足以谈一致性；正收益折占比 0.6 对应「十折里至少六折为正」，WFE 0.3 对应「样本外保留三成训练收益」；跨度从 2010-01-01 起，避开 2005-2006 的数据稀疏期。上述阈值在跑之前写定，不因结果调整。",
+        "max_divergent_fold_ratio": 0.5,
+        "min_folds": 8,
+        "min_median_wfe": 0.3,
+        "min_positive_fold_ratio": 0.6,
+        "min_test_days": 60,
+        "min_train_positive_ratio": 0.6,
+        "mode": "rolling",
+        "span_end": "2026-10-16",
+        "span_start": "2010-01-01",
+        "step_days": 126,
+        "test_days": 126,
+        "train_days": 504,
+        "warmup_days": 0,
+        "warmup_multiple": 2
+      }
+    },
+    "stages": [
+      {
+        "detail": "切窗规则摘要 39f82eca52fe6483…",
+        "name": "spec",
+        "status": "pass"
+      },
+      {
+        "detail": "跨度内 4004 行（全量 5140 行），2010-01-04 → 2026-10-16",
+        "name": "data",
+        "status": "pass"
+      },
+      {
+        "detail": "27 折，2010-01-04 → 2026-05-22；测试窗互不重叠",
+        "name": "windows",
+        "status": "pass"
+      },
+      {
+        "detail": "可用折数达标=PASS；测试窗互不重叠=PASS；样本内外未出现符号背离=PASS；「训练正、测试负」折占比未超限=PASS；正收益折占比达标=FAIL",
+        "name": "decide",
+        "status": "fail"
+      },
+      {
+        "detail": "L1a=L1A_REJECTED_BOUNDS、L1b=L1B_BLOCKED_PREREQUISITE、L2=L2_REJECTED_EXTREME_DEPENDENCE",
+        "name": "prerequisite",
+        "status": "fail"
+      }
+    ],
+    "summary": {
+      "divergent_fold_ratio": 0.37037037037037035,
+      "divergent_folds": 10,
+      "folds_failed": 0,
+      "folds_total": 27,
+      "folds_usable": 27,
+      "median_wfe": 0.0,
+      "naive_sum_of_fold_returns": 1.07873369,
+      "test_drawdown_max": 0.26807124501165663,
+      "test_drawdown_median": 0.10096244584706436,
+      "test_positive_fold_ratio": 0.5185185185185185,
+      "test_positive_folds": 14,
+      "test_return_max": 0.3411683339999998,
+      "test_return_mean": 0.039953099629629625,
+      "test_return_median": 0.009461340000000096,
+      "test_return_min": -0.11212533999999985,
+      "test_return_std": 0.11955432931207588,
+      "train_positive_fold_ratio": 0.8148148148148148,
+      "train_positive_folds": 22,
+      "train_return_mean": 0.3348909948148148,
+      "wfe_samples": 22
+    },
+    "verdict": "L3_BLOCKED_PREREQUISITE",
+    "window_meta": {
+      "first_day": "2010-01-04",
+      "folds": 27,
+      "last_day": "2026-10-16",
+      "mode": "rolling",
+      "span_end": "2026-05-22",
+      "span_start": "2010-01-04",
+      "step_days": 126,
+      "test_days": 126,
+      "trading_days_total": 4004,
+      "train_days": 504,
+      "unused_tail_days": 98,
+      "warmup_days": 120
+    }
+  },
+  "spec_path": "docs\\gates\\specs\\H_L3_MACROSS_000001.json",
+  "walk_forward_digest": "39f82eca52fe6483a2266c909cfdf16d7494c9a372e56057cf4c1303ff28fdb1"
+}

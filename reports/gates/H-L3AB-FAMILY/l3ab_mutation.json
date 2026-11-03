@@ -1,0 +1,106 @@
+{
+ "baseline": {
+  "n_pairs": 5,
+  "phasep_supersets": [
+   "phaseo_netBASE",
+   "phasev_net"
+  ],
+  "worst_repro": 0.0,
+  "spec_m": {
+   "S1_m24": 24,
+   "S2_m27": 27,
+   "S3_m23": 23,
+   "S4_hypothesis": 25
+  },
+  "declared_m": {
+   "S1_m24": 24,
+   "S2_m27": 27,
+   "S3_m23": 23,
+   "S4_hypothesis": "computed"
+  },
+  "coverage_gap": 1
+ },
+ "mutations": [
+  {
+   "id": "M1",
+   "defect": "同源判等改用序列路径",
+   "caught": true,
+   "invariant_held_after_mutation": false,
+   "observed_after": {
+    "n_pairs": 0,
+    "phasep_supersets": null,
+    "worst_repro": 0.0,
+    "coverage_gap": 1
+   }
+  },
+  {
+   "id": "M2",
+   "defect": "子窗口只报一个超集",
+   "caught": true,
+   "invariant_held_after_mutation": false,
+   "observed_after": {
+    "n_pairs": 5,
+    "phasep_supersets": "phaseo_netBASE",
+    "worst_repro": 0.0,
+    "coverage_gap": 1
+   }
+  },
+  {
+   "id": "M3",
+   "defect": "复现 p 改用正态近似",
+   "caught": true,
+   "invariant_held_after_mutation": false,
+   "observed_after": {
+    "n_pairs": 5,
+    "phasep_supersets": [
+     "phaseo_netBASE",
+     "phasev_net"
+    ],
+    "worst_repro": 0.0029338342984315258,
+    "coverage_gap": 1
+   }
+  },
+  {
+   "id": "M4",
+   "defect": "校正不补位（m 退化）",
+   "caught": true,
+   "invariant_held_after_mutation": false,
+   "observed_after": {
+    "n_pairs": 5,
+    "phasep_supersets": [
+     "phaseo_netBASE",
+     "phasev_net"
+    ],
+    "worst_repro": 0.0,
+    "coverage_gap": 1
+   }
+  },
+  {
+   "id": "M5",
+   "defect": "覆盖率把只读审计算成缺口",
+   "caught": true,
+   "invariant_held_after_mutation": false,
+   "observed_after": {
+    "n_pairs": 5,
+    "phasep_supersets": [
+     "phaseo_netBASE",
+     "phasev_net"
+    ],
+    "worst_repro": 0.0,
+    "coverage_gap": 2
+   }
+  },
+  {
+   "id": "M6",
+   "defect": "经济属性一律判成净收益",
+   "caught": true,
+   "invariant_held_after_mutation": false,
+   "observed_after": {
+    "phasec_d_basis": "cross_section_spread"
+   }
+  }
+ ],
+ "restored_matches_baseline": true,
+ "all_caught": true,
+ "note": "变异体都作用在实现函数上，不是改期望值。M1 是重放 L3z 审计真实发生过的缺陷（按 series 路径去重得 27）。任一条未抓到都说明对应不变量太松，须补例子。"
+}

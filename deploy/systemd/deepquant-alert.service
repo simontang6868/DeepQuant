@@ -6,10 +6,10 @@ After=deepquant-daily.service
 Type=oneshot
 User=deepquant
 Group=deepquant
-WorkingDirectory=/opt/deepquant
-EnvironmentFile=/opt/deepquant/env
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
 Environment=HOME=/home/deepquant
-ExecStart=/opt/deepquant/.venv/bin/python /opt/deepquant/deploy/bin/heartbeat_alert.py
+ExecStart=__REPO__/.venv/bin/python __REPO__/deploy/bin/heartbeat_alert.py
 TimeoutStartSec=120
 StandardOutput=journal
 StandardError=journal

@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "purpose": "trial 1 stock",
+    "n_results_symbols": 1
+  },
+  "stocks": [
+    {
+      "code": "000001.SZ",
+      "tencent_symbol": "sz000001",
+      "name": "平安银行",
+      "board": "深主板",
+      "industry": ""
+    }
+  ]
+}

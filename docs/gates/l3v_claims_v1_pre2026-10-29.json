@@ -1,0 +1,709 @@
+{
+  "experiment_id": "H-L3V-CLAIM-REGISTRY",
+  "kind": "claim_registry",
+  "created": "2026-10-28",
+  "note": "对外表述的唯一来源。所有数字回指 L3u 的重算字段（从原始判定序列独立重建），不引用各阶段 summary 里的 mean——那两者对 phasec 类本就不同。",
+  "global_rules": [
+    "数字只许来自 L3u 的 recomputed：mean/t_iid/t_nw3/mde/power/n，以及由其派生的 ratio、mde_over_mean、stat_n。",
+    "可引用强度只能等于或低于 L3u 正式分级；L3u 判 NOT_GRADED 的条目，参考分级只作内部提示，不得写入对外材料。",
+    "窗口级统计不等于连续账户收益；「折均」不等于年化；「元/月」不等于可提取现金。"
+  ],
+  "retractions": [
+    {
+      "claim_key": "phaseq_max5",
+      "banned_phrasing": "MAX5 增量成立",
+      "reason": "原文判定 INCREMENTAL_ABSORBED 意为增量被吸收，即不成立；L3t 写成 MAX5_INCREMENTAL 属语义反转",
+      "source": "L3u §四"
+    },
+    {
+      "claim_key": "phasec2_d",
+      "banned_phrasing": "停牌效应就是池效应",
+      "reason": "phasec2 检验的是增量 +0.11pp，不是池效应本身；L3t 把 phasec2/phasec3 都记成 POOL_EFFECT_CONFIRMED",
+      "source": "L3u §一.1"
+    },
+    {
+      "claim_key": "gate3_d",
+      "banned_phrasing": "Gate 3 未通过",
+      "reason": "L3t 引的是 2016-2026 重跑（−0.40pp），判定窗口 2007-2015 是 +0.48pp，符号相反",
+      "source": "L3u §三"
+    },
+    {
+      "claim_key": "phasel_alpha",
+      "banned_phrasing": "SURGE 有可交易 alpha",
+      "reason": "净效应被吸收；MDE 0.09pp 之下剩下的 +0.11pp 不构成相对池平均的增量",
+      "source": "MEMORY §8.2 / 阶段 M"
+    },
+    {
+      "claim_key": "phases_net",
+      "banned_phrasing": "exQ5 现代段可用",
+      "reason": "S+T 阶段已撤回：现代段只在 L≥2 过，剔极端月后 t 降到 1.92，boot CI 跨 0",
+      "source": "MEMORY §7 已撤回四条"
+    },
+    {
+      "claim_key": "l3r_delta",
+      "banned_phrasing": "选择没有正贡献",
+      "reason": "L3r 事后功效 16.87%、MDE 0.926pp，只能写「无法判断」，不得写成「没用」",
+      "source": "MEMORY §8.5"
+    },
+    {
+      "claim_key": null,
+      "banned_phrasing": "反转在 2016 年后消失",
+      "reason": "已撤回的四条之一；本注册表不收录反转条目，此处登记以防回流",
+      "source": "MEMORY §7"
+    }
+  ],
+  "claims": [
+    {
+      "key": "gate1_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "Gate 1 窗口的 d 均值为 −0.40pp（t=−0.57 iid／−0.61 NW3），MDE 1.82pp 是效应本身的 4.6 倍，该窗口对 1pp 量级没有分辨力。",
+      "numbers": [
+        {"display": "−0.40", "field": "mean", "decimals": 2},
+        {"display": "−0.57", "field": "t_iid", "decimals": 2},
+        {"display": "−0.61", "field": "t_nw3", "decimals": 2},
+        {"display": "1.82", "field": "mde", "decimals": 2},
+        {"display": "4.6", "field": "mde_over_mean", "decimals": 1}
+      ],
+      "literals": [{"display": "1", "reason": "Gate 编号与「1pp 量级」的口语表述，非本实验统计量"}],
+      "window": "single_window",
+      "window_note": "Gate 1 判定窗口，n=48",
+      "estimator_for_verdict": "iid",
+      "d_definition": "0.5*long-0.5*short",
+      "limits_of_use": [
+        "48 个月只能分辨 1.8pp 以上的效应，任何小于该量级的差异在本窗口内不可判定",
+        "d 与文献常用 spread（long−short）差 2 倍，跨文献比较须换算"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 判核对未通过（仅 t 口径不同：summary 给 iid、登记表用 NW3）；L3x 复核：stat.t 与 t_iid 一致，ratio 0.217、事后功效 9.3%，NW 滞后网格全档 UNDERPOWERED",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "gate2_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "Gate 2 的 d 均值为 −0.38pp（t=−1.64 iid／−1.59 NW3），MDE 0.68pp、事后功效 36%：未检出，但不足以判「无效应」。",
+      "numbers": [
+        {"display": "−0.38", "field": "mean", "decimals": 2},
+        {"display": "−1.64", "field": "t_iid", "decimals": 2},
+        {"display": "−1.59", "field": "t_nw3", "decimals": 2},
+        {"display": "0.68", "field": "mde", "decimals": 2},
+        {"display": "36", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [{"display": "2", "reason": "Gate 编号，非本实验统计量"}],
+      "window": "single_window",
+      "window_note": "Gate 2 判定窗口，n=125",
+      "estimator_for_verdict": "iid",
+      "d_definition": "0.5*long-0.5*short",
+      "limits_of_use": [
+        "功效 36% 时「未检出」只能写成「无法判断」，不能写成「无效应」",
+        "d 与文献 spread 差 2 倍"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 判核对未通过（仅 t 口径不同，mean 完全一致）；L3x 复核：stat.t 与 t_iid 一致，ratio 0.569、事后功效 35.8%，网格全档 UNDERPOWERED",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "gate3_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "Gate 3 判定窗口（n=108）的 d 均值为 +0.48pp（t=+2.28）、MDE 0.59pp，|效应|/MDE 0.81 倍；另有另一次重跑给出 −0.40pp、t=−1.69、n=125，两者窗口不同，不可混引。",
+      "numbers": [
+        {"display": "108", "field": "n", "decimals": 0},
+        {"display": "0.48", "field": "mean", "decimals": 2},
+        {"display": "2.28", "field": "t_nw3", "decimals": 2},
+        {"display": "0.59", "field": "mde", "decimals": 2},
+        {"display": "0.81", "field": "ratio", "decimals": 2},
+        {"display": "−0.40", "field": "l3t_mean", "decimals": 2},
+        {"display": "−1.69", "field": "l3t_t", "decimals": 2},
+        {"display": "125", "field": "l3t_n", "decimals": 0}
+      ],
+      "literals": [{"display": "3", "reason": "Gate 编号，非本实验统计量"}],
+      "window": "segment_2007_2015",
+      "window_note": "Gate 3 的判定窗口；L3t 误用了该实验 2016-2026 的重跑文件",
+      "estimator_for_verdict": "nw3",
+      "d_definition": "0.5*long-0.5*short",
+      "limits_of_use": [
+        "本条的 −0.40pp 是另一个窗口的数字，不得与本窗口的 +0.48pp 混引",
+        "判定窗口不可跨期比较；样本起点（2005）年末仅 6 只，不纳入"
+      ],
+      "quotability": "DIRECTION_ONLY",
+      "quotability_note": "L3u 判核对未通过（L3t 取了 2016-2026 重跑文件，n 与 mean 均不同）；L3w 复核证明判定量与序列同源，|效应|/MDE=0.814，NW 滞后 0/1/2/3/4/6 全档恒为 DIRECTION_ONLY",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "gate4_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "Gate 4 的 d 均值为 +0.17pp（t=+0.87 iid／+0.97 NW3），MDE 0.48pp、事后功效 16%，无法判断。",
+      "numbers": [
+        {"display": "0.17", "field": "mean", "decimals": 2},
+        {"display": "0.87", "field": "t_iid", "decimals": 2},
+        {"display": "0.97", "field": "t_nw3", "decimals": 2},
+        {"display": "0.48", "field": "mde", "decimals": 2},
+        {"display": "16", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [{"display": "4", "reason": "Gate 编号，非本实验统计量"}],
+      "window": "single_window",
+      "window_note": "Gate 4 判定窗口，n=237",
+      "estimator_for_verdict": "iid",
+      "d_definition": "0.5*long-0.5*short",
+      "limits_of_use": [
+        "功效 16% 属于严重不足，任何关于有无效应的断言都不成立",
+        "d 与文献 spread 差 2 倍"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 判核对未通过（仅 t 口径不同）；L3x 复核：stat.t 与 t_iid 一致，ratio 0.346、事后功效 16.3%，网格全档 UNDERPOWERED",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "gate5_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "Gate 5 的 d 均值为 +0.02pp（t=+0.16 iid／+0.15 NW3），MDE 0.43pp、事后功效 5%：这里的「没有证据」等于「没有分辨力」。",
+      "numbers": [
+        {"display": "0.02", "field": "mean", "decimals": 2},
+        {"display": "0.16", "field": "t_iid", "decimals": 2},
+        {"display": "0.15", "field": "t_nw3", "decimals": 2},
+        {"display": "0.43", "field": "mde", "decimals": 2},
+        {"display": "5", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "single_window",
+      "window_note": "Gate 5 判定窗口，n=249",
+      "estimator_for_verdict": "iid",
+      "d_definition": "0.5*long-0.5*short",
+      "limits_of_use": [
+        "功效 5% 意味着这个检验几乎不携带信息，不能用于支持任一方向的结论",
+        "d 与文献 spread 差 2 倍"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 判核对未通过（仅 t 口径不同）；L3x 复核：stat.t 与 t_iid 一致，ratio 0.055、事后功效 5.3%，网格全档 UNDERPOWERED——这个检验几乎不携带信息",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "gate6_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "全 A as-of 口径的 d 均值为 +0.71pp（t=+4.39 iid／+4.64 NW3），MDE 0.43pp、事后功效 100%，但 |效应|/MDE 只有 1.66 倍。",
+      "numbers": [
+        {"display": "0.71", "field": "mean", "decimals": 2},
+        {"display": "4.39", "field": "t_iid", "decimals": 2},
+        {"display": "4.64", "field": "t_nw3", "decimals": 2},
+        {"display": "0.43", "field": "mde", "decimals": 2},
+        {"display": "100", "field": "power", "decimals": 0, "scale": 100},
+        {"display": "1.66", "field": "ratio", "decimals": 2}
+      ],
+      "literals": [],
+      "window": "segment_2016_2026",
+      "window_note": "as-of 全 A，n=237",
+      "estimator_for_verdict": "iid",
+      "d_definition": "0.5*long-0.5*short",
+      "limits_of_use": [
+        "头条 +4.39 是 iid t，同序列 NW3 为 +4.64，引用时须同列两数",
+        "这是横截面月度差距，不是可交易组合的账户收益",
+        "d 与文献 spread 差 2 倍"
+      ],
+      "quotability": "QUOTABLE_MARGINAL",
+      "quotability_note": "L3u 判核对未通过（仅 t 口径不同：判定用 iid、L3t 用 NW3）；L3x 复核：stat.t 与 t_iid 一致、mean 与 n 全等，ratio 1.658，NW 滞后网格全档 QUOTABLE_MARGINAL",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "phasec_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "池效应的判定量 spread(B)−spread(A) 为 +1.94pp（t=+6.37）、MDE 0.85pp，|效应|/MDE 2.27 倍；格 A 自身的水平是 +0.01pp，与本条的差值不可混用。",
+      "numbers": [
+        {"display": "1.94", "field": "mean", "decimals": 2},
+        {"display": "6.37", "field": "t_nw3", "decimals": 2},
+        {"display": "0.85", "field": "mde", "decimals": 2},
+        {"display": "2.27", "field": "ratio", "decimals": 2},
+        {"display": "0.01", "field": "l3t_mean", "decimals": 2}
+      ],
+      "literals": [],
+      "window": "single_window",
+      "window_note": "阶段 C 五格设计，n=237",
+      "estimator_for_verdict": "nw3",
+      "d_definition": "long_minus_short",
+      "limits_of_use": [
+        "该值是两格 spread 之差，不是任何单一组合的收益水平",
+        "spread 与 d 差 2 倍，跨文献引用须换算"
+      ],
+      "quotability": "QUOTABLE",
+      "quotability_note": "L3u 判核对未通过（L3t 取了格 A 自身水平 +0.0141pp）；L3w 复核证明判定量与序列同源，|效应|/MDE=2.273，NW 滞后 0/1/2/3/4/6 全档恒为 QUOTABLE",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "phasec2_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "停牌效应的增量 +0.11pp（t=+5.01）、MDE 0.06pp，|效应|/MDE 1.79 倍；池效应本身的水平是 +0.66pp，不是本条的增量。",
+      "numbers": [
+        {"display": "0.11", "field": "mean", "decimals": 2},
+        {"display": "5.01", "field": "t_nw3", "decimals": 2},
+        {"display": "0.06", "field": "mde", "decimals": 2},
+        {"display": "1.79", "field": "ratio", "decimals": 2},
+        {"display": "0.66", "field": "l3t_mean", "decimals": 2}
+      ],
+      "literals": [],
+      "window": "single_window",
+      "window_note": "阶段 C-2 五格设计，n=237",
+      "estimator_for_verdict": "nw3",
+      "d_definition": "long_minus_short",
+      "limits_of_use": [
+        "检验的是相对基准格的增量，不是停牌效应的绝对规模",
+        "统计显著但量级小：0.11pp/月 对一个组合的实际影响需另算"
+      ],
+      "quotability": "QUOTABLE_MARGINAL",
+      "quotability_note": "L3u 判核对未通过（L3t 记成 POOL_EFFECT_CONFIRMED，取的是池效应水平）；L3w 复核证明判定量与序列同源，|效应|/MDE=1.790，NW 滞后 0/1/2/3/4/6 全档恒为 QUOTABLE_MARGINAL",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "phasec3_d",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "滞后成本的增量 +0.05pp（t=+0.60）、MDE 0.22pp、事后功效 9%，无法判断（登记表同样写成 +0.66pp）。",
+      "numbers": [
+        {"display": "0.05", "field": "mean", "decimals": 2},
+        {"display": "0.60", "field": "t_nw3", "decimals": 2},
+        {"display": "0.22", "field": "mde", "decimals": 2},
+        {"display": "9", "field": "power", "decimals": 0, "scale": 100},
+        {"display": "0.66", "field": "l3t_mean", "decimals": 2}
+      ],
+      "literals": [],
+      "window": "single_window",
+      "window_note": "阶段 C-3 五格设计，n=237",
+      "estimator_for_verdict": "nw3",
+      "d_definition": "long_minus_short",
+      "limits_of_use": [
+        "功效 9%，这个检验不足以支持「滞后成本可忽略」这类否定结论",
+        "只能说明在本设计下未观察到增量，不能说明增量为零"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 判核对未通过（L3t 同样记成池效应水平）；L3w 复核证明判定量与序列同源，|效应|/MDE=0.213、事后功效 9.2%，全档 UNDERPOWERED",
+      "tier_basis": "l3w_unseal"
+    },
+    {
+      "key": "phasee_alpha",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "非流动性的单边 alpha 为 +0.28pp（t=+1.90），MDE 0.41pp、事后功效 48%：未检出且功效不足。",
+      "numbers": [
+        {"display": "0.28", "field": "mean", "decimals": 2},
+        {"display": "1.90", "field": "t_nw3", "decimals": 2},
+        {"display": "0.41", "field": "mde", "decimals": 2},
+        {"display": "48", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "limits_of_use": [
+        "单边 alpha 与双边 spread 不可互换，量级也不可直接比较",
+        "功效 48% 属于临界不足，「未检出」不构成「无效应」"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 核对一致，未检出且事后功效 47.7%，落 UNDERPOWERED 档"
+    },
+    {
+      "key": "phasef_delta",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "MAX5 的 delta 为 +0.74pp（t=+3.41），MDE 0.61pp，|效应|/MDE 1.22 倍，是本项目最接近可引用的横截面结论。",
+      "numbers": [
+        {"display": "0.74", "field": "mean", "decimals": 2},
+        {"display": "3.41", "field": "t_nw3", "decimals": 2},
+        {"display": "0.61", "field": "mde", "decimals": 2},
+        {"display": "1.22", "field": "ratio", "decimals": 2}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "d_definition": "0.5*long-0.5*short",
+      "limits_of_use": [
+        "1.22 倍仍低于 2 倍门槛，只能作为「可引用且须标 MDE」处理",
+        "delta 是两格 d 之差，不是组合收益"
+      ],
+      "quotability": "QUOTABLE_MARGINAL",
+      "quotability_note": "L3u 核对一致，|效应|/MDE=1.22 落 1~2 倍档"
+    },
+    {
+      "key": "phaseg_alpha",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "MAX5 的单边 alpha 为 +0.18pp（t=+1.76），MDE 0.29pp、事后功效 42%：不可执行，且未检出。",
+      "numbers": [
+        {"display": "0.18", "field": "mean", "decimals": 2},
+        {"display": "1.76", "field": "t_nw3", "decimals": 2},
+        {"display": "0.29", "field": "mde", "decimals": 2},
+        {"display": "42", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "limits_of_use": [
+        "单边口径与 delta 口径不可混引",
+        "功效 42% 不足，不能据「未检出」断言无单边收益"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 核对一致，未检出且事后功效 42.2%"
+    },
+    {
+      "key": "phasel_alpha",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "SURGE 避让后的 alpha 只剩 +0.11pp（t=+3.13），MDE 0.09pp、事后功效 88%：判「净效应被吸收」，即确认无增量。",
+      "numbers": [
+        {"display": "0.11", "field": "mean", "decimals": 2},
+        {"display": "3.13", "field": "t_nw3", "decimals": 2},
+        {"display": "0.09", "field": "mde", "decimals": 2},
+        {"display": "88", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "cost_id": "O_BASE_3000w",
+      "limits_of_use": [
+        "「确认无效应」限定于相对同池平均的增量，不是绝对收益为零",
+        "该序列与 phaser 完全同一份数字，不能当作两次独立验证"
+      ],
+      "quotability": "NULL_CONFIRMED",
+      "quotability_note": "L3u 核对一致，未检出且事后功效 87.9%，可引为「确认无效应」"
+    },
+    {
+      "key": "phasem_spread",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "空头腿 spread 为 +0.72pp（t=+2.85）、MDE 0.71pp；判定由区间规则给出，序列均值不是判定量。",
+      "numbers": [
+        {"display": "0.72", "field": "mean", "decimals": 2},
+        {"display": "2.85", "field": "t_nw3", "decimals": 2},
+        {"display": "0.71", "field": "mde", "decimals": 2}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "d_definition": "long_minus_short",
+      "limits_of_use": [
+        "空头腿在 A 股不可得，该数字不能转成可实现收益",
+        "|效应|/MDE 仅 1.02 倍，接近分辨率下限"
+      ],
+      "quotability": "NOT_GRADED",
+      "quotability_note": "L3u 判 该实验无单一判定均值（区间判定），不给正式分级",
+      "reference_quotability": "NULL_CONFIRMED"
+    },
+    {
+      "key": "phasej_netA",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "执行成本后的净 alpha 只剩 +0.03pp（t=+1.04），MDE 0.09pp、事后功效 18%：毛效应被成本吸收。",
+      "numbers": [
+        {"display": "0.03", "field": "mean", "decimals": 2},
+        {"display": "1.04", "field": "t_nw3", "decimals": 2},
+        {"display": "0.09", "field": "mde", "decimals": 2},
+        {"display": "18", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "cost_id": "J_3000w",
+      "limits_of_use": [
+        "判定档是 3000 万，而本条序列取自 1000 万档，两者不可直接对照",
+        "功效 18%，「被吸收」只能读作「未观察到显著剩余」，不能读作「精确等于零」"
+      ],
+      "quotability": "NOT_GRADED",
+      "quotability_note": "L3u 核对未通过（判定均值 +0.042 与序列均值 +0.032 不同，且资金档不一致），不给分级",
+      "reference_quotability": "UNDERPOWERED"
+    },
+    {
+      "key": "phasek_m1net",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "降换手方案 m1 的净收益为 +0.04pp（t=+1.19），MDE 0.09pp、事后功效 22%：省下的佣金约等于 alpha 衰减。",
+      "numbers": [
+        {"display": "0.04", "field": "mean", "decimals": 2},
+        {"display": "1.19", "field": "t_nw3", "decimals": 2},
+        {"display": "0.09", "field": "mde", "decimals": 2},
+        {"display": "22", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "cost_id": "K_3000w",
+      "limits_of_use": [
+        "四个降换手档位全部不显著（|t|≤1.433），不能挑最好的那一档单独引用",
+        "功效 22%，无法区分「降换手无益」与「检验不够灵敏」"
+      ],
+      "quotability": "NOT_GRADED",
+      "quotability_note": "L3u 核对未通过（仅 t 口径不同），不给分级",
+      "reference_quotability": "UNDERPOWERED"
+    },
+    {
+      "key": "phaseo_netBASE",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "3000 万档、BASE 费率（单边 0.051%）下净 alpha 为 +0.14pp（t=+4.04），MDE 0.09pp，|效应|/MDE 1.44 倍。",
+      "numbers": [
+        {"display": "0.14", "field": "mean", "decimals": 2},
+        {"display": "4.04", "field": "t_nw3", "decimals": 2},
+        {"display": "0.09", "field": "mde", "decimals": 2},
+        {"display": "1.44", "field": "ratio", "decimals": 2}
+      ],
+      "literals": [
+        {"display": "3000", "reason": "资金档位（万元），是实验设定不是统计量"},
+        {"display": "0.051", "reason": "BASE 费率单边等价成本，口径常量"}
+      ],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "cost_id": "O_BASE_3000w",
+      "limits_of_use": [
+        "1.44 倍仍低于 2 倍门槛，引用必须同时给 MDE",
+        "EXECUTABLE_UNDER_BASE_FEES 不等于「可用」：换到压力费率档后净 alpha 逼近 0",
+        "该序列与 phasev 完全同一份数字，不能当作两次独立验证"
+      ],
+      "quotability": "QUOTABLE_MARGINAL",
+      "quotability_note": "L3u 核对一致，|效应|/MDE=1.44 落 1~2 倍档"
+    },
+    {
+      "key": "phasep_late",
+      "family": "C_regression",
+      "unit": "pp",
+      "headline": "晚段净 alpha 的回归系数为 +0.13pp（t=+2.58，n=129），MDE 0.14pp；全样本回归分母是 237，效应量本身一致。",
+      "numbers": [
+        {"display": "0.13", "field": "mean", "decimals": 2},
+        {"display": "2.58", "field": "t_nw3", "decimals": 2},
+        {"display": "129", "field": "n", "decimals": 0},
+        {"display": "0.14", "field": "mde", "decimals": 2},
+        {"display": "237", "field": "stat_n", "decimals": 0}
+      ],
+      "literals": [],
+      "window": "segment_2016_2026",
+      "window_note": "晚段子样本，n=129",
+      "estimator_for_verdict": "nw3",
+      "limits_of_use": [
+        "回归系数不是分段均值差；两段比较的结论是「未拒绝相等」，不是「相等」",
+        "n 的差异来自分母口径（全样本 237 vs 晚段 129），不是取错窗口"
+      ],
+      "quotability": "NOT_GRADED",
+      "quotability_note": "L3u 核对未通过（n 不一致，mean 一致），不给分级",
+      "reference_quotability": "NULL_WEAK"
+    },
+    {
+      "key": "phaser_alpha",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "SURGE 的 alpha 为 +0.11pp（t=+3.13）、MDE 0.09pp，随资金规模衰减到不显著；判定由多门槛规则给出，非单一均值。",
+      "numbers": [
+        {"display": "0.11", "field": "mean", "decimals": 2},
+        {"display": "3.13", "field": "t_nw3", "decimals": 2},
+        {"display": "0.09", "field": "mde", "decimals": 2}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "cost_id": "R_3000w",
+      "limits_of_use": [
+        "「规模依赖」是多门槛联合判定，不能由单条均值 t 值推出",
+        "该序列与 phasel 完全同一份数字，不能当作两次独立验证"
+      ],
+      "quotability": "NOT_GRADED",
+      "quotability_note": "L3u 判 该实验无单一判定均值（多门槛），不给分级",
+      "reference_quotability": "NOT_GRADED"
+    },
+    {
+      "key": "phases_net",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "现代段净 alpha 为 +0.11pp（t=+1.58 iid／+2.22 NW3），MDE 0.14pp、事后功效 60%：只能引方向。",
+      "numbers": [
+        {"display": "0.11", "field": "mean", "decimals": 2},
+        {"display": "1.58", "field": "t_iid", "decimals": 2},
+        {"display": "2.22", "field": "t_nw3", "decimals": 2},
+        {"display": "0.14", "field": "mde", "decimals": 2},
+        {"display": "60", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "modern_era",
+      "window_note": "2023-01 起的现代段，n=129",
+      "estimator_for_verdict": "nw3",
+      "cost_id": "S_modern_era",
+      "limits_of_use": [
+        "iid 与 NW3 两个 t 分列 1.58 与 2.22，只引其一等于挑显著性，必须同列",
+        "bootstrap 95% 区间跨 0，L 剖面只在 L≥2 通过，属边缘证据",
+        "该序列与 phaset 完全同一份数字，不能当作两次独立验证"
+      ],
+      "quotability": "DIRECTION_ONLY",
+      "quotability_note": "L3u 核对一致，|效应|/MDE=0.79 落 0.5~1 倍档"
+    },
+    {
+      "key": "phaset_net",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "同一序列的稳健性检查判 T_FRAGILE：剔除极端月后显著性消失，现代段的 +0.11pp（MDE 0.14pp）不承重。",
+      "numbers": [
+        {"display": "0.11", "field": "mean", "decimals": 2},
+        {"display": "0.14", "field": "mde", "decimals": 2}
+      ],
+      "literals": [],
+      "window": "modern_era",
+      "window_note": "现代段子样本，n=129",
+      "estimator_for_verdict": "nw3",
+      "cost_id": "S_modern_era",
+      "limits_of_use": [
+        "alpha 高度集中在 ADV 最低的一组（阶段 T 的 T3 分解），分层后结论改变",
+        "本条是对 phases 的脆弱性判定，不能与 phases 并列当作两个正面结果"
+      ],
+      "quotability": "DIRECTION_ONLY",
+      "quotability_note": "L3u 核对一致，按 |效应|/MDE 落 0.5~1 倍档；稳健性判定本身另见阶段 T",
+      "reference_quotability": "DIRECTION_ONLY"
+    },
+    {
+      "key": "phasev_net",
+      "family": "B_long_only",
+      "unit": "pp",
+      "headline": "同一份净 alpha 为 +0.14pp（MDE 0.09pp），但换到压力费率后大幅衰减：结论对成本口径敏感，不能脱离口径单独引用。",
+      "numbers": [
+        {"display": "0.14", "field": "mean", "decimals": 2},
+        {"display": "0.09", "field": "mde", "decimals": 2}
+      ],
+      "literals": [
+        {"display": "0.3", "reason": "压力费率档位（%），是敏感性设定不是统计量"}
+      ],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "cost_id": "O_BASE_3000w",
+      "limits_of_use": [
+        "引用「成本后」必须带口径编号：BASE +0.1360、STRESS +0.0424、CONS +0.1315",
+        "该序列与 phaseo 完全同一份数字，本条只贡献敏感性判定"
+      ],
+      "quotability": "NOT_GRADED",
+      "quotability_note": "L3u 判 该实验无单一判定均值（敏感性多档），不给分级",
+      "reference_quotability": "NOT_GRADED"
+    },
+    {
+      "key": "phaseq_max5",
+      "family": "C_regression",
+      "unit": "pp",
+      "headline": "控制波动率后 MAX5 的增量系数为 +0.04pp（t=+0.25），MDE 0.47pp、事后功效 6%：增量被吸收。",
+      "numbers": [
+        {"display": "0.04", "field": "mean", "decimals": 2},
+        {"display": "0.25", "field": "t_nw3", "decimals": 2},
+        {"display": "0.47", "field": "mde", "decimals": 2},
+        {"display": "6", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "full_sample",
+      "window_note": "全样本月度，n=237",
+      "estimator_for_verdict": "nw3",
+      "limits_of_use": [
+        "MAX5 与波动率秩相关 +0.88，增量取决于是否控制波动率，两个口径不可混引",
+        "功效 6%，「被吸收」在此只是「未观察到增量」，分辨率不足以定论"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 核对一致，未检出且事后功效 5.7%"
+    },
+    {
+      "key": "l3r_delta",
+      "family": "A_cross_spread",
+      "unit": "pp",
+      "headline": "选择效应的月均为 −0.33pp（t=−0.96），MDE 0.95pp、事后功效 16%：测不出来，不等于没有。",
+      "numbers": [
+        {"display": "−0.33", "field": "mean", "decimals": 2},
+        {"display": "−0.96", "field": "t_nw3", "decimals": 2},
+        {"display": "0.95", "field": "mde", "decimals": 2},
+        {"display": "16", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "l3r_periods",
+      "window_note": "197 期配对剔除，中位 +0.060pp、胜率 51.78%",
+      "estimator_for_verdict": "nw3",
+      "d_definition": "0.5*long-0.5*short",
+      "limits_of_use": [
+        "要把分辨率压到 0.5pp/月需要 676 期约 56 年，现有样本结构性不够",
+        "逐期差的标准差 4.64pp 来自 12 只与 24 只的等权噪声，不是策略缺陷"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 核对一致，未检出且事后功效 16.2%"
+    },
+    {
+      "key": "l3s_ic",
+      "family": "D_ic",
+      "unit": "ic",
+      "headline": "截面 IC 均值为 −0.023（t=−1.71），MDE_IC 0.038、事后功效 40%：IC 路线同样无法判断。",
+      "numbers": [
+        {"display": "−0.023", "field": "mean", "decimals": 3},
+        {"display": "−1.71", "field": "t_nw3", "decimals": 2},
+        {"display": "0.038", "field": "mde", "decimals": 3},
+        {"display": "40", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "l3s_periods",
+      "window_note": "198 期、378 只有效标的",
+      "estimator_for_verdict": "nw3",
+      "unit_note": "单位是 IC（截面秩相关），不是收益；折算成月度收益还需乘 IC 与截面离散度，不能直接当收益率读",
+      "limits_of_use": [
+        "逐期 IC 标准差 0.197 中 93% 是风格轮动，扩大截面只能把分辨率改善 1.64 倍",
+        "IC 为负不构成「反向有效」：已检出的负 IC 与可交易收益之间隔着换手与成本"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 核对一致，未检出且事后功效 40.0%"
+    },
+    {
+      "key": "l3_test",
+      "family": "E_fold",
+      "unit": "pct_fold",
+      "headline": "折均收益为 +4.00%/折（t=+1.74 iid／+1.42 NW3），MDE 7.89%/折、事后功效 29%。",
+      "numbers": [
+        {"display": "4.00", "field": "mean", "decimals": 2},
+        {"display": "1.74", "field": "t_iid", "decimals": 2},
+        {"display": "1.42", "field": "t_nw3", "decimals": 2},
+        {"display": "7.89", "field": "mde", "decimals": 2},
+        {"display": "29", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "l3p_folds",
+      "window_note": "27 个滚动折",
+      "estimator_for_verdict": "iid",
+      "unit_note": "单位是 %/折（每个滚动折的累计收益），不是月均、不是年化；折与折不可跨期比较",
+      "limits_of_use": [
+        "折均不等于连续账户收益，窗格拼接会改变复利路径",
+        "27 个折的 MDE 达 7.89%/折，任何小于 8pp/折 的结论都不可判定"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 核对一致，未检出且事后功效 29.4%"
+    },
+    {
+      "key": "l3p_test",
+      "family": "E_fold",
+      "unit": "pct_fold",
+      "headline": "折均收益为 +5.28%/折（t=+2.00 iid／+1.92 NW3），MDE 7.72%/折、事后功效 48%。",
+      "numbers": [
+        {"display": "5.28", "field": "mean", "decimals": 2},
+        {"display": "2.00", "field": "t_iid", "decimals": 2},
+        {"display": "1.92", "field": "t_nw3", "decimals": 2},
+        {"display": "7.72", "field": "mde", "decimals": 2},
+        {"display": "48", "field": "power", "decimals": 0, "scale": 100}
+      ],
+      "literals": [],
+      "window": "l3p_folds",
+      "window_note": "28 个滚动折",
+      "estimator_for_verdict": "iid",
+      "unit_note": "单位是 %/折，不是月均也不是年化；折收益受折首空仓影响，不可直接年化",
+      "limits_of_use": [
+        "iid t=2.00 恰好压在 1.96 上，NW3 后为 1.92，结论随口径翻转",
+        "折均不等权于资金加权收益，大资金下的整手与现金残留会改变结果"
+      ],
+      "quotability": "UNDERPOWERED",
+      "quotability_note": "L3u 核对一致，未检出且事后功效 48.3%"
+    }
+  ]
+}

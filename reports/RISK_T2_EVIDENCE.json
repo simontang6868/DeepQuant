@@ -1,0 +1,200 @@
+{
+  "generated_at": "2026-10-27T03:05:23+00:00",
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Windows-11-10.0.22621-SP0"
+  },
+  "criteria": {
+    "criterion_1_checkpoint_coverage": {
+      "ratio": 1.0,
+      "missing": [],
+      "n_checkpoints": 4,
+      "reason_code_categories": [
+        "identity",
+        "limit",
+        "state",
+        "field"
+      ],
+      "reason_codes_missing_categories": [],
+      "pass": true
+    },
+    "criterion_2_reason_codes": {
+      "scenarios": [
+        {
+          "category": "identity",
+          "expected_code": "identity_missing",
+          "actual_code": "identity_missing",
+          "status_code": 403,
+          "code_in_table": true,
+          "matches_expected": true,
+          "body_excerpt": "{\"error\":{\"code\":\"identity_missing\",\"message\":\"请求未提供操作人身份，无法确认谁在执行操作\",\"details\":{\"checkpoint\":\"identity\",\"category\":\"identity\",\"mode\":\"enforce\"}}}"
+        },
+        {
+          "category": "limit",
+          "expected_code": "limit_cash_range",
+          "actual_code": "limit_cash_range",
+          "status_code": 422,
+          "code_in_table": true,
+          "matches_expected": true,
+          "body_excerpt": "{\"error\":{\"code\":\"limit_cash_range\",\"message\":\"初始资金超出允许区间（只校验上下界，不评价金额是否合理）\",\"details\":{\"initial_cash\":1000000000000.0,\"min\":1000.0,\"max\":1000000000.0,\"checkpoi"
+        },
+        {
+          "category": "state",
+          "expected_code": "state_dataset_unavailable",
+          "actual_code": "state_dataset_unavailable",
+          "status_code": 409,
+          "code_in_table": true,
+          "matches_expected": true,
+          "body_excerpt": "{\"error\":{\"code\":\"state_dataset_unavailable\",\"message\":\"数据集未登记或数据文件不可用\",\"details\":{\"symbol\":\"NOPE\",\"checkpoint\":\"state\",\"category\":\"state\",\"mode\":\"enforce\"}}}"
+        },
+        {
+          "category": "field",
+          "expected_code": "field_missing",
+          "actual_code": "field_missing",
+          "status_code": 422,
+          "code_in_table": true,
+          "matches_expected": true,
+          "body_excerpt": "{\"error\":{\"code\":\"field_missing\",\"message\":\"请求缺少该操作的必需字段\",\"details\":{\"missing\":[\"strategy_id\"],\"checkpoint\":\"field\",\"category\":\"field\",\"mode\":\"enforce\"}}}"
+        }
+      ],
+      "all_have_code": true,
+      "all_match_expected": true,
+      "retrievable": {
+        "identity_missing": {
+          "n_cards": 6,
+          "status_in_card": "rejected",
+          "checkpoint_in_card": "identity"
+        },
+        "limit_cash_range": {
+          "n_cards": 1,
+          "status_in_card": "rejected",
+          "checkpoint_in_card": "limit"
+        },
+        "state_dataset_unavailable": {
+          "n_cards": 1,
+          "status_in_card": "rejected",
+          "checkpoint_in_card": "state"
+        },
+        "field_missing": {
+          "n_cards": 1,
+          "status_in_card": "rejected",
+          "checkpoint_in_card": "field"
+        }
+      },
+      "all_retrievable": true,
+      "pass": true
+    },
+    "criterion_3_no_bypass": {
+      "bypass_report": {
+        "ok": true,
+        "n_routes": 14,
+        "n_mutating_routes": 3,
+        "n_mapped": 5,
+        "uncovered_mutating": [],
+        "dangling_mappings": [],
+        "missing_middleware": [],
+        "duplicated_mappings": [],
+        "exempt": [
+          {
+            "method": "GET",
+            "path": "/docs",
+            "reason": "框架自带文档页"
+          },
+          {
+            "method": "GET",
+            "path": "/health",
+            "reason": "健康检查，不触碰任何业务对象"
+          },
+          {
+            "method": "GET",
+            "path": "/openapi.json",
+            "reason": "框架自带契约文档"
+          },
+          {
+            "method": "GET",
+            "path": "/redoc",
+            "reason": "框架自带文档页"
+          }
+        ],
+        "middleware": [
+          "AuditMiddleware",
+          "RiskGateMiddleware",
+          "BuildHeaderMiddleware"
+        ]
+      },
+      "penetration": [
+        {
+          "path": "/backtests",
+          "status_code": 403,
+          "reason_code": "identity_missing",
+          "blocked": true,
+          "gated_or_not_routed": true
+        },
+        {
+          "path": "/backtests/",
+          "status_code": 403,
+          "reason_code": "identity_missing",
+          "blocked": true,
+          "gated_or_not_routed": true
+        },
+        {
+          "path": "//backtests",
+          "status_code": 404,
+          "reason_code": null,
+          "blocked": true,
+          "gated_or_not_routed": true
+        },
+        {
+          "path": "/BackTests",
+          "status_code": 404,
+          "reason_code": null,
+          "blocked": true,
+          "gated_or_not_routed": true
+        },
+        {
+          "path": "/backtests?symbol=TEST01",
+          "status_code": 403,
+          "reason_code": "identity_missing",
+          "blocked": true,
+          "gated_or_not_routed": true
+        },
+        {
+          "path": "/backtests/compare",
+          "status_code": 403,
+          "reason_code": "identity_missing",
+          "blocked": true,
+          "gated_or_not_routed": true
+        },
+        {
+          "path": "/portfolio-backtests",
+          "status_code": 403,
+          "reason_code": "identity_missing",
+          "blocked": true,
+          "gated_or_not_routed": true
+        },
+        {
+          "path": "/api/backtests",
+          "status_code": 404,
+          "reason_code": null,
+          "blocked": true,
+          "gated_or_not_routed": true
+        }
+      ],
+      "all_blocked": true,
+      "pass": true
+    },
+    "criterion_4_not_manual": {
+      "mechanism": "网关为全局中间件，操作类型由路由表驱动；未登记的可变更接口由旁路对账检出",
+      "uncovered_mutating": [],
+      "pass": true
+    },
+    "observe_mode": {
+      "status_code": 200,
+      "header": "would-reject",
+      "n_ok_cards": 1,
+      "pass": true
+    },
+    "audit_chain_ok": true
+  },
+  "overall_pass": true
+}

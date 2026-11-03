@@ -1,0 +1,731 @@
+{
+  "cases": {
+    "coverage_reject": {
+      "bound_checks": [],
+      "data": {
+        "blocking": [],
+        "undetermined": [
+          "cross_source"
+        ]
+      },
+      "honesty": [],
+      "leakage": {
+        "dynamic": [],
+        "dynamic_note": "",
+        "leaked": false,
+        "probes_skipped": 0,
+        "probes_tested": 8,
+        "static": []
+      },
+      "notes": [],
+      "stages": [
+        {
+          "detail": "契约摘要 444902cb024f76e9…",
+          "name": "spec",
+          "status": "pass"
+        },
+        {
+          "detail": "阻塞项全部通过；未判定项：['cross_source']（不等于通过）",
+          "name": "data",
+          "status": "undetermined"
+        },
+        {
+          "detail": "静态 0 命中；动态截断 8 个点全部一致",
+          "name": "leakage",
+          "status": "pass"
+        },
+        {
+          "detail": "覆盖 3/4 = 75.0%（失败 1 点）",
+          "name": "coverage",
+          "status": "fail"
+        }
+      ],
+      "sweep": {
+        "best": {
+          "fast_window": 5,
+          "slow_window": 20
+        },
+        "coverage": 0.75,
+        "declared": 4,
+        "executed": 3,
+        "failed": 1,
+        "oos_evaluations": 1,
+        "plateau": 1.0
+      },
+      "verdict": "L1A_REJECTED_COVERAGE"
+    },
+    "data_reject": {
+      "bound_checks": [],
+      "data": {
+        "blocking": [
+          "pipeline_validation",
+          "ohlc_relations"
+        ],
+        "undetermined": [
+          "cross_source"
+        ]
+      },
+      "honesty": [],
+      "leakage": {},
+      "notes": [],
+      "stages": [
+        {
+          "detail": "契约摘要 444902cb024f76e9…",
+          "name": "spec",
+          "status": "pass"
+        },
+        {
+          "detail": "pipeline_validation: ohlc_relation(1)；ohlc_relations: 违例行数 1 / 640",
+          "name": "data",
+          "status": "fail"
+        }
+      ],
+      "sweep": {
+        "best": null,
+        "coverage": null,
+        "declared": null,
+        "executed": null,
+        "failed": null,
+        "oos_evaluations": null,
+        "plateau": null
+      },
+      "verdict": "L1A_REJECTED_DATA"
+    },
+    "inconclusive": {
+      "bound_checks": [
+        {
+          "actual": 1.0537476999999997,
+          "direction": ">=",
+          "name": "样本内累计收益",
+          "passed": true,
+          "reason": "",
+          "threshold": -1.0
+        },
+        {
+          "actual": 0.007119875906868916,
+          "direction": "<=",
+          "name": "样本内最大回撤",
+          "passed": true,
+          "reason": "",
+          "threshold": 0.99
+        },
+        {
+          "actual": 4.0,
+          "direction": ">=",
+          "name": "样本内完成交易笔数",
+          "passed": true,
+          "reason": "",
+          "threshold": 1.0
+        },
+        {
+          "actual": null,
+          "direction": ">=",
+          "name": "样本外累计收益",
+          "passed": null,
+          "reason": "cumulative_return 不可计算：样本外未评估",
+          "threshold": 0.0
+        },
+        {
+          "actual": null,
+          "direction": "<=",
+          "name": "样本外最大回撤",
+          "passed": null,
+          "reason": "max_drawdown 不可计算：样本外未评估",
+          "threshold": 0.99
+        },
+        {
+          "actual": null,
+          "direction": ">=",
+          "name": "样本外收益衰减",
+          "passed": null,
+          "reason": "样本内或样本外累计收益不可计算，衰减比无定义",
+          "threshold": 0.9
+        }
+      ],
+      "data": {
+        "blocking": [],
+        "undetermined": [
+          "cross_source"
+        ]
+      },
+      "honesty": [
+        {
+          "name": "cumulative_return",
+          "reason": "样本外不可计算：回测失败：ValueError: 回测区间内没有可用的行情数据",
+          "samples": null,
+          "status": "not_computable",
+          "unit": "",
+          "value": null
+        },
+        {
+          "name": "max_drawdown",
+          "reason": "样本外不可计算：回测失败：ValueError: 回测区间内没有可用的行情数据",
+          "samples": null,
+          "status": "not_computable",
+          "unit": "",
+          "value": null
+        },
+        {
+          "name": "closed_trades",
+          "reason": "样本外不可计算：回测失败：ValueError: 回测区间内没有可用的行情数据",
+          "samples": null,
+          "status": "not_computable",
+          "unit": "",
+          "value": null
+        }
+      ],
+      "leakage": {
+        "dynamic": [],
+        "dynamic_note": "",
+        "leaked": false,
+        "probes_skipped": 0,
+        "probes_tested": 8,
+        "static": []
+      },
+      "notes": [
+        "3 个指标不可计算，已如实标注（未填 0）：closed_trades、cumulative_return、max_drawdown"
+      ],
+      "stages": [
+        {
+          "detail": "契约摘要 8304d7b391f254ac…",
+          "name": "spec",
+          "status": "pass"
+        },
+        {
+          "detail": "阻塞项全部通过；未判定项：['cross_source']（不等于通过）",
+          "name": "data",
+          "status": "undetermined"
+        },
+        {
+          "detail": "静态 0 命中；动态截断 8 个点全部一致",
+          "name": "leakage",
+          "status": "pass"
+        },
+        {
+          "detail": "覆盖 4/4 = 100%",
+          "name": "coverage",
+          "status": "pass"
+        },
+        {
+          "detail": "样本外累计收益：cumulative_return 不可计算：样本外未评估；样本外最大回撤：max_drawdown 不可计算：样本外未评估；样本外收益衰减：样本内或样本外累计收益不可计算，衰减比无定义",
+          "name": "bounds",
+          "status": "undetermined"
+        }
+      ],
+      "sweep": {
+        "best": {
+          "fast_window": 5,
+          "slow_window": 20
+        },
+        "coverage": 1.0,
+        "declared": 4,
+        "executed": 4,
+        "failed": 0,
+        "oos_evaluations": 1,
+        "plateau": 1.0
+      },
+      "verdict": "L1A_INCONCLUSIVE"
+    },
+    "leak_dynamic": {
+      "bound_checks": [],
+      "data": {
+        "blocking": [],
+        "undetermined": [
+          "cross_source"
+        ]
+      },
+      "honesty": [],
+      "leakage": {
+        "dynamic": [
+          {
+            "code": "prefix_mismatch",
+            "detail": "用前 300 行算出的信号与全样本信号前段不一致（时点 2021-02-23 00:00:00）",
+            "location": "probe@299"
+          }
+        ],
+        "dynamic_note": "",
+        "leaked": true,
+        "probes_skipped": 0,
+        "probes_tested": 1,
+        "static": []
+      },
+      "notes": [],
+      "stages": [
+        {
+          "detail": "契约摘要 f2ffe54f025c55b8…",
+          "name": "spec",
+          "status": "pass"
+        },
+        {
+          "detail": "阻塞项全部通过；未判定项：['cross_source']（不等于通过）",
+          "name": "data",
+          "status": "undetermined"
+        },
+        {
+          "detail": "prefix_mismatch@probe@299",
+          "name": "leakage",
+          "status": "fail"
+        }
+      ],
+      "sweep": {
+        "best": null,
+        "coverage": null,
+        "declared": null,
+        "executed": null,
+        "failed": null,
+        "oos_evaluations": null,
+        "plateau": null
+      },
+      "verdict": "L1A_REJECTED_LEAKAGE"
+    },
+    "leak_static": {
+      "bound_checks": [],
+      "data": {
+        "blocking": [],
+        "undetermined": [
+          "cross_source"
+        ]
+      },
+      "honesty": [],
+      "leakage": {
+        "dynamic": [
+          {
+            "code": "prefix_mismatch",
+            "detail": "用前 300 行算出的信号与全样本信号前段不一致（时点 2021-02-23 00:00:00）",
+            "location": "probe@299"
+          }
+        ],
+        "dynamic_note": "",
+        "leaked": true,
+        "probes_skipped": 0,
+        "probes_tested": 1,
+        "static": [
+          {
+            "code": "center_rolling",
+            "detail": "rolling(center=True)：窗口包含未来值",
+            "location": "CenterRollingStrategy:11"
+          }
+        ]
+      },
+      "notes": [],
+      "stages": [
+        {
+          "detail": "契约摘要 51619a517e80f43e…",
+          "name": "spec",
+          "status": "pass"
+        },
+        {
+          "detail": "阻塞项全部通过；未判定项：['cross_source']（不等于通过）",
+          "name": "data",
+          "status": "undetermined"
+        },
+        {
+          "detail": "center_rolling@CenterRollingStrategy:11；prefix_mismatch@probe@299",
+          "name": "leakage",
+          "status": "fail"
+        }
+      ],
+      "sweep": {
+        "best": null,
+        "coverage": null,
+        "declared": null,
+        "executed": null,
+        "failed": null,
+        "oos_evaluations": null,
+        "plateau": null
+      },
+      "verdict": "L1A_REJECTED_LEAKAGE"
+    },
+    "pass_branch": {
+      "bound_checks": [
+        {
+          "actual": 1.0537476999999997,
+          "direction": ">=",
+          "name": "样本内累计收益",
+          "passed": true,
+          "reason": "",
+          "threshold": 0.05
+        },
+        {
+          "actual": 0.007119875906868916,
+          "direction": "<=",
+          "name": "样本内最大回撤",
+          "passed": true,
+          "reason": "",
+          "threshold": 0.6
+        },
+        {
+          "actual": 4.0,
+          "direction": ">=",
+          "name": "样本内完成交易笔数",
+          "passed": true,
+          "reason": "",
+          "threshold": 1.0
+        },
+        {
+          "actual": 0.1967544000000001,
+          "direction": ">=",
+          "name": "样本外累计收益",
+          "passed": true,
+          "reason": "",
+          "threshold": 0.0
+        },
+        {
+          "actual": 0.006933975148259483,
+          "direction": "<=",
+          "name": "样本外最大回撤",
+          "passed": true,
+          "reason": "",
+          "threshold": 0.6
+        },
+        {
+          "actual": 0.18671869936228583,
+          "direction": ">=",
+          "name": "样本外收益保留率",
+          "passed": true,
+          "reason": "",
+          "threshold": 0.09999999999999998
+        }
+      ],
+      "data": {
+        "blocking": [],
+        "undetermined": [
+          "cross_source"
+        ]
+      },
+      "honesty": [],
+      "leakage": {
+        "dynamic": [],
+        "dynamic_note": "",
+        "leaked": false,
+        "probes_skipped": 0,
+        "probes_tested": 8,
+        "static": []
+      },
+      "notes": [],
+      "stages": [
+        {
+          "detail": "契约摘要 c877cf614631ae3f…",
+          "name": "spec",
+          "status": "pass"
+        },
+        {
+          "detail": "阻塞项全部通过；未判定项：['cross_source']（不等于通过）",
+          "name": "data",
+          "status": "undetermined"
+        },
+        {
+          "detail": "静态 0 命中；动态截断 8 个点全部一致",
+          "name": "leakage",
+          "status": "pass"
+        },
+        {
+          "detail": "覆盖 4/4 = 100%",
+          "name": "coverage",
+          "status": "pass"
+        },
+        {
+          "detail": "全部边界通过",
+          "name": "bounds",
+          "status": "pass"
+        }
+      ],
+      "sweep": {
+        "best": {
+          "fast_window": 5,
+          "slow_window": 20
+        },
+        "coverage": 1.0,
+        "declared": 4,
+        "executed": 4,
+        "failed": 0,
+        "oos_evaluations": 1,
+        "plateau": 1.0
+      },
+      "verdict": "L1A_PASS"
+    },
+    "real_hypothesis": {
+      "bound_checks": [
+        {
+          "actual": 0.9318016,
+          "direction": ">=",
+          "name": "样本内累计收益",
+          "passed": true,
+          "reason": "",
+          "threshold": 0.58
+        },
+        {
+          "actual": 0.32840854997130214,
+          "direction": "<=",
+          "name": "样本内最大回撤",
+          "passed": false,
+          "reason": "",
+          "threshold": 0.25
+        },
+        {
+          "actual": 23.0,
+          "direction": ">=",
+          "name": "样本内完成交易笔数",
+          "passed": true,
+          "reason": "",
+          "threshold": 10.0
+        },
+        {
+          "actual": -0.12838759999999994,
+          "direction": ">=",
+          "name": "样本外累计收益",
+          "passed": false,
+          "reason": "",
+          "threshold": 0.0
+        },
+        {
+          "actual": 0.23405469852731578,
+          "direction": "<=",
+          "name": "样本外最大回撤",
+          "passed": true,
+          "reason": "",
+          "threshold": 0.25
+        },
+        {
+          "actual": -0.13778426652197198,
+          "direction": ">=",
+          "name": "样本外收益保留率",
+          "passed": false,
+          "reason": "",
+          "threshold": 0.5
+        }
+      ],
+      "data_checks": [
+        {
+          "code": "research_file",
+          "detail": "data/qfq_all/000001.SZ.qfq.csv（5140 行）",
+          "passed": true
+        },
+        {
+          "code": "pipeline_validation",
+          "detail": "无 ERROR 级问题",
+          "passed": true
+        },
+        {
+          "code": "ohlc_relations",
+          "detail": "违例行数 0 / 5140",
+          "passed": true
+        },
+        {
+          "code": "positive_prices",
+          "detail": "非正价格行数 0",
+          "passed": true
+        },
+        {
+          "code": "volume_present",
+          "detail": "0 成交量行数 0 / 5140",
+          "passed": true
+        },
+        {
+          "code": "duplicate_dates",
+          "detail": "重复日期行数 0",
+          "passed": true
+        },
+        {
+          "code": "in_sample_coverage",
+          "detail": "样本内 1461 行（门槛 250）",
+          "passed": true
+        },
+        {
+          "code": "cross_source",
+          "detail": "日期覆盖 1.0000（门槛 ≥0.99）；收益不一致 19 天，占比 0.0037（上限 0.05）",
+          "passed": true
+        },
+        {
+          "code": "trading_file",
+          "detail": "data/exec_all/000001.SZ.exec.csv（5140 行）",
+          "passed": true
+        }
+      ],
+      "leakage": {
+        "dynamic": [],
+        "dynamic_note": "",
+        "leaked": false,
+        "probes_skipped": 0,
+        "probes_tested": 8,
+        "static": []
+      },
+      "metrics": {
+        "in_sample.annualized_return": {
+          "name": "annualized_return",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": 0.12027367572254
+        },
+        "in_sample.closed_trades": {
+          "name": "closed_trades",
+          "reason": "",
+          "samples": 23,
+          "status": "ok",
+          "unit": "count",
+          "value": 23.0
+        },
+        "in_sample.cumulative_return": {
+          "name": "cumulative_return",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": 0.9318016
+        },
+        "in_sample.max_drawdown": {
+          "name": "max_drawdown",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": 0.32840854997130214
+        },
+        "out_sample.annualized_return": {
+          "name": "annualized_return",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": -0.03141078625645077
+        },
+        "out_sample.closed_trades": {
+          "name": "closed_trades",
+          "reason": "",
+          "samples": 25,
+          "status": "ok",
+          "unit": "count",
+          "value": 25.0
+        },
+        "out_sample.cumulative_return": {
+          "name": "cumulative_return",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": -0.12838759999999994
+        },
+        "out_sample.max_drawdown": {
+          "name": "max_drawdown",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": 0.23405469852731578
+        }
+      },
+      "notes": [],
+      "spec_digest": "4f171fe2b6165cd875e6959728b0b9b4ddc8d0cc1e3fda0bbfa8dffe70674d4c",
+      "stages": [
+        {
+          "detail": "契约摘要 4f171fe2b6165cd8…",
+          "name": "spec",
+          "status": "pass"
+        },
+        {
+          "detail": "阻塞项全部通过",
+          "name": "data",
+          "status": "pass"
+        },
+        {
+          "detail": "静态 0 命中；动态截断 8 个点全部一致",
+          "name": "leakage",
+          "status": "pass"
+        },
+        {
+          "detail": "覆盖 15/15 = 100%",
+          "name": "coverage",
+          "status": "pass"
+        },
+        {
+          "detail": "样本内最大回撤：实际 0.32840854997130214，要求 <= 0.25；样本外累计收益：实际 -0.12838759999999994，要求 >= 0.0；样本外收益保留率：实际 -0.13778426652197198，要求 >= 0.5",
+          "name": "bounds",
+          "status": "fail"
+        }
+      ],
+      "sweep": {
+        "best": {
+          "fast_window": 3,
+          "slow_window": 60
+        },
+        "coverage": 1.0,
+        "declared": 15,
+        "executed": 15,
+        "oos_evaluations": 1,
+        "plateau": 1.0
+      },
+      "verdict": "L1A_REJECTED_BOUNDS"
+    },
+    "spec_reject": {
+      "bound_checks": [],
+      "data": {
+        "blocking": null,
+        "undetermined": null
+      },
+      "honesty": [],
+      "leakage": {},
+      "notes": [],
+      "stages": [
+        {
+          "detail": "顶层 缺少字段 'boundaries'",
+          "name": "spec",
+          "status": "fail"
+        }
+      ],
+      "sweep": {
+        "best": null,
+        "coverage": null,
+        "declared": null,
+        "executed": null,
+        "failed": null,
+        "oos_evaluations": null,
+        "plateau": null
+      },
+      "verdict": "L1A_REJECTED_SPEC"
+    }
+  },
+  "digest_case": {
+    "digest": "444902cb024f76e9ba28249556b5534858090bf12aa1e38e20cb20353c276456",
+    "digest_after_boundary_change_differs": true,
+    "same_spec_twice_equal": true
+  },
+  "elapsed_s": 5.29,
+  "expectations": {
+    "coverage_reject": "L1A_REJECTED_COVERAGE",
+    "data_reject": "L1A_REJECTED_DATA",
+    "inconclusive": "L1A_INCONCLUSIVE",
+    "leak_dynamic": "L1A_REJECTED_LEAKAGE",
+    "leak_static": "L1A_REJECTED_LEAKAGE",
+    "pass_branch": "L1A_PASS",
+    "real_hypothesis": "L1A_REJECTED_BOUNDS",
+    "spec_reject": "L1A_REJECTED_SPEC"
+  },
+  "extra_checks": {
+    "coverage_denominator_uses_declared_points": true,
+    "digest_stable": true,
+    "dynamic_detects_fullsample_only": true,
+    "inconclusive_metrics_all_null": true,
+    "oos_evaluated_once": true,
+    "static_detects_center_rolling": true
+  },
+  "generated_at": "2026-10-27T15:17:42+0800",
+  "notes": [
+    "real_hypothesis 用的是真实行情（000001.SZ，qfq 研究层 + exec 交易层跨源抽检），结论只对该假设/该区间成立，不能外推为「ma_cross 全局无效」。",
+    "pass_branch 用合成上升趋势 + 买入持有策略，只为验证「通过」分支可达，不构成任何策略结论。",
+    "边界值来自契约文件（跑前写定）；本文件所有判定均可用 scripts/l1a_gate.py 复现。"
+  ],
+  "task": "阶段三 L1a 向量化粗筛闸门",
+  "verdict": "L1A_GATE_READY",
+  "verdict_matched": {
+    "coverage_reject": true,
+    "data_reject": true,
+    "inconclusive": true,
+    "leak_dynamic": true,
+    "leak_static": true,
+    "pass_branch": true,
+    "real_hypothesis": true,
+    "spec_reject": true
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "w1-window-record-v1",
+  "run_at": "2026-10-27T09:46:35+08:00",
+  "design_version": "oos75-v3",
+  "request_range": {
+    "start": "20170101",
+    "end": "20241231"
+  },
+  "price_limit_mode": "off",
+  "n_experiments": 6,
+  "experiments": [
+    {
+      "experiment_id": "14de27428d810e3b",
+      "symbol": "000001.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.016540800000000022,
+      "median_strategy_minus_median_benchmark": 0.020820299999999903,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\trial\\windows\\14de27428d810e3b\\windows.csv"
+    },
+    {
+      "experiment_id": "3fde95ee68bbed86",
+      "symbol": "000001.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01650470000000004,
+      "median_strategy_minus_median_benchmark": 0.020890799999999987,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\trial\\windows\\3fde95ee68bbed86\\windows.csv"
+    },
+    {
+      "experiment_id": "ebf86a61cd7aac35",
+      "symbol": "000001.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.018378099999999953,
+      "median_strategy_minus_median_benchmark": 0.017910900000000063,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\trial\\windows\\ebf86a61cd7aac35\\windows.csv"
+    },
+    {
+      "experiment_id": "0e6a941a8db27ab7",
+      "symbol": "000001.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.013987799999999995,
+      "median_strategy_minus_median_benchmark": 0.07659859999999996,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\trial\\windows\\0e6a941a8db27ab7\\windows.csv"
+    },
+    {
+      "experiment_id": "daae51beca679a39",
+      "symbol": "000001.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.014142700000000064,
+      "median_strategy_minus_median_benchmark": 0.07655880000000004,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\trial\\windows\\daae51beca679a39\\windows.csv"
+    },
+    {
+      "experiment_id": "b8d85a2e6c2c3cd6",
+      "symbol": "000001.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.007156199999999946,
+      "median_strategy_minus_median_benchmark": 0.07888890000000004,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\trial\\windows\\b8d85a2e6c2c3cd6\\windows.csv"
+    }
+  ],
+  "note": "每个 experiment_id 对应一个子目录的 windows.csv（逐窗一行）。median_paired_excess 是逐窗差的中位数，median_strategy_minus_median_benchmark 是两个中位数之差，两者不相等。"
+}

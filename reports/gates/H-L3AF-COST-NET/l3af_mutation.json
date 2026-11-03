@@ -1,0 +1,100 @@
+{
+ "experiment_id": "H-L3AF-MUTATION",
+ "prereg_sha256": "ed2a03162ce3907bef3e75b839a201cfad0799973ff14b0a145a51eb60d58cb8",
+ "n_mutations": 10,
+ "n_caught_as_expected": 10,
+ "n_mismatch": 0,
+ "negative_control": {
+  "cost": 0,
+  "family": 0,
+  "evidence": 0
+ },
+ "mutations": [
+  {
+   "id": "M1",
+   "title": "把单边换手当双边（成本 ×2）",
+   "expect_caught_by": "G2_COST_ARITHMETIC",
+   "caught": true,
+   "expected": true,
+   "detail": "命中 ['G2_COST_ARITHMETIC']"
+  },
+  {
+   "id": "M2",
+   "title": "净收益 t 复用毛收益标准误",
+   "expect_caught_by": "G6_SE_FROM_NET",
+   "caught": true,
+   "expected": true,
+   "detail": "命中 ['G6_SE_FROM_NET']"
+  },
+  {
+   "id": "M3",
+   "title": "某一档少一个月（月份未对齐）",
+   "expect_caught_by": "G4_MONTH_ALIGNMENT",
+   "caught": true,
+   "expected": true,
+   "detail": "命中 ['G4_MONTH_ALIGNMENT']"
+  },
+  {
+   "id": "M4",
+   "title": "把成本当逐月常数（se_net 恒等于 se_gross）",
+   "expect_caught_by": "summarize_se_claim 的 TIER_DEPENDENT",
+   "caught": true,
+   "expected": true,
+   "detail": "判为 HOLDS_ALL_TIERS"
+  },
+  {
+   "id": "M5",
+   "title": "m 算术写死 24（与成员数不符）",
+   "expect_caught_by": "G9_FAMILY_CONSISTENCY",
+   "caught": true,
+   "expected": true,
+   "detail": "命中 ['G9_FAMILY_CONSISTENCY']"
+  },
+  {
+   "id": "M6",
+   "title": "BY 漏乘 H_m（真实数据）→ 预期抓不到",
+   "expect_caught_by": "cross_check 的 by 不一致",
+   "caught": false,
+   "expected": false,
+   "detail": "by 一致=True；本数据上 BH 与 BY 的拒绝集合恰好相同 ⇒ 抓不到。这不是闸门弱，是**数据不给区分力**（L3ac M6 完全同型）"
+  },
+  {
+   "id": "M6b",
+   "title": "BY 漏乘 H_m（合成数据，BH≠BY）",
+   "expect_caught_by": "cross_check 的 by 不一致",
+   "caught": true,
+   "expected": true,
+   "detail": "by 一致=False（mine 拒 0 条，ref 拒 12 条）"
+  },
+  {
+   "id": "M7",
+   "title": "无净序列的条目被标为成本后证据",
+   "expect_caught_by": "G10_NO_AUTO_PROMOTION",
+   "caught": true,
+   "expected": true,
+   "detail": "命中 ['G10_NO_AUTO_PROMOTION']"
+  },
+  {
+   "id": "M8",
+   "title": "phasei_v0 借用 V1 换手并直接判 PASS",
+   "expect_caught_by": "G10_NO_AUTO_PROMOTION",
+   "caught": true,
+   "expected": true,
+   "detail": "命中 ['G10_NO_AUTO_PROMOTION']"
+  },
+  {
+   "id": "M9",
+   "title": "常数成本时 Var(c) 应为精确 0",
+   "expect_caught_by": "variance_decomposition 的 var_cost==0",
+   "caught": true,
+   "expected": true,
+   "detail": "var_cost=0.0"
+  }
+ ],
+ "notes": [
+  "M4 的期望不是「闸门报错」而是「结论发生变化」：常数成本不会违反任何恒等式，",
+  "它只会让 se_net 恰好等于 se_gross ——所以能不能抓到只取决于有没有把四个方差分量算出来。",
+  "这就是本阶段不用「多写几条断言」而用「多算几个分量」的理由。",
+  "M6 未抓到，原因是真实数据上 BH 与 BY 的拒绝集合恰好相同 —— 两法一致不能当作实现正确的证据，所以另加 M6b 用合成数据把两者分开；M6b 抓到即证明互校机制本身有效。"
+ ]
+}

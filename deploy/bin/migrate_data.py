@@ -62,6 +62,10 @@ def build_manifest(specs: list[tuple[str, pathlib.Path]], excludes: list[str],
                    specs_rel: list[tuple[str, pathlib.Path, str]] | None = None) -> dict:
     items: list[dict] = []
     t0 = time.time()
+    # ⚠️ specs_rel 里的 rel **必须相对仓库根**，不能是 root.as_posix()。
+    #    用绝对路径的后果：清单在源机生成，目标机按 `base_rel / 绝对路径` 拼接
+    #    ⇒ 1 万个文件全报"缺失"。这个 bug 真实发生过一次
+    #    （2026-11-03 首次云主机部署），verify 里已加绝对路径拦截。
     specs_rel = specs_rel or [(lbl, root, root.as_posix()) for lbl, root in specs]
     for label, root in specs:
         if not root.exists():
@@ -106,6 +110,15 @@ def verify(manifest: dict, roots: dict[str, pathlib.Path]) -> int:
         if h.hexdigest() != manifest["manifest_sha256"]:
             print("[verify] ✗ 清单自身的 sha256 不符——清单在传输中被改过，停止校验")
             return 1
+
+    # 拦截"清单里的 roots 是绝对路径"：跨机校验时它必然全缺失，
+    # 1 万个"缺失"里看不出这一个原因，必须在动手前报清楚。
+    bad_roots = {k: v for k, v in (manifest.get("roots_rel") or {}).items()
+                 if len(v) >= 2 and v[1] == ":" or v.startswith("/")}
+    if bad_roots:
+        print(f"[verify] ✗ 清单 roots_rel 含绝对路径，无法跨机校验：{bad_roots}", file=sys.stderr)
+        print("[verify]   请用 --root label=相对路径 重新生成清单（或升级到已修复版本）", file=sys.stderr)
+        return 1
 
     missing, size_bad, hash_bad, ok = [], [], [], 0
     seen: set[tuple[str, str]] = set()
@@ -194,13 +207,16 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "manifest":
         if args.root:
-            specs = []
+            pairs = []
             for spec in args.root:
                 label, _, rel = spec.partition("=")
-                specs.append((label, base / rel))
+                pairs.append((label, rel))
         else:
-            specs = [(label, base / rel) for label, rel in DEFAULT_SPECS]
-        payload = build_manifest(specs, args.exclude)
+            pairs = list(DEFAULT_SPECS)
+        # rel 原样写进清单（相对仓库根）。绝不写 base 的绝对路径。
+        specs = [(label, base / rel) for label, rel in pairs]
+        specs_rel = [(label, base / rel, rel) for label, rel in pairs]
+        payload = build_manifest(specs, args.exclude, specs_rel)
         out = pathlib.Path(args.out)
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n",

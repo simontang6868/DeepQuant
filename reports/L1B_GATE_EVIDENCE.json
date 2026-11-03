@@ -1,0 +1,177 @@
+{
+  "all_passed": true,
+  "equivalence": {
+    "equity_identical": true,
+    "fills_identical": true,
+    "first_diff": null,
+    "kernel_fills": 46,
+    "kernel_final_equity": 202311.04,
+    "legacy_fills": 46,
+    "legacy_final_equity": 202311.04
+  },
+  "generated_at": "2026-10-27T15:06:27+00:00",
+  "limit_hits": {
+    "days": 5140,
+    "first_row_unjudged": true,
+    "limit_down_open_days": 9,
+    "limit_up_open_days": 4,
+    "not_tradable_days": 0,
+    "source": "data/exec_all/000001.SZ.exec.csv（交易层，不复权）"
+  },
+  "limitations": [
+    "本仓库只有日线数据：撮合是参数化模型，不是订单簿复现。",
+    "参与率 0.10 与队列 0.5 为首版初值，未用真实成交数据标定。",
+    "主判定不含冲击成本（slippage_mode=none）；冲击敏感性需另开预登记。",
+    "L1b 只评估粗筛区间，样本外表现属 L3 职责。"
+  ],
+  "price_explain": {
+    "clean_unexplained": 0,
+    "detects_injected_deviation": true,
+    "injected_unexplained": 1,
+    "tolerance": 0.005
+  },
+  "sensitivity": [
+    {
+      "baseline_return": 1.02267106,
+      "cash": 1000000.0,
+      "fill_rate_market": 1.0,
+      "retention": 1.0,
+      "stressed_return": 1.02267106,
+      "verdict": "L1B_PASSED"
+    },
+    {
+      "baseline_return": 1.0227907360000001,
+      "cash": 10000000.0,
+      "fill_rate_market": 1.0,
+      "retention": 1.0,
+      "stressed_return": 1.0227907360000001,
+      "verdict": "L1B_PASSED"
+    },
+    {
+      "baseline_return": 1.0228492373333333,
+      "cash": 30000000.0,
+      "fill_rate_market": 0.8648648648648649,
+      "retention": 0.8069871836491751,
+      "stressed_return": 0.8254262253333333,
+      "verdict": "L1B_REJECTED_FILL_RATE"
+    },
+    {
+      "baseline_return": 1.0228646294,
+      "cash": 100000000.0,
+      "fill_rate_market": 0.4444444444444444,
+      "retention": 0.7659064226901108,
+      "stressed_return": 0.7834185891999998,
+      "verdict": "L1B_REJECTED_FILL_RATE"
+    }
+  ],
+  "standards": {
+    "T+1 在账户层被结构性拒绝": true,
+    "封板标记来自交易层且真实存在": true,
+    "成交价核验能抓到注入的偏差": true,
+    "无摩擦与日线引擎逐笔一致": true,
+    "终态覆盖无静默缺口（未覆盖的必须有正当理由）": true,
+    "资金敏感性跨过判定阈值": true
+  },
+  "t_plus_one": {
+    "after_settle_position": 0,
+    "invariants": [],
+    "message": "卖出 TEST 1000 超过可卖 0（T+1：当日买入 1000 股不可卖）",
+    "same_day_sell_blocked": true
+  },
+  "verdicts": {
+    "cases": {
+      "data": {
+        "detail": [
+          "数据文件不存在：data\\qfq_all\\__missing__.csv"
+        ],
+        "fill_rate": null,
+        "retention": null,
+        "verdict": "L1B_REJECTED_DATA"
+      },
+      "decay": {
+        "detail": [
+          "基线累计收益 +0.1066",
+          "成交率 1.0000（阈值 0.9）",
+          "精验收益 +0.0017（基线 +0.1066）"
+        ],
+        "fill_rate": 1.0,
+        "retention": 0.016118503734661012,
+        "verdict": "L1B_REJECTED_DECAY"
+      },
+      "fill_rate": {
+        "detail": [
+          "基线累计收益 +0.1066",
+          "成交率 0.0000（阈值 0.9）"
+        ],
+        "fill_rate": 0.0,
+        "retention": 0.0,
+        "verdict": "L1B_REJECTED_FILL_RATE"
+      },
+      "inconclusive": {
+        "detail": [
+          "基线累计收益 -0.2814",
+          "无摩擦基线收益 -0.2814 ≤ 0；L1a 不应放行这样的策略，两级口径脱节"
+        ],
+        "fill_rate": 1.0,
+        "retention": null,
+        "verdict": "L1B_INCONCLUSIVE"
+      },
+      "passed": {
+        "detail": [
+          "基线累计收益 +0.1066",
+          "成交率 1.0000（阈值 0.9）",
+          "精验收益 +0.1066（基线 +0.1066）"
+        ],
+        "fill_rate": 1.0,
+        "retention": 1.0,
+        "verdict": "L1B_PASSED"
+      },
+      "prerequisite": {
+        "detail": [
+          "基线累计收益 +0.1066",
+          "成交率 1.0000（阈值 0.9）",
+          "精验收益 +0.1066（基线 +0.1066）"
+        ],
+        "fill_rate": 1.0,
+        "retention": 1.0,
+        "verdict": "L1B_BLOCKED_PREREQUISITE"
+      },
+      "sign_reversal": {
+        "detail": [
+          "基线累计收益 +0.1066",
+          "成交率 1.0000（阈值 0.9）",
+          "精验收益 -0.1295（基线 +0.1066）"
+        ],
+        "fill_rate": 1.0,
+        "retention": -1.2143181383343895,
+        "verdict": "L1B_REJECTED_SIGN_REVERSAL"
+      },
+      "spec": {
+        "detail": [
+          "param_grid 为空时 parse_spec 直接拒绝（见 tests/gates/test_gates_spec.py）"
+        ],
+        "fill_rate": null,
+        "note": "在 parse_spec 层被拒，未进入 run_l1b 的判定链",
+        "retention": null,
+        "verdict": "L1B_REJECTED_SPEC"
+      }
+    },
+    "coverage_ok": true,
+    "covered_verdicts": [
+      "L1B_BLOCKED_PREREQUISITE",
+      "L1B_INCONCLUSIVE",
+      "L1B_PASSED",
+      "L1B_REJECTED_DATA",
+      "L1B_REJECTED_DECAY",
+      "L1B_REJECTED_FILL_RATE",
+      "L1B_REJECTED_SIGN_REVERSAL",
+      "L1B_REJECTED_SPEC"
+    ],
+    "not_covered": [
+      "L1B_REJECTED_UNEXPLAINABLE_PRICE"
+    ],
+    "not_covered_justification": {
+      "L1B_REJECTED_UNEXPLAINABLE_PRICE": "正常路径不可达：成交价由模型算出，只有实现有 bug 才会偏离。已用注入偏差证明核验能抓到（见 price_explain.detects_injected_deviation）。"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+ "experiment_id": "H-L3Z-MULTIPLICITY",
+ "prereg_sha256": "5ffcc2115ee6271d0a378aff67f5d2d1f95d206b186e5143188e7a9d7b85fe94",
+ "subject_l3u_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+ "subject_cards_sha256": "9da9b09771076fbe485366e76a2517bf9988bd93948c1f652617304de179c08a",
+ "outputs": {
+  "json": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+  "markdown": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.md"
+ },
+ "m_all": 27,
+ "m_independent": 24,
+ "expected_false_positives": 1.2,
+ "main_run": {
+  "estimator": "t_nw3",
+  "m": 24,
+  "raw_significant": 10,
+  "bonferroni_pass": 6,
+ "holm_pass": 6,
+  "bh_pass": 7
+ },
+ "downgraded": ["gate3_d", "phases_net", "phaset_net"],
+ "cross_with_deliverable": {
+  "QUOTABLE": {"total": 1, "survives": 1, "downgraded": 0},
+  "QUOTABLE_MARGINAL": {"total": 4, "survives": 4, "downgraded": 0},
+  "DIRECTION_ONLY": {"total": 3, "survives": 0, "downgraded": 3},
+  "NULL_CONFIRMED": {"total": 1, "survives": 1, "downgraded": 0},
+  "UNDERPOWERED": {"total": 12, "survives": 0, "downgraded": 0, "not_applicable": 4},
+  "NOT_GRADED": {"total": 6, "survives": 1, "downgraded": 0, "not_applicable": 3}
+ },
+ "headline": "定稿标注为「只能引方向」的 3 条（gate3_d / phases_net / phaset_net）在 α=0.05 的多重检验校正下全部掉档；真正能宣称显著的是 6 条。掉档的含义是「不足以宣称显著」，不是「效应不存在」。",
+ "discipline_violation": "本阶段先做了探索性计算才回头写预登记，违反 R2。predictions 里 P1/P2/P3 标注为 post_hoc（观测复述，非预测），只有 P4/P5/P6 是测量前写定的真预测。已在预登记如实记录，不修饰。",
+ "refuted_predictions": ["P4"],
+ "p4_why_wrong": "我以为收紧 α 会让掉档变多，实际相反：α 同时定义「哪些条算单条显著」，收紧 α 会让进入待校正集合的条目变少。α=0.01 时掉档集合为空。掉档集合随 α 非单调。",
+ "amendments": ["A1"],
+ "note": "本阶段不改对外定稿。是否据此修订 DELIVERABLE_QUOTE_SHEET 是一次需要单独授权的改动。"
+}

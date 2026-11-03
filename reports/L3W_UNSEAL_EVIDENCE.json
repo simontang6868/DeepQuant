@@ -1,0 +1,19 @@
+{
+ "experiment_id": "H-L3W-UNSEAL-000001",
+ "prereg_sha256": "709d76ddf1766e107baa3109c0eb5d7da46539ccd46ee632e163cb0448d52477",
+ "prereg_bytes": 6956,
+ "subject_l3u_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+ "outputs": {
+  "json": "reports/gates/H-L3W-UNSEAL/l3w_unseal.json",
+  "markdown": "reports/gates/H-L3W-UNSEAL/l3w_unseal.md",
+  "patch": "reports/gates/H-L3W-UNSEAL/l3v_claims_patch.json"
+ },
+ "n_unsealed": 4,
+ "n_stay_sealed": 2,
+ "quotable_before": 0,
+ "quotable_after": 1,
+ "n_changed": 4,
+ "refuted_predictions": [
+  "P4"
+ ]
+}

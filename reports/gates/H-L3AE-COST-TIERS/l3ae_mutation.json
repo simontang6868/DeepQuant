@@ -1,0 +1,206 @@
+{
+ "mutation_count": 7,
+ "positive_count": 6,
+ "positive_caught": 6,
+ "control_count": 1,
+ "control_satisfied": 1,
+ "all_satisfied": true,
+ "restored_matches_baseline": true,
+ "baseline": {
+  "gates": [
+   "G1_REPRODUCTION_FAILED",
+   "G1_REPRODUCTION_FAILED",
+   "G1_REPRODUCTION_FAILED"
+  ],
+  "status": "COST_TIERS_COMPLETED_WITH_DEFECTS",
+  "cost_01": 0.03772400000000001,
+  "se_iid": 0.04841413358411035
+ },
+ "mutations": [
+  {
+   "id": "M1",
+   "description": "月度成本乘 12（年化当月度）",
+   "expect": "caught",
+   "satisfied": true,
+   "caught": true,
+   "reason": "cost 0.037724 → 0.452688；G1 报错=True",
+   "changed": true,
+   "after": {
+    "gates": [
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED"
+    ],
+    "status": "BLOCKED_BY_REPRODUCTION_FAILURE",
+    "cost_01": 0.4526880000000001,
+    "se_iid": 0.04841413358411035,
+    "econ_rates": [
+     0.00051,
+     0.0005846666666666667,
+     0.0012339999999999999
+    ]
+   }
+  },
+  {
+   "id": "M2",
+   "description": "印花按双边算（等价单边 0.076%）",
+   "expect": "caught",
+   "satisfied": true,
+   "caught": true,
+   "reason": "1 亿档等效费率 0.000510 vs 等价单边 0.00051；相等=False",
+   "changed": true,
+   "after": {
+    "gates": [
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G8_MIN_COMMISSION_THRESHOLD"
+    ],
+    "status": "COST_TIERS_COMPLETED_WITH_DEFECTS",
+    "cost_01": 0.03772400000000001,
+    "se_iid": 0.04841413358411035,
+    "econ_rates": [
+     0.00051,
+     0.0005846666666666667,
+     0.0012339999999999999
+    ]
+   }
+  },
+  {
+   "id": "M3",
+   "description": "se_iid 改用 ddof=0",
+   "expect": "caught",
+   "satisfied": true,
+   "caught": true,
+   "reason": "se_iid 0.048414 → 0.048312（相对差 2.11e-03）；G5 报错=True",
+   "changed": true,
+   "after": {
+    "gates": [
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G5_SE_MISMATCH"
+    ],
+    "status": "BLOCKED_BY_REPRODUCTION_FAILURE",
+    "cost_01": 0.03772400000000001,
+    "se_iid": 0.048311886091763595,
+    "econ_rates": [
+     0.00051,
+     0.0005846666666666667,
+     0.0012339999999999999
+    ]
+   }
+  },
+  {
+   "id": "M4",
+   "description": "均值偏移 1e-4（超出存储下限）",
+   "expect": "caught",
+   "satisfied": true,
+   "caught": true,
+   "reason": "偏移后共 9 条报错，其中 G1B 占 4 条 ⇒ G1b 独立抓到了（不是靠 G1 顺带）",
+   "changed": true,
+   "after": {
+    "gates": [
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1B_BEYOND_STORAGE_FLOOR",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G9_MEAN_SOURCE_MISMATCH"
+    ],
+    "status": "BLOCKED_BY_REPRODUCTION_FAILURE",
+    "cost_01": 0.03772400000000001,
+    "se_iid": 0.04841413358411034,
+    "econ_rates": [
+     0.00051,
+     0.0005846666666666667,
+     0.0012339999999999999
+    ]
+   }
+  },
+  {
+   "id": "M5",
+   "description": "最低佣金不生效",
+   "expect": "caught",
+   "satisfied": true,
+   "caught": true,
+   "reason": "三档等效费率 ['0.000510', '0.000510', '0.000510']；单调=False",
+   "changed": true,
+   "after": {
+    "gates": [
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED"
+    ],
+    "status": "COST_TIERS_COMPLETED_WITH_DEFECTS",
+    "cost_01": 0.03772400000000001,
+    "se_iid": 0.04841413358411035,
+    "econ_rates": [
+     0.00051,
+     0.00051,
+     0.00051
+    ]
+   }
+  },
+  {
+   "id": "M6",
+   "description": "均值改取 summary.mean_pp（循环论证）",
+   "expect": "caught",
+   "satisfied": true,
+   "caught": true,
+   "reason": "net 相对偏差 3.69e-06 → 0.00e+00（变小即证实在抄产物）",
+   "changed": true,
+   "after": {
+    "gates": [
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED"
+    ],
+    "status": "COST_TIERS_COMPLETED_WITH_DEFECTS",
+    "cost_01": 0.03772400000000001,
+    "se_iid": 0.04841413358411035,
+    "econ_rates": [
+     0.00051,
+     0.0005846666666666667,
+     0.0012339999999999999
+    ]
+   }
+  },
+  {
+   "id": "M7",
+   "description": "负对照：同一偏移但削掉 G1b",
+   "expect": "not_caught",
+   "satisfied": true,
+   "caught": false,
+   "reason": "削掉 G1b 后报错降到 4 条（G1B 消失）；⇒ G1b 是唯一抓到该错误的闸门",
+   "changed": true,
+   "after": {
+    "gates": [
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED",
+     "G1_REPRODUCTION_FAILED"
+    ],
+    "status": "COST_TIERS_COMPLETED_WITH_DEFECTS",
+    "cost_01": 0.03772400000000001,
+    "se_iid": 0.04841413358411034,
+    "econ_rates": [
+     0.00051,
+     0.0005846666666666667,
+     0.0012339999999999999
+    ]
+   }
+  }
+ ]
+}

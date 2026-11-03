@@ -1,0 +1,25 @@
+{
+ "generated_at": "2026-10-29T22:30+08:00",
+ "run_wall_clock": "2026-10-29T22:44:51+0800",
+ "runtime_sec": 0.4,
+ "status": "VERIFIED_WITH_DOCUMENTED_LIMITATIONS",
+ "prereg_sha256": "ed2a03162ce3907bef3e75b839a201cfad0799973ff14b0a145a51eb60d58cb8",
+ "files": {
+  "reports/L3AF_COST_NET_RETURN_RECONSTRUCTION.md": "7b2426b81fd507eb233f10b6cd3d9484a2e0cfa93d7d911810ac195ae5de8c5c",
+  "reports/L3AF_TEST_FAMILY_AUDIT.md": "d17a08327eb75f1c90e145bc9fe8a7d0a1bcf3e30e071ee82065f75e3af10c75",
+  "reports/L3AF_CURRENT_EVIDENCE_STATUS.md": "7fa339b9993488c3da9dd73cae951d031fc46a6c9558388fcdf914912829b5ac",
+  "reports/STAGE_REPORT_L3AF_FINAL.md": "71b7dc26fb835bdc9d7714958181af40edef25fc4ab0a76a150458958eb3bffb",
+  "docs/DELIVERABLE_QUOTE_SHEET_CURRENT.md": "2f3e8703e3392ff366dca7420e35c9cb27aa21b380bb7540fd563b2a09eca7f3"
+ },
+ "json": {
+  "l3af_cost_net.json": "942203d47e3bc027296e361a6f03aafcbb5c690fdb627d4a0ef82333f16fe657",
+  "l3af_family.json": "533031c0a20f6c3436a5fbc74a71b0fc3aae964524bafdf58f894a3129d1c6fb",
+  "l3af_evidence.json": "603b7585b5542a7ba416ea36410039adb2491fb0610b4af815cbf23f96f46ccf",
+  "l3af_monthly_net.csv": "599a3788bc88770ac7726f178cc90987ca53d712fffc9731c8133d184769d8ab"
+ },
+ "gates": {
+  "cost": 0,
+  "family": 0,
+  "evidence": 0
+ }
+}

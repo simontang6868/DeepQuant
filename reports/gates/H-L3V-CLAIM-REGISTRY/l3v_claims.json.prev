@@ -1,0 +1,315 @@
+{
+ "experiment_id": "H-L3V-CLAIM-REGISTRY",
+ "audit_only": true,
+ "prereg_sha256": "16f10272652681143ffa3e97d6896958083c0264fee01b10284d2962167dfb39",
+ "subject_l3u_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+ "claims_sha256": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+ "unseal_sources": [
+  {
+   "path": "reports/gates/H-L3W-UNSEAL/l3w_unseal.json",
+   "sha256": "ce10baa7dabb1e1219177448e7e4ba6d1d81769cbcbde40c8dae85860445b6c0"
+  },
+  {
+   "path": "reports/gates/H-L3X-TONLY/l3x_unseal.json",
+   "sha256": "e70703b2f69072194f943a8ab64abe4a7377534dc6a82948061d34623422e5c7"
+  },
+  {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_claims_patch.json",
+   "sha256": "c976d7d3dac3b0e1a291cc5bd9761352c8ec7d4b82463570b32fd974fcc14703"
+  }
+ ],
+ "n_unseal_decisions": 14,
+ "n_quoted_via_unseal": 11,
+ "elapsed_seconds": 0.021,
+ "n_claims": 27,
+ "n_l3u_rows": 27,
+ "coverage": {
+  "n_claims": 27,
+  "n_rows": 27,
+  "missing": [],
+  "orphan": [],
+  "family_mismatch": [],
+  "unit_mismatch": [],
+  "complete": true
+ },
+ "tier_counts": {
+  "EXPLORATORY": 3,
+  "NOT_GRADED": 6,
+  "NULL_CONFIRMED": 1,
+  "QUOTABLE": 1,
+  "QUOTABLE_MARGINAL": 4,
+  "UNDERPOWERED": 12
+ },
+ "tier_keys": {
+  "EXPLORATORY": [
+   "gate3_d",
+   "phases_net",
+   "phaset_net"
+  ],
+  "NOT_GRADED": [
+   "phasej_netA",
+   "phasek_m1net",
+   "phasem_spread",
+   "phasep_late",
+   "phaser_alpha",
+   "phasev_net"
+  ],
+  "NULL_CONFIRMED": [
+   "phasel_alpha"
+  ],
+  "QUOTABLE": [
+   "phasec_d"
+  ],
+  "QUOTABLE_MARGINAL": [
+   "gate6_d",
+   "phasec2_d",
+   "phasef_delta",
+   "phaseo_netBASE"
+  ],
+  "UNDERPOWERED": [
+   "gate1_d",
+   "gate2_d",
+   "gate4_d",
+   "gate5_d",
+   "l3_test",
+   "l3p_test",
+   "l3r_delta",
+   "l3s_ic",
+   "phasec3_d",
+   "phasee_alpha",
+   "phaseg_alpha",
+   "phaseq_max5"
+  ]
+ },
+ "n_quotable": 1,
+ "n_not_graded": 6,
+ "violations": [],
+ "violation_counts": {},
+ "n_violations": 0,
+ "duplicate_groups": [
+  {
+   "keys": [
+    "phasel_alpha",
+    "phaser_alpha"
+   ],
+   "n": 2
+  },
+  {
+   "keys": [
+    "phaseo_netBASE",
+    "phasev_net"
+   ],
+   "n": 2
+  },
+  {
+   "keys": [
+    "phases_net",
+    "phaset_net"
+   ],
+   "n": 2
+  }
+ ],
+ "n_duplicate_keys": 6,
+ "n_independent_numbers": 24,
+ "spot_check": {
+  "keys": [
+   "gate6_d",
+   "phaseo_netBASE",
+   "l3s_ic"
+  ],
+  "checks": [
+   {
+    "key": "gate6_d",
+    "n": 237,
+    "n_matches": true,
+    "mean_recomputed": 0.7084456860759494,
+    "mean_stored": 0.7084456860759494,
+    "max_abs_diff": 0.0,
+    "ok": true
+   },
+   {
+    "key": "phaseo_netBASE",
+    "n": 237,
+    "n_matches": true,
+    "mean_recomputed": 0.13595891139240507,
+    "mean_stored": 0.13595891139240507,
+    "max_abs_diff": 0.0,
+    "ok": true
+   },
+   {
+    "key": "l3s_ic",
+    "n": 198,
+    "n_matches": true,
+    "mean_recomputed": -0.023247769706966907,
+    "mean_stored": -0.023247769706966907,
+    "max_abs_diff": 0.0,
+    "ok": true
+   }
+  ],
+  "all_ok": true
+ },
+ "firstrun_compared": {
+  "path": "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims_firstrun_tokenbug.json",
+  "n_violations": 33,
+  "violation_counts": {
+   "ESTIMATOR_MISMATCH": 2,
+   "MISSING_CORE_FIELD": 6,
+   "SIGN_MISMATCH": 12,
+   "UNREGISTERED_NUMBER": 13
+  }
+ },
+ "retractions": [
+  {
+   "claim_key": "phaseq_max5",
+   "banned_phrasing": "MAX5 增量成立",
+   "reason": "原文判定 INCREMENTAL_ABSORBED 意为增量被吸收，即不成立；L3t 写成 MAX5_INCREMENTAL 属语义反转",
+   "source": "L3u §四"
+  },
+  {
+   "claim_key": "phasec2_d",
+   "banned_phrasing": "停牌效应就是池效应",
+   "reason": "phasec2 检验的是增量 +0.11pp，不是池效应本身；L3t 把 phasec2/phasec3 都记成 POOL_EFFECT_CONFIRMED",
+   "source": "L3u §一.1"
+  },
+  {
+   "claim_key": "gate3_d",
+   "banned_phrasing": "Gate 3 未通过",
+   "reason": "L3t 引的是 2016-2026 重跑（−0.40pp），判定窗口 2007-2015 是 +0.48pp，符号相反",
+   "source": "L3u §三"
+  },
+  {
+   "claim_key": "phasel_alpha",
+   "banned_phrasing": "SURGE 有可交易 alpha",
+   "reason": "净效应被吸收；MDE 0.09pp 之下剩下的 +0.11pp 不构成相对池平均的增量",
+   "source": "MEMORY §8.2 / 阶段 M"
+  },
+  {
+   "claim_key": "phases_net",
+   "banned_phrasing": "exQ5 现代段可用",
+   "reason": "S+T 阶段已撤回：现代段只在 L≥2 过，剔极端月后 t 降到 1.92，boot CI 跨 0",
+   "source": "MEMORY §7 已撤回四条"
+  },
+  {
+   "claim_key": "l3r_delta",
+   "banned_phrasing": "选择没有正贡献",
+   "reason": "L3r 事后功效 16.87%、MDE 0.926pp，只能写「无法判断」，不得写成「没用」",
+   "source": "MEMORY §8.5"
+  },
+  {
+   "claim_key": null,
+   "banned_phrasing": "反转在 2016 年后消失",
+   "reason": "已撤回的四条之一；本注册表不收录反转条目，此处登记以防回流",
+   "source": "MEMORY §7"
+  }
+ ],
+ "predictions": [
+  {
+   "id": "P1",
+   "statement": "覆盖双向差集为空：missing=0 且 orphan=0（27/27）。",
+   "quantity": "coverage.missing 与 coverage.orphan 的长度",
+   "observed": {
+    "missing": 0,
+    "orphan": 0
+   },
+   "holds": true,
+   "refuted": false,
+   "superseded_by": null,
+   "superseded_note": null
+  },
+  {
+   "id": "P2",
+   "statement": "数字类违规（VALUE_DRIFT + UNREGISTERED_NUMBER + UNUSED_NUMBER）合计在 1 到 8 之间。",
+   "quantity": "violation_counts 中三类之和",
+   "observed": {
+    "firstrun": 13,
+    "final": 0
+   },
+   "holds": false,
+   "refuted": true,
+   "superseded_by": null,
+   "superseded_note": null
+  },
+  {
+   "id": "P3",
+   "statement": "QUOTABLE 条目为 0，QUOTABLE_MARGINAL 为 2（phasef_delta、phaseo_netBASE）。",
+   "quantity": "tier_counts.QUOTABLE 与 tier_counts.QUOTABLE_MARGINAL",
+   "observed": {
+    "QUOTABLE": 1,
+    "QUOTABLE_MARGINAL": 4
+   },
+   "holds": null,
+   "refuted": false,
+   "superseded_by": "H-L3W-UNSEAL-000001",
+   "superseded_note": "P3 写于解封复核之前（当时 QUOTABLE=0 是事实）。L3w 解封 phasec_d 后 QUOTABLE=1、MARGINAL=3，P3 的判定对象已被替换，不再作为本阶段判据，原样保留为历史记录。"
+  },
+  {
+   "id": "P4",
+   "statement": "ESTIMATOR_MISMATCH = 0。",
+   "quantity": "violation_counts.ESTIMATOR_MISMATCH",
+   "observed": {
+    "ESTIMATOR_MISMATCH": 0
+   },
+   "holds": true,
+   "refuted": false,
+   "superseded_by": null,
+   "superseded_note": null
+  },
+  {
+   "id": "P5",
+   "statement": "数值指纹重复恰好 3 组、覆盖 6 个 key，27 条只对应 24 份独立数字。",
+   "quantity": "duplicate_groups 的组数与去重后的独立数字数",
+   "observed": {
+    "groups": 3,
+    "keys": 6,
+    "independent": 24
+   },
+   "holds": true,
+   "refuted": false,
+   "superseded_by": null,
+   "superseded_note": null
+  },
+  {
+   "id": "P6",
+   "statement": "撤回台账 7 条，且 BANNED_PHRASING = 0。",
+   "quantity": "len(retractions) 与 violation_counts.BANNED_PHRASING",
+   "observed": {
+    "retractions": 7,
+    "BANNED_PHRASING": 0
+   },
+   "holds": true,
+   "refuted": false,
+   "superseded_by": null,
+   "superseded_note": null
+  }
+ ],
+ "status": "CLAIMS_CONSISTENT",
+ "citation_blocks": [
+  "**`gate1_d`**（A_cross_spread，单位 pp）\n> Gate 1 窗口的 d 均值为 −0.40pp（t=−0.57 iid／−0.61 NW3），MDE 1.82pp 是效应本身的 4.6 倍，该窗口对 1pp 量级没有分辨力。\n\n- 窗口：single_window（Gate 1 判定窗口，n=48）\n- 判定估计量：iid\n- d 定义：0.5*long-0.5*short\n- 限定：48 个月只能分辨 1.8pp 以上的效应，任何小于该量级的差异在本窗口内不可判定\n- 限定：d 与文献常用 spread（long−short）差 2 倍，跨文献比较须换算\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 判核对未通过（仅 t 口径不同：summary 给 iid、登记表用 NW3）；L3x 复核：stat.t 与 t_iid 一致，ratio 0.217、事后功效 9.3%，NW 滞后网格全档 UNDERPOWERED\n- 分级来源：`l3w_unseal`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `gate1_out/032a11f591553e25/monthly_paired.csv::d`（n=48）",
+  "**`gate2_d`**（A_cross_spread，单位 pp）\n> Gate 2 的 d 均值为 −0.38pp（t=−1.64 iid／−1.59 NW3），MDE 0.68pp、事后功效 36%：未检出，但不足以判「无效应」。\n\n- 窗口：single_window（Gate 2 判定窗口，n=125）\n- 判定估计量：iid\n- d 定义：0.5*long-0.5*short\n- 限定：功效 36% 时「未检出」只能写成「无法判断」，不能写成「无效应」\n- 限定：d 与文献 spread 差 2 倍\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 判核对未通过（仅 t 口径不同，mean 完全一致）；L3x 复核：stat.t 与 t_iid 一致，ratio 0.569、事后功效 35.8%，网格全档 UNDERPOWERED\n- 分级来源：`l3w_unseal`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `gate2_out/c440c77d284a/monthly_paired.csv::d`（n=125）",
+  "**`gate3_d`**（A_cross_spread，单位 pp）\n> Gate 3 判定窗口（n=108）的 d 均值为 +0.48pp（t=+2.28）、MDE 0.59pp，|效应|/MDE 0.81 倍；另一次重跑给出 −0.40pp、t=−1.69、n=125，两者窗口不同，不可混引。单条显著但多重检验未通过，只能记为待验证的方向性观察。\n\n- 窗口：segment_2007_2015（Gate 3 的判定窗口；L3t 误用了该实验 2016-2026 的重跑文件）\n- 判定估计量：nw3\n- d 定义：0.5*long-0.5*short\n- 限定：本条的 −0.40pp 是另一个窗口的数字，不得与本窗口的 +0.48pp 混引\n- 限定：判定窗口不可跨期比较；样本起点（2005）年末仅 6 只，不纳入\n- 可引用强度：EXPLORATORY\n- 分级依据：原分级 DIRECTION_ONLY；L3z 审计后降级为 EXPLORATORY：单条 α=0.05 显著，但在同时报告全族的多重检验校正下未通过（BH/FWER 均未拒绝），只能记为待验证的方向性观察。（原依据：L3u 判核对未通过（L3t 取了 2016-2026 重跑文件，n 与 mean 均不同）；L3w 复核证明判定量与序列同源，|效应|/MDE=0.814，NW 滞后 0/1/2/3/4/6 全档恒为 DIRECTION_ONLY）\n- 分级来源：`l3z_audit`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `gate3_out/9b7235d77689/monthly_paired.csv::d`（n=108）",
+  "**`gate4_d`**（A_cross_spread，单位 pp）\n> Gate 4 的 d 均值为 +0.17pp（t=+0.87 iid／+0.97 NW3），MDE 0.48pp、事后功效 16%，无法判断。\n\n- 窗口：single_window（Gate 4 判定窗口，n=237）\n- 判定估计量：iid\n- d 定义：0.5*long-0.5*short\n- 限定：功效 16% 属于严重不足，任何关于有无效应的断言都不成立\n- 限定：d 与文献 spread 差 2 倍\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 判核对未通过（仅 t 口径不同）；L3x 复核：stat.t 与 t_iid 一致，ratio 0.346、事后功效 16.3%，网格全档 UNDERPOWERED\n- 分级来源：`l3w_unseal`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `gate4_out/94988f7c57d1/monthly_paired.csv::d`（n=237）",
+  "**`gate5_d`**（A_cross_spread，单位 pp）\n> Gate 5 的 d 均值为 +0.02pp（t=+0.16 iid／+0.15 NW3），MDE 0.43pp、事后功效 5%：这里的「没有证据」等于「没有分辨力」。\n\n- 窗口：single_window（Gate 5 判定窗口，n=249）\n- 判定估计量：iid\n- d 定义：0.5*long-0.5*short\n- 限定：功效 5% 意味着这个检验几乎不携带信息，不能用于支持任一方向的结论\n- 限定：d 与文献 spread 差 2 倍\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 判核对未通过（仅 t 口径不同）；L3x 复核：stat.t 与 t_iid 一致，ratio 0.055、事后功效 5.3%，网格全档 UNDERPOWERED——这个检验几乎不携带信息\n- 分级来源：`l3w_unseal`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `gate5_out/7c0c89916b0c/monthly_paired.csv::d`（n=249）",
+  "**`gate6_d`**（A_cross_spread，单位 pp）\n> 全 A as-of 口径的 d 均值为 +0.71pp（t=+4.39 iid／+4.64 NW3），MDE 0.43pp、事后功效 100%，但 |效应|/MDE 只有 1.66 倍。\n\n- 窗口：segment_2016_2026（as-of 全 A，n=237）\n- 判定估计量：iid\n- d 定义：0.5*long-0.5*short\n- 限定：头条 +4.39 是 iid t，同序列 NW3 为 +4.64，引用时须同列两数\n- 限定：这是横截面月度差距，不是可交易组合的账户收益\n- 限定：d 与文献 spread 差 2 倍\n- 可引用强度：QUOTABLE_MARGINAL\n- 分级依据：L3u 判核对未通过（仅 t 口径不同：判定用 iid、L3t 用 NW3）；L3x 复核：stat.t 与 t_iid 一致、mean 与 n 全等，ratio 1.658，NW 滞后网格全档 QUOTABLE_MARGINAL\n- 分级来源：`l3w_unseal`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `gate6_out/b8c4f1ecba44/monthly_paired.csv::d`（n=237）",
+  "**`phasec_d`**（A_cross_spread，单位 pp）\n> 池效应的判定量 spread(B)−spread(A) 为 +1.94pp（t=+6.37）、MDE 0.85pp，|效应|/MDE 2.27 倍；格 A 自身的水平是 +0.01pp，与本条的差值不可混用。\n\n- 窗口：single_window（阶段 C 五格设计，n=237）\n- 判定估计量：nw3\n- d 定义：long_minus_short\n- 限定：该值是两格 spread 之差，不是任何单一组合的收益水平\n- 限定：spread 与 d 差 2 倍，跨文献引用须换算\n- 可引用强度：QUOTABLE\n- 分级依据：L3u 判核对未通过（L3t 取了格 A 自身水平 +0.0141pp）；L3w 复核证明判定量与序列同源，|效应|/MDE=2.273，NW 滞后 0/1/2/3/4/6 全档恒为 QUOTABLE\n- 分级来源：`l3w_unseal`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phasec_out/3a01759a37f0/five_cells.csv::+1×d[B] + -1×d[A]`（n=237）",
+  "**`phasec2_d`**（A_cross_spread，单位 pp）\n> 停牌效应的增量 +0.11pp（t=+5.01）、MDE 0.06pp，|效应|/MDE 1.79 倍；池效应本身的水平是 +0.66pp，不是本条的增量。\n\n- 窗口：single_window（阶段 C-2 五格设计，n=237）\n- 判定估计量：nw3\n- d 定义：long_minus_short\n- 限定：检验的是相对基准格的增量，不是停牌效应的绝对规模\n- 限定：统计显著但量级小：0.11pp/月 对一个组合的实际影响需另算\n- 可引用强度：QUOTABLE_MARGINAL\n- 分级依据：L3u 判核对未通过（L3t 记成 POOL_EFFECT_CONFIRMED，取的是池效应水平）；L3w 复核证明判定量与序列同源，|效应|/MDE=1.790，NW 滞后 0/1/2/3/4/6 全档恒为 QUOTABLE_MARGINAL\n- 分级来源：`l3w_unseal`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phasec2_out/953c32fdc556/cells.csv::+1×spread_v1 + -1×spread`（n=237）",
+  "**`phasec3_d`**（A_cross_spread，单位 pp）\n> 滞后成本的增量 +0.05pp（t=+0.60）、MDE 0.22pp、事后功效 9%，无法判断（登记表同样写成 +0.66pp）。\n\n- 窗口：single_window（阶段 C-3 五格设计，n=237）\n- 判定估计量：nw3\n- d 定义：long_minus_short\n- 限定：功效 9%，这个检验不足以支持「滞后成本可忽略」这类否定结论\n- 限定：只能说明在本设计下未观察到增量，不能说明增量为零\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 判核对未通过（L3t 同样记成池效应水平）；L3w 复核证明判定量与序列同源，|效应|/MDE=0.213、事后功效 9.2%，全档 UNDERPOWERED\n- 分级来源：`l3w_unseal`（解封复核，非 L3u 正式分级；L3u 记为 NOT_GRADED）\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phasec3_out/6a76a10687b4/cells.csv::+1×spread_v1 + -1×spread_v0`（n=237）",
+  "**`phasee_alpha`**（B_long_only，单位 pp）\n> 非流动性的单边 alpha 为 +0.28pp（t=+1.90），MDE 0.41pp、事后功效 48%：未检出且功效不足。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 限定：单边 alpha 与双边 spread 不可互换，量级也不可直接比较\n- 限定：功效 48% 属于临界不足，「未检出」不构成「无效应」\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 核对一致，未检出且事后功效 47.7%，落 UNDERPOWERED 档\n- 来源：L3u 正式分级 UNDERPOWERED｜序列 `phasee_out/2a3893f3f5b1/monthly.csv::alpha`（n=237）",
+  "**`phasef_delta`**（A_cross_spread，单位 pp）\n> MAX5 的 delta 为 +0.74pp（t=+3.41），MDE 0.61pp，|效应|/MDE 1.22 倍，是本项目最接近可引用的横截面结论。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- d 定义：0.5*long-0.5*short\n- 限定：1.22 倍仍低于 2 倍门槛，只能作为「可引用且须标 MDE」处理\n- 限定：delta 是两格 d 之差，不是组合收益\n- 可引用强度：QUOTABLE_MARGINAL\n- 分级依据：L3u 核对一致，|效应|/MDE=1.22 落 1~2 倍档\n- 来源：L3u 正式分级 QUOTABLE_MARGINAL｜序列 `phasef_out/aec46d88bbda/monthly.csv::delta`（n=237）",
+  "**`phaseg_alpha`**（B_long_only，单位 pp）\n> MAX5 的单边 alpha 为 +0.18pp（t=+1.76），MDE 0.29pp、事后功效 42%：不可执行，且未检出。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 限定：单边口径与 delta 口径不可混引\n- 限定：功效 42% 不足，不能据「未检出」断言无单边收益\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 核对一致，未检出且事后功效 42.2%\n- 来源：L3u 正式分级 UNDERPOWERED｜序列 `phaseg_out/e7da0f9ff3f1/monthly.csv::alpha_v1`（n=237）",
+  "**`phasel_alpha`**（B_long_only，单位 pp）\n> SURGE 避让后的 alpha 只剩 +0.11pp（t=+3.13），MDE 0.09pp、事后功效 88%：判「净效应被吸收」，即确认无增量。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 成本口径：O_BASE_3000w\n- 限定：「确认无效应」限定于相对同池平均的增量，不是绝对收益为零\n- 限定：该序列与 phaser 完全同一份数字，不能当作两次独立验证\n- 可引用强度：NULL_CONFIRMED\n- 分级依据：L3u 核对一致，未检出且事后功效 87.9%，可引为「确认无效应」\n- 来源：L3u 正式分级 NULL_CONFIRMED｜序列 `phasel_out/9ffc3710cf6f/monthly.csv::alpha_v1_pp`（n=237）",
+  "**`phasem_spread`**（A_cross_spread，单位 pp）\n> 空头腿 spread 为 +0.72pp（t=+2.85）、MDE 0.71pp；判定由区间规则给出，序列均值不是判定量。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- d 定义：long_minus_short\n- 限定：空头腿在 A 股不可得，该数字不能转成可实现收益\n- 限定：|效应|/MDE 仅 1.02 倍，接近分辨率下限\n- 可引用强度：NOT_GRADED\n- 分级依据：L3u 判 该实验无单一判定均值（区间判定），不给正式分级\n- 参考（不得用于对外）：NULL_CONFIRMED｜未检出，事后功效 81.34%\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phasem_out/2f5f61dd0b5f/monthly.csv::spread_pp`（n=237）",
+  "**`phasej_netA`**（B_long_only，单位 pp）\n> 执行成本后的净 alpha 只剩 +0.03pp（t=+1.04），MDE 0.09pp、事后功效 18%：毛效应被成本吸收。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 成本口径：J_3000w\n- 限定：判定档是 3000 万，而本条序列取自 1000 万档，两者不可直接对照\n- 限定：功效 18%，「被吸收」只能读作「未观察到显著剩余」，不能读作「精确等于零」\n- 可引用强度：NOT_GRADED\n- 分级依据：L3u 核对未通过（判定均值 +0.042 与序列均值 +0.032 不同，且资金档不一致），不给分级\n- 参考（不得用于对外）：UNDERPOWERED｜未检出，事后功效 18.07%\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phasej_out/f76de8a277f6/monthly.csv::net_A_pp`（n=237）",
+  "**`phasek_m1net`**（B_long_only，单位 pp）\n> 降换手方案 m1 的净收益为 +0.04pp（t=+1.19），MDE 0.09pp、事后功效 22%：省下的佣金约等于 alpha 衰减。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 成本口径：K_3000w\n- 限定：四个降换手档位全部不显著（|t|≤1.433），不能挑最好的那一档单独引用\n- 限定：功效 22%，无法区分「降换手无益」与「检验不够灵敏」\n- 可引用强度：NOT_GRADED\n- 分级依据：L3u 核对未通过（仅 t 口径不同），不给分级\n- 参考（不得用于对外）：UNDERPOWERED｜未检出，事后功效 22.28%\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phasek_out/3bc31a35903d/monthly.csv::m1_net`（n=237）",
+  "**`phaseo_netBASE`**（B_long_only，单位 pp）\n> 3000 万档、BASE 费率（单边 0.051%）下净 alpha 为 +0.14pp（t=+4.04），MDE 0.09pp，|效应|/MDE 1.44 倍。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 成本口径：O_BASE_3000w\n- 限定：1.44 倍仍低于 2 倍门槛，引用必须同时给 MDE\n- 限定：EXECUTABLE_UNDER_BASE_FEES 不等于「可用」：换到压力费率档后净 alpha 逼近 0\n- 限定：该序列与 phasev 完全同一份数字，不能当作两次独立验证\n- 可引用强度：QUOTABLE_MARGINAL\n- 分级依据：L3u 核对一致，|效应|/MDE=1.44 落 1~2 倍档\n- 来源：L3u 正式分级 QUOTABLE_MARGINAL｜序列 `phaseo_out/ac7aa2830ab0/monthly.csv::net_BASE_3000w`（n=237）",
+  "**`phasep_late`**（C_regression，单位 pp）\n> 晚段净 alpha 的回归系数为 +0.13pp（t=+2.58，n=129），MDE 0.14pp；全样本回归分母是 237，效应量本身一致。\n\n- 窗口：segment_2016_2026（晚段子样本，n=129）\n- 判定估计量：nw3\n- 限定：回归系数不是分段均值差；两段比较的结论是「未拒绝相等」，不是「相等」\n- 限定：n 的差异来自分母口径（全样本 237 vs 晚段 129），不是取错窗口\n- 可引用强度：NOT_GRADED\n- 分级依据：L3u 核对未通过（n 不一致，mean 一致），不给分级\n- 参考（不得用于对外）：NULL_WEAK｜未检出，事后功效 73.28%\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phasep_out/3d19f7508e10/monthly.csv::net_BASE_3000w_pp`（n=129）",
+  "**`phaser_alpha`**（B_long_only，单位 pp）\n> SURGE 的 alpha 为 +0.11pp（t=+3.13）、MDE 0.09pp，随资金规模衰减到不显著；判定由多门槛规则给出，非单一均值。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 成本口径：R_3000w\n- 限定：「规模依赖」是多门槛联合判定，不能由单条均值 t 值推出\n- 限定：该序列与 phasel 完全同一份数字，不能当作两次独立验证\n- 可引用强度：NOT_GRADED\n- 分级依据：L3u 判 该实验无单一判定均值（多门槛），不给分级\n- 参考（不得用于对外）：NOT_GRADED｜效应量不可用\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phaser_out/7b5e7643e8ca/monthly.csv::alpha_v1_pp`（n=237）",
+  "**`phases_net`**（B_long_only，单位 pp）\n> 现代段净 alpha 为 +0.11pp（t=+1.58 iid／+2.22 NW3），MDE 0.14pp、事后功效 60%：单条显著但多重检验未通过，只能记为待验证的方向性观察。\n\n- 窗口：modern_era（2023-01 起的现代段，n=129）\n- 判定估计量：nw3\n- 成本口径：S_modern_era\n- 限定：iid 与 NW3 两个 t 分列 1.58 与 2.22，只引其一等于挑显著性，必须同列\n- 限定：bootstrap 95% 区间跨 0，L 剖面只在 L≥2 通过，属边缘证据\n- 限定：该序列与 phaset 完全同一份数字，不能当作两次独立验证\n- 可引用强度：EXPLORATORY\n- 分级依据：原分级 DIRECTION_ONLY；L3z 审计后降级为 EXPLORATORY：单条 α=0.05 显著，但在同时报告全族的多重检验校正下未通过（BH/FWER 均未拒绝），只能记为待验证的方向性观察。（原依据：L3u 核对一致，|效应|/MDE=0.79 落 0.5~1 倍档）\n- 分级来源：`l3z_audit`（解封复核，非 L3u 正式分级；L3u 记为 DIRECTION_ONLY）\n- 来源：L3u 正式分级 DIRECTION_ONLY｜序列 `phases_out/f098a59fb1b5/monthly.csv::net_S_3000w`（n=129）",
+  "**`phaset_net`**（B_long_only，单位 pp）\n> 同一序列的稳健性检查判 T_FRAGILE：剔除极端月后显著性消失，现代段的 +0.11pp（MDE 0.14pp）不承重，且多重检验未通过——只能记为待验证的方向性观察。\n\n- 窗口：modern_era（现代段子样本，n=129）\n- 判定估计量：nw3\n- 成本口径：S_modern_era\n- 限定：alpha 高度集中在 ADV 最低的一组（阶段 T 的 T3 分解），分层后结论改变\n- 限定：本条是对 phases 的脆弱性判定，不能与 phases 并列当作两个正面结果\n- 可引用强度：EXPLORATORY\n- 分级依据：原分级 DIRECTION_ONLY；L3z 审计后降级为 EXPLORATORY：单条 α=0.05 显著，但在同时报告全族的多重检验校正下未通过（BH/FWER 均未拒绝），只能记为待验证的方向性观察。（原依据：L3u 核对一致，按 |效应|/MDE 落 0.5~1 倍档；稳健性判定本身另见阶段 T）\n- 分级来源：`l3z_audit`（解封复核，非 L3u 正式分级；L3u 记为 DIRECTION_ONLY）\n- 参考（不得用于对外）：DIRECTION_ONLY｜\n- 来源：L3u 正式分级 DIRECTION_ONLY｜序列 `phaset_out/ef29a743997b/monthly.csv::net_S_3000w`（n=129）",
+  "**`phasev_net`**（B_long_only，单位 pp）\n> 同一份净 alpha 为 +0.14pp（MDE 0.09pp），但换到压力费率后大幅衰减：结论对成本口径敏感，不能脱离口径单独引用。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 成本口径：O_BASE_3000w\n- 限定：引用「成本后」必须带口径编号：BASE +0.1360、STRESS +0.0424、CONS +0.1315\n- 限定：该序列与 phaseo 完全同一份数字，本条只贡献敏感性判定\n- 可引用强度：NOT_GRADED\n- 分级依据：L3u 判 该实验无单一判定均值（敏感性多档），不给分级\n- 参考（不得用于对外）：NOT_GRADED｜效应量不可用\n- 来源：L3u 正式分级 NOT_GRADED｜序列 `phasev_out/3614e12a0546/monthly.csv::net_O_BASE_3000w`（n=237）",
+  "**`phaseq_max5`**（C_regression，单位 pp）\n> 控制波动率后 MAX5 的增量系数为 +0.04pp（t=+0.25），MDE 0.47pp、事后功效 6%：增量被吸收。\n\n- 窗口：full_sample（全样本月度，n=237）\n- 判定估计量：nw3\n- 限定：MAX5 与波动率秩相关 +0.88，增量取决于是否控制波动率，两个口径不可混引\n- 限定：功效 6%，「被吸收」在此只是「未观察到增量」，分辨率不足以定论\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 核对一致，未检出且事后功效 5.7%\n- 来源：L3u 正式分级 UNDERPOWERED｜序列 `phaseq_out/ae7fc45acab0/monthly.csv::coef_MAX5_pp`（n=237）",
+  "**`l3r_delta`**（A_cross_spread，单位 pp）\n> 选择效应的月均为 −0.33pp（t=−0.96），MDE 0.95pp、事后功效 16%：测不出来，不等于没有。\n\n- 窗口：l3r_periods（197 期配对剔除，中位 +0.060pp、胜率 51.78%）\n- 判定估计量：nw3\n- d 定义：0.5*long-0.5*short\n- 限定：要把分辨率压到 0.5pp/月需要 676 期约 56 年，现有样本结构性不够\n- 限定：逐期差的标准差 4.64pp 来自 12 只与 24 只的等权噪声，不是策略缺陷\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 核对一致，未检出且事后功效 16.2%\n- 来源：L3u 正式分级 UNDERPOWERED｜序列 `reports/gates/H-L3R-SELECTION/periods.json::<root>[delta]`（n=197）",
+  "**`l3s_ic`**（D_ic，单位 ic）\n> 截面 IC 均值为 −0.023（t=−1.71），MDE_IC 0.038、事后功效 40%：IC 路线同样无法判断。\n\n- 窗口：l3s_periods（198 期、378 只有效标的）\n- 判定估计量：nw3\n- 单位说明：单位是 IC（截面秩相关），不是收益；折算成月度收益还需乘 IC 与截面离散度，不能直接当收益率读\n- 限定：逐期 IC 标准差 0.197 中 93% 是风格轮动，扩大截面只能把分辨率改善 1.64 倍\n- 限定：IC 为负不构成「反向有效」：已检出的负 IC 与可交易收益之间隔着换手与成本\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 核对一致，未检出且事后功效 40.0%\n- 来源：L3u 正式分级 UNDERPOWERED｜序列 `reports/gates/H-L3S-IC-000001/l3s_result.json::periods[ic]`（n=198）",
+  "**`l3_test`**（E_fold，单位 pct_fold）\n> 折均收益为 +4.00%/折（t=+1.74 iid／+1.42 NW3），MDE 7.89%/折、事后功效 29%。\n\n- 窗口：l3p_folds（27 个滚动折）\n- 判定估计量：iid\n- 单位说明：单位是 %/折（每个滚动折的累计收益），不是月均、不是年化；折与折不可跨期比较\n- 限定：折均不等于连续账户收益，窗格拼接会改变复利路径\n- 限定：27 个折的 MDE 达 7.89%/折，任何小于 8pp/折 的结论都不可判定\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 核对一致，未检出且事后功效 29.4%\n- 来源：L3u 正式分级 UNDERPOWERED｜序列 `reports/gates/H-L3-MACROSS-000001/l3_result.json::result.folds[test_return]`（n=27）",
+  "**`l3p_test`**（E_fold，单位 pct_fold）\n> 折均收益为 +5.28%/折（t=+2.00 iid／+1.92 NW3），MDE 7.72%/折、事后功效 48%。\n\n- 窗口：l3p_folds（28 个滚动折）\n- 判定估计量：iid\n- 单位说明：单位是 %/折，不是月均也不是年化；折收益受折首空仓影响，不可直接年化\n- 限定：iid t=2.00 恰好压在 1.96 上，NW3 后为 1.92，结论随口径翻转\n- 限定：折均不等权于资金加权收益，大资金下的整手与现金残留会改变结果\n- 可引用强度：UNDERPOWERED\n- 分级依据：L3u 核对一致，未检出且事后功效 48.3%\n- 来源：L3u 正式分级 UNDERPOWERED｜序列 `reports/gates/H-L3P-MACROSS-000001/l3p_result.json::result.folds[test_return]`（n=28）"
+ ]
+}

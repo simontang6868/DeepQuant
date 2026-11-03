@@ -1,6 +1,6 @@
 [Unit]
 Description=DeepQuant daily chain (update -> verify -> decide -> heartbeat)
-Documentation=file:///opt/deepquant/deploy/README.md
+Documentation=file://__REPO__/deploy/README.md
 Wants=network-online.target
 After=network-online.target
 # 失败时不要无限重试：数据源故障重试只会把失败时刻推迟，日志里还会多出几条
@@ -10,15 +10,19 @@ After=network-online.target
 Type=oneshot
 User=deepquant
 Group=deepquant
-WorkingDirectory=/opt/deepquant
-EnvironmentFile=/opt/deepquant/env
-ExecStart=/opt/deepquant/deploy/bin/daily_chain.sh
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+ExecStart=__REPO__/deploy/bin/daily_chain.sh
 # 一次全量增量更新 + 可能的 ADJ 重建，实测在本机约 6~10 分钟。
 # 给到 1 小时是为了容忍行情源变慢，而不是让它真的跑一小时。
 TimeoutStartSec=3600
 Nice=10
 IOSchedulingClass=best-effort
 IOSchedulingPriority=7
+# R3-6：内存硬上限。机器仅 1.9G 且同机有 media-downloader（约 500M）：
+# 1200M 上限 + 2G swap ⇒ 即使 ADJ 重建吃满也挤不死同机服务；超限被杀 =
+# 日更链失败 = 当天告警（宁可失败可见，不可无声挤死邻居）。
+MemoryMax=1200M
 # 证据引擎不下单、不接券商，因此不需要任何凭证；
 # 这里显式把 HOME 指到服务用户家目录，避免 akshare 缓存写到 /root。
 Environment=HOME=/home/deepquant

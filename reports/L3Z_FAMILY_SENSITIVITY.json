@@ -1,0 +1,982 @@
+{
+ "experiment_id": "H-L3Z-FAMILY-SENSITIVITY",
+ "counts": {
+  "登记条目数": 27,
+  "不同序列路径数": 27,
+  "不同数值序列数": 24,
+  "不同原假设数": "UNKNOWN",
+  "多门槛结论数": 7,
+  "实际参与校正的检验数": 20,
+  "最终报告的结论数": 27,
+  "⚠️ 说明": "「不同数值序列数」不等于「统计独立的检验数」。去重只合并了逐位相同的重复登记；余下检验之间仍可能高度相关（同期、同池、同族）。因此 24 是不同数值序列的数目，不是独立检验数的估计，也不应被当作相关结构的证据。"
+ },
+ "duplicate_groups": [
+  {
+   "keys": [
+    "phasel_alpha",
+    "phaser_alpha"
+   ],
+   "numeric_fingerprint": [
+    [
+     "0.1060570295",
+     "3.1294845622",
+     "237"
+    ]
+   ]
+  },
+  {
+   "keys": [
+    "phaseo_netBASE",
+    "phasev_net"
+   ],
+   "numeric_fingerprint": [
+    [
+     "0.1359589114",
+     "4.038624366",
+     "237"
+    ]
+   ]
+  },
+  {
+   "keys": [
+    "phases_net",
+    "phaset_net"
+   ],
+   "numeric_fingerprint": [
+    [
+     "0.1111956539",
+     "2.2180235212",
+     "129"
+    ]
+   ]
+  }
+ ],
+ "inventory": [
+  {
+   "key": "gate1_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": -0.3961063903264166,
+    "t_nw3": -0.6092255349704097,
+    "t_iid": -0.56868167582418,
+    "mde": 1.8215448950155855
+   },
+   "series": "gate1_out/032a11f591553e25/monthly_paired.csv::d",
+   "n": 48,
+   "p_nw3": 0.545308791389788,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "UNDERPOWERED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "gate2_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": -0.38457783768000003,
+    "t_nw3": -1.5945969261956763,
+    "t_iid": -1.6415216464130533,
+    "mde": 0.6756775034144735
+   },
+   "series": "gate2_out/c440c77d284a/monthly_paired.csv::d",
+   "n": 125,
+   "p_nw3": 0.1133481204862753,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "UNDERPOWERED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "gate3_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.48414844361111115,
+    "t_nw3": 2.2809976200233018,
+    "t_iid": 2.116818863746082,
+    "mde": 0.5946478276496547
+   },
+   "series": "gate3_out/9b7235d77689/monthly_paired.csv::d",
+   "n": 108,
+   "p_nw3": 0.024529238183913747,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_N",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "DIRECTION_ONLY",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "gate4_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.16636050198312238,
+    "t_nw3": 0.9689345568883998,
+    "t_iid": 0.8678909029558357,
+    "mde": 0.48101863953810603
+   },
+   "series": "gate4_out/94988f7c57d1/monthly_paired.csv::d",
+   "n": 237,
+   "p_nw3": 0.3335697864563164,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "UNDERPOWERED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "gate5_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.023587832168674695,
+    "t_nw3": 0.15499428542203716,
+    "t_iid": 0.15522217717100417,
+    "mde": 0.426361981177683
+   },
+   "series": "gate5_out/7c0c89916b0c/monthly_paired.csv::d",
+   "n": 249,
+   "p_nw3": 0.8769518929614457,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "UNDERPOWERED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "gate6_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.7084456860759494,
+    "t_nw3": 4.644339275666975,
+    "t_iid": 4.386108345447266,
+    "mde": 0.42735496187998556
+   },
+   "series": "gate6_out/b8c4f1ecba44/monthly_paired.csv::d",
+   "n": 237,
+   "p_nw3": 5.668407884527412e-06,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "QUOTABLE_MARGINAL",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasec_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 1.9389677751054852,
+    "t_nw3": 6.367494580438122,
+    "t_iid": 6.187394587450678,
+    "mde": 0.8531160961524931
+   },
+   "series": "phasec_out/3a01759a37f0/five_cells.csv::+1×d[B] + -1×d[A]",
+   "n": 237,
+   "p_nw3": 9.934532578330494e-10,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "QUOTABLE",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasec2_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.10694447497890297,
+    "t_nw3": 5.014883064138538,
+    "t_iid": 5.4014413535927766,
+    "mde": 0.059745289624686955
+   },
+   "series": "phasec2_out/953c32fdc556/cells.csv::+1×spread_v1 + -1×spread",
+   "n": 237,
+   "p_nw3": 1.042990002819018e-06,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "QUOTABLE_MARGINAL",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasec3_d",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.0468041687341772,
+    "t_nw3": 0.5973590394366414,
+    "t_iid": 0.6251046434097168,
+    "mde": 0.21951046266803623
+   },
+   "series": "phasec3_out/6a76a10687b4/cells.csv::+1×spread_v1 + -1×spread_v0",
+   "n": 237,
+   "p_nw3": 0.5508403998670676,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "UNSEALED",
+    "class": "A_same_source"
+   },
+   "status_l3y": "UNDERPOWERED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasee_alpha",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.2766985906329114,
+    "t_nw3": 1.9013197795232013,
+    "t_iid": 1.8110228982688272,
+    "mde": 0.4077161453143685
+   },
+   "series": "phasee_out/2a3893f3f5b1/monthly.csv::alpha",
+   "n": 237,
+   "p_nw3": 0.05847823289789561,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MATCH",
+   "status_l3u_tier": "UNDERPOWERED",
+   "status_unseal": null,
+   "status_l3y": "UNDERPOWERED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasef_delta",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.740492584556962,
+    "t_nw3": 3.408576462140064,
+    "t_iid": 3.4015783839895612,
+    "mde": 0.6086306256988808
+   },
+   "series": "phasef_out/aec46d88bbda/monthly.csv::delta",
+   "n": 237,
+   "p_nw3": 0.0007677795015819844,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MATCH",
+   "status_l3u_tier": "QUOTABLE_MARGINAL",
+   "status_unseal": null,
+   "status_l3y": "QUOTABLE_MARGINAL",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phaseg_alpha",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.18130837848101264,
+    "t_nw3": 1.7640531457985589,
+    "t_iid": 1.7163407835232576,
+    "mde": 0.2879468537340821
+   },
+   "series": "phaseg_out/e7da0f9ff3f1/monthly.csv::alpha_v1",
+   "n": 237,
+   "p_nw3": 0.07901679190325701,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MATCH",
+   "status_l3u_tier": "UNDERPOWERED",
+   "status_unseal": null,
+   "status_l3y": "UNDERPOWERED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasel_alpha",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.10605702953586497,
+    "t_nw3": 3.129484562173131,
+    "t_iid": 2.8721401374219404,
+    "mde": 0.09494514768954511
+   },
+   "series": "phasel_out/9ffc3710cf6f/monthly.csv::alpha_v1_pp",
+   "n": 237,
+   "p_nw3": 0.0019717240450335526,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [
+    "phaser_alpha"
+   ],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MATCH",
+   "status_l3u_tier": "NULL_CONFIRMED",
+   "status_unseal": null,
+   "status_l3y": "NULL_CONFIRMED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasem_spread",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.7215706244725738,
+    "t_nw3": 2.850544171644458,
+    "t_iid": 3.1621815744857953,
+    "mde": 0.7091811737673036
+   },
+   "series": "phasem_out/2f5f61dd0b5f/monthly.csv::spread_pp",
+   "n": 237,
+   "p_nw3": 0.004750673406715388,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": true,
+   "comparison_class": "NOT_APPLICABLE",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": null,
+   "status_l3y": "NOT_GRADED",
+   "in_family": false,
+   "family_role": "counts_only",
+   "inclusion_reason": "判定由多门槛给出，无单一 p 值；计入 m 但不参与评分"
+  },
+  {
+   "key": "phasej_netA",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.03244149789029536,
+    "t_nw3": 1.0423579613118623,
+    "t_iid": 0.7784685717975883,
+    "mde": 0.08719471032299118
+   },
+   "series": "phasej_out/f76de8a277f6/monthly.csv::net_A_pp",
+   "n": 237,
+   "p_nw3": 0.2983123454549297,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "STAY_SEALED",
+    "class": "B_different_budget"
+   },
+   "status_l3y": "NOT_GRADED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasek_m1net",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.03989106751054852,
+    "t_nw3": 1.194556017508961,
+    "t_iid": 0.8916512701702657,
+    "mde": 0.09355678017562236
+   },
+   "series": "phasek_out/3bc31a35903d/monthly.csv::m1_net",
+   "n": 237,
+   "p_nw3": 0.23345971280445088,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_MEAN",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "STAY_SEALED",
+    "class": "B_missing_stat"
+   },
+   "status_l3y": "NOT_GRADED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phaseo_netBASE",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.13595891139240507,
+    "t_nw3": 4.0386243659593175,
+    "t_iid": 3.032130828015183,
+    "mde": 0.09431490815721953
+   },
+   "series": "phaseo_out/ac7aa2830ab0/monthly.csv::net_BASE_3000w",
+   "n": 237,
+   "p_nw3": 7.273409740837666e-05,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [
+    "phasev_net"
+   ],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MATCH",
+   "status_l3u_tier": "QUOTABLE_MARGINAL",
+   "status_unseal": null,
+   "status_l3y": "QUOTABLE_MARGINAL",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasep_late",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.129407503875969,
+    "t_nw3": 2.581295917681533,
+    "t_iid": 1.8372337524000115,
+    "mde": 0.14045195685450432
+   },
+   "series": "phasep_out/3d19f7508e10/monthly.csv::net_BASE_3000w_pp",
+   "n": 129,
+   "p_nw3": 0.010969566550594374,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "C_regression",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MISMATCH_N",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": {
+    "status": "STAY_SEALED",
+    "class": "B_regression_coef"
+   },
+   "status_l3y": "NOT_GRADED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phaser_alpha",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.10605702953586497,
+    "t_nw3": 3.129484562173131,
+    "t_iid": 2.8721401374219404,
+    "mde": 0.09494514768954511
+   },
+   "series": "phaser_out/7b5e7643e8ca/monthly.csv::alpha_v1_pp",
+   "n": 237,
+   "p_nw3": 0.0019717240450335526,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [
+    "phasel_alpha"
+   ],
+   "is_duplicate_registration": true,
+   "is_multi_gate": true,
+   "comparison_class": "NOT_APPLICABLE",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": null,
+   "status_l3y": "NOT_GRADED",
+   "in_family": false,
+   "family_role": "counts_only",
+   "inclusion_reason": "判定由多门槛给出，无单一 p 值；计入 m 但不参与评分"
+  },
+  {
+   "key": "phases_net",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.111195653875969,
+    "t_nw3": 2.2180235211790436,
+    "t_iid": 1.5786751332204356,
+    "mde": 0.14045195685450432
+   },
+   "series": "phases_out/f098a59fb1b5/monthly.csv::net_S_3000w",
+   "n": 129,
+   "p_nw3": 0.02831672555412718,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [
+    "phaset_net"
+   ],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MATCH",
+   "status_l3u_tier": "DIRECTION_ONLY",
+   "status_unseal": null,
+   "status_l3y": "DIRECTION_ONLY",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phaset_net",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.111195653875969,
+    "t_nw3": 2.2180235211790436,
+    "t_iid": 1.5786751332204356,
+    "mde": 0.14045195685450432
+   },
+   "series": "phaset_out/ef29a743997b/monthly.csv::net_S_3000w",
+   "n": 129,
+   "p_nw3": 0.02831672555412718,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [
+    "phases_net"
+   ],
+   "is_duplicate_registration": true,
+   "is_multi_gate": false,
+   "comparison_class": "MATCH",
+   "status_l3u_tier": "DIRECTION_ONLY",
+   "status_unseal": null,
+   "status_l3y": "DIRECTION_ONLY",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "phasev_net",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.13595891139240507,
+    "t_nw3": 4.0386243659593175,
+    "t_iid": 3.032130828015183,
+    "mde": 0.09431490815721953
+   },
+   "series": "phasev_out/3614e12a0546/monthly.csv::net_O_BASE_3000w",
+   "n": 237,
+   "p_nw3": 7.273409740837666e-05,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "B_long_only",
+   "shares_sequence_with": [
+    "phaseo_netBASE"
+   ],
+   "is_duplicate_registration": true,
+   "is_multi_gate": true,
+   "comparison_class": "NOT_APPLICABLE",
+   "status_l3u_tier": "NOT_GRADED",
+   "status_unseal": null,
+   "status_l3y": "NOT_GRADED",
+   "in_family": false,
+   "family_role": "counts_only",
+   "inclusion_reason": "判定由多门槛给出，无单一 p 值；计入 m 但不参与评分"
+  },
+  {
+   "key": "phaseq_max5",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 0.04241433514767933,
+    "t_nw3": 0.25396103062283637,
+    "t_iid": 0.2883557584377933,
+    "mde": 0.4678985632493071
+   },
+   "series": "phaseq_out/ae7fc45acab0/monthly.csv::coef_MAX5_pp",
+   "n": 237,
+   "p_nw3": 0.7997467860913298,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "C_regression",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": false,
+   "comparison_class": "MATCH",
+   "status_l3u_tier": "UNDERPOWERED",
+   "status_unseal": null,
+   "status_l3y": "UNDERPOWERED",
+   "in_family": true,
+   "family_role": "scored",
+   "inclusion_reason": "具备可核实的单一均值与 t，参与校正"
+  },
+  {
+   "key": "l3r_delta",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": -0.32886743580748623,
+    "t_nw3": -0.9648993068542903,
+    "t_iid": -0.9944545995438885,
+    "mde": 0.9548716654818652
+   },
+   "series": "reports/gates/H-L3R-SELECTION/periods.json::<root>[delta]",
+   "n": 197,
+   "p_nw3": 0.3357842523303297,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "A_cross_spread",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": true,
+   "comparison_class": "NOT_APPLICABLE",
+   "status_l3u_tier": "UNDERPOWERED",
+   "status_unseal": null,
+   "status_l3y": "UNDERPOWERED",
+   "in_family": false,
+   "family_role": "counts_only",
+   "inclusion_reason": "判定由多门槛给出，无单一 p 值；计入 m 但不参与评分"
+  },
+  {
+   "key": "l3s_ic",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": -0.023247769706966907,
+    "t_nw3": -1.7055246894345137,
+    "t_iid": -1.66252789746405,
+    "mde": 0.0381882197393656
+   },
+   "series": "reports/gates/H-L3S-IC-000001/l3s_result.json::periods[ic]",
+   "n": 198,
+   "p_nw3": 0.08967277318352573,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "D_ic",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": true,
+   "comparison_class": "NOT_APPLICABLE",
+   "status_l3u_tier": "UNDERPOWERED",
+   "status_unseal": null,
+   "status_l3y": "UNDERPOWERED",
+   "in_family": false,
+   "family_role": "counts_only",
+   "inclusion_reason": "判定由多门槛给出，无单一 p 值；计入 m 但不参与评分"
+  },
+  {
+   "key": "l3_test",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 3.9953099629629634,
+    "t_nw3": 1.418397825120266,
+    "t_iid": 1.7364690733468076,
+    "mde": 7.8914816379445325
+   },
+   "series": "reports/gates/H-L3-MACROSS-000001/l3_result.json::result.folds[test_return]",
+   "n": 27,
+   "p_nw3": 0.1679506123402913,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "E_fold",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": true,
+   "comparison_class": "NOT_APPLICABLE",
+   "status_l3u_tier": "UNDERPOWERED",
+   "status_unseal": null,
+   "status_l3y": "UNDERPOWERED",
+   "in_family": false,
+   "family_role": "counts_only",
+   "inclusion_reason": "判定由多门槛给出，无单一 p 值；计入 m 但不参与评分"
+  },
+  {
+   "key": "l3p_test",
+   "original_hypothesis": "UNKNOWN",
+   "hypothesis_note": "预登记未逐条登记假设；判定字符串已被证明有 13 条失真，不可反推",
+   "statistic": {
+    "mean": 5.284410621428571,
+    "t_nw3": 1.9168039272174895,
+    "t_iid": 1.999029359480575,
+    "mde": 7.723692854952328
+   },
+   "series": "reports/gates/H-L3P-MACROSS-000001/l3p_result.json::result.folds[test_return]",
+   "n": 28,
+   "p_nw3": 0.06590289614855861,
+   "se_method": "NW(3) 主口径 / iid 对照",
+   "family": "E_fold",
+   "shares_sequence_with": [],
+   "is_duplicate_registration": false,
+   "is_multi_gate": true,
+   "comparison_class": "NOT_APPLICABLE",
+   "status_l3u_tier": "UNDERPOWERED",
+   "status_unseal": null,
+   "status_l3y": "UNDERPOWERED",
+   "in_family": false,
+   "family_role": "counts_only",
+   "inclusion_reason": "判定由多门槛给出，无单一 p 值；计入 m 但不参与评分"
+  }
+ ],
+ "schemes": [
+  {
+   "label": "m = 24（数值指纹去重，主口径）",
+   "m": 24,
+   "n_scored": 20,
+   "n_counts_only": 7,
+   "note": "把逐位相同的重复登记合并为一次检验；被封印的检验仍计入 m",
+   "bonferroni": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta",
+    "phasel_alpha",
+    "phaseo_netBASE"
+   ],
+   "holm": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta",
+    "phasel_alpha",
+    "phaseo_netBASE"
+   ],
+   "bh": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta",
+    "phasel_alpha",
+    "phaseo_netBASE",
+    "phasep_late"
+   ],
+   "verdict_counts": {
+    "NEITHER": 10,
+    "DOWNGRADED": 3,
+    "SURVIVES_ALL": 6,
+    "SURVIVES_FDR_ONLY": 1
+   }
+  },
+  {
+   "label": "m = 27（登记条目数，替代口径）",
+   "m": 27,
+   "n_scored": 20,
+   "n_counts_only": 7,
+   "note": "不做去重，每条登记都算一次检验；这是最保守的上界",
+   "bonferroni": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta",
+    "phaseo_netBASE"
+   ],
+   "holm": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta",
+    "phasel_alpha",
+    "phaseo_netBASE"
+   ],
+   "bh": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta",
+    "phasel_alpha",
+    "phaseo_netBASE",
+    "phasep_late"
+   ],
+   "verdict_counts": {
+    "NEITHER": 10,
+    "DOWNGRADED": 3,
+    "SURVIVES_ALL": 5,
+    "SURVIVES_FDR_ONLY": 2
+   }
+  }
+ ],
+ "family_schemes": [
+  {
+   "label": "分族 · A_cross_spread",
+   "m": 12,
+   "n_scored": 10,
+   "n_counts_only": 2,
+   "note": "族内校正：同一口径族内的假设更相关，族内 m 小于全族",
+   "bonferroni": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta"
+   ],
+   "holm": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta"
+   ],
+   "bh": [
+    "gate6_d",
+    "phasec2_d",
+    "phasec_d",
+    "phasef_delta"
+   ],
+   "verdict_counts": {
+    "NEITHER": 5,
+    "DOWNGRADED": 1,
+    "SURVIVES_ALL": 4
+   }
+  },
+  {
+   "label": "分族 · B_long_only",
+   "m": 10,
+   "n_scored": 8,
+   "n_counts_only": 2,
+   "note": "族内校正：同一口径族内的假设更相关，族内 m 小于全族",
+   "bonferroni": [
+    "phasel_alpha",
+    "phaseo_netBASE"
+   ],
+   "holm": [
+    "phasel_alpha",
+    "phaseo_netBASE"
+   ],
+   "bh": [
+    "phasel_alpha",
+    "phaseo_netBASE"
+   ],
+   "verdict_counts": {
+    "NEITHER": 4,
+    "SURVIVES_ALL": 2,
+    "DOWNGRADED": 2
+   }
+  },
+  {
+   "label": "分族 · C_regression",
+   "m": 2,
+   "n_scored": 2,
+   "n_counts_only": 0,
+   "note": "族内校正：同一口径族内的假设更相关，族内 m 小于全族",
+   "bonferroni": [
+    "phasep_late"
+   ],
+   "holm": [
+    "phasep_late"
+   ],
+   "bh": [
+    "phasep_late"
+   ],
+   "verdict_counts": {
+    "SURVIVES_ALL": 1,
+    "NEITHER": 1
+   }
+  },
+  {
+   "label": "分族 · D_ic",
+   "m": 1,
+   "n_scored": 0,
+   "n_counts_only": 1,
+   "note": "族内校正：同一口径族内的假设更相关，族内 m 小于全族",
+   "bonferroni": [],
+   "holm": [],
+   "bh": [],
+   "verdict_counts": {}
+  },
+  {
+   "label": "分族 · E_fold",
+   "m": 2,
+   "n_scored": 0,
+   "n_counts_only": 2,
+   "note": "族内校正：同一口径族内的假设更相关，族内 m 小于全族",
+   "bonferroni": [],
+   "holm": [],
+   "bh": [],
+   "verdict_counts": {}
+  }
+ ],
+ "elapsed_seconds": 0.005
+}

@@ -75,6 +75,25 @@ else
   fi
 fi
 
+# ---------------- 1.5 universe_state 每日快照（R4-5，时点证据） ----------------
+# 失败只告警不中断：决策用「最新可用快照 ≤ 决策日」语义，缺今天的还有昨天的；
+# 但快照缺失会记进心跳 note，17:40 状态邮件可见。
+if [ "$SKIP_UPDATE" = "1" ]; then
+  echo "[universe] 已跳过（--skip-update）"
+else
+  if run universe_snap "$PY" "$SP5/p17_universe_filter.py" --fetch; then
+    SNAP="$REPO/research/stock_pick_2026-10-25/forward/universe_state/$(date +%Y%m%d).json"
+    if [ -f "$SNAP" ]; then
+      sha256sum "$SNAP" >> "$REPO/research/stock_pick_2026-10-25/forward/universe_state/SHA256S.txt"
+      echo "[universe] 快照已存档并记 sha256：$(basename "$SNAP")"
+    else
+      echo "[universe] ⚠️ --fetch 成功但未见今日快照文件（检查 p17 输出路径）"
+    fi
+  else
+    echo "[universe] ⚠️ 快照抓取失败（不中断链路；决策将沿用最近可用快照）"
+  fi
+fi
+
 # ---------------- 2. 是否决策窗口 ----------------
 due_rc=1
 due_line=""
@@ -183,5 +202,18 @@ if [ "$DRY" = "0" ] && [ -n "${DEEPQUANT_BACKUP_CMD:-}" ]; then
 fi
 
 echo "=== daily_chain 结束 mode=$mode ok=$stage_ok $stage_note ==="
+
+# ---------------- 6. 峰值内存记录（R3-6） ----------------
+# systemd oneshot 的 cgroup 在服务退出后即销毁，memory.peak 只能在运行中读。
+# 读到自己 cgroup 的峰值（字节），追加到 CSV；连续 10 个交易日后汇总统计。
+# 手工运行（非 systemd）时 cgroup 路径不存在 → 跳过并说明，不伪造数据。
+MEMPEAK="/sys/fs/cgroup/system.slice/deepquant-daily.service/memory.peak"
+if [ -r "$MEMPEAK" ]; then
+  echo "$(date +%Y%m%dT%H%M%S),$(cat "$MEMPEAK"),$mode" >> "$LOG_DIR/mem_peak.csv"
+  echo "[mem] 本次峰值 $(awk -F, 'END{printf "%.0f MB", $2/1048576}' "$LOG_DIR/mem_peak.csv")"
+else
+  echo "[mem] 非 systemd 运行，cgroup memory.peak 不可读（不计入统计）"
+fi
+
 [ "$stage_ok" = "1" ] || exit 3
 exit 0

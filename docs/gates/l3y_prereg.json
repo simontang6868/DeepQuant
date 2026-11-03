@@ -1,0 +1,134 @@
+{
+ "experiment_id": "H-L3Y-DELIVERABLE",
+ "kind": "preregistration",
+ "created": "2026-10-28",
+ "title": "对外表述定稿：把可引用的 9 条渲染成唯一抄写来源，并守住定稿里的每个数字",
+ "status_note": "本阶段不产生新的统计结论，只改变结论的呈现与校验方式。任何「新发现」都不在本阶段的能力范围内。",
+ "objective": "在 L3v（卡片层数字受管）之上补一层：对外文档里的每个数字，要么等于卡片已核准数字，要么等于某个源文件按指针实算的值。目标是让「从产物抄到另一个文件」这一类错误在生成阶段就被拦住，而不是靠事后阅读发现。",
+ "why_now": [
+  "历史上数字事故全部发生在抄写环节（pp÷小数、年化当月度、引另一次重跑、取格 A 自身水平），没有一次在计算里。L3v 只守到卡片层，卡片到对外文档这一段仍然裸露。",
+  "对外表述已经收敛成 9 条，条目数少到可以把它们完整渲染，不必再人工挑选。",
+  "本阶段不触及铁律：不新增因子、不改策略、不启动实盘，也不动任何既有实验产物。"
+ ],
+ "inputs_frozen": {
+  "facts": {
+   "path": "docs/gates/l3y_facts.json",
+   "sha256": "7cec45b00634708420b0f72cbc274bec3f5839346377a528365221de35d5cb11"
+  },
+  "claims_cards": {
+   "path": "docs/gates/l3v_claims.json",
+   "sha256": "9da9b09771076fbe485366e76a2517bf9988bd93948c1f652617304de179c08a"
+  },
+  "l3v_result": {
+   "path": "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims.json",
+   "sha256": "31879f37b348d033e49241ce9c730472ae31e7d0197e437e94b677fa3fd19243"
+  },
+  "l3u_result": {
+   "path": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+   "sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b"
+  },
+  "unseal_l3w": {
+   "path": "reports/gates/H-L3W-UNSEAL/l3w_unseal.json",
+   "sha256": "ce10baa7dabb1e1219177448e7e4ba6d1d81769cbcbde40c8dae85860445b6c0"
+  },
+  "unseal_l3x": {
+   "path": "reports/gates/H-L3X-TONLY/l3x_unseal.json",
+   "sha256": "e70703b2f69072194f943a8ab64abe4a7377534dc6a82948061d34623422e5c7"
+  }
+ },
+ "gates": {
+  "G1_fact_recompute": "每条 fact 回到 source.path 按指针取值、按 decimals/scale 格式化，与 display 逐字（归一化后）相等。不等报 FACT_DRIFT；源文件或指针缺失一律报错，不静默跳过。",
+  "G2_unsourced_number": "定稿全文用与卡片同一套 token 规则抽数字，每个 token 必须在四源之一：卡片 numbers/literals 的 display、facts 实算值、产物结构计数（tier_counts / n_claims / n_independent_numbers / 各序列 series_n 与 recomputed.n）、口径常量表 SCHEMA_TOKENS。不在则报 UNSOURCED_NUMBER。",
+  "G3_sealed_leak": "被封印条目的结论句（归一化去壳后长度 ≥12 字）不得作为子串出现在定稿里。报 SEALED_LEAK。",
+  "G4_window_n": "定稿里每个 n=... 必须等于某条序列的实算 n（series_n 或 recomputed.n）。报 WINDOW_N_MISMATCH。",
+  "G5_tier_table": "分级表逐行等于冻结的 L3v 产物 tier_counts。报 TIER_ROW_MISSING / TIER_COUNT_DRIFT。",
+  "G6_tier_recount": "卡片里 quotability 的重算分布必须等于冻结产物的 tier_counts；不等说明改了卡片没重跑 L3v。报 TIER_RECOUNT_DRIFT。",
+  "G7_inputs_frozen": "本预登记列出的六个输入文件 sha256 必须逐一相符，否则拒跑。"
+ },
+ "allowed_artifact": "docs/DELIVERABLE_QUOTE_SHEET.md（定稿）与 reports/gates/H-L3Y-DELIVERABLE/ 下的 JSON/MD。任何闸门不过时定稿不落到 docs/，只把被拒版本写进产物目录供排查。",
+ "anti_goals": [
+  "不重新计算任何统计量——本阶段没有新的 alpha、t、MDE。",
+  "不改变任何卡片的分级，也不解封任何条目。",
+  "不为了让定稿好看而放宽任何阈值；阈值全部沿用 L3v。",
+  "不把横截面差距写成组合收益，不把历史区间写成样本外证据。"
+ ],
+ "predictions": [
+  {
+   "id": "P1",
+   "statement": "定稿「可对外引用」章节收录 6 条，其中恰好 1 条为 QUOTABLE；另有 3 条降级为探索性观察（EXPLORATORY）单独成章。",
+   "quantity": "n_clip_claims 与 tier_counts.QUOTABLE",
+   "⚠️ revised": "原写「9 条」——那是 L3z 审计前的口径。审计确认多重检验下只有 6 条能宣称显著，3 条 DIRECTION_ONLY 已被降级。判据按修订后的口径重判，原表述保留在下方 revision_note。",
+   "revision_note": "原（审计前）：定稿第三节收录的条数等于 9，其中恰好 1 条为 QUOTABLE。"
+  },
+  {
+   "id": "P2",
+   "statement": "可对外引用的 6 条里至少 4 条的分级来源是解封复核或审计降级（tier_basis 非 l3u_grade）。",
+   "quantity": "cards 中 quotability 属于前四档且 tier_basis != l3u_grade 的条数",
+   "⚠️ revised": "原写「9 条里至少 4 条」，随 P1 口径同步修订。"
+  },
+  {
+   "id": "P3",
+   "statement": "封印的 6 条里，恰好 3 条的原因码来自解封复核产物（不同源），另 3 条回落到 L3u 的 NOT_APPLICABLE（非单一均值）。",
+   "quantity": "sealed_reason_codes 的分布"
+  },
+  {
+   "id": "P4",
+   "statement": "首跑 UNSOURCED_NUMBER ≤ 2 处。若超过，说明我对「定稿里会自然出现哪些数字」的估计是错的。",
+   "quantity": "violation_counts.UNSOURCED_NUMBER"
+  },
+  {
+   "id": "P5",
+   "statement": "三条 facts 首跑全部从源文件实算通过（FACT_DRIFT = 0），指针一次写对。",
+   "quantity": "violation_counts.FACT_DRIFT"
+  },
+  {
+   "id": "P6",
+   "statement": "SEALED_LEAK = 0 且 WINDOW_N_MISMATCH = 0——封印条目一个数字都不漏，引用块里的 n 全部对得上实算。",
+   "quantity": "violation_counts 的两个键"
+  }
+ ],
+ "known_limitations": [
+  "allowed 集合全局有效，不区分位置：恰好等于别处合法值的手误可以蒙混过关。",
+  "只校验结论句内的数字与结构计数；引用块里的限定文字本身不受数字校验，删掉限定不会被发现。",
+  "同一数值多处出现时无法消歧。",
+  "G2 与 G5 用的 token 规则会漏掉紧贴字母的数字（NW3、MAX5、m1 里的数字被视为口径标签），这是有意的，但也意味着这类标签写错不会被抓。"
+ ],
+ "amendments": [
+  {
+   "id": "A1",
+   "at": "首跑之后",
+   "reason": "首跑 20 处 UNSOURCED_NUMBER。其中 1 处是真实数据错误、19 处是数字面管理问题。数量远超预登记的估计（P4 写的是 ≤2），必须把原因分清楚而不是放宽判据。",
+   "detail": {
+    "真实数据错误": "`phaset_net` 的限定写「22.1% 的 alpha 来自最低 ADV 组」，但阶段 T 报告的 T3 分解表（g1 最低 ADV 组）记的是 **44.1%**；22.1 在全部机器可读产物里都找不到出处。已把该限定改写为不含数字的定性表述（「alpha 高度集中在 ADV 最低的一组（阶段 T 的 T3 分解）」），并重跑 L3v（仍 0 违规、分级不变）。这条错误之所以活到今天，是因为 L3v 只校验 headline，`limits_of_use` 从来不被管。",
+    "渲染噪声 5 处": "标题序号（7、8）、序列路径里的 hash 前缀、d 定义里的等权系数、window_note 里的「2023-01」。这些是渲染产物而不是统计量，已通过收窄渲染消除（标题去序号、不输出序列路径 hash）。",
+    "内部分级依据 10 处": "`quotability_note` 是内部审计记录（讲的是当初核对错了什么），里面的比值有 3 位小数（0.814 / 1.658 / 2.273 / 1.790），与卡片 numbers 登记的 2 位不一致——放进对外文档等于制造第二个版本的数字。已改为不渲染，分级来源用一句结构化陈述代替。",
+    "限定里的数字 5 处": "`limits_of_use` 里的年份与百分比此前完全没有出处。已为年份与早期样本数补 facts（从 investable_by_year 实算），其余靠口径常量表。"
+   },
+   "action": "改卡片 1 处、重跑 L3v、收窄渲染、facts 从 3 条增至 5 条。P4 维持「被反驳」，不因事后定位到原因就翻案。"
+  },
+  {
+   "id": "A2",
+   "at": "首跑之后",
+   "reason": "首跑暴露出一个预登记没写到的允许来源：口径常量（d 定义的等权系数、分级门槛、置信水平、统计零点）。它们不是观测量，不可能从数据实算，只能白名单放行。",
+   "action": "新增第四个允许来源 SCHEMA_TOKENS，每条带理由，并在产物里逐条列出供人工复核；同时在定稿限制节明写「这是一处有限的放行口」。G2 的描述由「三源」改为「四源」。表保持 5 条，不加则定稿无法渲染 d 定义与门槛。"
+  },
+  {
+   "id": "A3",
+   "at": "首跑之后",
+   "reason": "「封印」一开始被我定义成「不属于可引用四档」，于是把 UNDERPOWERED 的 12 条也算进封印，第四节标题写成「必须封印的 18 条」。这两类性质不同：NOT_GRADED 是核对未通过（连比值都不该算），UNDERPOWERED 是检验没分辨力（数字可能是对的，但答不了这个问题）。混在一起会误导读者以为那 12 条也有毛病。",
+   "action": "第四节拆成 4.1 封印（NOT_GRADED，只认这一档）与 4.2 无分辨力（UNDERPOWERED）。SEALED_LEAK 检查仍对两类全查——它们都不给数字。P3 的「封印 6 条」按新定义重判。"
+  },
+  {
+   "id": "A4",
+   "at": "定稿渲染之后",
+   "reason": "定稿真的拿去对外抄写时，3 条 headline 里的「登记表曾误引 / 曾写成」读起来像在讲我们内部记错了什么。对外读者不需要这段历史，只需要知道哪个数该用、哪个不该用。",
+   "action": "改写 3 条 headline 为中立陈述：「登记表曾误引 X」→「另有 X，窗口 / 口径不同，不可混用」。数字全部保留（L3v 的登记项与双向覆盖检查照旧），因此这次是纯表述层改动，不改任何统计量。重跑 L3v 仍 0 违规、分级不变。"
+  },
+  {
+   "id": "A5",
+   "at": "L3z 独立审计之后",
+   "reason": "独立审计确认多重检验实现正确、p 值正确、拒绝集合单调性满足，因此 3 条 DIRECTION_ONLY 确实未通过 α=0.05 下的多重检验。按审计原则「若校正正确且结论未通过：降级或标记为探索性观察」执行降级。",
+   "action": "新增 EXPLORATORY 分级并成立第四节「探索性观察」；定稿可引用章节由 9 条减为 6 条，与多重检验通过的 6 条完全一致，原先「9 条 vs 6 条」的矛盾就此消除。P1 / P2 的判据随之修订（原表述保留在 revision_note）。旧版定稿保留为 docs/DELIVERABLE_QUOTE_SHEET_v1_pre2026-10-29.{md,docx}，旧版卡片保留为 docs/gates/l3v_claims_v1_pre2026-10-29.json。"
+  }
+ ]
+}

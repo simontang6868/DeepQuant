@@ -31,6 +31,8 @@ from typing import Literal
 import pandas as pd
 
 from deepquant.data.loaders.csv_loader import REQUIRED_COLUMNS
+from deepquant.deps.chain import DependencyUnavailableError, execute_chain
+from deepquant.deps.market_data import runtime as deps_runtime
 
 
 class AdjustStatus(str, Enum):
@@ -297,27 +299,58 @@ def fetch_daily_a_share(
         else ""
     )
 
-    errors: list[str] = []
-    for name in _SOURCE_ORDER[source]:
-        try:
-            df_raw = _call_source(
-                ak, name, symbol_code, tencent_symbol,
-                start_date, end_date, adjust,
-            )
-        except AkshareNetworkError as exc:
-            # 网络/可达性失败 → 换下一个真实数据源（不是合成数据）
-            errors.append(f"[{name}] {exc}")
-            continue
+    # 通道顺序与失败即换源的行为保持不变；新增的是：
+    #   - 每次调用记录一条延迟样本（按通道按日，供 T3 的成本模型使用）；
+    #   - 发生降级/恢复时写一条切换事件（谁换到谁、为什么、几次尝试）。
+    runtime = deps_runtime()
 
-        df = _normalize_frame(df_raw, _SOURCES[name][1], name, symbol_code)
-        cfg = FetchConfig(
-            symbol_code=symbol_code, start_date=start_date,
-            end_date=end_date, adjust=adjust,
-            source=source, used_source=name,
+    def _call_channel(dependency) -> pd.DataFrame:
+        return _call_source(
+            ak, dependency.name, symbol_code, tencent_symbol,
+            start_date, end_date, adjust,
         )
-        return df, cfg
 
-    raise AkshareNetworkError(
-        f"全部数据源均失败 symbol={symbol_code} range={start_date}-{end_date} "
-        f"adjust={adjust.value} source={source}: " + " | ".join(errors)
+    try:
+        result = execute_chain(
+            kind="market_data",
+            call=_call_channel,
+            registry=runtime.registry,
+            # 显式指定源时钉死单通道：与"锁定"同义，不偷偷换源
+            pinned=None if source == "auto" else source,
+            archive=runtime.archive,
+            events=runtime.events,
+            state=runtime.state,
+            # 只有网络/可达性失败才换源；字段变更等适配器错误原样抛出
+            is_retryable=lambda exc: isinstance(exc, AkshareNetworkError),
+        )
+    except DependencyUnavailableError as exc:
+        errors = [f"[{a.channel}] {a.error}" for a in exc.attempts]
+        raise AkshareNetworkError(
+            f"全部数据源均失败 symbol={symbol_code} range={start_date}-{end_date} "
+            f"adjust={adjust.value} source={source}: " + " | ".join(errors)
+        ) from exc
+
+    used = result.channel
+    df = _normalize_frame(result.value, _SOURCES[used][1], used, symbol_code)
+    cfg = FetchConfig(
+        symbol_code=symbol_code, start_date=start_date,
+        end_date=end_date, adjust=adjust,
+        source=source, used_source=used,
     )
+    return df, cfg
+
+
+def probe_channel(name: str, *, symbol_code: str = "000001", timeout_hint: str = "") -> None:
+    """探活：向指定通道拉一小段真实行情，失败就抛。
+
+    刻意只拉 5 天：探活要的是"这条通道现在可达吗"，不是数据本身。
+    也刻意**不复用** ``fetch_daily_a_share``——那会触发降级链，探测结果就变成
+    "整个降级链行不行"，而不是"这条通道行不行"。
+    """
+    if name not in _SOURCES:
+        raise AkshareAdapterError(f"未知通道 {name!r}，可选 {sorted(_SOURCES)}")
+    ak = _require_akshare()
+    today = pd.Timestamp.now().strftime("%Y%m%d")
+    start = (pd.Timestamp.now() - pd.Timedelta(days=10)).strftime("%Y%m%d")
+    tencent_symbol = _to_tencent_symbol(symbol_code) if name == "tencent" else ""
+    _call_source(ak, name, symbol_code, tencent_symbol, start, today, AdjustStatus.NONE)

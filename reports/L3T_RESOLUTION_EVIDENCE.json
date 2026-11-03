@@ -1,0 +1,97 @@
+{
+ "experiment_id": "H-L3T-RESOLUTION-000001",
+ "audit_only": true,
+ "prereg_sha256": "e0a4167372b23bd2bda570002872966d70a70dd1f0df321bcffa7ca838b725b9",
+ "verdict": "RESOLUTION_REGISTRY_BUILT",
+ "families": {
+  "A_cross_spread": {
+   "label": "月度截面多空价差（Q5−Q1 / long−short）",
+   "n_series": 14,
+   "n_usable": 13,
+   "mde_median": 0.42735496187998556,
+   "mde_min": 0.09494514768954511,
+   "mde_max": 0.7091811737673036,
+   "unit": "pp"
+  },
+  "B_long_only": {
+   "label": "月度 long-only 相对池内等权基准的超额",
+   "n_series": 9,
+   "n_usable": 9,
+   "mde_median": 0.09494514768954511,
+   "mde_min": 0.08719471032299118,
+   "mde_max": 0.9548716654818652,
+   "unit": "pp"
+  },
+  "C_regression": {
+   "label": "月度截面回归系数",
+   "n_series": 1,
+   "n_usable": 1,
+   "mde_median": 0.4678985632493071,
+   "mde_min": 0.4678985632493071,
+   "mde_max": 0.4678985632493071,
+   "unit": "pp"
+  },
+  "D_ic": {
+   "label": "逐期秩相关 IC（无量纲）",
+   "n_series": 1,
+   "n_usable": 1,
+   "mde_median": 0.0381882197393656,
+   "mde_min": 0.0381882197393656,
+   "mde_max": 0.0381882197393656,
+   "unit": "IC"
+  },
+  "E_fold": {
+   "label": "Walk-Forward 折级收益（n 是折数）",
+   "n_series": 2,
+   "n_usable": 0,
+   "mde_median": null,
+   "mde_min": null,
+   "mde_max": null,
+   "unit": "pp"
+  }
+ },
+ "spread_ratio": 20.890543569307404,
+ "predictions": [
+  {
+   "id": "P1",
+   "claim": "全部序列换算 pp 后 sd ∈ [0.2, 30] 且 |mean| ≤ 5",
+   "actual": "单位越界条目 0 条",
+   "refuted": false
+  },
+  {
+   "id": "P2",
+   "claim": "族 A 的 MDE 中位 ∈ [0.3, 1.0]pp",
+   "actual": "+0.427pp",
+   "refuted": false
+  },
+  {
+   "id": "P3",
+   "claim": "族 B 的 MDE 中位 < 族 A 的 MDE 中位",
+   "actual": "A +0.427pp vs B +0.095pp",
+   "refuted": false
+  },
+  {
+   "id": "P4",
+   "claim": "全库最大 MDE / 最小 MDE ≥ 5",
+   "actual": "20.89×（仅 pp 口径家族；最大 +1.822pp，最小 +0.087pp）",
+   "refuted": false
+  },
+  {
+   "id": "P5",
+   "claim": "L3r 的 0.926pp 位于族 B 最差端（MDE 排名后 20%）",
+   "actual": "L3r MDE +0.955pp，族 B 内由小到大排名 1.00（1=最好）",
+   "refuted": false
+  },
+  {
+   "id": "P6",
+   "claim": "已确认结论中至少 3 条效应量 < 同族最好 MDE",
+   "actual": "5 条",
+   "refuted": false
+  }
+ ],
+ "refuted": [],
+ "artifacts": {
+  "registry": "reports/gates/H-L3T-RESOLUTION/l3t_registry.json",
+  "report": "reports/gates/H-L3T-RESOLUTION/l3t_registry.md"
+ }
+}

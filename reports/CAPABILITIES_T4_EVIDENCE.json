@@ -1,0 +1,119 @@
+{
+  "generated_at": "2026-10-27T11:34:37",
+  "criteria": {
+    "criterion_1_schema_coverage": {
+      "core_operations_in_scope": 6,
+      "core_operations_covered": 6,
+      "coverage_ratio": 1.0,
+      "http_capabilities": 5,
+      "service_capabilities": 1,
+      "exempt_routes": {
+        "GET /backtests": "历史回测列表：只读查询，未纳入 T1 核心操作分母",
+        "GET /backtests/{run_id}": "回测详情：只读查询，同上",
+        "GET /backtests/{run_id}/integrity": "完整性报告：只读派生视图",
+        "GET /backtests/{run_id}/reproducibility": "可复现性报告：只读派生视图",
+        "GET /health": "健康检查，不触碰任何业务对象"
+      },
+      "uncovered_routes": [],
+      "contract_ok": true,
+      "contract_problem_counts": {}
+    },
+    "criterion_2_contract_enforced": {
+      "app_vs_declaration_ok": true,
+      "uncovered_routes": [],
+      "unregistered_route_demo": {
+        "status_code": 403,
+        "reason_code": "capability_unregistered",
+        "audit_cards": 1,
+        "audit_reason_code": "capability_unregistered"
+      },
+      "lock_teeth": {
+        "refused_same_version_change": true,
+        "message": "lock 生成被拒绝：backtest.run@1.0.0 的契约摘要已变化（c7d898e141c2e5dce3d7be4a04cf02c6 → 33dafe7522fc1e255f13139a09de2dfe），但版本号没变；请先升版本（不兼容改 major，兼容新增改 minor，纯实现修复改 patch）",
+        "accepts_after_version_bump": true,
+        "history_versions": [
+          "1.0.0",
+          "1.1.0"
+        ]
+      }
+    },
+    "criterion_3_disable_and_authorise": {
+      "off_baseline": {
+        "status_code": 422,
+        "note": "默认关闭：请求进入业务校验（缺必填字段 → 422），无能力响应头",
+        "has_capability_header": false
+      },
+      "enforce_disabled": {
+        "status_code": 403,
+        "reason_code": "capability_disabled",
+        "business_executed": false
+      },
+      "enforce_not_permitted": {
+        "status_code": 403,
+        "reason_code": "capability_not_permitted"
+      },
+      "enforce_version_mismatch": {
+        "status_code": 409,
+        "reason_code": "capability_version_unsupported"
+      },
+      "enforce_allowed_headers": {
+        "status_code": 200,
+        "capability": "strategy.list",
+        "version": "1.0.0"
+      },
+      "observe_would_reject": {
+        "status_code": 422,
+        "would_reject": "capability_disabled",
+        "note": "观察期判定与强制期相同，只是不拦截；业务照常执行（422）"
+      },
+      "invalid_mode_fails_closed": {
+        "status_code": 503,
+        "reason_code": "capability_internal_error"
+      }
+    },
+    "criterion_4_auditable": {
+      "cards_by_reason_code": 1,
+      "outcome_status": "rejected",
+      "capability_block": {
+        "allowed": false,
+        "capability": "backtest.run",
+        "checkpoint": "capability",
+        "detail": "能力 backtest.run 已被运维关闭",
+        "mode": "enforce",
+        "reason_code": "capability_disabled",
+        "status_code": 403,
+        "would_reject": false
+      },
+      "operator": "alice"
+    }
+  },
+  "registry": {
+    "n_capabilities": 6,
+    "lock_path": "D:\\DeepQuant power by txm\\DeepQuant-main\\backend\\contracts\\capabilities.lock.json",
+    "lock_current": {
+      "audit.replay": "1.0.0",
+      "backtest.compare": "1.0.0",
+      "backtest.run": "1.0.0",
+      "dataset.list": "1.0.0",
+      "portfolio.backtest": "1.0.0",
+      "strategy.list": "1.0.0"
+    },
+    "digests": {
+      "audit.replay": "8ad369c6bb412f43155a93a00fec2720",
+      "backtest.compare": "a0f0d27231a3e1fa5d4b4ca12ba10106",
+      "backtest.run": "c7d898e141c2e5dce3d7be4a04cf02c6",
+      "dataset.list": "06454a02bc1e0a1482111653d913dc79",
+      "portfolio.backtest": "767516fa303293be4ecde0852aa116b7",
+      "strategy.list": "4dbc8fa380cf541a09fe9a65ad4a89e4"
+    },
+    "reason_codes": [
+      "capability_contract_violation",
+      "capability_disabled",
+      "capability_internal_error",
+      "capability_not_permitted",
+      "capability_unknown",
+      "capability_unregistered",
+      "capability_version_unsupported"
+    ]
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-10-27T02:41:09+00:00",
+  "environment": {
+    "python": "3.13.14",
+    "platform": "Windows-11-10.0.22621-SP0"
+  },
+  "scale": {
+    "n_cards": 5000,
+    "build_seconds": 75.26,
+    "verify_seconds": 0.45,
+    "n_shards": 2
+  },
+  "criterion_1_coverage": {
+    "ratio": 1.0,
+    "in_scope_total": 6,
+    "instrumented_total": 6,
+    "missing": [],
+    "not_applicable": [
+      "order.entry",
+      "order.review",
+      "order.amend",
+      "order.cancel"
+    ],
+    "pass": true
+  },
+  "criterion_2_field_completeness": {
+    "required_fields": [
+      "operator",
+      "occurred_at",
+      "basis",
+      "outcome",
+      "caveats"
+    ],
+    "n_cards": 5000,
+    "n_complete": 5000,
+    "ratio": 1.0,
+    "pass": true
+  },
+  "criterion_3_replay_latency": {
+    "n": 200,
+    "p50_ms": 14.512,
+    "p95_ms": 16.467,
+    "max_ms": 21.042,
+    "under_5s": true,
+    "bulk_query": {
+      "n_returned": 1000,
+      "elapsed_ms": 16.619,
+      "under_5s": true
+    },
+    "pass": true
+  },
+  "criterion_4_tamper_evidence": {
+    "chain_ok": true,
+    "chain_failures": [],
+    "last_sha256": "cae478e22fd2c131961363a882bdaa4daa76cfc655dac7659c52c35c9b7971f1",
+    "n_shards_in_fingerprint": 2,
+    "pass": true
+  },
+  "operations": [
+    {
+      "op_id": "backtest.run",
+      "title": "单标的回测执行（含数据集解析、策略实例化、引擎运行）",
+      "layer": "api",
+      "in_scope": true,
+      "instrumented_at": "deepquant.audit.middleware:OPERATION_ROUTES",
+      "instrumented": true,
+      "note": ""
+    },
+    {
+      "op_id": "backtest.compare",
+      "title": "历史回测结果比较（只读）",
+      "layer": "api",
+      "in_scope": true,
+      "instrumented_at": "deepquant.audit.middleware:OPERATION_ROUTES",
+      "instrumented": true,
+      "note": ""
+    },
+    {
+      "op_id": "portfolio.backtest",
+      "title": "多标的组合回测（复用组合记账层）",
+      "layer": "api",
+      "in_scope": true,
+      "instrumented_at": "deepquant.audit.middleware:OPERATION_ROUTES",
+      "instrumented": true,
+      "note": ""
+    },
+    {
+      "op_id": "dataset.list",
+      "title": "数据集枚举读取",
+      "layer": "api",
+      "in_scope": true,
+      "instrumented_at": "deepquant.audit.middleware:OPERATION_ROUTES",
+      "instrumented": true,
+      "note": ""
+    },
+    {
+      "op_id": "strategy.list",
+      "title": "策略注册表读取",
+      "layer": "api",
+      "in_scope": true,
+      "instrumented_at": "deepquant.audit.middleware:OPERATION_ROUTES",
+      "instrumented": true,
+      "note": ""
+    },
+    {
+      "op_id": "audit.replay",
+      "title": "审计工件回放查询（查询审计本身也要留痕）",
+      "layer": "service",
+      "in_scope": true,
+      "instrumented_at": "deepquant.audit.operations:replay",
+      "instrumented": true,
+      "note": ""
+    },
+    {
+      "op_id": "order.entry",
+      "title": "委托录入",
+      "layer": "business",
+      "in_scope": false,
+      "instrumented_at": null,
+      "instrumented": false,
+      "note": "现有系统无委托域（无券商连接、无订单状态机）；待计划 §10 第 1 项业务形态确认后启用"
+    },
+    {
+      "op_id": "order.review",
+      "title": "委托审核",
+      "layer": "business",
+      "in_scope": false,
+      "instrumented_at": null,
+      "instrumented": false,
+      "note": "同上：无审核流，不存在可留痕的审核动作"
+    },
+    {
+      "op_id": "order.amend",
+      "title": "委托改单",
+      "layer": "business",
+      "in_scope": false,
+      "instrumented_at": null,
+      "instrumented": false,
+      "note": "同上：无改单接口"
+    },
+    {
+      "op_id": "order.cancel",
+      "title": "委托撤单",
+      "layer": "business",
+      "in_scope": false,
+      "instrumented_at": null,
+      "instrumented": false,
+      "note": "同上：无撤单接口；T5 的退出清理不变量将复用本工件结构"
+    }
+  ],
+  "overall_pass": true
+}

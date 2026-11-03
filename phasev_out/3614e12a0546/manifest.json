@@ -1,0 +1,29 @@
+{
+  "experiment": "阶段 V：成本口径一致性（等权再平衡）",
+  "prereg": "docs/PHASE_V_COST_CONVENTION_PREREG_2026-10-23.md",
+  "prereg_sha256": "3614e12a0546249f7857d2e1146069d13bc14e5acec417b1cb80089c916546fe",
+  "run_dir": "phasev_out/3614e12a0546",
+  "n_months": 237,
+  "window": [
+    "2007-01-31",
+    "2026-09-30"
+  ],
+  "inputs": {
+    "phaseo_out/ac7aa2830ab0/monthly.csv": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+    "research/exq5_audit_2026-10-22/out/a5_ledger/monthly_BASE_rebalance.csv": "565295c6ac6d6e0205f23d72d154678b0457646837f582ae5724e0efb849b998",
+    "research/exq5_audit_2026-10-22/out/a5_ledger/monthly_CONSERVATIVE_rebalance.csv": "d40f15b2f53e9fcd587278d8aca4bc57f4327dfe8459eb65458242d0649e75d6",
+    "research/exq5_audit_2026-10-22/out/a5_ledger/summary.json": "7f3fa14a4a242303ff1f7c366aa2107a523a77beaad6764dde0c8abf1b95cbf6"
+  },
+  "gates_all_pass": true,
+  "verdict": "COST_CONVENTION_SENSITIVE",
+  "files": {
+    "monthly.csv": {
+      "sha256": "4c1ba9031b164d7c3dc1a3fea271c38d1132d64723d217d7d21393cbcea00e22",
+      "bytes": 31360
+    },
+    "summary.json": {
+      "sha256": "a885d7fc2d0e3bc6105e52dee71357624b853b663a8be55c742c0344401da3e3",
+      "bytes": 11259
+    }
+  }
+}

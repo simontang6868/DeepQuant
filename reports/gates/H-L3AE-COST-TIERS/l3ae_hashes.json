@@ -1,0 +1,12 @@
+{
+ "final_status": "COST_TIERS_COMPLETED_WITH_DEFECTS",
+ "prereg_sha256": "b452f926840bb198d9458dec3bd206ec19f5bca895cfe064edc729bd28fa1a73",
+ "files": {
+  "reports\\gates\\H-L3AE-COST-TIERS\\l3ae_cost_tiers.json": "56a066fa0b1d56ebd1aadedd1fdc1f8400c59cecae5f9220367112901861254a",
+  "reports\\L3AE_PHASEI_COST_TIERS.md": "3d0f40d519b3eba0f9ce74c80acc293f06f5d1f6d9958c52b880acee89b1a296",
+  "docs\\DELIVERABLE_QUOTE_SHEET_L3AE.md": "50aa029380f52c0868b3a3361c9e5872b079c56b04074c50e3a240d95dc1b32e"
+ },
+ "unchanged": {
+  "docs/DELIVERABLE_QUOTE_SHEET_L3AD.md": "e94d1e0af93f725438f1fa2d3262e01f65d9314f937a4a5e3676bce90c373372"
+ }
+}

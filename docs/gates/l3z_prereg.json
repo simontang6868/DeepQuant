@@ -1,0 +1,126 @@
+{
+ "experiment_id": "H-L3Z-MULTIPLICITY",
+ "kind": "preregistration",
+ "created": "2026-10-28",
+ "title": "多重检验校正：同时报告 27 条结论时，哪些还站得住",
+ "objective": "在此前各层（L3t 分辨率、L3u 引用核对、L3v 卡片、L3w/L3x 解封、L3y 定稿）都只管「单条结论的数字对不对」之后，补上从未被计算过的一个维度：这 N 条是**一起报出来的**。在 α=0.05 下独立做 m 次检验，哪怕全部零效应，期望也有 m×0.05 条「显著」。因此「某条 t 很大」与「这批结论里有多少条可信」不是同一个问题。",
+ "⚠️ 纪律声明": "本阶段违反了 R2（预测必须先于测量）。起因是我先做了一轮探索性计算——需要确认 scipy 缺失时能否自实现 t 分布精确 p 值、以及 m 的三种口径是否可算——跑完才回头写预登记。因此下面 predictions 里标注 `timing: post_hoc` 的三条是**观测结果的复述，不是预测**；只有 `timing: priori` 的三条是写于测量之前的真预测。这个偏差不修饰、不删。",
+ "why_now": [
+  "对外定稿（L3y）里同时报告了 27 条检验、其中 9 条标注为「可引用」，但从未有人算过这 9 条在多重检验背景下还剩几条。",
+  "L3v 已证明 27 条只对应 24 份独立数字——重复登记会凭空抬高门槛，这一点此前只被当成「不能算两次独立验证」，没有接到显著性判定上。",
+  "本项目统计事故史里，「没检出 ≠ 没问题」复发 10 次，而「通过了单条检验 ≠ 通过了一批检验」是同一类错误的另一个方向。"
+ ],
+ "inputs_frozen": {
+  "l3u_result": {
+   "path": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+   "sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b"
+  },
+  "claims_cards": {
+   "path": "docs/gates/l3v_claims.json",
+   "sha256": "3f80be4e6b34b5a607ca02827df9946af82a9c71586fc7e60bb4920110b6a950"
+  }
+ },
+ "method": {
+  "p_value": "scipy 在本环境不可用，因此自己实现 t 分布双侧 p 值：p = I_{df/(df+t²)}(df/2, 1/2)，用正则化不完全 beta 的连分数（Lentz）。单测用已知值钉住精度（t=1.96, df=236 → 0.05117）。",
+  "estimator": "主口径用 NW(3) 的 t（与 L3u 的分辨率口径一致），iid 作对照。",
+  "corrections": "Bonferroni（FWER，最保守）／Holm（FWER，逐步下降）／Benjamini–Hochberg（FDR，对正相关稳健）。",
+  "m_口径": {
+   "m_all": "27，全部登记条目。上界口径。",
+   "m_independent": "24，按**数值指纹**去重后的独立检验数（主口径）。⚠️ 不能用 series 路径去重——共享同一份数字的条目路径不同（phasel_out/… 与 phaser_out/… 数值逐位相同）。",
+   "m_family": "各族内条数，用于族内校正。"
+  },
+  "counts_only": "判定不是由单一均值的显著性给出的条目（stat.applicable=False，共 7 条）**计入 m 但不出 p、不判通过**——那次检验做过，不能假装没发生；但它的结论不由这个 t 给出，给它判「通过/掉档」是把多重性的结论挪到不该用的地方。"
+ },
+ "gates": {
+  "G1_p_precision": "t 分布 p 值对照已知值，误差 ≤1e-3；p_to_t 与 t_two_sided_p 互为逆运算。",
+  "G2_m_consistency": "m_independent 必须等于 L3v 产物里的 n_independent_numbers（24）。两者口径必须一致，否则重复登记会被算成独立检验。",
+  "G3_counts_only": "只计名额的条目不得出现在 items 里（它们没有 p、也没有通过/掉档判定），但必须体现在 m 上。",
+  "G4_zero_effect_sanity": "全部 p=1 时任何校正都不得放行任何条目（防止门槛算错成恒真）。",
+  "G5_no_new_null": "校正后不显著的条目，若功效 < 0.8，只能判 NEITHER，不得判 NULL_CONFIRMED。这条沿用 R6：功效不足 ≠ 无效应。"
+ },
+ "anti_goals": [
+  "不改变任何一条的分级，也不修改对外定稿——本阶段只回答「如果按多重检验的标准看，哪些结论会掉档」。",
+  "不做新的统计检验，不新增因子，不启动实盘。",
+  "不把「校正后掉档」说成「结论错了」：掉档的含义是「在同时报告 N 条的背景下，它不足以宣称显著」，不是「效应不存在」。"
+ ],
+ "predictions": [
+  {
+   "id": "P1",
+   "timing": "post_hoc",
+   "statement": "NW(3) 口径下，单条 α=0.05 显著的共 10 条；Bonferroni(m=24) 后剩 6 条，BH 后剩 7 条。",
+   "quantity": "runs.m_independent 的各校正通过数"
+  },
+  {
+   "id": "P2",
+   "timing": "post_hoc",
+   "statement": "定稿里 3 条 DIRECTION_ONLY（gate3_d、phases_net、phaset_net）在校正后全部掉档——它们的单条 p 在 0.024~0.028，看着显著，但在 24 条同时报告的背景下不成立。",
+   "quantity": "verdict == DOWNGRADED 且 quotability == DIRECTION_ONLY"
+  },
+  {
+   "id": "P3",
+   "timing": "post_hoc",
+   "statement": "m 从 27 降到 24 时 phasel_alpha 从 SURVIVES_FDR_ONLY 升为 SURVIVES_ALL（Bonferroni 门槛 0.001852 → 0.002083，它的 p=0.001972 恰好跨越）。即：把同一份数字登记两次，会把真正的结论挤出门外。",
+   "quantity": "phasel_alpha 在 m_all 与 m_independent 两个 run 下的 verdict"
+  },
+  {
+   "id": "P4",
+   "timing": "priori",
+   "statement": "α 敏感性：收紧到 0.01 时掉档集合会扩大（≥4 条且包含 gate3_d/phases_net/phaset_net）；放宽到 0.10 时掉档集合不会变大（仍是这 3 条的子集）。若放宽 α 反而掉得更多，说明我对方向的理解是错的。",
+   "quantity": "sensitivity.alpha 下 verdict == DOWNGRADED 的集合"
+  },
+  {
+   "id": "P5",
+   "timing": "priori",
+   "statement": "把 3 组重复条目各删掉一条（27 条实删为 24 条，而不是只把 m 改成 24）后，BH 通过的条数仍然是 7——BH 的通过集合由最小的那几个 p 决定，删掉的是 p 较大的重复项。",
+   "quantity": "sensitivity.drop_duplicates 的 BH 通过数"
+  },
+  {
+   "id": "P6",
+   "timing": "priori",
+   "statement": "若把 7 条「只计名额」的条目错误地纳入评分（而不是只占 m），BH 通过的条数会变化 ≥1——用以确认「只计名额」这个处理不是无所谓的记账。",
+   "quantity": "sensitivity.include_counts_only 与基线 BH 通过数之差"
+  }
+ ],
+ "known_limitations": [
+  "三种校正都假设 p 值可算且检验次数已知；本项目这些检验并非预先设计的固定族，而是陆续追加的实验，m 的界定本身就有选择空间。",
+  "**掉档集合随 α 非单调**（A1）：α 同时定义「哪些条算单条显著」和校正门槛，所以「掉档」不是条目本身的性质，而是「在给定 α 约定下，单条显著却没通过校正」的相对状态。引用时必须带 α 前提。",
+  "BH 对正相关稳健是理论性质；这里没有做 Monte-Carlo 验证实际 FDR。",
+  "多重检验只回答「这个非零信号是不是真的」，不回答「它有没有经济意义」——phasel_alpha 的 p 很小但结论是「净效应被吸收」，两者不矛盾。",
+  "本阶段不改对外定稿；若结论表明有条目会掉档，是否改定稿是另一次需要授权的改动。"
+ ],
+ "amendments": [
+  {
+   "id": "A2",
+   "at": "独立审计之后",
+   "reason": "原敏感性分析把 alpha 与 BH 的 q 绑成同一个值（`alpha=a, q=a`），导致「B 类集合随 α 非单调」看起来像校正流程出错。实际上那只是两个参数被同时改动。",
+   "action": "新增 `alpha_sweep`（q 固定）与 `q_sweep`（α 固定）两个独立扫描，并加入 `monotonicity_check` 检验拒绝集合的嵌套性。分离后 B 类集合为 0 / 3 / 5 **单调递增**；Bonferroni、Holm、BH 的拒绝集合单调性全部满足。原报告第五节关于「非单调」的表述已据此修订。"
+  },
+  {
+   "id": "A3",
+   "at": "独立审计之后",
+   "reason": "独立审计确认校正实现正确、p 值正确、单调性满足，因此 3 条 DIRECTION_ONLY 确实未通过多重检验。按审计原则需「降级或标记为探索性观察」。",
+   "action": "新增 EXPLORATORY 分级（DIRECTION_ONLY 的降级），卡片 3 条改为 EXPLORATORY，`tier_basis=\"l3z_audit\"`；`claims.BASIS_REQUIRED_STATUS` 登记该依据要求状态为 DOWNGRADED；L3z 产出 `l3z_claims_patch.json` 供 L3v 作依据。原分级记在 `quotability_note` 与 patch 的 `previous` 字段（从审计前卡片备份读取），可追溯。定稿重生成，旧版保留为 `*_v1_pre2026-10-29.*`。"
+  },
+  {
+   "id": "A1",
+   "at": "测量之后（P4 被反驳）",
+   "reason": "P4 预测「α 收紧到 0.01 时掉档集合会扩大」，实测 α=0.01 时掉档集合是**空**。我的推理错在把 α 当成只作用于校正门槛——实际上 α 同时定义了「哪些条算单条显著」，收紧 α 会让进入待校正集合的条目变少，掉档自然也变少。",
+   "detail": "α=0.01：单条显著 6 条，BH 通过 6 条，掉档 0。α=0.05：单条显著 10 条，BH 通过 7 条，掉档 3（gate3_d / phases_net / phaset_net）。α=0.10：单条显著 12 条，BH 通过 10 条，掉档 2（phasee_alpha / phaseg_alpha）。**掉档集合随 α 非单调**——它不是一个固定的条目集合，而是「在给定 α 约定下，单条显著却没通过校正」的那批。",
+   "consequence": "因此「gate3_d / phases_net / phaset_net 掉档」这句话必须带上 α=0.05 的前提。不能写成「这三条结论不成立」。原样保留被反驳的预测与错误推理。",
+   "action": "在 known_limitations 补一条；报告里写明掉档集合随 α 非单调。"
+  },
+  {
+   "id": "A4",
+   "at": "定稿修订之后",
+   "reason": "3 条降级条目的原结论句含「只能引方向」等表述，与审计结论「不得表述为已得到统计支持的方向规律」冲突。",
+   "action": "3 条 headline 补上「单条显著但多重检验未通过，只能记为待验证的方向性观察」；渲染的「分级来源」按 basis 区分，l3z_audit 显示为「审计降级」而非「解封复核」。"
+  },
+  {
+   "id": "A6",
+   "at": "独立审计收尾",
+   "reason": "审计要求补三项原预登记没有的分析（p 值独立验证、检验家族敏感性、NW 滞后敏感性），并要求区分「主口径」与「补充分析」。另发现敏感性字典的键名用 str() 生成，α=0.10 时键是 '0.1'，而 P4 判据里写的是 '0.10'——两者不一致只靠 `and` 短路才没报 KeyError，属于会静默失效的隐患。",
+   "action": "① 新增 scripts/l3z_pvalue_validation.py / l3z_family_sensitivity.py / l3z_lag_sensitivity.py，全部标 SUPPLEMENTARY，不写入主预登记的预测，也不替换主口径；② 前瞻滞后敏感性明确「主口径仍 NW(3)，不因某档更有利而替换」；③ 敏感性键名统一为两位小数（f\"{a:.2f}\"），并新增单测钉住键名稳定性；④ 新增 scripts/l3z_audit_reports.py 生成三份审计报告，正文数字全部从产物现取。",
+   "artifacts": "reports/L3Z_{PVALUE_VALIDATION,FAMILY_SENSITIVITY,LAG_SENSITIVITY,MUTATION_RESULTS}.json、reports/L3Z_MULTIPLICITY_INDEPENDENT_AUDIT.md、reports/L3Z_CLAIM_STATUS_RECONCILIATION.md、reports/STAGE_REPORT_L3Z_POST_AUDIT.md"
+  }
+ ]
+}

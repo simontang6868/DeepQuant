@@ -1,0 +1,128 @@
+{
+ "experiment_id": "H-L3AA-DEPENDENCE",
+ "kind": "preregistration",
+ "created": "2026-10-29",
+ "title": "多重检验的依赖结构：任意依赖下的 BY 校正与家族重叠诊断",
+ "objective": "L3z 审计报告第 8 节留下一项明确未验证的缺口——「BH 的依赖结构：只能观察同期、同池、同族，未验证 PRDS 或具体依赖模型」。BH 的正确性依赖检验之间的正相依（PRDS）或独立性假设；在本项目这种「同一份月度面板上反复切池、切窗口、切成本口径」的家族里，这个假设既没有被检验过，也很难靠论证确立。本阶段的做法不是去证明 PRDS，而是**直接放弃它**：改用 Benjamini–Yekutieli（BY）校正，它在**任意依赖结构**下都控制 FDR，代价是门槛收紧一个调和数因子 H_m。若在此最保守口径下仍有若干条结论成立，则这些结论的存在性不依赖任何未经验证的相依假设。",
+ "why_now": [
+  "审计报告 §8 把「BH 的依赖结构」列为未验证项，这是全部未解决缺口里**唯一不需要新数据**就能补的一项。",
+  "此前三种校正（Bonferroni / Holm / BH）在任意依赖下分两类：Bonferroni 与 Holm 都只依赖联合分布的可加性，任意依赖下仍控制 FWER；BH 需要 PRDS。也就是说「BH 7 条」这个数字本身带着一个未检验的前提。",
+  "本项目统计事故史里「没检出 ≠ 没问题」复发 10 次，其中一类正是「假设没验，但结论按假设成立来写」。把 BY 补上，等于给「6 条」这个对外数字加一道不依赖假设的背书；如果 BY 给出更少的条数，那就是必须出更正的信号。"
+ ],
+ "inputs_frozen": {
+  "l3u_result": {
+   "path": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+   "sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b"
+  },
+  "claims_cards": {
+   "path": "docs/gates/l3v_claims.json",
+   "sha256": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0"
+  },
+  "l3z_result": {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+   "sha256": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc"
+  },
+  "l3t_registry": {
+   "path": "scripts/l3t_registry.py",
+   "sha256": "a7acb881b34415846a4e07ee222b266413743b6299fc19bd9818413e15d69870"
+  }
+ },
+ "known_discrepancies": [
+  "L3z 预登记（docs/gates/l3z_prereg.json）里写的 claims_cards sha 是 3f80be4e…，与本阶段冻结的 5b4173c7… 不同。原因是 L3z 审计期间卡片被打了 l3z_claims_patch（3 条降为 EXPLORATORY），文件内容确实变了。本阶段以**当前**文件为准，并在此显式记录差异，不改写 L3z 预登记的 sha——预登记一旦落盘就不应被「顺手更新」。"
+ ],
+ "method": {
+  "by_correction": "Benjamini–Yekutieli（2001）：门限 p_(k) ≤ k·q/(m·H_m)，其中 H_m = Σ_{i=1..m} 1/i。step-up：取满足条件的最大 k，前 k 条全部拒绝。H_m ≥ 1 恒成立，故 BY 拒绝集合必然是 BH 拒绝集合的子集；m=1 时 H_1=1，退化为单条检验。",
+  "why_by": "BY 的证明只需要 p 值在原假设下的联合分布满足「每个子集上的期望拒绝比例可控」，不引入 PRDS、不引入具体相依模型，因此对「同期、同池、同族、共用同一份月度收益」这种任意结构都成立。",
+  "cost_of_by": "门槛收紧 H_m 倍。m=24 时 H_24=3.775958，故单条门槛 0.05/24=0.0020833 收紧到 0.00055174；但 BY 是 step-up，第 k 条门槛按 k 线性放宽，k=6 时为 0.00331042，反超 Bonferroni 门槛。",
+  "dependence_diagnostics": "对 20 条参与评分的检验，按 scripts/l3t_registry.py 的规格重新加载逐月序列（带 month 索引，不用 L3u 已丢索引的 load_series），两两计算：交集月份数 n_∩、重叠率 n_∩/min(n_i,n_j)、交集上的 Pearson ρ、以及 ρ 的 t 检验。这一步**只做描述**，不用于证明 PRDS。",
+  "m_eff": "Li & Ji（2005）：m_eff = 1 + (m-1)·(1 - Var(λ)/m)，λ 为相关矩阵特征值。仅在**相关矩阵完整**的子集上计算（要求所选条目两两都有足够交集月份），其余条目另报 NA。",
+  "estimator": "主口径 NW(3) 的 t（与 L3u / L3z 一致）；iid 作对照；滞后敏感性沿用 L3u 的 {0,1,2,3,4,6} 网格。"
+ },
+ "m_口径": {
+  "m_independent": "24，按数值指纹去重后的独立检验数（主口径，与 L3z 相同）。",
+  "m_all": "27，全部登记条目（替代口径）。",
+  "note": "本阶段不新增、不重定义 m。BY 的敏感性只看 24 / 27 两个既有口径。"
+ },
+ "gates": {
+  "G1_by_subset_of_bh": "BY 拒绝集合必须是 BH 拒绝集合的子集。违反即实现错误（数学必然性检验，等于仪器自检）。",
+  "G2_by_formula": "BY 门槛必须与手算 q/(m·H_m) 一致到 1e-12；H_m 与 Fraction 精确和一致到 1e-12。",
+  "G3_by_equals_single_at_m1": "m=1 时 BY 必须退化为单条检验（门槛 = q）。",
+  "G4_zero_effect": "全部 p=1 时 BY 不得放行任何条目。",
+  "G5_monotone_in_q": "q 增大时 BY 拒绝集合必须嵌套增大。",
+  "G6_m_semantics": "只计名额的 7 条必须照占 m（补 p=1.0），不得从 m 里剔除；m_used 必须等于 max(m, n_scored)。",
+  "G7_overlap_arithmetic": "两两重叠率的分子分母都必须从同一份月份集合算出；序列文件不存在与「过滤后为空」必须分别报错（不得都用「无数据」一个错误码盖住）。"
+ },
+ "predictions": [
+  {
+   "id": "P1",
+   "timing": "priori",
+   "statement": "m=24、q=0.05 下，BY 拒绝数 = 6，且拒绝集合与 Bonferroni 的 6 条完全相同。",
+   "quantity": "len(rejected_BY), set(rejected_BY) == set(rejected_Bonferroni)",
+   "mechanism": "H_24=3.775958。p_(6)=0.001972 对 BY 第 6 档门槛 6×0.05/(24×3.775958)=0.00331042，余量 40%；p_(7)=0.010970 对第 7 档 0.00386215，超出 2.84 倍。Bonferroni 门槛恒为 0.0020833，p_(6) 在其下方 → 两者都恰好停在 6。",
+   "structural_assumption": "该预测依赖 L3z 已固定的 20 个 p 值不变（输入 sha 已冻结）；若 p_(6) 或 p_(7) 发生位移，档位会变。",
+   "if_refuted": "若 BY 少于 6 条，则需要按预先写好的处置规则降级并出更正（见 disposition）。"
+  },
+  {
+   "id": "P2",
+   "timing": "priori",
+   "statement": "BY 拒绝集合比 BH 少 1 条，差集恰为 {phasep_late}。",
+   "quantity": "set(rejected_BH) - set(rejected_BY)",
+   "mechanism": "phasep_late 是唯一 p 落在 BH 门槛与 BY 门槛之间的条目（p=0.010970，BH 第 7 档门槛 0.014583，BY 第 7 档 0.00386215）。它本来在对外定稿里就是 NOT_GRADED（判定统计量不同源），所以它掉出 BY 不影响任何可引结论。"
+  },
+  {
+   "id": "P3",
+   "timing": "priori",
+   "statement": "m=27 时 BY 仍拒绝 6 条，而 Bonferroni 只拒绝 5 条 ⇒ BY 对 m 口径比 Bonferroni 更稳。",
+   "quantity": "len(rejected_BY @ m=27), len(rejected_Bonferroni @ m=27)",
+   "mechanism": "H_27=3.891457，BY 第 6 档门槛 0.00285526 > p_(6)=0.001972；而 Bonferroni 恒为 0.05/27=0.00185185 < p_(6)。step-up 的线性放宽补偿了 H_m 的收紧。",
+   "structural_assumption": "同上：p 序列不变。"
+  },
+  {
+   "id": "P4",
+   "timing": "priori",
+   "statement": "NW 滞后 {0,1,2,3,4,6} 六档下，BY 通过数恒为 6，不随滞后摆动。",
+   "quantity": "len(rejected_BY) for L in (0,1,2,3,4,6)",
+   "mechanism": "L3u 已测：20 条 × 6 档里只有 phasep_late 一条跨档，而它不在 BY 的 6 条里；其余 19 条的 p 随滞后变动幅度远小于 p_(6) 到第 6 档门槛 40% 的余量。",
+   "structural_assumption": "余量 40% 的估计只在「p_(6) 对滞后不敏感」时成立——L3u 的 6 档网格是唯一证据，它没有覆盖更长的滞后。"
+  },
+  {
+   "id": "P5",
+   "timing": "priori",
+   "statement": "20 条两两月度重叠率（交集月份 / 较短窗口）的中位数 ≥ 0.90。",
+   "quantity": "median(overlap_ratio) over C(20,2)=190 对",
+   "mechanism": "绝大多数条目覆盖 2005-2026 同一段历史（n=237 的有 12 条），只有 gate1(48)、gate2(125)、gate3(108)、phasep/phases/phaset(129) 窗口较短，因而短窗口对短窗口的重叠仍然高，短对长的重叠按较短窗口归一也高。"
+  },
+  {
+   "id": "P6",
+   "timing": "priori",
+   "statement": "两两 Pearson ρ 的绝对值中位数 ≤ 0.50。",
+   "quantity": "median(|rho|) over 190 对",
+   "mechanism": "被解释量分三类：A 族是横截面价差（未扣成本）、B 族是多头净 alpha（已扣成本，且成本逐月变动会引入独立噪声）、C 族是回归系数。跨族对占多数（11×7+11×2+7×2=103 对），经济含义不同应拉低相关性；同族内 net 类（phasej/phaseo/phasek/phasel）预计高相关，但不足以抬高全体中位数。",
+   "note": "这条预测最弱，机制是直觉性的。若被反驳，结论是「本家族内部同步性比预期强」，需在报告中如实写明，不得改口径重算。"
+  },
+  {
+   "id": "P7",
+   "timing": "descriptive",
+   "statement": "m_eff（Li-Ji，完整相关矩阵子集）不预测，只报告。",
+   "quantity": "m_eff on the largest complete submatrix",
+   "note": "不预测的理由：m_eff 依赖具体相关矩阵，而哪些条目能进入完整子集由窗口长度决定，写预测只能是编的。明确标为描述性统计，不作为任何判定的依据。"
+  }
+ ],
+ "disposition": {
+  "if_by_rejects_6": "对外定稿**无需改动**：6 条可引结论在「放弃 PRDS」的最保守口径下仍成立，这一条写进定稿的分级依据。不改任何分级。",
+  "if_by_rejects_fewer": "按 BY 结果再降级，出更正报告，保留 L3z 与 L3y 的原始产物不覆盖（R5：不删失败）。",
+  "if_by_rejects_more": "不可能——BY 拒绝集合是 BH 的子集；若出现，说明实现错，停下来查仪器而不是报结论。"
+ },
+ "anti_goals": [
+  "不新增因子、不新增回测、不启动实盘。",
+  "不为提高通过数而调 α / m / 滞后 / 分族；BY 只能收紧，不能放宽，所以本阶段在方向上是单向的。",
+  "不用两两 Pearson ρ 宣称 PRDS 已验证：PRDS 是高维联合性质，两两相关既不能证明也不能否证它。本阶段的说法只能是「即使不假设 PRDS，结论仍成立」。",
+  "不因为 BY 更严格就把「掉档」写成「效应不存在」。"
+ ],
+ "expected_artifacts": [
+  "reports/gates/H-L3AA-DEPENDENCE/l3aa_dependence.json",
+  "reports/gates/H-L3AA-DEPENDENCE/l3aa_dependence.md",
+  "reports/L3AA_ARBITRARY_DEPENDENCE_AUDIT.md",
+  "backend/tests/gates/test_gates_l3aa_dependence.py"
+ ]
+}

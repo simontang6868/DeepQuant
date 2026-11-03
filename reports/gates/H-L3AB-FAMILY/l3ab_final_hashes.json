@@ -1,0 +1,20 @@
+{
+ "final_status": "VERIFIED_WITH_DOCUMENTED_LIMITATIONS",
+ "reasons": [
+  "p 值链条可复现：22 条重算与 L3u/L3z 一致，最大偏差 0e+00。",
+  "6 个变异体全部被抓到，检查器自检通过。",
+  "U2（同源配对是否为独立假设）仍 UNKNOWN；但 5 条正面结论在 4 种 m 口径 × 4 种校正下全部通过，对外集合不受其影响。",
+  "家族覆盖面有 1 个已证实缺口（phasei_out），因此「可引 6 条」只能声称覆盖登记在册的 27 条。"
+ ],
+ "files": {
+  "reports/L3AB_TEST_FAMILY_AUDIT.md": "d8c99f12c0c22a01ef5b0a2c05255bb22e46434b79317a1dfa475c98902c6c63",
+  "reports/L3AB_MULTIPLICITY_REPRODUCTION.md": "33446722fcfc3f693722a7908662232baecd091ec788b732ea844e7ebfaf6eed",
+  "reports/L3AB_CURRENT_CLAIM_STATUS.md": "4477d9c659c06cee3fdadea9f8191ef33eb4a9104bece7673f5fe705953f72dc",
+  "docs/DELIVERABLE_QUOTE_SHEET_CURRENT.md": "0d16c355713962e29488a276642266d0ab594007132ee4518723b98dc39ddb34",
+  "reports/STAGE_REPORT_L3AB_FINAL.md": "58138198d75011ec92d882b13532e2aac2ec4e21ec0674022f58f5a673158479",
+  "reports/gates/H-L3AB-FAMILY/l3ab_family.json": "116a06aa683932054f39de514ffdd99236036b4bef2b5f4ec3c7a9c1882e90dc",
+  "reports/gates/H-L3AB-FAMILY/l3ab_current_claims.json": "e5eb9fcf729af44aeeaabbca3125e2c616142a0e52abc6fefd9f037bbaabb640",
+  "reports/gates/H-L3AB-FAMILY/l3ab_mutation.json": "1a70ea89305cd7ebbacb0f799c77f73e7e5b1f23591397ae15caa0ff84216c5c",
+  "docs/gates/l3ab_family_decisions.json": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75"
+ }
+}

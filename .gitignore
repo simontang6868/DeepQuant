@@ -92,3 +92,23 @@ backend/data/**
 probe_out/*.log
 /data/raw/
 /data/oos_recalc_pool*/
+
+# T3 依赖状态（切换事件与延迟档案）：运行时产物，不入库
+/backend/data/deps/
+
+# T5 安全状态（熔断状态与清理证据）：运行时产物，不入库
+/backend/data/safety/
+
+# ---------- 分红与行情原始数据（2026-11-03 补：曾误将 12,171 个 json 暂存）----------
+# div_all_em/div_all_sina 每只股票一个 json（合计 10,930 个），exec/exec_all/qfq_all 为行情。
+# 原则不变：数据不入 Git，靠 migrate_data.py 清单 + 云主机备份 + 每周邮件包保全。
+# 一旦入库，git 会把 1.67 GB 二进制历史永久留在 .git 里，且 clone/push 全部变慢。
+/data/div_all_em/
+/data/div_all_sina/
+/data/exec/
+/data/exec_all/
+/data/qfq_all/
+/data/qfq_all_prev_*/
+/data/_backup_*/
+/data/_all_a_*.txt
+/data/_all_a_*manifest.json

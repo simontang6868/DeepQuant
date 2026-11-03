@@ -1,0 +1,77 @@
+{
+ "experiment_id": "H-L3AF-COST-NET",
+ "kind": "correction_log",
+ "created": "2026-10-29",
+ "why_this_file_exists": "本阶段推翻了上一阶段的若干表述。原文一律不改写（纪律 R5：不删失败、不改历史），变化只记在这里。每条都写清：问题、证据、影响、处置。",
+ "how_to_read": [
+  "D1/D3 是 L3ae 的两处实质问题，其中 D3 需要撤回一个结论性表述；",
+  "D2 是更早阶段留下的文档矛盾，本阶段无法修复原文，只能记录；",
+  "D4/D5/D6/D7 是数据与流程层面的缺口，不构成实现错误，但会限制结论的适用范围。"
+ ],
+ "corrections": [
+  {
+   "id": "D1",
+   "title": "L3ae 的月度成本用了 236 个非零交易月的均值",
+   "problem": "phasei 的 summary.turnover.v1_one_side = 0.188620 是**剔除首月**（to=0，建仓月无换手）后的均值，而逐月序列有 237 个月。L3ae 直接拿这个均值乘费率，等于假设 237 个月都在交易。",
+   "evidence": "phaseo_out/ac7aa2830ab0/monthly.csv 共 237 行，其中恰好 1 行 to=0；全月均值 0.187824，非零月均值 0.188620，差 0.000796。",
+   "impact": "0.3% 档成本被高估 0.000478 pp/月、0.1% 档高估 0.000159、0.051% 档高估 0.000081。t(iid) 相应从 1.0377 变为 1.0474（0.3% 档），判定不变。",
+   "handling": "本阶段逐月乘，不再用均值。L3ae 报告与产物保留原样，不覆盖。"
+  },
+  {
+   "id": "D2",
+   "title": "经济意义门槛的记录自相矛盾",
+   "problem": "PHASE_C2 第 93 行写「0.30pp/月 等于阶段 C 主检验经济门槛的一半」，隐含 C 的门槛是 0.60；而 PHASE_C 第 156 行、PHASE_E 第 86 行、PHASE_F 第 116 行三处都说 C 的门槛是 0.30。",
+   "evidence": "4 份预登记文件中 3 份一致、1 份矛盾；原文均可按行号核对。",
+   "impact": "对 7 条正面结论的 S2 判定**无影响**：受门槛约束的三条（phasec_d 1.94、phasec2_d 0.107、phasef_delta 0.740）在 0.30 与 0.60 两种取值下过/不过都不变。",
+   "handling": "取 0.30（多数一致方），把矛盾作为记录缺陷保留。修复需新预登记，不得追溯改历史判据。"
+  },
+  {
+   "id": "D3",
+   "title": "「真实净收益标准误不小于毛收益标准误、t 只能当上界」方向错",
+   "problem": "L3ae 把「成本按月度常数扣减」这一**构造假设**的推论说成了统计事实。Var(net) = Var(gross) + Var(cost) − 2Cov；se_net ≥ se_gross 等价于 Var(cost) ≥ 2Cov，不是恒真。",
+   "evidence": "逐月重建后：0.3% 档 Var(cost)/Var(gross)=1.52e-3、2Cov/Var(gross)=1.25e-4 ⇒ se_net 略大于 se_gross（1.000149 倍）；0.051% 档 Var(cost)/Var(gross)=4.39e-5、2Cov/Var(gross)=1.04e-4 ⇒ se_net **小于** se_gross（0.999918 倍）。5 档中只有 1 档支持「上界」说法。",
+   "impact": "纯 se 效应带来的 t 变化最大 3.1e-4，对任何判定都无影响。但「上界」暗示存在保守余量，会误导下一位使用者。",
+   "handling": "撤回「上界」表述，改为「成本对标准误的影响 < 0.1%，故 t 是近似值」；四个方差分量逐档落盘，不再只报结论。"
+  },
+  {
+   "id": "D4",
+   "title": "phasei 的 summary.json 在磁盘上是 CRLF，与 manifest 记录的 sha256 不符",
+   "problem": "phasei_out/8f5c35121fdb/summary.json 被 autocrlf 转成 CRLF（322 个 CRLF，7207→7529 字节），raw 的 sha256 与 manifest 记录不一致。",
+   "evidence": "LF 归一后的 sha256 = 33d91938… 与 manifest 逐位相同，证明内容未变。L3ae 预登记冻结的是转换后的 fcf36b7a…。",
+   "impact": "若只认 raw 哈希，会把「换行被改」误报成「内容被改」；若只认 LF 哈希，会漏掉真正的内容篡改。",
+   "handling": "预登记同时冻结两个哈希，闸门 G0 认二者之一，并在结果里报 matched_via 与 eol_converted。"
+  },
+  {
+   "id": "D5",
+   "title": "net_CONS_1000w 无法用落盘的成本列校验",
+   "problem": "monthly.csv 只有一列 cost_CONS_pp（按 W=3000 万的 k 算），而 net_CONS_1000w 用的是 W=1000 万档的 k（最低佣金约束更紧）。拿 3000 万的成本去对 1000 万的净额，残差是两档成本之差（实测 3.9e-2 pp）。",
+   "evidence": "本阶段首版把这一档也写进恒等式校验，闸门 G3 报「残差超容差」；逐项拆开后确认是**判据错**而非数据错。这与 L3ae 的 G1（1e-6 不可满足）是同一类错误。",
+   "impact": "无数据损失。1000 万档 CONSERVATIVE 的成本无法事后校验，只能由脚本重算。",
+   "handling": "刻意不校验该档，并在代码里写明原因；要校验必须补逐月 k(W=1000 万)，产物没有。"
+  },
+  {
+   "id": "D6",
+   "title": "phasei_v0 的逐月换手未落盘，S3 只能不判",
+   "problem": "V0 的持仓含当期不可成交标的，其换手与 V1 不是同一条序列。phase O 只落了 V1 的 to。",
+   "evidence": "phaseo_out/…/monthly.csv 的 to 由 filter_v1 后的 keep_codes 算出；summary.honest_limits 明确 V1 是「剔除当期不可成交标的」后的口径。",
+   "impact": "phasei_v0 的 S3 为 ABSENT。若强行用 V1 换手估 V0 成本，等于「换手沿用别的信号」。",
+   "handling": "不判，写清缺什么（需重跑 V0 并落盘 to）。"
+  },
+  {
+   "id": "D7",
+   "title": "phasei 从未登记进检验家族",
+   "problem": "phasei 自 2026-10-21 起就有完整结论（EXQ5_COST_ABSORBED），但 l3u 的 27 条里没有它。L3ab 已把这一点记为 family_coverage 缺口。",
+   "evidence": "复现脚本对 phasei_out 有完整判定，而 27 条登记表的 series 路径无一条指向 phasei_out。",
+   "impact": "纳入后 m 由 24（指纹）变为 25（独立随机变量），7 条正面结论的集合不变（G9B 验证 4 种 m 口径）。纳入只会抬高门槛，不会降低。",
+   "handling": "本阶段正式纳入（m+2 名额），并把「家族只覆盖登记册」写成对外清单的固定限制。"
+  },
+  {
+   "id": "D8",
+   "title": "归档上一版清单时，重跑 L3ab 脚本把归档件的时间戳改了",
+   "problem": "为了保留上一版 CURRENT 清单，先把它 copy 到 docs/history/；随后把 L3ab 脚本的输出路径也改到该目录，并**重跑**了一次以确认路径生效。重跑把归档件重写了：生成时间从 2026-10-29 20:33 变成 22:38。",
+   "evidence": "字节数仍为 8770、版本 `L3AB-CURRENT-v1`、状态 `CURRENT_WITH_DOCUMENTED_LIMITATIONS` 均未变；sha256 由 0d16c355… 变为 95bf9fb7…，差异仅在时间戳。reports/L3AB_CURRENT_CLAIM_STATUS.md 同因被重写。",
+   "impact": "历史件的**内容**未变，但哈希变了。任何以 0d16c355 为基准的外部引用需要按新哈希更新。",
+   "handling": "如实记账，不做二次手改（手改历史产物比时间戳漂移更严重）。后续若要保留原字节，应在 copy 之前先冻死脚本，而不是先 copy 后重跑。"
+  }
+ ]
+}

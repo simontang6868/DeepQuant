@@ -1,0 +1,2228 @@
+{
+ "experiment_id": "H-L3Z-MULTIPLICITY",
+ "alpha": 0.05,
+ "q": 0.05,
+ "estimator": "t_nw3",
+ "m_all": 27,
+ "m_independent": 24,
+ "family_m": {
+  "A_cross_spread": 12,
+  "B_long_only": 10,
+  "C_regression": 2,
+  "D_ic": 1,
+  "E_fold": 2
+ },
+ "expected_false_positives": 1.2000000000000002,
+ "runs": {
+  "m_all": {
+   "estimator": "t_nw3",
+   "m_used": 27,
+   "n_scored": 20,
+   "alpha": 0.05,
+   "q": 0.05,
+   "bonferroni_p_threshold": 0.001851851851851852,
+   "bh_p_threshold": 0.010969566550594374,
+   "n_counts_only": 7,
+   "items": [
+    {
+     "key": "gate1_d",
+     "p": 0.545308791389788,
+     "df": 47,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.09348014994108061,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate2_d",
+     "p": 0.1133481204862753,
+     "df": 124,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.35759455301886584,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate3_d",
+     "p": 0.024529238183913747,
+     "df": 107,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.62590502917764,
+     "verdict": "DOWNGRADED"
+    },
+    {
+     "key": "gate4_d",
+     "p": 0.3335697864563164,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.16252744294702898,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate5_d",
+     "p": 0.8769518929614457,
+     "df": 248,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.05275211108504069,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate6_d",
+     "p": 5.668407884527412e-06,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.996366334207538,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec_d",
+     "p": 9.934532578330494e-10,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9999947713391728,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec2_d",
+     "p": 1.042990002819018e-06,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9988742585624797,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec3_d",
+     "p": 0.5508403998670676,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.09177136124670221,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasee_alpha",
+     "p": 0.05847823289789561,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.4766597950712204,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasef_delta",
+     "p": 0.0007677795015819844,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.926272090457488,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phaseg_alpha",
+     "p": 0.07901679190325701,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.4224239066624263,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasel_alpha",
+     "p": 0.0019717240450335526,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": true,
+     "bh": true,
+     "power": 0.8788959507524083,
+     "verdict": "SURVIVES_FDR_ONLY"
+    },
+    {
+     "key": "phasej_netA",
+     "p": 0.2983123454549297,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.18074263556796427,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasek_m1net",
+     "p": 0.23345971280445088,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.22280731816353655,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phaseo_netBASE",
+     "p": 7.273409740837666e-05,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9811740561786525,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasep_late",
+     "p": 0.010969566550594374,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": true,
+     "power": 0.7328003258693112,
+     "verdict": "SURVIVES_FDR_ONLY"
+    },
+    {
+     "key": "phases_net",
+     "p": 0.02831672555412718,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.6018203254507023,
+     "verdict": "DOWNGRADED"
+    },
+    {
+     "key": "phaset_net",
+     "p": 0.02831672555412718,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.6018203254507023,
+     "verdict": "DOWNGRADED"
+    },
+    {
+     "key": "phaseq_max5",
+     "p": 0.7997467860913298,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.05741614202802742,
+     "verdict": "NEITHER"
+    }
+   ],
+   "verdict_counts": {
+    "NEITHER": 10,
+    "DOWNGRADED": 3,
+    "SURVIVES_ALL": 5,
+    "SURVIVES_FDR_ONLY": 2
+   }
+  },
+  "m_independent": {
+   "estimator": "t_nw3",
+   "m_used": 24,
+   "n_scored": 20,
+   "alpha": 0.05,
+   "q": 0.05,
+   "bonferroni_p_threshold": 0.0020833333333333333,
+   "bh_p_threshold": 0.010969566550594374,
+   "n_counts_only": 7,
+   "items": [
+    {
+     "key": "gate1_d",
+     "p": 0.545308791389788,
+     "df": 47,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.09348014994108061,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate2_d",
+     "p": 0.1133481204862753,
+     "df": 124,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.35759455301886584,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate3_d",
+     "p": 0.024529238183913747,
+     "df": 107,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.62590502917764,
+     "verdict": "DOWNGRADED"
+    },
+    {
+     "key": "gate4_d",
+     "p": 0.3335697864563164,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.16252744294702898,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate5_d",
+     "p": 0.8769518929614457,
+     "df": 248,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.05275211108504069,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate6_d",
+     "p": 5.668407884527412e-06,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.996366334207538,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec_d",
+     "p": 9.934532578330494e-10,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9999947713391728,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec2_d",
+     "p": 1.042990002819018e-06,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9988742585624797,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec3_d",
+     "p": 0.5508403998670676,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.09177136124670221,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasee_alpha",
+     "p": 0.05847823289789561,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.4766597950712204,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasef_delta",
+     "p": 0.0007677795015819844,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.926272090457488,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phaseg_alpha",
+     "p": 0.07901679190325701,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.4224239066624263,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasel_alpha",
+     "p": 0.0019717240450335526,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.8788959507524083,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasej_netA",
+     "p": 0.2983123454549297,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.18074263556796427,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasek_m1net",
+     "p": 0.23345971280445088,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.22280731816353655,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phaseo_netBASE",
+     "p": 7.273409740837666e-05,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9811740561786525,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasep_late",
+     "p": 0.010969566550594374,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": true,
+     "power": 0.7328003258693112,
+     "verdict": "SURVIVES_FDR_ONLY"
+    },
+    {
+     "key": "phases_net",
+     "p": 0.02831672555412718,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.6018203254507023,
+     "verdict": "DOWNGRADED"
+    },
+    {
+     "key": "phaset_net",
+     "p": 0.02831672555412718,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.6018203254507023,
+     "verdict": "DOWNGRADED"
+    },
+    {
+     "key": "phaseq_max5",
+     "p": 0.7997467860913298,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.05741614202802742,
+     "verdict": "NEITHER"
+    }
+   ],
+   "verdict_counts": {
+    "NEITHER": 10,
+    "DOWNGRADED": 3,
+    "SURVIVES_ALL": 6,
+    "SURVIVES_FDR_ONLY": 1
+   }
+  }
+ },
+ "by_family": {
+  "A_cross_spread": {
+   "estimator": "t_nw3",
+   "m_used": 12,
+   "n_scored": 10,
+   "alpha": 0.05,
+   "q": 0.05,
+   "bonferroni_p_threshold": 0.004166666666666667,
+   "bh_p_threshold": 0.0007677795015819844,
+   "n_counts_only": 2,
+   "items": [
+    {
+     "key": "gate1_d",
+     "p": 0.545308791389788,
+     "df": 47,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.09348014994108061,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate2_d",
+     "p": 0.1133481204862753,
+     "df": 124,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.35759455301886584,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate3_d",
+     "p": 0.024529238183913747,
+     "df": 107,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.62590502917764,
+     "verdict": "DOWNGRADED"
+    },
+    {
+     "key": "gate4_d",
+     "p": 0.3335697864563164,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.16252744294702898,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate5_d",
+     "p": 0.8769518929614457,
+     "df": 248,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.05275211108504069,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "gate6_d",
+     "p": 5.668407884527412e-06,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.996366334207538,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec_d",
+     "p": 9.934532578330494e-10,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9999947713391728,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec2_d",
+     "p": 1.042990002819018e-06,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9988742585624797,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasec3_d",
+     "p": 0.5508403998670676,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.09177136124670221,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasef_delta",
+     "p": 0.0007677795015819844,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.926272090457488,
+     "verdict": "SURVIVES_ALL"
+    }
+   ],
+   "verdict_counts": {
+    "NEITHER": 5,
+    "DOWNGRADED": 1,
+    "SURVIVES_ALL": 4
+   }
+  },
+  "B_long_only": {
+   "estimator": "t_nw3",
+   "m_used": 10,
+   "n_scored": 8,
+   "alpha": 0.05,
+   "q": 0.05,
+   "bonferroni_p_threshold": 0.005,
+   "bh_p_threshold": 0.0019717240450335526,
+   "n_counts_only": 2,
+   "items": [
+    {
+     "key": "phasee_alpha",
+     "p": 0.05847823289789561,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.4766597950712204,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phaseg_alpha",
+     "p": 0.07901679190325701,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.4224239066624263,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasel_alpha",
+     "p": 0.0019717240450335526,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.8788959507524083,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phasej_netA",
+     "p": 0.2983123454549297,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.18074263556796427,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phasek_m1net",
+     "p": 0.23345971280445088,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.22280731816353655,
+     "verdict": "NEITHER"
+    },
+    {
+     "key": "phaseo_netBASE",
+     "p": 7.273409740837666e-05,
+     "df": 236,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.9811740561786525,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phases_net",
+     "p": 0.02831672555412718,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.6018203254507023,
+     "verdict": "DOWNGRADED"
+    },
+    {
+     "key": "phaset_net",
+     "p": 0.02831672555412718,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.6018203254507023,
+     "verdict": "DOWNGRADED"
+    }
+   ],
+   "verdict_counts": {
+    "NEITHER": 4,
+    "SURVIVES_ALL": 2,
+    "DOWNGRADED": 2
+   }
+  },
+  "C_regression": {
+   "estimator": "t_nw3",
+   "m_used": 2,
+   "n_scored": 2,
+   "alpha": 0.05,
+   "q": 0.05,
+   "bonferroni_p_threshold": 0.025,
+   "bh_p_threshold": 0.010969566550594374,
+   "n_counts_only": 0,
+   "items": [
+    {
+     "key": "phasep_late",
+     "p": 0.010969566550594374,
+     "df": 128,
+     "raw_significant": true,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "power": 0.7328003258693112,
+     "verdict": "SURVIVES_ALL"
+    },
+    {
+     "key": "phaseq_max5",
+     "p": 0.7997467860913298,
+     "df": 236,
+     "raw_significant": false,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "power": 0.05741614202802742,
+     "verdict": "NEITHER"
+    }
+   ],
+   "verdict_counts": {
+    "SURVIVES_ALL": 1,
+    "NEITHER": 1
+   }
+  },
+  "D_ic": {
+   "estimator": "t_nw3",
+   "m_used": 1,
+   "n_scored": 0,
+   "alpha": 0.05,
+   "q": 0.05,
+   "bonferroni_p_threshold": 0.05,
+   "bh_p_threshold": null,
+   "n_counts_only": 1,
+   "items": [],
+   "verdict_counts": {}
+  },
+  "E_fold": {
+   "estimator": "t_nw3",
+   "m_used": 2,
+   "n_scored": 0,
+   "alpha": 0.05,
+   "q": 0.05,
+   "bonferroni_p_threshold": 0.025,
+   "bh_p_threshold": null,
+   "n_counts_only": 2,
+   "items": [],
+   "verdict_counts": {}
+  }
+ },
+ "runs_by_estimator": {
+  "t_nw3": {
+   "m_all": {
+    "estimator": "t_nw3",
+    "m_used": 27,
+    "n_scored": 20,
+    "alpha": 0.05,
+    "q": 0.05,
+    "bonferroni_p_threshold": 0.001851851851851852,
+    "bh_p_threshold": 0.010969566550594374,
+    "n_counts_only": 7,
+    "items": [
+     {
+      "key": "gate1_d",
+      "p": 0.545308791389788,
+      "df": 47,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.09348014994108061,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate2_d",
+      "p": 0.1133481204862753,
+      "df": 124,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.35759455301886584,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate3_d",
+      "p": 0.024529238183913747,
+      "df": 107,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.62590502917764,
+      "verdict": "DOWNGRADED"
+     },
+     {
+      "key": "gate4_d",
+      "p": 0.3335697864563164,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.16252744294702898,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate5_d",
+      "p": 0.8769518929614457,
+      "df": 248,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.05275211108504069,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate6_d",
+      "p": 5.668407884527412e-06,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.996366334207538,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec_d",
+      "p": 9.934532578330494e-10,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9999947713391728,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec2_d",
+      "p": 1.042990002819018e-06,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9988742585624797,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec3_d",
+      "p": 0.5508403998670676,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.09177136124670221,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasee_alpha",
+      "p": 0.05847823289789561,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.4766597950712204,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasef_delta",
+      "p": 0.0007677795015819844,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.926272090457488,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phaseg_alpha",
+      "p": 0.07901679190325701,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.4224239066624263,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasel_alpha",
+      "p": 0.0019717240450335526,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": true,
+      "bh": true,
+      "power": 0.8788959507524083,
+      "verdict": "SURVIVES_FDR_ONLY"
+     },
+     {
+      "key": "phasej_netA",
+      "p": 0.2983123454549297,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.18074263556796427,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasek_m1net",
+      "p": 0.23345971280445088,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.22280731816353655,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phaseo_netBASE",
+      "p": 7.273409740837666e-05,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9811740561786525,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasep_late",
+      "p": 0.010969566550594374,
+      "df": 128,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": true,
+      "power": 0.7328003258693112,
+      "verdict": "SURVIVES_FDR_ONLY"
+     },
+     {
+      "key": "phases_net",
+      "p": 0.02831672555412718,
+      "df": 128,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.6018203254507023,
+      "verdict": "DOWNGRADED"
+     },
+     {
+      "key": "phaset_net",
+      "p": 0.02831672555412718,
+      "df": 128,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.6018203254507023,
+      "verdict": "DOWNGRADED"
+     },
+     {
+      "key": "phaseq_max5",
+      "p": 0.7997467860913298,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.05741614202802742,
+      "verdict": "NEITHER"
+     }
+    ],
+    "verdict_counts": {
+     "NEITHER": 10,
+     "DOWNGRADED": 3,
+     "SURVIVES_ALL": 5,
+     "SURVIVES_FDR_ONLY": 2
+    }
+   },
+   "m_independent": {
+    "estimator": "t_nw3",
+    "m_used": 24,
+    "n_scored": 20,
+    "alpha": 0.05,
+    "q": 0.05,
+    "bonferroni_p_threshold": 0.0020833333333333333,
+    "bh_p_threshold": 0.010969566550594374,
+    "n_counts_only": 7,
+    "items": [
+     {
+      "key": "gate1_d",
+      "p": 0.545308791389788,
+      "df": 47,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.09348014994108061,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate2_d",
+      "p": 0.1133481204862753,
+      "df": 124,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.35759455301886584,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate3_d",
+      "p": 0.024529238183913747,
+      "df": 107,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.62590502917764,
+      "verdict": "DOWNGRADED"
+     },
+     {
+      "key": "gate4_d",
+      "p": 0.3335697864563164,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.16252744294702898,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate5_d",
+      "p": 0.8769518929614457,
+      "df": 248,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.05275211108504069,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate6_d",
+      "p": 5.668407884527412e-06,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.996366334207538,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec_d",
+      "p": 9.934532578330494e-10,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9999947713391728,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec2_d",
+      "p": 1.042990002819018e-06,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9988742585624797,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec3_d",
+      "p": 0.5508403998670676,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.09177136124670221,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasee_alpha",
+      "p": 0.05847823289789561,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.4766597950712204,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasef_delta",
+      "p": 0.0007677795015819844,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.926272090457488,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phaseg_alpha",
+      "p": 0.07901679190325701,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.4224239066624263,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasel_alpha",
+      "p": 0.0019717240450335526,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.8788959507524083,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasej_netA",
+      "p": 0.2983123454549297,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.18074263556796427,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasek_m1net",
+      "p": 0.23345971280445088,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.22280731816353655,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phaseo_netBASE",
+      "p": 7.273409740837666e-05,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9811740561786525,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasep_late",
+      "p": 0.010969566550594374,
+      "df": 128,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": true,
+      "power": 0.7328003258693112,
+      "verdict": "SURVIVES_FDR_ONLY"
+     },
+     {
+      "key": "phases_net",
+      "p": 0.02831672555412718,
+      "df": 128,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.6018203254507023,
+      "verdict": "DOWNGRADED"
+     },
+     {
+      "key": "phaset_net",
+      "p": 0.02831672555412718,
+      "df": 128,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.6018203254507023,
+      "verdict": "DOWNGRADED"
+     },
+     {
+      "key": "phaseq_max5",
+      "p": 0.7997467860913298,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.05741614202802742,
+      "verdict": "NEITHER"
+     }
+    ],
+    "verdict_counts": {
+     "NEITHER": 10,
+     "DOWNGRADED": 3,
+     "SURVIVES_ALL": 6,
+     "SURVIVES_FDR_ONLY": 1
+    }
+   }
+  },
+  "t_iid": {
+   "m_all": {
+    "estimator": "t_iid",
+    "m_used": 27,
+    "n_scored": 20,
+    "alpha": 0.05,
+    "q": 0.05,
+    "bonferroni_p_threshold": 0.001851851851851852,
+    "bh_p_threshold": 0.0044481195178555245,
+    "n_counts_only": 7,
+    "items": [
+     {
+      "key": "gate1_d",
+      "p": 0.5722796611168761,
+      "df": 47,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.09348014994108061,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate2_d",
+      "p": 0.1032231206907902,
+      "df": 124,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.35759455301886584,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate3_d",
+      "p": 0.036593258122376356,
+      "df": 107,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.62590502917764,
+      "verdict": "DOWNGRADED"
+     },
+     {
+      "key": "gate4_d",
+      "p": 0.3863357094217321,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.16252744294702898,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate5_d",
+      "p": 0.8767724254650019,
+      "df": 248,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.05275211108504069,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate6_d",
+      "p": 1.739528228676896e-05,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.996366334207538,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec_d",
+      "p": 2.6791661188451736e-09,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9999947713391728,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec2_d",
+      "p": 1.611601640474441e-07,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9988742585624797,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec3_d",
+      "p": 0.5325063250060986,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.09177136124670221,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasee_alpha",
+      "p": 0.07140878376280434,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.4766597950712204,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasef_delta",
+      "p": 0.0007867562255582119,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.926272090457488,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phaseg_alpha",
+      "p": 0.08741186486299368,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.4224239066624263,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasel_alpha",
+      "p": 0.0044481195178555245,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": true,
+      "power": 0.8788959507524083,
+      "verdict": "SURVIVES_FDR_ONLY"
+     },
+     {
+      "key": "phasej_netA",
+      "p": 0.43707262991621,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.18074263556796427,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasek_m1net",
+      "p": 0.37348806309027327,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.22280731816353655,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phaseo_netBASE",
+      "p": 0.002699459295998213,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": true,
+      "power": 0.9811740561786525,
+      "verdict": "SURVIVES_FDR_ONLY"
+     },
+     {
+      "key": "phasep_late",
+      "p": 0.06849478175296311,
+      "df": 128,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.7328003258693112,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phases_net",
+      "p": 0.11687874571084811,
+      "df": 128,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.6018203254507023,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phaset_net",
+      "p": 0.11687874571084811,
+      "df": 128,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.6018203254507023,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phaseq_max5",
+      "p": 0.7733275243745881,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.05741614202802742,
+      "verdict": "NEITHER"
+     }
+    ],
+    "verdict_counts": {
+     "NEITHER": 13,
+     "DOWNGRADED": 1,
+     "SURVIVES_ALL": 4,
+     "SURVIVES_FDR_ONLY": 2
+    }
+   },
+   "m_independent": {
+    "estimator": "t_iid",
+    "m_used": 24,
+    "n_scored": 20,
+    "alpha": 0.05,
+    "q": 0.05,
+    "bonferroni_p_threshold": 0.0020833333333333333,
+    "bh_p_threshold": 0.0044481195178555245,
+    "n_counts_only": 7,
+    "items": [
+     {
+      "key": "gate1_d",
+      "p": 0.5722796611168761,
+      "df": 47,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.09348014994108061,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate2_d",
+      "p": 0.1032231206907902,
+      "df": 124,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.35759455301886584,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate3_d",
+      "p": 0.036593258122376356,
+      "df": 107,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.62590502917764,
+      "verdict": "DOWNGRADED"
+     },
+     {
+      "key": "gate4_d",
+      "p": 0.3863357094217321,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.16252744294702898,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate5_d",
+      "p": 0.8767724254650019,
+      "df": 248,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.05275211108504069,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "gate6_d",
+      "p": 1.739528228676896e-05,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.996366334207538,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec_d",
+      "p": 2.6791661188451736e-09,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9999947713391728,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec2_d",
+      "p": 1.611601640474441e-07,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.9988742585624797,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phasec3_d",
+      "p": 0.5325063250060986,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.09177136124670221,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasee_alpha",
+      "p": 0.07140878376280434,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.4766597950712204,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasef_delta",
+      "p": 0.0007867562255582119,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": true,
+      "holm": true,
+      "bh": true,
+      "power": 0.926272090457488,
+      "verdict": "SURVIVES_ALL"
+     },
+     {
+      "key": "phaseg_alpha",
+      "p": 0.08741186486299368,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.4224239066624263,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasel_alpha",
+      "p": 0.0044481195178555245,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": true,
+      "power": 0.8788959507524083,
+      "verdict": "SURVIVES_FDR_ONLY"
+     },
+     {
+      "key": "phasej_netA",
+      "p": 0.43707262991621,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.18074263556796427,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phasek_m1net",
+      "p": 0.37348806309027327,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.22280731816353655,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phaseo_netBASE",
+      "p": 0.002699459295998213,
+      "df": 236,
+      "raw_significant": true,
+      "bonferroni": false,
+      "holm": false,
+      "bh": true,
+      "power": 0.9811740561786525,
+      "verdict": "SURVIVES_FDR_ONLY"
+     },
+     {
+      "key": "phasep_late",
+      "p": 0.06849478175296311,
+      "df": 128,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.7328003258693112,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phases_net",
+      "p": 0.11687874571084811,
+      "df": 128,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.6018203254507023,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phaset_net",
+      "p": 0.11687874571084811,
+      "df": 128,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.6018203254507023,
+      "verdict": "NEITHER"
+     },
+     {
+      "key": "phaseq_max5",
+      "p": 0.7733275243745881,
+      "df": 236,
+      "raw_significant": false,
+      "bonferroni": false,
+      "holm": false,
+      "bh": false,
+      "power": 0.05741614202802742,
+      "verdict": "NEITHER"
+     }
+    ],
+    "verdict_counts": {
+     "NEITHER": 13,
+     "DOWNGRADED": 1,
+     "SURVIVES_ALL": 4,
+     "SURVIVES_FDR_ONLY": 2
+    }
+   }
+  }
+ },
+ "sensitivity": {
+  "alpha": {
+   "0.01": {
+    "alpha": 0.01,
+    "q": 0.05,
+    "m": 24,
+    "n_scored": 20,
+    "rejected_bonferroni": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phaseo_netBASE"
+    ],
+    "rejected_holm": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phaseo_netBASE"
+    ],
+    "rejected_bh": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late"
+    ],
+    "not_rejected_bh": [
+     "gate1_d",
+     "gate2_d",
+     "gate3_d",
+     "gate4_d",
+     "gate5_d",
+     "phasec3_d",
+     "phasee_alpha",
+     "phaseg_alpha",
+     "phasej_netA",
+     "phasek_m1net",
+     "phaseq_max5",
+     "phases_net",
+     "phaset_net"
+    ],
+    "raw_significant": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "downgraded_bh": [],
+    "counts_only": [
+     "l3_test",
+     "l3p_test",
+     "l3r_delta",
+     "l3s_ic",
+     "phasem_spread",
+     "phaser_alpha",
+     "phasev_net"
+    ],
+    "bonferroni_pass": 4,
+    "holm_pass": 4,
+    "bh_pass": 7
+   },
+   "0.05": {
+    "alpha": 0.05,
+    "q": 0.05,
+    "m": 24,
+    "n_scored": 20,
+    "rejected_bonferroni": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "rejected_holm": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "rejected_bh": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late"
+    ],
+    "not_rejected_bh": [
+     "gate1_d",
+     "gate2_d",
+     "gate3_d",
+     "gate4_d",
+     "gate5_d",
+     "phasec3_d",
+     "phasee_alpha",
+     "phaseg_alpha",
+     "phasej_netA",
+     "phasek_m1net",
+     "phaseq_max5",
+     "phases_net",
+     "phaset_net"
+    ],
+    "raw_significant": [
+     "gate3_d",
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late",
+     "phases_net",
+     "phaset_net"
+    ],
+    "downgraded_bh": [
+     "gate3_d",
+     "phases_net",
+     "phaset_net"
+    ],
+    "counts_only": [
+     "l3_test",
+     "l3p_test",
+     "l3r_delta",
+     "l3s_ic",
+     "phasem_spread",
+     "phaser_alpha",
+     "phasev_net"
+    ],
+    "bonferroni_pass": 6,
+    "holm_pass": 6,
+    "bh_pass": 7
+   },
+   "0.10": {
+    "alpha": 0.1,
+    "q": 0.05,
+    "m": 24,
+    "n_scored": 20,
+    "rejected_bonferroni": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "rejected_holm": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "rejected_bh": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late"
+    ],
+    "not_rejected_bh": [
+     "gate1_d",
+     "gate2_d",
+     "gate3_d",
+     "gate4_d",
+     "gate5_d",
+     "phasec3_d",
+     "phasee_alpha",
+     "phaseg_alpha",
+     "phasej_netA",
+     "phasek_m1net",
+     "phaseq_max5",
+     "phases_net",
+     "phaset_net"
+    ],
+    "raw_significant": [
+     "gate3_d",
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasee_alpha",
+     "phasef_delta",
+     "phaseg_alpha",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late",
+     "phases_net",
+     "phaset_net"
+    ],
+    "downgraded_bh": [
+     "gate3_d",
+     "phasee_alpha",
+     "phaseg_alpha",
+     "phases_net",
+     "phaset_net"
+    ],
+    "counts_only": [
+     "l3_test",
+     "l3p_test",
+     "l3r_delta",
+     "l3s_ic",
+     "phasem_spread",
+     "phaser_alpha",
+     "phasev_net"
+    ],
+    "bonferroni_pass": 6,
+    "holm_pass": 6,
+    "bh_pass": 7
+   }
+  },
+  "q": {
+   "0.01": {
+    "q": 0.01,
+    "alpha": 0.05,
+    "m": 24,
+    "rejected_bh": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "not_rejected_bh": [
+     "gate1_d",
+     "gate2_d",
+     "gate3_d",
+     "gate4_d",
+     "gate5_d",
+     "phasec3_d",
+     "phasee_alpha",
+     "phaseg_alpha",
+     "phasej_netA",
+     "phasek_m1net",
+     "phasep_late",
+     "phaseq_max5",
+     "phases_net",
+     "phaset_net"
+    ]
+   },
+   "0.05": {
+    "q": 0.05,
+    "alpha": 0.05,
+    "m": 24,
+    "rejected_bh": [
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late"
+    ],
+    "not_rejected_bh": [
+     "gate1_d",
+     "gate2_d",
+     "gate3_d",
+     "gate4_d",
+     "gate5_d",
+     "phasec3_d",
+     "phasee_alpha",
+     "phaseg_alpha",
+     "phasej_netA",
+     "phasek_m1net",
+     "phaseq_max5",
+     "phases_net",
+     "phaset_net"
+    ]
+   },
+   "0.10": {
+    "q": 0.1,
+    "alpha": 0.05,
+    "m": 24,
+    "rejected_bh": [
+     "gate3_d",
+     "gate6_d",
+     "phasec2_d",
+     "phasec_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late",
+     "phases_net",
+     "phaset_net"
+    ],
+    "not_rejected_bh": [
+     "gate1_d",
+     "gate2_d",
+     "gate4_d",
+     "gate5_d",
+     "phasec3_d",
+     "phasee_alpha",
+     "phaseg_alpha",
+     "phasej_netA",
+     "phasek_m1net",
+     "phaseq_max5"
+    ]
+   }
+  },
+  "monotonicity": {
+   "bonferroni_over_alpha": {
+    "field": "rejected_bonferroni",
+    "ok": true,
+    "violations": []
+   },
+   "holm_over_alpha": {
+    "field": "rejected_holm",
+    "ok": true,
+    "violations": []
+   },
+   "bh_over_alpha": {
+    "field": "rejected_bh",
+    "ok": true,
+    "violations": []
+   },
+   "bh_over_q": {
+    "field": "rejected_bh",
+    "ok": true,
+    "violations": []
+   }
+  },
+  "drop_duplicates": {
+   "n_rows": 24,
+   "bh_pass": 7,
+   "baseline": 7
+  },
+  "include_counts_only": {
+   "bh_pass": 10,
+   "baseline": 7,
+   "n_scored": 27
+  }
+ },
+ "cross_with_deliverable": {
+  "UNDERPOWERED": {
+   "total": 12,
+   "survives": 0,
+   "downgraded": 0,
+   "not_applicable": 4
+  },
+  "EXPLORATORY": {
+   "total": 3,
+   "survives": 0,
+   "downgraded": 3,
+   "not_applicable": 0
+  },
+  "QUOTABLE_MARGINAL": {
+   "total": 4,
+   "survives": 4,
+   "downgraded": 0,
+   "not_applicable": 0
+  },
+  "QUOTABLE": {
+   "total": 1,
+   "survives": 1,
+   "downgraded": 0,
+   "not_applicable": 0
+  },
+  "NULL_CONFIRMED": {
+   "total": 1,
+   "survives": 1,
+   "downgraded": 0,
+   "not_applicable": 0
+  },
+  "NOT_GRADED": {
+   "total": 6,
+   "survives": 1,
+   "downgraded": 0,
+   "not_applicable": 3
+  }
+ },
+ "predictions": [
+  {
+   "id": "P1",
+   "timing": "post_hoc",
+   "statement": "NW(3) 口径下，单条 α=0.05 显著的共 10 条；Bonferroni(m=24) 后剩 6 条，BH 后剩 7 条。",
+   "observed": {
+    "raw_significant": 10,
+    "bonferroni": 6,
+    "bh": 7
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P2",
+   "timing": "post_hoc",
+   "statement": "定稿里 3 条 DIRECTION_ONLY（gate3_d、phases_net、phaset_net）在校正后全部掉档——它们的单条 p 在 0.024~0.028，看着显著，但在 24 条同时报告的背景下不成立。",
+   "observed": {
+    "downgraded": [
+     "gate3_d",
+     "phases_net",
+     "phaset_net"
+    ],
+    "downgraded_direction_only": [
+     "gate3_d",
+     "phases_net",
+     "phaset_net"
+    ]
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P3",
+   "timing": "post_hoc",
+   "statement": "m 从 27 降到 24 时 phasel_alpha 从 SURVIVES_FDR_ONLY 升为 SURVIVES_ALL（Bonferroni 门槛 0.001852 → 0.002083，它的 p=0.001972 恰好跨越）。即：把同一份数字登记两次，会把真正的结论挤出门外。",
+   "observed": {
+    "phasel_m_all": "SURVIVES_FDR_ONLY",
+    "phasel_m_independent": "SURVIVES_ALL"
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P4",
+   "timing": "priori",
+   "statement": "α 敏感性：收紧到 0.01 时掉档集合会扩大（≥4 条且包含 gate3_d/phases_net/phaset_net）；放宽到 0.10 时掉档集合不会变大（仍是这 3 条的子集）。若放宽 α 反而掉得更多，说明我对方向的理解是错的。",
+   "observed": {
+    "0.01": [],
+    "0.05": [
+     "gate3_d",
+     "phases_net",
+     "phaset_net"
+    ],
+    "0.10": [
+     "gate3_d",
+     "phasee_alpha",
+     "phaseg_alpha",
+     "phases_net",
+     "phaset_net"
+    ]
+   },
+   "holds": false,
+   "refuted": true
+  },
+  {
+   "id": "P5",
+   "timing": "priori",
+   "statement": "把 3 组重复条目各删掉一条（27 条实删为 24 条，而不是只把 m 改成 24）后，BH 通过的条数仍然是 7——BH 的通过集合由最小的那几个 p 决定，删掉的是 p 较大的重复项。",
+   "observed": {
+    "baseline_bh": 7,
+    "drop_duplicates_bh": 7
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P6",
+   "timing": "priori",
+   "statement": "若把 7 条「只计名额」的条目错误地纳入评分（而不是只占 m），BH 通过的条数会变化 ≥1——用以确认「只计名额」这个处理不是无所谓的记账。",
+   "observed": {
+    "baseline_bh": 7,
+    "include_counts_only_bh": 10
+   },
+   "holds": true,
+   "refuted": false
+  }
+ ],
+ "gates": [],
+ "elapsed_seconds": 0.014,
+ "inputs_frozen": {
+  "l3u_result": {
+   "path": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+   "sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b"
+  },
+  "claims_cards": {
+   "path": "docs/gates/l3v_claims.json",
+   "sha256": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0"
+  }
+ }
+}

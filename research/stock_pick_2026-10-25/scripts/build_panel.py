@@ -17,10 +17,15 @@ v1 的两个 bug：
 标签：买入 = ME 之后第 1 个交易日 close；卖出 = 买入后第 20 个交易日 close；fwd20 = 卖/买 - 1
 """
 import os, glob
+import pathlib
 import numpy as np
 import pandas as pd
 
-ROOT = r"D:\DeepQuant power by txm\DeepQuant-main"
+# 仓库根：优先取 DEEPQUANT_HOME（云主机 /opt/quant），否则从本文件位置推导
+# （scripts/ → 上三层是仓库根，锚点是 STATUS.md 所在目录）。
+# ⚠️ 不许写死任何一台机器的绝对路径——2026-11-03 首次云主机部署时，
+#    import 期的 os.makedirs 用了源机盘符路径，直接让整条链在 Linux 上起不来。
+ROOT = os.environ.get("DEEPQUANT_HOME") or str(pathlib.Path(__file__).resolve().parents[3])
 QFQ = os.path.join(ROOT, "data", "qfq_all")
 OUT = os.path.join(ROOT, "research", "stock_pick_2026-10-25", "data")
 os.makedirs(OUT, exist_ok=True)

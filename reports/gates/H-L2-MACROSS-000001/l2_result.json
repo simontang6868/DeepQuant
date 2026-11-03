@@ -1,0 +1,223 @@
+{
+  "result": {
+    "actual_max_drawdown": 0.32092086573478784,
+    "actual_return": 1.023110400000001,
+    "block_length_stable": true,
+    "block_sensitivity": [
+      {
+        "cvar5": -0.2990934384614963,
+        "loss_probability": 0.091,
+        "mdd_p95": 0.532964454747108,
+        "mean_block_length": 20,
+        "repeatable_ratio": 1.0412458439988839,
+        "terminal_median": 1.0653094519520367,
+        "terminal_p5": -0.14658781896241174
+      },
+      {
+        "cvar5": -0.3388206615567109,
+        "loss_probability": 0.102,
+        "mdd_p95": 0.5435556460071272,
+        "mean_block_length": 10,
+        "repeatable_ratio": 1.0302126067742967,
+        "terminal_median": 1.0540212322018945,
+        "terminal_p5": -0.18730853804247355
+      },
+      {
+        "cvar5": -0.2832700020298146,
+        "loss_probability": 0.0855,
+        "mdd_p95": 0.5096346572905428,
+        "mean_block_length": 40,
+        "repeatable_ratio": 1.000369126752406,
+        "terminal_median": 1.023488057419306,
+        "terminal_p5": -0.13057263356048632
+      },
+      {
+        "cvar5": -0.2537929090330591,
+        "loss_probability": 0.0805,
+        "mdd_p95": 0.5026452297566567,
+        "mean_block_length": 60,
+        "repeatable_ratio": 1.0035288054357936,
+        "terminal_median": 1.026720757540938,
+        "terminal_p5": -0.11290595855370575
+      }
+    ],
+    "checks": [
+      {
+        "actual": -0.2787584945648096,
+        "detail": "剔除最好的 15 天后，累计收益由 +1.0231 变为 -0.2788（这 15 天合计贡献 +1.8050）",
+        "name": "剔除极端交易日后仍为正收益",
+        "passed": false,
+        "threshold": 0.0
+      }
+    ],
+    "distribution": {
+      "cvar5": -0.2990934384614963,
+      "excess_kurtosis": 5.7412499636756635,
+      "loss_probability": 0.091,
+      "mdd_max": 0.7042433005378168,
+      "mdd_median": 0.3324491155759681,
+      "mdd_p95": 0.532964454747108,
+      "percentile_method": "linear",
+      "samples": 2000,
+      "skew": 1.8779985619086084,
+      "terminal_mean": 1.4011437188599185,
+      "terminal_median": 1.0653094519520367,
+      "terminal_p25": 0.45506490436056485,
+      "terminal_p5": -0.14658781896241174,
+      "terminal_p95": 4.134953509176103,
+      "terminal_std": 1.4044509266688918
+    },
+    "hypothesis_id": "H-L2-MACROSS-000001",
+    "limitations": [
+      "E1（剔除极端日）与 E2（可重复性）互补而非冗余：块重抽样会**保留**极端日，因此 E2 可能在中位数不低于实际值时仍给出『可重复』的假象；反过来 E1 无法识别『收益依赖特定顺序』。本仓库真实用例就出现了这种分离：可重复性 1.04（>1）但剔除 1% 交易日后收益转负。",
+      "去掉极少数最好的交易日后收益即不成立：收益依赖个别日子，不构成可重复的边际。"
+    ],
+    "missing_valuation_days": 0,
+    "notes": [
+      "曲线来源：l1b_result.json 的 stressed 档（事件驱动精验（摩擦全开））",
+      "L1b 终态：L1B_BLOCKED_PREREQUISITE；L1a 终态：L1A_REJECTED_BOUNDS"
+    ],
+    "observations": 1460,
+    "repeatable_ratio": 1.0412458439988839,
+    "spec": {
+      "block_lengths": [
+        20,
+        10,
+        40,
+        60
+      ],
+      "digest": "f1d392da1ff390d6143029ba5851f76008ba559b611ab74d81eb3f80378c674d",
+      "max_cvar5": -0.45,
+      "max_mdd_p95": 0.4,
+      "max_terminal_loss_p5": -0.3,
+      "mean_block_length": 20,
+      "min_repeatable_ratio": 0.5,
+      "min_trimmed_return": 0.0,
+      "replications": 2000,
+      "seed": 20261027,
+      "top_day_fraction": 0.01,
+      "trim_profile_fractions": [
+        0.002,
+        0.005,
+        0.01,
+        0.02,
+        0.05
+      ]
+    },
+    "trim_profile": [
+      {
+        "fraction": 0.002,
+        "original_return": 1.023110400000001,
+        "removed_days": 3,
+        "removed_total_return": 0.2932373590529518,
+        "top_day_returns": [
+          0.10027441144956217,
+          0.08722737996111674,
+          0.08107754889019159
+        ],
+        "trimmed_return": 0.5643767061303708
+      },
+      {
+        "fraction": 0.005,
+        "original_return": 1.023110400000001,
+        "removed_days": 7,
+        "removed_total_return": 0.7322808508293026,
+        "top_day_returns": [
+          0.10027441144956217,
+          0.08722737996111674,
+          0.08107754889019159,
+          0.08007454561425198,
+          0.07660359478403889,
+          0.0755426714358467,
+          0.07103302032001402
+        ],
+        "trimmed_return": 0.16788822033763395
+      },
+      {
+        "fraction": 0.01,
+        "original_return": 1.023110400000001,
+        "removed_days": 15,
+        "removed_total_return": 1.8050387904108147,
+        "top_day_returns": [
+          0.10027441144956217,
+          0.08722737996111674,
+          0.08107754889019159,
+          0.08007454561425198,
+          0.07660359478403889,
+          0.0755426714358467,
+          0.07103302032001402,
+          0.06869653213505766,
+          0.06596307079873442,
+          0.06482656315279511
+        ],
+        "trimmed_return": -0.2787584945648096
+      },
+      {
+        "fraction": 0.02,
+        "original_return": 1.023110400000001,
+        "removed_days": 29,
+        "removed_total_return": 4.301948696198887,
+        "top_day_returns": [
+          0.10027441144956217,
+          0.08722737996111674,
+          0.08107754889019159,
+          0.08007454561425198,
+          0.07660359478403889,
+          0.0755426714358467,
+          0.07103302032001402,
+          0.06869653213505766,
+          0.06596307079873442,
+          0.06482656315279511
+        ],
+        "trimmed_return": -0.618421354878363
+      },
+      {
+        "fraction": 0.05,
+        "original_return": 1.023110400000001,
+        "removed_days": 73,
+        "removed_total_return": 22.06503959160105,
+        "top_day_returns": [
+          0.10027441144956217,
+          0.08722737996111674,
+          0.08107754889019159,
+          0.08007454561425198,
+          0.07660359478403889,
+          0.0755426714358467,
+          0.07103302032001402,
+          0.06869653213505766,
+          0.06596307079873442,
+          0.06482656315279511
+        ],
+        "trimmed_return": -0.9122867146199607
+      }
+    ],
+    "trimmed": {
+      "fraction": 0.01,
+      "original_return": 1.023110400000001,
+      "removed_days": 15,
+      "removed_total_return": 1.8050387904108147,
+      "top_day_returns": [
+        0.10027441144956217,
+        0.08722737996111674,
+        0.08107754889019159,
+        0.08007454561425198,
+        0.07660359478403889,
+        0.0755426714358467,
+        0.07103302032001402,
+        0.06869653213505766,
+        0.06596307079873442,
+        0.06482656315279511
+      ],
+      "trimmed_return": -0.2787584945648096
+    },
+    "verdict": "L2_REJECTED_EXTREME_DEPENDENCE"
+  },
+  "spec_file": "docs\\gates\\specs\\H_L2_MACROSS_000001.json",
+  "upstream": {
+    "l1a_verdict": "L1A_REJECTED_BOUNDS",
+    "l1b_verdict": "L1B_BLOCKED_PREREQUISITE",
+    "leg_fill_rate": 1.0,
+    "leg_label": "事件驱动精验（摩擦全开）",
+    "leg_return": 1.0231104000000002
+  }
+}

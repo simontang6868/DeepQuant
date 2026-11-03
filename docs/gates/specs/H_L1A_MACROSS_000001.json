@@ -1,0 +1,51 @@
+{
+  "hypothesis_id": "H-L1A-MACROSS-000001",
+  "title": "双均线（ma_cross）在 000001.SZ 上的 L1a 粗筛",
+  "strategy_id": "ma_cross",
+  "param_grid": {
+    "fast_window": [
+      3,
+      5,
+      10,
+      20
+    ],
+    "slow_window": [
+      15,
+      25,
+      40,
+      60
+    ]
+  },
+  "constraints": [
+    [
+      "fast_window",
+      "slow_window"
+    ]
+  ],
+  "data": {
+    "symbol": "000001.SZ",
+    "research_path": "data/qfq_all/000001.SZ.qfq.csv",
+    "trading_path": "data/exec_all/000001.SZ.exec.csv",
+    "source_note": "研究层=qfq（复权，算收益）；交易层=exec（真不复权，仅做跨源一致性抽检）"
+  },
+  "in_sample": {
+    "start": "2016-01-01",
+    "end": "2021-12-31"
+  },
+  "out_sample": {
+    "start": "2022-01-01",
+    "end": "2026-06-30"
+  },
+  "boundaries": {
+    "min_in_sample_return": 0.58,
+    "max_in_sample_drawdown": 0.25,
+    "min_closed_trades": 10,
+    "min_out_sample_return": 0.0,
+    "max_out_sample_drawdown": 0.25,
+    "max_oos_degradation": 0.5
+  },
+  "initial_cash": 100000.0,
+  "selection_metric": "cumulative_return",
+  "declared_grid_points": 15,
+  "boundary_basis": "样本内累计收益门槛 0.58 = 项目既定 8%/年目标 × 6 年（1.08^6-1≈0.587）；回撤 0.25 = 项目对单标的容忍上限；样本外收益门槛 0 = 对齐表 7 中 L3 的「样本外收益符号反转即否决」；衰减 0.5 为待研究员校准的初值。上述阈值在跑之前写定，不因结果调整。"
+}

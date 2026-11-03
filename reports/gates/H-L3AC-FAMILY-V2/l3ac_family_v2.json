@@ -1,0 +1,1399 @@
+{
+ "experiment_id": "H-L3AC-FAMILY-V2",
+ "prereg_sha256": "9d4c39d8873bdb650e57ee4e39b04533de17f2e73ff93117ce2e79e5f2a81086",
+ "inputs_frozen": {
+  "l3u_result": {
+   "path": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+   "sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b"
+  },
+  "l3z_result": {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+   "sha256": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc"
+  },
+  "l3aa_result": {
+   "path": "reports/gates/H-L3AA-DEPENDENCE/l3aa_dependence.json",
+   "sha256": "dffcf4645cfe8c2b155b1d53f3a4e5b6c5afd007772d1fc5d3206fe99e6854ec"
+  },
+  "l3ab_decisions": {
+   "path": "docs/gates/l3ab_family_decisions.json",
+   "sha256": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75"
+  },
+  "l3u_prereg": {
+   "path": "docs/gates/l3u_prereg.json",
+   "sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493"
+  },
+  "phasei_monthly": {
+   "path": "phasei_out/8f5c35121fdb/monthly.csv",
+   "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a"
+  },
+  "phasei_summary": {
+   "path": "phasei_out/8f5c35121fdb/summary.json",
+   "sha256": "fcf36b7a64331251f4cfd6c48df84739ee91132fa9a7e39f95cb9a551b745e09"
+  }
+ },
+ "n_registered": 27,
+ "n_registered_loadable": 22,
+ "n_scored": 21,
+ "n_added": 2,
+ "l3z_counts_only": 7,
+ "skipped": [
+  {
+   "key": "phasem_spread",
+   "error": "SeriesColumnMissing",
+   "detail": "[phasem_spread] phasem_out/2f5f61dd0b5f/monthly.csv 没有任何日期列（候选 ('month', 'signal_date', 'date')）"
+  },
+  {
+   "key": "l3r_delta",
+   "error": "DependenceError",
+   "detail": "[l3r_delta] 序列形态 json_list 没有月份索引，不能进入依赖诊断"
+  },
+  {
+   "key": "l3s_ic",
+   "error": "DependenceError",
+   "detail": "[l3s_ic] 序列形态 json_list 没有月份索引，不能进入依赖诊断"
+  },
+  {
+   "key": "l3_test",
+   "error": "DependenceError",
+   "detail": "[l3_test] 序列形态 json_list 没有月份索引，不能进入依赖诊断"
+  },
+  {
+   "key": "l3p_test",
+   "error": "DependenceError",
+   "detail": "[l3p_test] 序列形态 json_list 没有月份索引，不能进入依赖诊断"
+  }
+ ],
+ "merged_away": [
+  "phasep_late"
+ ],
+ "merged_into": {
+  "phasep_late": "phaseo_netBASE",
+  "phasev_net": "phaseo_netBASE"
+ },
+ "p_reproduction": {
+  "n_checked": 20,
+  "max_abs_diff": 0.0,
+  "items": [
+   {
+    "key": "gate1_d",
+    "p_recomputed": 0.545308791389788,
+    "p_l3z": 0.545308791389788,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "gate2_d",
+    "p_recomputed": 0.1133481204862753,
+    "p_l3z": 0.1133481204862753,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "gate3_d",
+    "p_recomputed": 0.024529238183913747,
+    "p_l3z": 0.024529238183913747,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "gate4_d",
+    "p_recomputed": 0.3335697864563164,
+    "p_l3z": 0.3335697864563164,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "gate5_d",
+    "p_recomputed": 0.8769518929614457,
+    "p_l3z": 0.8769518929614457,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "gate6_d",
+    "p_recomputed": 5.668407884527412e-06,
+    "p_l3z": 5.668407884527412e-06,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasec_d",
+    "p_recomputed": 9.934532578330494e-10,
+    "p_l3z": 9.934532578330494e-10,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasec2_d",
+    "p_recomputed": 1.042990002819018e-06,
+    "p_l3z": 1.042990002819018e-06,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasec3_d",
+    "p_recomputed": 0.5508403998670676,
+    "p_l3z": 0.5508403998670676,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasee_alpha",
+    "p_recomputed": 0.05847823289789561,
+    "p_l3z": 0.05847823289789561,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasef_delta",
+    "p_recomputed": 0.0007677795015819844,
+    "p_l3z": 0.0007677795015819844,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phaseg_alpha",
+    "p_recomputed": 0.07901679190325701,
+    "p_l3z": 0.07901679190325701,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasel_alpha",
+    "p_recomputed": 0.0019717240450335526,
+    "p_l3z": 0.0019717240450335526,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasej_netA",
+    "p_recomputed": 0.2983123454549297,
+    "p_l3z": 0.2983123454549297,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasek_m1net",
+    "p_recomputed": 0.23345971280445088,
+    "p_l3z": 0.23345971280445088,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phaseo_netBASE",
+    "p_recomputed": 7.273409740837666e-05,
+    "p_l3z": 7.273409740837666e-05,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phasep_late",
+    "p_recomputed": 0.010969566550594374,
+    "p_l3z": 0.010969566550594374,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phases_net",
+    "p_recomputed": 0.02831672555412718,
+    "p_l3z": 0.02831672555412718,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phaset_net",
+    "p_recomputed": 0.02831672555412718,
+    "p_l3z": 0.02831672555412718,
+    "abs_diff": 0.0
+   },
+   {
+    "key": "phaseq_max5",
+    "p_recomputed": 0.7997467860913298,
+    "p_l3z": 0.7997467860913298,
+    "abs_diff": 0.0
+   }
+  ]
+ },
+ "stats": {
+  "gate1_d": {
+   "n": 48,
+   "mean_pp": -0.3961063903264166,
+   "se_nw_pp": 0.6501802166674705,
+   "t_nw3": -0.6092255349704097,
+   "p": 0.545308791389788,
+   "mde_pp": 1.8215448950155855,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "gate1_out/032a11f591553e25/monthly_paired.csv",
+    "column": "d",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "gate2_d": {
+   "n": 125,
+   "mean_pp": -0.38457783768000003,
+   "se_nw_pp": 0.24117557945976353,
+   "t_nw3": -1.5945969261956763,
+   "p": 0.1133481204862753,
+   "mde_pp": 0.6756775034144735,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "gate2_out/c440c77d284a/monthly_paired.csv",
+    "column": "d",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "gate3_d": {
+   "n": 108,
+   "mean_pp": 0.48414844361111115,
+   "se_nw_pp": 0.21225293676815202,
+   "t_nw3": 2.2809976200233018,
+   "p": 0.024529238183913747,
+   "mde_pp": 0.5946478276496547,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "gate3_out/9b7235d77689/monthly_paired.csv",
+    "column": "d",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "gate4_d": {
+   "n": 237,
+   "mean_pp": 0.16636050198312238,
+   "se_nw_pp": 0.17169426025774773,
+   "t_nw3": 0.9689345568883998,
+   "p": 0.3335697864563164,
+   "mde_pp": 0.48101863953810603,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "gate4_out/94988f7c57d1/monthly_paired.csv",
+    "column": "d",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "gate5_d": {
+   "n": 249,
+   "mean_pp": 0.023587832168674695,
+   "se_nw_pp": 0.1521851731787846,
+   "t_nw3": 0.15499428542203716,
+   "p": 0.8769518929614457,
+   "mde_pp": 0.426361981177683,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "gate5_out/7c0c89916b0c/monthly_paired.csv",
+    "column": "d",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "gate6_d": {
+   "n": 237,
+   "mean_pp": 0.7084456860759494,
+   "se_nw_pp": 0.15253960661050311,
+   "t_nw3": 4.644339275666975,
+   "p": 5.668407884527412e-06,
+   "mde_pp": 0.42735496187998556,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "gate6_out/b8c4f1ecba44/monthly_paired.csv",
+    "column": "d",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "phasec_d": {
+   "n": 237,
+   "mean_pp": 1.9389677751054852,
+   "se_nw_pp": 0.3045103141606557,
+   "t_nw3": 6.367494580438122,
+   "p": 9.934532578330494e-10,
+   "mde_pp": 0.8531160961524931,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "pivot",
+    "path": "phasec_out/3a01759a37f0/five_cells.csv",
+    "index": "signal_date",
+    "pivot_column": "cell",
+    "value_column": "d",
+    "terms": [
+     {
+      "key": "B",
+      "weight": 1.0
+     },
+     {
+      "key": "A",
+      "weight": -1.0
+     }
+    ],
+    "multiplier": 2.0,
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "phasec2_d": {
+   "n": 237,
+   "mean_pp": 0.10694447497890297,
+   "se_nw_pp": 0.02132541748453989,
+   "t_nw3": 5.014883064138538,
+   "p": 1.042990002819018e-06,
+   "mde_pp": 0.059745289624686955,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "terms",
+    "path": "phasec2_out/953c32fdc556/cells.csv",
+    "index": "signal_date",
+    "terms": [
+     {
+      "column": "spread_v1",
+      "weight": 1.0
+     },
+     {
+      "column": "spread",
+      "weight": -1.0
+     }
+    ],
+    "filter": {
+     "cell": "D"
+    },
+    "multiplier": 1.0,
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "phasec3_d": {
+   "n": 237,
+   "mean_pp": 0.0468041687341772,
+   "se_nw_pp": 0.0783518213406754,
+   "t_nw3": 0.5973590394366414,
+   "p": 0.5508403998670676,
+   "mde_pp": 0.21951046266803623,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "terms",
+    "path": "phasec3_out/6a76a10687b4/cells.csv",
+    "index": "signal_date",
+    "terms": [
+     {
+      "column": "spread_v1",
+      "weight": 1.0
+     },
+     {
+      "column": "spread_v0",
+      "weight": -1.0
+     }
+    ],
+    "multiplier": 1.0,
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "phasee_alpha": {
+   "n": 237,
+   "mean_pp": 0.2766985906329114,
+   "se_nw_pp": 0.14552974918416922,
+   "t_nw3": 1.9013197795232013,
+   "p": 0.05847823289789561,
+   "mde_pp": 0.4077161453143685,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasee_out/2a3893f3f5b1/monthly.csv",
+    "column": "alpha",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "phasef_delta": {
+   "n": 237,
+   "mean_pp": 0.740492584556962,
+   "se_nw_pp": 0.217243941211765,
+   "t_nw3": 3.408576462140064,
+   "p": 0.0007677795015819844,
+   "mde_pp": 0.6086306256988808,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasef_out/aec46d88bbda/monthly.csv",
+    "column": "delta",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "phaseg_alpha": {
+   "n": 237,
+   "mean_pp": 0.18130837848101264,
+   "se_nw_pp": 0.1027794309444896,
+   "t_nw3": 1.7640531457985589,
+   "p": 0.07901679190325701,
+   "mde_pp": 0.2879468537340821,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phaseg_out/e7da0f9ff3f1/monthly.csv",
+    "column": "alpha_v1",
+    "scale": 100
+   },
+   "merged_into": null
+  },
+  "phasel_alpha": {
+   "n": 237,
+   "mean_pp": 0.10605702953586497,
+   "se_nw_pp": 0.033889615822938715,
+   "t_nw3": 3.129484562173131,
+   "p": 0.0019717240450335526,
+   "mde_pp": 0.09494514768954511,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasel_out/9ffc3710cf6f/monthly.csv",
+    "column": "alpha_v1_pp",
+    "scale": 1
+   },
+   "merged_into": null
+  },
+  "phasej_netA": {
+   "n": 237,
+   "mean_pp": 0.03244149789029536,
+   "se_nw_pp": 0.03112318329632752,
+   "t_nw3": 1.0423579613118623,
+   "p": 0.2983123454549297,
+   "mde_pp": 0.08719471032299118,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasej_out/f76de8a277f6/monthly.csv",
+    "column": "net_A_pp",
+    "scale": 1
+   },
+   "merged_into": null
+  },
+  "phasek_m1net": {
+   "n": 237,
+   "mean_pp": 0.03989106751054852,
+   "se_nw_pp": 0.0333940534607447,
+   "t_nw3": 1.194556017508961,
+   "p": 0.23345971280445088,
+   "mde_pp": 0.09355678017562236,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasek_out/3bc31a35903d/monthly.csv",
+    "column": "m1_net",
+    "scale": 1
+   },
+   "merged_into": null
+  },
+  "phaseo_netBASE": {
+   "n": 237,
+   "mean_pp": 0.13595891139240507,
+   "se_nw_pp": 0.033664658822536955,
+   "t_nw3": 4.0386243659593175,
+   "p": 7.273409740837666e-05,
+   "mde_pp": 0.09431490815721953,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phaseo_out/ac7aa2830ab0/monthly.csv",
+    "column": "net_BASE_3000w",
+    "scale": 1
+   },
+   "merged_into": null
+  },
+  "phasep_late": {
+   "n": 129,
+   "mean_pp": 0.129407503875969,
+   "se_nw_pp": 0.050132765867541514,
+   "t_nw3": 2.581295917681533,
+   "p": 0.010969566550594374,
+   "mde_pp": 0.14045195685450432,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasep_out/3d19f7508e10/monthly.csv",
+    "column": "net_BASE_3000w_pp",
+    "scale": 1,
+    "filter": {
+     "segment": "late"
+    }
+   },
+   "merged_into": "phaseo_netBASE"
+  },
+  "phaser_alpha": {
+   "n": 237,
+   "mean_pp": 0.10605702953586497,
+   "se_nw_pp": 0.033889615822938715,
+   "t_nw3": 3.129484562173131,
+   "p": 0.0019717240450335526,
+   "mde_pp": 0.09494514768954511,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phaser_out/7b5e7643e8ca/monthly.csv",
+    "column": "alpha_v1_pp",
+    "scale": 1
+   },
+   "merged_into": null
+  },
+  "phases_net": {
+   "n": 129,
+   "mean_pp": 0.111195653875969,
+   "se_nw_pp": 0.050132765867541514,
+   "t_nw3": 2.2180235211790436,
+   "p": 0.02831672555412718,
+   "mde_pp": 0.14045195685450432,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phases_out/f098a59fb1b5/monthly.csv",
+    "column": "net_S_3000w",
+    "scale": 1,
+    "filter": {
+     "segment": "2016-2026"
+    }
+   },
+   "merged_into": null
+  },
+  "phaset_net": {
+   "n": 129,
+   "mean_pp": 0.111195653875969,
+   "se_nw_pp": 0.050132765867541514,
+   "t_nw3": 2.2180235211790436,
+   "p": 0.02831672555412718,
+   "mde_pp": 0.14045195685450432,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phaset_out/ef29a743997b/monthly.csv",
+    "column": "net_S_3000w",
+    "scale": 1,
+    "filter": {
+     "segment": "modern"
+    }
+   },
+   "merged_into": null
+  },
+  "phasev_net": {
+   "n": 237,
+   "mean_pp": 0.13595891139240507,
+   "se_nw_pp": 0.033664658822536955,
+   "t_nw3": 4.0386243659593175,
+   "p": 7.273409740837666e-05,
+   "mde_pp": 0.09431490815721953,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasev_out/3614e12a0546/monthly.csv",
+    "column": "net_O_BASE_3000w",
+    "scale": 1
+   },
+   "merged_into": "phaseo_netBASE"
+  },
+  "phaseq_max5": {
+   "n": 237,
+   "mean_pp": 0.04241433514767933,
+   "se_nw_pp": 0.16701119476345913,
+   "t_nw3": 0.25396103062283637,
+   "p": 0.7997467860913298,
+   "mde_pp": 0.4678985632493071,
+   "in_registered": true,
+   "series_spec": {
+    "kind": "column",
+    "path": "phaseq_out/ae7fc45acab0/monthly.csv",
+    "column": "coef_MAX5_pp",
+    "scale": 1
+   },
+   "merged_into": null
+  },
+  "phasei_v0": {
+   "n": 237,
+   "mean_pp": 0.23070257383966244,
+   "se_nw_pp": 0.03629017559905252,
+   "t_nw3": 6.357163337773591,
+   "p": 1.05216887760739e-09,
+   "mde_pp": 0.10167055595830553,
+   "in_registered": false,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasei_out/8f5c35121fdb/monthly.csv",
+    "column": "alpha_v0_pp",
+    "scale": 1
+   },
+   "merged_into": null
+  },
+  "phasei_v1": {
+   "n": 237,
+   "mean_pp": 0.1634105358649789,
+   "se_nw_pp": 0.03608599327529562,
+   "t_nw3": 4.52836463772356,
+   "p": 9.435983315166961e-06,
+   "mde_pp": 0.10109851876006822,
+   "in_registered": false,
+   "series_spec": {
+    "kind": "column",
+    "path": "phasei_out/8f5c35121fdb/monthly.csv",
+    "column": "alpha_v1_pp",
+    "scale": 1
+   },
+   "merged_into": null
+  }
+ },
+ "pvals": {
+  "gate1_d": 0.545308791389788,
+  "gate2_d": 0.1133481204862753,
+  "gate3_d": 0.024529238183913747,
+  "gate4_d": 0.3335697864563164,
+  "gate5_d": 0.8769518929614457,
+  "gate6_d": 5.668407884527412e-06,
+  "phasec_d": 9.934532578330494e-10,
+  "phasec2_d": 1.042990002819018e-06,
+  "phasec3_d": 0.5508403998670676,
+  "phasee_alpha": 0.05847823289789561,
+  "phasef_delta": 0.0007677795015819844,
+  "phaseg_alpha": 0.07901679190325701,
+  "phasel_alpha": 0.0019717240450335526,
+  "phasej_netA": 0.2983123454549297,
+  "phasek_m1net": 0.23345971280445088,
+  "phaseo_netBASE": 7.273409740837666e-05,
+  "phases_net": 0.02831672555412718,
+  "phaset_net": 0.02831672555412718,
+  "phaseq_max5": 0.7997467860913298,
+  "phasei_v0": 1.05216887760739e-09,
+  "phasei_v1": 9.435983315166961e-06
+ },
+ "p_order": [
+  "phasec_d",
+  "phasei_v0",
+  "phasec2_d",
+  "gate6_d",
+  "phasei_v1",
+  "phaseo_netBASE",
+  "phasef_delta",
+  "phasel_alpha",
+  "gate3_d",
+  "phases_net",
+  "phaset_net",
+  "phasee_alpha",
+  "phaseg_alpha",
+  "gate2_d",
+  "phasek_m1net",
+  "phasej_netA",
+  "gate4_d",
+  "gate1_d",
+  "phasec3_d",
+  "phaseq_max5",
+  "gate5_d"
+ ],
+ "variants": [
+  {
+   "id": "A_m29",
+   "m": 29,
+   "rule": "全部登记 + phasei，一律不合并",
+   "note": "最保守；忽略 R1 与指纹去重"
+  },
+  {
+   "id": "B_m_r1",
+   "m": 27,
+   "rule": "R1 严格子窗口合并（含传递）+ phasei",
+   "note": "**本阶段主口径**：R1 字面执行的实测结果"
+  },
+  {
+   "id": "C_m26",
+   "m": 26,
+   "rule": "L3z 指纹去重 + phasei",
+   "note": "指纹 (mean,t,n) 抓不到子窗口 ⇒ 比 R1 大"
+  },
+  {
+   "id": "D_m25",
+   "m": 25,
+   "rule": "数据同一性全合并（含等长同值）+ phasei",
+   "note": "预登记 m_candidates 里误写为主口径的口径；需额外规则，R1 不支持"
+  },
+  {
+   "id": "E_m24",
+   "m": 24,
+   "rule": "L3z 指纹去重，不含 phasei",
+   "note": "L3z 原主口径（对照）"
+  },
+  {
+   "id": "F_m23",
+   "m": 23,
+   "rule": "数据同一性全合并，不含 phasei",
+   "note": "L3ab 的 S3 口径（对照）"
+  },
+  {
+   "id": "G_m27",
+   "m": 27,
+   "rule": "全部登记，不含 phasei",
+   "note": "L3z 的替代口径（对照）"
+  }
+ ],
+ "runs": {
+  "A_m29": {
+   "m": 29,
+   "rule": "全部登记 + phasei，一律不合并",
+   "note": "最保守；忽略 R1 与指纹去重",
+   "bonferroni_threshold": 0.001724137931034483,
+   "by_unit_threshold": 0.0004352066129767854,
+   "n_padded": 8,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "B_m_r1": {
+   "m": 27,
+   "rule": "R1 严格子窗口合并（含传递）+ phasei",
+   "note": "**本阶段主口径**：R1 字面执行的实测结果",
+   "bonferroni_threshold": 0.001851851851851852,
+   "by_unit_threshold": 0.0004758762513046723,
+   "n_padded": 6,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "C_m26": {
+   "m": 26,
+   "rule": "L3z 指纹去重 + phasei",
+   "note": "指纹 (mean,t,n) 抓不到子窗口 ⇒ 比 R1 大",
+   "bonferroni_threshold": 0.0019230769230769232,
+   "by_unit_threshold": 0.0004989277413113022,
+   "n_padded": 5,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "D_m25": {
+   "m": 25,
+   "rule": "数据同一性全合并（含等长同值）+ phasei",
+   "note": "预登记 m_candidates 里误写为主口径的口径；需额外规则，R1 不支持",
+   "bonferroni_threshold": 0.002,
+   "by_unit_threshold": 0.0005241147588198727,
+   "n_padded": 4,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 8,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "E_m24": {
+   "m": 24,
+   "rule": "L3z 指纹去重，不含 phasei",
+   "note": "L3z 原主口径（对照）",
+   "bonferroni_threshold": 0.0020833333333333333,
+   "by_unit_threshold": 0.0005517363369137752,
+   "n_padded": 3,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 8,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "F_m23": {
+   "m": 23,
+   "rule": "数据同一性全合并，不含 phasei",
+   "note": "L3ab 的 S3 口径（对照）",
+   "bonferroni_threshold": 0.002173913043478261,
+   "by_unit_threshold": 0.0005821487254072348,
+   "n_padded": 2,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 8,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "G_m27": {
+   "m": 27,
+   "rule": "全部登记，不含 phasei",
+   "note": "L3z 的替代口径（对照）",
+   "bonferroni_threshold": 0.001851851851851852,
+   "by_unit_threshold": 0.0004758762513046723,
+   "n_padded": 6,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  }
+ },
+ "merge": {
+  "strict": {
+   "groups": [
+    [
+     "gate1_d"
+    ],
+    [
+     "gate2_d"
+    ],
+    [
+     "gate3_d"
+    ],
+    [
+     "gate4_d"
+    ],
+    [
+     "gate5_d"
+    ],
+    [
+     "gate6_d"
+    ],
+    [
+     "phasec2_d"
+    ],
+    [
+     "phasec3_d"
+    ],
+    [
+     "phasec_d"
+    ],
+    [
+     "phasee_alpha"
+    ],
+    [
+     "phasef_delta"
+    ],
+    [
+     "phaseg_alpha"
+    ],
+    [
+     "phasej_netA"
+    ],
+    [
+     "phasek_m1net"
+    ],
+    [
+     "phasel_alpha"
+    ],
+    [
+     "phaseo_netBASE",
+     "phasep_late",
+     "phasev_net"
+    ],
+    [
+     "phaseq_max5"
+    ],
+    [
+     "phaser_alpha"
+    ],
+    [
+     "phases_net"
+    ],
+    [
+     "phaset_net"
+    ]
+   ],
+   "n_groups": 20,
+   "n_merged_away": 2,
+   "edges": [
+    {
+     "inner": "phasep_late",
+     "outer": "phaseo_netBASE",
+     "n_inner": 129,
+     "n_outer": 237,
+     "n_common": 129,
+     "max_abs_diff": 0.0
+    },
+    {
+     "inner": "phasep_late",
+     "outer": "phasev_net",
+     "n_inner": 129,
+     "n_outer": 237,
+     "n_common": 129,
+     "max_abs_diff": 0.0
+    }
+   ]
+  },
+  "with_added": {
+   "groups": [
+    [
+     "gate1_d"
+    ],
+    [
+     "gate2_d"
+    ],
+    [
+     "gate3_d"
+    ],
+    [
+     "gate4_d"
+    ],
+    [
+     "gate5_d"
+    ],
+    [
+     "gate6_d"
+    ],
+    [
+     "phasec2_d"
+    ],
+    [
+     "phasec3_d"
+    ],
+    [
+     "phasec_d"
+    ],
+    [
+     "phasee_alpha"
+    ],
+    [
+     "phasef_delta"
+    ],
+    [
+     "phaseg_alpha"
+    ],
+    [
+     "phasei_v0"
+    ],
+    [
+     "phasei_v1"
+    ],
+    [
+     "phasej_netA"
+    ],
+    [
+     "phasek_m1net"
+    ],
+    [
+     "phasel_alpha"
+    ],
+    [
+     "phaseo_netBASE",
+     "phasep_late",
+     "phasev_net"
+    ],
+    [
+     "phaseq_max5"
+    ],
+    [
+     "phaser_alpha"
+    ],
+    [
+     "phases_net"
+    ],
+    [
+     "phaset_net"
+    ]
+   ],
+   "n_groups": 22,
+   "n_merged_away": 2,
+   "edges": [
+    {
+     "inner": "phasep_late",
+     "outer": "phaseo_netBASE",
+     "n_inner": 129,
+     "n_outer": 237,
+     "n_common": 129,
+     "max_abs_diff": 0.0
+    },
+    {
+     "inner": "phasep_late",
+     "outer": "phasev_net",
+     "n_inner": 129,
+     "n_outer": 237,
+     "n_common": 129,
+     "max_abs_diff": 0.0
+    }
+   ]
+  },
+  "equal_value_pairs": [
+   {
+    "a": "phasel_alpha",
+    "b": "phaser_alpha",
+    "n": 237,
+    "max_abs_diff": 0.0
+   },
+   {
+    "a": "phaseo_netBASE",
+    "b": "phasev_net",
+    "n": 237,
+    "max_abs_diff": 0.0
+   },
+   {
+    "a": "phases_net",
+    "b": "phaset_net",
+    "n": 129,
+    "max_abs_diff": 0.0
+   }
+  ]
+ },
+ "added_meta": [
+  {
+   "key": "phasei_v0",
+   "family": "D_exq5",
+   "series": {
+    "kind": "column",
+    "path": "phasei_out/8f5c35121fdb/monthly.csv",
+    "column": "alpha_v0_pp",
+    "scale": 1
+   },
+   "hypothesis": "exQ5 分层本身存在 alpha（不受可成交约束）",
+   "stage": "I"
+  },
+  {
+   "key": "phasei_v1",
+   "family": "D_exq5",
+   "series": {
+    "kind": "column",
+    "path": "phasei_out/8f5c35121fdb/monthly.csv",
+    "column": "alpha_v1_pp",
+    "scale": 1
+   },
+   "hypothesis": "剔除当期不可成交标的后，同一 alpha 是否仍在（可实现性）",
+   "stage": "I"
+  }
+ ],
+ "added_rho": {
+  "a": "phasei_v0",
+  "b": "phasei_v1",
+  "n_overlap": 237,
+  "rho": 0.9875336844508514,
+  "identical_months": 5
+ },
+ "gates": [],
+ "predictions": [
+  {
+   "id": "P1",
+   "claim": "纳入 phasei 后 m=25，原有 6 条 Bonferroni 一条不掉",
+   "observed": "m=27（不是 25）；Bonferroni 通过 7 条，phasel_alpha 不在其中",
+   "holds": false,
+   "note": "m 的偏差来自预登记 m_candidates 的定义缺陷（见 §6）"
+  },
+  {
+   "id": "P2",
+   "claim": "m=25 的 Bonferroni 通过数 = 8",
+   "observed": "主口径 Bonferroni 通过 7 条",
+   "holds": false,
+   "note": "8 这个数需要 m=25；实测 m=27，故为 7"
+  },
+  {
+   "id": "P3",
+   "claim": "phasel_alpha 在 m=25 下通过但余量 <2%，m≥26 掉出",
+   "observed": "主口径门槛 0.00185185 vs p=0.00197172 ⇒ 不通过；0.05/26=0.00192308，仍低于 p",
+   "holds": false,
+   "note": "「余量小」与「m≥26 掉出」两句方向都对，但基准 m 不是 25"
+  },
+  {
+   "id": "P4",
+   "claim": "BY ⊆ BH，且 phasei 两条在 BY 下都通过",
+   "observed": "BY=8 BH=8，子集关系 成立；phasei_v0 在、phasei_v1 在 BY 拒绝集合中",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P5",
+   "claim": "分族不改变通过集合（不额外放行）",
+   "observed": "跨 7 个 m × 4 种校正的交集 7 条；并集 8 条",
+   "holds": true,
+   "note": "分族口径由 L3ab 的 S4_hypothesis(m=25) 覆盖，本阶段以「全口径交集」代替"
+  },
+  {
+   "id": "P6",
+   "claim": "phasei 两条与既有序列不构成 R1 子窗口，净 m 变化 +1（24→25）",
+   "observed": "净变化 +3（24→27）；R1 合并 2 条",
+   "holds": false,
+   "note": "「与既有序列不同源」这半句成立；错的是「净变化 +1」——R1 合并让 m 减 2，纳入让 m 加 2，指纹口径本身又比登记少 3，三者叠加得 +3"
+  },
+  {
+   "id": "P7",
+   "claim": "phasei_v0 与 v1 高度同步（描述性）",
+   "observed": "ρ=0.987534（237 个共同月，其中 5 个月数值完全相同）",
+   "holds": true,
+   "note": "描述性，不作判定依据；同步不等于同一假设"
+  }
+ ],
+ "status": "VERIFIED_WITH_DOCUMENTED_LIMITATIONS",
+ "generated": "2026-10-29"
+}

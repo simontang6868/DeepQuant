@@ -1,0 +1,442 @@
+{
+  "p02": {
+    "n_cells": 288,
+    "n_field_cmp": 2592,
+    "n_equal": 2592,
+    "equal_ratio": 1.0,
+    "by_field": {
+      "n_windows": 288,
+      "n_sel_ok": 288,
+      "n_oos_ok": 288,
+      "positive_ratio": 288,
+      "median_ret": 288,
+      "median_mdd": 288,
+      "total_trades": 288,
+      "total_fees": 288,
+      "transition_rate": 288
+    },
+    "n_mismatch": 0,
+    "mismatch_sample": [],
+    "orig_agg_ma": {
+      "simulation_placeholder": {
+        "n": 48,
+        "median_of_median_ret": -0.02152529999999997,
+        "median_of_loss_ratio": 0.5652,
+        "median_of_positive_ratio": 0.391304347826087,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 40.0,
+        "median_total_fees": 4615.155000000001
+      },
+      "broker_reference_common_2024": {
+        "n": 48,
+        "median_of_median_ret": -0.021331175000000008,
+        "median_of_loss_ratio": 0.5652,
+        "median_of_positive_ratio": 0.391304347826087,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 40.5,
+        "median_total_fees": 4265.635
+      },
+      "research_scenario_high_cost": {
+        "n": 48,
+        "median_of_median_ret": -0.03111240000000004,
+        "median_of_loss_ratio": 0.6087,
+        "median_of_positive_ratio": 0.34782608695652173,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 38.0,
+        "median_total_fees": 5209.805
+      }
+    },
+    "repro_agg_ma": {
+      "simulation_placeholder": {
+        "n": 48,
+        "median_of_median_ret": -0.02152529999999997,
+        "median_of_loss_ratio": 0.5652,
+        "median_of_positive_ratio": 0.391304347826087,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 40.0,
+        "median_total_fees": 4615.155000000001
+      },
+      "broker_reference_common_2024": {
+        "n": 48,
+        "median_of_median_ret": -0.021331175000000008,
+        "median_of_loss_ratio": 0.5652,
+        "median_of_positive_ratio": 0.391304347826087,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 40.5,
+        "median_total_fees": 4265.635
+      },
+      "research_scenario_high_cost": {
+        "n": 48,
+        "median_of_median_ret": -0.03111240000000004,
+        "median_of_loss_ratio": 0.6087,
+        "median_of_positive_ratio": 0.34782608695652173,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 38.0,
+        "median_total_fees": 5209.805
+      }
+    },
+    "orig_agg_mr": {
+      "simulation_placeholder": {
+        "n": 48,
+        "median_of_median_ret": 0.0070401999999998854,
+        "median_of_loss_ratio": 0.4348,
+        "median_of_positive_ratio": 0.5217391304347826,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 30.0,
+        "median_total_fees": 3709.765
+      },
+      "broker_reference_common_2024": {
+        "n": 48,
+        "median_of_median_ret": 0.007202399999999942,
+        "median_of_loss_ratio": 0.4348,
+        "median_of_positive_ratio": 0.5217391304347826,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 30.0,
+        "median_total_fees": 3421.79
+      },
+      "research_scenario_high_cost": {
+        "n": 48,
+        "median_of_median_ret": 0.0003401999999999017,
+        "median_of_loss_ratio": 0.44465,
+        "median_of_positive_ratio": 0.5,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 30.0,
+        "median_total_fees": 4483.24
+      }
+    },
+    "repro_agg_mr": {
+      "simulation_placeholder": {
+        "n": 48,
+        "median_of_median_ret": 0.0070401999999998854,
+        "median_of_loss_ratio": 0.4348,
+        "median_of_positive_ratio": 0.5217391304347826,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 30.0,
+        "median_total_fees": 3709.765
+      },
+      "broker_reference_common_2024": {
+        "n": 48,
+        "median_of_median_ret": 0.007202399999999942,
+        "median_of_loss_ratio": 0.4348,
+        "median_of_positive_ratio": 0.5217391304347826,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 30.0,
+        "median_total_fees": 3421.79
+      },
+      "research_scenario_high_cost": {
+        "n": 48,
+        "median_of_median_ret": 0.0003401999999999017,
+        "median_of_loss_ratio": 0.44465,
+        "median_of_positive_ratio": 0.5,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 30.0,
+        "median_total_fees": 4483.24
+      }
+    }
+  },
+  "windows": {
+    "v2": {
+      "n_rows": 5964,
+      "n_symbols": 48,
+      "price_limit_modes": [
+        "off"
+      ],
+      "design_versions": [
+        "oos75-v3"
+      ],
+      "n_zero_trade_windows": 908
+    },
+    "v3": {
+      "n_rows": 5964,
+      "n_symbols": 48,
+      "price_limit_modes": [
+        "board"
+      ],
+      "design_versions": [
+        "oos75-v3"
+      ],
+      "n_zero_trade_windows": 911
+    }
+  },
+  "p03": {
+    "v2_agg_ma": {
+      "simulation_placeholder": {
+        "n": 48,
+        "median_of_median_ret": -0.02152529999999997,
+        "median_of_loss_ratio": 0.5652,
+        "median_of_positive_ratio": 0.391304347826087,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 40.0,
+        "median_total_fees": 4615.155000000001
+      },
+      "broker_reference_common_2024": {
+        "n": 48,
+        "median_of_median_ret": -0.021331175000000008,
+        "median_of_loss_ratio": 0.5652,
+        "median_of_positive_ratio": 0.391304347826087,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 40.5,
+        "median_total_fees": 4265.635
+      },
+      "research_scenario_high_cost": {
+        "n": 48,
+        "median_of_median_ret": -0.03111240000000004,
+        "median_of_loss_ratio": 0.6087,
+        "median_of_positive_ratio": 0.34782608695652173,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 38.0,
+        "median_total_fees": 5209.805
+      }
+    },
+    "v3_agg_ma": {
+      "simulation_placeholder": {
+        "n": 48,
+        "median_of_median_ret": -0.018357000000000012,
+        "median_of_loss_ratio": 0.5652,
+        "median_of_positive_ratio": 0.391304347826087,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 40.0,
+        "median_total_fees": 4591.515
+      },
+      "broker_reference_common_2024": {
+        "n": 48,
+        "median_of_median_ret": -0.021015599999999968,
+        "median_of_loss_ratio": 0.5652,
+        "median_of_positive_ratio": 0.391304347826087,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 40.0,
+        "median_total_fees": 4265.635
+      },
+      "research_scenario_high_cost": {
+        "n": 48,
+        "median_of_median_ret": -0.02865414999999999,
+        "median_of_loss_ratio": 0.6087,
+        "median_of_positive_ratio": 0.34782608695652173,
+        "median_n_oos_ok": 23.0,
+        "median_total_trades": 37.5,
+        "median_total_fees": 5160.175
+      }
+    },
+    "n_cells": 288,
+    "ma_cells": 144,
+    "sign_flip_cells": 0,
+    "median_d_ret_pp_ma": 0.0,
+    "median_d_trades_ma": 0.0,
+    "n_cells_trades_down": 17,
+    "n_cells_trades_up": 6
+  },
+  "p04": {
+    "v2": {
+      "n_windows": 2982,
+      "n_symbols": 48,
+      "n_invalid_windows": 0,
+      "n_windows_without_benchmark": 0,
+      "by_fee": {
+        "simulation_placeholder": {
+          "n_windows": 994,
+          "n_symbols": 48,
+          "pooled_mean": -0.04107930120724345,
+          "pooled_median": -0.02596689999999985,
+          "stock_level_median_of_medians": -0.0248792,
+          "stock_level_mean_of_medians": -0.028529340624999993,
+          "cluster_boot_mean": [
+            -0.041842793103764694,
+            -0.05254583675423181,
+            -0.03153997771252886
+          ],
+          "cluster_boot_median": [
+            -0.0248792,
+            -0.0412609999999999,
+            -0.0180577
+          ],
+          "n_pos": 420,
+          "n_neg": 574,
+          "n_zero": 0,
+          "share_neg": 0.5774647887323944,
+          "median_trades_per_window": 2.0,
+          "zero_trade_share": 0.13480885311871227,
+          "strategy_median": -0.0209524,
+          "benchmark_median": 0.0072411999999999
+        },
+        "broker_reference_common_2024": {
+          "n_windows": 994,
+          "n_symbols": 48,
+          "pooled_mean": -0.041221602515090536,
+          "pooled_median": -0.026018099999999898,
+          "stock_level_median_of_medians": -0.025195000000000002,
+          "stock_level_mean_of_medians": -0.028693461458333323,
+          "cluster_boot_mean": [
+            -0.04194754140624307,
+            -0.052462192510852775,
+            -0.031574028170164505
+          ],
+          "cluster_boot_median": [
+            -0.025195000000000002,
+            -0.0411333999999998,
+            -0.0188793
+          ],
+          "n_pos": 419,
+          "n_neg": 575,
+          "n_zero": 0,
+          "share_neg": 0.5784708249496981,
+          "median_trades_per_window": 2.0,
+          "zero_trade_share": 0.13480885311871227,
+          "strategy_median": -0.0218025999999999,
+          "benchmark_median": 0.00728104999999985
+        },
+        "research_scenario_high_cost": {
+          "n_windows": 994,
+          "n_symbols": 48,
+          "pooled_mean": -0.04771778903420523,
+          "pooled_median": -0.03603025,
+          "stock_level_median_of_medians": -0.0365185500000001,
+          "stock_level_mean_of_medians": -0.03503042916666664,
+          "cluster_boot_mean": [
+            -0.04830115898911949,
+            -0.05870167099430861,
+            -0.038404591826515566
+          ],
+          "cluster_boot_median": [
+            -0.0365185500000001,
+            -0.0503289,
+            -0.0183780999999999
+          ],
+          "n_pos": 399,
+          "n_neg": 594,
+          "n_zero": 1,
+          "share_neg": 0.5975855130784709,
+          "median_trades_per_window": 2.0,
+          "zero_trade_share": 0.14788732394366197,
+          "strategy_median": -0.029768950000000002,
+          "benchmark_median": 0.0051963
+        }
+      },
+      "all_fees": {
+        "n_windows": 2982,
+        "n_symbols": 48,
+        "pooled_mean": -0.04333956425217974,
+        "pooled_median": -0.0292580999999998,
+        "stock_level_median_of_medians": -0.025834699999999898,
+        "cluster_boot_mean": [
+          -0.04403049783304242,
+          -0.054524277023488776,
+          -0.03374940139041427
+        ],
+        "cluster_boot_median": [
+          -0.025834699999999898,
+          -0.0470959999999999,
+          -0.0178671000000001
+        ],
+        "n_pos": 1238,
+        "n_neg": 1743,
+        "share_neg": 0.5845070422535211
+      }
+    },
+    "v3": {
+      "n_windows": 2982,
+      "n_symbols": 48,
+      "n_invalid_windows": 0,
+      "n_windows_without_benchmark": 0,
+      "by_fee": {
+        "simulation_placeholder": {
+          "n_windows": 994,
+          "n_symbols": 48,
+          "pooled_mean": -0.0400674222334004,
+          "pooled_median": -0.02534739999999985,
+          "stock_level_median_of_medians": -0.0248792,
+          "stock_level_mean_of_medians": -0.027901009374999994,
+          "cluster_boot_mean": [
+            -0.04050064900718947,
+            -0.050379195196127095,
+            -0.030506265830606737
+          ],
+          "cluster_boot_median": [
+            -0.0248792,
+            -0.0412609999999999,
+            -0.01939235750000004
+          ],
+          "n_pos": 422,
+          "n_neg": 572,
+          "n_zero": 0,
+          "share_neg": 0.5754527162977867,
+          "median_trades_per_window": 2.0,
+          "zero_trade_share": 0.1358148893360161,
+          "strategy_median": -0.020322800000000002,
+          "benchmark_median": 0.0072411999999999
+        },
+        "broker_reference_common_2024": {
+          "n_windows": 994,
+          "n_symbols": 48,
+          "pooled_mean": -0.04021002464788732,
+          "pooled_median": -0.02528564999999995,
+          "stock_level_median_of_medians": -0.025195000000000002,
+          "stock_level_mean_of_medians": -0.02805909895833332,
+          "cluster_boot_mean": [
+            -0.04060564046383177,
+            -0.0506121326218731,
+            -0.030536818124685467
+          ],
+          "cluster_boot_median": [
+            -0.025195000000000002,
+            -0.0411333999999998,
+            -0.0196409000000001
+          ],
+          "n_pos": 421,
+          "n_neg": 573,
+          "n_zero": 0,
+          "share_neg": 0.5764587525150905,
+          "median_trades_per_window": 2.0,
+          "zero_trade_share": 0.1358148893360161,
+          "strategy_median": -0.02143084999999995,
+          "benchmark_median": 0.00728104999999985
+        },
+        "research_scenario_high_cost": {
+          "n_windows": 994,
+          "n_symbols": 48,
+          "pooled_mean": -0.04661967303822938,
+          "pooled_median": -0.03433889999999985,
+          "stock_level_median_of_medians": -0.03737370000000005,
+          "stock_level_mean_of_medians": -0.03471356562499997,
+          "cluster_boot_mean": [
+            -0.046940322924641245,
+            -0.056832806297064935,
+            -0.037443879859551735
+          ],
+          "cluster_boot_median": [
+            -0.03737370000000005,
+            -0.0503289,
+            -0.0188387
+          ],
+          "n_pos": 402,
+          "n_neg": 591,
+          "n_zero": 1,
+          "share_neg": 0.5945674044265593,
+          "median_trades_per_window": 2.0,
+          "zero_trade_share": 0.1488933601609658,
+          "strategy_median": -0.02903045,
+          "benchmark_median": 0.0051963
+        }
+      },
+      "all_fees": {
+        "n_windows": 2982,
+        "n_symbols": 48,
+        "pooled_mean": -0.042299039973172366,
+        "pooled_median": -0.027262299999999948,
+        "stock_level_median_of_medians": -0.025834699999999898,
+        "cluster_boot_mean": [
+          -0.042682204131887495,
+          -0.05256417746843763,
+          -0.03281985523576605
+        ],
+        "cluster_boot_median": [
+          -0.025834699999999898,
+          -0.0470959999999999,
+          -0.01949915000000005
+        ],
+        "n_pos": 1245,
+        "n_neg": 1736,
+        "share_neg": 0.5821596244131455
+      }
+    }
+  }
+}

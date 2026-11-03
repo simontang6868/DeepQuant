@@ -1,0 +1,1982 @@
+[
+  {
+    "start": "2012-02-07",
+    "end": "2012-03-01",
+    "n_strategy": 17,
+    "n_strategy_priced": 17,
+    "n_universe": 26,
+    "r_strategy": 0.0696177808373398,
+    "r_universe": 0.06860478266442496,
+    "delta": 0.0010129981729148363
+  },
+  {
+    "start": "2012-03-01",
+    "end": "2012-04-05",
+    "n_strategy": 25,
+    "n_strategy_priced": 25,
+    "n_universe": 25,
+    "r_strategy": -0.0617316235652982,
+    "r_universe": -0.0617316235652982,
+    "delta": 0.0
+  },
+  {
+    "start": "2012-04-05",
+    "end": "2012-05-02",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 25,
+    "r_strategy": 0.11675077836510822,
+    "r_universe": 0.0983120428964226,
+    "delta": 0.018438735468685616
+  },
+  {
+    "start": "2012-05-02",
+    "end": "2012-06-01",
+    "n_strategy": 22,
+    "n_strategy_priced": 22,
+    "n_universe": 25,
+    "r_strategy": -0.018302099399844472,
+    "r_universe": -0.017433835689785807,
+    "delta": -0.0008682637100586657
+  },
+  {
+    "start": "2012-06-01",
+    "end": "2012-07-02",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 25,
+    "r_strategy": -0.057796313141229044,
+    "r_universe": -0.03225316457228439,
+    "delta": -0.025543148568944657
+  },
+  {
+    "start": "2012-07-02",
+    "end": "2012-08-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 10,
+    "n_universe": 26,
+    "r_strategy": 0.0002671805400988658,
+    "r_universe": -0.054558192241128275,
+    "delta": 0.05482537278122714
+  },
+  {
+    "start": "2012-08-01",
+    "end": "2012-08-07",
+    "n_strategy": 8,
+    "n_strategy_priced": 8,
+    "n_universe": 26,
+    "r_strategy": 0.037433577508581756,
+    "r_universe": 0.028164420254752486,
+    "delta": 0.00926915725382927
+  },
+  {
+    "start": "2012-08-09",
+    "end": "2012-09-03",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 25,
+    "r_strategy": -0.09693148551484426,
+    "r_universe": -0.0649877214741669,
+    "delta": -0.031943764040677364
+  },
+  {
+    "start": "2012-09-03",
+    "end": "2012-10-08",
+    "n_strategy": 4,
+    "n_strategy_priced": 4,
+    "n_universe": 25,
+    "r_strategy": -0.006805945852036754,
+    "r_universe": 0.005322182531107917,
+    "delta": -0.01212812838314467
+  },
+  {
+    "start": "2012-10-08",
+    "end": "2012-11-01",
+    "n_strategy": 4,
+    "n_strategy_priced": 4,
+    "n_universe": 26,
+    "r_strategy": -0.02936785712602591,
+    "r_universe": -0.0180215317651769,
+    "delta": -0.011346325360849008
+  },
+  {
+    "start": "2012-11-01",
+    "end": "2012-12-03",
+    "n_strategy": 14,
+    "n_strategy_priced": 14,
+    "n_universe": 25,
+    "r_strategy": -0.07759682827485455,
+    "r_universe": -0.09359523526119423,
+    "delta": 0.015998406986339683
+  },
+  {
+    "start": "2012-12-03",
+    "end": "2013-01-04",
+    "n_strategy": 3,
+    "n_strategy_priced": 2,
+    "n_universe": 24,
+    "r_strategy": 0.24628547770862486,
+    "r_universe": 0.16378479046268754,
+    "delta": 0.08250068724593732
+  },
+  {
+    "start": "2013-01-04",
+    "end": "2013-02-01",
+    "n_strategy": 26,
+    "n_strategy_priced": 24,
+    "n_universe": 24,
+    "r_strategy": 0.026326973537590063,
+    "r_universe": 0.026326973537590063,
+    "delta": 0.0
+  },
+  {
+    "start": "2013-02-01",
+    "end": "2013-02-18",
+    "n_strategy": 15,
+    "n_strategy_priced": 14,
+    "n_universe": 25,
+    "r_strategy": 0.03408900736548317,
+    "r_universe": 0.038101252787015094,
+    "delta": -0.004012245421531925
+  },
+  {
+    "start": "2013-02-20",
+    "end": "2013-03-01",
+    "n_strategy": 24,
+    "n_strategy_priced": 24,
+    "n_universe": 26,
+    "r_strategy": 0.01177444019320753,
+    "r_universe": 0.009457095799637985,
+    "delta": 0.0023173443935695457
+  },
+  {
+    "start": "2013-03-01",
+    "end": "2013-04-01",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 26,
+    "r_strategy": -0.030157913233508655,
+    "r_universe": -0.03536204607508689,
+    "delta": 0.005204132841578234
+  },
+  {
+    "start": "2013-04-01",
+    "end": "2013-05-02",
+    "n_strategy": 14,
+    "n_strategy_priced": 14,
+    "n_universe": 26,
+    "r_strategy": -0.04359611557507653,
+    "r_universe": -0.049131739585931526,
+    "delta": 0.005535624010854993
+  },
+  {
+    "start": "2013-05-02",
+    "end": "2013-06-03",
+    "n_strategy": 10,
+    "n_strategy_priced": 8,
+    "n_universe": 23,
+    "r_strategy": 0.09966170332182062,
+    "r_universe": 0.0888766775431592,
+    "delta": 0.010785025778661417
+  },
+  {
+    "start": "2013-06-03",
+    "end": "2013-07-01",
+    "n_strategy": 23,
+    "n_strategy_priced": 20,
+    "n_universe": 23,
+    "r_strategy": -0.15645786046646198,
+    "r_universe": -0.1516138688595979,
+    "delta": -0.004843991606864079
+  },
+  {
+    "start": "2013-07-01",
+    "end": "2013-08-01",
+    "n_strategy": 3,
+    "n_strategy_priced": 0,
+    "n_universe": 23,
+    "r_strategy": null,
+    "r_universe": 0.05218198317222424,
+    "delta": null
+  },
+  {
+    "start": "2013-08-01",
+    "end": "2013-08-23",
+    "n_strategy": 9,
+    "n_strategy_priced": 7,
+    "n_universe": 24,
+    "r_strategy": 0.07186126838435077,
+    "r_universe": 0.03725190239440223,
+    "delta": 0.034609365989948536
+  },
+  {
+    "start": "2013-08-27",
+    "end": "2013-09-02",
+    "n_strategy": 14,
+    "n_strategy_priced": 13,
+    "n_universe": 25,
+    "r_strategy": 0.006788966255690545,
+    "r_universe": -0.009023427068790925,
+    "delta": 0.01581239332448147
+  },
+  {
+    "start": "2013-09-02",
+    "end": "2013-10-08",
+    "n_strategy": 7,
+    "n_strategy_priced": 7,
+    "n_universe": 26,
+    "r_strategy": 0.13252747207606635,
+    "r_universe": 0.06074343214284849,
+    "delta": 0.07178403993321786
+  },
+  {
+    "start": "2013-10-08",
+    "end": "2013-11-01",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 26,
+    "r_strategy": -0.07472205090951034,
+    "r_universe": -0.02954758669025504,
+    "delta": -0.0451744642192553
+  },
+  {
+    "start": "2013-11-01",
+    "end": "2013-12-02",
+    "n_strategy": 7,
+    "n_strategy_priced": 7,
+    "n_universe": 25,
+    "r_strategy": 0.11302182435278718,
+    "r_universe": 0.03041857815521072,
+    "delta": 0.08260324619757646
+  },
+  {
+    "start": "2013-12-02",
+    "end": "2014-01-02",
+    "n_strategy": 24,
+    "n_strategy_priced": 24,
+    "n_universe": 25,
+    "r_strategy": -0.031809532923252205,
+    "r_universe": -0.03397119198105846,
+    "delta": 0.002161659057806256
+  },
+  {
+    "start": "2014-01-02",
+    "end": "2014-02-07",
+    "n_strategy": 5,
+    "n_strategy_priced": 5,
+    "n_universe": 25,
+    "r_strategy": 0.12684228517138807,
+    "r_universe": -0.004544594000141791,
+    "delta": 0.13138687917152986
+  },
+  {
+    "start": "2014-02-07",
+    "end": "2014-03-03",
+    "n_strategy": 19,
+    "n_strategy_priced": 18,
+    "n_universe": 25,
+    "r_strategy": 0.0177026980759359,
+    "r_universe": 0.0572189655627636,
+    "delta": -0.039516267486827704
+  },
+  {
+    "start": "2014-03-03",
+    "end": "2014-03-06",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 26,
+    "r_strategy": 0.014909487376158418,
+    "r_universe": 0.007402130558546396,
+    "delta": 0.007507356817612022
+  },
+  {
+    "start": "2014-03-10",
+    "end": "2014-04-01",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 26,
+    "r_strategy": -0.09151352012447705,
+    "r_universe": -0.03865743610786621,
+    "delta": -0.05285608401661084
+  },
+  {
+    "start": "2014-04-01",
+    "end": "2014-05-05",
+    "n_strategy": 18,
+    "n_strategy_priced": 17,
+    "n_universe": 26,
+    "r_strategy": -0.012396832749589,
+    "r_universe": -0.024978529132782448,
+    "delta": 0.012581696383193447
+  },
+  {
+    "start": "2014-05-05",
+    "end": "2014-06-03",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 25,
+    "r_strategy": 0.0730324458452884,
+    "r_universe": 0.05660105416183647,
+    "delta": 0.016431391683451924
+  },
+  {
+    "start": "2014-06-03",
+    "end": "2014-07-01",
+    "n_strategy": 16,
+    "n_strategy_priced": 13,
+    "n_universe": 24,
+    "r_strategy": 0.024526729714305712,
+    "r_universe": 0.02481296568063784,
+    "delta": -0.00028623596633212817
+  },
+  {
+    "start": "2014-07-01",
+    "end": "2014-08-01",
+    "n_strategy": 6,
+    "n_strategy_priced": 5,
+    "n_universe": 23,
+    "r_strategy": 0.07148505908721955,
+    "r_universe": 0.09093960265524606,
+    "delta": -0.019454543568026506
+  },
+  {
+    "start": "2014-08-01",
+    "end": "2014-09-01",
+    "n_strategy": 20,
+    "n_strategy_priced": 18,
+    "n_universe": 24,
+    "r_strategy": 0.014143894976553483,
+    "r_universe": 0.010903187954001836,
+    "delta": 0.003240707022551647
+  },
+  {
+    "start": "2014-09-01",
+    "end": "2014-09-04",
+    "n_strategy": 11,
+    "n_strategy_priced": 9,
+    "n_universe": 25,
+    "r_strategy": 0.03938402244987723,
+    "r_universe": 0.03966980093324758,
+    "delta": -0.0002857784833703511
+  },
+  {
+    "start": "2014-09-09",
+    "end": "2014-10-08",
+    "n_strategy": 10,
+    "n_strategy_priced": 8,
+    "n_universe": 25,
+    "r_strategy": 0.04027932202564065,
+    "r_universe": 0.03592814683237994,
+    "delta": 0.004351175193260712
+  },
+  {
+    "start": "2014-10-08",
+    "end": "2014-11-03",
+    "n_strategy": 14,
+    "n_strategy_priced": 14,
+    "n_universe": 25,
+    "r_strategy": 0.02008913953725468,
+    "r_universe": 0.009710857963784911,
+    "delta": 0.01037828157346977
+  },
+  {
+    "start": "2014-11-03",
+    "end": "2014-12-01",
+    "n_strategy": 8,
+    "n_strategy_priced": 7,
+    "n_universe": 23,
+    "r_strategy": 0.16154536935938887,
+    "r_universe": 0.1777818841121621,
+    "delta": -0.016236514752773212
+  },
+  {
+    "start": "2014-12-01",
+    "end": "2015-01-05",
+    "n_strategy": 18,
+    "n_strategy_priced": 16,
+    "n_universe": 22,
+    "r_strategy": 0.07215990021151256,
+    "r_universe": 0.15617002819645284,
+    "delta": -0.08401012798494029
+  },
+  {
+    "start": "2015-01-05",
+    "end": "2015-02-02",
+    "n_strategy": 14,
+    "n_strategy_priced": 11,
+    "n_universe": 23,
+    "r_strategy": -0.11764915396460518,
+    "r_universe": -0.015718091428509575,
+    "delta": -0.1019310625360956
+  },
+  {
+    "start": "2015-02-02",
+    "end": "2015-03-02",
+    "n_strategy": 15,
+    "n_strategy_priced": 13,
+    "n_universe": 23,
+    "r_strategy": 0.10943011149656531,
+    "r_universe": 0.08302262667001845,
+    "delta": 0.026407484826546868
+  },
+  {
+    "start": "2015-03-02",
+    "end": "2015-03-18",
+    "n_strategy": 17,
+    "n_strategy_priced": 16,
+    "n_universe": 24,
+    "r_strategy": 0.05826147807548563,
+    "r_universe": 0.06940711102921113,
+    "delta": -0.011145632953725497
+  },
+  {
+    "start": "2015-03-20",
+    "end": "2015-04-01",
+    "n_strategy": 22,
+    "n_strategy_priced": 20,
+    "n_universe": 24,
+    "r_strategy": 0.047541990042496776,
+    "r_universe": 0.057966756599827564,
+    "delta": -0.010424766557330788
+  },
+  {
+    "start": "2015-04-01",
+    "end": "2015-05-04",
+    "n_strategy": 26,
+    "n_strategy_priced": 24,
+    "n_universe": 24,
+    "r_strategy": 0.20266500862599693,
+    "r_universe": 0.20266500862599693,
+    "delta": 0.0
+  },
+  {
+    "start": "2015-05-04",
+    "end": "2015-06-01",
+    "n_strategy": 24,
+    "n_strategy_priced": 22,
+    "n_universe": 25,
+    "r_strategy": 0.10638135847274426,
+    "r_universe": 0.10778850493683823,
+    "delta": -0.0014071464640939696
+  },
+  {
+    "start": "2015-06-01",
+    "end": "2015-07-01",
+    "n_strategy": 23,
+    "n_strategy_priced": 19,
+    "n_universe": 23,
+    "r_strategy": -0.1190414816914258,
+    "r_universe": -0.09536677698491998,
+    "delta": -0.023674704706505817
+  },
+  {
+    "start": "2015-07-01",
+    "end": "2015-08-03",
+    "n_strategy": 4,
+    "n_strategy_priced": 1,
+    "n_universe": 22,
+    "r_strategy": -0.2633333333333333,
+    "r_universe": -0.17385260330383953,
+    "delta": -0.08948073002949378
+  },
+  {
+    "start": "2015-08-03",
+    "end": "2015-09-01",
+    "n_strategy": 14,
+    "n_strategy_priced": 10,
+    "n_universe": 22,
+    "r_strategy": -0.0846566289118759,
+    "r_universe": -0.12307032351633262,
+    "delta": 0.03841369460445672
+  },
+  {
+    "start": "2015-09-01",
+    "end": "2015-09-17",
+    "n_strategy": 3,
+    "n_strategy_priced": 1,
+    "n_universe": 22,
+    "r_strategy": -0.3599656032904711,
+    "r_universe": -0.054145598927454144,
+    "delta": -0.305820004363017
+  },
+  {
+    "start": "2015-09-21",
+    "end": "2015-10-08",
+    "n_strategy": 3,
+    "n_strategy_priced": 1,
+    "n_universe": 22,
+    "r_strategy": 0.0038886889853364526,
+    "r_universe": 0.06786395671355677,
+    "delta": -0.06397526772822032
+  },
+  {
+    "start": "2015-10-08",
+    "end": "2015-11-02",
+    "n_strategy": 4,
+    "n_strategy_priced": 2,
+    "n_universe": 22,
+    "r_strategy": 0.030680001952163916,
+    "r_universe": 0.11566303421139322,
+    "delta": -0.0849830322592293
+  },
+  {
+    "start": "2015-11-02",
+    "end": "2015-12-01",
+    "n_strategy": 23,
+    "n_strategy_priced": 20,
+    "n_universe": 22,
+    "r_strategy": 0.12107384890611969,
+    "r_universe": 0.10898114839478289,
+    "delta": 0.012092700511336804
+  },
+  {
+    "start": "2015-12-01",
+    "end": "2016-01-04",
+    "n_strategy": 22,
+    "n_strategy_priced": 19,
+    "n_universe": 23,
+    "r_strategy": 0.03019348037667337,
+    "r_universe": 0.022940772926575863,
+    "delta": 0.0072527074500975085
+  },
+  {
+    "start": "2016-01-04",
+    "end": "2016-02-01",
+    "n_strategy": 14,
+    "n_strategy_priced": 11,
+    "n_universe": 22,
+    "r_strategy": -0.25211237598173497,
+    "r_universe": -0.2346141093017415,
+    "delta": -0.017498266679993463
+  },
+  {
+    "start": "2016-02-01",
+    "end": "2016-03-01",
+    "n_strategy": 3,
+    "n_strategy_priced": 1,
+    "n_universe": 23,
+    "r_strategy": -0.1712911467553393,
+    "r_universe": -0.02690026288083768,
+    "delta": -0.1443908838745016
+  },
+  {
+    "start": "2016-03-01",
+    "end": "2016-03-28",
+    "n_strategy": 5,
+    "n_strategy_priced": 3,
+    "n_universe": 22,
+    "r_strategy": 0.15043759470887222,
+    "r_universe": 0.14619465829623807,
+    "delta": 0.004242936412634152
+  },
+  {
+    "start": "2016-03-30",
+    "end": "2016-04-01",
+    "n_strategy": 22,
+    "n_strategy_priced": 18,
+    "n_universe": 23,
+    "r_strategy": 0.020892170805181395,
+    "r_universe": 0.018856237213928324,
+    "delta": 0.002035933591253071
+  },
+  {
+    "start": "2016-04-01",
+    "end": "2016-05-03",
+    "n_strategy": 19,
+    "n_strategy_priced": 15,
+    "n_universe": 23,
+    "r_strategy": -0.05043646564501805,
+    "r_universe": -0.04066732188101301,
+    "delta": -0.00976914376400504
+  },
+  {
+    "start": "2016-05-03",
+    "end": "2016-06-01",
+    "n_strategy": 7,
+    "n_strategy_priced": 3,
+    "n_universe": 23,
+    "r_strategy": 0.026776245362183742,
+    "r_universe": 0.0077559610435194125,
+    "delta": 0.01902028431866433
+  },
+  {
+    "start": "2016-06-01",
+    "end": "2016-07-01",
+    "n_strategy": 16,
+    "n_strategy_priced": 14,
+    "n_universe": 24,
+    "r_strategy": 0.04273908195981298,
+    "r_universe": 0.041672120228568886,
+    "delta": 0.0010669617312440913
+  },
+  {
+    "start": "2016-07-01",
+    "end": "2016-08-01",
+    "n_strategy": 19,
+    "n_strategy_priced": 18,
+    "n_universe": 23,
+    "r_strategy": 0.011462205389307792,
+    "r_universe": 0.02212344467389936,
+    "delta": -0.010661239284591567
+  },
+  {
+    "start": "2016-08-01",
+    "end": "2016-09-01",
+    "n_strategy": 11,
+    "n_strategy_priced": 10,
+    "n_universe": 24,
+    "r_strategy": 0.15297611906645475,
+    "r_universe": 0.10499863349194906,
+    "delta": 0.04797748557450569
+  },
+  {
+    "start": "2016-09-01",
+    "end": "2016-09-28",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 25,
+    "r_strategy": -0.04046176905168424,
+    "r_universe": -0.03334913094936561,
+    "delta": -0.00711263810231863
+  },
+  {
+    "start": "2016-09-30",
+    "end": "2016-10-10",
+    "n_strategy": 5,
+    "n_strategy_priced": 5,
+    "n_universe": 25,
+    "r_strategy": 0.014363160052663648,
+    "r_universe": 0.01132191612072523,
+    "delta": 0.003041243931938418
+  },
+  {
+    "start": "2016-10-10",
+    "end": "2016-11-01",
+    "n_strategy": 5,
+    "n_strategy_priced": 5,
+    "n_universe": 25,
+    "r_strategy": -0.0048255755688725085,
+    "r_universe": 0.022491957186969468,
+    "delta": -0.027317532755841978
+  },
+  {
+    "start": "2016-11-01",
+    "end": "2016-12-01",
+    "n_strategy": 17,
+    "n_strategy_priced": 14,
+    "n_universe": 23,
+    "r_strategy": 0.06492247024988458,
+    "r_universe": 0.03953168683842576,
+    "delta": 0.02539078341145882
+  },
+  {
+    "start": "2016-12-01",
+    "end": "2017-01-03",
+    "n_strategy": 18,
+    "n_strategy_priced": 16,
+    "n_universe": 24,
+    "r_strategy": -0.08308336748917011,
+    "r_universe": -0.09528824591673346,
+    "delta": 0.012204878427563348
+  },
+  {
+    "start": "2017-01-03",
+    "end": "2017-02-03",
+    "n_strategy": 3,
+    "n_strategy_priced": 3,
+    "n_universe": 26,
+    "r_strategy": -0.020647108655694153,
+    "r_universe": -0.007396350684106443,
+    "delta": -0.01325075797158771
+  },
+  {
+    "start": "2017-02-03",
+    "end": "2017-03-01",
+    "n_strategy": 15,
+    "n_strategy_priced": 14,
+    "n_universe": 26,
+    "r_strategy": 0.012938453798278888,
+    "r_universe": 0.027775030736258477,
+    "delta": -0.014836576937979589
+  },
+  {
+    "start": "2017-03-01",
+    "end": "2017-04-05",
+    "n_strategy": 20,
+    "n_strategy_priced": 20,
+    "n_universe": 27,
+    "r_strategy": -0.027321960983065115,
+    "r_universe": -0.025811223805059534,
+    "delta": -0.0015107371780055806
+  },
+  {
+    "start": "2017-04-05",
+    "end": "2017-04-11",
+    "n_strategy": 5,
+    "n_strategy_priced": 5,
+    "n_universe": 27,
+    "r_strategy": 0.006347675692111787,
+    "r_universe": 0.00033952499608531965,
+    "delta": 0.006008150696026467
+  },
+  {
+    "start": "2017-04-13",
+    "end": "2017-05-02",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 26,
+    "r_strategy": -0.05803375984977561,
+    "r_universe": -0.058027798284791425,
+    "delta": -5.96156498418321e-06
+  },
+  {
+    "start": "2017-05-02",
+    "end": "2017-06-01",
+    "n_strategy": 4,
+    "n_strategy_priced": 3,
+    "n_universe": 25,
+    "r_strategy": 0.061807994371266085,
+    "r_universe": -0.018292792571896865,
+    "delta": 0.08010078694316294
+  },
+  {
+    "start": "2017-06-01",
+    "end": "2017-07-03",
+    "n_strategy": 14,
+    "n_strategy_priced": 12,
+    "n_universe": 22,
+    "r_strategy": 0.0541920797448693,
+    "r_universe": 0.042807006607564146,
+    "delta": 0.011385073137305156
+  },
+  {
+    "start": "2017-07-03",
+    "end": "2017-08-01",
+    "n_strategy": 21,
+    "n_strategy_priced": 17,
+    "n_universe": 22,
+    "r_strategy": 0.020127162756207437,
+    "r_universe": 0.005268079236243011,
+    "delta": 0.014859083519964426
+  },
+  {
+    "start": "2017-08-01",
+    "end": "2017-09-01",
+    "n_strategy": 17,
+    "n_strategy_priced": 14,
+    "n_universe": 22,
+    "r_strategy": 0.009598123869454498,
+    "r_universe": 0.045903651011673825,
+    "delta": -0.036305527142219324
+  },
+  {
+    "start": "2017-09-01",
+    "end": "2017-10-09",
+    "n_strategy": 22,
+    "n_strategy_priced": 19,
+    "n_universe": 24,
+    "r_strategy": 0.09505043776475368,
+    "r_universe": 0.08122549412490189,
+    "delta": 0.013824943639851789
+  },
+  {
+    "start": "2017-10-09",
+    "end": "2017-10-16",
+    "n_strategy": 11,
+    "n_strategy_priced": 9,
+    "n_universe": 24,
+    "r_strategy": -0.025283091810596306,
+    "r_universe": -0.012765678497644387,
+    "delta": -0.01251741331295192
+  },
+  {
+    "start": "2017-10-18",
+    "end": "2017-11-01",
+    "n_strategy": 16,
+    "n_strategy_priced": 13,
+    "n_universe": 22,
+    "r_strategy": 0.01230754327082887,
+    "r_universe": 0.01051695152435615,
+    "delta": 0.0017905917464727198
+  },
+  {
+    "start": "2017-11-01",
+    "end": "2017-12-01",
+    "n_strategy": 13,
+    "n_strategy_priced": 11,
+    "n_universe": 24,
+    "r_strategy": 0.015991970963954317,
+    "r_universe": 0.011193179221324137,
+    "delta": 0.00479879174263018
+  },
+  {
+    "start": "2017-12-01",
+    "end": "2018-01-02",
+    "n_strategy": 13,
+    "n_strategy_priced": 11,
+    "n_universe": 26,
+    "r_strategy": -0.01121487964487079,
+    "r_universe": -0.002383756541248296,
+    "delta": -0.008831123103622492
+  },
+  {
+    "start": "2018-01-02",
+    "end": "2018-02-01",
+    "n_strategy": 13,
+    "n_strategy_priced": 11,
+    "n_universe": 26,
+    "r_strategy": 0.047545003301656646,
+    "r_universe": 0.013131905339645998,
+    "delta": 0.03441309796201065
+  },
+  {
+    "start": "2018-02-01",
+    "end": "2018-03-01",
+    "n_strategy": 15,
+    "n_strategy_priced": 13,
+    "n_universe": 25,
+    "r_strategy": -0.08715018549065245,
+    "r_universe": -0.07150233282469083,
+    "delta": -0.015647852665961623
+  },
+  {
+    "start": "2018-03-01",
+    "end": "2018-04-02",
+    "n_strategy": 7,
+    "n_strategy_priced": 5,
+    "n_universe": 25,
+    "r_strategy": 0.044308581864145324,
+    "r_universe": 0.006921063968981107,
+    "delta": 0.037387517895164216
+  },
+  {
+    "start": "2018-04-02",
+    "end": "2018-04-20",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 26,
+    "r_strategy": 0.03760260109796629,
+    "r_universe": -0.008825896306350906,
+    "delta": 0.04642849740431719
+  },
+  {
+    "start": "2018-04-24",
+    "end": "2018-05-02",
+    "n_strategy": 4,
+    "n_strategy_priced": 4,
+    "n_universe": 25,
+    "r_strategy": 0.014262796634637864,
+    "r_universe": 0.004942592583842656,
+    "delta": 0.009320204050795209
+  },
+  {
+    "start": "2018-05-02",
+    "end": "2018-06-01",
+    "n_strategy": 6,
+    "n_strategy_priced": 6,
+    "n_universe": 25,
+    "r_strategy": -0.13102757216887365,
+    "r_universe": -0.0482123322989393,
+    "delta": -0.08281523986993435
+  },
+  {
+    "start": "2018-06-01",
+    "end": "2018-07-02",
+    "n_strategy": 4,
+    "n_strategy_priced": 4,
+    "n_universe": 25,
+    "r_strategy": -0.09301792330561376,
+    "r_universe": -0.09563670432306258,
+    "delta": 0.0026187810174488207
+  },
+  {
+    "start": "2018-07-02",
+    "end": "2018-08-01",
+    "n_strategy": 3,
+    "n_strategy_priced": 3,
+    "n_universe": 25,
+    "r_strategy": -0.00786417039554473,
+    "r_universe": 0.031380607811894314,
+    "delta": -0.039244778207439046
+  },
+  {
+    "start": "2018-08-01",
+    "end": "2018-09-03",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 25,
+    "r_strategy": -0.031563511126464015,
+    "r_universe": -0.03727335236425834,
+    "delta": 0.005709841237794326
+  },
+  {
+    "start": "2018-09-03",
+    "end": "2018-10-08",
+    "n_strategy": 12,
+    "n_strategy_priced": 12,
+    "n_universe": 26,
+    "r_strategy": -0.0275009305321099,
+    "r_universe": -0.007389761027093391,
+    "delta": -0.02011116950501651
+  },
+  {
+    "start": "2018-10-08",
+    "end": "2018-10-26",
+    "n_strategy": 13,
+    "n_strategy_priced": 13,
+    "n_universe": 25,
+    "r_strategy": -0.024552089587773114,
+    "r_universe": -0.04429780679505875,
+    "delta": 0.019745717207285636
+  },
+  {
+    "start": "2018-10-30",
+    "end": "2018-11-01",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 26,
+    "r_strategy": 0.02043718391548002,
+    "r_universe": 0.028162956215518366,
+    "delta": -0.007725772300038347
+  },
+  {
+    "start": "2018-11-01",
+    "end": "2018-12-03",
+    "n_strategy": 7,
+    "n_strategy_priced": 7,
+    "n_universe": 27,
+    "r_strategy": 0.03265538628948296,
+    "r_universe": 0.0989384413812988,
+    "delta": -0.06628305509181584
+  },
+  {
+    "start": "2018-12-03",
+    "end": "2019-01-02",
+    "n_strategy": 13,
+    "n_strategy_priced": 13,
+    "n_universe": 27,
+    "r_strategy": -0.11018780355020533,
+    "r_universe": -0.08207931336196911,
+    "delta": -0.028108490188236218
+  },
+  {
+    "start": "2019-01-02",
+    "end": "2019-02-01",
+    "n_strategy": 15,
+    "n_strategy_priced": 15,
+    "n_universe": 27,
+    "r_strategy": 0.0065506357615472185,
+    "r_universe": 0.017909317678384128,
+    "delta": -0.01135868191683691
+  },
+  {
+    "start": "2019-02-01",
+    "end": "2019-03-01",
+    "n_strategy": 11,
+    "n_strategy_priced": 11,
+    "n_universe": 27,
+    "r_strategy": 0.18008980968138524,
+    "r_universe": 0.20678216616776784,
+    "delta": -0.0266923564863826
+  },
+  {
+    "start": "2019-03-01",
+    "end": "2019-04-01",
+    "n_strategy": 19,
+    "n_strategy_priced": 18,
+    "n_universe": 26,
+    "r_strategy": 0.09316329327666045,
+    "r_universe": 0.09179587181283279,
+    "delta": 0.0013674214638276644
+  },
+  {
+    "start": "2019-04-01",
+    "end": "2019-05-06",
+    "n_strategy": 26,
+    "n_strategy_priced": 25,
+    "n_universe": 26,
+    "r_strategy": -0.07723735684380033,
+    "r_universe": -0.09190094181279786,
+    "delta": 0.014663584968997528
+  },
+  {
+    "start": "2019-05-06",
+    "end": "2019-05-07",
+    "n_strategy": 26,
+    "n_strategy_priced": 26,
+    "n_universe": 27,
+    "r_strategy": -0.025319878062592654,
+    "r_universe": -0.02618878953452915,
+    "delta": 0.0008689114719364968
+  },
+  {
+    "start": "2019-05-09",
+    "end": "2019-06-03",
+    "n_strategy": 14,
+    "n_strategy_priced": 14,
+    "n_universe": 27,
+    "r_strategy": 0.01402649547072708,
+    "r_universe": 0.0017235438585519397,
+    "delta": 0.01230295161217514
+  },
+  {
+    "start": "2019-06-03",
+    "end": "2019-07-01",
+    "n_strategy": 2,
+    "n_strategy_priced": 2,
+    "n_universe": 27,
+    "r_strategy": 0.008329222153798777,
+    "r_universe": 0.02558595391889374,
+    "delta": -0.017256731765094964
+  },
+  {
+    "start": "2019-07-01",
+    "end": "2019-08-01",
+    "n_strategy": 12,
+    "n_strategy_priced": 12,
+    "n_universe": 27,
+    "r_strategy": -0.0022808548318168733,
+    "r_universe": -0.038527711884423964,
+    "delta": 0.03624685705260709
+  },
+  {
+    "start": "2019-08-01",
+    "end": "2019-09-02",
+    "n_strategy": 16,
+    "n_strategy_priced": 16,
+    "n_universe": 27,
+    "r_strategy": 0.015230545694733227,
+    "r_universe": -0.00935491648342014,
+    "delta": 0.02458546217815337
+  },
+  {
+    "start": "2019-09-02",
+    "end": "2019-10-08",
+    "n_strategy": 4,
+    "n_strategy_priced": 4,
+    "n_universe": 27,
+    "r_strategy": 0.02219534752014815,
+    "r_universe": 0.04209141649992776,
+    "delta": -0.019896068979779608
+  },
+  {
+    "start": "2019-10-08",
+    "end": "2019-11-01",
+    "n_strategy": 25,
+    "n_strategy_priced": 25,
+    "n_universe": 28,
+    "r_strategy": -0.01367501918772946,
+    "r_universe": -0.013132409826554305,
+    "delta": -0.0005426093611751552
+  },
+  {
+    "start": "2019-11-01",
+    "end": "2019-11-08",
+    "n_strategy": 12,
+    "n_strategy_priced": 12,
+    "n_universe": 28,
+    "r_strategy": 0.01755120094753206,
+    "r_universe": 0.01267044964785073,
+    "delta": 0.004880751299681329
+  },
+  {
+    "start": "2019-11-12",
+    "end": "2019-12-02",
+    "n_strategy": 13,
+    "n_strategy_priced": 13,
+    "n_universe": 28,
+    "r_strategy": 0.004326998713620633,
+    "r_universe": 0.0182746238884921,
+    "delta": -0.013947625174871466
+  },
+  {
+    "start": "2019-12-02",
+    "end": "2020-01-02",
+    "n_strategy": 10,
+    "n_strategy_priced": 10,
+    "n_universe": 28,
+    "r_strategy": 0.11889094566957784,
+    "r_universe": 0.09368301583678007,
+    "delta": 0.025207929832797765
+  },
+  {
+    "start": "2020-01-02",
+    "end": "2020-02-03",
+    "n_strategy": 24,
+    "n_strategy_priced": 24,
+    "n_universe": 28,
+    "r_strategy": -0.09128712300631547,
+    "r_universe": -0.09396557441140654,
+    "delta": 0.00267845140509107
+  },
+  {
+    "start": "2020-02-03",
+    "end": "2020-03-02",
+    "n_strategy": 19,
+    "n_strategy_priced": 19,
+    "n_universe": 28,
+    "r_strategy": 0.13830061569038804,
+    "r_universe": 0.10135121443186426,
+    "delta": 0.03694940125852378
+  },
+  {
+    "start": "2020-03-02",
+    "end": "2020-04-01",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 27,
+    "r_strategy": -0.10215475701328917,
+    "r_universe": -0.08700452035637235,
+    "delta": -0.015150236656916824
+  },
+  {
+    "start": "2020-04-01",
+    "end": "2020-05-06",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 25,
+    "r_strategy": 0.03350074643610648,
+    "r_universe": 0.02637340360209715,
+    "delta": 0.007127342834009332
+  },
+  {
+    "start": "2020-05-06",
+    "end": "2020-05-19",
+    "n_strategy": 16,
+    "n_strategy_priced": 15,
+    "n_universe": 25,
+    "r_strategy": 0.02488421084942311,
+    "r_universe": -0.0030510325599992782,
+    "delta": 0.027935243409422387
+  },
+  {
+    "start": "2020-05-21",
+    "end": "2020-06-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 24,
+    "r_strategy": -0.03094514621924385,
+    "r_universe": -0.009295103911038003,
+    "delta": -0.021650042308205844
+  },
+  {
+    "start": "2020-06-01",
+    "end": "2020-07-01",
+    "n_strategy": 17,
+    "n_strategy_priced": 16,
+    "n_universe": 24,
+    "r_strategy": 0.12563851922959002,
+    "r_universe": 0.09180364658236288,
+    "delta": 0.033834872647227135
+  },
+  {
+    "start": "2020-07-01",
+    "end": "2020-08-03",
+    "n_strategy": 23,
+    "n_strategy_priced": 22,
+    "n_universe": 25,
+    "r_strategy": 0.13054019759433902,
+    "r_universe": 0.10251003904532459,
+    "delta": 0.02803015854901443
+  },
+  {
+    "start": "2020-08-03",
+    "end": "2020-09-01",
+    "n_strategy": 23,
+    "n_strategy_priced": 22,
+    "n_universe": 24,
+    "r_strategy": 0.04246032919470864,
+    "r_universe": 0.04801907240490214,
+    "delta": -0.005558743210193499
+  },
+  {
+    "start": "2020-09-01",
+    "end": "2020-10-09",
+    "n_strategy": 23,
+    "n_strategy_priced": 22,
+    "n_universe": 24,
+    "r_strategy": -0.042113347223233205,
+    "r_universe": -0.042715982462970224,
+    "delta": 0.0006026352397370191
+  },
+  {
+    "start": "2020-10-09",
+    "end": "2020-11-02",
+    "n_strategy": 9,
+    "n_strategy_priced": 8,
+    "n_universe": 24,
+    "r_strategy": -0.04302935423166415,
+    "r_universe": -0.018433525805055584,
+    "delta": -0.024595828426608568
+  },
+  {
+    "start": "2020-11-02",
+    "end": "2020-11-23",
+    "n_strategy": 12,
+    "n_strategy_priced": 11,
+    "n_universe": 24,
+    "r_strategy": 0.07654199907429252,
+    "r_universe": 0.05282895383247471,
+    "delta": 0.023713045241817804
+  },
+  {
+    "start": "2020-11-25",
+    "end": "2020-12-01",
+    "n_strategy": 15,
+    "n_strategy_priced": 14,
+    "n_universe": 23,
+    "r_strategy": -0.008593072827586415,
+    "r_universe": -0.012148015103211719,
+    "delta": 0.003554942275625304
+  },
+  {
+    "start": "2020-12-01",
+    "end": "2021-01-04",
+    "n_strategy": 16,
+    "n_strategy_priced": 15,
+    "n_universe": 23,
+    "r_strategy": -0.00020406898136097565,
+    "r_universe": -0.0019785868224311857,
+    "delta": 0.00177451784107021
+  },
+  {
+    "start": "2021-01-04",
+    "end": "2021-02-01",
+    "n_strategy": 11,
+    "n_strategy_priced": 10,
+    "n_universe": 23,
+    "r_strategy": 0.06681970344955404,
+    "r_universe": 0.03284032088070429,
+    "delta": 0.03397938256884975
+  },
+  {
+    "start": "2021-02-01",
+    "end": "2021-03-01",
+    "n_strategy": 15,
+    "n_strategy_priced": 14,
+    "n_universe": 23,
+    "r_strategy": 0.09355270121703281,
+    "r_universe": 0.06625631395164053,
+    "delta": 0.027296387265392283
+  },
+  {
+    "start": "2021-03-01",
+    "end": "2021-04-01",
+    "n_strategy": 17,
+    "n_strategy_priced": 16,
+    "n_universe": 23,
+    "r_strategy": -0.02828916159547603,
+    "r_universe": -0.02930742114754159,
+    "delta": 0.0010182595520655605
+  },
+  {
+    "start": "2021-04-01",
+    "end": "2021-05-06",
+    "n_strategy": 14,
+    "n_strategy_priced": 13,
+    "n_universe": 24,
+    "r_strategy": -0.06739268366457621,
+    "r_universe": -0.029935561316957446,
+    "delta": -0.03745712234761876
+  },
+  {
+    "start": "2021-05-06",
+    "end": "2021-06-01",
+    "n_strategy": 9,
+    "n_strategy_priced": 8,
+    "n_universe": 23,
+    "r_strategy": -0.03337057159880935,
+    "r_universe": 0.02549515912871889,
+    "delta": -0.05886573072752824
+  },
+  {
+    "start": "2021-06-03",
+    "end": "2021-07-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 23,
+    "r_strategy": 0.0919750278861296,
+    "r_universe": 0.03177902869666256,
+    "delta": 0.06019599918946704
+  },
+  {
+    "start": "2021-07-01",
+    "end": "2021-08-02",
+    "n_strategy": 9,
+    "n_strategy_priced": 8,
+    "n_universe": 23,
+    "r_strategy": 0.09451400167383438,
+    "r_universe": -0.01106312875453016,
+    "delta": 0.10557713042836454
+  },
+  {
+    "start": "2021-08-02",
+    "end": "2021-09-01",
+    "n_strategy": 9,
+    "n_strategy_priced": 8,
+    "n_universe": 23,
+    "r_strategy": 0.04025854462488193,
+    "r_universe": 0.03199073954501384,
+    "delta": 0.008267805079868094
+  },
+  {
+    "start": "2021-09-01",
+    "end": "2021-10-08",
+    "n_strategy": 11,
+    "n_strategy_priced": 11,
+    "n_universe": 24,
+    "r_strategy": 0.027232261850156318,
+    "r_universe": 0.02226735472115454,
+    "delta": 0.004964907129001779
+  },
+  {
+    "start": "2021-10-08",
+    "end": "2021-11-01",
+    "n_strategy": 12,
+    "n_strategy_priced": 12,
+    "n_universe": 24,
+    "r_strategy": -0.07520924838920555,
+    "r_universe": -0.05429432481299153,
+    "delta": -0.020914923576214016
+  },
+  {
+    "start": "2021-11-01",
+    "end": "2021-12-01",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 24,
+    "r_strategy": -0.023313961180855207,
+    "r_universe": -0.00852832405631089,
+    "delta": -0.014785637124544317
+  },
+  {
+    "start": "2021-12-01",
+    "end": "2021-12-06",
+    "n_strategy": 8,
+    "n_strategy_priced": 8,
+    "n_universe": 24,
+    "r_strategy": 0.01940249386218036,
+    "r_universe": 0.028543350623610728,
+    "delta": -0.009140856761430366
+  },
+  {
+    "start": "2021-12-08",
+    "end": "2022-01-04",
+    "n_strategy": 10,
+    "n_strategy_priced": 10,
+    "n_universe": 24,
+    "r_strategy": 0.0467664562541467,
+    "r_universe": 0.034629142878840356,
+    "delta": 0.012137313375306345
+  },
+  {
+    "start": "2022-01-04",
+    "end": "2022-02-07",
+    "n_strategy": 17,
+    "n_strategy_priced": 17,
+    "n_universe": 24,
+    "r_strategy": -0.07961412868421067,
+    "r_universe": -0.0788365490145539,
+    "delta": -0.0007775796696567611
+  },
+  {
+    "start": "2022-02-07",
+    "end": "2022-03-01",
+    "n_strategy": 12,
+    "n_strategy_priced": 12,
+    "n_universe": 24,
+    "r_strategy": 0.01848311666813579,
+    "r_universe": 0.011105955155464526,
+    "delta": 0.007377161512671265
+  },
+  {
+    "start": "2022-03-01",
+    "end": "2022-04-01",
+    "n_strategy": 8,
+    "n_strategy_priced": 8,
+    "n_universe": 23,
+    "r_strategy": -0.04452573013045957,
+    "r_universe": -0.057911585713563925,
+    "delta": 0.013385855583104352
+  },
+  {
+    "start": "2022-04-01",
+    "end": "2022-05-05",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 22,
+    "r_strategy": -0.16431554673561838,
+    "r_universe": -0.06971581210516596,
+    "delta": -0.09459973463045242
+  },
+  {
+    "start": "2022-05-05",
+    "end": "2022-06-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 10,
+    "n_universe": 22,
+    "r_strategy": 0.0035218645731666777,
+    "r_universe": 0.03401844817892997,
+    "delta": -0.03049658360576329
+  },
+  {
+    "start": "2022-06-01",
+    "end": "2022-06-16",
+    "n_strategy": 5,
+    "n_strategy_priced": 5,
+    "n_universe": 22,
+    "r_strategy": -0.0008574505309776548,
+    "r_universe": 0.06997675613299172,
+    "delta": -0.07083420666396938
+  },
+  {
+    "start": "2022-06-20",
+    "end": "2022-07-01",
+    "n_strategy": 17,
+    "n_strategy_priced": 16,
+    "n_universe": 22,
+    "r_strategy": -0.002392405699323405,
+    "r_universe": 0.0072729127787464765,
+    "delta": -0.009665318478069881
+  },
+  {
+    "start": "2022-07-01",
+    "end": "2022-08-01",
+    "n_strategy": 14,
+    "n_strategy_priced": 13,
+    "n_universe": 23,
+    "r_strategy": -0.059107604927916786,
+    "r_universe": -0.044993542538571955,
+    "delta": -0.01411406238934483
+  },
+  {
+    "start": "2022-08-01",
+    "end": "2022-09-01",
+    "n_strategy": 7,
+    "n_strategy_priced": 6,
+    "n_universe": 23,
+    "r_strategy": -0.0021559395015129565,
+    "r_universe": 0.020558193863823085,
+    "delta": -0.02271413336533604
+  },
+  {
+    "start": "2022-09-01",
+    "end": "2022-10-10",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 23,
+    "r_strategy": -0.05178836828097225,
+    "r_universe": -0.0637061923968489,
+    "delta": 0.011917824115876649
+  },
+  {
+    "start": "2022-10-10",
+    "end": "2022-11-01",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 23,
+    "r_strategy": 0.02890430587149423,
+    "r_universe": -0.025639558635875435,
+    "delta": 0.054543864507369665
+  },
+  {
+    "start": "2022-11-01",
+    "end": "2022-12-01",
+    "n_strategy": 8,
+    "n_strategy_priced": 7,
+    "n_universe": 23,
+    "r_strategy": 0.11018426927788365,
+    "r_universe": 0.12880851390780929,
+    "delta": -0.018624244629925638
+  },
+  {
+    "start": "2022-12-01",
+    "end": "2022-12-19",
+    "n_strategy": 20,
+    "n_strategy_priced": 19,
+    "n_universe": 23,
+    "r_strategy": 0.006843855200494225,
+    "r_universe": 0.00680352965006146,
+    "delta": 4.032555043276438e-05
+  },
+  {
+    "start": "2022-12-21",
+    "end": "2023-01-03",
+    "n_strategy": 15,
+    "n_strategy_priced": 12,
+    "n_universe": 23,
+    "r_strategy": -0.012049282300419508,
+    "r_universe": -0.031010593533976196,
+    "delta": 0.01896131123355669
+  },
+  {
+    "start": "2023-01-03",
+    "end": "2023-02-01",
+    "n_strategy": 4,
+    "n_strategy_priced": 1,
+    "n_universe": 23,
+    "r_strategy": -0.07494143365446171,
+    "r_universe": 0.06482296323384049,
+    "delta": -0.1397643968883022
+  },
+  {
+    "start": "2023-02-01",
+    "end": "2023-03-01",
+    "n_strategy": 19,
+    "n_strategy_priced": 16,
+    "n_universe": 23,
+    "r_strategy": -0.009620180307008903,
+    "r_universe": -0.009787186749915473,
+    "delta": 0.00016700644290656985
+  },
+  {
+    "start": "2023-03-01",
+    "end": "2023-04-03",
+    "n_strategy": 11,
+    "n_strategy_priced": 8,
+    "n_universe": 23,
+    "r_strategy": 0.008665525460785292,
+    "r_universe": 0.047079231181061096,
+    "delta": -0.038413705720275804
+  },
+  {
+    "start": "2023-04-03",
+    "end": "2023-05-04",
+    "n_strategy": 12,
+    "n_strategy_priced": 9,
+    "n_universe": 23,
+    "r_strategy": -0.024125302903065235,
+    "r_universe": -0.010988618268242909,
+    "delta": -0.013136684634822326
+  },
+  {
+    "start": "2023-05-04",
+    "end": "2023-06-01",
+    "n_strategy": 14,
+    "n_strategy_priced": 11,
+    "n_universe": 22,
+    "r_strategy": -0.050335446986184036,
+    "r_universe": -0.04120459006790483,
+    "delta": -0.00913085691827921
+  },
+  {
+    "start": "2023-06-01",
+    "end": "2023-06-29",
+    "n_strategy": 8,
+    "n_strategy_priced": 5,
+    "n_universe": 22,
+    "r_strategy": 0.00442931129915487,
+    "r_universe": 0.005048895691734506,
+    "delta": -0.0006195843925796357
+  },
+  {
+    "start": "2023-07-03",
+    "end": "2023-08-01",
+    "n_strategy": 9,
+    "n_strategy_priced": 8,
+    "n_universe": 22,
+    "r_strategy": 0.030897988791778033,
+    "r_universe": 0.04395069281434735,
+    "delta": -0.01305270402256932
+  },
+  {
+    "start": "2023-08-01",
+    "end": "2023-09-01",
+    "n_strategy": 19,
+    "n_strategy_priced": 18,
+    "n_universe": 22,
+    "r_strategy": -0.04108216165597331,
+    "r_universe": -0.03350894292510806,
+    "delta": -0.00757321873086525
+  },
+  {
+    "start": "2023-09-01",
+    "end": "2023-10-09",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 23,
+    "r_strategy": 0.09537723189335084,
+    "r_universe": 0.0042083943491717755,
+    "delta": 0.09116883754417907
+  },
+  {
+    "start": "2023-10-09",
+    "end": "2023-11-01",
+    "n_strategy": 11,
+    "n_strategy_priced": 10,
+    "n_universe": 23,
+    "r_strategy": 0.0020733226211078317,
+    "r_universe": -0.0014883843533773776,
+    "delta": 0.003561706974485209
+  },
+  {
+    "start": "2023-11-01",
+    "end": "2023-12-01",
+    "n_strategy": 8,
+    "n_strategy_priced": 7,
+    "n_universe": 23,
+    "r_strategy": 0.00494880692150222,
+    "r_universe": -0.017175681513772356,
+    "delta": 0.022124488435274578
+  },
+  {
+    "start": "2023-12-01",
+    "end": "2024-01-02",
+    "n_strategy": 11,
+    "n_strategy_priced": 10,
+    "n_universe": 23,
+    "r_strategy": -0.034547434349824734,
+    "r_universe": 0.00029834961318144973,
+    "delta": -0.03484578396300618
+  },
+  {
+    "start": "2024-01-04",
+    "end": "2024-02-01",
+    "n_strategy": 17,
+    "n_strategy_priced": 14,
+    "n_universe": 23,
+    "r_strategy": -0.023211079734885256,
+    "r_universe": -0.07816981204202769,
+    "delta": 0.05495873230714243
+  },
+  {
+    "start": "2024-02-01",
+    "end": "2024-03-01",
+    "n_strategy": 13,
+    "n_strategy_priced": 10,
+    "n_universe": 23,
+    "r_strategy": 0.08327936152279825,
+    "r_universe": 0.07977068867748192,
+    "delta": 0.0035086728453163213
+  },
+  {
+    "start": "2024-03-01",
+    "end": "2024-04-01",
+    "n_strategy": 26,
+    "n_strategy_priced": 23,
+    "n_universe": 23,
+    "r_strategy": 0.007225132151228191,
+    "r_universe": 0.007225132151228191,
+    "delta": 0.0
+  },
+  {
+    "start": "2024-04-01",
+    "end": "2024-05-06",
+    "n_strategy": 13,
+    "n_strategy_priced": 10,
+    "n_universe": 23,
+    "r_strategy": -0.017075523944330883,
+    "r_universe": -0.013559139763639616,
+    "delta": -0.0035163841806912666
+  },
+  {
+    "start": "2024-05-06",
+    "end": "2024-06-03",
+    "n_strategy": 16,
+    "n_strategy_priced": 13,
+    "n_universe": 23,
+    "r_strategy": -0.018202203826285585,
+    "r_universe": -0.03748699086349613,
+    "delta": 0.01928478703721054
+  },
+  {
+    "start": "2024-06-03",
+    "end": "2024-07-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 7,
+    "n_universe": 22,
+    "r_strategy": 0.004493271190418662,
+    "r_universe": -0.04301035519616008,
+    "delta": 0.04750362638657874
+  },
+  {
+    "start": "2024-07-01",
+    "end": "2024-07-12",
+    "n_strategy": 9,
+    "n_strategy_priced": 6,
+    "n_universe": 22,
+    "r_strategy": 0.021417417111981158,
+    "r_universe": 0.03289507484248902,
+    "delta": -0.011477657730507861
+  },
+  {
+    "start": "2024-07-16",
+    "end": "2024-08-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 10,
+    "n_universe": 22,
+    "r_strategy": -0.02793690707058648,
+    "r_universe": 0.017671115071031973,
+    "delta": -0.04560802214161845
+  },
+  {
+    "start": "2024-08-01",
+    "end": "2024-09-02",
+    "n_strategy": 8,
+    "n_strategy_priced": 8,
+    "n_universe": 22,
+    "r_strategy": -0.0677489503442988,
+    "r_universe": -0.030817509536015388,
+    "delta": -0.03693144080828341
+  },
+  {
+    "start": "2024-09-02",
+    "end": "2024-10-08",
+    "n_strategy": 9,
+    "n_strategy_priced": 9,
+    "n_universe": 22,
+    "r_strategy": 0.3377313288426701,
+    "r_universe": 0.38082544007531305,
+    "delta": -0.04309411123264295
+  },
+  {
+    "start": "2024-10-08",
+    "end": "2024-11-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 10,
+    "n_universe": 22,
+    "r_strategy": -0.13107001946969216,
+    "r_universe": -0.11951712189556339,
+    "delta": -0.011552897574128765
+  },
+  {
+    "start": "2024-11-01",
+    "end": "2024-12-02",
+    "n_strategy": 21,
+    "n_strategy_priced": 21,
+    "n_universe": 22,
+    "r_strategy": 0.031894674697658464,
+    "r_universe": 0.02808732217826463,
+    "delta": 0.0038073525193938335
+  },
+  {
+    "start": "2024-12-02",
+    "end": "2025-01-02",
+    "n_strategy": 19,
+    "n_strategy_priced": 19,
+    "n_universe": 22,
+    "r_strategy": -0.021483490577542536,
+    "r_universe": -0.023042730575085837,
+    "delta": 0.001559239997543302
+  },
+  {
+    "start": "2025-01-02",
+    "end": "2025-01-16",
+    "n_strategy": 11,
+    "n_strategy_priced": 11,
+    "n_universe": 22,
+    "r_strategy": -0.004508605327735116,
+    "r_universe": -0.0017543519283724522,
+    "delta": -0.0027542533993626635
+  },
+  {
+    "start": "2025-01-20",
+    "end": "2025-02-05",
+    "n_strategy": 6,
+    "n_strategy_priced": 6,
+    "n_universe": 22,
+    "r_strategy": 0.03823068052452753,
+    "r_universe": 0.010085801925074052,
+    "delta": 0.028144878599453478
+  },
+  {
+    "start": "2025-02-05",
+    "end": "2025-03-03",
+    "n_strategy": 7,
+    "n_strategy_priced": 7,
+    "n_universe": 22,
+    "r_strategy": -0.008750791263216175,
+    "r_universe": 0.027000599529649782,
+    "delta": -0.03575139079286596
+  },
+  {
+    "start": "2025-03-03",
+    "end": "2025-04-01",
+    "n_strategy": 16,
+    "n_strategy_priced": 16,
+    "n_universe": 21,
+    "r_strategy": -0.023474029903118705,
+    "r_universe": -0.023520049876717936,
+    "delta": 4.6019973599230324e-05
+  },
+  {
+    "start": "2025-04-01",
+    "end": "2025-05-06",
+    "n_strategy": 12,
+    "n_strategy_priced": 11,
+    "n_universe": 20,
+    "r_strategy": -0.009089979025154505,
+    "r_universe": -0.057843456998053856,
+    "delta": 0.04875347797289935
+  },
+  {
+    "start": "2025-05-06",
+    "end": "2025-06-03",
+    "n_strategy": 7,
+    "n_strategy_priced": 6,
+    "n_universe": 20,
+    "r_strategy": 0.00465806469551544,
+    "r_universe": -0.0030538536313582166,
+    "delta": 0.0077119183268736565
+  },
+  {
+    "start": "2025-06-03",
+    "end": "2025-07-01",
+    "n_strategy": 7,
+    "n_strategy_priced": 6,
+    "n_universe": 20,
+    "r_strategy": 0.039199680268722004,
+    "r_universe": 0.05073642539227128,
+    "delta": -0.011536745123549276
+  },
+  {
+    "start": "2025-07-01",
+    "end": "2025-07-28",
+    "n_strategy": 15,
+    "n_strategy_priced": 14,
+    "n_universe": 20,
+    "r_strategy": 0.024482235071510403,
+    "r_universe": 0.037130075185305866,
+    "delta": -0.012647840113795463
+  },
+  {
+    "start": "2025-07-30",
+    "end": "2025-08-01",
+    "n_strategy": 19,
+    "n_strategy_priced": 15,
+    "n_universe": 20,
+    "r_strategy": -0.02397111349713103,
+    "r_universe": -0.01571466709348604,
+    "delta": -0.00825644640364499
+  },
+  {
+    "start": "2025-08-01",
+    "end": "2025-09-01",
+    "n_strategy": 20,
+    "n_strategy_priced": 16,
+    "n_universe": 20,
+    "r_strategy": 0.1297768239962949,
+    "r_universe": 0.11458417371181855,
+    "delta": 0.015192650284476347
+  },
+  {
+    "start": "2025-09-01",
+    "end": "2025-10-09",
+    "n_strategy": 21,
+    "n_strategy_priced": 17,
+    "n_universe": 20,
+    "r_strategy": 0.0014969118829867355,
+    "r_universe": -0.0052016025356292185,
+    "delta": 0.0066985144186159536
+  },
+  {
+    "start": "2025-10-09",
+    "end": "2025-11-03",
+    "n_strategy": 10,
+    "n_strategy_priced": 6,
+    "n_universe": 20,
+    "r_strategy": -0.0708422643453334,
+    "r_universe": 0.002213892627507963,
+    "delta": -0.07305615697284136
+  },
+  {
+    "start": "2025-11-03",
+    "end": "2025-12-01",
+    "n_strategy": 16,
+    "n_strategy_priced": 12,
+    "n_universe": 19,
+    "r_strategy": 0.004110842121190478,
+    "r_universe": -0.020550972785786728,
+    "delta": 0.024661814906977206
+  },
+  {
+    "start": "2025-12-01",
+    "end": "2026-01-05",
+    "n_strategy": 10,
+    "n_strategy_priced": 5,
+    "n_universe": 19,
+    "r_strategy": 0.03205686545066429,
+    "r_universe": 0.0009060462307313225,
+    "delta": 0.031150819219932964
+  },
+  {
+    "start": "2026-01-05",
+    "end": "2026-01-30",
+    "n_strategy": 18,
+    "n_strategy_priced": 13,
+    "n_universe": 19,
+    "r_strategy": 0.07857129068400305,
+    "r_universe": 0.05012625208693948,
+    "delta": 0.02844503859706357
+  },
+  {
+    "start": "2026-02-03",
+    "end": "2026-03-02",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 19,
+    "r_strategy": 0.07856904582500047,
+    "r_universe": 0.04167433146924122,
+    "delta": 0.03689471435575926
+  },
+  {
+    "start": "2026-03-02",
+    "end": "2026-04-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 19,
+    "r_strategy": -0.059174118649985535,
+    "r_universe": -0.0381916469692784,
+    "delta": -0.020982471680707132
+  },
+  {
+    "start": "2026-04-01",
+    "end": "2026-05-06",
+    "n_strategy": 7,
+    "n_strategy_priced": 6,
+    "n_universe": 19,
+    "r_strategy": 0.010287548502174152,
+    "r_universe": 0.046868202936810356,
+    "delta": -0.036580654434636206
+  },
+  {
+    "start": "2026-05-06",
+    "end": "2026-06-01",
+    "n_strategy": 10,
+    "n_strategy_priced": 9,
+    "n_universe": 19,
+    "r_strategy": 0.025992740843177535,
+    "r_universe": -0.01979313250675129,
+    "delta": 0.04578587334992883
+  },
+  {
+    "start": "2026-06-01",
+    "end": "2026-07-01",
+    "n_strategy": 8,
+    "n_strategy_priced": 7,
+    "n_universe": 19,
+    "r_strategy": 0.13409548344358807,
+    "r_universe": 0.00563193142178813,
+    "delta": 0.12846355202179993
+  },
+  {
+    "start": "2026-07-01",
+    "end": "2026-08-03",
+    "n_strategy": 5,
+    "n_strategy_priced": 4,
+    "n_universe": 19,
+    "r_strategy": -0.19179751468755207,
+    "r_universe": 0.04263561862664657,
+    "delta": -0.23443313331419863
+  },
+  {
+    "start": "2026-08-03",
+    "end": "2026-08-11",
+    "n_strategy": 16,
+    "n_strategy_priced": 15,
+    "n_universe": 19,
+    "r_strategy": -0.025344404960480547,
+    "r_universe": -0.005267966054710571,
+    "delta": -0.020076438905769975
+  }
+]

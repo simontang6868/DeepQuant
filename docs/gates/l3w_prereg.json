@@ -1,0 +1,98 @@
+{
+  "experiment_id": "H-L3W-UNSEAL-000001",
+  "kind": "sealed_entry_review",
+  "created": "2026-10-28",
+  "question": "L3u 把 6 条取错量的条目一律挂 NOT_GRADED。这里面有多少条属于「L3t 抄错、判定量本身从未不可核对」（A 类），有多少条属于「判定量与重建序列本来不是同一个东西」（B 类）？解封后全项目的可引用清单会不会变？",
+  "why_now": "L3v 已把 27 条压成对外唯一来源，其中 15 条 NOT_GRADED。若唯一可能达到 QUOTABLE 的结论（phasec 池效应 +1.94pp、t=6.37）其实早就可以核对，那么当前清单是系统性偏保守——这和「怕被漂亮数字骗」是两个方向的风险，必须同样认真地查。反过来，若把 B 类也放出来，就是拿回归系数的 t 去配序列的 MDE，属于拼口径。",
+  "subject": {
+    "l3u_result": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+    "l3u_result_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+    "l3u_prereg": "docs/gates/l3u_prereg.json",
+    "l3u_prereg_sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+    "l3v_claims_sha256": "bb502de8628c79b5136ccf9a401ef0a9b5cb945583cf17da35b63418c1469959",
+    "note": "L3u 产物与 L3u 预登记冻结，被改动则拒跑；L3v 卡片只作对照，本实验不修改它。"
+  },
+  "hardcoded": {
+    "n_sealed": 6,
+    "n_expected_unsealed": 4,
+    "n_expected_stay_sealed": 2,
+    "lags": [0, 1, 2, 3, 4, 6],
+    "primary_lag": 3,
+    "tol_mean_rel": 1e-04,
+    "tol_t_abs": 1e-04,
+    "expected_quotable_after": 1,
+    "expected_n_changed": 4
+  },
+  "rules": {
+    "scope": "只复核 comparison.class ∈ {MISMATCH_MEAN, MISMATCH_N} 且 t_only=False 的 6 条；t_only 的 6 条属口径展示问题，不在本实验范围。",
+    "same_source_gates": [
+      "U1 均值同源：|stat.mean − recomputed.mean| / max(|·|) ≤ 1e-4",
+      "U2 t 同源：stat.t 必须与 recomputed.t_iid 或 recomputed.t_nw3 之一的差 ≤ 1e-4，并记录是哪一个",
+      "U3 分母同源：stat.n == recomputed.n"
+    ],
+    "tier_rule": "解封后的分级一律用 citation.grade_quotability 的同一套阈值（2×/1×/0.5×、功效 0.8/0.5），效应取序列自身均值，MDE 取 NW(3)。本实验不定义任何新门槛。",
+    "stability_rule": "同一序列在 lag ∈ {0,1,2,3,4,6} 上重算 MDE 与功效；若 tier 在网格内出现两个及以上不同取值（跨桶），维持封印。理由：跨桶说明结论对标准误口径敏感，本就不该被单引。",
+    "no_rescue": "U1/U2/U3 任一不过即维持封印，即使 ratio 看起来很大。B 类不允许「虽然有口径差但方向一致所以放行」这种妥协。",
+    "l3v_untouched": "L3v 的卡片与产物不修改；解封结果以补丁形式输出（patch），合并到卡片是另一个动作。"
+  },
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "6 条里恰好 4 条通过三关（gate3_d、phasec_d、phasec2_d、phasec3_d），2 条不通过（phasej_netA 均值不同档、phasep_late 的 t 不是序列均值的 t）。",
+      "mechanism": "A 类的判定统计量与序列来自同一个 summary 的同一字段，重算与登记必然逐位一致；B 类的 mean 与 mde 取自不同资金档或不同模型，相对差在 1% 量级以上。",
+      "quantity": "decisions 里 status=UNSEALED 的条数与具体 key"
+    },
+    {
+      "id": "P2",
+      "statement": "phasec_d 在 NW(3) 下 |效应|/MDE ≥ 2，解封为 QUOTABLE。",
+      "mechanism": "1.9390pp / 0.8531pp = 2.27，离 2 倍门槛有 13% 余量；这是全项目唯一一条可能过 2 倍的结论。",
+      "quantity": "phasec_d 的 ratio_primary 与 tier"
+    },
+    {
+      "id": "P3",
+      "statement": "phasec_d 的分级在 lag ∈ {0,1,2,3,4,6} 全档恒为 QUOTABLE（不跨桶）。",
+      "mechanism": "t_iid 6.19 < t_nw3 6.37 ⇒ 负自相关，L=0 时 se 更大、ratio 降到约 2.21，仍在 2 以上；滞后加大只会让 t 更高。除非 t 随 L 非单调且反向，否则不会跨桶。",
+      "quantity": "phasec_d 的 stability.tiers 与 stable 布尔"
+    },
+    {
+      "id": "P4",
+      "statement": "phasec2_d 在网格内至少一档跨桶（跌出 QUOTABLE_MARGINAL）。",
+      "mechanism": "1.79 倍离两个门槛都不远（距 2 倍 12%，距 1 倍 79%），t 从 5.01 到 5.40 的 8% 摆动就能把 ratio 推到 2 以上。",
+      "quantity": "phasec2_d 的 stability.stable"
+    },
+    {
+      "id": "P5",
+      "statement": "gate3_d 解封后为 DIRECTION_ONLY（|效应|/MDE 在 0.7~1.0 之间）。",
+      "mechanism": "0.4841 / 0.5946 = 0.81，落在 0.5~1 倍档；网格摆动不足以跨到 1 倍以上。",
+      "quantity": "gate3_d 的 tier 与 ratio_primary"
+    },
+    {
+      "id": "P6",
+      "statement": "合并后全项目 QUOTABLE = 1，且相对 L3u 分级发生变化的恰好 4 条。",
+      "mechanism": "4 条 A 类解封会各自从 NOT_GRADED 变为具体分级（QUOTABLE 1、DIRECTION_ONLY 1、UNDERPOWERED 2），其余 23 条不变。",
+      "quantity": "merge_project_tiers 的 quotable_after 与 n_changed"
+    }
+  ],
+  "amendments": [
+    {
+      "date": "2026-10-28",
+      "field": "hardcoded.tol_mean_rel",
+      "change": "均值同源容差 1e-6 → 1e-4（相对差）",
+      "reason": "首跑发现 phasep_late 的 stat.mean 与序列均值实际是同一个数，但 summary 只保留有限位小数，相对差落在 1e-6 附近被误判为不同源，理由文本因此自相矛盾（写着「相对差 0.00%」却判 ✗）。1e-4 仍比真实不同档的 2e-1 小三个数量级。",
+      "affects_predictions": "none：phasep 仍因 t 与 n 不同源维持封印，P1/P6 的判定不变",
+      "artifacts_kept": "首跑产物未单独保留（差异仅在理由文本与容差，结论不变）；修后重跑的 grid 与 decisions 为最终版"
+    }
+  ],
+  "disclosures": [
+    "本实验不重跑任何策略，只从 L3u 已重建的判定序列上重算 NW 滞后网格；L3u 产物 sha256 在启动时校验。",
+    "解封不等于推翻 L3u：L3u 的封印记录原样保留，本实验是追加的「分级意见」，两者并列可查。",
+    "解封后的条目仍然要带 MDE 与窗口口径引用，QUOTABLE 只表示「效应量达到自身分辨率的 2 倍」，不表示「可以拿去做产品」。",
+    "phasej 与 phasep 的拒绝解封不代表它们不重要，只代表「现有 summary 与序列不可拼」，要分级必须先把 3000 万档的序列重新导出（新实验）。",
+    "稳定性网格只改 NW 滞后，不改窗口、不改 dof 修正；因此它检验的是「标准误口径敏感性」，不是「样本外稳健性」。"
+  ],
+  "outputs": [
+    "reports/gates/H-L3W-UNSEAL/l3w_unseal.json",
+    "reports/gates/H-L3W-UNSEAL/l3w_unseal.md",
+    "reports/gates/H-L3W-UNSEAL/l3v_claims_patch.json"
+  ]
+}

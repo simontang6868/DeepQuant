@@ -1,0 +1,394 @@
+{
+  "baseline": {
+    "digest": "287c03334a2810d9ed2301d51b87c132b4eb5346468d1d3b380a4d67659ee9b4",
+    "operations": [
+      "backtest.compare",
+      "backtest.run",
+      "dataset.list",
+      "portfolio.backtest",
+      "strategy.list"
+    ],
+    "operators": [
+      "alice",
+      "bob",
+      "carol"
+    ],
+    "version": "t6-baseline-v1"
+  },
+  "corpus": {
+    "cards": 423,
+    "dir": "reports\\t6_shadow\\corpus",
+    "holdout_sequences": 47,
+    "sequences_total": 150,
+    "train_sequences": 103
+  },
+  "gaps": [
+    "注入类型 drop_step 命中率仅 53.3%（n=15），需补规则",
+    "生产形态全库扫描 0 命中是「基线来自同一语料」的必然结果，不代表系统没有异常；真实价值在于新会话进入时与基线比对，需要持续语料才有意义",
+    "语料为单次构建的引导语料，小时维度规则未启用；真实部署后须用积累语料重建基线"
+  ],
+  "generated_at": "2026-10-27T14:53:18+0800",
+  "standard_1_top10_reproducible": {
+    "digest": "287c03334a2810d9ed2301d51b87c132b4eb5346468d1d3b380a4d67659ee9b4",
+    "distinct_patterns_in_corpus": 10,
+    "note": "«同一语料两次构建摘要一致» 证明无隐藏状态；«独立实现 Top10 一致» 证明统计口径正确。",
+    "same_corpus_same_digest": true,
+    "top10_from_baseline": [
+      [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ],
+      [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run"
+      ],
+      [
+        "dataset.list",
+        "strategy.list"
+      ],
+      [
+        "dataset.list",
+        "backtest.run"
+      ],
+      [
+        "strategy.list",
+        "dataset.list"
+      ],
+      [
+        "dataset.list",
+        "backtest.run",
+        "portfolio.backtest"
+      ],
+      [
+        "strategy.list",
+        "dataset.list",
+        "backtest.run"
+      ],
+      [
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ],
+      [
+        "dataset.list",
+        "portfolio.backtest"
+      ],
+      [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ]
+    ],
+    "top10_independent_recompute": [
+      [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ],
+      [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run"
+      ],
+      [
+        "dataset.list",
+        "strategy.list"
+      ],
+      [
+        "dataset.list",
+        "backtest.run"
+      ],
+      [
+        "strategy.list",
+        "dataset.list"
+      ],
+      [
+        "dataset.list",
+        "backtest.run",
+        "portfolio.backtest"
+      ],
+      [
+        "strategy.list",
+        "dataset.list",
+        "backtest.run"
+      ],
+      [
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ],
+      [
+        "dataset.list",
+        "portfolio.backtest"
+      ],
+      [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ]
+    ],
+    "top10_match": true
+  },
+  "standard_2_hit_rate": {
+    "by_type": {
+      "drop_step": {
+        "expected_matched": 1,
+        "expected_matched_rate": 0.06666666666666667,
+        "flagged": 8,
+        "flagged_ci": [
+          0.3011663015105079,
+          0.7519077474025356
+        ],
+        "flagged_rate": 0.5333333333333333,
+        "source_examples": [
+          "eval:drop_step:session:s0143#1",
+          "eval:drop_step:session:s0143#2",
+          "eval:drop_step:session:s0124#3"
+        ],
+        "total": 15
+      },
+      "duration_spike": {
+        "expected_matched": 15,
+        "expected_matched_rate": 1.0,
+        "flagged": 15,
+        "flagged_ci": [
+          0.7961107336956521,
+          1.0
+        ],
+        "flagged_rate": 1.0,
+        "source_examples": [
+          "eval:duration_spike:session:s0109#1",
+          "eval:duration_spike:session:s0060#2",
+          "eval:duration_spike:session:s0073#3"
+        ],
+        "total": 15
+      },
+      "insert_rare_op": {
+        "expected_matched": 15,
+        "expected_matched_rate": 1.0,
+        "flagged": 15,
+        "flagged_ci": [
+          0.7961107336956521,
+          1.0
+        ],
+        "flagged_rate": 1.0,
+        "source_examples": [
+          "eval:insert_rare_op:session:s0121#1",
+          "eval:insert_rare_op:session:s0107#2",
+          "eval:insert_rare_op:session:s0070#3"
+        ],
+        "total": 15
+      },
+      "operator_swap": {
+        "expected_matched": 15,
+        "expected_matched_rate": 1.0,
+        "flagged": 15,
+        "flagged_ci": [
+          0.7961107336956521,
+          1.0
+        ],
+        "flagged_rate": 1.0,
+        "source_examples": [
+          "eval:operator_swap:session:s0037#1",
+          "eval:operator_swap:session:s0077#2",
+          "eval:operator_swap:session:s0098#3"
+        ],
+        "total": 15
+      },
+      "param_drift": {
+        "expected_matched": 15,
+        "expected_matched_rate": 1.0,
+        "flagged": 15,
+        "flagged_ci": [
+          0.7961107336956521,
+          1.0
+        ],
+        "flagged_rate": 1.0,
+        "source_examples": [
+          "eval:param_drift:session:s0042#1",
+          "eval:param_drift:session:s0042#2",
+          "eval:param_drift:session:s0070#3"
+        ],
+        "total": 15
+      },
+      "reject_burst": {
+        "expected_matched": 15,
+        "expected_matched_rate": 1.0,
+        "flagged": 15,
+        "flagged_ci": [
+          0.7961107336956521,
+          1.0
+        ],
+        "flagged_rate": 1.0,
+        "source_examples": [
+          "eval:reject_burst:session:s0076#1",
+          "eval:reject_burst:session:s0045#2",
+          "eval:reject_burst:session:s0145#3"
+        ],
+        "total": 15
+      },
+      "status_flip": {
+        "expected_matched": 13,
+        "expected_matched_rate": 0.8666666666666667,
+        "flagged": 13,
+        "flagged_ci": [
+          0.6211750079348376,
+          0.9626395301086408
+        ],
+        "flagged_rate": 0.8666666666666667,
+        "source_examples": [
+          "eval:status_flip:session:s0061#1",
+          "eval:status_flip:session:s0138#2",
+          "eval:status_flip:session:s0030#3"
+        ],
+        "total": 15
+      },
+      "swap_order": {
+        "expected_matched": 15,
+        "expected_matched_rate": 1.0,
+        "flagged": 15,
+        "flagged_ci": [
+          0.7961107336956521,
+          1.0
+        ],
+        "flagged_rate": 1.0,
+        "source_examples": [
+          "eval:swap_order:session:s0030#1",
+          "eval:swap_order:session:s0076#2",
+          "eval:swap_order:session:s0045#3"
+        ],
+        "total": 15
+      }
+    },
+    "false_positive_clean": {
+      "ci": [
+        6.414589892600543e-18,
+        0.0755601711983887
+      ],
+      "flagged": 0,
+      "flagged_rate": 0.0,
+      "total": 47
+    },
+    "hard_negatives": {
+      "known_operator": {
+        "flagged": 0,
+        "flagged_rate": 0.0,
+        "note": "改用基线中存在的另一名操作人（应放行）",
+        "total": 15
+      },
+      "short_session": {
+        "flagged": 0,
+        "flagged_rate": 0.0,
+        "note": "截断为 2 步（浏览型会话，流程不完整属正常）",
+        "total": 4
+      }
+    },
+    "hit_rate": 0.925,
+    "hit_rate_ci": [
+      0.8635894316089088,
+      0.9600433379935513
+    ],
+    "noop_injections": {
+      "drop_step": 0,
+      "duration_spike": 0,
+      "insert_rare_op": 0,
+      "operator_swap": 0,
+      "param_drift": 0,
+      "reject_burst": 0,
+      "status_flip": 0,
+      "swap_order": 5
+    },
+    "passed": true,
+    "strict_rate": 0.8666666666666667,
+    "strict_rate_ci": [
+      0.7943505063345165,
+      0.9162346282244687
+    ],
+    "threshold": 0.8
+  },
+  "standard_3_report_usable": {
+    "finding_fields": [
+      "sequence_id",
+      "operator",
+      "started_at",
+      "pattern",
+      "severity",
+      "codes",
+      "hits"
+    ],
+    "finding_fields_complete": true,
+    "markdown_has_sections": true,
+    "markdown_sections": [
+      "## 一、",
+      "## 二、",
+      "## 三、",
+      "## 四、"
+    ],
+    "production_report": {
+      "by_code": {},
+      "flagged": 0,
+      "scanned": 150
+    },
+    "trace_rate": 1.0,
+    "tracing": {
+      "hits_on_real_cards": 150,
+      "hits_on_synthetic_steps": 24,
+      "hits_total": 174,
+      "hits_untraceable": 0,
+      "hits_with_seq": 174,
+      "trace_rate": 1.0
+    }
+  },
+  "standard_4_rule_coverage": {
+    "catalog": [
+      "burst_repeat",
+      "dangling_reject",
+      "duration_outlier",
+      "flow_without_terminal",
+      "off_hours",
+      "operator_unknown",
+      "param_skeleton_unseen",
+      "prerequisite_missing",
+      "reject_storm",
+      "session_multi_operator",
+      "status_unseen",
+      "step_order_unseen"
+    ],
+    "enabled_no_hit": [
+      "burst_repeat",
+      "flow_without_terminal"
+    ],
+    "fired": [
+      "dangling_reject",
+      "duration_outlier",
+      "operator_unknown",
+      "param_skeleton_unseen",
+      "prerequisite_missing",
+      "reject_storm",
+      "session_multi_operator",
+      "status_unseen",
+      "step_order_unseen"
+    ],
+    "silent": [],
+    "skipped": [
+      "duration_outlier",
+      "off_hours"
+    ]
+  },
+  "task": "T6 影子复盘",
+  "verdict": "SHADOW_REVIEW_READY",
+  "wording": {
+    "corpus_kind": "bootstrap_synthetic_traffic",
+    "explain": "语料由真实 API 调用生成（真实回测引擎、真实审计中间件、真实哈希链），但生成时间为本次构建，属首次引导语料，不是历史积累；语料内所有会话时间几乎重合，故小时维度（off_hours）规则在本轮必然停用。",
+    "holdout_split": "按会话 id 的 sha256 前缀切分 30%，与时间无关",
+    "injection_scope": "异常注入只作用于内存序列副本，不写回工件库，避免破坏哈希链"
+  }
+}

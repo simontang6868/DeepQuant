@@ -1,0 +1,105 @@
+{
+  "experiment_id": "H-L3R-SELECTION-000001",
+  "title": "选择效应检验：ma_cross 选股相对「池内可成交等权」有没有正贡献",
+  "type": "新实验（不是审计）。L3q 发现 L3p 的超额口径不可解释，本实验回答那个问题。",
+  "frozen_at": "2026-10-28T02:30:00+08:00",
+  "depends_on": {
+    "l3p_result": "reports/gates/H-L3P-MACROSS-000001/l3p_result.json",
+    "l3q_audit": "reports/gates/H-L3Q-CASH-AUDIT/l3q_audit.json",
+    "l3q_prereg_sha256": "176cd8c3b1d4661194fa9b1f32d2487436a60a7b4114efc247b4d0e665f86857"
+  },
+  "why": [
+    "L3p 报「原始超额 +0.26pp、折算后 −7.87pp」，据此写了「选择没有正贡献」。",
+    "L3q 证明这个折算的前提不成立：两臂现金分别有 69%/95% 来自不可成交标的，`1−cash` 不是「主动投出的比例」。",
+    "所以「选股有没有用」这个问题在 L3p 里既没被肯定也没被否定，只是被一个不可解释的数字挡住了。",
+    "本实验换两种不依赖「现金可投」假设的尺子重新问一次。"
+  ],
+  "design": {
+    "R1_portfolio": {
+      "arms": {
+        "S": "策略臂 = L3p 基线（逐折冻结 best_params、weights 记账、1000 万、单标的上限 0.20、月度调仓）",
+        "C_t": "可成交等权对照：每期在「执行日有有效开盘价」的池内标的上等权，同样套 0.20 上限且不再二次归一"
+      },
+      "quantity": "Δ_fold = r_S − r_Ct（同折同窗口）",
+      "why_this_control": "原对照臂（等权持有全部 30 只）把未上市与已终止的标的也分到权重，现金被迫堆积，两臂稀释程度不可比。把标的限制在「当期能成交」的范围内，两臂的现金来源就只剩上限与费用。"
+    },
+    "R2_cross_section": {
+      "definition": "逐调仓期，比较「策略持仓等权收益」与「当期可成交池等权收益」，不做任何组合记账",
+      "period": "执行日 → 下一个执行日（open→open）；折内最后一期用窗口末日的 close",
+      "inclusion_rule": "标的必须在期初与期末**两端都有有效价**才计入两臂（匹配剔除）",
+      "why_matched": "两端都有价才可定价，这条同时把死票从两臂剔除，使比较变成「在能成交的标的中，选股是否优于等权」。因此 R2 **不**回答「含死票的完整组合收益」，只回答选择效应。",
+      "quantity": "Δ_period = r_strategy − r_universe"
+    },
+    "folds": "沿用 L3p 的 28 折（rolling 504/126/126，span 2010-01-01~2026-10-16），不重切",
+    "params": "逐折读 L3p 存档 best_params，**不重选参**",
+    "cost": "R1 走真实费用（BacktestConfig 默认费率、零滑点）；R2 是毛收益，不含费用与整手（它测的是选择，不是可执行性）"
+  },
+  "statistics": {
+    "unit_R2": "调仓期（约 200 期，折内不重叠；折边界处每折末期按窗口末日截断，会产生 28 个小缺口）",
+    "t_iid": "mean / (stdev/√n)",
+    "t_nw3": "Bartlett 核 Newey-West，滞后 3（入参必须是**小数**收益；传 pp 会把 t 放大 100 倍但判定不变，故必须同时看 MDE）",
+    "mde": "2.8016 × se_iid（双侧 5%、功效 80%）",
+    "power_observed": "Φ(|t|−1.96) + Φ(−|t|−1.96)",
+    "ci": "stationary bootstrap，平均块长 6，重抽 5000 次，95% 分位区间，随机种子 20261028"
+  },
+  "decision_rule": {
+    "order": [
+      "1. 若 R2 的 mean > 0 且 t_iid >= 2 且 t_nw3 >= 1.645 且 R1 折胜率 >= 0.60 → SELECTION_EFFECT_DETECTED",
+      "2. 若 R2 的 mean <= 0 且 t_iid <= -2 且 t_nw3 <= -1.645 → SELECTION_EFFECT_NEGATIVE",
+      "3. 若 MDE <= 0.005（0.5pp/月）→ NO_SELECTION_EFFECT（有功效地排除，区间含 0 且精度够）",
+      "4. 否则 → INCONCLUSIVE_POWER"
+    ],
+    "downgrade": "L3p 终态不是 L3P_PASSED，所以上述初判一律降级为 L3R_BLOCKED_PREREQUISITE。降级不改变初判文字，只标注「不代表可用」。",
+    "why_order": "先给「检出」留最严格的门槛（双口径 + 折级一致），再给「有功效地排除」，最后才允许「功效不足」。反过来写会让每一轮都落在 INCONCLUSIVE。"
+  },
+  "predictions": [
+    {
+      "id": "P1",
+      "claim": "R2 的月均 Δ 落在 [−0.40pp, +0.40pp]，且 |t_iid| < 2（即无显著选择效应）",
+      "mechanism": "ma_cross 是趋势型单边信号；项目已有先验是「月频动量 INCONCLUSIVE（Gate 1）而反转较强」。趋势型买入在 A 股月度截面应接近 0，且单边只能吃多头腿。",
+      "computable": "mean(Δ_period) 与 t_iid",
+      "refuted_if": "均值超出该区间，或 |t_iid| >= 2"
+    },
+    {
+      "id": "P2",
+      "claim": "R1 的折均 Δ 落在 [−0.5pp, +1.0pp]，折胜率 40%~62%",
+      "mechanism": "C_t 的现金更少（只受上限与费用约束），池子整体上涨时 C_t 天然占优，所以 R1 应比 R2 偏负一点，但幅度受 0.20 上限限制不会大。",
+      "computable": "mean(Δ_fold)、Δ_fold>0 的折占比",
+      "refuted_if": "均值超区间，或胜率超区间"
+    },
+    {
+      "id": "P3",
+      "claim": "C_t 的现金占比中位 <= 4pp，且两臂现金差中位 >= 5pp",
+      "mechanism": "C_t 每期只买当期有价的标的，因此不再有 dead / not_listed 造成的现金；剩下的现金来自「k<5 时上限压仓」与费用，按 L3q 的上限占比（21.1% 的现金，中位 0.00pp）应很小。",
+      "computable": "median(cash_C_t)、median(cash_S − cash_C_t)",
+      "refuted_if": "现金中位 > 4pp，或现金差中位 < 5pp"
+    },
+    {
+      "id": "P4",
+      "claim": "R2 中 Δ_period > 0 的期数占比落在 40%~58%",
+      "mechanism": "若无选择效应，胜率应围绕 50% 对称波动；20 年、约 200 期下 95% 区间约 [43%, 57%]。",
+      "computable": "win_rate",
+      "refuted_if": "胜率超出该区间"
+    },
+    {
+      "id": "P5",
+      "claim": "R1 的折级 Δ 与 R2 的折内均值 Δ 相关系数 > 0.5",
+      "mechanism": "两条臂共用同一份策略持仓，只是记账方式不同；若相关偏低，说明现金与整手结构在主导 R1，R1 不能当选择效应的证据。",
+      "computable": "pearson(fold Δ_fold, fold mean Δ_period)，28 点",
+      "refuted_if": "相关系数 <= 0.5"
+    }
+  ],
+  "invariants": [
+    "不重选参、不重切折、不换标的池、不改费用口径",
+    "不修改 L3p 结论；本实验的结论也不得反过来用于放行 L3p",
+    "R2 是毛收益，不得与任何「成本后」数字并列引用",
+    "若 R1 与 R2 结论不同向，以 R2 为准并说明 R1 被现金结构污染——但两者的分歧必须原样报告"
+  ],
+  "known_limits": [
+    "R2 两端有价的匹配规则把死票同时剔除，因此不含「持有到退市」的真实损失；这对两臂对称，但不等于完整收益",
+    "折边界截断使约 200 期序列有 28 个小缺口，t 的独立性只是近似",
+    "逐折使用不同 best_params（walk-forward 的固有性质），因此「策略」在不同折上是同一族的不同参数",
+    "组合层未启用涨跌停判据，R1 不含涨停买不进的摩擦",
+    "R2 的等权组合不计整手与费用，小资金下不可实现"
+  ]
+}

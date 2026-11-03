@@ -1,0 +1,2485 @@
+{
+ "shas": {
+  "l3u_prereg": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+  "l3u_result": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+  "cards": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+  "l3z_result": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc",
+  "l3aa_result": "dffcf4645cfe8c2b155b1d53f3a4e5b6c5afd007772d1fc5d3206fe99e6854ec"
+ },
+ "git": {
+  "branch": "workbuddy/2026-10-20-consolidated",
+  "head": "5cfed94 阶段 U 结题：NW 滞后稳健性全项目审计 —— NW_LAG_SENSITIVITY_CONFIRMED",
+  "dirty_count": 214
+ },
+ "decisions": {
+  "experiment_id": "H-L3AB-FAMILY",
+  "kind": "audit_decision_record",
+  "created": "2026-10-29",
+  "title": "L3ab 检验家族判定记录：每条结论的假设、数据关系、纳入理由",
+  "why_this_file_exists": "检验家族的划分是**判断**，不是计算。把判断写进可哈希的独立文件、与数字分开，是为了两件事：(1) 审查者能看到每条为什么被算进家族，而不是看到一个 m=24 的黑箱；(2) 判断一旦改动会改变文件 sha，无法悄悄挪动家族边界。本文件的 sha256 被脚本硬编码校验。",
+  "how_to_read": [
+   "class 用审计提纲的 A/B/C/D，另加一个 E（见 taxonomy_gap）：A=同假设重复登记；B=数据重叠或同源但假设不同；C=一条序列是另一条的子窗口；D=不同数据或不同统计量产生的独立问题；E=同一假设在不同窗口/样本上重复检验（提纲未列，本次补）。",
+   "in_family 的默认值是 true：本审计的立场是「凡登记过的检验都占名额」，而不是「先剔除再说」。只有明确不是假设检验的条目才排除。",
+   "所有 class 判定都给出判据来源；判据不足的一律写 UNKNOWN_FOR_*，不补猜。"
+  ],
+  "taxonomy_gap": "审计提纲的四类（A/B/C/D）不足以覆盖本项目的情况：gate2_d / gate3_d / gate6_d 是同一个经济假设（反转）在三个不同窗口/池上的重复检验——数据不同（不是 B）、假设相同（不是 D）、也不是重复登记（不是 A）。这一类在族系错误率下同样占名额，但语义是「同一问多答」。本审计命名为 E 类并单列，因为它正是「多窗口试验」这类最常被忽略的多重性来源。",
+  "per_claim": [
+   {
+    "key": "gate1_d",
+    "hypothesis_zh": "Gate 1 窗口内，多空价差 d 是否为正",
+    "class": "D",
+    "cluster": "H_gate1_pool",
+    "in_family": true,
+    "reason": "独立信号（Gate 1 自建池），窗口 2021-2024 与其余不重叠"
+   },
+   {
+    "key": "gate2_d",
+    "hypothesis_zh": "反转信号在 2016-2026 窗口内 d 是否为正",
+    "class": "E",
+    "cluster": "H_reversal",
+    "in_family": true,
+    "reason": "与 gate3/gate6 同一经济假设、不同窗口；按「都占名额」处理"
+   },
+   {
+    "key": "gate3_d",
+    "hypothesis_zh": "反转信号在 2007-2015 判定窗口内 d 是否为正",
+    "class": "E",
+    "cluster": "H_reversal",
+    "in_family": true,
+    "reason": "同上；注意本条判定窗口与 L3t 引用的 2016-2026 重跑不同（L3u 已纠）"
+   },
+   {
+    "key": "gate4_d",
+    "hypothesis_zh": "低波动分组 d 是否为正",
+    "class": "D",
+    "cluster": "H_lowvol",
+    "in_family": true,
+    "reason": "独立信号"
+   },
+   {
+    "key": "gate5_d",
+    "hypothesis_zh": "活跃度分组 d 是否为正",
+    "class": "D",
+    "cluster": "H_activity",
+    "in_family": true,
+    "reason": "独立信号"
+   },
+   {
+    "key": "gate6_d",
+    "hypothesis_zh": "反转信号在 as-of 全A 池、全样本上 d 是否为正",
+    "class": "E",
+    "cluster": "H_reversal",
+    "in_family": true,
+    "reason": "同一假设、不同池构造（as-of 全A）与全样本窗口"
+   },
+   {
+    "key": "phasec_d",
+    "hypothesis_zh": "池效应：spread(B) 与 spread(A) 之差是否为零",
+    "class": "D",
+    "cluster": "H_pool_effect",
+    "in_family": true,
+    "reason": "五格设计的主检验"
+   },
+   {
+    "key": "phasec2_d",
+    "hypothesis_zh": "加入停牌约束后 spread 的增量是否为零",
+    "class": "D",
+    "cluster": "H_pool_increment",
+    "in_family": true,
+    "reason": "对 phasec 的增量检验，统计量是两列之差（spread_v1 − spread），不是池效应本身"
+   },
+   {
+    "key": "phasec3_d",
+    "hypothesis_zh": "剔除涨停后 spread 的增量是否为零",
+    "class": "D",
+    "cluster": "H_lag_cost",
+    "in_family": true,
+    "reason": "执行滞后/可成交性的增量检验，与 phasec2 的统计量不同（spread_v1 − spread_v0）"
+   },
+   {
+    "key": "phasee_alpha",
+    "hypothesis_zh": "单边多头组合相对基准的 alpha 是否为零",
+    "class": "D",
+    "cluster": "H_single_side",
+    "in_family": true,
+    "reason": "首个 long-only 单边检验，与价差类统计量不同"
+   },
+   {
+    "key": "phasef_delta",
+    "hypothesis_zh": "MAX5 五分层中最高与最低层的 delta 是否为零",
+    "class": "D",
+    "cluster": "H_max5_layer",
+    "in_family": true,
+    "reason": "分层设计，统计量是 delta 不是价差"
+   },
+   {
+    "key": "phaseg_alpha",
+    "hypothesis_zh": "MAX5 约束后的单边 alpha 是否可执行",
+    "class": "D",
+    "cluster": "H_max5_single",
+    "in_family": true,
+    "reason": "与 phasef 同族但统计量与问题不同（单边 alpha 而非分层 delta）"
+   },
+   {
+    "key": "phasel_alpha",
+    "hypothesis_zh": "SURGE 避免型效应是否留下未被吸收的 alpha",
+    "class": "B",
+    "cluster": "H_surge_avoid",
+    "in_family": true,
+    "reason": "与 phaser_alpha 共用同一份序列（237 月逐位相同），但登记判定不同：本条问「是否被吸收」，phaser 问「是否规模依赖」——数据同源、假设不同"
+   },
+   {
+    "key": "phasem_spread",
+    "hypothesis_zh": "SURGE 的空头侧是否成立",
+    "class": "D",
+    "cluster": "H_surge_short",
+    "in_family": true,
+    "reason": "判定不由单一均值给出（stat.applicable=false），占名额不出 p"
+   },
+   {
+    "key": "phasej_netA",
+    "hypothesis_zh": "计入执行冲击后净收益是否为正",
+    "class": "D",
+    "cluster": "H_net_impact",
+    "in_family": true,
+    "reason": "冲击模型 A 下的净收益，与 phaseo 的成本口径不同"
+   },
+   {
+    "key": "phasek_m1net",
+    "hypothesis_zh": "降到 1 个月持仓后净收益是否仍为正",
+    "class": "D",
+    "cluster": "H_turnover",
+    "in_family": true,
+    "reason": "换手维度，统计量 m1_net"
+   },
+   {
+    "key": "phaseo_netBASE",
+    "hypothesis_zh": "BASE 费率、3000 万资金下净 alpha 是否为正",
+    "class": "B",
+    "cluster": "H_net_base",
+    "in_family": true,
+    "reason": "与 phasev_net 共用同一份序列（237 月逐位相同）；本条问净 alpha，phasev 问成本口径敏感性。同时是 phasep_late 的超集（见 phasep）"
+   },
+   {
+    "key": "phasep_late",
+    "hypothesis_zh": "后段（2016-2026）与整体是否存在净收益差异",
+    "class": "C",
+    "cluster": "H_segment",
+    "in_family": true,
+    "reason": "数据是 phaseo_netBASE 的严格子窗口（129 月逐位相同），但登记判定是段差异（回归系数），不是「alpha 是否为正」。⚠️ 该判定统计量与序列不同源（L3w 已判），L3z 用序列均值给它算出 p=0.010970，属**代理 p**，不是它假说的正确检验"
+   },
+   {
+    "key": "phaser_alpha",
+    "hypothesis_zh": "SURGE alpha 是否随规模变化",
+    "class": "B",
+    "cluster": "H_surge_scale",
+    "in_family": true,
+    "reason": "与 phasel_alpha 同源；判定不由单一均值给出，占名额不出 p"
+   },
+   {
+    "key": "phases_net",
+    "hypothesis_zh": "现代段（2016-2026）净 alpha 是否为正",
+    "class": "B",
+    "cluster": "H_modern_era",
+    "in_family": true,
+    "reason": "与 phaset_net 共用同一份序列（129 月逐位相同）"
+   },
+   {
+    "key": "phaset_net",
+    "hypothesis_zh": "现代段结论在剔除极端月后是否仍成立",
+    "class": "B",
+    "cluster": "H_modern_robust",
+    "in_family": true,
+    "reason": "与 phases_net 同源，但假设是稳健性；⚠️ T_FRAGILE 的判定来自剔极端月计算，不可能由该序列均值给出，因此它的 p 与 phases 完全相等（0.028317）属**同一个 p 被算了两次**"
+   },
+   {
+    "key": "phasev_net",
+    "hypothesis_zh": "净收益是否对成本口径敏感",
+    "class": "B",
+    "cluster": "H_cost_convention",
+    "in_family": true,
+    "reason": "与 phaseo_netBASE 同源；判定不由单一均值给出，占名额不出 p"
+   },
+   {
+    "key": "phaseq_max5",
+    "hypothesis_zh": "控制 REV21 后 MAX5 的增量系数是否为零",
+    "class": "D",
+    "cluster": "H_max5_increment",
+    "in_family": true,
+    "reason": "月度截面回归系数，与分层/单边检验统计量不同"
+   },
+   {
+    "key": "l3r_delta",
+    "hypothesis_zh": "选股环节（12 只 vs 24 只）是否带来正贡献",
+    "class": "D",
+    "cluster": "H_selection",
+    "in_family": true,
+    "reason": "折级序列，判 INCONCLUSIVE_POWER；占名额不出 p"
+   },
+   {
+    "key": "l3s_ic",
+    "hypothesis_zh": "518 只池上的截面秩相关 IC 是否为零",
+    "class": "D",
+    "cluster": "H_ic",
+    "in_family": true,
+    "reason": "IC 量纲与收益类不同；占名额不出 p"
+   },
+   {
+    "key": "l3_test",
+    "hypothesis_zh": "walk-forward 折级测试收益是否为正",
+    "class": "D",
+    "cluster": "H_fold",
+    "in_family": true,
+    "reason": "折级（n=27）而非月度；占名额不出 p"
+   },
+   {
+    "key": "l3p_test",
+    "hypothesis_zh": "另一批 walk-forward 折级测试收益是否为正",
+    "class": "D",
+    "cluster": "H_fold_p",
+    "in_family": true,
+    "reason": "与 l3_test 不同的折批次；占名额不出 p"
+   }
+  ],
+  "a_class_search": {
+   "method": "对 27 条两两比较：(1) 序列在共同月上是否逐位相同；(2) 若相同，登记判定字符串是否相同。只有两者都相同才算 A 类（同假设重复登记）。",
+   "result": "逐位相同的对共 5 对，涉及 7 条结论，但它们只落在 **3 份序列**上（{phasel_alpha, phaser_alpha}、{phaseo_netBASE, phasep_late, phasev_net}、{phases_net, phaset_net}）。这 5 对的登记判定字符串**全部不同**。",
+   "conclusion": "A 类（同假设重复登记）**0 条**。",
+   "implication": "因此不存在「同一假设被登记两次」导致 m 虚高的情况。⚠️ 另需更正一个容易算错的地方：27 条里 7 条落在 3 份序列上，按数据同一性完全合并是 27 − 7 + 3 = **23**，不是 24。L3z 的数值指纹是 (mean, t, n)，phasep_late 的 n=129 与 phaseo 的 237 不同，指纹不同故被单独算——这才是 24 的真实来路。L3aa 曾说「phasep 与 phaseo 逐位相同 ⇒ m=24 偏大」，本审计予以**撤回**：那一步只用了数据同一性，恰好是审计提纲明令禁止的做法。"
+  },
+  "m_specs": [
+   {
+    "id": "S1_m24",
+    "label": "m=24（数值指纹去重，L3z 预登记主口径）",
+    "m": 24,
+    "basis": "L3z 预登记已冻结的口径：按 (mean, t, n) 数值指纹去重，27 条压成 24 份独立数字（7 条同源里 phasep_late 因 n 不同被单独计）",
+    "role": "primary",
+    "adopted": true,
+    "limitation": "「独立数字」不等于「独立假设」。若把同源而假设不同的配对视为同一假设，则该口径偏大；若视为不同假设，则该口径偏小（应取 27）。记录不足，方向无法确定。"
+   },
+   {
+    "id": "S2_m27",
+    "label": "m=27（全部登记条目）",
+    "m": 27,
+    "basis": "每条登记判定各占一个名额，不因数据同源而合并",
+    "role": "sensitivity",
+    "adopted": false,
+    "limitation": "把 3 对同源数据算成 6 个假设；其中 phaser/phasev 尚不产生 p（只占名额），phases/phaset 的 p 完全相同——等于同一个 p 占两个名额。"
+   },
+   {
+    "id": "S3_m23",
+    "label": "m=23（按数据同一性完全去重）",
+    "m": 23,
+    "basis": "7 条结论落在 3 份序列上（2+3+2），若「一份数据只算一个假设」，则 27 − 7 + 3 = 23；即把 phasep_late 与 phaseo_netBASE / phasev_net 也合并。",
+    "role": "sensitivity",
+    "adopted": false,
+    "limitation": "它假设「同数据 = 同假设」，与 A 类为 0 的证据直接冲突——那 7 条的登记判定互不相同。列出来的用途只有一个：证明**即使按最激进的合并口径，结论仍是 6 条**，所以 24 与 23 之争不改变对外表述。"
+   },
+   {
+    "id": "S4_hypothesis",
+    "label": "按研究问题分族（m = 假设簇数）",
+    "m": "computed",
+    "basis": "把 27 条归入 25 个 hypothesis cluster（见 per_claim.cluster），簇内只算一次",
+    "role": "sensitivity_only",
+    "adopted": false,
+    "limitation": "⚠️ **明确不采用**。分族要用到「哪些条目问的是同一个问题」这一判断，而该判断没有原始设计记录支持（各阶段预登记不含假设字段）。L3z 已因同一理由拒绝过分族方案；本次重复该结论：分族会让结论看起来更好，而这正是事后拆族的形态。"
+   }
+  ],
+  "family_coverage": {
+   "question": "当前 m=24 是否覆盖了所有需要共同控制错误率的检验？",
+   "answer": "否。至少有一个已产生明确结论、且被项目内部当作头部结果引用的实验**不在** 27 条登记内。",
+   "evidence": [
+    "工作区共 26 个 *_out 产物目录；27 条登记的序列只覆盖其中 23 个。",
+    "未覆盖的 3 个：phasei_out（exQ5 可成交实验，V0 均值 +0.2307pp / t=6.357，V1 可成交 +0.1634pp / t=4.528，有完整判定）；phaseu_out（NW 滞后只读审计，本就不产生新判定）；probe_out（无 summary，属探测目录）。",
+    "phasei_out 的结论在项目记忆与阶段报告中作为「I exQ5 可成交 +0.1634(t=4.53)」被引用，但**未进入** l3u 登记的 27 条，因此不在任何一次多重检验校正的家族内。"
+   ],
+   "implication": "「可引 6 条」这句话的适用范围是**登记在册的 27 条**，不是项目全部结论。对外表述必须带这个范围限定，否则会把家族外的结果误认为已通过校正。",
+   "what_we_do_not_do": "不把 phasei 补进家族重算 m。理由：补进去会改变全部门槛，而它的纳入与否本身是判断；且补齐家族需要重新预登记。本审计只报告缺口，不改口径。"
+  },
+  "unknowns": [
+   {
+    "id": "U1",
+    "item": "27 条各自的原始研究假设文本",
+    "status": "UNKNOWN",
+    "detail": "各阶段预登记只有判定字段路径，没有假设陈述字段。本次的 hypothesis_zh 是由判定字符串 + 卡片 headline 反推的，不是原始设计文本。",
+    "impact": "class 判定（尤其 B/E 的区分）建立在反推文本上；若原始设计本意不同，家族边界会变。"
+   },
+   {
+    "id": "U2",
+    "item": "同源配对是否被原始设计视为「同一假设的稳健性检查」",
+    "status": "UNKNOWN",
+    "detail": "phasel/phaser、phaseo/phasev、phases/phaset 三对，判定字符串不同，但没有任何记录说明它们是独立假设还是稳健性检查。",
+    "impact": "决定 m 应取 24 还是 27；影响 Bonferroni 下 6 条与 5 条之别。"
+   },
+   {
+    "id": "U3",
+    "item": "未进入最终报告的试验总数",
+    "status": "PARTIAL",
+    "detail": "产物目录层面可确认至少 1 个有结论但未登记（phasei）。更早的临时分析若未落盘则无法恢复。",
+    "impact": "多重检验的家族可能仍不完整；但无法量化，只能声明该局限。"
+   },
+   {
+    "id": "U4",
+    "item": "phasep_late 的正确检验",
+    "status": "UNKNOWN",
+    "detail": "其判定是段差异回归系数，判定统计量与序列不同源（L3w）。L3z 用的 p=0.010970 是序列均值的 p，属代理。",
+    "impact": "它在家族里占的名额是对的（那次检验确实做过），但它通过/不通过校正都不能直接解释为其假说的成立/不成立。"
+   }
+  ],
+  "retractions": [
+   {
+    "id": "R-L3AA-1",
+    "retracted_statement": "L3aa 报告第 5.5–5.6 节：「phasep_late 与 phaseo_netBASE 逐位相同 ⇒ m=24 偏大」",
+    "why_wrong": "该推论只用了数据同一性。审计提纲明确禁止「仅凭序列相同…就自动决定检验家族如何划分」。两者的登记判定不同（EXECUTABLE_UNDER_BASE_FEES vs SEGMENT_DIFFERENCE_NOT_DETECTED），且都参与评分，按假设计数应各占一个名额。",
+    "replaced_by": "A 类重复登记 0 条；m=24 偏大/偏小取决于 U2（同源配对是否为独立假设），方向 UNKNOWN。",
+    "original_preserved": "reports/L3AA_ARBITRARY_DEPENDENCE_AUDIT.md 原文不改写；本记录为更正。"
+   }
+  ]
+ },
+ "inventory": [
+  {
+   "key": "gate1_d",
+   "hypothesis": "Gate 1 窗口内，多空价差 d 是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "failure",
+   "statistic": "序列均值 / main.t_stat",
+   "d_definition": "0.5*long-0.5*short",
+   "series": "gate1_out/032a11f591553e25/monthly_paired.csv",
+   "window": "2021-01~2024-12",
+   "n": 48,
+   "p": 0.545308791389788,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": -0.6092255349704097,
+   "class": "D",
+   "cluster": "H_gate1_pool",
+   "in_family": true,
+   "reason": "独立信号（Gate 1 自建池），窗口 2021-2024 与其余不重叠",
+   "counts_only": false,
+   "tier": "UNDERPOWERED",
+   "reproduced": {
+    "n": 48,
+    "mean": -0.3961063903264166,
+    "se_nw": 0.6501802166674705,
+    "t": -0.6092255349704097,
+    "p": 0.545308791389788,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "gate2_d",
+   "hypothesis": "反转信号在 2016-2026 窗口内 d 是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "FAILURE",
+   "statistic": "序列均值 / main.t_stat",
+   "d_definition": "0.5*long-0.5*short",
+   "series": "gate2_out/c440c77d284a/monthly_paired.csv",
+   "window": "2016-06~2026-10",
+   "n": 125,
+   "p": 0.1133481204862753,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": -1.5945969261956763,
+   "class": "E",
+   "cluster": "H_reversal",
+   "in_family": true,
+   "reason": "与 gate3/gate6 同一经济假设、不同窗口；按「都占名额」处理",
+   "counts_only": false,
+   "tier": "UNDERPOWERED",
+   "reproduced": {
+    "n": 125,
+    "mean": -0.38457783768000003,
+    "se_nw": 0.24117557945976353,
+    "t": -1.5945969261956763,
+    "p": 0.1133481204862753,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "gate3_d",
+   "hypothesis": "反转信号在 2007-2015 判定窗口内 d 是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "SUCCESS",
+   "statistic": "序列均值 / main.t_stat",
+   "d_definition": "0.5*long-0.5*short",
+   "series": "gate3_out/9b7235d77689/monthly_paired.csv",
+   "window": "2007-02~2016-01",
+   "n": 108,
+   "p": 0.024529238183913747,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 2.2809976200233018,
+   "class": "E",
+   "cluster": "H_reversal",
+   "in_family": true,
+   "reason": "同上；注意本条判定窗口与 L3t 引用的 2016-2026 重跑不同（L3u 已纠）",
+   "counts_only": false,
+   "tier": "EXPLORATORY",
+   "reproduced": {
+    "n": 108,
+    "mean": 0.48414844361111115,
+    "se_nw": 0.21225293676815202,
+    "t": 2.2809976200233018,
+    "p": 0.024529238183913747,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "gate4_d",
+   "hypothesis": "低波动分组 d 是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "FAILURE",
+   "statistic": "序列均值 / main.t_stat",
+   "d_definition": "0.5*long-0.5*short",
+   "series": "gate4_out/94988f7c57d1/monthly_paired.csv",
+   "window": "2007-02~2026-10",
+   "n": 237,
+   "p": 0.3335697864563164,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 0.9689345568883998,
+   "class": "D",
+   "cluster": "H_lowvol",
+   "in_family": true,
+   "reason": "独立信号",
+   "counts_only": false,
+   "tier": "UNDERPOWERED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.16636050198312238,
+    "se_nw": 0.17169426025774773,
+    "t": 0.9689345568883998,
+    "p": 0.3335697864563164,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "gate5_d",
+   "hypothesis": "活跃度分组 d 是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "FAILURE",
+   "statistic": "序列均值 / main.t_stat",
+   "d_definition": "0.5*long-0.5*short",
+   "series": "gate5_out/7c0c89916b0c/monthly_paired.csv",
+   "window": "2006-02~2026-10",
+   "n": 249,
+   "p": 0.8769518929614457,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 0.15499428542203716,
+   "class": "D",
+   "cluster": "H_activity",
+   "in_family": true,
+   "reason": "独立信号",
+   "counts_only": false,
+   "tier": "UNDERPOWERED",
+   "reproduced": {
+    "n": 249,
+    "mean": 0.023587832168674695,
+    "se_nw": 0.1521851731787846,
+    "t": 0.15499428542203716,
+    "p": 0.8769518929614457,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "gate6_d",
+   "hypothesis": "反转信号在 as-of 全A 池、全样本上 d 是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "SUCCESS",
+   "statistic": "序列均值 / main.t_stat",
+   "d_definition": "0.5*long-0.5*short",
+   "series": "gate6_out/b8c4f1ecba44/monthly_paired.csv",
+   "window": "2007-02~2026-10",
+   "n": 237,
+   "p": 5.668407884527412e-06,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 4.644339275666975,
+   "class": "E",
+   "cluster": "H_reversal",
+   "in_family": true,
+   "reason": "同一假设、不同池构造（as-of 全A）与全样本窗口",
+   "counts_only": false,
+   "tier": "QUOTABLE_MARGINAL",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.7084456860759494,
+    "se_nw": 0.15253960661050311,
+    "t": 4.644339275666975,
+    "p": 5.668407884527412e-06,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasec_d",
+   "hypothesis": "池效应：spread(B) 与 spread(A) 之差是否为零",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "POOL_EFFECT_CONFIRMED",
+   "statistic": "序列均值 / main_test.t_nw",
+   "d_definition": "long_minus_short",
+   "series": "phasec_out/3a01759a37f0/five_cells.csv",
+   "window": "2007-01~2026-09",
+   "n": 237,
+   "p": 9.934532578330494e-10,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 6.367494580438122,
+   "class": "D",
+   "cluster": "H_pool_effect",
+   "in_family": true,
+   "reason": "五格设计的主检验",
+   "counts_only": false,
+   "tier": "QUOTABLE",
+   "reproduced": {
+    "n": 237,
+    "mean": 1.9389677751054852,
+    "se_nw": 0.3045103141606557,
+    "t": 6.367494580438122,
+    "p": 9.934532578330494e-10,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasec2_d",
+   "hypothesis": "加入停牌约束后 spread 的增量是否为零",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "SUSPENSION_EFFECT_SMALL_BUT_SIGNIFICANT",
+   "statistic": "序列均值 / main_test.t_nw",
+   "d_definition": "long_minus_short",
+   "series": "phasec2_out/953c32fdc556/cells.csv",
+   "window": "2007-02~2026-10",
+   "n": 237,
+   "p": 1.042990002819018e-06,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 5.014883064138538,
+   "class": "D",
+   "cluster": "H_pool_increment",
+   "in_family": true,
+   "reason": "对 phasec 的增量检验，统计量是两列之差（spread_v1 − spread），不是池效应本身",
+   "counts_only": false,
+   "tier": "QUOTABLE_MARGINAL",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.10694447497890297,
+    "se_nw": 0.02132541748453989,
+    "t": 5.014883064138538,
+    "p": 1.042990002819018e-06,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasec3_d",
+   "hypothesis": "剔除涨停后 spread 的增量是否为零",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "LAG_COST_NEGLIGIBLE",
+   "statistic": "序列均值 / main_test.t_nw",
+   "d_definition": "long_minus_short",
+   "series": "phasec3_out/6a76a10687b4/cells.csv",
+   "window": "2007-02~2026-10",
+   "n": 237,
+   "p": 0.5508403998670676,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 0.5973590394366414,
+   "class": "D",
+   "cluster": "H_lag_cost",
+   "in_family": true,
+   "reason": "执行滞后/可成交性的增量检验，与 phasec2 的统计量不同（spread_v1 − spread_v0）",
+   "counts_only": false,
+   "tier": "UNDERPOWERED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.0468041687341772,
+    "se_nw": 0.0783518213406754,
+    "t": 0.5973590394366414,
+    "p": 0.5508403998670676,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasee_alpha",
+   "hypothesis": "单边多头组合相对基准的 alpha 是否为零",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "LONGONLY_ALPHA_NOT_DETECTED",
+   "statistic": "序列均值 / main.t_nw",
+   "d_definition": null,
+   "series": "phasee_out/2a3893f3f5b1/monthly.csv",
+   "window": "2007-02~2026-10",
+   "n": 237,
+   "p": 0.05847823289789561,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 1.9013197795232013,
+   "class": "D",
+   "cluster": "H_single_side",
+   "in_family": true,
+   "reason": "首个 long-only 单边检验，与价差类统计量不同",
+   "counts_only": false,
+   "tier": "UNDERPOWERED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.2766985906329114,
+    "se_nw": 0.14552974918416922,
+    "t": 1.9013197795232013,
+    "p": 0.05847823289789561,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasef_delta",
+   "hypothesis": "MAX5 五分层中最高与最低层的 delta 是否为零",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "MAX5_EFFECT_CONFIRMED",
+   "statistic": "序列均值 / main.t_nw",
+   "d_definition": "0.5*long-0.5*short",
+   "series": "phasef_out/aec46d88bbda/monthly.csv",
+   "window": "2007-02~2026-10",
+   "n": 237,
+   "p": 0.0007677795015819844,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 3.408576462140064,
+   "class": "D",
+   "cluster": "H_max5_layer",
+   "in_family": true,
+   "reason": "分层设计，统计量是 delta 不是价差",
+   "counts_only": false,
+   "tier": "QUOTABLE_MARGINAL",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.740492584556962,
+    "se_nw": 0.217243941211765,
+    "t": 3.408576462140064,
+    "p": 0.0007677795015819844,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phaseg_alpha",
+   "hypothesis": "MAX5 约束后的单边 alpha 是否可执行",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "MAX5_LONGONLY_NOT_EXECUTABLE",
+   "statistic": "序列均值 / main.t_nw",
+   "d_definition": null,
+   "series": "phaseg_out/e7da0f9ff3f1/monthly.csv",
+   "window": "2007-02~2026-10",
+   "n": 237,
+   "p": 0.07901679190325701,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 1.7640531457985589,
+   "class": "D",
+   "cluster": "H_max5_single",
+   "in_family": true,
+   "reason": "与 phasef 同族但统计量与问题不同（单边 alpha 而非分层 delta）",
+   "counts_only": false,
+   "tier": "UNDERPOWERED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.18130837848101264,
+    "se_nw": 0.1027794309444896,
+    "t": 1.7640531457985589,
+    "p": 0.07901679190325701,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasel_alpha",
+   "hypothesis": "SURGE 避免型效应是否留下未被吸收的 alpha",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "SURGE_AVOID_ABSORBED",
+   "statistic": "序列均值 / V1_executable.t_nw",
+   "d_definition": null,
+   "series": "phasel_out/9ffc3710cf6f/monthly.csv",
+   "window": "2007-01~2026-09",
+   "n": 237,
+   "p": 0.0019717240450335526,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 3.129484562173131,
+   "class": "B",
+   "cluster": "H_surge_avoid",
+   "in_family": true,
+   "reason": "与 phaser_alpha 共用同一份序列（237 月逐位相同），但登记判定不同：本条问「是否被吸收」，phaser 问「是否规模依赖」——数据同源、假设不同",
+   "counts_only": false,
+   "tier": "NULL_CONFIRMED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.10605702953586497,
+    "se_nw": 0.033889615822938715,
+    "t": 3.129484562173131,
+    "p": 0.0019717240450335526,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasem_spread",
+   "hypothesis": "SURGE 的空头侧是否成立",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "SHORT_SIDE_REJECTED",
+   "statistic": "判定非单一均值（stat.applicable=false）",
+   "d_definition": "long_minus_short",
+   "series": "phasem_out/2f5f61dd0b5f/monthly.csv",
+   "window": "全样本月度，n=237",
+   "n": 237,
+   "p": null,
+   "se_method": "—",
+   "t_nw3": 2.850544171644458,
+   "class": "D",
+   "cluster": "H_surge_short",
+   "in_family": true,
+   "reason": "判定不由单一均值给出（stat.applicable=false），占名额不出 p",
+   "counts_only": true,
+   "tier": "NOT_GRADED",
+   "reproduced": {}
+  },
+  {
+   "key": "phasej_netA",
+   "hypothesis": "计入执行冲击后净收益是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "NET_AFTER_EXECUTION_ABSORBED",
+   "statistic": "序列均值 / attribution_best_tier.t_net",
+   "d_definition": null,
+   "series": "phasej_out/f76de8a277f6/monthly.csv",
+   "window": "2007-01~2026-09",
+   "n": 237,
+   "p": 0.2983123454549297,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 1.0423579613118623,
+   "class": "D",
+   "cluster": "H_net_impact",
+   "in_family": true,
+   "reason": "冲击模型 A 下的净收益，与 phaseo 的成本口径不同",
+   "counts_only": false,
+   "tier": "NOT_GRADED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.03244149789029536,
+    "se_nw": 0.03112318329632752,
+    "t": 1.0423579613118623,
+    "p": 0.2983123454549297,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasek_m1net",
+   "hypothesis": "降到 1 个月持仓后净收益是否仍为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "LOW_TURNOVER_INSUFFICIENT",
+   "statistic": "序列均值 / by_period.1.t_nw6",
+   "d_definition": null,
+   "series": "phasek_out/3bc31a35903d/monthly.csv",
+   "window": "2007-01~2026-09",
+   "n": 237,
+   "p": 0.23345971280445088,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 1.194556017508961,
+   "class": "D",
+   "cluster": "H_turnover",
+   "in_family": true,
+   "reason": "换手维度，统计量 m1_net",
+   "counts_only": false,
+   "tier": "NOT_GRADED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.03989106751054852,
+    "se_nw": 0.0333940534607447,
+    "t": 1.194556017508961,
+    "p": 0.23345971280445088,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phaseo_netBASE",
+   "hypothesis": "BASE 费率、3000 万资金下净 alpha 是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "EXECUTABLE_UNDER_BASE_FEES",
+   "statistic": "序列均值 / results.W_3000万|BASE.t_nw",
+   "d_definition": null,
+   "series": "phaseo_out/ac7aa2830ab0/monthly.csv",
+   "window": "2007-01~2026-09",
+   "n": 237,
+   "p": 7.273409740837666e-05,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 4.0386243659593175,
+   "class": "B",
+   "cluster": "H_net_base",
+   "in_family": true,
+   "reason": "与 phasev_net 共用同一份序列（237 月逐位相同）；本条问净 alpha，phasev 问成本口径敏感性。同时是 phasep_late 的超集（见 phasep）",
+   "counts_only": false,
+   "tier": "QUOTABLE_MARGINAL",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.13595891139240507,
+    "se_nw": 0.033664658822536955,
+    "t": 4.0386243659593175,
+    "p": 7.273409740837666e-05,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasep_late",
+   "hypothesis": "后段（2016-2026）与整体是否存在净收益差异",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "SEGMENT_DIFFERENCE_NOT_DETECTED",
+   "statistic": "序列均值 / main_test.t_nw",
+   "d_definition": null,
+   "series": "phasep_out/3d19f7508e10/monthly.csv",
+   "window": "2016-01~2026-09",
+   "n": 129,
+   "p": 0.010969566550594374,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 2.581295917681533,
+   "class": "C",
+   "cluster": "H_segment",
+   "in_family": true,
+   "reason": "数据是 phaseo_netBASE 的严格子窗口（129 月逐位相同），但登记判定是段差异（回归系数），不是「alpha 是否为正」。⚠️ 该判定统计量与序列不同源（L3w 已判），L3z 用序列均值给它算出 p=0.010970，属**代理 p**，不是它假说的正确检验",
+   "counts_only": false,
+   "tier": "NOT_GRADED",
+   "reproduced": {
+    "n": 129,
+    "mean": 0.129407503875969,
+    "se_nw": 0.050132765867541514,
+    "t": 2.581295917681533,
+    "p": 0.010969566550594374,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phaser_alpha",
+   "hypothesis": "SURGE alpha 是否随规模变化",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "SURGE_SCALE_DEPENDENT",
+   "statistic": "判定非单一均值（stat.applicable=false）",
+   "d_definition": null,
+   "series": "phaser_out/7b5e7643e8ca/monthly.csv",
+   "window": "2007-01~2026-09",
+   "n": 237,
+   "p": null,
+   "se_method": "—",
+   "t_nw3": 3.129484562173131,
+   "class": "B",
+   "cluster": "H_surge_scale",
+   "in_family": true,
+   "reason": "与 phasel_alpha 同源；判定不由单一均值给出，占名额不出 p",
+   "counts_only": true,
+   "tier": "NOT_GRADED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.10605702953586497,
+    "se_nw": 0.033889615822938715,
+    "t": 3.129484562173131,
+    "p": 0.0019717240450335526,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phases_net",
+   "hypothesis": "现代段（2016-2026）净 alpha 是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "MODERN_ERA_ALPHA_DETECTED",
+   "statistic": "序列均值 / primary.t_nw",
+   "d_definition": null,
+   "series": "phases_out/f098a59fb1b5/monthly.csv",
+   "window": "2016-01~2026-09",
+   "n": 129,
+   "p": 0.02831672555412718,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 2.2180235211790436,
+   "class": "B",
+   "cluster": "H_modern_era",
+   "in_family": true,
+   "reason": "与 phaset_net 共用同一份序列（129 月逐位相同）",
+   "counts_only": false,
+   "tier": "EXPLORATORY",
+   "reproduced": {
+    "n": 129,
+    "mean": 0.111195653875969,
+    "se_nw": 0.050132765867541514,
+    "t": 2.2180235211790436,
+    "p": 0.02831672555412718,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phaset_net",
+   "hypothesis": "现代段结论在剔除极端月后是否仍成立",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "T_FRAGILE",
+   "statistic": "序列均值 / baseline_modern.t_nw",
+   "d_definition": null,
+   "series": "phaset_out/ef29a743997b/monthly.csv",
+   "window": "2016-01~2026-09",
+   "n": 129,
+   "p": 0.02831672555412718,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 2.2180235211790436,
+   "class": "B",
+   "cluster": "H_modern_robust",
+   "in_family": true,
+   "reason": "与 phases_net 同源，但假设是稳健性；⚠️ T_FRAGILE 的判定来自剔极端月计算，不可能由该序列均值给出，因此它的 p 与 phases 完全相等（0.028317）属**同一个 p 被算了两次**",
+   "counts_only": false,
+   "tier": "EXPLORATORY",
+   "reproduced": {
+    "n": 129,
+    "mean": 0.111195653875969,
+    "se_nw": 0.050132765867541514,
+    "t": 2.2180235211790436,
+    "p": 0.02831672555412718,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phasev_net",
+   "hypothesis": "净收益是否对成本口径敏感",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "COST_CONVENTION_SENSITIVE",
+   "statistic": "判定非单一均值（stat.applicable=false）",
+   "d_definition": null,
+   "series": "phasev_out/3614e12a0546/monthly.csv",
+   "window": "2007-01~2026-09",
+   "n": 237,
+   "p": null,
+   "se_method": "—",
+   "t_nw3": 4.0386243659593175,
+   "class": "B",
+   "cluster": "H_cost_convention",
+   "in_family": true,
+   "reason": "与 phaseo_netBASE 同源；判定不由单一均值给出，占名额不出 p",
+   "counts_only": true,
+   "tier": "NOT_GRADED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.13595891139240507,
+    "se_nw": 0.033664658822536955,
+    "t": 4.0386243659593175,
+    "p": 7.273409740837666e-05,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "phaseq_max5",
+   "hypothesis": "控制 REV21 后 MAX5 的增量系数是否为零",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "INCREMENTAL_ABSORBED",
+   "statistic": "序列均值 / main_test_REV21.coefficients.MAX5.t_nw",
+   "d_definition": null,
+   "series": "phaseq_out/ae7fc45acab0/monthly.csv",
+   "window": "2007-01~2026-09",
+   "n": 237,
+   "p": 0.7997467860913298,
+   "se_method": "Newey-West(3)，t 分布双侧",
+   "t_nw3": 0.25396103062283637,
+   "class": "D",
+   "cluster": "H_max5_increment",
+   "in_family": true,
+   "reason": "月度截面回归系数，与分层/单边检验统计量不同",
+   "counts_only": false,
+   "tier": "UNDERPOWERED",
+   "reproduced": {
+    "n": 237,
+    "mean": 0.04241433514767933,
+    "se_nw": 0.16701119476345913,
+    "t": 0.25396103062283637,
+    "p": 0.7997467860913298,
+    "lag": 3,
+    "variance_fell_back_to_g0": false
+   }
+  },
+  {
+   "key": "l3r_delta",
+   "hypothesis": "选股环节（12 只 vs 24 只）是否带来正贡献",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "INCONCLUSIVE_POWER",
+   "statistic": "判定非单一均值（stat.applicable=false）",
+   "d_definition": "0.5*long-0.5*short",
+   "series": "reports/gates/H-L3R-SELECTION/periods.json",
+   "window": "197 期配对剔除，中位 +0.060pp、胜率 51.78%",
+   "n": 197,
+   "p": null,
+   "se_method": "—",
+   "t_nw3": -0.9648993068542903,
+   "class": "D",
+   "cluster": "H_selection",
+   "in_family": true,
+   "reason": "折级序列，判 INCONCLUSIVE_POWER；占名额不出 p",
+   "counts_only": true,
+   "tier": "UNDERPOWERED",
+   "reproduced": {}
+  },
+  {
+   "key": "l3s_ic",
+   "hypothesis": "518 只池上的截面秩相关 IC 是否为零",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "IC_INCONCLUSIVE_POWER",
+   "statistic": "判定非单一均值（stat.applicable=false）",
+   "d_definition": null,
+   "series": "reports/gates/H-L3S-IC-000001/l3s_result.json",
+   "window": "198 期、378 只有效标的",
+   "n": 198,
+   "p": null,
+   "se_method": "—",
+   "t_nw3": -1.7055246894345137,
+   "class": "D",
+   "cluster": "H_ic",
+   "in_family": true,
+   "reason": "IC 量纲与收益类不同；占名额不出 p",
+   "counts_only": true,
+   "tier": "UNDERPOWERED",
+   "reproduced": {}
+  },
+  {
+   "key": "l3_test",
+   "hypothesis": "walk-forward 折级测试收益是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "L3_BLOCKED_PREREQUISITE",
+   "statistic": "判定非单一均值（stat.applicable=false）",
+   "d_definition": null,
+   "series": "reports/gates/H-L3-MACROSS-000001/l3_result.json",
+   "window": "27 个滚动折",
+   "n": 27,
+   "p": null,
+   "se_method": "—",
+   "t_nw3": 1.418397825120266,
+   "class": "D",
+   "cluster": "H_fold",
+   "in_family": true,
+   "reason": "折级（n=27）而非月度；占名额不出 p",
+   "counts_only": true,
+   "tier": "UNDERPOWERED",
+   "reproduced": {}
+  },
+  {
+   "key": "l3p_test",
+   "hypothesis": "另一批 walk-forward 折级测试收益是否为正",
+   "hypothesis_source": "verdict_original + card.headline（反推，非原始设计文本）",
+   "verdict_original": "L3P_BLOCKED_PREREQUISITE",
+   "statistic": "判定非单一均值（stat.applicable=false）",
+   "d_definition": null,
+   "series": "reports/gates/H-L3P-MACROSS-000001/l3p_result.json",
+   "window": "28 个滚动折",
+   "n": 28,
+   "p": null,
+   "se_method": "—",
+   "t_nw3": 1.9168039272174895,
+   "class": "D",
+   "cluster": "H_fold_p",
+   "in_family": true,
+   "reason": "与 l3_test 不同的折批次；占名额不出 p",
+   "counts_only": true,
+   "tier": "UNDERPOWERED",
+   "reproduced": {}
+  }
+ ],
+ "exact_pairs": [
+  {
+   "a": "phasel_alpha",
+   "b": "phaser_alpha",
+   "n_common": 237,
+   "n_a": 237,
+   "n_b": 237,
+   "max_abs_diff": 0.0,
+   "identical": true
+  },
+  {
+   "a": "phaseo_netBASE",
+   "b": "phasep_late",
+   "n_common": 129,
+   "n_a": 237,
+   "n_b": 129,
+   "max_abs_diff": 0.0,
+   "identical": true
+  },
+  {
+   "a": "phaseo_netBASE",
+   "b": "phasev_net",
+   "n_common": 237,
+   "n_a": 237,
+   "n_b": 237,
+   "max_abs_diff": 0.0,
+   "identical": true
+  },
+  {
+   "a": "phasep_late",
+   "b": "phasev_net",
+   "n_common": 129,
+   "n_a": 129,
+   "n_b": 237,
+   "max_abs_diff": 0.0,
+   "identical": true
+  },
+  {
+   "a": "phases_net",
+   "b": "phaset_net",
+   "n_common": 129,
+   "n_a": 129,
+   "n_b": 129,
+   "max_abs_diff": 0.0,
+   "identical": true
+  }
+ ],
+ "subwindow": {
+  "phasep_late": [
+   "phaseo_netBASE",
+   "phasev_net"
+  ]
+ },
+ "specs": [
+  {
+   "id": "S1_m24",
+   "label": "m=24（数值指纹去重，L3z 预登记主口径）",
+   "role": "primary",
+   "adopted": true,
+   "m": 24,
+   "n_scored": 20,
+   "n_counts_only": 7,
+   "n_padded": 4,
+   "bonferroni_threshold": 0.0020833333333333333,
+   "by_unit_threshold": 0.0005517363369137752,
+   "rejected": {
+    "bonferroni": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "holm": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "bh": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late"
+    ],
+    "by": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ]
+   },
+   "items": [
+    {
+     "key": "gate1_d",
+     "p": 0.545308791389788,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate2_d",
+     "p": 0.1133481204862753,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate3_d",
+     "p": 0.024529238183913747,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate4_d",
+     "p": 0.3335697864563164,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate5_d",
+     "p": 0.8769518929614457,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate6_d",
+     "p": 5.668407884527412e-06,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec_d",
+     "p": 9.934532578330494e-10,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec2_d",
+     "p": 1.042990002819018e-06,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec3_d",
+     "p": 0.5508403998670676,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasee_alpha",
+     "p": 0.05847823289789561,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasef_delta",
+     "p": 0.0007677795015819844,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phaseg_alpha",
+     "p": 0.07901679190325701,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasel_alpha",
+     "p": 0.0019717240450335526,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasej_netA",
+     "p": 0.2983123454549297,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasek_m1net",
+     "p": 0.23345971280445088,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaseo_netBASE",
+     "p": 7.273409740837666e-05,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasep_late",
+     "p": 0.010969566550594374,
+     "bonferroni": false,
+     "holm": false,
+     "bh": true,
+     "by": false
+    },
+    {
+     "key": "phases_net",
+     "p": 0.02831672555412718,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaset_net",
+     "p": 0.02831672555412718,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaseq_max5",
+     "p": 0.7997467860913298,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    }
+   ],
+   "limitation": "「独立数字」不等于「独立假设」。若把同源而假设不同的配对视为同一假设，则该口径偏大；若视为不同假设，则该口径偏小（应取 27）。记录不足，方向无法确定。"
+  },
+  {
+   "id": "S2_m27",
+   "label": "m=27（全部登记条目）",
+   "role": "sensitivity",
+   "adopted": false,
+   "m": 27,
+   "n_scored": 20,
+   "n_counts_only": 7,
+   "n_padded": 7,
+   "bonferroni_threshold": 0.001851851851851852,
+   "by_unit_threshold": 0.0004758762513046723,
+   "rejected": {
+    "bonferroni": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phaseo_netBASE"
+    ],
+    "holm": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "bh": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late"
+    ],
+    "by": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ]
+   },
+   "items": [
+    {
+     "key": "gate1_d",
+     "p": 0.545308791389788,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate2_d",
+     "p": 0.1133481204862753,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate3_d",
+     "p": 0.024529238183913747,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate4_d",
+     "p": 0.3335697864563164,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate5_d",
+     "p": 0.8769518929614457,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate6_d",
+     "p": 5.668407884527412e-06,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec_d",
+     "p": 9.934532578330494e-10,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec2_d",
+     "p": 1.042990002819018e-06,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec3_d",
+     "p": 0.5508403998670676,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasee_alpha",
+     "p": 0.05847823289789561,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasef_delta",
+     "p": 0.0007677795015819844,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phaseg_alpha",
+     "p": 0.07901679190325701,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasel_alpha",
+     "p": 0.0019717240450335526,
+     "bonferroni": false,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasej_netA",
+     "p": 0.2983123454549297,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasek_m1net",
+     "p": 0.23345971280445088,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaseo_netBASE",
+     "p": 7.273409740837666e-05,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasep_late",
+     "p": 0.010969566550594374,
+     "bonferroni": false,
+     "holm": false,
+     "bh": true,
+     "by": false
+    },
+    {
+     "key": "phases_net",
+     "p": 0.02831672555412718,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaset_net",
+     "p": 0.02831672555412718,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaseq_max5",
+     "p": 0.7997467860913298,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    }
+   ],
+   "limitation": "把 3 对同源数据算成 6 个假设；其中 phaser/phasev 尚不产生 p（只占名额），phases/phaset 的 p 完全相同——等于同一个 p 占两个名额。"
+  },
+  {
+   "id": "S3_m23",
+   "label": "m=23（按数据同一性完全去重）",
+   "role": "sensitivity",
+   "adopted": false,
+   "m": 23,
+   "n_scored": 20,
+   "n_counts_only": 7,
+   "n_padded": 3,
+   "bonferroni_threshold": 0.002173913043478261,
+   "by_unit_threshold": 0.0005821487254072348,
+   "rejected": {
+    "bonferroni": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "holm": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "bh": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late"
+    ],
+    "by": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ]
+   },
+   "items": [
+    {
+     "key": "gate1_d",
+     "p": 0.545308791389788,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate2_d",
+     "p": 0.1133481204862753,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate3_d",
+     "p": 0.024529238183913747,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate4_d",
+     "p": 0.3335697864563164,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate5_d",
+     "p": 0.8769518929614457,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate6_d",
+     "p": 5.668407884527412e-06,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec_d",
+     "p": 9.934532578330494e-10,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec2_d",
+     "p": 1.042990002819018e-06,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec3_d",
+     "p": 0.5508403998670676,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasee_alpha",
+     "p": 0.05847823289789561,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasef_delta",
+     "p": 0.0007677795015819844,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phaseg_alpha",
+     "p": 0.07901679190325701,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasel_alpha",
+     "p": 0.0019717240450335526,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasej_netA",
+     "p": 0.2983123454549297,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasek_m1net",
+     "p": 0.23345971280445088,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaseo_netBASE",
+     "p": 7.273409740837666e-05,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasep_late",
+     "p": 0.010969566550594374,
+     "bonferroni": false,
+     "holm": false,
+     "bh": true,
+     "by": false
+    },
+    {
+     "key": "phases_net",
+     "p": 0.02831672555412718,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaset_net",
+     "p": 0.02831672555412718,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaseq_max5",
+     "p": 0.7997467860913298,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    }
+   ],
+   "limitation": "它假设「同数据 = 同假设」，与 A 类为 0 的证据直接冲突——那 7 条的登记判定互不相同。列出来的用途只有一个：证明**即使按最激进的合并口径，结论仍是 6 条**，所以 24 与 23 之争不改变对外表述。"
+  },
+  {
+   "id": "S4_hypothesis",
+   "label": "按研究问题分族（m = 假设簇数）",
+   "role": "sensitivity_only",
+   "adopted": false,
+   "m": 25,
+   "n_scored": 20,
+   "n_counts_only": 7,
+   "n_padded": 5,
+   "bonferroni_threshold": 0.002,
+   "by_unit_threshold": 0.0005241147588198727,
+   "rejected": {
+    "bonferroni": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "holm": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ],
+    "bh": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE",
+     "phasep_late"
+    ],
+    "by": [
+     "gate6_d",
+     "phasec_d",
+     "phasec2_d",
+     "phasef_delta",
+     "phasel_alpha",
+     "phaseo_netBASE"
+    ]
+   },
+   "items": [
+    {
+     "key": "gate1_d",
+     "p": 0.545308791389788,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate2_d",
+     "p": 0.1133481204862753,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate3_d",
+     "p": 0.024529238183913747,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate4_d",
+     "p": 0.3335697864563164,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate5_d",
+     "p": 0.8769518929614457,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "gate6_d",
+     "p": 5.668407884527412e-06,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec_d",
+     "p": 9.934532578330494e-10,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec2_d",
+     "p": 1.042990002819018e-06,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasec3_d",
+     "p": 0.5508403998670676,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasee_alpha",
+     "p": 0.05847823289789561,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasef_delta",
+     "p": 0.0007677795015819844,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phaseg_alpha",
+     "p": 0.07901679190325701,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasel_alpha",
+     "p": 0.0019717240450335526,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasej_netA",
+     "p": 0.2983123454549297,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phasek_m1net",
+     "p": 0.23345971280445088,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaseo_netBASE",
+     "p": 7.273409740837666e-05,
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    },
+    {
+     "key": "phasep_late",
+     "p": 0.010969566550594374,
+     "bonferroni": false,
+     "holm": false,
+     "bh": true,
+     "by": false
+    },
+    {
+     "key": "phases_net",
+     "p": 0.02831672555412718,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaset_net",
+     "p": 0.02831672555412718,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    },
+    {
+     "key": "phaseq_max5",
+     "p": 0.7997467860913298,
+     "bonferroni": false,
+     "holm": false,
+     "bh": false,
+     "by": false
+    }
+   ],
+   "limitation": "⚠️ **明确不采用**。分族要用到「哪些条目问的是同一个问题」这一判断，而该判断没有原始设计记录支持（各阶段预登记不含假设字段）。L3z 已因同一理由拒绝过分族方案；本次重复该结论：分族会让结论看起来更好，而这正是事后拆族的形态。"
+  }
+ ],
+ "repro": [
+  {
+   "key": "gate1_d",
+   "status": "SCORED",
+   "n": 48,
+   "mean": -0.3961063903264166,
+   "mean_l3u": -0.3961063903264166,
+   "se_nw": 0.6501802166674705,
+   "se_nw_l3u": 0.6501802166674705,
+   "t": -0.6092255349704097,
+   "t_l3u": -0.6092255349704097,
+   "p": 0.545308791389788,
+   "p_l3z": 0.545308791389788,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "gate2_d",
+   "status": "SCORED",
+   "n": 125,
+   "mean": -0.38457783768000003,
+   "mean_l3u": -0.38457783768000003,
+   "se_nw": 0.24117557945976353,
+   "se_nw_l3u": 0.24117557945976353,
+   "t": -1.5945969261956763,
+   "t_l3u": -1.5945969261956763,
+   "p": 0.1133481204862753,
+   "p_l3z": 0.1133481204862753,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "gate3_d",
+   "status": "SCORED",
+   "n": 108,
+   "mean": 0.48414844361111115,
+   "mean_l3u": 0.48414844361111115,
+   "se_nw": 0.21225293676815202,
+   "se_nw_l3u": 0.21225293676815202,
+   "t": 2.2809976200233018,
+   "t_l3u": 2.2809976200233018,
+   "p": 0.024529238183913747,
+   "p_l3z": 0.024529238183913747,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "gate4_d",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.16636050198312238,
+   "mean_l3u": 0.16636050198312238,
+   "se_nw": 0.17169426025774773,
+   "se_nw_l3u": 0.17169426025774773,
+   "t": 0.9689345568883998,
+   "t_l3u": 0.9689345568883998,
+   "p": 0.3335697864563164,
+   "p_l3z": 0.3335697864563164,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "gate5_d",
+   "status": "SCORED",
+   "n": 249,
+   "mean": 0.023587832168674695,
+   "mean_l3u": 0.023587832168674695,
+   "se_nw": 0.1521851731787846,
+   "se_nw_l3u": 0.1521851731787846,
+   "t": 0.15499428542203716,
+   "t_l3u": 0.15499428542203716,
+   "p": 0.8769518929614457,
+   "p_l3z": 0.8769518929614457,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "gate6_d",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.7084456860759494,
+   "mean_l3u": 0.7084456860759494,
+   "se_nw": 0.15253960661050311,
+   "se_nw_l3u": 0.15253960661050311,
+   "t": 4.644339275666975,
+   "t_l3u": 4.644339275666975,
+   "p": 5.668407884527412e-06,
+   "p_l3z": 5.668407884527412e-06,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasec_d",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 1.9389677751054852,
+   "mean_l3u": 1.9389677751054852,
+   "se_nw": 0.3045103141606557,
+   "se_nw_l3u": 0.3045103141606557,
+   "t": 6.367494580438122,
+   "t_l3u": 6.367494580438122,
+   "p": 9.934532578330494e-10,
+   "p_l3z": 9.934532578330494e-10,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasec2_d",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.10694447497890297,
+   "mean_l3u": 0.10694447497890297,
+   "se_nw": 0.02132541748453989,
+   "se_nw_l3u": 0.02132541748453989,
+   "t": 5.014883064138538,
+   "t_l3u": 5.014883064138538,
+   "p": 1.042990002819018e-06,
+   "p_l3z": 1.042990002819018e-06,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasec3_d",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.0468041687341772,
+   "mean_l3u": 0.0468041687341772,
+   "se_nw": 0.0783518213406754,
+   "se_nw_l3u": 0.0783518213406754,
+   "t": 0.5973590394366414,
+   "t_l3u": 0.5973590394366414,
+   "p": 0.5508403998670676,
+   "p_l3z": 0.5508403998670676,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasee_alpha",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.2766985906329114,
+   "mean_l3u": 0.2766985906329114,
+   "se_nw": 0.14552974918416922,
+   "se_nw_l3u": 0.14552974918416922,
+   "t": 1.9013197795232013,
+   "t_l3u": 1.9013197795232013,
+   "p": 0.05847823289789561,
+   "p_l3z": 0.05847823289789561,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasef_delta",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.740492584556962,
+   "mean_l3u": 0.740492584556962,
+   "se_nw": 0.217243941211765,
+   "se_nw_l3u": 0.217243941211765,
+   "t": 3.408576462140064,
+   "t_l3u": 3.408576462140064,
+   "p": 0.0007677795015819844,
+   "p_l3z": 0.0007677795015819844,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phaseg_alpha",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.18130837848101264,
+   "mean_l3u": 0.18130837848101264,
+   "se_nw": 0.1027794309444896,
+   "se_nw_l3u": 0.1027794309444896,
+   "t": 1.7640531457985589,
+   "t_l3u": 1.7640531457985589,
+   "p": 0.07901679190325701,
+   "p_l3z": 0.07901679190325701,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasel_alpha",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.10605702953586497,
+   "mean_l3u": 0.10605702953586497,
+   "se_nw": 0.033889615822938715,
+   "se_nw_l3u": 0.033889615822938715,
+   "t": 3.129484562173131,
+   "t_l3u": 3.129484562173131,
+   "p": 0.0019717240450335526,
+   "p_l3z": 0.0019717240450335526,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasem_spread",
+   "status": "NO_SERIES",
+   "match": null
+  },
+  {
+   "key": "phasej_netA",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.03244149789029536,
+   "mean_l3u": 0.03244149789029536,
+   "se_nw": 0.03112318329632752,
+   "se_nw_l3u": 0.03112318329632752,
+   "t": 1.0423579613118623,
+   "t_l3u": 1.0423579613118623,
+   "p": 0.2983123454549297,
+   "p_l3z": 0.2983123454549297,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasek_m1net",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.03989106751054852,
+   "mean_l3u": 0.03989106751054852,
+   "se_nw": 0.0333940534607447,
+   "se_nw_l3u": 0.0333940534607447,
+   "t": 1.194556017508961,
+   "t_l3u": 1.194556017508961,
+   "p": 0.23345971280445088,
+   "p_l3z": 0.23345971280445088,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phaseo_netBASE",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.13595891139240507,
+   "mean_l3u": 0.13595891139240507,
+   "se_nw": 0.033664658822536955,
+   "se_nw_l3u": 0.033664658822536955,
+   "t": 4.0386243659593175,
+   "t_l3u": 4.0386243659593175,
+   "p": 7.273409740837666e-05,
+   "p_l3z": 7.273409740837666e-05,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasep_late",
+   "status": "SCORED",
+   "n": 129,
+   "mean": 0.129407503875969,
+   "mean_l3u": 0.129407503875969,
+   "se_nw": 0.050132765867541514,
+   "se_nw_l3u": 0.050132765867541514,
+   "t": 2.581295917681533,
+   "t_l3u": 2.581295917681533,
+   "p": 0.010969566550594374,
+   "p_l3z": 0.010969566550594374,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phaser_alpha",
+   "status": "COUNTS_ONLY",
+   "n": 237,
+   "mean": 0.10605702953586497,
+   "mean_l3u": 0.10605702953586497,
+   "se_nw": 0.033889615822938715,
+   "se_nw_l3u": 0.033889615822938715,
+   "t": 3.129484562173131,
+   "t_l3u": 3.129484562173131,
+   "p": 0.0019717240450335526,
+   "p_l3z": null,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": null,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phases_net",
+   "status": "SCORED",
+   "n": 129,
+   "mean": 0.111195653875969,
+   "mean_l3u": 0.111195653875969,
+   "se_nw": 0.050132765867541514,
+   "se_nw_l3u": 0.050132765867541514,
+   "t": 2.2180235211790436,
+   "t_l3u": 2.2180235211790436,
+   "p": 0.02831672555412718,
+   "p_l3z": 0.02831672555412718,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phaset_net",
+   "status": "SCORED",
+   "n": 129,
+   "mean": 0.111195653875969,
+   "mean_l3u": 0.111195653875969,
+   "se_nw": 0.050132765867541514,
+   "se_nw_l3u": 0.050132765867541514,
+   "t": 2.2180235211790436,
+   "t_l3u": 2.2180235211790436,
+   "p": 0.02831672555412718,
+   "p_l3z": 0.02831672555412718,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phasev_net",
+   "status": "COUNTS_ONLY",
+   "n": 237,
+   "mean": 0.13595891139240507,
+   "mean_l3u": 0.13595891139240507,
+   "se_nw": 0.033664658822536955,
+   "se_nw_l3u": 0.033664658822536955,
+   "t": 4.0386243659593175,
+   "t_l3u": 4.0386243659593175,
+   "p": 7.273409740837666e-05,
+   "p_l3z": null,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": null,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "phaseq_max5",
+   "status": "SCORED",
+   "n": 237,
+   "mean": 0.04241433514767933,
+   "mean_l3u": 0.04241433514767933,
+   "se_nw": 0.16701119476345913,
+   "se_nw_l3u": 0.16701119476345913,
+   "t": 0.25396103062283637,
+   "t_l3u": 0.25396103062283637,
+   "p": 0.7997467860913298,
+   "p_l3z": 0.7997467860913298,
+   "d_mean": 0.0,
+   "d_se": 0.0,
+   "d_t": 0.0,
+   "d_p": 0.0,
+   "worst": 0.0,
+   "match": true
+  },
+  {
+   "key": "l3r_delta",
+   "status": "NO_SERIES",
+   "match": null
+  },
+  {
+   "key": "l3s_ic",
+   "status": "NO_SERIES",
+   "match": null
+  },
+  {
+   "key": "l3_test",
+   "status": "NO_SERIES",
+   "match": null
+  },
+  {
+   "key": "l3p_test",
+   "status": "NO_SERIES",
+   "match": null
+  }
+ ],
+ "coverage": {
+  "n_dirs": 26,
+  "n_registered_dirs": 23,
+  "unregistered": [
+   {
+    "dir": "phasei_out",
+    "n_summary": 2,
+    "experiment": "phasei-exq5-formal-v1",
+    "verdict": "EXQ5_COST_ABSORBED",
+    "kind": null,
+    "audit_only": false,
+    "has_hypothesis_conclusion": true
+   },
+   {
+    "dir": "phaseu_out",
+    "n_summary": 1,
+    "experiment": "phaseu-nw-lag-audit-v1",
+    "verdict": "NW_LAG_SENSITIVITY_CONFIRMED",
+    "kind": "只读审计（不改变任何既有判定）",
+    "audit_only": true,
+    "has_hypothesis_conclusion": false
+   },
+   {
+    "dir": "probe_out",
+    "n_summary": 0,
+    "experiment": null,
+    "verdict": null,
+    "kind": null,
+    "audit_only": false,
+    "has_hypothesis_conclusion": false
+   }
+  ],
+  "n_hypothesis_unregistered": 1
+ },
+ "l3z_sets": {
+  "bonferroni": [
+   "gate6_d",
+   "phasec2_d",
+   "phasec_d",
+   "phasef_delta",
+   "phasel_alpha",
+   "phaseo_netBASE"
+  ],
+  "bh": [
+   "gate6_d",
+   "phasec2_d",
+   "phasec_d",
+   "phasef_delta",
+   "phasel_alpha",
+   "phaseo_netBASE",
+   "phasep_late"
+  ],
+  "by": [
+   "gate6_d",
+   "phasec2_d",
+   "phasec_d",
+   "phasef_delta",
+   "phasel_alpha",
+   "phaseo_netBASE"
+  ]
+ },
+ "l3aa_status": "ROBUST_AT_MAIN_SPEC_LAG_SENSITIVE"
+}

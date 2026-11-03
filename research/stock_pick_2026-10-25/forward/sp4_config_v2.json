@@ -1,0 +1,85 @@
+{
+ "version": "sp4-v2",
+ "parent_version": "sp4-v1",
+ "parent_sha256": "d4dacb7113cc72eebb88ccbf84ca692a5deafb21f0ad5e3a0434e5ae7d85fa9a",
+ "frozen_at": "2026-11-03",
+ "change_control": "sp4_config_v1 冻结哈希 d4dacb71 不可改；本文件是按变更控制流出的新版本。与 v1 的全部差异见 diff_from_v1 字段，其余逐字继承。",
+ "diff_from_v1": [
+  "U-4（2026-11-03 用户决策）：stock_weight 0.25 → 0.20。量化依据（R3-2 d4 预登记回测，strict 档）：25% 仓 MDD −20.00% 距门槛 −20% 仅 +2.4e-5（贴线不稳健，不得写达标）；20% 仓 +8.28% / −15.91%，年化与回撤两项标准均有余量。",
+  "rebalance_rule 文字同步：25% → 20%",
+  "U-5（2026-11-03 用户决策）：新增 deployment.initial_capital = 100000 元",
+  "U-5 风险注记（新增 known_limitations 条目）：10 万本金 × 20% 仓 ÷ 5 只 ≈ 每仓约 4,000 元，min_commission 5 元 ≈ 0.125%/边，成本被最低佣金下限主导；回测成本模型按比例假设，未单独量化 10 万本金档的整手/最低佣金交互——实盘前须以真实交割单校准（见 L3ae 结论：5 元下限主导成本，费率越低所需资金越大）。"
+ ],
+ "strategy": {
+  "universe": "A股（qfq_all 全量，含已退市股）",
+  "price_filter": [
+   1.0,
+   50.0
+  ],
+  "liquidity_filter": "amt20 > 500 万",
+  "band": "amt20 全市场分位 < 20%",
+  "f3_filter_entry": "f3pct <= 0.70",
+  "f3_rule_exit": "持仓股 f3pct > 0.70 即卖出",
+  "n_hold": 5,
+  "entry_rule": "池内按 amt20 降序取前 5 只（确定性；替代原随机买入）",
+  "exit_refill_rule": "按 amt20 降序补入，排除已持有",
+  "signal_time": "每月最后一个交易日收盘后",
+  "execution": "次月首个交易日收盘价",
+  "stock_weight": 0.2,
+  "cash_yield_annual": 0.03,
+  "rebalance_rule": "每月末把股票权重调回 20%（不做则不成立）"
+ },
+ "deployment": {
+  "initial_capital": 100000,
+  "decided_at": "2026-11-03",
+  "u5_note": "U-5 用户决策：本金 10 万元。<50 万档 5 元最低佣金主导成本（memory L3ae）；每仓约 4,000 元（20%/5 只），最低佣金 ≈ 0.125%/边。",
+  "board_permission": "d4 严格口径（沪深主板）；创业板无权限（U-2b，2026-11-03）"
+ },
+ "cost": {
+  "commission_rate": 0.00025,
+  "min_commission": 5.0,
+  "stamp_duty_sell": 0.0005,
+  "transfer_fee": 1e-05,
+  "spread_scenario": 0.001,
+  "note": "显性费用 + 0.10% 价差（S2 档）；与 v1 逐字相同，未按 10 万本金重标定"
+ },
+ "benchmark": {
+  "primary": "等权持有全部可买股票（档内等权）",
+  "secondary": "中证红利全收益 H00922"
+ },
+ "metrics": [
+  "累计收益",
+  "年化几何收益",
+  "日频MDD",
+  "年化波动",
+  "Calmar",
+  "月换手",
+  "实际成本",
+  "相对基准超额",
+  "配对差（vs 同换手随机）"
+ ],
+ "validation": {
+  "min_observation_months": 36,
+  "interim_review_every_months": 12,
+  "success_criteria": {
+   "annual_net_gt": 0.08,
+   "mdd_daily_ge": -0.2,
+   "excess_vs_benchmark_gt": 0.0
+  },
+  "invalidation_criteria": [
+   "连续 24 个月相对档内等权超额 < -5pp",
+   "日频 MDD 突破 -25%",
+   "档内可买股票数连续 6 个月 < 100",
+   "小盘流动性溢价（最小档 - 最大档）近 5 年 < 0"
+  ],
+  "no_peeking_rule": "观察期内不得因结果好坏提前结束或改参数"
+ },
+ "known_limitations": [
+  "买入规则由随机改为确定性（amt20 降序），与回测口径不同，但审计已证买入规则对期望无贡献",
+  "ST 历史状态不可回溯，未做 ST 过滤",
+  "成本未用真实交割单校准",
+  "仅能证明观察期内表现，不保证未来",
+  "U-5 注记：10 万本金档的整手取整与最低佣金（5 元 ≈ 0.125%/边）交互未在回测中单独量化，实盘成本可能高于按比例假设；Phase 3 前须以真实交割单校准",
+  "d4 口径（沪深主板）组合的收益/回撤以 R3-2 预登记回测（d4_strict_out/）为唯一量化来源；宽口径 sp4-v1 数字不可直接引用于 d4 组合"
+ ]
+}

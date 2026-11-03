@@ -1,0 +1,227 @@
+{
+  "universe_id": "U-L3P-30",
+  "source_pool": "data/_pool_518_a_share.txt",
+  "source_pool_size": 518,
+  "source_pool_doc": "docs/DATASET_POOL_2026-10-18.md",
+  "rule": "在源池内先剔除缺 qfq 文件的标的，再用固定种子 20261028 做无放回随机排列，按排列顺序逐只检查跨度内交易日数 >= 500，满足即入选，直到凑满 30 只。不用「代码排序前 N 只」——那会把样本全部压在 000xxx 段。",
+  "seed": 20261028,
+  "size": 30,
+  "span": {
+    "start": "2010-01-01",
+    "end": "2026-10-16"
+  },
+  "min_rows_in_span": 500,
+  "dropped_for_short_history": [],
+  "constituents": [
+    {
+      "symbol": "600806.SH",
+      "rows_total": 2761,
+      "rows_in_span": 1623,
+      "first_date": "2005-01-04",
+      "last_date": "2018-07-11"
+    },
+    {
+      "symbol": "002619.SZ",
+      "rows_total": 2128,
+      "rows_in_span": 2128,
+      "first_date": "2011-09-29",
+      "last_date": "2022-03-31"
+    },
+    {
+      "symbol": "002001.SZ",
+      "rows_total": 5231,
+      "rows_in_span": 4050,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "300033.SZ",
+      "rows_total": 4059,
+      "rows_in_span": 4054,
+      "first_date": "2009-12-25",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "603296.SH",
+      "rows_total": 771,
+      "rows_in_span": 771,
+      "first_date": "2023-08-08",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "601028.SH",
+      "rows_total": 3171,
+      "rows_in_span": 3171,
+      "first_date": "2011-11-07",
+      "last_date": "2025-03-26"
+    },
+    {
+      "symbol": "600175.SH",
+      "rows_total": 3520,
+      "rows_in_span": 2367,
+      "first_date": "2005-01-04",
+      "last_date": "2020-08-07"
+    },
+    {
+      "symbol": "002371.SZ",
+      "rows_total": 3946,
+      "rows_in_span": 3946,
+      "first_date": "2010-03-16",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "002071.SZ",
+      "rows_total": 3121,
+      "rows_in_span": 2360,
+      "first_date": "2006-10-12",
+      "last_date": "2021-05-06"
+    },
+    {
+      "symbol": "601288.SH",
+      "rows_total": 3942,
+      "rows_in_span": 3942,
+      "first_date": "2010-07-15",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "601618.SH",
+      "rows_total": 4063,
+      "rows_in_span": 3995,
+      "first_date": "2009-09-21",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "600519.SH",
+      "rows_total": 5220,
+      "rows_in_span": 4068,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "600795.SH",
+      "rows_total": 5133,
+      "rows_in_span": 3994,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "000895.SZ",
+      "rows_total": 4741,
+      "rows_in_span": 3856,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "300379.SZ",
+      "rows_total": 2773,
+      "rows_in_span": 2773,
+      "first_date": "2014-01-28",
+      "last_date": "2026-01-21"
+    },
+    {
+      "symbol": "601788.SH",
+      "rows_total": 4144,
+      "rows_in_span": 4054,
+      "first_date": "2009-08-18",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "600871.SH",
+      "rows_total": 5066,
+      "rows_in_span": 3905,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "000002.SZ",
+      "rows_total": 5088,
+      "rows_in_span": 3919,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "300108.SZ",
+      "rows_total": 3190,
+      "rows_in_span": 3190,
+      "first_date": "2010-08-25",
+      "last_date": "2025-04-23"
+    },
+    {
+      "symbol": "002288.SZ",
+      "rows_total": 3415,
+      "rows_in_span": 3336,
+      "first_date": "2009-09-03",
+      "last_date": "2024-06-26"
+    },
+    {
+      "symbol": "600891.SH",
+      "rows_total": 3518,
+      "rows_in_span": 2321,
+      "first_date": "2005-01-04",
+      "last_date": "2021-04-30"
+    },
+    {
+      "symbol": "601939.SH",
+      "rows_total": 4613,
+      "rows_in_span": 4062,
+      "first_date": "2007-09-25",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "601818.SH",
+      "rows_total": 3903,
+      "rows_in_span": 3903,
+      "first_date": "2010-08-18",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "000792.SZ",
+      "rows_total": 4703,
+      "rows_in_span": 3692,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "600677.SH",
+      "rows_total": 3540,
+      "rows_in_span": 2375,
+      "first_date": "2005-01-04",
+      "last_date": "2020-04-29"
+    },
+    {
+      "symbol": "000918.SZ",
+      "rows_total": 3824,
+      "rows_in_span": 3191,
+      "first_date": "2005-01-04",
+      "last_date": "2023-05-31"
+    },
+    {
+      "symbol": "688036.SH",
+      "rows_total": 1705,
+      "rows_in_span": 1705,
+      "first_date": "2019-09-30",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "600031.SH",
+      "rows_total": 5241,
+      "rows_in_span": 4061,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "600019.SH",
+      "rows_total": 5149,
+      "rows_in_span": 3974,
+      "first_date": "2005-01-04",
+      "last_date": "2026-10-16"
+    },
+    {
+      "symbol": "603986.SH",
+      "rows_total": 2258,
+      "rows_in_span": 2258,
+      "first_date": "2016-08-18",
+      "last_date": "2026-10-16"
+    }
+  ]
+}

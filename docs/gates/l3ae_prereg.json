@@ -1,0 +1,175 @@
+{
+ "experiment_id": "L3ae",
+ "title": "phasei 成本档补全：真实费率与最低佣金敏感性",
+ "version": "1.0",
+ "written_at": "2026-10-29",
+ "scope": {
+  "what": "对 phasei（exQ5 可成交）在既有两档成本（0.1% / 0.3%）之外，补算真实等价单边费率档与最低佣金影响档。",
+  "how": "复用 phasei 自身的成本函数口径 `cost_pp_month = 2 × 单边换手 × 费率 × 100`，用已冻结的换手与逐月 alpha 复算。**不重跑任何回测、不改选股、不改持有期、不改池。**",
+  "why": "phasei 的判定 `C_cost=false` 只对预登记主成本 0.3% 成立。0.3% 是真实综合费率（0.051%）的 5.9 倍压力参数，对外引用「成本吸收」时读者无从知道真实费率下是什么结果。补一档是披露完整性问题，不是为提高通过数——因为补出来的档不能改变任何判定的枚举值。",
+  "not_doing": [
+   "不新增因子、不新增策略、不启动实盘",
+   "不重跑回测、不复用别的信号的换手率",
+   "不因某一档的 t 更大而把该档设为主口径",
+   "不改 phasei 的预登记与产物"
+  ]
+ },
+ "inputs_frozen": {
+  "phasei_summary": {
+   "path": "phasei_out/8f5c35121fdb/summary.json",
+   "sha256": "fcf36b7a64331251f4cfd6c48df84739ee91132fa9a7e39f95cb9a551b745e09"
+  },
+  "phasei_monthly": {
+   "path": "phasei_out/8f5c35121fdb/monthly.csv",
+   "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a"
+  },
+  "broker_fee_doc": {
+   "path": "docs/BROKER_FEE_CALCULATION_2026-10-21.md",
+   "sha256": "12117a522cb0552c70e938759b45d463f8c156799eb137d8e4e92cfa91dac951"
+  },
+  "fee_constants_source": {
+   "path": "scripts/run_phase_o_fee_convention.py",
+   "sha256": "b95b4bbfd3749b44aaf9ceb2028265d7b517887f73bd8a7d3af1147b345c5947"
+  },
+  "l3ad_prereg": {
+   "path": "docs/gates/l3ad_prereg.json",
+   "sha256": "a5d86c50e85c8644257fb7f259986fa79cee7a2cf75751b592f38793f2ee3e26"
+  },
+  "l3ad_result": {
+   "path": "reports/gates/H-L3AD-INDEPENDENCE/l3ad_independence.json",
+   "sha256": "f54b0615b0d3e0ec7b89441832466d647d5eab4e6cf785c75b4d5a152af5b743"
+  }
+ },
+ "rate_convention": {
+  "components": {
+   "commission": 0.00025,
+   "stamp_duty": 0.0005,
+   "transfer_fee": 0.00001
+  },
+  "equivalent_single_side": "佣金 0.025%（双边）+ 印花税 0.05%（仅卖出）+ 过户费 0.001%（双边）⇒ 等价对称单边 = (2×(0.00025+0.00001)+0.0005)/2 = 0.00051",
+  "verified_by": "scripts/tests/test_phase_o.py::test_equivalent_symmetric_rate_matches_prereg 断言该值等于 0.00051（abs=1e-9），并断言对称等价与不对称 BASE 的成本逐位相同",
+  "min_commission": {
+   "amount_yuan": 5.0,
+   "rule": "A 股每笔佣金不足 5 元按 5 元收（东方财富官方协议）",
+   "applies_when": "单笔金额 < 5 / 0.00025 = 20,000 元"
+  }
+ },
+ "tiers": [
+  {
+   "id": "T_0p1",
+   "label": "0.1%（既有档，复现用）",
+   "rate": 0.001,
+   "source": "phasei summary cost.0.1pct",
+   "role": "对照 —— 必须与 phasei 产物逐位一致，否则判 G1 失败"
+  },
+  {
+   "id": "T_0p3",
+   "label": "0.3%（既有档，预登记主成本）",
+   "rate": 0.003,
+   "source": "phasei summary cost.0.3pct",
+   "role": "对照 —— 同上；这也是判定 C_cost 的档位"
+  },
+  {
+   "id": "T_base_1e8",
+   "label": "0.051%（真实等价单边，1 亿档，无最低佣金）",
+   "rate": 0.00051,
+   "source": "rate_convention.equivalent_single_side",
+   "role": "本阶段新增的主披露档"
+  },
+  {
+   "id": "T_base_3e7",
+   "label": "0.0585%（3000 万档，含 5 元最低佣金）",
+   "rate": 0.000585,
+   "source": "由 n_keep 中位数与 W=3000 万算单笔金额 15,400 元 → 佣金实收 5 元 = 0.0325% → 等价单边 0.0325%+0.025%+0.001%",
+   "role": "资金规模敏感性"
+  },
+  {
+   "id": "T_base_1e7",
+   "label": "0.1234%（1000 万档，含 5 元最低佣金）",
+   "rate": 0.001234,
+   "source": "单笔金额 5,133 元 → 佣金实收 5 元 = 0.0974% → 等价单边 0.0974%+0.025%+0.001%",
+   "role": "资金规模敏感性（小资金端）"
+  }
+ ],
+ "t_statistic_convention": {
+  "what_phasei_uses": "t_net = net / (sd_gross_iid / sqrt(n))，其中 sd 是逐月 alpha 的样本标准差（ddof=1），**与费率无关**",
+  "why_it_matters": "这是 iid 口径，与项目主口径 NW(3) 不一致；两者在 phasei 上差 se_iid/se_nw3 = 0.048414/0.036086 ≈ 1.34 倍",
+  "what_this_stage_reports": "两套都报：`t_iid`（与 phasei 产物可比）与 `t_nw3`（与项目主口径可比）。**判定仍以预登记口径 iid 为准，不因 NW(3) 更大而改判**",
+  "known_simplification": "成本按确定性扣减，未计入逐月换手波动对净收益方差的贡献。真实 se_net 应 ≥ se_gross。方向已知（会低估 t），幅度未测——因为 phasei 的 monthly.csv 只有逐月 alpha，没有逐月换手"
+ },
+ "predictions": [
+  {
+   "id": "P1",
+   "timing": "priori",
+   "claim": "0.1% 与 0.3% 两档的成本、净值、t 必须与 phasei 产物逐位复现",
+   "mechanism": "同一公式、同一 to、同一 mean、同一 sd；若不同则说明我改了口径",
+   "falsified_if": "任一项的相对偏差 > 1e-6"
+  },
+  {
+   "id": "P2",
+   "timing": "priori",
+   "claim": "0.051% 档 iid t 落在 [2.90, 3.05]，net 落在 [0.1435, 0.1449]pp",
+   "mechanism": "cost = 2×0.18862×0.00051×100 = 0.01923924pp；net = 0.16341054−0.01923924 = 0.1441713；t = 0.1441713/0.0484143 = 2.9779",
+   "falsified_if": "超出区间"
+  },
+  {
+   "id": "P3",
+   "timing": "priori",
+   "claim": "同一档的 NW(3) t 约为 iid 的 1.34 倍（落在 [3.90, 4.10]）",
+   "mechanism": "se_iid/se_nw3 = 0.0484143/0.036086 = 1.3416；alpha 负自相关使 se_NW < se_iid，故 t_NW 更大",
+   "falsified_if": "超出区间"
+  },
+  {
+   "id": "P4",
+   "timing": "priori",
+   "claim": "两档含最低佣金的档位中，3000 万档 t_iid 仍 > 1.96、1000 万档 t_iid 仍 > 1.96",
+   "mechanism": "0.0585% ⇒ net 0.14134、t 2.919；0.1234% ⇒ net 0.11686、t 2.414。两者均高于 1.96",
+   "falsified_if": "任一档 t_iid ≤ 1.96"
+  },
+  {
+   "id": "P5",
+   "timing": "priori",
+   "claim": "phasei 的 verdict 不因本阶段而改变，仍为 EXQ5_COST_ABSORBED",
+   "mechanism": "判定按预登记 primary_cost=0.3% 出具，本阶段只补披露档，不改判定档",
+   "falsified_if": "本阶段输出任何不同的 verdict 字符串"
+  },
+  {
+   "id": "P6",
+   "timing": "priori",
+   "claim": "0.3% 档在 NW(3) 口径下 t 仍 < 1.96（不因换口径而变成显著）",
+   "mechanism": "0.0502385/0.036086 = 1.3922",
+   "falsified_if": "t_nw3 ≥ 1.96"
+  },
+  {
+   "id": "P7",
+   "timing": "descriptive",
+   "claim": "最低佣金何时不再主导：单笔金额 ≥ 20,000 元",
+   "mechanism": "5/0.00025 = 20,000 元；对 n_keep 中位 1948 只需 W ≥ 3,896 万元",
+   "falsified_if": "—（描述性）"
+  }
+ ],
+ "gates": {
+  "G1_reproduce_existing": "0.1% 与 0.3% 两档的 cost/net/t 与 phasei 产物的相对偏差 ≤ 1e-6",
+  "G2_cost_linear_in_rate": "同一 to 下 cost(rate) / rate 为常数（相对偏差 ≤ 1e-12）",
+  "G3_net_identity": "net = mean_gross − cost，逐档成立（偏差 ≤ 1e-12）",
+  "G4_verdict_unchanged": "输出目录里不得出现与 phasei 不同的 verdict 字符串",
+  "G5_se_invariance": "se_iid 由逐月数据独立重算，与 summary 反推值偏差 ≤ 1e-6；且不随 rate 变",
+  "G6_t_ratio": "t_nw3 / t_iid 恒等于 se_iid / se_nw3（逐档偏差 ≤ 1e-12）",
+  "G7_no_new_backtest": "本阶段不导入任何回测引擎、不读写 *_out 目录（只读冻结输入）",
+  "G8_min_commission_threshold": "单笔金额 ≥ 20,000 元时含最低佣金的等效费率必须回落为 0.051%（偏差 ≤ 1e-9）"
+ },
+ "status_rule": {
+  "allowed": [
+   "COST_TIERS_COMPLETED",
+   "COST_TIERS_COMPLETED_WITH_DEFECTS",
+   "BLOCKED_BY_REPRODUCTION_FAILURE"
+  ]
+ },
+ "neutrality_note": "本阶段新增的全部档位都不能改变任何枚举判定，所以不存在「为提高通过数而加档」的动机。若 P2 成立而 P6 也成立，对外表述必须是「真实费率下为正、压力费率下不显著」，而不是「成本吸收已被推翻」。",
+ "outputs": {
+  "dir": "reports/gates/H-L3AE-COST-TIERS/",
+  "report": "reports/L3AE_PHASEI_COST_TIERS.md",
+  "sheet": "docs/DELIVERABLE_QUOTE_SHEET_L3AE.md",
+  "note": "不覆盖 L3ad 的清单，不覆盖 L3y 定稿"
+ }
+}

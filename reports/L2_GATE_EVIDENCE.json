@@ -1,0 +1,143 @@
+{
+  "all_passed": true,
+  "block_vs_iid": {
+    "block_keeps_correlation": true,
+    "block_lag1": 0.7795773975318694,
+    "iid_destroys_correlation": true,
+    "iid_lag1": -0.004231588222387893,
+    "original_lag1": 0.8045305452210664
+  },
+  "generated_at": "2026-10-27T15:31:12+00:00",
+  "limitations": [
+    "stationary bootstrap 只重排历史日收益，不会产生历史上没出现过的亏损幅度：真实尾部可能更厚。",
+    "块长是主观参数，已用 10/20/40/60 四档做敏感性。",
+    "E1 与 E2 互补而非替代：块抽样保留极端日，E2 可能给出『可重复』的假象。"
+  ],
+  "reproducible": {
+    "digest": "f1d392da1ff390d6143029ba5851f76008ba559b611ab74d81eb3f80378c674d",
+    "same_seed_identical": true
+  },
+  "source_curve": {
+    "file": "reports\\gates\\H-L1B-MACROSS-000001\\l1b_result.json",
+    "leg": "stressed",
+    "missing_valuation_days": 0,
+    "observations": 1460
+  },
+  "spec": {
+    "block_lengths": [
+      20,
+      10,
+      40,
+      60
+    ],
+    "max_cvar5": -0.45,
+    "max_mdd_p95": 0.4,
+    "max_terminal_loss_p5": -0.3,
+    "mean_block_length": 20,
+    "min_repeatable_ratio": 0.5,
+    "min_trimmed_return": 0.0,
+    "replications": 2000,
+    "seed": 20261027,
+    "top_day_fraction": 0.01,
+    "trim_profile_fractions": [
+      0.002,
+      0.005,
+      0.01,
+      0.02,
+      0.05
+    ]
+  },
+  "standards": {
+    "IID 在回撤上系统性低估（块抽样更保守）": true,
+    "IID 的期末收益分布退化为单点（证明其无信息）": true,
+    "剔除剖面单调（剔除越多收益越低）": true,
+    "同种子重跑逐位一致": true,
+    "块抽样保留自相关且 IID 摧毁它": true,
+    "终态覆盖无静默缺口": true
+  },
+  "tail_gap": {
+    "block": {
+      "cvar5": -0.3188218994775874,
+      "loss_probability": 0.0945,
+      "mdd_p95": 0.538013654355127,
+      "terminal_p5": -0.1790323175632501
+    },
+    "block_terminal_std": 1.479104079241148,
+    "iid": {
+      "cvar5": 1.0231103999999955,
+      "loss_probability": 0.0,
+      "mdd_p95": 0.4877341139703854,
+      "terminal_p5": 1.0231103999999966
+    },
+    "iid_optimism": {
+      "loss_probability_diff": -0.0945,
+      "mdd_p95_diff": -0.05027954038474164,
+      "terminal_p5_diff": 1.2021427175632469
+    },
+    "iid_terminal_degenerate": true,
+    "iid_terminal_std": 2.74003526574817e-15,
+    "iid_understates_risk": true,
+    "interpretation": "IID 置换不改变复合收益，期末收益分布退化为单点（std≈0）：它对『收益分布』零信息，只在回撤上给出系统性偏低的估计。"
+  },
+  "trim_profile": {
+    "first_nonpositive_at_days": 15,
+    "monotone_decreasing": true,
+    "profile": [
+      {
+        "fraction": 0.002,
+        "removed_days": 3,
+        "removed_total_return": 0.2932373590529518,
+        "trimmed_return": 0.5643767061303708
+      },
+      {
+        "fraction": 0.005,
+        "removed_days": 7,
+        "removed_total_return": 0.7322808508293026,
+        "trimmed_return": 0.16788822033763395
+      },
+      {
+        "fraction": 0.01,
+        "removed_days": 15,
+        "removed_total_return": 1.8050387904108147,
+        "trimmed_return": -0.2787584945648096
+      },
+      {
+        "fraction": 0.02,
+        "removed_days": 29,
+        "removed_total_return": 4.301948696198887,
+        "trimmed_return": -0.618421354878363
+      },
+      {
+        "fraction": 0.05,
+        "removed_days": 73,
+        "removed_total_return": 22.06503959160105,
+        "trimmed_return": -0.9122867146199607
+      }
+    ]
+  },
+  "verdicts": {
+    "cases": {
+      "extreme_dependence": "L2_REJECTED_EXTREME_DEPENDENCE",
+      "inconclusive": "L2_INCONCLUSIVE",
+      "passed": "L2_PASSED",
+      "prerequisite": "L2_BLOCKED_PREREQUISITE",
+      "spec": "L2_REJECTED_SPEC",
+      "tail": "L2_REJECTED_TAIL_RISK"
+    },
+    "coverage_ok": true,
+    "covered_verdicts": [
+      "L2_BLOCKED_PREREQUISITE",
+      "L2_INCONCLUSIVE",
+      "L2_PASSED",
+      "L2_REJECTED_EXTREME_DEPENDENCE",
+      "L2_REJECTED_SPEC",
+      "L2_REJECTED_TAIL_RISK"
+    ],
+    "not_covered": [
+      "L2_REJECTED_PATH_DEPENDENCE"
+    ],
+    "not_covered_justification": {
+      "L2_REJECTED_PATH_DEPENDENCE": "需要一条『整段收益为正、但打乱顺序后优势消失』的序列；已在 tests/gates/test_gates_l2.py::test_path_dependence_rejected_when_shuffle_kills_edge 中构造并验证（该序列同时会触发 E1，故终态归入 E1）。"
+    }
+  }
+}

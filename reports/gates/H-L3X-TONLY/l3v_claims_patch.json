@@ -1,0 +1,46 @@
+{
+ "generated_from": "H-L3X-TONLY-000001",
+ "note": "与 L3w 的补丁一起合并；合并后必须重跑 L3v 闸门",
+ "patches": [
+  {
+   "key": "gate1_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.2174562874680217,
+   "source": "H-L3X-TONLY-000001"
+  },
+  {
+   "key": "gate2_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.5691736601212437,
+   "source": "H-L3X-TONLY-000001"
+  },
+  {
+   "key": "gate4_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.34585042721601933,
+   "source": "H-L3X-TONLY-000001"
+  },
+  {
+   "key": "gate5_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.05532348851443359,
+   "source": "H-L3X-TONLY-000001"
+  },
+  {
+   "key": "gate6_d",
+   "from": "NOT_GRADED",
+   "to": "QUOTABLE_MARGINAL",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE_MARGINAL",
+   "ratio_primary": 1.657745315415111,
+   "source": "H-L3X-TONLY-000001"
+  }
+ ]
+}

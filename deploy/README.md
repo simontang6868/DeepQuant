@@ -1,5 +1,9 @@
 # 云主机部署清单（证据引擎）
 
+> **2026-11-03 已完成首次实际部署**（腾讯云 110.40.190.225，/opt/quant）：
+> 逐文件校验 PASS（10,948 文件）、四源自检 PASS、定时器就绪。
+> 详见 `reports/DEPLOY_RECORD_2026-11-03.md`——与本文冲突处以部署记录为准。
+
 > 这台机器**只做证据**：更新数据、跑月末决策、落台账、发心跳。
 > **不下单、不接券商、没有任何交易凭证。** 若有人要求在这台机器上放券商账号，说明任务被误解了。
 
@@ -7,8 +11,8 @@
 
 | 项 | 说明 |
 | --- | --- |
-| IP + 用户名 | 只开 SSH 密钥登录，不提供密码 |
-| 系统 | Ubuntu 22.04/24.04（Debian 12 亦可） |
+| IP + 用户名 | 首次可用密码登录装密钥，之后走密钥（本机不留密码文件） |
+| 系统 | Ubuntu 22.04/24.04（Debian 12 亦可）；**TencentOS Server 4 已验证**（dnf 分支，Python 需 ≥3.12，bootstrap 会自动从 EPOL 装 python3.12） |
 | 磁盘 | ≥ 40 GB（行情数据约 250 MB，但 ADJ 重建要写一份 stage 副本，日志与备份按年增长） |
 | 出网 | 需能直连腾讯 / 新浪行情接口与 GitHub（见第 3 步逐源验证） |
 
@@ -24,24 +28,24 @@ python deploy/bin/migrate_data.py manifest \
 rsync -az --info=progress2 \
     --exclude '.git/' --exclude 'data/' --exclude 'var/' --exclude '.venv/' \
     --exclude 'research/stock_pick_2026-10-25/forward/universe_state/' \
-    ./ user@HOST:/opt/deepquant/
+    ./ user@HOST:/opt/quant/
 
 # 1.3 上传清单与数据（数据单独传，便于断点续传与单独校验）
-rsync -az var/migrate_manifest.json user@HOST:/opt/deepquant/var/
-rsync -az data/exec_all user@HOST:/opt/deepquant/data/
-rsync -az data/qfq_all  user@HOST:/opt/deepquant/data/
+rsync -az var/migrate_manifest.json user@HOST:/opt/quant/var/
+rsync -az data/exec_all user@HOST:/opt/quant/data/
+rsync -az data/qfq_all  user@HOST:/opt/quant/data/
 ```
 
 ## 2. 主机：初始化
 
 ```bash
-sudo /opt/deepquant/deploy/bootstrap.sh --repo /opt/deepquant
+sudo /opt/quant/deploy/bootstrap.sh --repo /opt/quant
 # 确认 SSH 端口放行无误后再决定是否启用防火墙：
-#   sudo /opt/deepquant/deploy/bootstrap.sh --enable-firewall
+#   sudo /opt/quant/deploy/bootstrap.sh --enable-firewall
 ```
 
 `bootstrap.sh` 会做：装依赖 → 时区 Asia/Shanghai → chrony 校时 → 建 `deepquant` 系统用户
-→ 建 venv 装固定版本依赖 → 生成 `/opt/deepquant/env` → 装 3 个 timer + logrotate
+→ 建 venv 装固定版本依赖 → 生成 `/opt/quant/env` → 装 3 个 timer + logrotate
 → 配置防火墙规则 → **跑一次行情源自检**。
 
 > ⚠️ 防火墙默认只配置不启用。在 SSH 端口非 22 的机器上，`ufw enable` 会当场切断会话。
@@ -49,7 +53,7 @@ sudo /opt/deepquant/deploy/bootstrap.sh --repo /opt/deepquant
 ## 3. 逐源验证（R2 要求：不通就上报，不换源）
 
 ```bash
-cd /opt/deepquant
+cd /opt/quant
 .venv/bin/python deploy/bin/preflight_sources.py
 ```
 
@@ -66,7 +70,7 @@ cd /opt/deepquant
 ## 4. 迁移校验（逐文件）
 
 ```bash
-cd /opt/deepquant
+cd /opt/quant
 .venv/bin/python deploy/bin/migrate_data.py verify --manifest var/migrate_manifest.json
 ```
 
@@ -77,10 +81,10 @@ cd /opt/deepquant
 ## 5. 试跑
 
 ```bash
-sudo -u deepquant /opt/deepquant/deploy/bin/daily_chain.sh --dry-run
-sudo -u deepquant /opt/deepquant/deploy/bin/daily_chain.sh            # 真跑一次
-sudo -u deepquant /opt/deepquant/deploy/bin/backup_offsite.sh
-cat /opt/deepquant/research/stock_pick_2026-10-25/forward/heartbeat.json
+sudo -u deepquant /opt/quant/deploy/bin/daily_chain.sh --dry-run
+sudo -u deepquant /opt/quant/deploy/bin/daily_chain.sh            # 真跑一次
+sudo -u deepquant /opt/quant/deploy/bin/backup_offsite.sh
+cat /opt/quant/research/stock_pick_2026-10-25/forward/heartbeat.json
 ```
 
 `--dry-run` 的心跳 `mode` 是 `DRY_RUN`，它与真跑的 `DECIDED` / `NOT_DUE` 明确区分——
@@ -89,7 +93,7 @@ cat /opt/deepquant/research/stock_pick_2026-10-25/forward/heartbeat.json
 ## 6. 外部心跳（必配）
 
 在 healthchecks.io（或同类）建一个每日检查：周期 1 天、宽限 3 小时。
-把 ping URL 填进 `/opt/deepquant/env` 的 `DEEPQUANT_HEARTBEAT_PING_URL`。
+把 ping URL 填进 `/opt/quant/env` 的 `DEEPQUANT_HEARTBEAT_PING_URL`。
 
 > 机内 `heartbeat.json` 只能证明"这台机器认为它跑过了"。整机宕机时**没有任何进程**
 > 会去报告"我没跑"。这一条是唯一能覆盖整机故障的机制。

@@ -1,0 +1,342 @@
+{
+  "acceptance": {
+    "all_passed": true,
+    "passed_count": 6,
+    "standards": {
+      "standard_1_window_structure": true,
+      "standard_2_selection_separation": true,
+      "standard_3_verdict_discrimination": true,
+      "standard_4_verdict_taxonomy": true,
+      "standard_5_no_compounded_equity": true,
+      "standard_6_prerequisite_traceability": true
+    },
+    "total": 6
+  },
+  "gaps": [
+    "正收益折占比 51.9% 低于阈值 60%：折间一致性不达标（不属于「样本内外背离」，是没有一致性）",
+    "折不是真正的前瞻样本外：整段历史在 L1a/L2 阶段已被看过，L3 测的是参数稳健性",
+    "策略在同一标的上只有一条价格路径，折间并不独立（同一只股票的波动体制有延续性）",
+    "L1b/L3 未在事件驱动内核上重跑：L3 走的是日线引擎，成交假设与 L1a 一致"
+  ],
+  "generated_at": "2026-10-28T01:02:12+0800",
+  "main_run": {
+    "folds": 27,
+    "preliminary_verdict": "L3_REJECTED_INCONSISTENT_FOLDS",
+    "summary": {
+      "divergent_fold_ratio": 0.37037037037037035,
+      "divergent_folds": 10,
+      "folds_failed": 0,
+      "folds_total": 27,
+      "folds_usable": 27,
+      "median_wfe": 0.0,
+      "naive_sum_of_fold_returns": 1.07873369,
+      "test_drawdown_max": 0.26807124501165663,
+      "test_drawdown_median": 0.10096244584706436,
+      "test_positive_fold_ratio": 0.5185185185185185,
+      "test_positive_folds": 14,
+      "test_return_max": 0.3411683339999998,
+      "test_return_mean": 0.039953099629629625,
+      "test_return_median": 0.009461340000000096,
+      "test_return_min": -0.11212533999999985,
+      "test_return_std": 0.11955432931207588,
+      "train_positive_fold_ratio": 0.8148148148148148,
+      "train_positive_folds": 22,
+      "train_return_mean": 0.3348909948148148,
+      "wfe_samples": 22
+    },
+    "verdict": "L3_BLOCKED_PREREQUISITE"
+  },
+  "spec": "docs\\gates\\specs\\H_L3_MACROSS_000001.json",
+  "standard_1_window_structure": {
+    "adjacency_ok": true,
+    "adjacent_folds": 27,
+    "duplicated_test_days": [],
+    "first_train_start": "2010-01-04",
+    "folds": 27,
+    "folds_in_main_run": 27,
+    "folds_match_main_run": true,
+    "independent": true,
+    "last_test_end": "2026-05-22",
+    "passed": true,
+    "rows_before_span_slice": 5140,
+    "span_applied": {
+      "end": "2026-10-16",
+      "start": "2010-01-01"
+    },
+    "step_days": 126,
+    "test_day_overlap_total": 0,
+    "test_days": 126,
+    "train_days": 504,
+    "unused_tail_days": 98
+  },
+  "standard_2_selection_separation": {
+    "detail": [
+      {
+        "distinct_params_in_train": 4,
+        "fold": 1,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 2,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 3,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 4,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 5,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 6,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 7,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 8,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 9,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 10,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 11,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 12,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 13,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 14,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 15,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 16,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 17,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 18,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 19,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      },
+      {
+        "distinct_params_in_train": 4,
+        "fold": 20,
+        "test_calls": 1,
+        "test_used_best_params": true,
+        "train_calls": 4
+      }
+    ],
+    "expected_total": 100,
+    "folds_checked": 20,
+    "grid_points": 4,
+    "passed": true,
+    "test_calls_exactly_one": true,
+    "test_used_train_best": true,
+    "total_backtests": 100,
+    "train_calls_all_full_grid": true,
+    "train_params_distinct": true
+  },
+  "standard_3_verdict_discrimination": {
+    "cases": {
+      "全趋势": {
+        "actual": "L3_PASSED",
+        "divergent_folds": 0,
+        "elapsed_seconds": 2.04,
+        "expected": "L3_PASSED",
+        "folds": 19,
+        "matched": true,
+        "median_wfe": 0.45533784017661055,
+        "test_positive_fold_ratio": 1.0,
+        "test_return_mean": 0.09539456662769161,
+        "train_positive_fold_ratio": 1.0
+      },
+      "趋势后转震荡": {
+        "actual": "L3_REJECTED_INCONSISTENT_FOLDS",
+        "divergent_folds": 1,
+        "elapsed_seconds": 2.04,
+        "expected": "L3_REJECTED_INCONSISTENT_FOLDS",
+        "folds": 19,
+        "matched": true,
+        "median_wfe": 0.45533784017661055,
+        "test_positive_fold_ratio": 0.47368421052631576,
+        "test_return_mean": 0.02532546147209271,
+        "train_positive_fold_ratio": 0.5789473684210527
+      },
+      "趋势震荡交替": {
+        "actual": "L3_REJECTED_SYSTEMATIC_DIVERGENCE",
+        "divergent_folds": 7,
+        "elapsed_seconds": 2.23,
+        "expected": "L3_REJECTED_SYSTEMATIC_DIVERGENCE",
+        "folds": 20,
+        "matched": true,
+        "median_wfe": -0.395733375388045,
+        "test_positive_fold_ratio": 0.65,
+        "test_return_mean": -0.0779861574187835,
+        "train_positive_fold_ratio": 0.7
+      }
+    },
+    "distinct_verdicts": [
+      "L3_PASSED",
+      "L3_REJECTED_INCONSISTENT_FOLDS",
+      "L3_REJECTED_SYSTEMATIC_DIVERGENCE"
+    ],
+    "passed": true
+  },
+  "standard_4_verdict_taxonomy": {
+    "actual": {
+      "契约非法→契约问题": "L3_REJECTED_SPEC",
+      "折数不足→不可判定": "L3_INCONCLUSIVE",
+      "测试窗重叠→不可判定": "L3_INCONCLUSIVE",
+      "窗口切不出折→窗口问题": "L3_REJECTED_WINDOW",
+      "跨度数据不足→数据问题": "L3_REJECTED_DATA"
+    },
+    "expected": {
+      "契约非法→契约问题": "L3_REJECTED_SPEC",
+      "折数不足→不可判定": "L3_INCONCLUSIVE",
+      "测试窗重叠→不可判定": "L3_INCONCLUSIVE",
+      "窗口切不出折→窗口问题": "L3_REJECTED_WINDOW",
+      "跨度数据不足→数据问题": "L3_REJECTED_DATA"
+    },
+    "mismatch": {},
+    "note": "折数不足与重叠都不可判定，但两者不能都算通过；数据不足与窗口不足分开报，避免把数据问题读成策略问题。",
+    "passed": true
+  },
+  "standard_5_no_compounded_equity": {
+    "counterexample_only": {
+      "arithmetic_sum": 1.07873369,
+      "compounded_product": 1.4476965823938261,
+      "warning": "仅用于说明该口径为什么被禁，不得引用为收益。"
+    },
+    "forbidden_fields_present": [],
+    "has_naive_sum_field": true,
+    "limitation_mentions_ban": true,
+    "limitation_mentions_scope": true,
+    "passed": true
+  },
+  "standard_6_prerequisite_traceability": {
+    "matches_recorded": true,
+    "note": "缺失或解析失败一律记 UNKNOWN，绝不默认通过；UNKNOWN 会让终态降为 BLOCKED_PREREQUISITE。",
+    "passed": true,
+    "recorded_in_result": {
+      "L1a": "L1A_REJECTED_BOUNDS",
+      "L1b": "L1B_BLOCKED_PREREQUISITE",
+      "L2": "L2_REJECTED_EXTREME_DEPENDENCE"
+    },
+    "sources": {
+      "L1a": {
+        "exists": true,
+        "path_in_file": [
+          "verdict"
+        ],
+        "source": "reports\\gates\\H-L1A-MACROSS-000001\\result.json",
+        "value": "L1A_REJECTED_BOUNDS"
+      },
+      "L1b": {
+        "exists": true,
+        "path_in_file": [
+          "result",
+          "verdict"
+        ],
+        "source": "reports\\gates\\H-L1B-MACROSS-000001\\l1b_result.json",
+        "value": "L1B_BLOCKED_PREREQUISITE"
+      },
+      "L2": {
+        "exists": true,
+        "path_in_file": [
+          "result",
+          "verdict"
+        ],
+        "source": "reports\\gates\\H-L2-MACROSS-000001\\l2_result.json",
+        "value": "L2_REJECTED_EXTREME_DEPENDENCE"
+      }
+    },
+    "unknown_count": 0
+  },
+  "walk_forward_digest": "39f82eca52fe6483a2266c909cfdf16d7494c9a372e56057cf4c1303ff28fdb1"
+}

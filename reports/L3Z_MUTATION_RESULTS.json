@@ -1,0 +1,35 @@
+{
+ "experiment_id": "H-L3Z-MUTATION",
+ "target": "backend/src/deepquant/gates/multiplicity.py",
+ "test": "tests/gates/test_gates_l3z_audit.py",
+ "note": "审计要求：故意制造错误，确认测试能失败。未抓到即测试无效，需补例子。",
+ "mutations": [
+  {
+   "name": "M1_alpha_rebinds_q",
+   "caught": true,
+   "result": "1 failed, 29 passed in 1.25s"
+  },
+  {
+   "name": "M2_counts_only_scored",
+   "caught": true,
+   "result": "3 failed, 27 passed in 1.21s"
+  },
+  {
+   "name": "M3_monotonicity_noop",
+   "caught": true,
+   "result": "1 failed, 29 passed in 1.21s"
+  },
+  {
+   "name": "M4_dedup_by_path",
+   "caught": true,
+   "result": "1 failed, 29 passed in 1.21s"
+  },
+  {
+   "name": "M5_prescreen_inside",
+   "caught": true,
+   "result": "4 failed, 26 passed in 1.23s"
+  }
+ ],
+ "n_caught": 5,
+ "n_total": 5
+}

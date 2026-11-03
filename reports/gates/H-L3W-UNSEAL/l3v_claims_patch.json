@@ -1,0 +1,39 @@
+{
+ "generated_from": "H-L3W-UNSEAL-000001",
+ "l3v_claims_sha256": "bb502de8628c79b5136ccf9a401ef0a9b5cb945583cf17da35b63418c1469959",
+ "note": "合并进 docs/gates/l3v_claims.json 后必须重跑 L3v 闸门；本文件不修改任何历史产物",
+ "patches": [
+  {
+   "key": "gate3_d",
+   "from": "NOT_GRADED",
+   "to": "DIRECTION_ONLY",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 DIRECTION_ONLY",
+   "ratio_primary": 0.8141767632864441,
+   "source": "H-L3W-UNSEAL-000001"
+  },
+  {
+   "key": "phasec_d",
+   "from": "NOT_GRADED",
+   "to": "QUOTABLE",
+   "quotability_note": "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE",
+   "ratio_primary": 2.272806460750329,
+   "source": "H-L3W-UNSEAL-000001"
+  },
+  {
+   "key": "phasec2_d",
+   "from": "NOT_GRADED",
+   "to": "QUOTABLE_MARGINAL",
+   "quotability_note": "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE_MARGINAL",
+   "ratio_primary": 1.7900068047324882,
+   "source": "H-L3W-UNSEAL-000001"
+  },
+  {
+   "key": "phasec3_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.2132206736995436,
+   "source": "H-L3W-UNSEAL-000001"
+  }
+ ]
+}

@@ -1,0 +1,110 @@
+{
+  "experiment_id": "H-L3S-IC-000001",
+  "title": "全池截面信息含量检验：ma_cross 指标的排序能力（含功效更正）",
+  "type": "诊断实验（D 级）。不是闸门，不构成策略可用性证据，不改变 L3p / L3r 的终态。",
+  "frozen_at": "2026-10-28T14:35:00+08:00",
+  "depends_on": {
+    "l3r_result": "reports/gates/H-L3R-SELECTION/l3r_result.json",
+    "l3p_result": "reports/gates/H-L3P-MACROSS-000001/l3p_result.json",
+    "l3r_prereg_sha256": "b5cfca5589c0d647",
+    "pool": "data/_pool_518_a_share.txt"
+  },
+  "why": [
+    "L3r 用「12 只组合 vs 24 只等权」的收益差检验选择效应，MDE 0.926pp、事后功效 16.87%，答不了这个问题。",
+    "逐期 Δ 的 sd 4.64pp 主要来自「12 只 vs 24 只」的等权差噪声，缩短不了；唯一能真正提高功效的杠杆是**扩大截面里的标的数**，而不是换统计量。",
+    "本实验把截面从 24 只扩到冻结池 518 只，用连续分数（快慢线乖离）算逐期秩相关，把 MDE 压到可回答的量级。"
+  ],
+  "correction_to_prior_claim": {
+    "what_i_said": "上一轮我对用户说：改用截面 IC 与分组单调性，「标准差会低一个量级，功效可以从 17% 拉到可用区间」。",
+    "what_the_arithmetic_says": "该说法在 24 只截面上是错的：二元信号下 IC 只是 R2 的单调变换，功效不变；即便换成连续分数，N=24 时 se(IC)≈0.208/期，折回收益口径的 MDE 只从 0.926pp 降到约 0.74pp（约 25%）。",
+    "so_what": "真正起作用的不是「换成 IC」，而是「把截面从 24 只扩到 518 只」：se(IC) 随 1/√N 下降。本实验同时做这两件事，并单独报告哪一部分贡献了多少。",
+    "honesty_note": "本预登记在跑数之前写下这条更正，避免事后把增益归功于选错的原因（与 T 阶段「可算量对、机制直觉错」同类）。"
+  },
+  "design": {
+    "pool": {
+      "file": "data/_pool_518_a_share.txt",
+      "format": "单行逗号分隔的 518 个代码",
+      "frozen": true,
+      "note": "固定名单，含数据已终止的标的。每期只纳入「当期末有分数且两端有价」的标的，因此样本是「各期可定价者」，不是「含退市损失的完整组合」。"
+    },
+    "span": ["2010-01-01", "2026-10-16"],
+    "score": {
+      "definition": "score_i(t) = fastMA_i(t) / slowMA_i(t) − 1，只用 t 及之前的数据（滚动均值，无未来函数）",
+      "why": "策略本身只输出 HOLD/BUY/SELL 事件，截面里只有 0/1 两值；连续分数取自同一指标（快慢线乖离），是「排序版」的双均线，不是新因子。",
+      "params": "逐折沿用 L3p 存档的 best_params（fast_window/slow_window），**不重选参、不做参数搜索**；折内所有期共用该折参数",
+      "warmup": "两均线都必须有值（需 slow_window 个样本），不足者该期不计入"
+    },
+    "forward_return": {
+      "definition": "r_i(k) = P_i(exec(k+1)) / P_i(exec(k)) − 1，价格用研究层 qfq 收盘价",
+      "exec": "每期信号日（折窗口首日 + 月末最后交易日）之后的首个交易日",
+      "inclusion": "标的必须在期初与期末**两端都有有效价**才计入；缺任一端整只剔除（同一期两臂对称）"
+    },
+    "statistics": {
+      "per_period": "Spearman 秩相关 IC(t) = ρ(score_i, r_i)；同时记录五分位各组的等权平均收益",
+      "aggregate": "IC 序列的均值、中位、iid t、NW(3) t、胜率、bootstrap 95% CI（stationary bootstrap，reps=2000）",
+      "mde": "MDE_IC = 2.8016 × se；MDE_return 折算 = MDE_IC × σ_r × E[z|top20]，其中 σ_r 为逐期截面收益标准差的均值、E[z|top20]=1.400（标准正态上 20% 尾均值）",
+      "monotonicity": "五分位序号（1..5）与各组均值收益的 Spearman ρ",
+      "spread": "Q5 − Q1 的逐期均值及其 NW(3) t"
+    },
+    "target": {
+      "target_mde_equivalent": 0.0030,
+      "note": "0.30pp/月。参照：L3q 实测月度双边成本约 0.02%（0.2pp），故 0.3pp 的选择效应在经济上已可交易，值得具备检测能力。"
+    },
+    "verdict_rules": {
+      "IC_INFORMATION_DETECTED": "mean_IC > 0 且 t_nw3 >= 1.96 且 单调性 ρ >= 0.8",
+      "IC_SIGN_REVERSED": "mean_IC < 0 且 t_nw3 <= -1.96",
+      "IC_NO_INFORMATION_DETECTED": "|t_nw3| < 1.96 且 MDE_return <= 0.0030",
+      "IC_INCONCLUSIVE_POWER": "MDE_return > 0.0030",
+      "downgrade": "不做 L3*_BLOCKED_PREREQUISITE 降级：本实验是诊断，不是闸门。所有产出必须标注 diagnostic_only=true。"
+    }
+  },
+  "predictions": [
+    {
+      "id": "P1",
+      "claim": "平均每期有效标的数 ∈ [350, 520]，且 2010–2012 段均值 < 450",
+      "rationale": "池内部分标的 2010 年后才上市；口径是「两端有价」。"
+    },
+    {
+      "id": "P2",
+      "claim": "mean_IC ∈ [−0.02, +0.03]",
+      "rationale": "L3r 在 24 只截面上得到接近零的选择效应；扩池可能改变符号，但不预期出现强 IC。"
+    },
+    {
+      "id": "P3",
+      "claim": "MDE_IC <= 0.012，且折算 MDE_return <= 0.30pp",
+      "rationale": "N≈450、T≈197 时 se(IC)≈1/√(N−1)/√T≈0.0034，MDE_IC≈0.0094；折算 0.0094×σ_r(≈0.15)×1.400≈0.20pp。",
+      "structural_assumption": "假设逐期 IC 近似独立（月度不重叠）；若不成立则 MDE 需上调。P5 专门检验这条。"
+    },
+    {
+      "id": "P4",
+      "claim": "五分位单调性 |ρ| < 0.9，且 Q5−Q1 的月均 spread 的 |t_nw3| < 2",
+      "rationale": "若选择效应接近零，分组也不会呈现干净单调。"
+    },
+    {
+      "id": "P5",
+      "claim": "逐期 IC 的标准差 <= 1.6 × (1/√(N̄−1))",
+      "rationale": "超出说明截面内存在共同因子、有效 N 远小于名义 N（小盘同涨同跌），此时必须下调功效声明——这条是给 P3 装的自检。"
+    },
+    {
+      "id": "P6",
+      "claim": "折算后的 MDE_return 相对 L3r 的 0.926pp 至少改善 3 倍",
+      "rationale": "这是本实验存在的前提；若改善不到 3 倍，本设计同样答不了问题，应停在报告里而不是继续加码。"
+    }
+  ],
+  "frozen_config": {
+    "bootstrap_reps": 2000,
+    "bootstrap_block": 3,
+    "nw_lag": 3,
+    "mde_multiplier": 2.8016,
+    "min_names_per_period": 30,
+    "quintiles": 5,
+    "tail_expectation": 1.4,
+    "seed": 20261028
+  },
+  "not_claimed": [
+    "本实验不测「能不能赚到」：不含费用、整手、涨跌停、现金约束。",
+    "本实验不回答「选 12 只比等权买全部好吗」——那是 L3r 的问题，本实验回答的是「指标在横截面上有没有排序能力」。",
+    "IC 显著不等于组合有 alpha：还需要 L3p 那一层的可执行性与成本检验。",
+    "池是固定名单，含退市/停牌区间，样本是各期可定价者，存在生存偏差，方向不明确。"
+  ]
+}

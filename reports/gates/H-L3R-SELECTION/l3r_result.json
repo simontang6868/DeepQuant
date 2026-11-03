@@ -1,0 +1,601 @@
+{
+  "cash_comparison": {
+    "control_median": 0.010244217850043643,
+    "gap_median": 0.10186300264944764,
+    "strategy_median": 0.11710299230138822
+  },
+  "elapsed_seconds": 17.629,
+  "experiment_id": "H-L3R-SELECTION-000001",
+  "folds": [
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.01839995272112207,
+      "control_return": 0.01927710299999985,
+      "delta": 0.0335244910000001,
+      "fold": 1,
+      "r2_mean": 0.00816212162823622,
+      "r2_periods": 7,
+      "strategy_cash": 0.03278729271494923,
+      "strategy_return": 0.05280159399999995,
+      "test_end": "2012-08-07",
+      "test_start": "2012-02-06"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.022807434005467975,
+      "control_return": 0.03098747599999996,
+      "delta": -0.053597419999999896,
+      "fold": 2,
+      "r2_mean": 0.005581233003724861,
+      "r2_periods": 7,
+      "strategy_cash": 0.14397632857023918,
+      "strategy_return": -0.022609943999999937,
+      "test_end": "2013-02-18",
+      "test_start": "2012-08-08"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.0192641800708396,
+      "control_return": -0.04349451500000001,
+      "delta": 0.24119569900000004,
+      "fold": 3,
+      "r2_mean": 0.008934583567958109,
+      "r2_periods": 6,
+      "strategy_cash": 0.158231928819615,
+      "strategy_return": 0.19770118400000003,
+      "test_end": "2013-08-23",
+      "test_start": "2013-02-19"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.00793667109635858,
+      "control_return": 0.09701955700000009,
+      "delta": 0.23294735899999996,
+      "fold": 4,
+      "r2_mean": 0.028320605349517615,
+      "r2_periods": 8,
+      "strategy_cash": 0.011505750940694049,
+      "strategy_return": 0.32996691600000005,
+      "test_end": "2014-03-06",
+      "test_start": "2013-08-26"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.015837179384738564,
+      "control_return": 0.16082577799999997,
+      "delta": -0.058520544999999924,
+      "fold": 5,
+      "r2_mean": -0.005804120992163258,
+      "r2_periods": 7,
+      "strategy_cash": 0.11724232513223527,
+      "strategy_return": 0.10230523300000005,
+      "test_end": "2014-09-04",
+      "test_start": "2014-03-07"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.02619835239387466,
+      "control_return": 0.577374676,
+      "delta": -0.21320337300000003,
+      "fold": 6,
+      "r2_mean": -0.02459805666203675,
+      "r2_periods": 7,
+      "strategy_cash": 0.09102636738996923,
+      "strategy_return": 0.364171303,
+      "test_end": "2015-03-18",
+      "test_start": "2014-09-05"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.024153950407554324,
+      "control_return": -0.08771515399999996,
+      "delta": 0.03350537199999992,
+      "fold": 7,
+      "r2_mean": -0.0560562367879978,
+      "r2_periods": 7,
+      "strategy_cash": 0.2511103063414643,
+      "strategy_return": -0.05420978200000004,
+      "test_end": "2015-09-17",
+      "test_start": "2015-03-19"
+    },
+    {
+      "best_params": {
+        "fast_window": 5,
+        "slow_window": 40
+      },
+      "control_cash": 0.013713124402001968,
+      "control_return": 0.21914732100000012,
+      "delta": -0.2610454080000001,
+      "fold": 8,
+      "r2_mean": -0.04103701516683946,
+      "r2_periods": 7,
+      "strategy_cash": 0.30587929981295026,
+      "strategy_return": -0.04189808699999997,
+      "test_end": "2016-03-28",
+      "test_start": "2015-09-18"
+    },
+    {
+      "best_params": {
+        "fast_window": 5,
+        "slow_window": 15
+      },
+      "control_cash": 0.012013089586736194,
+      "control_return": 0.098402133,
+      "delta": 0.02686245800000009,
+      "fold": 9,
+      "r2_mean": 0.006079663437821707,
+      "r2_periods": 7,
+      "strategy_cash": 0.1551305083438341,
+      "strategy_return": 0.1252645910000001,
+      "test_end": "2016-09-28",
+      "test_start": "2016-03-29"
+    },
+    {
+      "best_params": {
+        "fast_window": 3,
+        "slow_window": 25
+      },
+      "control_cash": 0.023965933141781512,
+      "control_return": -0.005338626000000013,
+      "delta": -0.02789311200000011,
+      "fold": 10,
+      "r2_mean": -0.0012838185470534758,
+      "r2_periods": 8,
+      "strategy_cash": 0.08558762550629945,
+      "strategy_return": -0.03323173800000012,
+      "test_end": "2017-04-11",
+      "test_start": "2016-09-29"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.02044677994093533,
+      "control_return": 0.055501057000000076,
+      "delta": 0.0608245329999999,
+      "fold": 11,
+      "r2_mean": 0.010191569317161269,
+      "r2_periods": 7,
+      "strategy_cash": 0.14927607396063114,
+      "strategy_return": 0.11632558999999998,
+      "test_end": "2017-10-16",
+      "test_start": "2017-04-12"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.016448475183356993,
+      "control_return": -0.028323867999999974,
+      "delta": 0.09456083799999981,
+      "fold": 12,
+      "r2_mean": 0.014334217283001549,
+      "r2_periods": 7,
+      "strategy_cash": 0.11876933473475557,
+      "strategy_return": 0.06623696999999984,
+      "test_end": "2018-04-20",
+      "test_start": "2017-10-17"
+    },
+    {
+      "best_params": {
+        "fast_window": 3,
+        "slow_window": 60
+      },
+      "control_cash": 0.02050233733080246,
+      "control_return": -0.15148910100000001,
+      "delta": -0.10479952000000003,
+      "fold": 13,
+      "r2_mean": -0.014968092009866558,
+      "r2_periods": 7,
+      "strategy_cash": 0.1177160852857363,
+      "strategy_return": -0.25628862100000005,
+      "test_end": "2018-10-26",
+      "test_start": "2018-04-23"
+    },
+    {
+      "best_params": {
+        "fast_window": 20,
+        "slow_window": 60
+      },
+      "control_cash": 0.014880542398232532,
+      "control_return": 0.26359599700000014,
+      "delta": -0.13670990700000019,
+      "fold": 14,
+      "r2_mean": -0.015408554759818529,
+      "r2_periods": 8,
+      "strategy_cash": 0.011145422010510136,
+      "strategy_return": 0.12688608999999995,
+      "test_end": "2019-05-07",
+      "test_start": "2018-10-29"
+    },
+    {
+      "best_params": {
+        "fast_window": 20,
+        "slow_window": 40
+      },
+      "control_cash": 0.007937267431701117,
+      "control_return": 0.012245451000000074,
+      "delta": 0.029706779000000072,
+      "fold": 15,
+      "r2_mean": 0.005760087433795315,
+      "r2_periods": 7,
+      "strategy_cash": 0.13105202474761748,
+      "strategy_return": 0.041952230000000146,
+      "test_end": "2019-11-08",
+      "test_start": "2019-05-08"
+    },
+    {
+      "best_params": {
+        "fast_window": 20,
+        "slow_window": 25
+      },
+      "control_cash": 0.0079402104622435,
+      "control_return": 0.03666770199999991,
+      "delta": -0.005504338999999803,
+      "fold": 16,
+      "r2_mean": 0.010114358129722292,
+      "r2_periods": 7,
+      "strategy_cash": 0.007938886660617143,
+      "strategy_return": 0.03116336300000011,
+      "test_end": "2020-05-19",
+      "test_start": "2019-11-11"
+    },
+    {
+      "best_params": {
+        "fast_window": 20,
+        "slow_window": 25
+      },
+      "control_cash": 0.008390333411427637,
+      "control_return": 0.22778244700000005,
+      "delta": 0.035231849999999953,
+      "fold": 17,
+      "r2_mean": 0.0049108711046840685,
+      "r2_periods": 7,
+      "strategy_cash": 0.06839229922525848,
+      "strategy_return": 0.263014297,
+      "test_end": "2020-11-23",
+      "test_start": "2020-05-20"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 60
+      },
+      "control_cash": 0.014780541351218432,
+      "control_return": 0.025026910000000013,
+      "delta": 0.0040285719999999525,
+      "fold": 18,
+      "r2_mean": -0.004099909081734842,
+      "r2_periods": 7,
+      "strategy_cash": 0.0826387131349963,
+      "strategy_return": 0.029055481999999966,
+      "test_end": "2021-06-01",
+      "test_start": "2020-11-24"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 60
+      },
+      "control_cash": 0.007957943160303132,
+      "control_return": 0.029873997000000152,
+      "delta": 0.09151272199999982,
+      "fold": 19,
+      "r2_mean": 0.01916634633778754,
+      "r2_periods": 7,
+      "strategy_cash": 0.060660999120118304,
+      "strategy_return": 0.12138671899999998,
+      "test_end": "2021-12-06",
+      "test_start": "2021-06-02"
+    },
+    {
+      "best_params": {
+        "fast_window": 20,
+        "slow_window": 40
+      },
+      "control_cash": 0.007947986398278624,
+      "control_return": -0.11809945299999991,
+      "delta": -0.14538910100000013,
+      "fold": 20,
+      "r2_mean": -0.023401110585537125,
+      "r2_periods": 7,
+      "strategy_cash": 0.007938435413000955,
+      "strategy_return": -0.26348855400000004,
+      "test_end": "2022-06-16",
+      "test_start": "2021-12-07"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 25
+      },
+      "control_cash": 0.007950308650534563,
+      "control_return": -0.00847929600000008,
+      "delta": -0.007129249999999976,
+      "fold": 21,
+      "r2_mean": 0.0001977507587146697,
+      "r2_periods": 7,
+      "strategy_cash": 0.11696365947054117,
+      "strategy_return": -0.015608546000000056,
+      "test_end": "2022-12-19",
+      "test_start": "2022-06-17"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.007968465759814802,
+      "control_return": -0.0032462260000000187,
+      "delta": -0.07335909699999998,
+      "fold": 22,
+      "r2_mean": -0.025990987268256556,
+      "r2_periods": 7,
+      "strategy_cash": 0.3246586611845201,
+      "strategy_return": -0.076605323,
+      "test_end": "2023-06-29",
+      "test_start": "2022-12-20"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 25
+      },
+      "control_cash": 0.007970830591057387,
+      "control_return": -0.00788424100000007,
+      "delta": 0.038863638000000145,
+      "fold": 23,
+      "r2_mean": 0.010230554372916352,
+      "r2_periods": 6,
+      "strategy_cash": 0.11661581575452785,
+      "strategy_return": 0.030979397000000075,
+      "test_end": "2024-01-02",
+      "test_start": "2023-06-30"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.00796510100264772,
+      "control_return": -0.08258231199999988,
+      "delta": 0.12848860299999998,
+      "fold": 24,
+      "r2_mean": 0.015751682380721273,
+      "r2_periods": 7,
+      "strategy_cash": 0.21963962415009872,
+      "strategy_return": 0.0459062910000001,
+      "test_end": "2024-07-12",
+      "test_start": "2024-01-03"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 60
+      },
+      "control_cash": 0.007948681513093435,
+      "control_return": 0.20857428299999992,
+      "delta": -0.15316572099999992,
+      "fold": 25,
+      "r2_mean": -0.01922487609129987,
+      "r2_periods": 7,
+      "strategy_cash": 0.007939901486322523,
+      "strategy_return": 0.055408561999999995,
+      "test_end": "2025-01-16",
+      "test_start": "2024-07-15"
+    },
+    {
+      "best_params": {
+        "fast_window": 5,
+        "slow_window": 40
+      },
+      "control_cash": 0.007942931231521132,
+      "control_return": 0.00380363699999986,
+      "delta": 0.05276662200000004,
+      "fold": 26,
+      "r2_mean": 0.003531474120373573,
+      "r2_periods": 7,
+      "strategy_cash": 0.07563991662316095,
+      "strategy_return": 0.0565702589999999,
+      "test_end": "2025-07-28",
+      "test_start": "2025-01-17"
+    },
+    {
+      "best_params": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "control_cash": 0.008475346113351094,
+      "control_return": 0.11135204700000001,
+      "delta": 0.018028820999999917,
+      "fold": 27,
+      "r2_mean": 0.003548033435797099,
+      "r2_periods": 7,
+      "strategy_cash": 0.2971669545845762,
+      "strategy_return": 0.12938086799999993,
+      "test_end": "2026-01-30",
+      "test_start": "2025-07-29"
+    },
+    {
+      "best_params": {
+        "fast_window": 5,
+        "slow_window": 40
+      },
+      "control_cash": 0.007961297574106544,
+      "control_return": 0.0648245220000001,
+      "delta": -0.10772589200000005,
+      "fold": 28,
+      "r2_mean": -0.014418365515403419,
+      "r2_periods": 7,
+      "strategy_cash": 0.13741380795802288,
+      "strategy_return": -0.04290136999999994,
+      "test_end": "2026-08-11",
+      "test_start": "2026-02-02"
+    }
+  ],
+  "folds_total": 28,
+  "folds_usable": 28,
+  "generated_at": "2026-10-28T02:26:50+0800",
+  "instrument_consistency": {
+    "folds": 28,
+    "pearson": 0.7146891798359248,
+    "same_sign": 23
+  },
+  "limits": [
+    "R2 两端有价的匹配规则把死票同时从两臂剔除，因此不含「持有到退市」的真实损失；这条对两臂对称，但不等于完整组合收益。",
+    "折边界处每折末期按窗口末日截断，约 200 期序列有 28 个小缺口，t 的独立性只是近似。",
+    "逐折使用不同 best_params（walk-forward 固有），「策略」在不同折上是同族的不同参数。",
+    "R1 不含涨停买不进的摩擦（组合层未启用涨跌停判据）。",
+    "R2 的等权组合不计整手与费用，小资金下不可实现；不得与任何「成本后」数字并列。",
+    "本实验只回答「选择有没有用」，不构成策略可用性的证据：终态为 BLOCKED，前序任一级未通过时都不得据此推进。"
+  ],
+  "maturity": "M0",
+  "power_analysis": {
+    "mde_now": 0.009264927816522116,
+    "mean_vs_median": {
+      "r1_mean": -0.008071226000000015,
+      "r1_median": 0.011028696499999935,
+      "r2_mean": -0.0032886743580748624,
+      "r2_median": 0.0006026352397370191,
+      "same_sign": false
+    },
+    "n_required_for_observed": 1563.538436741084,
+    "n_required_for_target": 676.4104330694781,
+    "periods": 197,
+    "sd": 0.04641614032331195,
+    "target_mde": 0.005,
+    "target_note": "目标精度 0.5pp/月，略高于本项目已确认的成本量级（月度双边约 0.10%）",
+    "years_required_for_observed": 130.29486972842366,
+    "years_required_for_target": 56.36753608912318
+  },
+  "predictions": [
+    {
+      "actual": "月均 -0.329pp，t_iid -0.994",
+      "claim": "R2 月均 Δ ∈ [−0.40pp, +0.40pp] 且 \\|t_iid\\| < 2",
+      "id": "P1",
+      "refuted": false
+    },
+    {
+      "actual": "折均 -0.807pp，胜率 53.57%",
+      "claim": "R1 折均 Δ ∈ [−0.5pp, +1.0pp]，折胜率 40%~62%",
+      "id": "P2",
+      "refuted": true
+    },
+    {
+      "actual": "C_t 现金中位 1.02%，现金差中位 10.19%",
+      "claim": "C_t 现金中位 ≤ 4pp，且两臂现金差中位 ≥ 5pp",
+      "id": "P3",
+      "refuted": false
+    },
+    {
+      "actual": "胜率 51.78%（197 期）",
+      "claim": "R2 中 Δ>0 的期数占比 ∈ 40%~58%",
+      "id": "P4",
+      "refuted": false
+    },
+    {
+      "actual": "r = 0.715（28 折）",
+      "claim": "R1 折级 Δ 与 R2 折内均值 Δ 相关 > 0.5",
+      "id": "P5",
+      "refuted": false
+    }
+  ],
+  "preliminary_reason": "R2 月均 -0.329pp、t_iid=-0.994，但 MDE 0.926pp > 0.5pp：样本量不足以排除可交易的效应",
+  "preliminary_verdict": "INCONCLUSIVE_POWER",
+  "prereg": "docs/gates/l3r_prereg.json",
+  "prereg_sha256": "b5cfca5589c0d6470925c699bb76c6e6eb0382ec0b9fa11508aa29736524cc83",
+  "prior_missing": [],
+  "prior_verdicts": {
+    "L1a": "L1A_REJECTED_BOUNDS",
+    "L1b": "L1B_BLOCKED_PREREQUISITE",
+    "L2": "L2_REJECTED_EXTREME_DEPENDENCE",
+    "L3": "L3_BLOCKED_PREREQUISITE",
+    "L3p": "L3P_BLOCKED_PREREQUISITE"
+  },
+  "question": "选择效应检验：ma_cross 选股相对「池内可成交等权」有没有正贡献",
+  "r1_summary": {
+    "folds": 28,
+    "mean": -0.008071226000000015,
+    "median": 0.011028696499999935,
+    "se_iid": 0.022119279196629316,
+    "t_iid": -0.3648955252226285,
+    "t_nw3": -0.4186942830680662,
+    "win_rate": 0.5357142857142857,
+    "wins": 15
+  },
+  "r2_summary": {
+    "ci_high": 0.0034548789346863515,
+    "ci_low": -0.01124840580937251,
+    "mde": 0.009264927816522116,
+    "mean": -0.0032886743580748624,
+    "mean_coverage": 0.8844795660101707,
+    "mean_n_strategy": 12.543147208121827,
+    "mean_n_universe": 23.730964467005077,
+    "median": 0.0006026352397370191,
+    "nw_variance_fell_back": false,
+    "periods": 198,
+    "periods_compared": 197,
+    "power": 0.16870196499124335,
+    "sd": 0.04641614032331195,
+    "se_iid": 0.003307013069860835,
+    "se_nw": 0.003408308343381871,
+    "t_iid": -0.9944545995438886,
+    "t_nw3": -0.9648993068542904,
+    "win_rate": 0.5177664974619289
+  },
+  "tails": {
+    "best": [
+      [
+        0.12848860299999998,
+        24
+      ],
+      [
+        0.23294735899999996,
+        4
+      ],
+      [
+        0.24119569900000004,
+        3
+      ]
+    ],
+    "worst": [
+      [
+        -0.2610454080000001,
+        8
+      ],
+      [
+        -0.21320337300000003,
+        6
+      ],
+      [
+        -0.15316572099999992,
+        25
+      ]
+    ]
+  },
+  "title": "L3r：选择效应检验",
+  "verdict": "L3R_BLOCKED_PREREQUISITE"
+}

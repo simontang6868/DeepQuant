@@ -1,0 +1,375 @@
+{
+ "experiment_id": "H-L3AF-COST-NET",
+ "title": "L3af 成本后净收益重建与当前引用清单审计",
+ "version": "1.0",
+ "written_at": "2026-10-29T22:30+08:00",
+ "scope": [
+  "本阶段是审计阶段，不是策略研发：不新增因子、不新增策略、不新增回测、不启动实盘。",
+  "本阶段唯一新增的计算是「逐月」拆解：把已经存在的换手序列与已经存在的成本公式逐月相乘。",
+  "任何口径若与 phasei 冻结的 primary_cost 冲突，一律以冻结值为主判定，其余只作敏感性。"
+ ],
+ "why_this_stage": [
+  "L3ae 用「单边换手均值 × 费率」得到**月度常数成本**，因此 net 与 gross 只差一个常数，",
+  "标准误必然相同。它据此写出「se_net 不小于 se_gross、t 只能当上界」。",
+  "这句话把一个**构造假设**（成本逐月恒定）说成了一个**统计事实**，而逐月换手序列其实存在，",
+  "只是不在 phasei_out 里。本阶段把这句话拿去和逐月数据对账。"
+ ],
+ "inputs_frozen": {
+  "phasei_monthly": {
+   "path": "phasei_out/8f5c35121fdb/monthly.csv",
+   "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a",
+   "sha256_lf": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a",
+   "eol_converted": false,
+   "columns_used": ["signal_date", "n_keep", "alpha_v0_pp", "alpha_v1_pp"],
+   "note": "本文件**没有**换手列。这是 L3ae 只能用均值的最初原因，也是本阶段必须先解决的事。"
+  },
+  "phasei_summary": {
+   "path": "phasei_out/8f5c35121fdb/summary.json",
+   "sha256": "fcf36b7a64331251f4cfd6c48df84739ee91132fa9a7e39f95cb9a551b745e09",
+   "sha256_lf": "33d919386bf8477a7124f7409ecdd4e67fc5f4cf04c176aa819161ca0fdbc253",
+   "eol_converted": true,
+   "note": "⚠️ 磁盘上这份文件被 autocrlf 转成了 CRLF（322 个 CRLF，7207→7529 字节）；LF 归一后的哈希与 phasei_out/8f5c35121fdb/manifest.json 记录的 sha256 逐位相同，证明内容未变。L3ae 预登记冻结的是**转换后**的 fcf36b7a。两个哈希都记在这里，闸门 G0 认二者之一。"
+  },
+  "phasei_manifest": {
+   "path": "phasei_out/8f5c35121fdb/manifest.json",
+   "sha256": "d8f4c2e3cd41a2998a7ac68c8f455cac78326c619bf3ad5bcc14a194574527bb",
+   "sha256_lf": "d8f4c2e3cd41a2998a7ac68c8f455cac78326c619bf3ad5bcc14a194574527bb",
+   "eol_converted": false,
+   "note": "用它证明 summary 的 LF 哈希 = 写入时的哈希。"
+  },
+  "phaseo_monthly": {
+   "path": "phaseo_out/ac7aa2830ab0/monthly.csv",
+   "sha256": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+   "sha256_lf": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+   "eol_converted": false,
+   "columns_used": [
+    "signal_date", "n_keep", "to", "alpha_pp", "finv_1000w", "finv_3000w",
+    "cost_BASE_pp", "cost_STRESS_pp", "cost_CONS_pp",
+    "net_BASE_1000w", "net_BASE_3000w", "net_STRESS_3000w",
+    "net_CONS_1000w", "net_CONS_3000w"
+   ],
+   "note": "**这是本阶段全部新信息的来源**：`to` 是逐月单边换手，`alpha_pp` 与 phasei 的 alpha_v1_pp 逐位相同（G1 验证）。它由 scripts/run_phase_o_fee_convention.py 生成，该脚本 import run_phase_i_exq5.build_records —— 与 phasei 同一套生成器。"
+  },
+  "phaseo_summary": {
+   "path": "phaseo_out/ac7aa2830ab0/summary.json",
+   "sha256": "05bdc615bece3c2f6a35f4b5f5a989d3ddd23b2ec1e5df1192c3a6dbe8e19329",
+   "sha256_lf": "05bdc615bece3c2f6a35f4b5f5a989d3ddd23b2ec1e5df1192c3a6dbe8e19329",
+   "eol_converted": false,
+   "note": "提供 se_iid_pp_input / se_nw_pp_input / t 的独立对照值（G6b 用）。"
+  },
+  "phaseo_manifest": {
+   "path": "phaseo_out/ac7aa2830ab0/manifest.json",
+   "sha256": "0655f497576fb0a0a2f6ad5726c050765074af863a857b6428a4bb4310c65a8b",
+   "sha256_lf": "0655f497576fb0a0a2f6ad5726c050765074af863a857b6428a4bb4310c65a8b",
+   "eol_converted": false
+  },
+  "phaseo_prereg_doc": {
+   "path": "docs/PHASE_O_FEE_CONVENTION_PREREG_2026-10-21.md",
+   "sha256": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+   "sha256_lf": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+   "eol_converted": false,
+   "note": "费率三口径与「印花税仅卖出方」的原文出处。"
+  },
+  "l3u_prereg": {
+   "path": "docs/gates/l3u_prereg.json",
+   "sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+   "sha256_lf": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+   "eol_converted": false,
+   "note": "27 条登记检验的冻结定义。"
+  },
+  "l3v_claims": {
+   "path": "docs/gates/l3v_claims.json",
+   "sha256": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+   "sha256_lf": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+   "eol_converted": false
+  },
+  "l3ab_decisions": {
+   "path": "docs/gates/l3ab_family_decisions.json",
+   "sha256": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75",
+   "sha256_lf": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75",
+   "eol_converted": false,
+   "note": "逐条判定与 A/B/C/D 分类。"
+  },
+  "l3ad_prereg": {
+   "path": "docs/gates/l3ad_prereg.json",
+   "sha256": "a5d86c50e85c8644257fb7f259986fa79cee7a2cf75751b592f38793f2ee3e26",
+   "sha256_lf": "a5d86c50e85c8644257fb7f259986fa79cee7a2cf75751b592f38793f2ee3e26",
+   "eol_converted": false,
+   "note": "m=25 的判据与三对同值证据原文。"
+  },
+  "l3ad_result": {
+   "path": "reports/gates/H-L3AD-INDEPENDENCE/l3ad_independence.json",
+   "sha256_lf": "SELF",
+   "eol_converted": false,
+   "note": "本阶段直接复用它的分区与四种校正结果；SELF 表示「运行时读取、不冻结」——它可能被本阶段重跑覆盖，冻结它会造成自我指涉。"
+  },
+  "l3z_multiplicity": {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+   "sha256": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc",
+   "sha256_lf": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc",
+   "eol_converted": false
+  },
+  "l3z_lag": {
+   "path": "reports/L3Z_LAG_SENSITIVITY.json",
+   "sha256": "b60428758948e261bdd4ee9b26165376ac9a4810e5c888780c1fba56a7f1a4f6",
+   "sha256_lf": "b60428758948e261bdd4ee9b26165376ac9a4810e5c888780c1fba56a7f1a4f6",
+   "eol_converted": false
+  },
+  "phase_c_prereg_doc": {
+   "path": "docs/PHASE_C_UNIVERSE_PREREG_2026-10-21.md",
+   "sha256": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+   "sha256_lf": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+   "eol_converted": false,
+   "note": "0.30pp/月 经济意义门槛的**最早出处**。S2 用它，且必须披露它原本不是为净收益类结论写的。"
+  }
+ },
+ "turnover_convention": {
+  "definition": "to_t = 0.5 × (|新增持仓| + |退出持仓|) / max(k_t, 1)",
+  "source": "scripts/run_phase_o_fee_convention.py 第 146-147 行",
+  "unit": "单边换手比例（无量纲，0~1）",
+  "max_example": "整仓替换 k=5、新增 5、退出 5 ⇒ to = 0.5×10/5 = 1.0",
+  "why_one_side": "0.5 已经把买卖两侧折成「单边」；成本公式里的 2×to 再把单边还原成双边成交量。写成 2×to 且 to 是双边，会把成本翻倍。",
+  "two_side_relation": "双边换手 = 2 × to；若误把双边序列当单边传入，成本恰好放大 2 倍（G2b 会抓到）"
+ },
+ "cost_convention": {
+  "base": {
+   "formula_pp": "cost = 2×to×(佣金 + 过户) ×100 + to×印花 ×100 = to×100×(2×0.00026 + 0.0005) = 0.102×to",
+   "commission_bilateral": 0.00025,
+   "stamp_duty_sell_only": 0.0005,
+   "transfer_bilateral": 0.00001,
+   "equivalent_symmetric_one_side": 0.00051
+  },
+  "stress": {"formula_pp": "cost = 2×to×0.003×100 = 0.6×to", "one_side_symmetric": 0.003},
+  "conservative": {
+   "formula_pp": "n_trades = 2×to×k；eff = max(W/k×0.00025, 5.0)；c_comm = n_trades×eff/W×100；再加 2×to×过户×100 + to×印花×100",
+   "min_commission_yuan_per_trade": 5.0
+  },
+  "impact_upper_pp": 0.000784,
+  "impact_source": "阶段 J 在 W=3000 万的 Amihud 冲击上界，作为**常数**扣减",
+  "impact_note": "常数扣减不改方差，只改均值——这一点必须写明，否则会重犯「常数移位被当成方差变化」的错"
+ },
+ "constructs": {
+  "P": {
+   "id": "P",
+   "formula": "net_t = alpha_v1_t − 2×to_t×r_tier×100",
+   "includes": ["毛利 alpha", "逐月交易成本"],
+   "excludes": ["现金残留 finv", "冲击常数"],
+   "why": "与 phasei 的 cost_of 和 L3ae 的成本公式逐字一致，只把「月度常数」换成「逐月」。这样与既有产物可直接对账，且不引入 phaseo 才有的 finv/冲击。",
+   "role": "主构造"
+  },
+  "Q": {
+   "id": "Q",
+   "formula": "net_t = finv_tier,t × alpha_v1_t − cost_t − 0.000784",
+   "includes": ["毛利 alpha", "现金残留", "逐月成本", "冲击上界"],
+   "source": "phaseo_out/ac7aa2830ab0/monthly.csv 的 net_* 列（直接读取，不重算）",
+   "role": "对照构造 —— 只用于说明「finv 与冲击把 t 抬到哪」，不参与主判定",
+   "caveat": "finv 只对 1000 万/3000 万两档存在；1 亿档没有 finv 数据，故 Q 只覆盖两档"
+  }
+ },
+ "tiers": [
+  {
+   "id": "T_0p3",
+   "label": "0.3%（压力费率，phasei 冻结主成本）",
+   "rate": 0.003,
+   "role": "primary",
+   "source": "phasei summary design.primary_cost = 0.003",
+   "note": "⚠️ 这是 phasei 预登记的判定档，**不是**真实费率。真实等价单边是它的 5.9 分之一。"
+  },
+  {
+   "id": "T_0p1",
+   "label": "0.1%（对照费率）",
+   "rate": 0.001,
+   "role": "sensitivity",
+   "source": "phasei summary cost.0.1pct"
+  },
+  {
+   "id": "T_1e8",
+   "label": "0.051%（真实等价单边，1 亿档，最低佣金不约束）",
+   "rate": 0.00051,
+   "role": "sensitivity",
+   "source": "L3ae T_base_1e8；单笔 1e8/1936 ≈ 51,653 元 ≥ 20,000 ⇒ 5 元下限不约束",
+   "note": "构造 P 下没有 finv，等价于假设「1 亿档全部投出」。这是**上界**，须披露。"
+  },
+  {
+   "id": "T_3e7",
+   "label": "0.0585%（3000 万档，含 5 元最低佣金）",
+   "rate": 0.000585,
+   "role": "sensitivity",
+   "source": "L3ae T_base_3e7；单笔 3e7/1936 ≈ 15,496 元 < 20,000 ⇒ 下限约束"
+  },
+  {
+   "id": "T_1e7",
+   "label": "0.1234%（1000 万档，含 5 元最低佣金）",
+   "rate": 0.001234,
+   "role": "sensitivity",
+   "source": "L3ae T_base_1e7；单笔 1e7/1934 ≈ 5,170 元 << 20,000 ⇒ 下限主导"
+  }
+ ],
+ "t_statistic_convention": {
+  "primary": "iid t = mean / (sd/√n)，双侧，df = n−1",
+  "robustness": "Newey–West(3)，Bartlett 核，与 L3z/L3ad 同一实现（gates.family.reproduce_from_series）",
+  "why_iid_primary": "phasei 冻结产物里的 t_net 是 iid 口径，沿用才可对账；且在本数据上 iid t 两个方向都**更小**（0.3% 档 1.05 vs 1.42；0.051% 档 2.98 vs 4.00），是保守的一侧。",
+  "forbidden": "不得在看到两条 t 之后挑选更有利的那条当主口径。"
+ },
+ "variance_analysis": {
+  "identity": "Var(net) = Var(gross) + Var(cost) − 2·Cov(gross, cost)",
+  "corollary": "se_net ≥ se_gross ⟺ Var(cost) ≥ 2·Cov(gross, cost)。**这不是恒真命题**：若成本与被减项正相关且 Var(cost) 很小，se_net 反而略小于 se_gross。",
+  "what_must_be_reported": ["Var(gross)", "Var(cost)", "Cov(gross,cost)", "Var(net)", "ρ(alpha, to)", "se_net/se_gross", "t 的变化量"],
+  "what_is_forbidden": "只在文本里断言「se_net 不小于 se_gross」，不给出三个分量。"
+ },
+ "m_口径": {
+  "adopted": 25,
+  "adopted_rule": "独立随机变量数（L3ad：逐位相同且较短序列被完全覆盖 ⇒ 同一随机变量，只占一个名额）",
+  "variants": [
+   {"id": "FP_m24", "m": 24, "rule": "L3z 数值指纹去重（抓不到子窗口）", "role": "对照"},
+   {"id": "IND_m25", "m": 25, "rule": "独立随机变量数", "role": "主口径"},
+   {"id": "L3AC_m27", "m": 27, "rule": "只合并严格子窗口（等长同值占两个名额）", "role": "对照"},
+   {"id": "ALL_m29", "m": 29, "rule": "全部登记 + phasei，不做任何合并", "role": "对照（最保守）"},
+   {"id": "SUB_family", "m": null, "rule": "按 l3u 的 family 字段分 6 个子族，族内独立校正（族内 m = 该族条目数）", "role": "合理性检验 —— **不采用**：分族规则在看过 p 之后才提出，采用它等于事后换家族"}
+  ],
+  "no_new_members": "本阶段的 5 个成本档**不是** 5 个新检验，而是同一条已登记假设（phasei_v1 的 exQ5 可成交 alpha）在不同外生费率下的敏感性。因此 m 不变。若强行把 4 个新增档各算一个检验，m 会到 29；G9b 验证 7 条正面结论在 m=29 下仍然全部通过，故此选择不影响对外集合。"
+ },
+ "gates": [
+  {"id": "G0_INPUT_HASH", "rule": "每个冻结输入的 raw 或 LF 哈希必须与其记录值一致；raw 不符时必须 eol_converted=true 且 LF 哈希相符"},
+  {"id": "G1_ALPHA_IDENTITY", "rule": "phaseo.alpha_pp 与 phasei.alpha_v1_pp 在 237 个共同月份上 max|diff| ≤ 1e-12，且两侧行数均为 237"},
+  {"id": "G2_COST_ARITHMETIC", "rule": "phaseo.cost_BASE_pp 与 0.102×to 的 max|diff| ≤ 6e-7（三处 6 位小数存储的舍入上限）"},
+  {"id": "G2B_TURNOVER_UNIT", "rule": "把 to 当双边（×2）代入，成本必须恰好翻倍；把 to 当单边则复原。用于钉住「单边/双边」不被互换"},
+  {"id": "G3_NET_IDENTITY", "rule": "max|finv×a − cost − 0.000784 − net_stored| ≤ 5e-7×(3+max|a|) ≈ 4.1e-6"},
+  {"id": "G4_MONTH_ALIGNMENT", "rule": "五档净序列的月份键必须与 phasei.signal_date 逐位同序，无缺失、无重复、无 NaN"},
+  {"id": "G5_VARIANCE_IDENTITY", "rule": "每档 |Var(net) − (Var(g)+Var(c)−2Cov)| / Var(g) ≤ 1e-12"},
+  {"id": "G6_SE_FROM_NET", "rule": "t_iid 必须等于 mean(net)/se(net)，与 mean(net)/se(gross) 的差异必须记录；若两者差 > 1e-6 而报告未给出三分解，判失败"},
+  {"id": "G6B_SE_CROSSCHECK", "rule": "构造 Q 的两档 se 必须复现 phaseo summary 的 se_iid_pp_input（相对偏差 ≤ 1e-3）"},
+  {"id": "G7_RATE_MONOTONIC", "rule": "同一构造下净收益必须随费率单调递减（0.051 < 0.0585 < 0.1 < 0.3 对应 net 递减）"},
+  {"id": "G8_PRIMARY_VERDICT", "rule": "主档 T_0p3 的双侧 |t| < 1.96，且 phasei 的 verdict 仍为 EXQ5_COST_ABSORBED；本阶段不得产生新 verdict"},
+  {"id": "G9_FAMILY_CONSISTENCY", "rule": "m = 27 − 合并数 + 2，且与分区结果自洽；评分集合与 m 的成员必须能逐条对上"},
+  {"id": "G9B_M_ROBUST", "rule": "m=24/25/27/29 四种口径下，7 条正面结论的通过集合必须完全相同（差异只允许出现在非正面结论上）"},
+  {"id": "G10_NO_AUTO_PROMOTION", "rule": "证据等级只能由字段机械推出：S3=PASS 必须有逐月净序列且该序列自身通过四种校正；S1 不通过者不得出现在可引清单的正面栏"},
+  {"id": "G11_SHEET_CONSISTENCY", "rule": "清单 md 的每个单元格必须由 JSON 渲染而来；条数、状态枚举、哈希三者与 JSON 逐项相同"},
+  {"id": "G12_STATUS_ENUM", "rule": "最终状态必须是给定 6 个枚举值之一，且选取须与闸门结果一致"}
+ ],
+ "predictions": [
+  {
+   "id": "P1", "timing": "priori", "recon_observed": true,
+   "claim": "phaseo 的 alpha_pp 与 phasei 的 alpha_v1_pp 在 237 个月上逐位相同（max|diff| = 0.0）",
+   "mechanism": "phase O 的脚本 import run_phase_i_exq5.build_records，alpha 由同一函数在同一数据上算出；phase O 自己也跑了 max|diff|<1e-6 的复现闸门并打印通过。",
+   "falsified_if": "任一月份差 > 1e-12 —— 则换手序列与 alpha 不同源，整条链作废"
+  },
+  {
+   "id": "P2", "timing": "priori", "recon_observed": true,
+   "claim": "cost_BASE_pp = 0.102×to，max|残差| ≤ 6e-7",
+   "mechanism": "cost_base 只用 to 与三个常数，不依赖 W 与 k。",
+   "falsified_if": "残差系统性偏离（例如 0.2×to 或 0.102×to×2）"
+  },
+  {
+   "id": "P3", "timing": "priori", "recon_observed": true,
+   "claim": "五档净收益随费率单调递减，且相邻档差 = 2×mean(to)×Δrate×100",
+   "falsified_if": "出现非单调 —— 说明某档用了不同的 to 或不同的月份集合"
+  },
+  {
+   "id": "P4", "timing": "priori", "recon_observed": true,
+   "claim": "Var(cost)/Var(gross) < 1e-2（全部五档）",
+   "mechanism": "成本是 to 的线性函数，而 to 的月度 sd 只有 0.048、均值 0.188，故 cost 的 sd ≈ 0.005pp，比 alpha 的 0.745pp 小两个量级。",
+   "falsified_if": "某一档该比值 ≥ 1e-2"
+  },
+  {
+   "id": "P5", "timing": "priori", "recon_observed": true,
+   "claim": "se_net/se_gross ∈ [0.99, 1.01]（全部五档）——即成本对标准误的影响 < 1%",
+   "falsified_if": "某档比值越界"
+  },
+  {
+   "id": "P6", "timing": "priori", "recon_observed": true,
+   "claim": "「se_net ≥ se_gross」在 T_0p3（压力档）成立，在 T_1e8（真实档）**不成立**",
+   "mechanism": "se_net ≥ se_gross ⟺ Var(cost) ≥ 2Cov。ρ(alpha,to) 很小但为正；0.3% 档 Var(cost) 放大 36 倍而 2Cov 只放大 6 倍，于是越过临界；0.051% 档 2Cov 仍大于 Var(cost)，方向相反。",
+   "falsified_if": "两档方向相同 —— 则 L3ae 的「上界」说法要么恒真要么恒假，需要另找解释"
+  },
+  {
+   "id": "P7", "timing": "priori", "recon_observed": false,
+   "claim": "m=24/25/27/29 下 7 条正面结论的通过集合完全相同；差异只出现在 phasel_alpha（非正面）",
+   "falsified_if": "任一正面结论在某口径下掉出"
+  },
+  {
+   "id": "P8", "timing": "priori", "recon_observed": false,
+   "claim": "子族口径（族内独立校正）下 7 条仍全部通过 —— 说明「通过」不是把不同问题混在一个家族里凑出来的",
+   "falsified_if": "任一正面结论在子族口径下不过"
+  },
+  {
+   "id": "P9", "timing": "priori", "recon_observed": false,
+   "claim": "7 条中只有 phaseo_netBASE 与 phasei_v1 具备「逐月净收益」构造；其余 5 条的判定量是价差/差值，不存在净收益版本",
+   "falsified_if": "某条的判定量其实已是净收益（则 S3 必须重判）"
+  },
+  {
+   "id": "P10", "timing": "priori", "recon_observed": false,
+   "claim": "真实费率档下 phasei 的净收益 iid t ∈ [2.8, 3.2]、NW(3) t ∈ [3.8, 4.2]，但**这不改变** phasei 的 EXQ5_COST_ABSORBED 判定（判定档是 0.3%）",
+   "falsified_if": "真实档 t < 1.96（则「真实费率下显著」这句话本身不成立，比现在更要紧）"
+  },
+  {
+   "id": "P11", "timing": "priori", "recon_observed": false,
+   "claim": "任何结论的 S4（可交易性）都只能是 ABSENT —— 本仓库不存在前瞻样本、成交回放或交割单",
+   "falsified_if": "找到任何前瞻期产物"
+  },
+  {
+   "id": "P12", "timing": "priori", "recon_observed": false,
+   "claim": "L3ae 的月度成本被高估：它用 236 个非零交易月的均值 0.188620，而 237 个月的序列均值是 0.187824，差 0.000796 ⇒ 0.3% 档成本高估 4.8e-4 pp",
+   "mechanism": "phasei summary 的 turnover.v1_one_side 是剔除首月（to=0）后的均值；L3ae 直接拿它乘费率，等于假设首月也交易。",
+   "falsified_if": "两均值相等"
+  }
+ ],
+ "evidence_rules": {
+  "S1_statistical": {
+   "pass": "p 可复现（序列→均值→NW(3)→t→p 逐位）且 Bonferroni/Holm/BH/BY 四种在 m=25 下全部拒绝",
+   "fail": "任一不成立",
+   "note": "只回答「不像噪声」，不回答「有多大用」"
+  },
+  "S2_economic": {
+   "pass": "|效应| ≥ 0.30pp/月 —— 该门槛来自 docs/PHASE_C_UNIVERSE_PREREG_2026-10-21.md，并在 E/F/G 三份预登记中被复用",
+   "fail": "|效应| < 0.30pp/月",
+   "not_graded": "判定量不是 pp/月 的价差/差值（如净收益、回归系数）——门槛的理由（「= 0.1% 档月度成本的 2 倍」）不迁移到已扣成本的量上，且从未为它预登记过门槛",
+   "forbidden": "不得用「效应/MDE 比值」代替经济门槛；那是功效指标，不是价值指标"
+  },
+  "S3_cost_adjusted": {
+   "pass": "存在逐月净收益序列，且该净序列自身的统计量在 m=25 的四种校正下全部拒绝、均值为正",
+   "fail": "存在逐月净序列但主档（预登记主成本）不拒绝或均值不为正",
+   "absent": "不存在净收益构造（判定量是价差/差值/回归系数）",
+   "tier_dependent": "不同成本档结论相反 —— 必须逐档列出，不得只报有利的一档"
+  },
+  "S4_tradability": {
+   "pass": "需要独立样本外验证 + 成交模型 + 容量评估 + 风险分析四项同时具备",
+   "absent": "任一项缺失",
+   "current": "本仓库无任何前瞻样本；成交模型只有上限冲击常数；容量只有覆盖率的描述性统计；风险分析只到 MDD/仓位。⇒ 全部 ABSENT"
+  }
+ },
+ "status_rule": {
+  "allowed": [
+   "VERIFIED_CURRENT_EVIDENCE_SET",
+   "VERIFIED_WITH_DOCUMENTED_LIMITATIONS",
+   "BLOCKED_BY_MISSING_TURNOVER_SERIES",
+   "BLOCKED_BY_TEST_FAMILY_AMBIGUITY",
+   "BLOCKED_BY_INCOMPLETE_RESEARCH_HISTORY",
+   "BLOCKED_BY_STATISTICAL_REPRODUCTION"
+  ],
+  "how_to_choose": [
+   "任一阻塞级闸门（G0/G1/G2/G3/G4/G5/G6/G6B/G9）失败 ⇒ BLOCKED_BY_STATISTICAL_REPRODUCTION",
+   "换手序列缺失 ⇒ BLOCKED_BY_MISSING_TURNOVER_SERIES（本阶段不适用，但保留该值因为它是预登记时的真实风险）",
+   "m 无法在合理口径间收敛 ⇒ BLOCKED_BY_TEST_FAMILY_AMBIGUITY",
+   "研究历史存在无法恢复的自由度缺口 ⇒ 与「已记录的局限」并列，选 VERIFIED_WITH_DOCUMENTED_LIMITATIONS 但必须在结题报告首段披露该缺口",
+   "全部闸门通过且无未记录局限 ⇒ VERIFIED_CURRENT_EVIDENCE_SET（本阶段预期达不到，因为研究历史缺口客观存在）"
+  ]
+ },
+ "neutrality_note": [
+  "本阶段新增的 5 个成本档**不得**改变任何枚举判定；它们只回答「L3ae 的 t 是否算对了」。",
+  "若逐月净收益使某条结论从「不显著」变成「显著」，那只说明原先把方差算错了，不说明策略变好了。",
+  "S2/S3/S4 的取值全部由字段机械推出，不允许人工调栏。"
+ ],
+ "outputs": [
+  "reports/gates/H-L3AF-COST-NET/l3af_cost_net.json",
+  "reports/gates/H-L3AF-COST-NET/l3af_family.json",
+  "reports/gates/H-L3AF-COST-NET/l3af_evidence.json",
+  "reports/gates/H-L3AF-COST-NET/l3af_mutation.json",
+  "reports/L3AF_COST_NET_RETURN_RECONSTRUCTION.md",
+  "reports/L3AF_TEST_FAMILY_AUDIT.md",
+  "reports/L3AF_CURRENT_EVIDENCE_STATUS.md",
+  "reports/STAGE_REPORT_L3AF_FINAL.md",
+  "docs/DELIVERABLE_QUOTE_SHEET_CURRENT.md",
+  "docs/gates/l3af_corrections.json"
+ ]
+}

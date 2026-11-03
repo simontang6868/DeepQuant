@@ -1,0 +1,1647 @@
+{
+  "elapsed_seconds": 246.928,
+  "hypothesis_id": "H-L3P-MACROSS-000001",
+  "portfolio": {
+    "allocation": "weights",
+    "initial_cash": 10000000.0,
+    "max_weight_per_asset": 0.2,
+    "rebalance": "monthly"
+  },
+  "prior_verdicts": {
+    "L1a": "L1A_REJECTED_BOUNDS",
+    "L1b": "L1B_BLOCKED_PREREQUISITE",
+    "L2": "L2_REJECTED_EXTREME_DEPENDENCE",
+    "L3": "L3_BLOCKED_PREREQUISITE"
+  },
+  "result": {
+    "checks": [
+      {
+        "actual": 28,
+        "detail": "完成 28 折（要求 ≥8）；失败 0 折",
+        "name": "可用折数达标",
+        "passed": true,
+        "threshold": 8
+      },
+      {
+        "actual": 0,
+        "detail": "测试窗两两不重叠，折数可作为独立证据",
+        "name": "测试窗互不重叠",
+        "passed": true,
+        "threshold": 0
+      },
+      {
+        "actual": {
+          "test_return_mean": 0.052844106214285716,
+          "train_positive_ratio": 0.8571428571428571
+        },
+        "detail": "训练正收益折占比 85.71%、测试均值 +0.0528",
+        "name": "样本内外未出现符号背离",
+        "passed": true,
+        "threshold": {
+          "min_train_positive_ratio": 0.6,
+          "test_return_mean": ">0"
+        }
+      },
+      {
+        "actual": 0.32142857142857145,
+        "detail": "9/28 折训练正而测试负（占比 32.14%）",
+        "name": "「训练正、测试负」折占比未超限",
+        "passed": true,
+        "threshold": 0.5
+      },
+      {
+        "actual": 0.6785714285714286,
+        "detail": "19/28 折正收益（占比 67.86%）",
+        "name": "正收益折占比达标",
+        "passed": true,
+        "threshold": 0.6
+      },
+      {
+        "actual": 0.1361347356557303,
+        "detail": "中位 WFE +0.1361（24 个可算折）",
+        "name": "中位 WFE 达标",
+        "passed": false,
+        "threshold": 0.3
+      }
+    ],
+    "control": {
+      "beats_control_folds": 14,
+      "beats_control_ratio": 0.5,
+      "cash_gap_median": -0.031830973465209064,
+      "control_cash_median": 0.1489339657665973,
+      "control_mean": 0.050249993214285735,
+      "excess_mean": 0.0025941129999999812,
+      "excess_median": 0.008828857000000023,
+      "folds_compared": 28,
+      "note": "对照臂 = 同池同期每期等权持有全部标的（不做选择）。两条臂共享同一份费用与撮合口径，差就是「选择」的贡献；但两臂现金占比不同（策略臂在只选出少数标的时被权重上限逼成部分空仓），所以收益差是**稀释后**的差。`per_invested_excess_mean` 是折算掉现金差异后的粗算，只用于判断方向，不得当收益引用。",
+      "per_invested_excess_mean": -0.07872950013641225,
+      "per_invested_folds": 28,
+      "strategy_cash_median": 0.11710299230138822,
+      "strategy_mean": 0.052844106214285716
+    },
+    "folds": [
+      {
+        "avg_cash_ratio": 0.03278729271494923,
+        "avg_positions": 13.714285714285714,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.139647282181616,
+        "control_return": 0.017912967000000002,
+        "error": "",
+        "excess_vs_control": 0.03488862699999995,
+        "fills": 145,
+        "fold": 1,
+        "max_positions": 25,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2012-08-07",
+          "start": "2012-02-06",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.12081899285017803,
+        "test_return": 0.05280159399999995,
+        "train": {
+          "end": "2012-02-03",
+          "start": "2010-01-04",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.19579871400000015,
+        "warmup_start": null,
+        "wfe": 0.2696728334998151,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.14397632857023918,
+        "avg_positions": 10.857142857142858,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.13972294352470696,
+        "control_return": 0.03532628900000012,
+        "error": "",
+        "excess_vs_control": -0.05793623300000006,
+        "fills": 107,
+        "fold": 2,
+        "max_positions": 26,
+        "min_positions": 3,
+        "params_changed": null,
+        "test": {
+          "end": "2013-02-18",
+          "start": "2012-08-08",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.20027251883760733,
+        "test_return": -0.022609943999999937,
+        "train": {
+          "end": "2012-08-07",
+          "start": "2010-07-13",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.38336093699999996,
+        "warmup_start": null,
+        "wfe": -0.058978215613031904,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.158231928819615,
+        "avg_positions": 13.142857142857142,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.13365408520813807,
+        "control_return": 0.020176981000000094,
+        "error": "",
+        "excess_vs_control": 0.17752420299999994,
+        "fills": 132,
+        "fold": 3,
+        "max_positions": 24,
+        "min_positions": 3,
+        "params_changed": null,
+        "test": {
+          "end": "2013-08-23",
+          "start": "2013-02-19",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.15558301559229357,
+        "test_return": 0.19770118400000003,
+        "train": {
+          "end": "2013-02-18",
+          "start": "2011-01-18",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": -0.04096438499999999,
+        "warmup_start": null,
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.0410 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "avg_cash_ratio": 0.011505750940694049,
+        "avg_positions": 11.875,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.13894891175914095,
+        "control_return": 0.08454289000000004,
+        "error": "",
+        "excess_vs_control": 0.24542402600000002,
+        "fills": 142,
+        "fold": 4,
+        "max_positions": 24,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2014-03-06",
+          "start": "2013-08-26",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.12043928256018738,
+        "test_return": 0.32996691600000005,
+        "train": {
+          "end": "2013-08-23",
+          "start": "2011-07-26",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.1017818720000001,
+        "warmup_start": null,
+        "wfe": 3.241902605210481,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.11724232513223527,
+        "avg_positions": 11.571428571428571,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.12065826328268911,
+        "control_return": 0.139000475,
+        "error": "",
+        "excess_vs_control": -0.03669524199999996,
+        "fills": 120,
+        "fold": 5,
+        "max_positions": 20,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2014-09-04",
+          "start": "2014-03-07",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.08760370399999991,
+        "test_return": 0.10230523300000005,
+        "train": {
+          "end": "2014-03-06",
+          "start": "2012-02-06",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.618772514,
+        "warmup_start": null,
+        "wfe": 0.165335774756149,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.09102636738996923,
+        "avg_positions": 13.714285714285714,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.11831627898799703,
+        "control_return": 0.510821446,
+        "error": "",
+        "excess_vs_control": -0.146650143,
+        "fills": 129,
+        "fold": 6,
+        "max_positions": 18,
+        "min_positions": 8,
+        "params_changed": null,
+        "test": {
+          "end": "2015-03-18",
+          "start": "2014-09-05",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.13081453071689275,
+        "test_return": 0.364171303,
+        "train": {
+          "end": "2014-09-04",
+          "start": "2012-08-08",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.7213486980000001,
+        "warmup_start": null,
+        "wfe": 0.5048477996975603,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.2511103063414643,
+        "avg_positions": 16.571428571428573,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.15814498800848759,
+        "control_return": -0.12627113699999992,
+        "error": "",
+        "excess_vs_control": 0.07206135499999988,
+        "fills": 140,
+        "fold": 7,
+        "max_positions": 26,
+        "min_positions": 3,
+        "params_changed": null,
+        "test": {
+          "end": "2015-09-17",
+          "start": "2015-03-19",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.3888060551167388,
+        "test_return": -0.05420978200000004,
+        "train": {
+          "end": "2015-03-18",
+          "start": "2013-02-19",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 1.526481579,
+        "warmup_start": null,
+        "wfe": -0.03551289628762696,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.30587929981295026,
+        "avg_positions": 10.571428571428571,
+        "best_params": {
+          "fast_window": 5,
+          "slow_window": 40
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.1346443332684986,
+        "control_return": 0.14743077299999996,
+        "error": "",
+        "excess_vs_control": -0.18932885999999993,
+        "fills": 80,
+        "fold": 8,
+        "max_positions": 23,
+        "min_positions": 3,
+        "params_changed": null,
+        "test": {
+          "end": "2016-03-28",
+          "start": "2015-09-18",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.2668795110464624,
+        "test_return": -0.04189808699999997,
+        "train": {
+          "end": "2015-09-17",
+          "start": "2013-08-26",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 1.394940745,
+        "warmup_start": null,
+        "wfe": -0.03003574678722283,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.1551305083438341,
+        "avg_positions": 14.714285714285714,
+        "best_params": {
+          "fast_window": 5,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.16095381689008548,
+        "control_return": 0.13255617600000003,
+        "error": "",
+        "excess_vs_control": -0.007291584999999934,
+        "fills": 124,
+        "fold": 9,
+        "max_positions": 22,
+        "min_positions": 7,
+        "params_changed": null,
+        "test": {
+          "end": "2016-09-28",
+          "start": "2016-03-29",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.095316996231961,
+        "test_return": 0.1252645910000001,
+        "train": {
+          "end": "2016-03-28",
+          "start": "2014-03-07",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.8994987239999999,
+        "warmup_start": null,
+        "wfe": 0.13926044324216308,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.08558762550629945,
+        "avg_positions": 11.0,
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 25
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.1219657947686988,
+        "control_return": -0.010990900999999997,
+        "error": "",
+        "excess_vs_control": -0.022240837000000124,
+        "fills": 129,
+        "fold": 10,
+        "max_positions": 20,
+        "min_positions": 3,
+        "params_changed": null,
+        "test": {
+          "end": "2017-04-11",
+          "start": "2016-09-29",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.11528213974673511,
+        "test_return": -0.03323173800000012,
+        "train": {
+          "end": "2016-09-28",
+          "start": "2014-09-05",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 1.0962923500000001,
+        "warmup_start": null,
+        "wfe": -0.030312843102480936,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.14927607396063114,
+        "avg_positions": 14.142857142857142,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.08409040587219603,
+        "control_return": 0.04865501999999999,
+        "error": "",
+        "excess_vs_control": 0.06767056999999999,
+        "fills": 116,
+        "fold": 11,
+        "max_positions": 22,
+        "min_positions": 4,
+        "params_changed": null,
+        "test": {
+          "end": "2017-10-16",
+          "start": "2017-04-12",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.06044984543051917,
+        "test_return": 0.11632558999999998,
+        "train": {
+          "end": "2017-04-11",
+          "start": "2015-03-19",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.23435441999999984,
+        "warmup_start": null,
+        "wfe": 0.4963661022480398,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.11876933473475557,
+        "avg_positions": 11.714285714285714,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.12326829910988209,
+        "control_return": -0.02885038399999995,
+        "error": "",
+        "excess_vs_control": 0.09508735399999979,
+        "fills": 111,
+        "fold": 12,
+        "max_positions": 16,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2018-04-20",
+          "start": "2017-10-17",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.1271983685534005,
+        "test_return": 0.06623696999999984,
+        "train": {
+          "end": "2017-10-16",
+          "start": "2015-09-18",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.5343819510000001,
+        "warmup_start": null,
+        "wfe": 0.12395061224663224,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.1177160852857363,
+        "avg_positions": 7.285714285714286,
+        "best_params": {
+          "fast_window": 3,
+          "slow_window": 60
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.07834889875240279,
+        "control_return": -0.17534984800000009,
+        "error": "",
+        "excess_vs_control": -0.08093877299999996,
+        "fills": 66,
+        "fold": 13,
+        "max_positions": 13,
+        "min_positions": 3,
+        "params_changed": null,
+        "test": {
+          "end": "2018-10-26",
+          "start": "2018-04-23",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.3311146257847698,
+        "test_return": -0.25628862100000005,
+        "train": {
+          "end": "2018-04-20",
+          "start": "2016-03-29",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.470768399,
+        "warmup_start": null,
+        "wfe": -0.544404895367669,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.011145422010510136,
+        "avg_positions": 15.75,
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 60
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.10460368506168537,
+        "control_return": 0.23301899700000006,
+        "error": "",
+        "excess_vs_control": -0.10613290700000011,
+        "fills": 141,
+        "fold": 14,
+        "max_positions": 26,
+        "min_positions": 7,
+        "params_changed": null,
+        "test": {
+          "end": "2019-05-07",
+          "start": "2018-10-29",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.14242432285289686,
+        "test_return": 0.12688608999999995,
+        "train": {
+          "end": "2018-10-26",
+          "start": "2016-09-29",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": -0.023564811999999935,
+        "warmup_start": null,
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.0236 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "avg_cash_ratio": 0.13105202474761748,
+        "avg_positions": 12.142857142857142,
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 40
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.10044613784218336,
+        "control_return": 0.010944360999999958,
+        "error": "",
+        "excess_vs_control": 0.031007869000000188,
+        "fills": 132,
+        "fold": 15,
+        "max_positions": 25,
+        "min_positions": 2,
+        "params_changed": null,
+        "test": {
+          "end": "2019-11-08",
+          "start": "2019-05-08",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.08582787918720627,
+        "test_return": 0.041952230000000146,
+        "train": {
+          "end": "2019-05-07",
+          "start": "2017-04-12",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.06640336699999994,
+        "warmup_start": null,
+        "wfe": 0.631778656645531,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.007938886660617143,
+        "avg_positions": 13.714285714285714,
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 25
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.07222047565931018,
+        "control_return": 0.031866452000000045,
+        "error": "",
+        "excess_vs_control": -0.0007030889999999346,
+        "fills": 131,
+        "fold": 16,
+        "max_positions": 24,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2020-05-19",
+          "start": "2019-11-11",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.18968117901082326,
+        "test_return": 0.03116336300000011,
+        "train": {
+          "end": "2019-11-08",
+          "start": "2017-10-17",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.05224019199999996,
+        "warmup_start": null,
+        "wfe": 0.5965399782604194,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.06839229922525848,
+        "avg_positions": 16.714285714285715,
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 25
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.16977333778960077,
+        "control_return": 0.186221851,
+        "error": "",
+        "excess_vs_control": 0.07679244600000001,
+        "fills": 137,
+        "fold": 17,
+        "max_positions": 23,
+        "min_positions": 9,
+        "params_changed": null,
+        "test": {
+          "end": "2020-11-23",
+          "start": "2020-05-20",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.10785386334416273,
+        "test_return": 0.263014297,
+        "train": {
+          "end": "2020-05-19",
+          "start": "2018-04-23",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.08685069499999987,
+        "warmup_start": null,
+        "wfe": 3.0283499400897185,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.0826387131349963,
+        "avg_positions": 13.25,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 60
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.2007846435006875,
+        "control_return": 0.010694678999999985,
+        "error": "",
+        "excess_vs_control": 0.01836080299999998,
+        "fills": 127,
+        "fold": 18,
+        "max_positions": 17,
+        "min_positions": 9,
+        "params_changed": null,
+        "test": {
+          "end": "2021-06-01",
+          "start": "2020-11-24",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.13982431343984614,
+        "test_return": 0.029055481999999966,
+        "train": {
+          "end": "2020-11-23",
+          "start": "2018-10-29",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.995747631,
+        "warmup_start": null,
+        "wfe": 0.02917956427455459,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.060660999120118304,
+        "avg_positions": 9.714285714285714,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 60
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.22163956887962727,
+        "control_return": 0.02275791199999988,
+        "error": "",
+        "excess_vs_control": 0.0986288070000001,
+        "fills": 86,
+        "fold": 19,
+        "max_positions": 12,
+        "min_positions": 8,
+        "params_changed": null,
+        "test": {
+          "end": "2021-12-06",
+          "start": "2021-06-02",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.17620675162232005,
+        "test_return": 0.12138671899999998,
+        "train": {
+          "end": "2021-06-01",
+          "start": "2019-05-08",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.8415637890000001,
+        "warmup_start": null,
+        "wfe": 0.14423947487597993,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.007938435413000955,
+        "avg_positions": 9.571428571428571,
+        "best_params": {
+          "fast_window": 20,
+          "slow_window": 40
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.2170108642777943,
+        "control_return": -0.09106056600000001,
+        "error": "",
+        "excess_vs_control": -0.17242798800000003,
+        "fills": 102,
+        "fold": 20,
+        "max_positions": 17,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2022-06-16",
+          "start": "2021-12-07",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.3366646168067806,
+        "test_return": -0.26348855400000004,
+        "train": {
+          "end": "2021-12-06",
+          "start": "2019-11-11",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.9848808769999999,
+        "warmup_start": null,
+        "wfe": -0.2675334247554895,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.11696365947054117,
+        "avg_positions": 11.571428571428571,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 25
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.24009638407665798,
+        "control_return": -0.004784902999999896,
+        "error": "",
+        "excess_vs_control": -0.01082364300000016,
+        "fills": 109,
+        "fold": 21,
+        "max_positions": 20,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2022-12-19",
+          "start": "2022-06-17",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.11888942281631275,
+        "test_return": -0.015608546000000056,
+        "train": {
+          "end": "2022-06-16",
+          "start": "2020-05-20",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.5413029,
+        "warmup_start": null,
+        "wfe": -0.028835142024918128,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.3246586611845201,
+        "avg_positions": 11.857142857142858,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.24028828207979705,
+        "control_return": -0.0012531319999999901,
+        "error": "",
+        "excess_vs_control": -0.07535219100000001,
+        "fills": 106,
+        "fold": 22,
+        "max_positions": 19,
+        "min_positions": 4,
+        "params_changed": null,
+        "test": {
+          "end": "2023-06-29",
+          "start": "2022-12-20",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.10433789107402812,
+        "test_return": -0.076605323,
+        "train": {
+          "end": "2022-12-19",
+          "start": "2020-11-24",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.07455830099999994,
+        "warmup_start": null,
+        "wfe": -1.0274553198308538,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.11661581575452785,
+        "avg_positions": 10.285714285714286,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 25
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.25201515578825023,
+        "control_return": -0.006060991999999987,
+        "error": "",
+        "excess_vs_control": 0.03704038900000006,
+        "fills": 98,
+        "fold": 23,
+        "max_positions": 19,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2024-01-02",
+          "start": "2023-06-30",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.06641167960308461,
+        "test_return": 0.030979397000000075,
+        "train": {
+          "end": "2023-06-29",
+          "start": "2021-06-02",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": -0.007208792000000019,
+        "warmup_start": null,
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.0072 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "avg_cash_ratio": 0.21963962415009872,
+        "avg_positions": 14.857142857142858,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.24280871437350315,
+        "control_return": -0.06294301899999999,
+        "error": "",
+        "excess_vs_control": 0.10884931000000009,
+        "fills": 121,
+        "fold": 24,
+        "max_positions": 26,
+        "min_positions": 9,
+        "params_changed": null,
+        "test": {
+          "end": "2024-07-12",
+          "start": "2024-01-03",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.061873063278378174,
+        "test_return": 0.0459062910000001,
+        "train": {
+          "end": "2024-01-02",
+          "start": "2021-12-07",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": -0.07935065399999996,
+        "warmup_start": null,
+        "wfe": null,
+        "wfe_reason": "训练收益 -0.0794 非正，测试/训练之比没有经济含义"
+      },
+      {
+        "avg_cash_ratio": 0.007939901486322523,
+        "avg_positions": 12.571428571428571,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 60
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.2749680389026771,
+        "control_return": 0.162307054,
+        "error": "",
+        "excess_vs_control": -0.10689849200000001,
+        "fills": 110,
+        "fold": 25,
+        "max_positions": 21,
+        "min_positions": 8,
+        "params_changed": null,
+        "test": {
+          "end": "2025-01-16",
+          "start": "2024-07-15",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.14832651929647528,
+        "test_return": 0.055408561999999995,
+        "train": {
+          "end": "2024-07-12",
+          "start": "2022-06-17",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.1690620060000001,
+        "warmup_start": null,
+        "wfe": 0.32774106560642585,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.07563991662316095,
+        "avg_positions": 10.0,
+        "best_params": {
+          "fast_window": 5,
+          "slow_window": 40
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.278765566953772,
+        "control_return": 0.0043100560000000065,
+        "error": "",
+        "excess_vs_control": 0.052260202999999894,
+        "fills": 84,
+        "fold": 26,
+        "max_positions": 16,
+        "min_positions": 6,
+        "params_changed": null,
+        "test": {
+          "end": "2025-07-28",
+          "start": "2025-01-17",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.1131141508766431,
+        "test_return": 0.0565702589999999,
+        "train": {
+          "end": "2025-01-16",
+          "start": "2022-12-20",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.42531142300000013,
+        "warmup_start": null,
+        "wfe": 0.13300902806929754,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.2971669545845762,
+        "avg_positions": 16.285714285714285,
+        "best_params": {
+          "fast_window": 10,
+          "slow_window": 15
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.3336331687251552,
+        "control_return": 0.07450274199999996,
+        "error": "",
+        "excess_vs_control": 0.05487812599999997,
+        "fills": 108,
+        "fold": 27,
+        "max_positions": 21,
+        "min_positions": 10,
+        "params_changed": null,
+        "test": {
+          "end": "2026-01-30",
+          "start": "2025-07-29",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.0691389618680943,
+        "test_return": 0.12938086799999993,
+        "train": {
+          "end": "2025-07-28",
+          "start": "2023-06-30",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.40189755299999996,
+        "warmup_start": null,
+        "wfe": 0.32192499564683824,
+        "wfe_reason": ""
+      },
+      {
+        "avg_cash_ratio": 0.13741380795802288,
+        "avg_positions": 9.428571428571429,
+        "best_params": {
+          "fast_window": 5,
+          "slow_window": 40
+        },
+        "cash_only_periods": 0,
+        "control_cash_ratio": 0.3704763040101932,
+        "control_return": 0.0415175710000002,
+        "error": "",
+        "excess_vs_control": -0.08441894100000014,
+        "fills": 80,
+        "fold": 28,
+        "max_positions": 16,
+        "min_positions": 5,
+        "params_changed": null,
+        "test": {
+          "end": "2026-08-11",
+          "start": "2026-02-02",
+          "trading_days": 126
+        },
+        "test_closed_trades": null,
+        "test_max_drawdown": 0.20460455630146693,
+        "test_return": -0.04290136999999994,
+        "train": {
+          "end": "2026-01-30",
+          "start": "2024-01-03",
+          "trading_days": 504
+        },
+        "train_closed_trades": null,
+        "train_return": 0.627693603,
+        "warmup_start": null,
+        "wfe": -0.06834762979096337,
+        "wfe_reason": ""
+      }
+    ],
+    "hypothesis_id": "H-L3P-MACROSS-000001",
+    "limitations": [
+      "前置未满足：L1a=L1A_REJECTED_BOUNDS、L1b=L1B_BLOCKED_PREREQUISITE、L2=L2_REJECTED_EXTREME_DEPENDENCE、L3=L3_BLOCKED_PREREQUISITE。本次组合级 Walk-Forward 仅用于量化折间一致性，**不构成放行结论**。",
+      "若**不计**前置，本闸门判定链给出的终态是 `L3P_REJECTED_INCONSISTENT_FOLDS`（同样不构成放行依据，只用于说明本闸门自身的判断）。",
+      "**组合化降低的是横截面特异噪声，不降低共同因子风险**：27 折仍是同一段历史的不同切片，折间仍共享市场体制。这条不能说成「折已独立」。",
+      "**折收益仍不可拼成连续净值**：每折资金重置、从空仓起步；复利相乘不对应任何账户。",
+      "**本闸门的「样本外」只针对参数选择**：整段历史在 L1a/L2 阶段已被看过，测的是参数随时间的稳健性，不构成前瞻样本外证据。",
+      "组合层用 `weights` 记账：不受整手约束、不产生现金残留，因此收益与初始资金无关；**可执行性需另用 lots 口径复核**。",
+      "**标的池有生存偏差风险**：池取自项目既有 518 池，其构造口径见 `docs/DATASET_POOL_2026-10-18.md`；该池对退市股的完备性本轮未核对。",
+      "**30 只≠全市场**：抽样的具体名单已冻结，换种子会得到不同结论；组合层结论只能限定在这份名单上。",
+      "每折在窗口首日补一次建仓信号：否则月度调仓会让折首最多空仓 29 天，折收益被系统性压低且与单标的 L3 不可比。",
+      "对照臂（等权持有全部标的）与本策略共享费用与撮合口径，但**它不是可投资基准**（每期全换手、无成本优化），只用于隔离「选择」的贡献。"
+    ],
+    "notes": [
+      "前序终态（读自各自结果文件）：L1a=L1A_REJECTED_BOUNDS、L1b=L1B_BLOCKED_PREREQUISITE、L2=L2_REJECTED_EXTREME_DEPENDENCE、L3=L3_BLOCKED_PREREQUISITE"
+    ],
+    "overlap": {
+      "details": [],
+      "independent": true,
+      "overlap_pairs": 0
+    },
+    "param_selection": {
+      "changes": 0,
+      "comparisons": 0,
+      "distinct_param_sets": 10,
+      "most_common": {
+        "fast_window": 10,
+        "slow_window": 15
+      },
+      "most_common_count": 12,
+      "param_stability": 0.42857142857142855,
+      "sequence": [
+        {
+          "fold": 1,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 2,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 3,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 4,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 5,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 6,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 7,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 8,
+          "params": {
+            "fast_window": 5,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 9,
+          "params": {
+            "fast_window": 5,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 10,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 25
+          }
+        },
+        {
+          "fold": 11,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 12,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 13,
+          "params": {
+            "fast_window": 3,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 14,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 15,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 16,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 25
+          }
+        },
+        {
+          "fold": 17,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 25
+          }
+        },
+        {
+          "fold": 18,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 19,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 20,
+          "params": {
+            "fast_window": 20,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 21,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 25
+          }
+        },
+        {
+          "fold": 22,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 23,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 25
+          }
+        },
+        {
+          "fold": 24,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 25,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 60
+          }
+        },
+        {
+          "fold": 26,
+          "params": {
+            "fast_window": 5,
+            "slow_window": 40
+          }
+        },
+        {
+          "fold": 27,
+          "params": {
+            "fast_window": 10,
+            "slow_window": 15
+          }
+        },
+        {
+          "fold": 28,
+          "params": {
+            "fast_window": 5,
+            "slow_window": 40
+          }
+        }
+      ]
+    },
+    "portfolio": {
+      "allocation": "weights",
+      "avg_cash_ratio_median": 0.11710299230138822,
+      "avg_positions_max": 16.714285714285715,
+      "avg_positions_median": 12.008928571428571,
+      "avg_positions_min": 7.285714285714286,
+      "cash_only_periods_total": 0,
+      "folds_with_positions": 28,
+      "note": "avg_cash_ratio 是测试窗内逐日 cash/total_equity 的均值；它是「未投资比例」的代理，单看权重误差抓不到现金残留。"
+    },
+    "preliminary_verdict": "L3P_REJECTED_INCONSISTENT_FOLDS",
+    "spec": {
+      "digest": "1499678059b05ab2313fc4669c7ce1cfd8659a04107e0477d8a3f9ce3d569a0c",
+      "hypothesis": {
+        "boundaries": {
+          "max_in_sample_drawdown": 0.25,
+          "max_oos_degradation": 0.5,
+          "max_out_sample_drawdown": 0.25,
+          "min_closed_trades": 10,
+          "min_in_sample_return": 0.58,
+          "min_out_sample_return": 0.0
+        },
+        "boundary_basis": "沿用 L1a 契约（H-L1A-MACROSS-000001）的边界，不因 L3p 结果调整；L3p 不使用这些边界判定，只用 in_sample/out_sample 界定数据来源。",
+        "constraints": [
+          [
+            "fast_window",
+            "slow_window"
+          ]
+        ],
+        "data": {
+          "research_path": "docs/gates/universes/H_L3P_UNIVERSE_30.json",
+          "source_note": "组合层的行情由标的池文件逐只从 data/qfq_all 读取；research_path 指向池文件本身，便于溯源。",
+          "symbol": "U-L3P-30",
+          "trading_path": null
+        },
+        "declared_grid_points": 15,
+        "excluded_by_constraint": 1,
+        "grid_size": 15,
+        "hypothesis_id": "H-L3P-MACROSS-000001",
+        "in_sample": {
+          "end": "2021-12-31",
+          "start": "2016-01-01"
+        },
+        "initial_cash": 100000.0,
+        "out_sample": {
+          "end": "2026-06-30",
+          "start": "2022-01-01"
+        },
+        "param_grid": {
+          "fast_window": [
+            3,
+            5,
+            10,
+            20
+          ],
+          "slow_window": [
+            15,
+            25,
+            40,
+            60
+          ]
+        },
+        "portfolio": {
+          "allocation": "weights",
+          "initial_cash": 10000000.0,
+          "max_weight_per_asset": 0.2,
+          "rebalance": "monthly"
+        },
+        "selection_metric": "cumulative_return",
+        "spec_version": "l1a-hypothesis-v1",
+        "strategy_id": "ma_cross",
+        "title": "双均线（ma_cross）在 30 只等权组合上的滚动窗口一致性（L3p）",
+        "walk_forward": {
+          "basis": "与单标的 L3（H-L3-MACROSS-000001）**完全相同**的切窗与阈值：只有口径相同，组合与单标的的折统计才可比。改这里必须同时改 L3，否则两个闸门的结论不能并列引用。",
+          "max_divergent_fold_ratio": 0.5,
+          "min_folds": 8,
+          "min_median_wfe": 0.3,
+          "min_positive_fold_ratio": 0.6,
+          "min_test_days": 60,
+          "min_train_positive_ratio": 0.6,
+          "mode": "rolling",
+          "span_end": "2026-10-16",
+          "span_start": "2010-01-01",
+          "step_days": 126,
+          "test_days": 126,
+          "train_days": 504
+        }
+      },
+      "portfolio": {
+        "allocation": "weights",
+        "initial_cash": 10000000.0,
+        "max_weight_per_asset": 0.2,
+        "rebalance": "monthly"
+      },
+      "universe": {
+        "constituents": [
+          "000002.SZ",
+          "000792.SZ",
+          "000895.SZ",
+          "000918.SZ",
+          "002001.SZ",
+          "002071.SZ",
+          "002288.SZ",
+          "002371.SZ",
+          "002619.SZ",
+          "300033.SZ",
+          "300108.SZ",
+          "300379.SZ",
+          "600019.SH",
+          "600031.SH",
+          "600175.SH",
+          "600519.SH",
+          "600677.SH",
+          "600795.SH",
+          "600806.SH",
+          "600871.SH",
+          "600891.SH",
+          "601028.SH",
+          "601288.SH",
+          "601618.SH",
+          "601788.SH",
+          "601818.SH",
+          "601939.SH",
+          "603296.SH",
+          "603986.SH",
+          "688036.SH"
+        ],
+        "dropped": [],
+        "rows_in_span": {
+          "000002.SZ": 3919,
+          "000792.SZ": 3692,
+          "000895.SZ": 3856,
+          "000918.SZ": 3191,
+          "002001.SZ": 4050,
+          "002071.SZ": 2360,
+          "002288.SZ": 3336,
+          "002371.SZ": 3946,
+          "002619.SZ": 2128,
+          "300033.SZ": 4054,
+          "300108.SZ": 3190,
+          "300379.SZ": 2773,
+          "600019.SH": 3974,
+          "600031.SH": 4061,
+          "600175.SH": 2367,
+          "600519.SH": 4068,
+          "600677.SH": 2375,
+          "600795.SH": 3994,
+          "600806.SH": 1623,
+          "600871.SH": 3905,
+          "600891.SH": 2321,
+          "601028.SH": 3171,
+          "601288.SH": 3942,
+          "601618.SH": 3995,
+          "601788.SH": 4054,
+          "601818.SH": 3903,
+          "601939.SH": 4062,
+          "603296.SH": 771,
+          "603986.SH": 2258,
+          "688036.SH": 1705
+        },
+        "size": 30,
+        "source": "D:\\DeepQuant power by txm\\DeepQuant-main\\docs\\gates\\universes\\H_L3P_UNIVERSE_30.json",
+        "universe_id": "U-L3P-30"
+      },
+      "walk_forward": {
+        "basis": "与单标的 L3（H-L3-MACROSS-000001）**完全相同**的切窗与阈值：只有口径相同，组合与单标的的折统计才可比。改这里必须同时改 L3，否则两个闸门的结论不能并列引用。",
+        "max_divergent_fold_ratio": 0.5,
+        "min_folds": 8,
+        "min_median_wfe": 0.3,
+        "min_positive_fold_ratio": 0.6,
+        "min_test_days": 60,
+        "min_train_positive_ratio": 0.6,
+        "mode": "rolling",
+        "span_end": "2026-10-16",
+        "span_start": "2010-01-01",
+        "step_days": 126,
+        "test_days": 126,
+        "train_days": 504,
+        "warmup_days": 0,
+        "warmup_multiple": 2
+      }
+    },
+    "stages": [
+      {
+        "detail": "切窗规则 1499678059b05ab2…；口径 weights；标的池 U-L3P-30（30 只）",
+        "name": "spec",
+        "status": "pass"
+      },
+      {
+        "detail": "28 折，2010-01-04 → 2026-08-11；测试窗互不重叠",
+        "name": "windows",
+        "status": "pass"
+      },
+      {
+        "detail": "15 组参数 × 30 只标的的状态已重建",
+        "name": "signals",
+        "status": "pass"
+      },
+      {
+        "detail": "可用折数达标=PASS；测试窗互不重叠=PASS；样本内外未出现符号背离=PASS；「训练正、测试负」折占比未超限=PASS；正收益折占比达标=PASS；中位 WFE 达标=FAIL",
+        "name": "decide",
+        "status": "fail"
+      },
+      {
+        "detail": "L1a=L1A_REJECTED_BOUNDS、L1b=L1B_BLOCKED_PREREQUISITE、L2=L2_REJECTED_EXTREME_DEPENDENCE、L3=L3_BLOCKED_PREREQUISITE",
+        "name": "prerequisite",
+        "status": "fail"
+      }
+    ],
+    "summary": {
+      "divergent_fold_ratio": 0.32142857142857145,
+      "divergent_folds": 9,
+      "folds_failed": 0,
+      "folds_total": 28,
+      "folds_usable": 28,
+      "median_wfe": 0.1361347356557303,
+      "naive_sum_of_fold_returns": 1.479634974,
+      "test_drawdown_max": 0.3888060551167388,
+      "test_drawdown_median": 0.12400868070178926,
+      "test_positive_fold_ratio": 0.6785714285714286,
+      "test_positive_folds": 19,
+      "test_return_max": 0.364171303,
+      "test_return_mean": 0.052844106214285716,
+      "test_return_median": 0.049353942500000025,
+      "test_return_min": -0.26348855400000004,
+      "test_return_std": 0.13988025001775017,
+      "train_positive_fold_ratio": 0.8571428571428571,
+      "train_positive_folds": 24,
+      "train_return_mean": 0.4747930213214286,
+      "wfe_samples": 24
+    },
+    "universe": {
+      "constituents": [
+        "000002.SZ",
+        "000792.SZ",
+        "000895.SZ",
+        "000918.SZ",
+        "002001.SZ",
+        "002071.SZ",
+        "002288.SZ",
+        "002371.SZ",
+        "002619.SZ",
+        "300033.SZ",
+        "300108.SZ",
+        "300379.SZ",
+        "600019.SH",
+        "600031.SH",
+        "600175.SH",
+        "600519.SH",
+        "600677.SH",
+        "600795.SH",
+        "600806.SH",
+        "600871.SH",
+        "600891.SH",
+        "601028.SH",
+        "601288.SH",
+        "601618.SH",
+        "601788.SH",
+        "601818.SH",
+        "601939.SH",
+        "603296.SH",
+        "603986.SH",
+        "688036.SH"
+      ],
+      "dropped": [],
+      "rows_in_span": {
+        "000002.SZ": 3919,
+        "000792.SZ": 3692,
+        "000895.SZ": 3856,
+        "000918.SZ": 3191,
+        "002001.SZ": 4050,
+        "002071.SZ": 2360,
+        "002288.SZ": 3336,
+        "002371.SZ": 3946,
+        "002619.SZ": 2128,
+        "300033.SZ": 4054,
+        "300108.SZ": 3190,
+        "300379.SZ": 2773,
+        "600019.SH": 3974,
+        "600031.SH": 4061,
+        "600175.SH": 2367,
+        "600519.SH": 4068,
+        "600677.SH": 2375,
+        "600795.SH": 3994,
+        "600806.SH": 1623,
+        "600871.SH": 3905,
+        "600891.SH": 2321,
+        "601028.SH": 3171,
+        "601288.SH": 3942,
+        "601618.SH": 3995,
+        "601788.SH": 4054,
+        "601818.SH": 3903,
+        "601939.SH": 4062,
+        "603296.SH": 771,
+        "603986.SH": 2258,
+        "688036.SH": 1705
+      },
+      "size": 30,
+      "source": "D:\\DeepQuant power by txm\\DeepQuant-main\\docs\\gates\\universes\\H_L3P_UNIVERSE_30.json",
+      "universe_id": "U-L3P-30"
+    },
+    "verdict": "L3P_BLOCKED_PREREQUISITE",
+    "window_meta": {
+      "declared_span": {
+        "end": "2026-10-16",
+        "start": "2010-01-01"
+      },
+      "first_day": "2010-01-04",
+      "folds": 28,
+      "last_day": "2026-10-16",
+      "mode": "rolling",
+      "span_end": "2026-08-11",
+      "span_start": "2010-01-04",
+      "step_days": 126,
+      "test_days": 126,
+      "trading_days_total": 4074,
+      "train_days": 504,
+      "universe_size": 30,
+      "unused_tail_days": 42,
+      "warmup_days": 0
+    }
+  },
+  "spec_path": "docs\\gates\\specs\\H_L3P_MACROSS_000001.json",
+  "universe_path": "docs\\gates\\universes\\H_L3P_UNIVERSE_30.json",
+  "walk_forward_digest": "1499678059b05ab2313fc4669c7ce1cfd8659a04107e0477d8a3f9ce3d569a0c"
+}

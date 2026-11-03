@@ -1,0 +1,145 @@
+{
+ "experiment_id": "H-L3AC-FAMILY-V2",
+ "kind": "preregistration",
+ "created": "2026-10-29",
+ "title": "检验家族口径修正：同源子窗口合并与未登记结论纳入（phasei）",
+ "objective": "L3ab 家族审计确认了两件事实：①A 类（同一假设重复登记）为 0 条，但存在 4 处「严格更短的子窗口、共同月逐位相同」的登记，按数据同一性本应合并；②家族覆盖面不全——phasei_out（exQ5 可成交实验）有完整结论（V0 +0.2307pp/t=6.357、V1 +0.1634pp/t=4.528）却从未进入任何一次多重检验家族。本阶段把这两项缺口一次性补上，并用**同一条可复算的规则**重新定义家族，输出该口径下四种校正的完整结果。",
+ "why_now": [
+  "L3ab 的最终状态是 VERIFIED_WITH_DOCUMENTED_LIMITATIONS，其未解决项 U2（同源配对是否算独立假设）与「家族覆盖不全」两项，都只能靠一次**新的预登记**来处置；在旧预登记上直接改家族，等于事后调整口径。",
+  "如果不同时补上，对外「可引 6 条」这个数字的范围有限定——它只覆盖登记在册的 27 条，而项目内部当作头部结论引用的 exQ5 结果不在其中。限定写在报告里不够，必须让它进入同一个门槛。",
+  "⚠️ 本阶段会**提高** m（24 → 25），也就是**收紧**门槛。方向是单向变严，因此不可能被读成「为提高通过数而调家族」——这一点是本阶段可以做的前提条件。"
+ ],
+ "inputs_frozen": {
+  "l3u_result": {
+   "path": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+   "sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b"
+  },
+  "l3z_result": {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+   "sha256": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc"
+  },
+  "l3aa_result": {
+   "path": "reports/gates/H-L3AA-DEPENDENCE/l3aa_dependence.json",
+   "sha256": "dffcf4645cfe8c2b155b1d53f3a4e5b6c5afd007772d1fc5d3206fe99e6854ec"
+  },
+  "l3ab_decisions": {
+   "path": "docs/gates/l3ab_family_decisions.json",
+   "sha256": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75"
+  },
+  "l3u_prereg": {
+   "path": "docs/gates/l3u_prereg.json",
+   "sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493"
+  },
+  "phasei_monthly": {
+   "path": "phasei_out/8f5c35121fdb/monthly.csv",
+   "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a"
+  },
+  "phasei_summary": {
+   "path": "phasei_out/8f5c35121fdb/summary.json",
+   "sha256": "fcf36b7a64331251f4cfd6c48df84739ee91132fa9a7e39f95cb9a551b745e09"
+  }
+ },
+ "family_rules": {
+  "R1_subwindow_merge": "若两条登记满足（a）其中一条的月份集合严格包含于另一条（严格更短）且（b）在共同月上数值逐位相同（max|差| ≤ 1e-12），则视为**同一份数据的两种切窗**，合并为一份，m 减 1。等长同值**不满足 (a)**，不合并——它们没有「谁是谁的片段」这个结构，合并它们等于假设「同数据即同假设」，而 L3ab 已证该假设与登记判定字符串互不相同的证据冲突。",
+  "R2_include_unregistered": "把 phasei_out 的两条结论纳入家族：phasei_v0 = 「exQ5 分层本身存在 alpha（不受可成交约束）」、phasei_v1 = 「剔除当期不可成交标的后 alpha 是否仍在」。两条共用同一份月度面板但数值不同（delta −0.0673pp），是**同一问题的两个假设**（存在性 vs 可实现性），不是同一条检验的重复登记，也不是子窗口关系，故各计 1。",
+  "why_not_corr_based": "本阶段**不**用相关系数判定家族归属。高 ρ 只说明两条序列同步，不说明它们回答同一个问题；L3ab 已给出反例（5 对 ρ=1 但登记判定全不同）。合并只由 R1 的结构条件触发。",
+  "m_candidates": {
+   "m23": "27 − 7 + 3（同源子窗口合并，不含 phasei）",
+   "m24": "L3z 冻结口径：按 (mean, t, n) 指纹去重，不含 phasei（对照口径）",
+   "m25": "R1 + R2：23 + 2（**本阶段主口径**）",
+   "m26": "指纹去重 + phasei：24 + 2（对照口径）",
+   "m27": "全部 27 条登记（既有替代口径）",
+   "m29": "29 条全登记、全不合并（最保守口径）"
+  },
+  "primary_choice_rationale": "主口径取 m=25，理由有两条且都不涉及通过数：①R1 是结构规则，用「谁包含谁 + 逐位相同」判定，比指纹去重更贴近「是不是同一份数据」，且 L3ab 的 A 类为 0 说明合并不存在「吞掉独立假设」的风险；②R2 是覆盖面要求，未登记结论不进家族，等于「可引清单」的范围说不清。⚠️ **m=25 比 m=24 更严**（门槛 0.002000 vs 0.0020833），方向单一。"
+ },
+ "predictions": [
+  {
+   "id": "P1",
+   "timing": "priori",
+   "claim": "纳入 phasei 后 m 由 24 升到 25，原有 6 条在 Bonferroni 下一条不掉。",
+   "direction": "通过数只增不减（新增两条各自通过）",
+   "mechanism": "两条新检验的 p 分别为 1.052e-09 与 9.436e-06，比原家族里最严的 4 条还小或同量级，不落入「名额竞争」的临界区；Bonferroni 门槛只从 0.0020833 降到 0.0020000，唯一可能受影响的是余量最小的 phasel_alpha（p=0.00197172），而它仍在门槛内。",
+   "computable": "0.00197172 < 0.05/25 = 0.00200000"
+  },
+  {
+   "id": "P2",
+   "timing": "priori",
+   "claim": "m=25 的 Bonferroni 通过数 = 8（原 6 + phasei 2）。",
+   "direction": "6 → 8",
+   "mechanism": "phasei 两条各自独立通过（p 均远小于 0.002），且它们的加入不改变其余条目的排序，故不挤掉任何人。",
+   "computable": "6 + 2"
+  },
+  {
+   "id": "P3",
+   "timing": "priori",
+   "claim": "phasel_alpha 在 m=25 下仍是 Bonferroni 通过项，但余量 < 2%；一旦 m ≥ 26 就掉出。",
+   "direction": "极端脆弱，且脆弱性来自 m 而非 p",
+   "mechanism": "它的 p=0.00197172 与 m=25 门槛 0.00200000 只差 2.83e-05；m=26 门槛降到 0.00192308 即低于它的 p。这条预先是**预测它脆弱**，不是预测它稳——所以报告必须把它单列，不能并进「8 条」里含糊带过。",
+   "computable": "(0.00200000 − 0.00197172)/0.00200000 = 1.41%；0.05/26 = 0.00192308 < 0.00197172"
+  },
+  {
+   "id": "P4",
+   "timing": "priori",
+   "claim": "BY 拒绝集合是 BH 的子集（数学必验），且在 BY 下 phasei 两条都通过。",
+   "direction": "BY 通过数 ≤ BH；phasei 两条稳过",
+   "mechanism": "BY 门槛 = BH 门槛 / H_m，故子集关系是数学必然。phasei 两条的 p 都低于 m=25 的 BY 第 1 档门槛 0.00052411（v0 低 5 个数量级、v1 低 1.8 倍），而 BY 是 step-up，第 1 档是最严的一档。",
+   "computable": "0.00052411 vs p=1.052e-09 与 9.436e-06"
+  },
+  {
+   "id": "P5",
+   "timing": "priori",
+   "claim": "按假设簇分族的方案（L3ab 的 m=25 分族）给出与 R1+R2 相同的通过集合。",
+   "direction": "分族不改变结论",
+   "mechanism": "L3ab 已实测 m=23/24/25 三个去重口径在四种校正下结果同表；分族只会改变家族边界而不会让某条的 p 变小，因此不会新增通过项。若分族让某条**额外**通过，说明它依赖「事后拆族」，本阶段明确不采用。",
+   "computable": "L3ab 表：m=24 6/6/7/6 = m=25分族 6/6/7/6"
+  },
+  {
+   "id": "P6",
+   "timing": "priori",
+   "claim": "phasei 两条与既有序列不构成 R1 子窗口，故净 m 变化为 +1（24→25），不是 0 或 +3。",
+   "direction": "+1",
+   "mechanism": "phasei 是「剔 Q5 后的多空 alpha」，统计量与 phaseo（成本后净收益）、gate6（as-of 全A 反转 spread）都不同；R1 要求逐位相同，不同统计量必然不满足。若实测发现某条 phasei 与既有序列逐位相同，那说明它本来就是重复登记，届时按 R1 合并并如实记录（这是本阶段唯一允许改变净 m 的情形）。",
+   "computable": "27 → 23（R1 合并 4 次）→ 25（+2）"
+  },
+  {
+   "id": "P7",
+   "timing": "descriptive",
+   "claim": "phasei_v0 与 phasei_v1 的逐月序列高度同步（同一面板、只差剔标），报告其 ρ 但不据此合并。",
+   "direction": "ρ 预期很高",
+   "mechanism": "V1 = V0 剔掉当期不可成交标的，剔除比例约 1.1%（drop_share 0.01103），故两序列大部分月份相同。",
+   "computable": "drop_share = 0.01103"
+  }
+ ],
+ "gates": {
+  "G1_frozen_inputs": "所有 inputs_frozen 的 sha256 必须与文件实际值一致，否则拒跑。",
+  "G2_prereg_self_hash": "脚本启动时校验本文件的 sha256（硬编码），任何改动即拒跑。",
+  "G3_merge_rule_structural": "R1 只允许在「严格更短 + 共同月逐位相同」时触发；必须逐对报告 max|差| 与包含关系，任一合并都要能指出是哪一条被哪一条吞并。",
+  "G4_merge_count": "R1 在既有 27 条上必须恰好触发 4 次（7 条 → 3 份），与 L3ab 的 27−7+3=23 一致。",
+  "G5_no_silent_m": "每个 m 口径都必须能在报告里被复算：27 → 23 → 25 / 24 / 26 / 27 / 29 的每一步变化都要写明理由。",
+  "G6_by_subset_of_bh": "每个 m、每个 q 下 BY 拒绝集合 ⊆ BH 拒绝集合。",
+  "G7_reproduce_p": "既有 24 条（指纹口径）的 p 必须与 L3z 产物逐位一致（容差 1e-12）；新纳入 2 条的 p 必须可由「序列 → 均值 / NW(3) → t → t 分布 p」四段复算。",
+  "G8_threshold_formula": "Bonferroni = q/m、Holm = q/(m−k+1)、BH = kq/m、BY = kq/(m·H_m)，四式与手算一致到 1e-12；H_m 与 Fraction 精确和一致到 1e-12。",
+  "G9_monotone_in_m": "任一条目的拒绝状态随 m 增大只能由「拒」变「不拒」，不能反向——这是门槛单调性的数学必然，违反即实现错误。",
+  "G10_both_directions_reported": "主口径取更严的那个：若 m=25 与 m≥26 的通过集合不同，对外集合必须按**两者交集**呈现，不得只报 m=25。"
+ },
+ "decision_rule": "对外引用集合 = 主口径（m=25）与更严口径（m=26/27/29）通过集合的**交集**，再并上「主口径下通过、但在更严口径下掉出且掉出原因是纯门槛效应」的条目并**显式标注该条对 m 敏感**。若两者不一致而无法说明原因，状态记 INCONCLUSIVE_DUE_TO_MISSING_RESEARCH_HISTORY。",
+ "forbidden": [
+  "不得因为某个 m 让更多条目通过而选择该 m；主口径在跑数**之前**已固定为 25。",
+  "不得用相关系数、均值相同、t 值相同来合并检验（只允许 R1 的结构条件）。",
+  "不得把 BY / Bonferroni 通过解释为经济有效或可交易。",
+  "不得因为 phasel_alpha 在 m=25 恰好通过而把 m 写成 25 的「最优性」；它是零效应判定，方向与正向收益相反。",
+  "不得改写 L3u / L3z / L3aa / L3ab 已落盘的预登记与产物。",
+  "不新增因子、不新增回测、不启动实盘。"
+ ],
+ "outputs": {
+  "reports": [
+   "reports/L3AC_FAMILY_V2_AUDIT.md",
+   "reports/L3AC_MULTIPLICITY_V2.md",
+   "reports/L3AC_QUOTE_SET.md"
+  ],
+  "machine": "reports/gates/H-L3AC-FAMILY-V2/l3ac_family_v2.json",
+  "sheet": "docs/DELIVERABLE_QUOTE_SHEET_CURRENT.md（覆盖生成，由脚本产出，不手改）"
+ },
+ "note": "本文件落盘后不得再改。若发现缺陷，另出更正记录并保留本文件原样——这是本项目对预登记的一贯处置方式（参见 L3aa 的 P4 被反驳后保留原判据）。"
+}

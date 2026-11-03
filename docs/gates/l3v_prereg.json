@@ -1,0 +1,118 @@
+{
+  "experiment_id": "H-L3V-CLAIM-REGISTRY",
+  "kind": "claim_registry_audit",
+  "created": "2026-10-28",
+  "question": "把 27 条结论压成「对外只说一句话」的卡片后，这句话里的每个数字还能回指到可复算的序列吗？可引用强度会不会在转写中被抬高？必带的限定会不会被省略？",
+  "why_now": "L3u 已把「引用的数字对不对」查完：27 条里 8 条一致、6 条取错量、6 条只是 t 口径不同，QUOTABLE=0。但对外表述仍散落在各阶段报告与记忆里，同一份数字被不同措辞重复引用（如 phaseo 与 phasev 数值完全相同）。若不给唯一来源，下一次写材料仍会重新漂移。",
+  "subject": {
+    "l3u_result": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+    "l3u_result_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+    "l3u_prereg": "docs/gates/l3u_prereg.json",
+    "l3u_prereg_sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+    "l3t_registry_sha256": "d6137a869aa1653c333e8c5e208df50cb10abf66698844451fda7e57a89a8004",
+    "claims_table": "docs/gates/l3v_claims.json",
+    "note": "卡片表是**被审对象**，其 sha256 只记录不冻结（修订留痕在产物里，旧产物不删）；L3u 产物与 L3u 预登记冻结，被改动则拒跑。"
+  },
+  "hardcoded": {
+    "n_expected_claims": 27,
+    "n_expected_quotable": 1,
+    "n_expected_quotable_marginal": 4,
+    "n_expected_duplicate_groups": 3,
+    "n_expected_duplicate_keys": 6,
+    "n_expected_independent_numbers": 24,
+    "n_expected_retractions": 7
+  },
+  "rules": {
+    "numbers_must_trace_to": "L3u 的 recomputed.mean / t_iid / t_nw3 / mde / power / n，及派生量 ratio=|mean|/mde、mde_over_mean=mde/|mean|、stat_n。",
+    "literal_allowed": "非统计量的数字（资金档、费率常量、口径阶数）必须登记为 literals 并给出 reason，不得直接塞进正文。",
+    "tier_direction": "卡片 quotability 必须落在依据来源给出的允许集合内；默认来源是 L3u 正式分级，NOT_GRADED 只降不升。",
+    "tier_basis_rule": "允许声明 tier_basis=\"l3w_unseal\"：此时分级必须逐字等于解封复核产物给出的那一档，且该条目在解封清单里必须是 UNSEALED。解封来源有多个时取并集（L3w 处理「取错量」的 6 条、L3x 处理「仅 t 口径不同」的 6 条），同一 key 分级矛盾即报错。解封不是放宽闸门，而是换一个有预登记、有 NW 滞后网格验证的来源；卡片不得自定一档。",
+    "required_limits": [
+      "所有条目：窗口标签 + 判定估计量（iid 或 nw3）",
+      "A_cross_spread：d 定义（0.5*long-0.5*short 或 long_minus_short）",
+      "B_long_only 且已检出：成本口径编号",
+      "D_ic / E_fold：单位说明（IC / %/折）",
+      "未检出：必须同时给出 MDE 或事后功效",
+      "所有条目：至少一条实质性使用限制（≥8 字符）"
+    ],
+    "retraction_rule": "被撤回的措辞不得出现在任何 headline（归一化后子串匹配），撤回台账指向的条目必须存在（允一条 project 级）。",
+    "numbers_token_definition": "数字 token 的 lookbehind 排除紧跟字母/数字/点的情形：NW3、MAX5、m1 属口径标签，不是统计量。此项为检查器实现细节，不构成判据。",
+    "tolerance": "数字按 decimals 四舍五入后要求字面完全相等，且符号一致；不接受「差不多」。"
+  },
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "覆盖双向差集为空：missing=0 且 orphan=0（27/27）。",
+      "mechanism": "卡片按 L3u 的 key 列表逐条抄写；若漏抄或多抄，双向差集会直接暴露。只比交集会让「砍掉一半」也过，所以必须两边都比。",
+      "quantity": "coverage.missing 与 coverage.orphan 的长度"
+    },
+    {
+      "id": "P2",
+      "statement": "数字类违规（VALUE_DRIFT + UNREGISTERED_NUMBER + UNUSED_NUMBER）合计在 1 到 8 之间。",
+      "mechanism": "27 条约 100 个数字，舍入边界（如 mde 0.038 写成 0.04）与正文字面（0.4 vs 0.40）最容易撞。上限 8 是因为超过 8 条就不像个别手误，而是整体凭记忆写。",
+      "quantity": "violation_counts 中三类之和"
+    },
+    {
+      "id": "P3",
+      "statement": "QUOTABLE 条目为 0，QUOTABLE_MARGINAL 为 2（phasef_delta、phaseo_netBASE）。",
+      "mechanism": "继承 L3u：最好的两条是 1.22 与 1.44 倍，均不到 2 倍门槛。若字段级把某条标成 QUOTABLE，TIER_UPGRADE 会抓。",
+      "quantity": "tier_counts.QUOTABLE 与 tier_counts.QUOTABLE_MARGINAL",
+      "superseded_by": "H-L3W-UNSEAL-000001",
+      "superseded_note": "P3 写于解封复核之前（当时 QUOTABLE=0 是事实）。L3w 解封 phasec_d 后 QUOTABLE=1、MARGINAL=3，P3 的判定对象已被替换，不再作为本阶段判据，原样保留为历史记录。"
+    },
+    {
+      "id": "P4",
+      "statement": "ESTIMATOR_MISMATCH = 0。",
+      "mechanism": "Gate 1~6 与 phases/l3_test/l3p_test 的判定用的是 iid t，而 L3t 用 NW3；写卡片时故意把两个 t 都写进正文，只要有一处只引单侧就会触发。",
+      "quantity": "violation_counts.ESTIMATOR_MISMATCH"
+    },
+    {
+      "id": "P5",
+      "statement": "数值指纹重复恰好 3 组、覆盖 6 个 key，27 条只对应 24 份独立数字。",
+      "mechanism": "phasel/phaser、phaseo/phasev、phases/phaset 各自建立在同一份月度序列上（判据不同、数字相同）；phasec2/phasec3 在 L3t 里 mean 相同但重算不同，按 recomputed 指纹不算重复。",
+      "quantity": "duplicate_groups 的组数与去重后的独立数字数"
+    },
+    {
+      "id": "P6",
+      "statement": "撤回台账 7 条，且 BANNED_PHRASING = 0。",
+      "mechanism": "被禁措辞都是旧口径的肯定式表述，新正文一律用否定式（「被吸收」「无法判断」「只能引方向」），子串不会撞。若检出，说明某条正文直接抄了旧措辞。",
+      "quantity": "len(retractions) 与 violation_counts.BANNED_PHRASING"
+    }
+  ],
+  "amendments": [
+    {
+      "date": "2026-10-28",
+      "field": "rules.numbers_token_definition",
+      "change": "数字 token 抽取加 lookbehind，排除紧跟字母的数字（`NW3`/`MAX5`/`m1` 属口径标签）",
+      "reason": "首跑 13 处 UNREGISTERED_NUMBER 全部来自这些标签，属检查器缺陷而非卡片漂移",
+      "affects_predictions": "none：P2 的阈值 1~8 未改，P2 仍按首跑实测 13 处记为被反驳",
+      "artifacts_kept": "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims_firstrun_tokenbug.*"
+    },
+    {
+      "date": "2026-10-28",
+      "field": "hardcoded.n_expected_quotable / rules.tier_basis_rule / predictions.P3",
+      "change": "QUOTABLE 期望值 0 → 1；新增 tier_basis 规则（允许按 L3w 解封结果提级，但必须逐字一致）；P3 标记为 superseded_by=H-L3W-UNSEAL-000001",
+      "reason": "L3w 解封复核认定 gate3/phasec/phasec2/phasec3 四条属「L3t 抄错、判定量本身同源」，并给出正式分级。合并补丁后 QUOTABLE 事实变为 1、MARGINAL 变为 3，P3 的判定对象已不存在。",
+      "affects_predictions": "P3 不再作为判据（原样保留为历史记录）；P1/P2/P4/P5/P6 判定不变",
+      "artifacts_kept": "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims_prel3w.{json,md}（合并前版本）"
+    },
+    {
+      "date": "2026-10-28",
+      "field": "rules.tier_basis_rule / hardcoded.n_expected_quotable_marginal",
+      "change": "解封来源由 1 个（L3w）扩为 2 个（L3w + L3x），取并集；MARGINAL 期望值 2 → 4",
+      "reason": "L3x 复核「仅 t 口径不同」的 6 条，解封 5 条（gate1/2/4/5/6），其中 gate6_d 进 QUOTABLE_MARGINAL；phasek_m1net 因 stat.t 与两种标准误都对不上、且 summary 未给 n，维持封印。",
+      "affects_predictions": "P3 已 superseded，不受影响；其余预测判定不变",
+      "artifacts_kept": "l3v_claims_prel3w.* 为 L3w 合并前；本次合并后产物覆盖 l3v_claims.*，差异可用两份 JSON 对比"
+    }
+  ],
+  "disclosures": [
+    "本实验不重跑任何策略，只读 L3u 产物与卡片表；L3u 产物 sha256 在启动时校验。",
+    "卡片 headline 是人工语义层，无法自动生成；能自动校验的是它里面的数字、分级与必带限定。",
+    "literals 白名单是本闸门的已知缺口：把统计量谎报成 literal 可以绕过数字校验。因此产物会逐条列出 literals 及其 reason 供人工审，并限制每条不超过 4 个。",
+    "phasej_netA 的序列取自 1000 万档而判定档是 3000 万，卡片沿用该序列并显式声明，不另算 3000 万档（那属于新实验）。"
+  ],
+  "outputs": [
+    "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims.json",
+    "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims.md"
+  ]
+}

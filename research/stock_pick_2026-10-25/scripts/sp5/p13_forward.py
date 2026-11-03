@@ -572,6 +572,96 @@ def build_d4_targets(raw: pd.DataFrame, base: pd.Series, me: str) -> dict:
     return out
 
 
+# ---- R3-5：d4 档内可买数熔断（协议停止条件） ----
+D4_STOP_MONTHS = 6
+D4_STOP_MIN_BUYABLE = 100
+# R4-4：黄色预警（不触发停止，只提示）。停止条件本身不变。
+D4_WARN_MONTHS = 3
+D4_WARN_MIN_BUYABLE = 200
+
+
+def check_d4_stop_condition(ledger_dir, months: int = D4_STOP_MONTHS,
+                            threshold: int = D4_STOP_MIN_BUYABLE,
+                            current_me: str | None = None,
+                            current_ok_buy_n_d4=None,
+                            warn_months: int = D4_WARN_MONTHS,
+                            warn_threshold: int = D4_WARN_MIN_BUYABLE) -> dict:
+    """d4 档内可买数熔断检查（R3-5）。**只统计含 ok_buy_n_d4 的记录**——
+    20260930/20261030 两期是 LEGACY_NO_D4（无该字段），不得当作 0 或缺失参与判定；
+    2026-11-30 起的记录才带该字段。
+
+    触发条件：最近 `months` 条**有值**的记录（含当月）全部 < threshold。
+    值不足 months 条 → 不触发（样本不足 ≠ 无风险，如实返回 n_series）。
+    """
+    if months < 1 or threshold < 0:
+        raise ValueError(f"months/threshold 非法：{months}/{threshold}")
+    ledger_dir = pathlib.Path(ledger_dir)
+    series: list[dict] = []
+    if current_me is not None and current_ok_buy_n_d4 is not None:
+        series.append({"date": current_me, "ok_buy_n_d4": int(current_ok_buy_n_d4),
+                       "source": "current"})
+    if ledger_dir.is_dir():
+        for p in sorted(ledger_dir.glob("[0-9]" * 8 + ".json")):
+            try:
+                r = json.loads(p.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            d = r.get("date")
+            v = r.get("ok_buy_n_d4")
+            if d is None or v is None or d == current_me:
+                continue
+            series.append({"date": str(d), "ok_buy_n_d4": int(v), "source": "ledger"})
+    series.sort(key=lambda x: x["date"])
+    tail = series[-months:]
+    triggered = (len(tail) == months
+                 and all(x["ok_buy_n_d4"] < threshold for x in tail))
+    # R4-4：黄色预警——最近 warn_months 条有值记录（含当月）全部 < warn_threshold。
+    # 预警不触发停止，只提示；样本不足同样不触发（如实返回 n_warn_series）。
+    warn_tail = series[-warn_months:]
+    warn = (len(warn_tail) == warn_months
+            and all(x["ok_buy_n_d4"] < warn_threshold for x in warn_tail))
+    return {
+        "triggered": triggered,
+        "warn": warn and not triggered,
+        "warn_threshold": warn_threshold,
+        "warn_months": warn_months,
+        "threshold": threshold,
+        "required_months": months,
+        "n_series": len(series),
+        "series": tail,
+    }
+
+
+def _notify_d4_stop(me: str, check: dict) -> None:
+    """熔断触发时的用户通知。邮件失败只打印——台账已落盘，通知不得反过来毁证据。"""
+    try:
+        import notify_mail
+    except ImportError:
+        sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+        try:
+            import notify_mail
+        except ImportError:
+            print("[d4-stop] ⚠️ notify_mail 不可用，熔断通知未发送（台账已记录）")
+            return
+    cfg = notify_mail.read_config(dict(os.environ))
+    if notify_mail.missing_keys(cfg):
+        print("[d4-stop] ⚠️ SMTP 配置缺失，熔断通知未发送（台账已记录触发）")
+        return
+    rows = "\n".join(f"  {x['date']}: {x['ok_buy_n_d4']} 只" for x in check["series"])
+    try:
+        msg = notify_mail.build_message(
+            cfg,
+            f"【DeepQuant 告警】协议停止条件触发：d4 可买数连续 {check['required_months']} 个月过低",
+            f"决策日 {me} 触发协议停止条件（R3-5）：\n"
+            f"d4 档内可买数连续 {check['required_months']} 个月 < {check['threshold']} 只：\n"
+            f"{rows}\n\n处置：暂停建仓协议，等待人工确认（台账 d4_stop_check 字段有完整序列）。",
+            [])
+        notify_mail.send(msg, cfg)
+        print("[d4-stop] 熔断通知邮件已发送")
+    except Exception as e:  # noqa: BLE001
+        print(f"[d4-stop] ⚠️ 熔断通知邮件发送失败：{type(e).__name__}: {e}")
+
+
 def judge_fills(target: pd.DataFrame, next_td: str | None = None) -> pd.DataFrame:
     """判定次一交易日能否成交。买卖两侧用 fill_engine 位图（含涨跌停/停牌/缺 bar）。
 
@@ -976,6 +1066,18 @@ def main() -> int:
     rec["ledger_sha256"] = hashlib.sha256(
         json.dumps({k: v for k, v in rec.items() if k != "ledger_sha256"},
                    ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()[:16]
+
+    # ---- R3-5：d4 档内可买数熔断检查 ----
+    # 连续 D4_STOP_MONTHS 个月（含当月）ok_buy_n_d4 < D4_STOP_MIN_BUYABLE
+    # → 协议停止条件触发：写进台账 + 邮件通知用户（邮件失败不阻断台账落盘）。
+    d4_stop = check_d4_stop_condition(
+        LEDGER, current_me=me, current_ok_buy_n_d4=rec["ok_buy_n_d4"])
+    rec["d4_stop_check"] = d4_stop
+    if d4_stop["triggered"]:
+        rec["notes"].append(
+            f"⚠️ 协议停止条件触发：d4 档内可买数连续 {D4_STOP_MONTHS} 个月 "
+            f"< {D4_STOP_MIN_BUYABLE} 只（序列见 d4_stop_check.series）")
+        _notify_d4_stop(me, d4_stop)
 
     obs_row = {
         "date": me, "signal_time": rec["record_time"],

@@ -1,0 +1,36 @@
+{
+ "experiment_id": "H-L3Z-MULTIPLICITY",
+ "basis": "l3z_audit",
+ "prereg_sha256": "202758c3f916170ef7c928968823fc95ac77db76d223661fd31f913fdc03838f",
+ "main_estimator": "t_nw3",
+ "m": 24,
+ "decisions": [
+  {
+   "key": "gate3_d",
+   "status": "DOWNGRADED",
+   "tier": "EXPLORATORY",
+   "previous": "DIRECTION_ONLY",
+   "p": 0.024529238183913747,
+   "raw_significant": true,
+   "reason": "单条 α=0.05 显著，但在把全部结论作为一组同时报告时，Bonferroni / Holm / BH 均未拒绝；只能记为待验证的方向性观察"
+  },
+  {
+   "key": "phases_net",
+   "status": "DOWNGRADED",
+   "tier": "EXPLORATORY",
+   "previous": "DIRECTION_ONLY",
+   "p": 0.02831672555412718,
+   "raw_significant": true,
+   "reason": "单条 α=0.05 显著，但在把全部结论作为一组同时报告时，Bonferroni / Holm / BH 均未拒绝；只能记为待验证的方向性观察"
+  },
+  {
+   "key": "phaset_net",
+   "status": "DOWNGRADED",
+   "tier": "EXPLORATORY",
+   "previous": "DIRECTION_ONLY",
+   "p": 0.02831672555412718,
+   "raw_significant": true,
+   "reason": "单条 α=0.05 显著，但在把全部结论作为一组同时报告时，Bonferroni / Holm / BH 均未拒绝；只能记为待验证的方向性观察"
+  }
+ ]
+}

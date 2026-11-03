@@ -1,0 +1,244 @@
+{
+  "acceptance": {
+    "all_passed": true,
+    "passed_count": 6,
+    "standards": {
+      "standard_1_shared_cash_pool": true,
+      "standard_2_shared_judgement": true,
+      "standard_3_fold_structure": true,
+      "standard_4_selection_separation": true,
+      "standard_5_cash_and_dilution": true,
+      "standard_6_universe_reproducible": true
+    },
+    "total": 6
+  },
+  "gaps": [
+    "中位 WFE +0.1361 低于阈值 0.30：训练窗收益（均值 +0.4748）远高于测试窗，说明样本内选参本身就吃到了大量当时才有的行情",
+    "对照臂超额仅 +0.0026、跑赢折数 14/28：组合层的折间一致性来自分散与持有，不是来自「快线在上才持有」的选择",
+    "组合化不降低共同因子风险：28 折仍是同一段历史的不同切片，折间不独立",
+    "标的池为当前快照，未使用时点成分股：结果含幸存者偏差，只能作上界估计",
+    "weights 记账不受整手约束；可执行性需另用 lots 口径复核"
+  ],
+  "generated_at": "2026-10-28T01:33:12+0800",
+  "l3_reference": {
+    "note": "两者折数不同（27 vs 28）：组合日历是标的池交易日并集，单标的按 000001.SZ 自己的交易日切。所以逐折不能一一对应，只能比折级统计的形状。",
+    "portfolio": {
+      "divergent_fold_ratio": 0.32142857142857145,
+      "folds": 28,
+      "median_wfe": 0.1361347356557303,
+      "param_stability": 0.42857142857142855,
+      "preliminary_verdict": "L3P_REJECTED_INCONSISTENT_FOLDS",
+      "test_drawdown_median": 0.12400868070178926,
+      "test_positive_fold_ratio": 0.6785714285714286,
+      "test_return_mean": 0.052844106214285716,
+      "test_return_std": 0.13988025001775017,
+      "verdict": "L3P_BLOCKED_PREREQUISITE"
+    },
+    "single_name": {
+      "divergent_fold_ratio": 0.37037037037037035,
+      "folds": 27,
+      "median_wfe": 0.0,
+      "param_stability": 0.18518518518518517,
+      "preliminary_verdict": "L3_REJECTED_INCONSISTENT_FOLDS",
+      "test_drawdown_median": 0.10096244584706436,
+      "test_positive_fold_ratio": 0.5185185185185185,
+      "test_return_mean": 0.039953099629629625,
+      "test_return_std": 0.11955432931207588,
+      "verdict": "L3_BLOCKED_PREREQUISITE"
+    }
+  },
+  "main_run": {
+    "control": {
+      "beats_control_folds": 14,
+      "beats_control_ratio": 0.5,
+      "cash_gap_median": -0.031830973465209064,
+      "control_cash_median": 0.1489339657665973,
+      "control_mean": 0.050249993214285735,
+      "excess_mean": 0.0025941129999999812,
+      "excess_median": 0.008828857000000023,
+      "folds_compared": 28,
+      "note": "对照臂 = 同池同期每期等权持有全部标的（不做选择）。两条臂共享同一份费用与撮合口径，差就是「选择」的贡献；但两臂现金占比不同（策略臂在只选出少数标的时被权重上限逼成部分空仓），所以收益差是**稀释后**的差。`per_invested_excess_mean` 是折算掉现金差异后的粗算，只用于判断方向，不得当收益引用。",
+      "per_invested_excess_mean": -0.07872950013641225,
+      "per_invested_folds": 28,
+      "strategy_cash_median": 0.11710299230138822,
+      "strategy_mean": 0.052844106214285716
+    },
+    "portfolio": {
+      "allocation": "weights",
+      "avg_cash_ratio_median": 0.11710299230138822,
+      "avg_positions_max": 16.714285714285715,
+      "avg_positions_median": 12.008928571428571,
+      "avg_positions_min": 7.285714285714286,
+      "cash_only_periods_total": 0,
+      "folds_with_positions": 28,
+      "note": "avg_cash_ratio 是测试窗内逐日 cash/total_equity 的均值；它是「未投资比例」的代理，单看权重误差抓不到现金残留。"
+    },
+    "preliminary_verdict": "L3P_REJECTED_INCONSISTENT_FOLDS",
+    "summary": {
+      "divergent_fold_ratio": 0.32142857142857145,
+      "divergent_folds": 9,
+      "folds_failed": 0,
+      "folds_total": 28,
+      "folds_usable": 28,
+      "median_wfe": 0.1361347356557303,
+      "naive_sum_of_fold_returns": 1.479634974,
+      "test_drawdown_max": 0.3888060551167388,
+      "test_drawdown_median": 0.12400868070178926,
+      "test_positive_fold_ratio": 0.6785714285714286,
+      "test_positive_folds": 19,
+      "test_return_max": 0.364171303,
+      "test_return_mean": 0.052844106214285716,
+      "test_return_median": 0.049353942500000025,
+      "test_return_min": -0.26348855400000004,
+      "test_return_std": 0.13988025001775017,
+      "train_positive_fold_ratio": 0.8571428571428571,
+      "train_positive_folds": 24,
+      "train_return_mean": 0.4747930213214286,
+      "wfe_samples": 24
+    },
+    "verdict": "L3P_BLOCKED_PREREQUISITE"
+  },
+  "spec": "docs\\gates\\specs\\H_L3P_MACROSS_000001.json",
+  "standard_1_shared_cash_pool": {
+    "cash_invariant": true,
+    "equal_average_wrong_answer": 0.0,
+    "gap_vs_equal_average": 0.1200000000000001,
+    "matches_weighted_sum": true,
+    "passed": true,
+    "portfolio_return": 0.1200000000000001,
+    "return_at_1e5": 0.1200000000000001,
+    "return_at_1e8": 0.1200000000000001,
+    "weighted_sum_expected": 0.12000000000000002
+  },
+  "standard_2_shared_judgement": {
+    "checks": [
+      "可用折数达标",
+      "测试窗互不重叠",
+      "样本内外未出现符号背离",
+      "「训练正、测试负」折占比未超限"
+    ],
+    "passed": true,
+    "prefix_only": true,
+    "same_function_object": true,
+    "sample_verdict_l3": "L3_REJECTED_SYSTEMATIC_DIVERGENCE",
+    "sample_verdict_l3p": "L3P_REJECTED_SYSTEMATIC_DIVERGENCE"
+  },
+  "standard_3_fold_structure": {
+    "adjacency_ok": true,
+    "calendar_days": 4074,
+    "calendar_first": "2010-01-04",
+    "calendar_last": "2026-10-16",
+    "folds": 28,
+    "folds_in_result": 28,
+    "independent": true,
+    "note": "组合日历是标的池交易日的**并集**（某只停牌而其他照常交易的日子仍在），因此折数与单标的 L3（按单只标的自己的交易日切）不同：28 vs 27。",
+    "overlap_pairs": 0,
+    "passed": true,
+    "unused_tail_days": 42,
+    "windows_match_result": true
+  },
+  "standard_4_selection_separation": {
+    "detail": [
+      {
+        "fold": 1,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 2,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 3,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 4,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 5,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 6,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 7,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 8,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 9,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 10,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 11,
+        "test_calls": 2,
+        "train_calls": 4
+      },
+      {
+        "fold": 12,
+        "test_calls": 2,
+        "train_calls": 4
+      }
+    ],
+    "expected_total": 72,
+    "folds_checked": 12,
+    "grid_points": 4,
+    "note": "测试窗的两次调用是同一条两臂设计：策略臂 + 对照臂，共享同一窗口与费用口径；它们都不参与选参（选参只发生在训练窗）。",
+    "passed": true,
+    "test_and_control_are_two_calls": true,
+    "total_calls": 72,
+    "train_calls_are_full_grid": true
+  },
+  "standard_5_cash_and_dilution": {
+    "avg_positions_median": 12.008928571428571,
+    "cash_gap_median": -0.031830973465209064,
+    "cash_only_periods_total": 0,
+    "control_cash_median": 0.1489339657665973,
+    "folds_compared": 28,
+    "note": "per_invested 是粗算（假设现金占比恒定），只用于判断方向，不得当收益引用。结论：原始口径超额 +0.26pp，但按投入资金折算后为负 —— 说明「选择」没有正贡献，组合收益来自持有这批股票本身。",
+    "passed": true,
+    "per_invested_control_mean": 0.2876615814436471,
+    "per_invested_excess_mean": -0.07872950013641225,
+    "per_invested_strategy_mean": 0.20893208130723487,
+    "raw_beats_ratio": 0.5,
+    "raw_excess_mean": 0.0025941129999999812,
+    "strategy_cash_median": 0.11710299230138822
+  },
+  "standard_6_universe_reproducible": {
+    "identical": true,
+    "note": "按冻结文件里写明的规则（种子 + 跨度内行数门槛）重跑抽样，必须复现同一份名单。",
+    "passed": true,
+    "prefix_distribution": {
+      "000": 4,
+      "002": 5,
+      "300": 3,
+      "600": 9,
+      "601": 6,
+      "603": 2,
+      "688": 1
+    },
+    "rebuilt_size": 30,
+    "seed": 20261028,
+    "size": 30
+  }
+}

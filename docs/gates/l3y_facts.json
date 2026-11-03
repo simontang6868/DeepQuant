@@ -1,0 +1,61 @@
+{
+ "kind": "deliverable_facts",
+ "note": "对外定稿里出现的、不来自结论卡片的数字。每条都必须能从 source 指的文件里按指针重新取出来，且格式化后与 display 逐字相等。display 只是断言，值以源文件为准。",
+ "rules": [
+  "display 不得使用千分位（会把一个数字劈成两个 token，绕过全文扫描）",
+  "pointer 缺失一律报错，不静默取 None——静默 None 会让比对假通过",
+  "note 会渲染进定稿正文，因此 note 本身不得含阿拉伯数字"
+ ],
+ "facts": [
+  {
+   "key": "n_exec_symbols",
+   "display": "5472",
+   "decimals": 0,
+   "note": "交易层股票数（真不复权，用于判定交易状态）",
+   "source": {
+    "path": "reports/ASOF_UNIVERSE_SELFCHECK.json",
+    "pointer": "describe.n_total"
+   }
+  },
+  {
+   "key": "n_qfq_symbols",
+   "display": "5444",
+   "decimals": 0,
+   "note": "研究层股票数（后复权，用于计算收益）",
+   "source": {
+    "path": "reports/MAX5_FEASIBILITY.json",
+    "pointer": "data.n_symbols"
+   }
+  },
+  {
+   "key": "n_ic_pool",
+   "display": "518",
+   "decimals": 0,
+   "note": "截面 IC 检验所用的股票池规模",
+   "source": {
+    "path": "reports/gates/H-L3S-IC-000001/l3s_result.json",
+    "pointer": "pool.loaded"
+   }
+  },
+  {
+   "key": "first_investable_year",
+   "display": "2005",
+   "note": "首个出现可投资股票的年份",
+   "source": {
+    "path": "reports/ASOF_UNIVERSE_SELFCHECK.json",
+    "pointer": "investable_by_year",
+    "op": "first_nonzero_key"
+   }
+  },
+  {
+   "key": "n_first_year_investable",
+   "display": "6",
+   "decimals": 0,
+   "note": "该年份的可投资股票数（早期样本少到不可跨期比较）",
+   "source": {
+    "path": "reports/ASOF_UNIVERSE_SELFCHECK.json",
+    "pointer": "investable_by_year.2005"
+   }
+  }
+ ]
+}

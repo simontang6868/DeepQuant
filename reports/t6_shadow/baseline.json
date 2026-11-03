@@ -1,0 +1,419 @@
+{
+  "baseline_digest": "287c03334a2810d9ed2301d51b87c132b4eb5346468d1d3b380a4d67659ee9b4",
+  "baseline_version": "t6-baseline-v1",
+  "corpus": {
+    "corpus_digest": "cc2769256e2781e8b34764a911d46afcf965a4d84cde47e2d3fe48f68f6e73ac",
+    "distinct_patterns": 10,
+    "excluded_injected": 0,
+    "grouping": {
+      "nosession_based": 0,
+      "session_based": 103
+    },
+    "operators": [
+      "alice",
+      "bob",
+      "carol"
+    ],
+    "sequences": 103,
+    "steps": 291,
+    "terminal_session_rate": 0.7572815533980582,
+    "time_range": {
+      "end": "2026-10-27T06:46:01.018998+00:00",
+      "start": "2026-10-27T06:42:35.230451+00:00"
+    }
+  },
+  "generated_at": "2026-10-27T06:46:13.057942+00:00",
+  "hours": {
+    "max": 6,
+    "min": 6,
+    "observed": [
+      6
+    ],
+    "span": 0
+  },
+  "ngrams": {
+    "1": {
+      "distinct": 5,
+      "entries": [
+        {
+          "occurrences": 119,
+          "pattern": [
+            "backtest.run"
+          ],
+          "sessions": 72
+        },
+        {
+          "occurrences": 96,
+          "pattern": [
+            "dataset.list"
+          ],
+          "sessions": 96
+        },
+        {
+          "occurrences": 33,
+          "pattern": [
+            "strategy.list"
+          ],
+          "sessions": 33
+        },
+        {
+          "occurrences": 29,
+          "pattern": [
+            "backtest.compare"
+          ],
+          "sessions": 29
+        },
+        {
+          "occurrences": 14,
+          "pattern": [
+            "portfolio.backtest"
+          ],
+          "sessions": 14
+        }
+      ]
+    },
+    "2": {
+      "distinct": 7,
+      "entries": [
+        {
+          "occurrences": 65,
+          "pattern": [
+            "dataset.list",
+            "backtest.run"
+          ],
+          "sessions": 65
+        },
+        {
+          "occurrences": 47,
+          "pattern": [
+            "backtest.run",
+            "backtest.run"
+          ],
+          "sessions": 44
+        },
+        {
+          "occurrences": 29,
+          "pattern": [
+            "backtest.run",
+            "backtest.compare"
+          ],
+          "sessions": 29
+        },
+        {
+          "occurrences": 19,
+          "pattern": [
+            "strategy.list",
+            "dataset.list"
+          ],
+          "sessions": 19
+        },
+        {
+          "occurrences": 14,
+          "pattern": [
+            "dataset.list",
+            "strategy.list"
+          ],
+          "sessions": 14
+        },
+        {
+          "occurrences": 8,
+          "pattern": [
+            "backtest.run",
+            "portfolio.backtest"
+          ],
+          "sessions": 8
+        },
+        {
+          "occurrences": 6,
+          "pattern": [
+            "dataset.list",
+            "portfolio.backtest"
+          ],
+          "sessions": 6
+        }
+      ]
+    },
+    "3": {
+      "distinct": 5,
+      "entries": [
+        {
+          "occurrences": 37,
+          "pattern": [
+            "dataset.list",
+            "backtest.run",
+            "backtest.run"
+          ],
+          "sessions": 37
+        },
+        {
+          "occurrences": 29,
+          "pattern": [
+            "backtest.run",
+            "backtest.run",
+            "backtest.compare"
+          ],
+          "sessions": 29
+        },
+        {
+          "occurrences": 8,
+          "pattern": [
+            "dataset.list",
+            "backtest.run",
+            "portfolio.backtest"
+          ],
+          "sessions": 8
+        },
+        {
+          "occurrences": 8,
+          "pattern": [
+            "strategy.list",
+            "dataset.list",
+            "backtest.run"
+          ],
+          "sessions": 8
+        },
+        {
+          "occurrences": 3,
+          "pattern": [
+            "backtest.run",
+            "backtest.run",
+            "backtest.run"
+          ],
+          "sessions": 3
+        }
+      ]
+    }
+  },
+  "note": "由 corpus 训练切分构建",
+  "operations": {
+    "backtest.compare": {
+      "count": 29,
+      "duration_ms": {
+        "max": 87.0,
+        "p50": 35.0,
+        "p90": 44.0,
+        "p99": 87.0,
+        "samples": 29
+      },
+      "reason_codes": {},
+      "skeleton_count": 2,
+      "skeleton_digests": [
+        "3e42f6d36e87c88d70f80795559086902964d5e42673d849b8ee145418d99d53",
+        "6e45ad0fd23cde8dd808ddc992d54afda21c20e1f3d7c0bcfb729b10f927762a"
+      ],
+      "statuses": {
+        "ok": 29
+      }
+    },
+    "backtest.run": {
+      "count": 119,
+      "duration_ms": {
+        "max": 161.0,
+        "p50": 88.0,
+        "p90": 107.0,
+        "p99": 151.0,
+        "samples": 119
+      },
+      "reason_codes": {},
+      "skeleton_count": 14,
+      "skeleton_digests": [
+        "1d06d2b2916f7060de4cc02516124836b1edd5b9aee49c8ed6d6602c3997e3df",
+        "20a82d41e29761cbb1ab08f4577efba3d2eed7e2841347003c10768d80d1c7d9",
+        "313490e6d35b9d4b36e9c45932992670978a1fb94598af96fa05551346645624",
+        "41afd70b5ac4fa1da6a2a912d9175d4412af98ad6cc187fc71e4439b3185cf52",
+        "78dc3b0015f7e969c79236c99caadd1719f95a23463909f7b8928b66c4209efe",
+        "7c6c3f125a9b15a82b9a7df66cf3206e18031969398893a67d847d06368b0917",
+        "99f342ddf55f8b3d2e53b277f8ebf2a13d513640daab226aca9cfb5756f19352",
+        "bef5aaedaef5b8e568e17d5d474773f6f93ecf0449ff67a18518dc0c77617e2a",
+        "c1e2d05f0e6708bc8d969ec75b42b3b6ed6dc8198c5acae1c6a6ab873499c3ce",
+        "d5c4374f435e3ea552b5a64250c35866a522170bc674ed2d697dbc21ed72da61",
+        "e0fe21961abc062a33fc7f463425d495246360408f2116d938470639493c893d",
+        "e7b6a845afd1957cad69b82af4fc14b17ae60514d78a7f536f38de00748d35c1",
+        "ec43e33867b24b1f3bddd50b3a74e75101baef70ed73a8839d1cbbadd615b0ce",
+        "fb50b61a6a220e66dd9389a58d7310a4869758d38c1bf30de41c9cea88b81555"
+      ],
+      "statuses": {
+        "ok": 104,
+        "rejected": 15
+      }
+    },
+    "dataset.list": {
+      "count": 96,
+      "duration_ms": {
+        "max": 20.0,
+        "p50": 15.0,
+        "p90": 16.0,
+        "p99": 20.0,
+        "samples": 96
+      },
+      "reason_codes": {},
+      "skeleton_count": 1,
+      "skeleton_digests": [
+        "660d08d5185489c83238fc27c9cb3606adb36d76999529c002db66ec8ef81276"
+      ],
+      "statuses": {
+        "ok": 96
+      }
+    },
+    "portfolio.backtest": {
+      "count": 14,
+      "duration_ms": {
+        "max": 196.0,
+        "p50": 158.0,
+        "p90": 193.0,
+        "p99": 196.0,
+        "samples": 14
+      },
+      "reason_codes": {},
+      "skeleton_count": 1,
+      "skeleton_digests": [
+        "1c099ba023cf8ed2fe1ad75ee88595137e066f5786888228d5d30d210af3cced"
+      ],
+      "statuses": {
+        "ok": 14
+      }
+    },
+    "strategy.list": {
+      "count": 33,
+      "duration_ms": {
+        "max": 7.0,
+        "p50": 4.0,
+        "p90": 5.0,
+        "p99": 7.0,
+        "samples": 33
+      },
+      "reason_codes": {},
+      "skeleton_count": 1,
+      "skeleton_digests": [
+        "660d08d5185489c83238fc27c9cb3606adb36d76999529c002db66ec8ef81276"
+      ],
+      "statuses": {
+        "ok": 33
+      }
+    }
+  },
+  "operators": {
+    "alice": 103,
+    "bob": 88,
+    "carol": 100
+  },
+  "reject_rate": 0.05154639175257732,
+  "top_sequences": [
+    {
+      "pattern": [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ],
+      "sessions": 19
+    },
+    {
+      "pattern": [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run"
+      ],
+      "sessions": 15
+    },
+    {
+      "pattern": [
+        "dataset.list",
+        "strategy.list"
+      ],
+      "sessions": 14
+    },
+    {
+      "pattern": [
+        "dataset.list",
+        "backtest.run"
+      ],
+      "sessions": 12
+    },
+    {
+      "pattern": [
+        "strategy.list",
+        "dataset.list"
+      ],
+      "sessions": 11
+    },
+    {
+      "pattern": [
+        "dataset.list",
+        "backtest.run",
+        "portfolio.backtest"
+      ],
+      "sessions": 8
+    },
+    {
+      "pattern": [
+        "strategy.list",
+        "dataset.list",
+        "backtest.run"
+      ],
+      "sessions": 8
+    },
+    {
+      "pattern": [
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ],
+      "sessions": 7
+    },
+    {
+      "pattern": [
+        "dataset.list",
+        "portfolio.backtest"
+      ],
+      "sessions": 6
+    },
+    {
+      "pattern": [
+        "dataset.list",
+        "backtest.run",
+        "backtest.run",
+        "backtest.run",
+        "backtest.compare"
+      ],
+      "sessions": 3
+    }
+  ],
+  "transitions": [
+    {
+      "count": 65,
+      "from": "dataset.list",
+      "to": "backtest.run"
+    },
+    {
+      "count": 47,
+      "from": "backtest.run",
+      "to": "backtest.run"
+    },
+    {
+      "count": 29,
+      "from": "backtest.run",
+      "to": "backtest.compare"
+    },
+    {
+      "count": 19,
+      "from": "strategy.list",
+      "to": "dataset.list"
+    },
+    {
+      "count": 14,
+      "from": "dataset.list",
+      "to": "strategy.list"
+    },
+    {
+      "count": 8,
+      "from": "backtest.run",
+      "to": "portfolio.backtest"
+    },
+    {
+      "count": 6,
+      "from": "dataset.list",
+      "to": "portfolio.backtest"
+    }
+  ]
+}

@@ -1,0 +1,657 @@
+{
+ "experiment_id": "H-L3W-UNSEAL-000001",
+ "audit_only": true,
+ "prereg_sha256": "709d76ddf1766e107baa3109c0eb5d7da46539ccd46ee632e163cb0448d52477",
+ "subject_l3u_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+ "elapsed_seconds": 0.052,
+ "lags": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  6
+ ],
+ "primary_lag": 3,
+ "n_sealed": 6,
+ "n_unsealed": 4,
+ "n_stay_sealed": 2,
+ "decisions": [
+  {
+   "key": "gate3_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "DIRECTION_ONLY",
+   "same_source": {
+    "mean_diff": 3.611111132340028e-09,
+    "mean_match": true,
+    "t_match": "t_iid",
+    "n_match": true,
+    "stat_n": 108,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 0.8141767632864441,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "DIRECTION_ONLY",
+     "1": "DIRECTION_ONLY",
+     "2": "DIRECTION_ONLY",
+     "3": "DIRECTION_ONLY",
+     "4": "DIRECTION_ONLY",
+     "6": "DIRECTION_ONLY"
+    },
+    "distinct": [
+     "DIRECTION_ONLY"
+    ],
+    "primary_tier": "DIRECTION_ONLY"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 DIRECTION_ONLY"
+   ],
+   "series_n": 108,
+   "series": "gate3_out/9b7235d77689/monthly_paired.csv::d",
+   "detected": true,
+   "effect": 0.48414844361111115,
+   "l3u_grade": "NOT_GRADED",
+   "l3u_reference": "DIRECTION_ONLY"
+  },
+  {
+   "key": "phasec_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "QUOTABLE",
+   "same_source": {
+    "mean_diff": 1.9451484867261115e-10,
+    "mean_match": true,
+    "t_match": "t_nw3",
+    "n_match": true,
+    "stat_n": 237,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 2.272806460750329,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "QUOTABLE",
+     "1": "QUOTABLE",
+     "2": "QUOTABLE",
+     "3": "QUOTABLE",
+     "4": "QUOTABLE",
+     "6": "QUOTABLE"
+    },
+    "distinct": [
+     "QUOTABLE"
+    ],
+    "primary_tier": "QUOTABLE"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE"
+   ],
+   "series_n": 237,
+   "series": "phasec_out/3a01759a37f0/five_cells.csv::+1×d[B] + -1×d[A]",
+   "detected": true,
+   "effect": 1.9389677751054852,
+   "l3u_grade": "NOT_GRADED",
+   "l3u_reference": "QUOTABLE"
+  },
+  {
+   "key": "phasec2_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "QUOTABLE_MARGINAL",
+   "same_source": {
+    "mean_diff": 4.2109703224380013e-10,
+    "mean_match": true,
+    "t_match": "t_nw3",
+    "n_match": true,
+    "stat_n": 237,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 1.7900068047324882,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "QUOTABLE_MARGINAL",
+     "1": "QUOTABLE_MARGINAL",
+     "2": "QUOTABLE_MARGINAL",
+     "3": "QUOTABLE_MARGINAL",
+     "4": "QUOTABLE_MARGINAL",
+     "6": "QUOTABLE_MARGINAL"
+    },
+    "distinct": [
+     "QUOTABLE_MARGINAL"
+    ],
+    "primary_tier": "QUOTABLE_MARGINAL"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE_MARGINAL"
+   ],
+   "series_n": 237,
+   "series": "phasec2_out/953c32fdc556/cells.csv::+1×spread_v1 + -1×spread",
+   "detected": true,
+   "effect": 0.10694447497890297,
+   "l3u_grade": "NOT_GRADED",
+   "l3u_reference": "QUOTABLE_MARGINAL"
+  },
+  {
+   "key": "phasec3_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "UNDERPOWERED",
+   "same_source": {
+    "mean_diff": 6.65822799672533e-10,
+    "mean_match": true,
+    "t_match": "t_nw3",
+    "n_match": true,
+    "stat_n": 237,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 0.2132206736995436,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "UNDERPOWERED",
+     "2": "UNDERPOWERED",
+     "3": "UNDERPOWERED",
+     "4": "UNDERPOWERED",
+     "6": "UNDERPOWERED"
+    },
+    "distinct": [
+     "UNDERPOWERED"
+    ],
+    "primary_tier": "UNDERPOWERED"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED"
+   ],
+   "series_n": 237,
+   "series": "phasec3_out/6a76a10687b4/cells.csv::+1×spread_v1 + -1×spread_v0",
+   "detected": false,
+   "effect": 0.0468041687341772,
+   "l3u_grade": "NOT_GRADED",
+   "l3u_reference": "UNDERPOWERED"
+  },
+  {
+   "key": "phasej_netA",
+   "status": "STAY_SEALED",
+   "class": "B_different_budget",
+   "tier": "NOT_GRADED",
+   "same_source": {
+    "mean_diff": 0.009981502109704644,
+    "mean_match": false,
+    "t_match": null,
+    "n_match": true,
+    "stat_n": 237,
+    "ok": false,
+    "reasons": [
+     "判定均值 +0.0424 与序列均值 +0.0324 相对差 2.35e-01（阈值 1e-04）：判定档与序列档不同源，mean 与 MDE 不可拼",
+     "判定 t=+1.2688 与序列的 t_iid=+0.7785／t_nw3=+1.0424 均不符：该 t 不是这条序列均值的 t（回归系数 / 另一模型），不能与序列 MDE 配对"
+    ]
+   },
+   "ratio_primary": 0.3720580958423266,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "UNDERPOWERED",
+     "2": "UNDERPOWERED",
+     "3": "UNDERPOWERED",
+     "4": "UNDERPOWERED",
+     "6": "UNDERPOWERED"
+    },
+    "distinct": [
+     "UNDERPOWERED"
+    ],
+    "primary_tier": "UNDERPOWERED"
+   },
+   "reasons": [
+    "判定均值 +0.0424 与序列均值 +0.0324 相对差 2.35e-01（阈值 1e-04）：判定档与序列档不同源，mean 与 MDE 不可拼",
+    "判定 t=+1.2688 与序列的 t_iid=+0.7785／t_nw3=+1.0424 均不符：该 t 不是这条序列均值的 t（回归系数 / 另一模型），不能与序列 MDE 配对"
+   ],
+   "series_n": 237,
+   "series": "phasej_out/f76de8a277f6/monthly.csv::net_A_pp",
+   "detected": false,
+   "effect": 0.03244149789029536,
+   "l3u_grade": "NOT_GRADED",
+   "l3u_reference": "UNDERPOWERED"
+  },
+  {
+   "key": "phasep_late",
+   "status": "STAY_SEALED",
+   "class": "B_regression_coef",
+   "tier": "NOT_GRADED",
+   "same_source": {
+    "mean_diff": 4.961240309964143e-07,
+    "mean_match": true,
+    "t_match": null,
+    "n_match": false,
+    "stat_n": 237,
+    "ok": false,
+    "reasons": [
+     "判定 t=-0.2158 与序列的 t_iid=+1.8372／t_nw3=+2.5813 均不符：该 t 不是这条序列均值的 t（回归系数 / 另一模型），不能与序列 MDE 配对",
+     "判定分母 237 ≠ 序列 n 129：必须确认是回归分母还是子样本窗口"
+    ]
+   },
+   "ratio_primary": 0.9213649049405813,
+   "stability": {
+    "stable": false,
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "NULL_WEAK",
+     "2": "NULL_WEAK",
+     "3": "NULL_WEAK",
+     "4": "NULL_WEAK",
+     "6": "NULL_CONFIRMED"
+    },
+    "distinct": [
+     "NULL_CONFIRMED",
+     "NULL_WEAK",
+     "UNDERPOWERED"
+    ],
+    "primary_tier": "NULL_WEAK"
+   },
+   "reasons": [
+    "判定 t=-0.2158 与序列的 t_iid=+1.8372／t_nw3=+2.5813 均不符：该 t 不是这条序列均值的 t（回归系数 / 另一模型），不能与序列 MDE 配对",
+    "判定分母 237 ≠ 序列 n 129：必须确认是回归分母还是子样本窗口"
+   ],
+   "series_n": 129,
+   "series": "phasep_out/3d19f7508e10/monthly.csv::net_BASE_3000w_pp",
+   "detected": false,
+   "effect": 0.129407503875969,
+   "l3u_grade": "NOT_GRADED",
+   "l3u_reference": "NULL_WEAK"
+  }
+ ],
+ "grid": {
+  "gate3_d": {
+   "0": {
+    "mde": 0.6377948129390812,
+    "se_nw": 0.2276537738931615,
+    "t_nw": 2.126687536655216,
+    "power": 0.5662139224691807
+   },
+   "1": {
+    "mde": 0.6556737894776522,
+    "se_nw": 0.23403547597003577,
+    "t_nw": 2.068696814465419,
+    "power": 0.5433065591604895
+   },
+   "2": {
+    "mde": 0.6191416485822077,
+    "se_nw": 0.22099573407417464,
+    "t_nw": 2.190759227273647,
+    "power": 0.5912656395694864
+   },
+   "3": {
+    "mde": 0.5946478276496547,
+    "se_nw": 0.21225293676815202,
+    "t_nw": 2.2809976200233018,
+    "power": 0.62590502917764
+   },
+   "4": {
+    "mde": 0.5717212713698963,
+    "se_nw": 0.2040695571708653,
+    "t_nw": 2.37246775228575,
+    "power": 0.6600090662195723
+   },
+   "6": {
+    "mde": 0.5373649933584639,
+    "se_nw": 0.1918064653621016,
+    "t_nw": 2.524150803243843,
+    "power": 0.7136779073150106
+   }
+  },
+  "phasec_d": {
+   "0": {
+    "mde": 0.876094059371602,
+    "se_nw": 0.31271204289391846,
+    "t_nw": 6.200489617098765,
+    "power": 0.9999888483623898
+   },
+   "1": {
+    "mde": 0.8816177255587625,
+    "se_nw": 0.3146836541828821,
+    "t_nw": 6.161641220737292,
+    "power": 0.9999867506568754
+   },
+   "2": {
+    "mde": 0.8556500960530602,
+    "se_nw": 0.30541479727764853,
+    "t_nw": 6.348637303721716,
+    "power": 0.9999942968443813
+   },
+   "3": {
+    "mde": 0.8531160961524931,
+    "se_nw": 0.3045103141606557,
+    "t_nw": 6.367494580438122,
+    "power": 0.9999947713391728
+   },
+   "4": {
+    "mde": 0.8581142954082798,
+    "se_nw": 0.3062943658653197,
+    "t_nw": 6.330406273153801,
+    "power": 0.9999937992210877
+   },
+   "6": {
+    "mde": 0.9016709062744942,
+    "se_nw": 0.321841414289868,
+    "t_nw": 6.024606184955254,
+    "power": 0.9999759431845119
+   }
+  },
+  "phasec2_d": {
+   "0": {
+    "mde": 0.05535242407293221,
+    "se_nw": 0.019757432921520636,
+    "t_nw": 5.412872988292649,
+    "power": 0.999722674954608
+   },
+   "1": {
+    "mde": 0.056328376167448874,
+    "se_nw": 0.020105788180842687,
+    "t_nw": 5.319088911958319,
+    "power": 0.9996090004857707
+   },
+   "2": {
+    "mde": 0.058459768425375196,
+    "se_nw": 0.020866564971935748,
+    "t_nw": 5.125159561371828,
+    "power": 0.9992250103688756
+   },
+   "3": {
+    "mde": 0.059745289624686955,
+    "se_nw": 0.02132541748453989,
+    "t_nw": 5.014883064138538,
+    "power": 0.9988742585624797
+   },
+   "4": {
+    "mde": 0.05979544954347503,
+    "se_nw": 0.02134332151037801,
+    "t_nw": 5.010676287048486,
+    "power": 0.9988583670077149
+   },
+   "6": {
+    "mde": 0.0620013052391866,
+    "se_nw": 0.02213067719845324,
+    "t_nw": 4.832408607287333,
+    "power": 0.9979632205754478
+   }
+  },
+  "phasec3_d": {
+   "0": {
+    "mde": 0.20932435835336619,
+    "se_nw": 0.0747160045521724,
+    "t_nw": 0.6264276176798904,
+    "power": 0.0960208463428473
+   },
+   "1": {
+    "mde": 0.21391168403615726,
+    "se_nw": 0.07635339949891393,
+    "t_nw": 0.6129939078199518,
+    "power": 0.09403028442190148
+   },
+   "2": {
+    "mde": 0.21594143933428794,
+    "se_nw": 0.07707789810618501,
+    "t_nw": 0.6072320325821321,
+    "power": 0.09319058405187897
+   },
+   "3": {
+    "mde": 0.21951046266803623,
+    "se_nw": 0.0783518213406754,
+    "t_nw": 0.5973590394366414,
+    "power": 0.09177136124670221
+   },
+   "4": {
+    "mde": 0.21803007461467463,
+    "se_nw": 0.07782341326908718,
+    "t_nw": 0.6014150082616414,
+    "power": 0.09235140406223963
+   },
+   "6": {
+    "mde": 0.2161411912479725,
+    "se_nw": 0.07714919733294277,
+    "t_nw": 0.6066708449627871,
+    "power": 0.09310925099432837
+   }
+  },
+  "phasej_netA": {
+   "0": {
+    "mde": 0.11650586039704869,
+    "se_nw": 0.04158547272881521,
+    "t_nw": 0.7801161261734594,
+    "power": 0.1220940762525003
+   },
+   "1": {
+    "mde": 0.10152139952838124,
+    "se_nw": 0.036236935868211466,
+    "t_nw": 0.8952605156319074,
+    "power": 0.14564699546319093
+   },
+   "2": {
+    "mde": 0.09278696521766439,
+    "se_nw": 0.033119276562558676,
+    "t_nw": 0.9795352210975059,
+    "power": 0.16507189815394013
+   },
+   "3": {
+    "mde": 0.08719471032299118,
+    "se_nw": 0.03112318329632752,
+    "t_nw": 1.0423579613118623,
+    "power": 0.18074263556796427
+   },
+   "4": {
+    "mde": 0.08342030879106854,
+    "se_nw": 0.02977595259532715,
+    "t_nw": 1.0895200677941206,
+    "power": 0.19316512727773394
+   },
+   "6": {
+    "mde": 0.07730520655888662,
+    "se_nw": 0.027593234779728235,
+    "t_nw": 1.17570477507512,
+    "power": 0.2172906588142614
+   }
+  },
+  "phasep_late": {
+   "0": {
+    "mde": 0.1965673139991506,
+    "se_nw": 0.07016251927439698,
+    "t_nw": 1.8443964842521143,
+    "power": 0.4540544633840412
+   },
+   "1": {
+    "mde": 0.168893406484443,
+    "se_nw": 0.06028462538707988,
+    "t_nw": 2.1466087421968694,
+    "power": 0.5740363695865313
+   },
+   "2": {
+    "mde": 0.1509510141170635,
+    "se_nw": 0.05388028773453151,
+    "t_nw": 2.4017597031693767,
+    "power": 0.6706749002996262
+   },
+   "3": {
+    "mde": 0.14045195685450432,
+    "se_nw": 0.050132765867541514,
+    "t_nw": 2.581295917681533,
+    "power": 0.7328003258693112
+   },
+   "4": {
+    "mde": 0.1355408790907247,
+    "se_nw": 0.04837981121170928,
+    "t_nw": 2.6748244905232026,
+    "power": 0.7626430361628826
+   },
+   "6": {
+    "mde": 0.12303492213706614,
+    "se_nw": 0.04391594879249933,
+    "t_nw": 2.9467085975396548,
+    "power": 0.8381077060627247
+   }
+  }
+ },
+ "merge": {
+  "counts_before": {
+   "DIRECTION_ONLY": 2,
+   "NOT_GRADED": 15,
+   "NULL_CONFIRMED": 1,
+   "QUOTABLE_MARGINAL": 2,
+   "UNDERPOWERED": 7
+  },
+  "counts_after": {
+   "DIRECTION_ONLY": 3,
+   "NOT_GRADED": 11,
+   "NULL_CONFIRMED": 1,
+   "QUOTABLE": 1,
+   "QUOTABLE_MARGINAL": 3,
+   "UNDERPOWERED": 8
+  },
+  "changed": [
+   {
+    "key": "gate3_d",
+    "before": "NOT_GRADED",
+    "after": "DIRECTION_ONLY"
+   },
+   {
+    "key": "phasec_d",
+    "before": "NOT_GRADED",
+    "after": "QUOTABLE"
+   },
+   {
+    "key": "phasec2_d",
+    "before": "NOT_GRADED",
+    "after": "QUOTABLE_MARGINAL"
+   },
+   {
+    "key": "phasec3_d",
+    "before": "NOT_GRADED",
+    "after": "UNDERPOWERED"
+   }
+  ],
+  "n_changed": 4,
+  "quotable_before": 0,
+  "quotable_after": 1
+ },
+ "patches": [
+  {
+   "key": "gate3_d",
+   "from": "NOT_GRADED",
+   "to": "DIRECTION_ONLY",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 DIRECTION_ONLY",
+   "ratio_primary": 0.8141767632864441,
+   "source": "H-L3W-UNSEAL-000001"
+  },
+  {
+   "key": "phasec_d",
+   "from": "NOT_GRADED",
+   "to": "QUOTABLE",
+   "quotability_note": "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE",
+   "ratio_primary": 2.272806460750329,
+   "source": "H-L3W-UNSEAL-000001"
+  },
+  {
+   "key": "phasec2_d",
+   "from": "NOT_GRADED",
+   "to": "QUOTABLE_MARGINAL",
+   "quotability_note": "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE_MARGINAL",
+   "ratio_primary": 1.7900068047324882,
+   "source": "H-L3W-UNSEAL-000001"
+  },
+  {
+   "key": "phasec3_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_nw3），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.2132206736995436,
+   "source": "H-L3W-UNSEAL-000001"
+  }
+ ],
+ "predictions": [
+  {
+   "id": "P1",
+   "statement": "6 条里恰好 4 条通过三关（gate3_d、phasec_d、phasec2_d、phasec3_d），2 条不通过（phasej_netA 均值不同档、phasep_late 的 t 不是序列均值的 t）。",
+   "quantity": "decisions 里 status=UNSEALED 的条数与具体 key",
+   "observed": {
+    "n_unsealed": 4,
+    "keys": [
+     "gate3_d",
+     "phasec2_d",
+     "phasec3_d",
+     "phasec_d"
+    ]
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P2",
+   "statement": "phasec_d 在 NW(3) 下 |效应|/MDE ≥ 2，解封为 QUOTABLE。",
+   "quantity": "phasec_d 的 ratio_primary 与 tier",
+   "observed": {
+    "ratio": 2.272806460750329,
+    "tier": "QUOTABLE"
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P3",
+   "statement": "phasec_d 的分级在 lag ∈ {0,1,2,3,4,6} 全档恒为 QUOTABLE（不跨桶）。",
+   "quantity": "phasec_d 的 stability.tiers 与 stable 布尔",
+   "observed": {
+    "stable": true,
+    "tiers": {
+     "0": "QUOTABLE",
+     "1": "QUOTABLE",
+     "2": "QUOTABLE",
+     "3": "QUOTABLE",
+     "4": "QUOTABLE",
+     "6": "QUOTABLE"
+    }
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P4",
+   "statement": "phasec2_d 在网格内至少一档跨桶（跌出 QUOTABLE_MARGINAL）。",
+   "quantity": "phasec2_d 的 stability.stable",
+   "observed": {
+    "stable": true
+   },
+   "holds": false,
+   "refuted": true
+  },
+  {
+   "id": "P5",
+   "statement": "gate3_d 解封后为 DIRECTION_ONLY（|效应|/MDE 在 0.7~1.0 之间）。",
+   "quantity": "gate3_d 的 tier 与 ratio_primary",
+   "observed": {
+    "tier": "DIRECTION_ONLY",
+    "ratio": 0.8141767632864441
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P6",
+   "statement": "合并后全项目 QUOTABLE = 1，且相对 L3u 分级发生变化的恰好 4 条。",
+   "quantity": "merge_project_tiers 的 quotable_after 与 n_changed",
+   "observed": {
+    "quotable_after": 1,
+    "n_changed": 4
+   },
+   "holds": true,
+   "refuted": false
+  }
+ ],
+ "status": "UNSEAL_REVIEW_DONE"
+}

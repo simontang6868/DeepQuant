@@ -1,0 +1,1516 @@
+{
+ "experiment_id": "H-L3U-CITATION-REGISTRY-000001",
+ "audit_only": true,
+ "prereg_sha256": "3510c5670aefada9176ddff78f93bf9fb10d0eb0f10124dd53922bf98aee21ff",
+ "subject": [
+  "reports/gates/H-L3T-RESOLUTION/l3t_registry.json"
+ ],
+ "elapsed_seconds": 0.1,
+ "n_entries": 27,
+ "class_counts": {
+  "MISMATCH_MEAN": 10,
+  "MISMATCH_N": 2,
+  "MATCH": 8,
+  "NOT_APPLICABLE": 7
+ },
+ "verdict_reconciliation": {
+  "n_recorded": 27,
+  "n_match": 14,
+  "mismatches": [
+   {
+    "key": "gate1_d",
+    "original": "failure",
+    "recorded_in_l3t": "INCONCLUSIVE"
+   },
+   {
+    "key": "gate2_d",
+    "original": "FAILURE",
+    "recorded_in_l3t": "FAIL"
+   },
+   {
+    "key": "gate3_d",
+    "original": "SUCCESS",
+    "recorded_in_l3t": "PASS"
+   },
+   {
+    "key": "gate4_d",
+    "original": "FAILURE",
+    "recorded_in_l3t": "FAIL"
+   },
+   {
+    "key": "gate5_d",
+    "original": "FAILURE",
+    "recorded_in_l3t": "FAIL"
+   },
+   {
+    "key": "gate6_d",
+    "original": "SUCCESS",
+    "recorded_in_l3t": "PASS"
+   },
+   {
+    "key": "phasec2_d",
+    "original": "SUSPENSION_EFFECT_SMALL_BUT_SIGNIFICANT",
+    "recorded_in_l3t": "POOL_EFFECT_CONFIRMED"
+   },
+   {
+    "key": "phasec3_d",
+    "original": "LAG_COST_NEGLIGIBLE",
+    "recorded_in_l3t": "POOL_EFFECT_CONFIRMED"
+   },
+   {
+    "key": "phasee_alpha",
+    "original": "LONGONLY_ALPHA_NOT_DETECTED",
+    "recorded_in_l3t": "SINGLE_SIDE_NOT_DETECTED"
+   },
+   {
+    "key": "phaseg_alpha",
+    "original": "MAX5_LONGONLY_NOT_EXECUTABLE",
+    "recorded_in_l3t": "NOT_EXECUTABLE"
+   },
+   {
+    "key": "phasej_netA",
+    "original": "NET_AFTER_EXECUTION_ABSORBED",
+    "recorded_in_l3t": "NET_ABSORBED"
+   },
+   {
+    "key": "phasep_late",
+    "original": "SEGMENT_DIFFERENCE_NOT_DETECTED",
+    "recorded_in_l3t": "SEGMENT_DIFF_NOT_DETECTED"
+   },
+   {
+    "key": "phaseq_max5",
+    "original": "INCREMENTAL_ABSORBED",
+    "recorded_in_l3t": "MAX5_INCREMENTAL"
+   }
+  ]
+ },
+ "mismatched_entries": [
+  {
+   "key": "gate1_d",
+   "class": "MISMATCH_MEAN",
+   "t_only": true,
+   "detail": "mean 一致但 t 不同：L3t=-0.6092 vs 判定=-0.5687（多为 NW 滞后或估计量口径差异）",
+   "l3t_mean": -0.3961063903264166,
+   "l3t_n": 48,
+   "stat_mean": -0.3961063903264168,
+   "stat_n": 48,
+   "series": "gate1_out/032a11f591553e25/monthly_paired.csv::d"
+  },
+  {
+   "key": "gate2_d",
+   "class": "MISMATCH_MEAN",
+   "t_only": true,
+   "detail": "mean 一致但 t 不同：L3t=-1.5946 vs 判定=-1.6415（多为 NW 滞后或估计量口径差异）",
+   "l3t_mean": -0.38457783768000003,
+   "l3t_n": 125,
+   "stat_mean": -0.38457784,
+   "stat_n": 125,
+   "series": "gate2_out/c440c77d284a/monthly_paired.csv::d"
+  },
+  {
+   "key": "gate3_d",
+   "class": "MISMATCH_N",
+   "t_only": false,
+   "detail": "n: L3t=125 vs 判定=108；mean: -0.3982 vs +0.4841",
+   "l3t_mean": -0.39818682984,
+   "l3t_n": 125,
+   "stat_mean": 0.48414844,
+   "stat_n": 108,
+   "series": "gate3_out/9b7235d77689/monthly_paired.csv::d"
+  },
+  {
+   "key": "gate4_d",
+   "class": "MISMATCH_MEAN",
+   "t_only": true,
+   "detail": "mean 一致但 t 不同：L3t=+0.9689 vs 判定=+0.8679（多为 NW 滞后或估计量口径差异）",
+   "l3t_mean": 0.16636050198312238,
+   "l3t_n": 237,
+   "stat_mean": 0.1663605,
+   "stat_n": 237,
+   "series": "gate4_out/94988f7c57d1/monthly_paired.csv::d"
+  },
+  {
+   "key": "gate5_d",
+   "class": "MISMATCH_MEAN",
+   "t_only": true,
+   "detail": "mean 一致但 t 不同：L3t=+0.1550 vs 判定=+0.1552（多为 NW 滞后或估计量口径差异）",
+   "l3t_mean": 0.023587832168674695,
+   "l3t_n": 249,
+   "stat_mean": 0.023587829999999997,
+   "stat_n": 249,
+   "series": "gate5_out/7c0c89916b0c/monthly_paired.csv::d"
+  },
+  {
+   "key": "gate6_d",
+   "class": "MISMATCH_MEAN",
+   "t_only": true,
+   "detail": "mean 一致但 t 不同：L3t=+4.6443 vs 判定=+4.3861（多为 NW 滞后或估计量口径差异）",
+   "l3t_mean": 0.7084456860759494,
+   "l3t_n": 237,
+   "stat_mean": 0.70844569,
+   "stat_n": 237,
+   "series": "gate6_out/b8c4f1ecba44/monthly_paired.csv::d"
+  },
+  {
+   "key": "phasec_d",
+   "class": "MISMATCH_MEAN",
+   "t_only": false,
+   "detail": "mean: L3t=+0.014071 vs 判定=+1.938968（差 -1.924897）",
+   "l3t_mean": 0.014071245907172993,
+   "l3t_n": 237,
+   "stat_mean": 1.9389677753,
+   "stat_n": 237,
+   "series": "phasec_out/3a01759a37f0/five_cells.csv::+1×d[B] + -1×d[A]"
+  },
+  {
+   "key": "phasec2_d",
+   "class": "MISMATCH_MEAN",
+   "t_only": false,
+   "detail": "mean: L3t=+0.658190 vs 判定=+0.106944（差 +0.551245）",
+   "l3t_mean": 0.6581896499578059,
+   "l3t_n": 237,
+   "stat_mean": 0.1069444754,
+   "stat_n": 237,
+   "series": "phasec2_out/953c32fdc556/cells.csv::+1×spread_v1 + -1×spread"
+  },
+  {
+   "key": "phasec3_d",
+   "class": "MISMATCH_MEAN",
+   "t_only": false,
+   "detail": "mean: L3t=+0.658190 vs 判定=+0.046804（差 +0.611385）",
+   "l3t_mean": 0.6581896499578059,
+   "l3t_n": 237,
+   "stat_mean": 0.0468041694,
+   "stat_n": 237,
+   "series": "phasec3_out/6a76a10687b4/cells.csv::+1×spread_v1 + -1×spread_v0"
+  },
+  {
+   "key": "phasej_netA",
+   "class": "MISMATCH_MEAN",
+   "t_only": false,
+   "detail": "mean: L3t=+0.032441 vs 判定=+0.042423（差 -0.009982）",
+   "l3t_mean": 0.03244149789029536,
+   "l3t_n": 237,
+   "stat_mean": 0.042423,
+   "stat_n": 237,
+   "series": "phasej_out/f76de8a277f6/monthly.csv::net_A_pp"
+  },
+  {
+   "key": "phasek_m1net",
+   "class": "MISMATCH_MEAN",
+   "t_only": true,
+   "detail": "mean 一致但 t 不同：L3t=+1.1946 vs 判定=+1.3469（多为 NW 滞后或估计量口径差异）",
+   "l3t_mean": 0.03989106751054852,
+   "l3t_n": 237,
+   "stat_mean": 0.039891,
+   "stat_n": null,
+   "series": "phasek_out/3bc31a35903d/monthly.csv::m1_net"
+  },
+  {
+   "key": "phasep_late",
+   "class": "MISMATCH_N",
+   "t_only": false,
+   "detail": "n: L3t=129 vs 判定=237；mean: +0.1294 vs +0.1294",
+   "l3t_mean": 0.129407503875969,
+   "l3t_n": 129,
+   "stat_mean": 0.129408,
+   "stat_n": 237,
+   "series": "phasep_out/3d19f7508e10/monthly.csv::net_BASE_3000w_pp"
+  }
+ ],
+ "mde_spread": {
+  "recomputed_pp": 235.08456940590187,
+  "l3t_pp": 20.890543569307404,
+  "recomputed_max": 14.04519568545043,
+  "recomputed_min": 0.059745289624686955
+ },
+ "family_best_mde": {
+  "B_long_only": 0.09494514768954511,
+  "A_cross_spread": 0.6086306256988808,
+  "C_regression": 0.4678985632493071,
+  "D_ic": 0.0381882197393656
+ },
+ "below_family_best": [
+  {
+   "key": "phaseq_max5",
+   "family": "C_regression",
+   "effect": 0.042414,
+   "family_best_mde": 0.4678985632493071,
+   "ratio": 0.09064785261458656
+  }
+ ],
+ "grade_distribution": {
+  "NOT_GRADED": [
+   "gate1_d",
+   "gate2_d",
+   "gate3_d",
+   "gate4_d",
+   "gate5_d",
+   "gate6_d",
+   "phasec2_d",
+   "phasec3_d",
+   "phasec_d",
+   "phasej_netA",
+   "phasek_m1net",
+   "phasep_late",
+   "phaser_alpha",
+   "phasev_net"
+  ],
+  "UNDERPOWERED": [
+   "l3_test",
+   "l3p_test",
+   "l3r_delta",
+   "l3s_ic",
+   "phasee_alpha",
+   "phaseg_alpha",
+   "phaseq_max5"
+  ],
+  "QUOTABLE_MARGINAL": [
+   "phasef_delta"
+  ],
+  "NULL_CONFIRMED": [
+   "phasel_alpha",
+   "phasem_spread"
+  ],
+  "NOT_QUOTABLE": [
+   "phaseo_netBASE",
+   "phases_net",
+   "phaset_net"
+  ]
+ },
+ "predictions": [
+  {
+   "id": "P1",
+   "claim": "判定字符串与 L3t 记录完全一致的条目 ≥ 18/27",
+   "actual": "14/27 一致；不一致 13 条",
+   "refuted": true
+  },
+  {
+   "id": "P2",
+   "claim": "判定统计量与 L3t 行一致的条目 ≥ 18/27",
+   "actual": "8/27 一致（MATCH）",
+   "refuted": true
+  },
+  {
+   "id": "P3",
+   "claim": "需要重建序列（非单列）的条目恰好 3 条",
+   "actual": "3 条（phasec_d, phasec2_d, phasec3_d）",
+   "refuted": false
+  },
+  {
+   "id": "P4",
+   "claim": "更正后 pp 口径内 MDE 极差 < 20.9×",
+   "actual": "235.08×（L3t 原值 20.89×）",
+   "refuted": true
+  },
+  {
+   "id": "P5",
+   "claim": "更正后 below_family_best 条目数 ≤ 3（L3t 为 5 条）",
+   "actual": "1 条",
+   "refuted": false
+  },
+  {
+   "id": "P6",
+   "claim": "detected=true 中 ratio ≥ 2（QUOTABLE）的 ≥ 3 条",
+   "actual": "0 条（无）",
+   "refuted": true
+  },
+  {
+   "id": "P7",
+   "claim": "UNVERIFIABLE 条目数为 0",
+   "actual": "0 条",
+   "refuted": false
+  }
+ ],
+ "rows": [
+  {
+   "key": "gate1_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "failure",
+   "verdict_recorded_l3t": "INCONCLUSIVE",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "gate1_out/032a11f591553e25/monthly_paired.csv::d",
+   "series_n": 48,
+   "l3t": {
+    "n": 48,
+    "mean": -0.3961063903264166,
+    "t_nw3": -0.6092255349704097,
+    "mde": 1.8215448950155855
+   },
+   "stat": {
+    "applicable": true,
+    "mean": -0.3961063903264168,
+    "t": -0.5686816758241799,
+    "n": 48
+   },
+   "recomputed": {
+    "n": 48,
+    "mean": -0.3961063903264166,
+    "se_iid": 0.6965344711561996,
+    "se_nw": 0.6501802166674705,
+    "t_iid": -0.56868167582418,
+    "t_nw3": -0.6092255349704097,
+    "mde": 1.8215448950155855,
+    "power": 0.09348014994108061
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": true,
+    "detail": "mean 一致但 t 不同：L3t=-0.6092 vs 判定=-0.5687（多为 NW 滞后或估计量口径差异）",
+    "mean_diff": 2.220446049250313e-16
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "gate2_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "FAILURE",
+   "verdict_recorded_l3t": "FAIL",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "gate2_out/c440c77d284a/monthly_paired.csv::d",
+   "series_n": 125,
+   "l3t": {
+    "n": 125,
+    "mean": -0.38457783768000003,
+    "t_nw3": -1.5945969261956763,
+    "mde": 0.6756775034144735
+   },
+   "stat": {
+    "applicable": true,
+    "mean": -0.38457784,
+    "t": -1.6415216477,
+    "n": 125
+   },
+   "recomputed": {
+    "n": 125,
+    "mean": -0.38457783768000003,
+    "se_iid": 0.23428130754191062,
+    "se_nw": 0.24117557945976353,
+    "t_iid": -1.6415216464130533,
+    "t_nw3": -1.5945969261956763,
+    "mde": 0.6756775034144735,
+    "power": 0.35759455301886584
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": true,
+    "detail": "mean 一致但 t 不同：L3t=-1.5946 vs 判定=-1.6415（多为 NW 滞后或估计量口径差异）",
+    "mean_diff": 2.3199999699130558e-09
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "gate3_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "SUCCESS",
+   "verdict_recorded_l3t": "PASS",
+   "verdict_matches_l3t": false,
+   "detected": true,
+   "series": "gate3_out/9b7235d77689/monthly_paired.csv::d",
+   "series_n": 108,
+   "l3t": {
+    "n": 125,
+    "mean": -0.39818682984,
+    "t_nw3": -1.6908220006384744,
+    "mde": 0.6597738981740805
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.48414844,
+    "t": 2.1168188621,
+    "n": 108
+   },
+   "recomputed": {
+    "n": 108,
+    "mean": 0.48414844361111115,
+    "se_iid": 0.22871510260180014,
+    "se_nw": 0.21225293676815202,
+    "t_iid": 2.116818863746082,
+    "t_nw3": 2.2809976200233018,
+    "mde": 0.5946478276496547,
+    "power": 0.62590502917764
+   },
+   "comparison": {
+    "class": "MISMATCH_N",
+    "t_only": false,
+    "detail": "n: L3t=125 vs 判定=108；mean: -0.3982 vs +0.4841",
+    "mean_diff": -0.88233526984
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（样本数不一致），不给分级"
+   }
+  },
+  {
+   "key": "gate4_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "FAILURE",
+   "verdict_recorded_l3t": "FAIL",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "gate4_out/94988f7c57d1/monthly_paired.csv::d",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.16636050198312238,
+    "t_nw3": 0.9689345568883998,
+    "mde": 0.48101863953810603
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.1663605,
+    "t": 0.8678909044,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.16636050198312238,
+    "se_iid": 0.19168365680126037,
+    "se_nw": 0.17169426025774773,
+    "t_iid": 0.8678909029558357,
+    "t_nw3": 0.9689345568883998,
+    "mde": 0.48101863953810603,
+    "power": 0.16252744294702898
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": true,
+    "detail": "mean 一致但 t 不同：L3t=+0.9689 vs 判定=+0.8679（多为 NW 滞后或估计量口径差异）",
+    "mean_diff": 1.9831223885269367e-09
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "gate5_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "FAILURE",
+   "verdict_recorded_l3t": "FAIL",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "gate5_out/7c0c89916b0c/monthly_paired.csv::d",
+   "series_n": 249,
+   "l3t": {
+    "n": 249,
+    "mean": 0.023587832168674695,
+    "t_nw3": 0.15499428542203716,
+    "mde": 0.426361981177683
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.023587829999999997,
+    "t": 0.1552221766,
+    "n": 249
+   },
+   "recomputed": {
+    "n": 249,
+    "mean": 0.023587832168674695,
+    "se_iid": 0.1519617402524164,
+    "se_nw": 0.1521851731787846,
+    "t_iid": 0.15522217717100417,
+    "t_nw3": 0.15499428542203716,
+    "mde": 0.426361981177683,
+    "power": 0.05275211108504069
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": true,
+    "detail": "mean 一致但 t 不同：L3t=+0.1550 vs 判定=+0.1552（多为 NW 滞后或估计量口径差异）",
+    "mean_diff": 2.168674698155293e-09
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "gate6_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "SUCCESS",
+   "verdict_recorded_l3t": "PASS",
+   "verdict_matches_l3t": false,
+   "detected": true,
+   "series": "gate6_out/b8c4f1ecba44/monthly_paired.csv::d",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.7084456860759494,
+    "t_nw3": 4.644339275666975,
+    "mde": 0.42735496187998556
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.70844569,
+    "t": 4.3861083442,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.7084456860759494,
+    "se_iid": 0.16152033426427065,
+    "se_nw": 0.15253960661050311,
+    "t_iid": 4.386108345447266,
+    "t_nw3": 4.644339275666975,
+    "mde": 0.42735496187998556,
+    "power": 0.996366334207538
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": true,
+    "detail": "mean 一致但 t 不同：L3t=+4.6443 vs 判定=+4.3861（多为 NW 滞后或估计量口径差异）",
+    "mean_diff": -3.924050639980692e-09
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "phasec_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "POOL_EFFECT_CONFIRMED",
+   "verdict_recorded_l3t": "POOL_EFFECT_CONFIRMED",
+   "verdict_matches_l3t": true,
+   "detected": true,
+   "series": "phasec_out/3a01759a37f0/five_cells.csv::+1×d[B] + -1×d[A]",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.014071245907172993,
+    "t_nw3": 0.08788402888677875,
+    "mde": 0.4485684490446306
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 1.9389677753,
+    "t": 6.3674945828,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 1.9389677751054852,
+    "se_iid": 0.31337386806364587,
+    "se_nw": 0.3045103141606557,
+    "t_iid": 6.187394587450678,
+    "t_nw3": 6.367494580438122,
+    "mde": 0.8531160961524931,
+    "power": 0.9999947713391728
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": false,
+    "detail": "mean: L3t=+0.014071 vs 判定=+1.938968（差 -1.924897）",
+    "mean_diff": -1.924896529392827
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "phasec2_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "SUSPENSION_EFFECT_SMALL_BUT_SIGNIFICANT",
+   "verdict_recorded_l3t": "POOL_EFFECT_CONFIRMED",
+   "verdict_matches_l3t": false,
+   "detected": true,
+   "series": "phasec2_out/953c32fdc556/cells.csv::+1×spread_v1 + -1×spread",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.6581896499578059,
+    "t_nw3": 4.404772957281038,
+    "mde": 0.4186331829597948
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.1069444754,
+    "t": 5.0148830724,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.10694447497890297,
+    "se_iid": 0.019799247641144654,
+    "se_nw": 0.02132541748453989,
+    "t_iid": 5.4014413535927766,
+    "t_nw3": 5.014883064138538,
+    "mde": 0.059745289624686955,
+    "power": 0.9988742585624797
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": false,
+    "detail": "mean: L3t=+0.658190 vs 判定=+0.106944（差 +0.551245）",
+    "mean_diff": 0.551245174557806
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "phasec3_d",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "LAG_COST_NEGLIGIBLE",
+   "verdict_recorded_l3t": "POOL_EFFECT_CONFIRMED",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "phasec3_out/6a76a10687b4/cells.csv::+1×spread_v1 + -1×spread_v0",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.6581896499578059,
+    "t_nw3": 4.404772957281038,
+    "mde": 0.4186331829597948
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.0468041694,
+    "t": 0.5973590485,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.0468041687341772,
+    "se_iid": 0.07487413383922027,
+    "se_nw": 0.0783518213406754,
+    "t_iid": 0.6251046434097168,
+    "t_nw3": 0.5973590394366414,
+    "mde": 0.21951046266803623,
+    "power": 0.09177136124670221
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": false,
+    "detail": "mean: L3t=+0.658190 vs 判定=+0.046804（差 +0.611385）",
+    "mean_diff": 0.611385480557806
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "phasee_alpha",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "LONGONLY_ALPHA_NOT_DETECTED",
+   "verdict_recorded_l3t": "SINGLE_SIDE_NOT_DETECTED",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "phasee_out/2a3893f3f5b1/monthly.csv::alpha",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.2766985906329114,
+    "t_nw3": 1.9013197795232013,
+    "mde": 0.4077161453143685
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.2766985907,
+    "t": 1.9013197797,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.2766985906329114,
+    "se_iid": 0.15278580458447547,
+    "se_nw": 0.14552974918416922,
+    "t_iid": 1.8110228982688272,
+    "t_nw3": 1.9013197795232013,
+    "mde": 0.4077161453143685,
+    "power": 0.4766597950712204
+   },
+   "comparison": {
+    "class": "MATCH",
+    "t_only": false,
+    "detail": "",
+    "mean_diff": -6.708861244320019e-11
+   },
+   "grade": {
+    "tier": "UNDERPOWERED",
+    "ratio": null,
+    "reason": "未检出，事后功效 47.67%"
+   }
+  },
+  {
+   "key": "phasef_delta",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "MAX5_EFFECT_CONFIRMED",
+   "verdict_recorded_l3t": "MAX5_EFFECT_CONFIRMED",
+   "verdict_matches_l3t": true,
+   "detected": true,
+   "series": "phasef_out/aec46d88bbda/monthly.csv::delta",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.740492584556962,
+    "t_nw3": 3.408576462140064,
+    "mde": 0.6086306256988808
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.7404925843,
+    "t": 3.4085764613,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.740492584556962,
+    "se_iid": 0.21769087787078154,
+    "se_nw": 0.217243941211765,
+    "t_iid": 3.4015783839895612,
+    "t_nw3": 3.408576462140064,
+    "mde": 0.6086306256988808,
+    "power": 0.926272090457488
+   },
+   "comparison": {
+    "class": "MATCH",
+    "t_only": false,
+    "detail": "",
+    "mean_diff": 2.569620072279122e-10
+   },
+   "grade": {
+    "tier": "QUOTABLE_MARGINAL",
+    "ratio": 1.2166535054815952,
+    "reason": "|效应|/MDE = 0.7405/0.6086 = 1.22"
+   }
+  },
+  {
+   "key": "phaseg_alpha",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "MAX5_LONGONLY_NOT_EXECUTABLE",
+   "verdict_recorded_l3t": "NOT_EXECUTABLE",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "phaseg_out/e7da0f9ff3f1/monthly.csv::alpha_v1",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.18130837848101264,
+    "t_nw3": 1.7640531457985589,
+    "mde": 0.2879468537340821
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.1813083784,
+    "t": 1.7640531446,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.18130837848101264,
+    "se_iid": 0.1056365846582214,
+    "se_nw": 0.1027794309444896,
+    "t_iid": 1.7163407835232576,
+    "t_nw3": 1.7640531457985589,
+    "mde": 0.2879468537340821,
+    "power": 0.4224239066624263
+   },
+   "comparison": {
+    "class": "MATCH",
+    "t_only": false,
+    "detail": "",
+    "mean_diff": 8.101264103999029e-11
+   },
+   "grade": {
+    "tier": "UNDERPOWERED",
+    "ratio": null,
+    "reason": "未检出，事后功效 42.24%"
+   }
+  },
+  {
+   "key": "phasel_alpha",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "SURGE_AVOID_ABSORBED",
+   "verdict_recorded_l3t": "SURGE_AVOID_ABSORBED",
+   "verdict_matches_l3t": true,
+   "detected": false,
+   "series": "phasel_out/9ffc3710cf6f/monthly.csv::alpha_v1_pp",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.10605702953586497,
+    "t_nw3": 3.129484562173131,
+    "mde": 0.09494514768954511
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.106057,
+    "t": 3.129485,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.10605702953586497,
+    "se_iid": 0.036926133287863434,
+    "se_nw": 0.033889615822938715,
+    "t_iid": 2.8721401374219404,
+    "t_nw3": 3.129484562173131,
+    "mde": 0.09494514768954511,
+    "power": 0.8788959507524083
+   },
+   "comparison": {
+    "class": "MATCH",
+    "t_only": false,
+    "detail": "",
+    "mean_diff": 2.953586497600469e-08
+   },
+   "grade": {
+    "tier": "NULL_CONFIRMED",
+    "ratio": null,
+    "reason": "未检出，事后功效 87.89%"
+   }
+  },
+  {
+   "key": "phasem_spread",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "SHORT_SIDE_REJECTED",
+   "verdict_recorded_l3t": "SHORT_SIDE_REJECTED",
+   "verdict_matches_l3t": true,
+   "detected": false,
+   "series": "phasem_out/2f5f61dd0b5f/monthly.csv::spread_pp",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.7215706244725738,
+    "t_nw3": 2.850544171644458,
+    "mde": 0.7091811737673036
+   },
+   "stat": {
+    "applicable": false,
+    "mean": null,
+    "t": null,
+    "n": null
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.7215706244725738,
+    "se_iid": 0.22818760007160846,
+    "se_nw": 0.2531343424355024,
+    "t_iid": 3.1621815744857953,
+    "t_nw3": 2.850544171644458,
+    "mde": 0.7091811737673036,
+    "power": 0.8134138719717219
+   },
+   "comparison": {
+    "class": "NOT_APPLICABLE",
+    "t_only": false,
+    "detail": "判定依据是 ratio_buy 的区间与 H1/H2 两条，不是序列均值；本实验只核对序列能否重建 MDE，不对比 mean/t"
+   },
+   "grade": {
+    "tier": "NULL_CONFIRMED",
+    "ratio": null,
+    "reason": "未检出，事后功效 81.34%"
+   }
+  },
+  {
+   "key": "phasej_netA",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "NET_AFTER_EXECUTION_ABSORBED",
+   "verdict_recorded_l3t": "NET_ABSORBED",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "phasej_out/f76de8a277f6/monthly.csv::net_A_pp",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.03244149789029536,
+    "t_nw3": 1.0423579613118623,
+    "mde": 0.08719471032299118
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.042423,
+    "t": 1.268755,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.03244149789029536,
+    "se_iid": 0.04167348440976055,
+    "se_nw": 0.03112318329632752,
+    "t_iid": 0.7784685717975883,
+    "t_nw3": 1.0423579613118623,
+    "mde": 0.08719471032299118,
+    "power": 0.18074263556796427
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": false,
+    "detail": "mean: L3t=+0.032441 vs 判定=+0.042423（差 -0.009982）",
+    "mean_diff": -0.009981502109704644
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "phasek_m1net",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "LOW_TURNOVER_INSUFFICIENT",
+   "verdict_recorded_l3t": "LOW_TURNOVER_INSUFFICIENT",
+   "verdict_matches_l3t": true,
+   "detected": false,
+   "series": "phasek_out/3bc31a35903d/monthly.csv::m1_net",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.03989106751054852,
+    "t_nw3": 1.194556017508961,
+    "mde": 0.09355678017562236
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.039891,
+    "t": 1.346895,
+    "n": null
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 3.9891067510548526,
+    "se_iid": 4.473841830891028,
+    "se_nw": 3.339405346074471,
+    "t_iid": 0.8916512701702658,
+    "t_nw3": 1.1945560175089607,
+    "mde": 9.355678017562239,
+    "power": 0.2228073181635365
+   },
+   "comparison": {
+    "class": "MISMATCH_MEAN",
+    "t_only": true,
+    "detail": "mean 一致但 t 不同：L3t=+1.1946 vs 判定=+1.3469（多为 NW 滞后或估计量口径差异）",
+    "mean_diff": 6.751054851955596e-08
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（判定统计量不一致），不给分级"
+   }
+  },
+  {
+   "key": "phaseo_netBASE",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "EXECUTABLE_UNDER_BASE_FEES",
+   "verdict_recorded_l3t": "EXECUTABLE_UNDER_BASE_FEES",
+   "verdict_matches_l3t": true,
+   "detected": true,
+   "series": "phaseo_out/ac7aa2830ab0/monthly.csv::net_BASE_3000w",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.13595891139240507,
+    "t_nw3": 4.0386243659593175,
+    "mde": 0.09431490815721953
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.135959,
+    "t": 4.0386,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 13.595891139240507,
+    "se_iid": 4.483939483620601,
+    "se_nw": 3.3664658822536953,
+    "t_iid": 3.0321308280151835,
+    "t_nw3": 4.038624365959318,
+    "mde": 9.431490815721952,
+    "power": 0.9811740561786526
+   },
+   "comparison": {
+    "class": "MATCH",
+    "t_only": false,
+    "detail": "",
+    "mean_diff": -8.860759492801407e-08
+   },
+   "grade": {
+    "tier": "NOT_QUOTABLE",
+    "ratio": 0.01441543046125447,
+    "reason": "|效应|/MDE = 0.1360/9.4315 = 0.01"
+   }
+  },
+  {
+   "key": "phasep_late",
+   "family": "C_regression",
+   "unit": "pp",
+   "verdict_original": "SEGMENT_DIFFERENCE_NOT_DETECTED",
+   "verdict_recorded_l3t": "SEGMENT_DIFF_NOT_DETECTED",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "phasep_out/3d19f7508e10/monthly.csv::net_BASE_3000w_pp",
+   "series_n": 129,
+   "l3t": {
+    "n": 129,
+    "mean": 0.129407503875969,
+    "t_nw3": 2.581295917681533,
+    "mde": 0.14045195685450432
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.129408,
+    "t": -0.2158,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 129,
+    "mean": 0.129407503875969,
+    "se_iid": 0.07043605839862328,
+    "se_nw": 0.050132765867541514,
+    "t_iid": 1.8372337524000115,
+    "t_nw3": 2.581295917681533,
+    "mde": 0.14045195685450432,
+    "power": 0.7328003258693112
+   },
+   "comparison": {
+    "class": "MISMATCH_N",
+    "t_only": false,
+    "detail": "n: L3t=129 vs 判定=237；mean: +0.1294 vs +0.1294",
+    "mean_diff": -4.961240309964143e-07
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "核对未通过（样本数不一致），不给分级"
+   }
+  },
+  {
+   "key": "phaser_alpha",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "SURGE_SCALE_DEPENDENT",
+   "verdict_recorded_l3t": "SURGE_SCALE_DEPENDENT",
+   "verdict_matches_l3t": true,
+   "detected": true,
+   "series": "phaser_out/7b5e7643e8ca/monthly.csv::alpha_v1_pp",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.10605702953586497,
+    "t_nw3": 3.129484562173131,
+    "mde": 0.09494514768954511
+   },
+   "stat": {
+    "applicable": false,
+    "mean": null,
+    "t": null,
+    "n": null
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.10605702953586497,
+    "se_iid": 0.036926133287863434,
+    "se_nw": 0.033889615822938715,
+    "t_iid": 2.8721401374219404,
+    "t_nw3": 3.129484562173131,
+    "mde": 0.09494514768954511,
+    "power": 0.8788959507524083
+   },
+   "comparison": {
+    "class": "NOT_APPLICABLE",
+    "t_only": false,
+    "detail": "判定按资本档 A/B 两条规则给出（SURGE_SCALE_DEPENDENT），无单一判定均值的上限检验；只核对序列"
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "效应量不可用"
+   }
+  },
+  {
+   "key": "phases_net",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "MODERN_ERA_ALPHA_DETECTED",
+   "verdict_recorded_l3t": "MODERN_ERA_ALPHA_DETECTED",
+   "verdict_matches_l3t": true,
+   "detected": true,
+   "series": "phases_out/f098a59fb1b5/monthly.csv::net_S_3000w",
+   "series_n": 129,
+   "l3t": {
+    "n": 129,
+    "mean": 0.111195653875969,
+    "t_nw3": 2.2180235211790436,
+    "mde": 0.14045195685450432
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.111195653875969,
+    "t": 2.218023521179044,
+    "n": 129
+   },
+   "recomputed": {
+    "n": 129,
+    "mean": 11.1195653875969,
+    "se_iid": 7.0436058398623285,
+    "se_nw": 5.013276586754151,
+    "t_iid": 1.5786751332204356,
+    "t_nw3": 2.2180235211790436,
+    "mde": 14.04519568545043,
+    "power": 0.6018203254507023
+   },
+   "comparison": {
+    "class": "MATCH",
+    "t_only": false,
+    "detail": "",
+    "mean_diff": 0.0
+   },
+   "grade": {
+    "tier": "NOT_QUOTABLE",
+    "ratio": 0.00791698858216392,
+    "reason": "|效应|/MDE = 0.1112/14.0452 = 0.01"
+   }
+  },
+  {
+   "key": "phaset_net",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "T_FRAGILE",
+   "verdict_recorded_l3t": "T_FRAGILE",
+   "verdict_matches_l3t": true,
+   "detected": true,
+   "series": "phaset_out/ef29a743997b/monthly.csv::net_S_3000w",
+   "series_n": 129,
+   "l3t": {
+    "n": 129,
+    "mean": 0.111195653875969,
+    "t_nw3": 2.2180235211790436,
+    "mde": 0.14045195685450432
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.111195653875969,
+    "t": 2.218023521179044,
+    "n": 129
+   },
+   "recomputed": {
+    "n": 129,
+    "mean": 11.1195653875969,
+    "se_iid": 7.0436058398623285,
+    "se_nw": 5.013276586754151,
+    "t_iid": 1.5786751332204356,
+    "t_nw3": 2.2180235211790436,
+    "mde": 14.04519568545043,
+    "power": 0.6018203254507023
+   },
+   "comparison": {
+    "class": "MATCH",
+    "t_only": false,
+    "detail": "",
+    "mean_diff": 0.0
+   },
+   "grade": {
+    "tier": "NOT_QUOTABLE",
+    "ratio": 0.00791698858216392,
+    "reason": "|效应|/MDE = 0.1112/14.0452 = 0.01"
+   }
+  },
+  {
+   "key": "phasev_net",
+   "family": "B_long_only",
+   "unit": "pp",
+   "verdict_original": "COST_CONVENTION_SENSITIVE",
+   "verdict_recorded_l3t": "COST_CONVENTION_SENSITIVE",
+   "verdict_matches_l3t": true,
+   "detected": true,
+   "series": "phasev_out/3614e12a0546/monthly.csv::net_O_BASE_3000w",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.13595891139240507,
+    "t_nw3": 4.0386243659593175,
+    "mde": 0.09431490815721953
+   },
+   "stat": {
+    "applicable": false,
+    "mean": null,
+    "t": null,
+    "n": null
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 13.595891139240507,
+    "se_iid": 4.483939483620601,
+    "se_nw": 3.3664658822536953,
+    "t_iid": 3.0321308280151835,
+    "t_nw3": 4.038624365959318,
+    "mde": 9.431490815721952,
+    "power": 0.9811740561786526
+   },
+   "comparison": {
+    "class": "NOT_APPLICABLE",
+    "t_only": false,
+    "detail": "判定按 G1~G5 五条门槛（成本口径一致性），主量是 cost_means.delta_BASE_pp，不是净收益均值；只核对序列"
+   },
+   "grade": {
+    "tier": "NOT_GRADED",
+    "ratio": null,
+    "reason": "效应量不可用"
+   }
+  },
+  {
+   "key": "phaseq_max5",
+   "family": "C_regression",
+   "unit": "pp",
+   "verdict_original": "INCREMENTAL_ABSORBED",
+   "verdict_recorded_l3t": "MAX5_INCREMENTAL",
+   "verdict_matches_l3t": false,
+   "detected": false,
+   "series": "phaseq_out/ae7fc45acab0/monthly.csv::coef_MAX5_pp",
+   "series_n": 237,
+   "l3t": {
+    "n": 237,
+    "mean": 0.04241433514767933,
+    "t_nw3": 0.25396103062283637,
+    "mde": 0.4678985632493071
+   },
+   "stat": {
+    "applicable": true,
+    "mean": 0.042414,
+    "t": 0.254,
+    "n": 237
+   },
+   "recomputed": {
+    "n": 237,
+    "mean": 0.04241433514767933,
+    "se_iid": 0.1470903004589358,
+    "se_nw": 0.16701119476345913,
+    "t_iid": 0.2883557584377933,
+    "t_nw3": 0.25396103062283637,
+    "mde": 0.4678985632493071,
+    "power": 0.05741614202802742
+   },
+   "comparison": {
+    "class": "MATCH",
+    "t_only": false,
+    "detail": "",
+    "mean_diff": 3.351476793311825e-07
+   },
+   "grade": {
+    "tier": "UNDERPOWERED",
+    "ratio": null,
+    "reason": "未检出，事后功效 5.74%"
+   }
+  },
+  {
+   "key": "l3r_delta",
+   "family": "A_cross_spread",
+   "unit": "pp",
+   "verdict_original": "INCONCLUSIVE_POWER",
+   "verdict_recorded_l3t": "INCONCLUSIVE_POWER",
+   "verdict_matches_l3t": true,
+   "detected": false,
+   "series": "reports/gates/H-L3R-SELECTION/periods.json::<root>[delta]",
+   "series_n": 197,
+   "l3t": {
+    "n": 197,
+    "mean": -0.32886743580748623,
+    "t_nw3": -0.9648993068542903,
+    "mde": 0.9548716654818652
+   },
+   "stat": {
+    "applicable": false,
+    "mean": null,
+    "t": null,
+    "n": null
+   },
+   "recomputed": {
+    "n": 197,
+    "mean": -0.32886743580748623,
+    "se_iid": 0.3307013069860835,
+    "se_nw": 0.34083083433818717,
+    "t_iid": -0.9944545995438885,
+    "t_nw3": -0.9648993068542903,
+    "mde": 0.9548716654818652,
+    "power": 0.16156648527161527
+   },
+   "comparison": {
+    "class": "NOT_APPLICABLE",
+    "t_only": false,
+    "detail": "本实验自身即该序列的持有者，判定统计量由 L3r 报告给出；此处只核对序列行数"
+   },
+   "grade": {
+    "tier": "UNDERPOWERED",
+    "ratio": null,
+    "reason": "未检出，事后功效 16.16%"
+   }
+  },
+  {
+   "key": "l3s_ic",
+   "family": "D_ic",
+   "unit": "ic",
+   "verdict_original": "IC_INCONCLUSIVE_POWER",
+   "verdict_recorded_l3t": "IC_INCONCLUSIVE_POWER",
+   "verdict_matches_l3t": true,
+   "detected": false,
+   "series": "reports/gates/H-L3S-IC-000001/l3s_result.json::periods[ic]",
+   "series_n": 198,
+   "l3t": {
+    "n": 198,
+    "mean": -0.023247769706966907,
+    "t_nw3": -1.7055246894345137,
+    "mde": 0.0381882197393656
+   },
+   "stat": {
+    "applicable": false,
+    "mean": null,
+    "t": null,
+    "n": null
+   },
+   "recomputed": {
+    "n": 198,
+    "mean": -0.023247769706966907,
+    "se_iid": 0.01398338622914423,
+    "se_nw": 0.013630860843577099,
+    "t_iid": -1.66252789746405,
+    "t_nw3": -1.7055246894345137,
+    "mde": 0.0381882197393656,
+    "power": 0.3996876038602719
+   },
+   "comparison": {
+    "class": "NOT_APPLICABLE",
+    "t_only": false,
+    "detail": "同 L3r：本实验自身持有该序列"
+   },
+   "grade": {
+    "tier": "UNDERPOWERED",
+    "ratio": null,
+    "reason": "未检出，事后功效 39.97%"
+   }
+  },
+  {
+   "key": "l3_test",
+   "family": "E_fold",
+   "unit": "pct_fold",
+   "verdict_original": "L3_BLOCKED_PREREQUISITE",
+   "verdict_recorded_l3t": "L3_BLOCKED_PREREQUISITE",
+   "verdict_matches_l3t": true,
+   "detected": false,
+   "series": "reports/gates/H-L3-MACROSS-000001/l3_result.json::result.folds[test_return]",
+   "series_n": 27,
+   "l3t": {
+    "n": 27,
+    "mean": 3.9953099629629634,
+    "t_nw3": 1.418397825120266,
+    "mde": 7.8914816379445325
+   },
+   "stat": {
+    "applicable": false,
+    "mean": null,
+    "t": null,
+    "n": null
+   },
+   "recomputed": {
+    "n": 27,
+    "mean": 3.9953099629629634,
+    "se_iid": 2.3008241403704055,
+    "se_nw": 2.8167767125730054,
+    "t_iid": 1.7364690733468076,
+    "t_nw3": 1.418397825120266,
+    "mde": 7.8914816379445325,
+    "power": 0.29441084423399416
+   },
+   "comparison": {
+    "class": "NOT_APPLICABLE",
+    "t_only": false,
+    "detail": "同 L3r"
+   },
+   "grade": {
+    "tier": "UNDERPOWERED",
+    "ratio": null,
+    "reason": "未检出，事后功效 29.44%"
+   }
+  },
+  {
+   "key": "l3p_test",
+   "family": "E_fold",
+   "unit": "pct_fold",
+   "verdict_original": "L3P_BLOCKED_PREREQUISITE",
+   "verdict_recorded_l3t": "L3P_BLOCKED_PREREQUISITE",
+   "verdict_matches_l3t": true,
+   "detected": false,
+   "series": "reports/gates/H-L3P-MACROSS-000001/l3p_result.json::result.folds[test_return]",
+   "series_n": 28,
+   "l3t": {
+    "n": 28,
+    "mean": 5.284410621428571,
+    "t_nw3": 1.9168039272174895,
+    "mde": 7.723692854952328
+   },
+   "stat": {
+    "applicable": false,
+    "mean": null,
+    "t": null,
+    "n": null
+   },
+   "recomputed": {
+    "n": 28,
+    "mean": 5.284410621428571,
+    "se_iid": 2.6434882491178944,
+    "se_nw": 2.7568863702713906,
+    "t_iid": 1.999029359480575,
+    "t_nw3": 1.9168039272174895,
+    "mde": 7.723692854952328,
+    "power": 0.48282553660740185
+   },
+   "comparison": {
+    "class": "NOT_APPLICABLE",
+    "t_only": false,
+    "detail": "同 L3r"
+   },
+   "grade": {
+    "tier": "UNDERPOWERED",
+    "ratio": null,
+    "reason": "未检出，事后功效 48.28%"
+   }
+  }
+ ],
+ "problems": [],
+ "limits": [
+  "本次只核对「登记值 vs 判定值」，不重跑实验；MDE 是在**重建后的判定序列**上用 L3t 同一实现重算的。",
+  "phasem / phaser / phasev / l3r / l3s / l3 / l3p 七条的判定不是单一均值（区间判定 / 多门槛 / 自持有序列），标记为 NOT_APPLICABLE，只核对了它们的序列与 MDE，未做 mean/t 对比。",
+  "分级阈值（2×/1×/0.5× 与功效 0.8/0.5）在预登记中固定，未因结果调整；落在边界附近的条目按数值原样报告。",
+  "「可引用强度」是**引用规范**，不是对结论对错的重新判定；L3t 与各阶段原判定字符串均未被修改。",
+  "phasej 的判定档是 3000 万，而 CSV 里的 net_A_pp 对应 1000 万档；本实验按预登记比对两者的差异，不改用另一档重算（那属于新实验）。"
+ ]
+}

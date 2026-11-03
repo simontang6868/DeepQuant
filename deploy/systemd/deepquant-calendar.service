@@ -5,11 +5,11 @@ Description=DeepQuant trading calendar refresh (monthly)
 Type=oneshot
 User=deepquant
 Group=deepquant
-WorkingDirectory=/opt/deepquant/research/stock_pick_2026-10-25/scripts/sp5
-EnvironmentFile=/opt/deepquant/env
+WorkingDirectory=__REPO__/research/stock_pick_2026-10-25/scripts/sp5
+EnvironmentFile=__REPO__/env
 Environment=HOME=/home/deepquant
 # 只刷新"日历"，不碰任何决策。日历拿不到时脚本自己会失败，写不进坏文件。
-ExecStart=/opt/deepquant/.venv/bin/python trade_calendar.py --refresh
+ExecStart=__REPO__/.venv/bin/python trade_calendar.py --refresh
 TimeoutStartSec=300
 StandardOutput=journal
 StandardError=journal

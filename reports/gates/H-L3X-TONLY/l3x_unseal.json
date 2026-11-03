@@ -1,0 +1,674 @@
+{
+ "experiment_id": "H-L3X-TONLY-000001",
+ "audit_only": true,
+ "prereg_sha256": "ffdff3b75f9c3f16029e34b205c40300518a82bb6758af102968cbefe0438dfd",
+ "subject_l3u_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+ "subject_l3w_sha256": "ce10baa7dabb1e1219177448e7e4ba6d1d81769cbcbde40c8dae85860445b6c0",
+ "elapsed_seconds": 0.039,
+ "mode": "t_only",
+ "lags": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  6
+ ],
+ "primary_lag": 3,
+ "n_sealed": 6,
+ "n_unsealed": 5,
+ "n_stay_sealed": 1,
+ "decisions": [
+  {
+   "key": "gate1_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "UNDERPOWERED",
+   "same_source": {
+    "mean_diff": 2.220446049250313e-16,
+    "mean_match": true,
+    "t_match": "t_iid",
+    "n_match": true,
+    "stat_n": 48,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 0.2174562874680217,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "UNDERPOWERED",
+     "2": "UNDERPOWERED",
+     "3": "UNDERPOWERED",
+     "4": "UNDERPOWERED",
+     "6": "UNDERPOWERED"
+    },
+    "distinct": [
+     "UNDERPOWERED"
+    ],
+    "primary_tier": "UNDERPOWERED"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED"
+   ],
+   "series_n": 48,
+   "series": "gate1_out/032a11f591553e25/monthly_paired.csv::d",
+   "detected": false,
+   "effect": -0.3961063903264166,
+   "l3u_grade": "NOT_GRADED"
+  },
+  {
+   "key": "gate2_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "UNDERPOWERED",
+   "same_source": {
+    "mean_diff": 2.3199999699130558e-09,
+    "mean_match": true,
+    "t_match": "t_iid",
+    "n_match": true,
+    "stat_n": 125,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 0.5691736601212437,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "UNDERPOWERED",
+     "2": "UNDERPOWERED",
+     "3": "UNDERPOWERED",
+     "4": "UNDERPOWERED",
+     "6": "UNDERPOWERED"
+    },
+    "distinct": [
+     "UNDERPOWERED"
+    ],
+    "primary_tier": "UNDERPOWERED"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED"
+   ],
+   "series_n": 125,
+   "series": "gate2_out/c440c77d284a/monthly_paired.csv::d",
+   "detected": false,
+   "effect": -0.38457783768000003,
+   "l3u_grade": "NOT_GRADED"
+  },
+  {
+   "key": "gate4_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "UNDERPOWERED",
+   "same_source": {
+    "mean_diff": 1.9831223885269367e-09,
+    "mean_match": true,
+    "t_match": "t_iid",
+    "n_match": true,
+    "stat_n": 237,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 0.34585042721601933,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "UNDERPOWERED",
+     "2": "UNDERPOWERED",
+     "3": "UNDERPOWERED",
+     "4": "UNDERPOWERED",
+     "6": "UNDERPOWERED"
+    },
+    "distinct": [
+     "UNDERPOWERED"
+    ],
+    "primary_tier": "UNDERPOWERED"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED"
+   ],
+   "series_n": 237,
+   "series": "gate4_out/94988f7c57d1/monthly_paired.csv::d",
+   "detected": false,
+   "effect": 0.16636050198312238,
+   "l3u_grade": "NOT_GRADED"
+  },
+  {
+   "key": "gate5_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "UNDERPOWERED",
+   "same_source": {
+    "mean_diff": 2.168674698155293e-09,
+    "mean_match": true,
+    "t_match": "t_iid",
+    "n_match": true,
+    "stat_n": 249,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 0.05532348851443359,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "UNDERPOWERED",
+     "2": "UNDERPOWERED",
+     "3": "UNDERPOWERED",
+     "4": "UNDERPOWERED",
+     "6": "UNDERPOWERED"
+    },
+    "distinct": [
+     "UNDERPOWERED"
+    ],
+    "primary_tier": "UNDERPOWERED"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED"
+   ],
+   "series_n": 249,
+   "series": "gate5_out/7c0c89916b0c/monthly_paired.csv::d",
+   "detected": false,
+   "effect": 0.023587832168674695,
+   "l3u_grade": "NOT_GRADED"
+  },
+  {
+   "key": "gate6_d",
+   "status": "UNSEALED",
+   "class": "A_same_source",
+   "tier": "QUOTABLE_MARGINAL",
+   "same_source": {
+    "mean_diff": 3.924050639980692e-09,
+    "mean_match": true,
+    "t_match": "t_iid",
+    "n_match": true,
+    "stat_n": 237,
+    "ok": true,
+    "reasons": []
+   },
+   "ratio_primary": 1.657745315415111,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "QUOTABLE_MARGINAL",
+     "1": "QUOTABLE_MARGINAL",
+     "2": "QUOTABLE_MARGINAL",
+     "3": "QUOTABLE_MARGINAL",
+     "4": "QUOTABLE_MARGINAL",
+     "6": "QUOTABLE_MARGINAL"
+    },
+    "distinct": [
+     "QUOTABLE_MARGINAL"
+    ],
+    "primary_tier": "QUOTABLE_MARGINAL"
+   },
+   "reasons": [
+    "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE_MARGINAL"
+   ],
+   "series_n": 237,
+   "series": "gate6_out/b8c4f1ecba44/monthly_paired.csv::d",
+   "detected": true,
+   "effect": 0.7084456860759494,
+   "l3u_grade": "NOT_GRADED"
+  },
+  {
+   "key": "phasek_m1net",
+   "status": "STAY_SEALED",
+   "class": "B_missing_stat",
+   "tier": "NOT_GRADED",
+   "same_source": {
+    "mean_diff": 6.751054851955596e-08,
+    "mean_match": true,
+    "t_match": null,
+    "n_match": false,
+    "stat_n": null,
+    "ok": false,
+    "reasons": [
+     "判定 t=+1.3469 与序列的 t_iid=+0.8917／t_nw3=+1.1946 均不符：该 t 不是这条序列均值的 t（回归系数 / 另一模型），不能与序列 MDE 配对",
+     "判定分母 None ≠ 序列 n 237：必须确认是回归分母还是子样本窗口"
+    ]
+   },
+   "ratio_primary": 0.42638350139526016,
+   "stability": {
+    "stable": true,
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "UNDERPOWERED",
+     "2": "UNDERPOWERED",
+     "3": "UNDERPOWERED",
+     "4": "UNDERPOWERED",
+     "6": "UNDERPOWERED"
+    },
+    "distinct": [
+     "UNDERPOWERED"
+    ],
+    "primary_tier": "UNDERPOWERED"
+   },
+   "reasons": [
+    "判定 t=+1.3469 与序列的 t_iid=+0.8917／t_nw3=+1.1946 均不符：该 t 不是这条序列均值的 t（回归系数 / 另一模型），不能与序列 MDE 配对",
+    "判定分母 None ≠ 序列 n 237：必须确认是回归分母还是子样本窗口"
+   ],
+   "series_n": 237,
+   "series": "phasek_out/3bc31a35903d/monthly.csv::m1_net",
+   "detected": false,
+   "effect": 0.03989106751054852,
+   "l3u_grade": "NOT_GRADED"
+  }
+ ],
+ "grid": {
+  "gate1_d": {
+   "0": {
+    "mde": 1.9309767885267668,
+    "se_nw": 0.6892407154935632,
+    "t_nw": -0.5746996389247927,
+    "power": 0.08860751060399646
+   },
+   "1": {
+    "mde": 2.0224275247859103,
+    "se_nw": 0.7218830399721268,
+    "t_nw": -0.5487126977546265,
+    "power": 0.08513855818053889
+   },
+   "2": {
+    "mde": 1.92021061134907,
+    "se_nw": 0.6853978481400164,
+    "t_nw": -0.5779218469992892,
+    "power": 0.0890494970522745
+   },
+   "3": {
+    "mde": 1.8215448950155855,
+    "se_nw": 0.6501802166674705,
+    "t_nw": -0.6092255349704097,
+    "power": 0.09348014994108061
+   },
+   "4": {
+    "mde": 1.685123611173973,
+    "se_nw": 0.6014861547594135,
+    "t_nw": -0.6585461480569805,
+    "power": 0.10096684273384937
+   },
+   "6": {
+    "mde": 1.5013787890406964,
+    "se_nw": 0.5359004815250915,
+    "t_nw": -0.7391416951131633,
+    "power": 0.1145457653091122
+   }
+  },
+  "gate2_d": {
+   "0": {
+    "mde": 0.6537317891552794,
+    "se_nw": 0.23334230052658458,
+    "t_nw": -1.6481273940135224,
+    "power": 0.37772287859597437
+   },
+   "1": {
+    "mde": 0.6759030860005414,
+    "se_nw": 0.241256098658103,
+    "t_nw": -1.5940647296340724,
+    "power": 0.35739635143148574
+   },
+   "2": {
+    "mde": 0.6879757310104984,
+    "se_nw": 0.245565295192211,
+    "t_nw": -1.5660919731307306,
+    "power": 0.3470353422063897
+   },
+   "3": {
+    "mde": 0.6756775034144735,
+    "se_nw": 0.24117557945976353,
+    "t_nw": -1.5945969261956763,
+    "power": 0.35759455301886584
+   },
+   "4": {
+    "mde": 0.6627417822932268,
+    "se_nw": 0.23655831749472686,
+    "t_nw": -1.625721055817759,
+    "power": 0.3692526128563825
+   },
+   "6": {
+    "mde": 0.6509132072288637,
+    "se_nw": 0.2323362390165847,
+    "t_nw": -1.6552641090680131,
+    "power": 0.3804336767419209
+   }
+  },
+  "gate4_d": {
+   "0": {
+    "mde": 0.5358867797110072,
+    "se_nw": 0.19127883342054794,
+    "t_nw": 0.869727711154324,
+    "power": 0.1401259908232999
+   },
+   "1": {
+    "mde": 0.5223353366150066,
+    "se_nw": 0.18644179633602462,
+    "t_nw": 0.8922918854701998,
+    "power": 0.1449963596897545
+   },
+   "2": {
+    "mde": 0.498845949143268,
+    "se_nw": 0.17805752039665476,
+    "t_nw": 0.934307641780728,
+    "power": 0.15441828704821586
+   },
+   "3": {
+    "mde": 0.48101863953810603,
+    "se_nw": 0.17169426025774773,
+    "t_nw": 0.9689345568883998,
+    "power": 0.16252744294702898
+   },
+   "4": {
+    "mde": 0.48036296518557026,
+    "se_nw": 0.17146022458080035,
+    "t_nw": 0.9702571100081889,
+    "power": 0.16284331095783178
+   },
+   "6": {
+    "mde": 0.46920433544997037,
+    "se_nw": 0.1674772756460488,
+    "t_nw": 0.9933317898883987,
+    "power": 0.16842678136802586
+   }
+  },
+  "gate5_d": {
+   "0": {
+    "mde": 0.42488025984905886,
+    "se_nw": 0.15165628920940136,
+    "t_nw": 0.1555348102715707,
+    "power": 0.05277140139577291
+   },
+   "1": {
+    "mde": 0.4347695598213394,
+    "se_nw": 0.15518616498477278,
+    "t_nw": 0.15199700418519388,
+    "power": 0.052646370287119326
+   },
+   "2": {
+    "mde": 0.43098482600026444,
+    "se_nw": 0.1538352462879299,
+    "t_nw": 0.15333178018596524,
+    "power": 0.05269320307227576
+   },
+   "3": {
+    "mde": 0.426361981177683,
+    "se_nw": 0.1521851731787846,
+    "t_nw": 0.15499428542203716,
+    "power": 0.05275211108504069
+   },
+   "4": {
+    "mde": 0.42500317455077524,
+    "se_nw": 0.1517001622468501,
+    "t_nw": 0.15548982821977486,
+    "power": 0.05276979349267924
+   },
+   "6": {
+    "mde": 0.4192119202830953,
+    "se_nw": 0.14963303836489694,
+    "t_nw": 0.15763786144042014,
+    "power": 0.05284709852681613
+   }
+  },
+  "gate6_d": {
+   "0": {
+    "mde": 0.451559685531606,
+    "se_nw": 0.16117921385337164,
+    "t_nw": 4.395391124816122,
+    "power": 0.9925621498409483
+   },
+   "1": {
+    "mde": 0.46456628357971025,
+    "se_nw": 0.16582177455015357,
+    "t_nw": 4.272332074589376,
+    "power": 0.9896203050175403
+   },
+   "2": {
+    "mde": 0.4425071838901259,
+    "se_nw": 0.1579480239470752,
+    "t_nw": 4.485308953997003,
+    "power": 0.9942201693536987
+   },
+   "3": {
+    "mde": 0.42735496187998556,
+    "se_nw": 0.15253960661050311,
+    "t_nw": 4.644339275666975,
+    "power": 0.996366334207538
+   },
+   "4": {
+    "mde": 0.4192128406695404,
+    "se_nw": 0.14963336688661494,
+    "t_nw": 4.734543510023242,
+    "power": 0.9972360380558356
+   },
+   "6": {
+    "mde": 0.4084704043286044,
+    "se_nw": 0.1457989735610381,
+    "t_nw": 4.859058117987105,
+    "power": 0.998128572457762
+   }
+  },
+  "phasek_m1net": {
+   "0": {
+    "mde": 0.12507444461883957,
+    "se_nw": 0.044643933687478425,
+    "t_nw": 0.8935383649164641,
+    "power": 0.14526927162743025
+   },
+   "1": {
+    "mde": 0.1088959622130455,
+    "se_nw": 0.038869204102314925,
+    "t_nw": 1.0262897950146794,
+    "power": 0.17663862424998222
+   },
+   "2": {
+    "mde": 0.0996450937645582,
+    "se_nw": 0.03556720936770352,
+    "t_nw": 1.1215686645006016,
+    "power": 0.20192381321997172
+   },
+   "3": {
+    "mde": 0.09355678017562236,
+    "se_nw": 0.0333940534607447,
+    "t_nw": 1.194556017508961,
+    "power": 0.22280731816353655
+   },
+   "4": {
+    "mde": 0.08948432014559206,
+    "se_nw": 0.03194043408966021,
+    "t_nw": 1.2489206439264422,
+    "power": 0.23918370220209406
+   },
+   "6": {
+    "mde": 0.08297516627543196,
+    "se_nw": 0.02961706391898628,
+    "t_nw": 1.3468947367526194,
+    "power": 0.27037505182075283
+   }
+  }
+ },
+ "merge": {
+  "counts_before": {
+   "DIRECTION_ONLY": 2,
+   "NOT_GRADED": 15,
+   "NULL_CONFIRMED": 1,
+   "QUOTABLE_MARGINAL": 2,
+   "UNDERPOWERED": 7
+  },
+  "counts_after": {
+   "DIRECTION_ONLY": 3,
+   "NOT_GRADED": 6,
+   "NULL_CONFIRMED": 1,
+   "QUOTABLE": 1,
+   "QUOTABLE_MARGINAL": 4,
+   "UNDERPOWERED": 12
+  },
+  "changed": [
+   {
+    "key": "gate1_d",
+    "before": "NOT_GRADED",
+    "after": "UNDERPOWERED"
+   },
+   {
+    "key": "gate2_d",
+    "before": "NOT_GRADED",
+    "after": "UNDERPOWERED"
+   },
+   {
+    "key": "gate3_d",
+    "before": "NOT_GRADED",
+    "after": "DIRECTION_ONLY"
+   },
+   {
+    "key": "gate4_d",
+    "before": "NOT_GRADED",
+    "after": "UNDERPOWERED"
+   },
+   {
+    "key": "gate5_d",
+    "before": "NOT_GRADED",
+    "after": "UNDERPOWERED"
+   },
+   {
+    "key": "gate6_d",
+    "before": "NOT_GRADED",
+    "after": "QUOTABLE_MARGINAL"
+   },
+   {
+    "key": "phasec_d",
+    "before": "NOT_GRADED",
+    "after": "QUOTABLE"
+   },
+   {
+    "key": "phasec2_d",
+    "before": "NOT_GRADED",
+    "after": "QUOTABLE_MARGINAL"
+   },
+   {
+    "key": "phasec3_d",
+    "before": "NOT_GRADED",
+    "after": "UNDERPOWERED"
+   }
+  ],
+  "n_changed": 9,
+  "quotable_before": 0,
+  "quotable_after": 1
+ },
+ "patches": [
+  {
+   "key": "gate1_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.2174562874680217,
+   "source": "H-L3X-TONLY-000001"
+  },
+  {
+   "key": "gate2_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.5691736601212437,
+   "source": "H-L3X-TONLY-000001"
+  },
+  {
+   "key": "gate4_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.34585042721601933,
+   "source": "H-L3X-TONLY-000001"
+  },
+  {
+   "key": "gate5_d",
+   "from": "NOT_GRADED",
+   "to": "UNDERPOWERED",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 UNDERPOWERED",
+   "ratio_primary": 0.05532348851443359,
+   "source": "H-L3X-TONLY-000001"
+  },
+  {
+   "key": "gate6_d",
+   "from": "NOT_GRADED",
+   "to": "QUOTABLE_MARGINAL",
+   "quotability_note": "判定量与序列同源（t 口径 t_iid），分级在 L∈[0, 1, 2, 3, 4, 6] 全档恒为 QUOTABLE_MARGINAL",
+   "ratio_primary": 1.657745315415111,
+   "source": "H-L3X-TONLY-000001"
+  }
+ ],
+ "predictions": [
+  {
+   "id": "P1",
+   "statement": "6 条全部通过同源三关（U1/U2/U3 无一失败）。",
+   "quantity": "same_source.ok=True 的条数",
+   "observed": {
+    "n_same_source": 5,
+    "n_total": 6
+   },
+   "holds": false,
+   "refuted": true
+  },
+  {
+   "id": "P2",
+   "statement": "6 条全部解封，无一条因跨桶被拒。",
+   "quantity": "status=UNSEALED 的条数",
+   "observed": {
+    "n_unsealed": 5
+   },
+   "holds": false,
+   "refuted": true
+  },
+  {
+   "id": "P3",
+   "statement": "gate6_d 解封为 QUOTABLE_MARGINAL，ratio 落在 1.5~1.8。",
+   "quantity": "gate6_d 的 tier 与 ratio_primary",
+   "observed": {
+    "tier": "QUOTABLE_MARGINAL",
+    "ratio": 1.657745315415111
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P4",
+   "statement": "gate2_d 解封为 UNDERPOWERED，功效在网格内始终低于 0.5。",
+   "quantity": "gate2_d 的 tier 与 stability.tiers",
+   "observed": {
+    "tier": "UNDERPOWERED",
+    "tiers": {
+     "0": "UNDERPOWERED",
+     "1": "UNDERPOWERED",
+     "2": "UNDERPOWERED",
+     "3": "UNDERPOWERED",
+     "4": "UNDERPOWERED",
+     "6": "UNDERPOWERED"
+    }
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P5",
+   "statement": "合并后全项目 NOT_GRADED 从 11 降到 5。",
+   "quantity": "merge.counts_after.NOT_GRADED",
+   "observed": {
+    "NOT_GRADED": 6
+   },
+   "holds": false,
+   "refuted": true
+  },
+  {
+   "id": "P6",
+   "statement": "解封后 QUOTABLE 仍为 1，QUOTABLE_MARGINAL 变为 4。",
+   "quantity": "merge.counts_after 的 QUOTABLE 与 QUOTABLE_MARGINAL",
+   "observed": {
+    "QUOTABLE": 1,
+    "QUOTABLE_MARGINAL": 4
+   },
+   "holds": true,
+   "refuted": false
+  }
+ ],
+ "status": "UNSEAL_REVIEW_DONE"
+}

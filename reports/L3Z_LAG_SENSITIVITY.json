@@ -1,0 +1,1003 @@
+{
+ "experiment_id": "H-L3Z-LAG-SENSITIVITY",
+ "status": "SUPPLEMENTARY",
+ "note": "本分析为 L3z 阶段新增，不属于 L3u/L3w/L3x 的原预登记。主口径仍为 NW(3)；不因任何一个滞后更有利而替换主口径。",
+ "lags": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  6
+ ],
+ "main_lag": 3,
+ "rows": [
+  {
+   "key": "gate1_d",
+   "quotability": "UNDERPOWERED",
+   "n": 48,
+   "mean": -0.3961063903264166,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.6892407154935632,
+     "mde": 1.9309767885267668,
+     "ratio": 0.20513265238606251,
+     "tier": "UNDERPOWERED"
+    },
+    "1": {
+     "se_nw": 0.7218830399721268,
+     "mde": 2.0224275247859103,
+     "ratio": 0.19585690239671136,
+     "tier": "UNDERPOWERED"
+    },
+    "2": {
+     "se_nw": 0.6853978481400164,
+     "mde": 1.92021061134907,
+     "ratio": 0.20628278376616546,
+     "tier": "UNDERPOWERED"
+    },
+    "3": {
+     "se_nw": 0.6501802166674705,
+     "mde": 1.8215448950155855,
+     "ratio": 0.2174562874680217,
+     "tier": "UNDERPOWERED"
+    },
+    "4": {
+     "se_nw": 0.6014861547594135,
+     "mde": 1.685123611173973,
+     "ratio": 0.23506073245894504,
+     "tier": "UNDERPOWERED"
+    },
+    "6": {
+     "se_nw": 0.5359004815250915,
+     "mde": 1.5013787890406964,
+     "ratio": 0.26382841773028387,
+     "tier": "UNDERPOWERED"
+    }
+   },
+   "distinct_tiers": [
+    "UNDERPOWERED"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "UNDERPOWERED"
+  },
+  {
+   "key": "gate2_d",
+   "quotability": "UNDERPOWERED",
+   "n": 125,
+   "mean": -0.38457783768000003,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.23334230052658458,
+     "mde": 0.6537317891552794,
+     "ratio": 0.588280765995689,
+     "tier": "DIRECTION_ONLY"
+    },
+    "1": {
+     "se_nw": 0.241256098658103,
+     "mde": 0.6759030860005414,
+     "ratio": 0.5689836984701857,
+     "tier": "DIRECTION_ONLY"
+    },
+    "2": {
+     "se_nw": 0.245565295192211,
+     "mde": 0.6879757310104984,
+     "ratio": 0.5589991337559718,
+     "tier": "DIRECTION_ONLY"
+    },
+    "3": {
+     "se_nw": 0.24117557945976353,
+     "mde": 0.6756775034144735,
+     "ratio": 0.5691736601212437,
+     "tier": "DIRECTION_ONLY"
+    },
+    "4": {
+     "se_nw": 0.23655831749472686,
+     "mde": 0.6627417822932268,
+     "ratio": 0.580283072464934,
+     "tier": "DIRECTION_ONLY"
+    },
+    "6": {
+     "se_nw": 0.2323362390165847,
+     "mde": 0.6509132072288637,
+     "ratio": 0.5908281371601989,
+     "tier": "DIRECTION_ONLY"
+    }
+   },
+   "distinct_tiers": [
+    "DIRECTION_ONLY"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "DIRECTION_ONLY"
+  },
+  {
+   "key": "gate3_d",
+   "quotability": "DIRECTION_ONLY",
+   "n": 108,
+   "mean": 0.48414844361111115,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.2276537738931615,
+     "mde": 0.6377948129390812,
+     "ratio": 0.7590974930950942,
+     "tier": "DIRECTION_ONLY"
+    },
+    "1": {
+     "se_nw": 0.23403547597003577,
+     "mde": 0.6556737894776522,
+     "ratio": 0.7383983489668116,
+     "tier": "DIRECTION_ONLY"
+    },
+    "2": {
+     "se_nw": 0.22099573407417464,
+     "mde": 0.6191416485822077,
+     "ratio": 0.7819671713569556,
+     "tier": "DIRECTION_ONLY"
+    },
+    "3": {
+     "se_nw": 0.21225293676815202,
+     "mde": 0.5946478276496547,
+     "ratio": 0.8141767632864441,
+     "tier": "DIRECTION_ONLY"
+    },
+    "4": {
+     "se_nw": 0.2040695571708653,
+     "mde": 0.5717212713698963,
+     "ratio": 0.8468260109529375,
+     "tier": "DIRECTION_ONLY"
+    },
+    "6": {
+     "se_nw": 0.1918064653621016,
+     "mde": 0.5373649933584639,
+     "ratio": 0.9009675911064545,
+     "tier": "DIRECTION_ONLY"
+    }
+   },
+   "distinct_tiers": [
+    "DIRECTION_ONLY"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "DIRECTION_ONLY"
+  },
+  {
+   "key": "gate4_d",
+   "quotability": "UNDERPOWERED",
+   "n": 237,
+   "mean": 0.16636050198312238,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.19127883342054794,
+     "mde": 0.5358867797110072,
+     "ratio": 0.3104396456147644,
+     "tier": "UNDERPOWERED"
+    },
+    "1": {
+     "se_nw": 0.18644179633602462,
+     "mde": 0.5223353366150066,
+     "ratio": 0.31849367699535963,
+     "tier": "UNDERPOWERED"
+    },
+    "2": {
+     "se_nw": 0.17805752039665476,
+     "mde": 0.498845949143268,
+     "ratio": 0.33349073450197314,
+     "tier": "UNDERPOWERED"
+    },
+    "3": {
+     "se_nw": 0.17169426025774773,
+     "mde": 0.48101863953810603,
+     "ratio": 0.34585042721601933,
+     "tier": "UNDERPOWERED"
+    },
+    "4": {
+     "se_nw": 0.17146022458080035,
+     "mde": 0.48036296518557026,
+     "ratio": 0.3463224978612896,
+     "tier": "UNDERPOWERED"
+    },
+    "6": {
+     "se_nw": 0.1674772756460488,
+     "mde": 0.46920433544997037,
+     "ratio": 0.35455874853240954,
+     "tier": "UNDERPOWERED"
+    }
+   },
+   "distinct_tiers": [
+    "UNDERPOWERED"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "UNDERPOWERED"
+  },
+  {
+   "key": "gate5_d",
+   "quotability": "UNDERPOWERED",
+   "n": 249,
+   "mean": 0.023587832168674695,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.15165628920940136,
+     "mde": 0.42488025984905886,
+     "ratio": 0.0555164228553579,
+     "tier": "UNDERPOWERED"
+    },
+    "1": {
+     "se_nw": 0.15518616498477278,
+     "mde": 0.4347695598213394,
+     "ratio": 0.0542536422705575,
+     "tier": "UNDERPOWERED"
+    },
+    "2": {
+     "se_nw": 0.1538352462879299,
+     "mde": 0.43098482600026444,
+     "ratio": 0.05473007573742335,
+     "tier": "UNDERPOWERED"
+    },
+    "3": {
+     "se_nw": 0.1521851731787846,
+     "mde": 0.426361981177683,
+     "ratio": 0.05532348851443359,
+     "tier": "UNDERPOWERED"
+    },
+    "4": {
+     "se_nw": 0.1517001622468501,
+     "mde": 0.42500317455077524,
+     "ratio": 0.05550036701162723,
+     "tier": "UNDERPOWERED"
+    },
+    "6": {
+     "se_nw": 0.14963303836489694,
+     "mde": 0.4192119202830953,
+     "ratio": 0.05626708360951604,
+     "tier": "UNDERPOWERED"
+    }
+   },
+   "distinct_tiers": [
+    "UNDERPOWERED"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "UNDERPOWERED"
+  },
+  {
+   "key": "gate6_d",
+   "quotability": "QUOTABLE_MARGINAL",
+   "n": 237,
+   "mean": 0.7084456860759494,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.16117921385337164,
+     "mde": 0.451559685531606,
+     "ratio": 1.5688860382696035,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "1": {
+     "se_nw": 0.16582177455015357,
+     "mde": 0.46456628357971025,
+     "ratio": 1.5249614772235065,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "2": {
+     "se_nw": 0.1579480239470752,
+     "mde": 0.4425071838901259,
+     "ratio": 1.6009812085940185,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "3": {
+     "se_nw": 0.15253960661050311,
+     "mde": 0.42735496187998556,
+     "ratio": 1.657745315415111,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "4": {
+     "se_nw": 0.14963336688661494,
+     "mde": 0.4192128406695404,
+     "ratio": 1.6899427148855088,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "6": {
+     "se_nw": 0.1457989735610381,
+     "mde": 0.4084704043286044,
+     "ratio": 1.734386821097624,
+     "tier": "QUOTABLE_MARGINAL"
+    }
+   },
+   "distinct_tiers": [
+    "QUOTABLE_MARGINAL"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "QUOTABLE_MARGINAL"
+  },
+  {
+   "key": "phasec2_d",
+   "quotability": "QUOTABLE_MARGINAL",
+   "n": 237,
+   "mean": 0.10694447497890297,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.019757432921520636,
+     "mde": 0.05535242407293221,
+     "ratio": 1.932064887311768,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "1": {
+     "se_nw": 0.020105788180842687,
+     "mde": 0.056328376167448874,
+     "ratio": 1.8985897030119645,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "2": {
+     "se_nw": 0.020866564971935748,
+     "mde": 0.058459768425375196,
+     "ratio": 1.8293687754753811,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "3": {
+     "se_nw": 0.02132541748453989,
+     "mde": 0.059745289624686955,
+     "ratio": 1.7900068047324882,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "4": {
+     "se_nw": 0.02134332151037801,
+     "mde": 0.05979544954347503,
+     "ratio": 1.7885052423788144,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "6": {
+     "se_nw": 0.02213067719845324,
+     "mde": 0.0620013052391866,
+     "ratio": 1.7248745742744622,
+     "tier": "QUOTABLE_MARGINAL"
+    }
+   },
+   "distinct_tiers": [
+    "QUOTABLE_MARGINAL"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "QUOTABLE_MARGINAL"
+  },
+  {
+   "key": "phasec3_d",
+   "quotability": "UNDERPOWERED",
+   "n": 237,
+   "mean": 0.0468041687341772,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.0747160045521724,
+     "mde": 0.20932435835336619,
+     "ratio": 0.22359637981149713,
+     "tier": "UNDERPOWERED"
+    },
+    "1": {
+     "se_nw": 0.07635339949891393,
+     "mde": 0.21391168403615726,
+     "ratio": 0.2188013662978126,
+     "tier": "UNDERPOWERED"
+    },
+    "2": {
+     "se_nw": 0.07707789810618501,
+     "mde": 0.21594143933428794,
+     "ratio": 0.2167447289342276,
+     "tier": "UNDERPOWERED"
+    },
+    "3": {
+     "se_nw": 0.0783518213406754,
+     "mde": 0.21951046266803623,
+     "ratio": 0.2132206736995436,
+     "tier": "UNDERPOWERED"
+    },
+    "4": {
+     "se_nw": 0.07782341326908718,
+     "mde": 0.21803007461467463,
+     "ratio": 0.21466840671817583,
+     "tier": "UNDERPOWERED"
+    },
+    "6": {
+     "se_nw": 0.07714919733294277,
+     "mde": 0.2161411912479725,
+     "ratio": 0.2165444192471399,
+     "tier": "UNDERPOWERED"
+    }
+   },
+   "distinct_tiers": [
+    "UNDERPOWERED"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "UNDERPOWERED"
+  },
+  {
+   "key": "phasec_d",
+   "quotability": "QUOTABLE",
+   "n": 237,
+   "mean": 1.9389677751054852,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.31271204289391846,
+     "mde": 0.876094059371602,
+     "ratio": 2.213195894167178,
+     "tier": "QUOTABLE"
+    },
+    "1": {
+     "se_nw": 0.3146836541828821,
+     "mde": 0.8816177255587625,
+     "ratio": 2.19932939061154,
+     "tier": "QUOTABLE"
+    },
+    "2": {
+     "se_nw": 0.30541479727764853,
+     "mde": 0.8556500960530602,
+     "ratio": 2.2660755652918745,
+     "tier": "QUOTABLE"
+    },
+    "3": {
+     "se_nw": 0.3045103141606557,
+     "mde": 0.8531160961524931,
+     "ratio": 2.272806460750329,
+     "tier": "QUOTABLE"
+    },
+    "4": {
+     "se_nw": 0.3062943658653197,
+     "mde": 0.8581142954082798,
+     "ratio": 2.25956820143982,
+     "tier": "QUOTABLE"
+    },
+    "6": {
+     "se_nw": 0.321841414289868,
+     "mde": 0.9016709062744942,
+     "ratio": 2.1504162567658676,
+     "tier": "QUOTABLE"
+    }
+   },
+   "distinct_tiers": [
+    "QUOTABLE"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "QUOTABLE"
+  },
+  {
+   "key": "phasee_alpha",
+   "quotability": "UNDERPOWERED",
+   "n": 237,
+   "mean": 0.2766985906329114,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.15246313093055575,
+     "mde": 0.42714070761504497,
+     "ratio": 0.6477926025310667,
+     "tier": "DIRECTION_ONLY"
+    },
+    "1": {
+     "se_nw": 0.1590469207670469,
+     "mde": 0.4455858532209586,
+     "ratio": 0.6209770544391614,
+     "tier": "DIRECTION_ONLY"
+    },
+    "2": {
+     "se_nw": 0.15168795721347272,
+     "mde": 0.4249689809292652,
+     "ratio": 0.6511030288089827,
+     "tier": "DIRECTION_ONLY"
+    },
+    "3": {
+     "se_nw": 0.14552974918416922,
+     "mde": 0.4077161453143685,
+     "ratio": 0.6786549755579673,
+     "tier": "DIRECTION_ONLY"
+    },
+    "4": {
+     "se_nw": 0.14255868076928796,
+     "mde": 0.3993924000432372,
+     "ratio": 0.6927988379422261,
+     "tier": "DIRECTION_ONLY"
+    },
+    "6": {
+     "se_nw": 0.13888616431426515,
+     "mde": 0.3891034779428453,
+     "ratio": 0.71111826626632,
+     "tier": "DIRECTION_ONLY"
+    }
+   },
+   "distinct_tiers": [
+    "DIRECTION_ONLY"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "DIRECTION_ONLY"
+  },
+  {
+   "key": "phasef_delta",
+   "quotability": "QUOTABLE_MARGINAL",
+   "n": 237,
+   "mean": 0.740492584556962,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.2172311289354757,
+     "mde": 0.6085947308256288,
+     "ratio": 1.216725264039665,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "1": {
+     "se_nw": 0.21849072239836537,
+     "mde": 0.6121236078712604,
+     "ratio": 1.2097108738088398,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "2": {
+     "se_nw": 0.21563512174653443,
+     "mde": 0.6041233570850909,
+     "ratio": 1.2257307648720217,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "3": {
+     "se_nw": 0.217243941211765,
+     "mde": 0.6086306256988808,
+     "ratio": 1.2166535059037922,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "4": {
+     "se_nw": 0.21982017189018146,
+     "mde": 0.6158481935675324,
+     "ratio": 1.2023946685097509,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "6": {
+     "se_nw": 0.2216709102944169,
+     "mde": 0.6210332222808385,
+     "ratio": 1.1923558321685126,
+     "tier": "QUOTABLE_MARGINAL"
+    }
+   },
+   "distinct_tiers": [
+    "QUOTABLE_MARGINAL"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "QUOTABLE_MARGINAL"
+  },
+  {
+   "key": "phaseg_alpha",
+   "quotability": "UNDERPOWERED",
+   "n": 237,
+   "mean": 0.18130837848101264,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.10541348708150626,
+     "mde": 0.29532642540754794,
+     "ratio": 0.6139253479630501,
+     "tier": "DIRECTION_ONLY"
+    },
+    "1": {
+     "se_nw": 0.10629607229686816,
+     "mde": 0.2977990761469059,
+     "ratio": 0.6088278742395166,
+     "tier": "DIRECTION_ONLY"
+    },
+    "2": {
+     "se_nw": 0.10369949489540652,
+     "mde": 0.2905245048989709,
+     "ratio": 0.6240725839772522,
+     "tier": "DIRECTION_ONLY"
+    },
+    "3": {
+     "se_nw": 0.1027794309444896,
+     "mde": 0.2879468537340821,
+     "ratio": 0.6296591753992572,
+     "tier": "DIRECTION_ONLY"
+    },
+    "4": {
+     "se_nw": 0.10184346413791984,
+     "mde": 0.28532464912879624,
+     "ratio": 0.6354459000812426,
+     "tier": "DIRECTION_ONLY"
+    },
+    "6": {
+     "se_nw": 0.09948938350366054,
+     "mde": 0.2787294568238554,
+     "ratio": 0.6504815836368218,
+     "tier": "DIRECTION_ONLY"
+    }
+   },
+   "distinct_tiers": [
+    "DIRECTION_ONLY"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "DIRECTION_ONLY"
+  },
+  {
+   "key": "phasej_netA",
+   "quotability": "NOT_GRADED",
+   "n": 237,
+   "mean": 0.03244149789029536,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.04158547272881521,
+     "mde": 0.11650586039704869,
+     "ratio": 0.2784537857558036,
+     "tier": "UNDERPOWERED"
+    },
+    "1": {
+     "se_nw": 0.036236935868211466,
+     "mde": 0.10152139952838124,
+     "ratio": 0.31955329655622056,
+     "tier": "UNDERPOWERED"
+    },
+    "2": {
+     "se_nw": 0.033119276562558676,
+     "mde": 0.09278696521766439,
+     "ratio": 0.34963421655393556,
+     "tier": "UNDERPOWERED"
+    },
+    "3": {
+     "se_nw": 0.03112318329632752,
+     "mde": 0.08719471032299118,
+     "ratio": 0.3720580958423266,
+     "tier": "UNDERPOWERED"
+    },
+    "4": {
+     "se_nw": 0.02977595259532715,
+     "mde": 0.08342030879106854,
+     "ratio": 0.3888920858773989,
+     "tier": "UNDERPOWERED"
+    },
+    "6": {
+     "se_nw": 0.027593234779728235,
+     "mde": 0.07730520655888662,
+     "ratio": 0.41965475980693884,
+     "tier": "UNDERPOWERED"
+    }
+   },
+   "distinct_tiers": [
+    "UNDERPOWERED"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "UNDERPOWERED"
+  },
+  {
+   "key": "phasek_m1net",
+   "quotability": "NOT_GRADED",
+   "n": 237,
+   "mean": 0.03989106751054852,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.044643933687478425,
+     "mde": 0.12507444461883957,
+     "ratio": 0.31893859398788693,
+     "tier": "UNDERPOWERED"
+    },
+    "1": {
+     "se_nw": 0.038869204102314925,
+     "mde": 0.1088959622130455,
+     "ratio": 0.3663227423667474,
+     "tier": "UNDERPOWERED"
+    },
+    "2": {
+     "se_nw": 0.03556720936770352,
+     "mde": 0.0996450937645582,
+     "ratio": 0.40033147647794165,
+     "tier": "UNDERPOWERED"
+    },
+    "3": {
+     "se_nw": 0.0333940534607447,
+     "mde": 0.09355678017562236,
+     "ratio": 0.42638350139526016,
+     "tier": "UNDERPOWERED"
+    },
+    "4": {
+     "se_nw": 0.03194043408966021,
+     "mde": 0.08948432014559206,
+     "ratio": 0.44578835091606306,
+     "tier": "UNDERPOWERED"
+    },
+    "6": {
+     "se_nw": 0.02961706391898628,
+     "mde": 0.08297516627543196,
+     "ratio": 0.48075911506018676,
+     "tier": "UNDERPOWERED"
+    }
+   },
+   "distinct_tiers": [
+    "UNDERPOWERED"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "UNDERPOWERED"
+  },
+  {
+   "key": "phasel_alpha",
+   "quotability": "NULL_CONFIRMED",
+   "n": 237,
+   "mean": 0.10605702953586497,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.036848147702844405,
+     "mde": 0.10323377060428889,
+     "ratio": 1.027348210910537,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "1": {
+     "se_nw": 0.03656705449831897,
+     "mde": 0.10244625988249043,
+     "ratio": 1.0352455000066985,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "2": {
+     "se_nw": 0.03508093471305873,
+     "mde": 0.09828274669210535,
+     "ratio": 1.0791011963484747,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "3": {
+     "se_nw": 0.033889615822938715,
+     "mde": 0.09494514768954511,
+     "ratio": 1.117034752346206,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "4": {
+     "se_nw": 0.033053936112265106,
+     "mde": 0.09260390741212192,
+     "ratio": 1.1452759662059577,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "6": {
+     "se_nw": 0.03128406687324161,
+     "mde": 0.0876454417520737,
+     "ratio": 1.2100689712520691,
+     "tier": "QUOTABLE_MARGINAL"
+    }
+   },
+   "distinct_tiers": [
+    "QUOTABLE_MARGINAL"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "QUOTABLE_MARGINAL"
+  },
+  {
+   "key": "phaseo_netBASE",
+   "quotability": "QUOTABLE_MARGINAL",
+   "n": 237,
+   "mean": 0.13595891139240507,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.04474469695893465,
+     "mde": 0.12535674300015132,
+     "ratio": 1.0845759720499515,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "1": {
+     "se_nw": 0.03907703390550677,
+     "mde": 0.10947821818966777,
+     "ratio": 1.2418809297467766,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "2": {
+     "se_nw": 0.03579540511196589,
+     "mde": 0.10028440696168364,
+     "ratio": 1.3557333139971783,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "3": {
+     "se_nw": 0.033664658822536955,
+     "mde": 0.09431490815721953,
+     "ratio": 1.4415421066388199,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "4": {
+     "se_nw": 0.03222465754757965,
+     "mde": 0.09028060058529916,
+     "ratio": 1.5059593147472252,
+     "tier": "QUOTABLE_MARGINAL"
+    },
+    "6": {
+     "se_nw": 0.029982184454576816,
+     "mde": 0.0839980879679424,
+     "ratio": 1.618595311887258,
+     "tier": "QUOTABLE_MARGINAL"
+    }
+   },
+   "distinct_tiers": [
+    "QUOTABLE_MARGINAL"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "QUOTABLE_MARGINAL"
+  },
+  {
+   "key": "phasep_late",
+   "quotability": "NOT_GRADED",
+   "n": 129,
+   "mean": 0.129407503875969,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.07016251927439698,
+     "mde": 0.1965673139991506,
+     "ratio": 0.6583368376114057,
+     "tier": "DIRECTION_ONLY"
+    },
+    "1": {
+     "se_nw": 0.06028462538707988,
+     "mde": 0.168893406484443,
+     "ratio": 0.7662081461296649,
+     "tier": "DIRECTION_ONLY"
+    },
+    "2": {
+     "se_nw": 0.05388028773453151,
+     "mde": 0.1509510141170635,
+     "ratio": 0.8572814474476643,
+     "tier": "DIRECTION_ONLY"
+    },
+    "3": {
+     "se_nw": 0.050132765867541514,
+     "mde": 0.14045195685450432,
+     "ratio": 0.9213649049405813,
+     "tier": "DIRECTION_ONLY"
+    },
+    "4": {
+     "se_nw": 0.04837981121170928,
+     "mde": 0.1355408790907247,
+     "ratio": 0.9547488901067971,
+     "tier": "DIRECTION_ONLY"
+    },
+    "6": {
+     "se_nw": 0.04391594879249933,
+     "mde": 0.12303492213706614,
+     "ratio": 1.0517949020344284,
+     "tier": "QUOTABLE_MARGINAL"
+    }
+   },
+   "distinct_tiers": [
+    "DIRECTION_ONLY",
+    "QUOTABLE_MARGINAL"
+   ],
+   "crosses_tier": true,
+   "main_lag_tier": "DIRECTION_ONLY"
+  },
+  {
+   "key": "phaseq_max5",
+   "quotability": "UNDERPOWERED",
+   "n": 237,
+   "mean": 0.04241433514767933,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.14677965533824336,
+     "mde": 0.4112178823956226,
+     "ratio": 0.1031432166825701,
+     "tier": "UNDERPOWERED"
+    },
+    "1": {
+     "se_nw": 0.15658913246392556,
+     "mde": 0.43870011351093385,
+     "ratio": 0.0966818422002123,
+     "tier": "UNDERPOWERED"
+    },
+    "2": {
+     "se_nw": 0.16127992293617954,
+     "mde": 0.4518418320980006,
+     "ratio": 0.09386987245235856,
+     "tier": "UNDERPOWERED"
+    },
+    "3": {
+     "se_nw": 0.16701119476345913,
+     "mde": 0.4678985632493071,
+     "ratio": 0.09064856889735735,
+     "tier": "UNDERPOWERED"
+    },
+    "4": {
+     "se_nw": 0.17084950882613684,
+     "mde": 0.47865198392730496,
+     "ratio": 0.08861205337471449,
+     "tier": "UNDERPOWERED"
+    },
+    "6": {
+     "se_nw": 0.17534111508490996,
+     "mde": 0.4912356680218838,
+     "ratio": 0.08634213252159417,
+     "tier": "UNDERPOWERED"
+    }
+   },
+   "distinct_tiers": [
+    "UNDERPOWERED"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "UNDERPOWERED"
+  },
+  {
+   "key": "phases_net",
+   "quotability": "DIRECTION_ONLY",
+   "n": 129,
+   "mean": 0.111195653875969,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.07016251927439698,
+     "mde": 0.1965673139991506,
+     "ratio": 0.5656874055696234,
+     "tier": "DIRECTION_ONLY"
+    },
+    "1": {
+     "se_nw": 0.06028462538707989,
+     "mde": 0.16889340648444304,
+     "ratio": 0.6583777081091164,
+     "tier": "DIRECTION_ONLY"
+    },
+    "2": {
+     "se_nw": 0.05388028773453151,
+     "mde": 0.1509510141170635,
+     "ratio": 0.736634030094929,
+     "tier": "DIRECTION_ONLY"
+    },
+    "3": {
+     "se_nw": 0.050132765867541514,
+     "mde": 0.14045195685450432,
+     "ratio": 0.7916988582163919,
+     "tier": "DIRECTION_ONLY"
+    },
+    "4": {
+     "se_nw": 0.04837981121170928,
+     "mde": 0.1355408790907247,
+     "ratio": 0.8203846295075292,
+     "tier": "DIRECTION_ONLY"
+    },
+    "6": {
+     "se_nw": 0.04391594879249933,
+     "mde": 0.12303492213706614,
+     "ratio": 0.9037731072166023,
+     "tier": "DIRECTION_ONLY"
+    }
+   },
+   "distinct_tiers": [
+    "DIRECTION_ONLY"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "DIRECTION_ONLY"
+  },
+  {
+   "key": "phaset_net",
+   "quotability": "DIRECTION_ONLY",
+   "n": 129,
+   "mean": 0.111195653875969,
+   "per_lag": {
+    "0": {
+     "se_nw": 0.07016251927439698,
+     "mde": 0.1965673139991506,
+     "ratio": 0.5656874055696234,
+     "tier": "DIRECTION_ONLY"
+    },
+    "1": {
+     "se_nw": 0.06028462538707989,
+     "mde": 0.16889340648444304,
+     "ratio": 0.6583777081091164,
+     "tier": "DIRECTION_ONLY"
+    },
+    "2": {
+     "se_nw": 0.05388028773453151,
+     "mde": 0.1509510141170635,
+     "ratio": 0.736634030094929,
+     "tier": "DIRECTION_ONLY"
+    },
+    "3": {
+     "se_nw": 0.050132765867541514,
+     "mde": 0.14045195685450432,
+     "ratio": 0.7916988582163919,
+     "tier": "DIRECTION_ONLY"
+    },
+    "4": {
+     "se_nw": 0.04837981121170928,
+     "mde": 0.1355408790907247,
+     "ratio": 0.8203846295075292,
+     "tier": "DIRECTION_ONLY"
+    },
+    "6": {
+     "se_nw": 0.04391594879249933,
+     "mde": 0.12303492213706614,
+     "ratio": 0.9037731072166023,
+     "tier": "DIRECTION_ONLY"
+    }
+   },
+   "distinct_tiers": [
+    "DIRECTION_ONLY"
+   ],
+   "crosses_tier": false,
+   "main_lag_tier": "DIRECTION_ONLY"
+  }
+ ],
+ "n_crossing": 1,
+ "crossing_keys": [
+  "phasep_late"
+ ],
+ "failures": [],
+ "elapsed_seconds": 0.142
+}

@@ -1,0 +1,828 @@
+{
+ "experiment_id": "H-L3AC-FAMILY-V2",
+ "mutation_count": 6,
+ "caught": 6,
+ "all_caught": true,
+ "restored_matches_baseline": true,
+ "baseline": {
+  "m_primary": 27,
+  "m_recomputable": 27,
+  "merged_away": 2,
+  "edge_ok": true,
+  "rep_is_longest": true,
+  "mean_pp_ok": true,
+  "mde_ok": true,
+  "by_equals_bh": true,
+  "by_unit_ok": true,
+  "counts": {
+   "A_m29": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "B_m_r1": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "C_m26": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "D_m25": {
+    "bonferroni": 8,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "E_m24": {
+    "bonferroni": 8,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "F_m23": {
+    "bonferroni": 8,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "G_m27": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "n_inter": 7,
+  "gate_codes": []
+ },
+ "mutations": [
+  {
+   "id": "M1",
+   "description": "R1 去掉「严格更短」条件",
+   "expectation": "caught",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "m_primary": [
+     27,
+     25
+    ],
+    "merged_away": [
+     2,
+     4
+    ],
+    "edge_ok": [
+     true,
+     false
+    ],
+    "mean_pp_ok": [
+     true,
+     true
+    ],
+    "mde_ok": [
+     true,
+     true
+    ],
+    "by_equals_bh": [
+     true,
+     true
+    ],
+    "by_unit_ok": [
+     true,
+     true
+    ],
+    "counts": [
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     },
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "M2",
+   "description": "R1 只认逐位相同、不要求包含",
+   "expectation": "caught",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "m_primary": [
+     27,
+     25
+    ],
+    "merged_away": [
+     2,
+     4
+    ],
+    "edge_ok": [
+     true,
+     false
+    ],
+    "mean_pp_ok": [
+     true,
+     true
+    ],
+    "mde_ok": [
+     true,
+     true
+    ],
+    "by_equals_bh": [
+     true,
+     true
+    ],
+    "by_unit_ok": [
+     true,
+     true
+    ],
+    "counts": [
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     },
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "M3",
+   "description": "去掉并查集传递性",
+   "expectation": "caught",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "m_primary": [
+     27,
+     28
+    ],
+    "merged_away": [
+     2,
+     1
+    ],
+    "edge_ok": [
+     true,
+     true
+    ],
+    "mean_pp_ok": [
+     true,
+     true
+    ],
+    "mde_ok": [
+     true,
+     true
+    ],
+    "by_equals_bh": [
+     true,
+     true
+    ],
+    "by_unit_ok": [
+     true,
+     true
+    ],
+    "counts": [
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     },
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "M4",
+   "description": "phasei scale 改成 100（单位错）",
+   "expectation": "caught",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "m_primary": [
+     27,
+     27
+    ],
+    "merged_away": [
+     2,
+     2
+    ],
+    "edge_ok": [
+     true,
+     true
+    ],
+    "mean_pp_ok": [
+     true,
+     false
+    ],
+    "mde_ok": [
+     true,
+     false
+    ],
+    "by_equals_bh": [
+     true,
+     true
+    ],
+    "by_unit_ok": [
+     true,
+     true
+    ],
+    "counts": [
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     },
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "M5",
+   "description": "代表改成「窗口最短」",
+   "expectation": "caught",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "m_primary": [
+     27,
+     27
+    ],
+    "merged_away": [
+     2,
+     2
+    ],
+    "edge_ok": [
+     true,
+     false
+    ],
+    "mean_pp_ok": [
+     true,
+     true
+    ],
+    "mde_ok": [
+     true,
+     true
+    ],
+    "by_equals_bh": [
+     true,
+     false
+    ],
+    "by_unit_ok": [
+     true,
+     true
+    ],
+    "counts": [
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     },
+     {
+      "A_m29": {
+       "bonferroni": 6,
+       "holm": 7,
+       "bh": 8,
+       "by": 7
+      },
+      "B_m_r1": {
+       "bonferroni": 6,
+       "holm": 7,
+       "bh": 8,
+       "by": 7
+      },
+      "C_m26": {
+       "bonferroni": 6,
+       "holm": 7,
+       "bh": 8,
+       "by": 7
+      },
+      "D_m25": {
+       "bonferroni": 7,
+       "holm": 7,
+       "bh": 8,
+       "by": 7
+      },
+      "E_m24": {
+       "bonferroni": 7,
+       "holm": 7,
+       "bh": 8,
+       "by": 7
+      },
+      "F_m23": {
+       "bonferroni": 7,
+       "holm": 7,
+       "bh": 8,
+       "by": 7
+      },
+      "G_m27": {
+       "bonferroni": 6,
+       "holm": 7,
+       "bh": 8,
+       "by": 7
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "M6",
+   "description": "BY 去掉 H_m（退化 BH）",
+   "expectation": "caught",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "m_primary": [
+     27,
+     27
+    ],
+    "merged_away": [
+     2,
+     2
+    ],
+    "edge_ok": [
+     true,
+     true
+    ],
+    "mean_pp_ok": [
+     true,
+     true
+    ],
+    "mde_ok": [
+     true,
+     true
+    ],
+    "by_equals_bh": [
+     true,
+     true
+    ],
+    "by_unit_ok": [
+     true,
+     false
+    ],
+    "counts": [
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     },
+     {
+      "A_m29": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "B_m_r1": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "C_m26": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "D_m25": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "E_m24": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "F_m23": {
+       "bonferroni": 8,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      },
+      "G_m27": {
+       "bonferroni": 7,
+       "holm": 8,
+       "bh": 8,
+       "by": 8
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

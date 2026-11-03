@@ -1,0 +1,950 @@
+{
+ "experiment_id": "H-L3AF-COST-NET",
+ "prereg_sha256": "ed2a03162ce3907bef3e75b839a201cfad0799973ff14b0a145a51eb60d58cb8",
+ "inputs": {
+  "phasei_monthly": {
+   "path": "phasei_out/8f5c35121fdb/monthly.csv",
+   "sha256_raw": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a",
+   "sha256_lf": "66388f5b0c5b309aadfd872962a935f039adb451caa9a065185fccf1b9fc50d6",
+   "matched_via": "raw",
+   "eol_converted": true,
+   "declared_eol_converted": false,
+   "crlf_count": 238,
+   "mode": "raw"
+  },
+  "phasei_summary": {
+   "path": "phasei_out/8f5c35121fdb/summary.json",
+   "sha256_raw": "fcf36b7a64331251f4cfd6c48df84739ee91132fa9a7e39f95cb9a551b745e09",
+   "sha256_lf": "33d919386bf8477a7124f7409ecdd4e67fc5f4cf04c176aa819161ca0fdbc253",
+   "matched_via": "raw",
+   "eol_converted": true,
+   "declared_eol_converted": true,
+   "crlf_count": 322,
+   "mode": "raw"
+  },
+  "phasei_manifest": {
+   "path": "phasei_out/8f5c35121fdb/manifest.json",
+   "sha256_raw": "d8f4c2e3cd41a2998a7ac68c8f455cac78326c619bf3ad5bcc14a194574527bb",
+   "sha256_lf": "5a7eacaabcbf2e2acf4a189e5ce312d232d827f4d76d2e5f7afa951e2015cd0f",
+   "matched_via": "raw",
+   "eol_converted": true,
+   "declared_eol_converted": false,
+   "crlf_count": 26,
+   "mode": "raw"
+  },
+  "phaseo_monthly": {
+   "path": "phaseo_out/ac7aa2830ab0/monthly.csv",
+   "sha256_raw": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+   "sha256_lf": "7ac7ce242ff072f4d0a7de6803b614d1cbb618b5269ee66ae87ff1acf671ce33",
+   "matched_via": "raw",
+   "eol_converted": true,
+   "declared_eol_converted": false,
+   "crlf_count": 238,
+   "mode": "raw"
+  },
+  "phaseo_summary": {
+   "path": "phaseo_out/ac7aa2830ab0/summary.json",
+   "sha256_raw": "05bdc615bece3c2f6a35f4b5f5a989d3ddd23b2ec1e5df1192c3a6dbe8e19329",
+   "sha256_lf": "05bdc615bece3c2f6a35f4b5f5a989d3ddd23b2ec1e5df1192c3a6dbe8e19329",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "phaseo_manifest": {
+   "path": "phaseo_out/ac7aa2830ab0/manifest.json",
+   "sha256_raw": "0655f497576fb0a0a2f6ad5726c050765074af863a857b6428a4bb4310c65a8b",
+   "sha256_lf": "0655f497576fb0a0a2f6ad5726c050765074af863a857b6428a4bb4310c65a8b",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "phaseo_prereg_doc": {
+   "path": "docs/PHASE_O_FEE_CONVENTION_PREREG_2026-10-21.md",
+   "sha256_raw": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+   "sha256_lf": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3u_prereg": {
+   "path": "docs/gates/l3u_prereg.json",
+   "sha256_raw": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+   "sha256_lf": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3v_claims": {
+   "path": "docs/gates/l3v_claims.json",
+   "sha256_raw": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+   "sha256_lf": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3ab_decisions": {
+   "path": "docs/gates/l3ab_family_decisions.json",
+   "sha256_raw": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75",
+   "sha256_lf": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3ad_prereg": {
+   "path": "docs/gates/l3ad_prereg.json",
+   "sha256_raw": "a5d86c50e85c8644257fb7f259986fa79cee7a2cf75751b592f38793f2ee3e26",
+   "sha256_lf": "a5d86c50e85c8644257fb7f259986fa79cee7a2cf75751b592f38793f2ee3e26",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3ad_result": {
+   "path": "reports/gates/H-L3AD-INDEPENDENCE/l3ad_independence.json",
+   "sha256": "f54b0615b0d3e0ec7b89441832466d647d5eab4e6cf785c75b4d5a152af5b743",
+   "mode": "SELF"
+  },
+  "l3z_multiplicity": {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+   "sha256_raw": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc",
+   "sha256_lf": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "l3z_lag": {
+   "path": "reports/L3Z_LAG_SENSITIVITY.json",
+   "sha256_raw": "b60428758948e261bdd4ee9b26165376ac9a4810e5c888780c1fba56a7f1a4f6",
+   "sha256_lf": "b60428758948e261bdd4ee9b26165376ac9a4810e5c888780c1fba56a7f1a4f6",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  },
+  "phase_c_prereg_doc": {
+   "path": "docs/PHASE_C_UNIVERSE_PREREG_2026-10-21.md",
+   "sha256_raw": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+   "sha256_lf": "3a01759a37f03c57ec19a6090f52bbda11ed5a284271edfc4328504de64d1ab3",
+   "matched_via": "raw",
+   "eol_converted": false,
+   "declared_eol_converted": false,
+   "crlf_count": 0,
+   "mode": "raw"
+  }
+ },
+ "availability": {
+  "items": [
+   {
+    "item": "逐月毛 alpha",
+    "available": true,
+    "path": "phasei_out/8f5c35121fdb/monthly.csv",
+    "field": "alpha_v1_pp",
+    "n": 237,
+    "missing_rate": 0.0,
+    "unit": "pp/月",
+    "provenance": "phasei summary V1_executable（alpha = 均值(V1 持仓 fwd) − r_bench）",
+    "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a"
+   },
+   {
+    "item": "逐月换手",
+    "available": true,
+    "path": "phaseo_out/ac7aa2830ab0/monthly.csv",
+    "field": "to",
+    "n": 237,
+    "missing_rate": 0.0,
+    "unit": "单边比例（0~1）",
+    "provenance": "phase O 用 run_phase_i_exq5.build_records 重建 V1 持仓后逐月算 0.5×(|新增|+|退出|)/k",
+    "sha256": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+    "note": "⚠️ **不在 phasei_out 里**。只看 phasei 产物会得出「缺失」的错误结论。"
+   },
+   {
+    "item": "换手定义与单位",
+    "available": true,
+    "path": "scripts/run_phase_o_fee_convention.py",
+    "field": "第 146-147 行 to = 0.5*(|新增|+|退出|)/max(k,1)",
+    "n": 237,
+    "missing_rate": 0.0,
+    "unit": "单边（已乘 0.5）",
+    "provenance": "源码常量，G2B 用双向/单向换算钉住",
+    "sha256": "b95b4bbfd3749b44aaf9ceb2028265d7b517887f73bd8a7d3af1147b345c5947"
+   },
+   {
+    "item": "逐月交易成本",
+    "available": true,
+    "path": "phaseo_out/ac7aa2830ab0/monthly.csv",
+    "field": "cost_BASE_pp / cost_STRESS_pp / cost_CONS_pp",
+    "n": 237,
+    "missing_rate": 0.0,
+    "unit": "pp/月",
+    "provenance": "cost_base/cost_stress/cost_conservative；G2 验证 cost_BASE_pp ≡ 0.102×to",
+    "sha256": "768e49a9462cd7c00f3aacfcdb1e87bbe37bb75b348cd6fd85809e12493a4152",
+    "note": "⚠️ 只有三档（BASE/STRESS/CONS @3000 万）。其余档由 to 与费率重建，不读列。"
+   },
+   {
+    "item": "原始交易或订单记录",
+    "available": false,
+    "path": null,
+    "field": null,
+    "n": 0,
+    "missing_rate": 1.0,
+    "unit": null,
+    "provenance": "**不存在**：全仓库没有逐笔成交/委托落盘格式",
+    "sha256": null,
+    "note": "缺此项的后果：无法核对成交价假设（V1 只在信号日剔除不可成交标的，成交按 bar 收盘价）、无法逐笔核最低佣金、无法算真实滑点。所需补充：券商成交回报明细（日期/代码/方向/数量/成交价/佣金/印花/过户）。"
+   },
+   {
+    "item": "原始成本参数及其预登记",
+    "available": true,
+    "path": "docs/PHASE_O_FEE_CONVENTION_PREREG_2026-10-21.md",
+    "field": "§2 三套费率",
+    "n": 3,
+    "missing_rate": 0.0,
+    "unit": "费率",
+    "provenance": "预登记冻结 ac7aa2830ab0…；G0 校验",
+    "sha256": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f"
+   },
+   {
+    "item": "月份与收益归属的对应关系",
+    "available": true,
+    "path": "phasei_out/8f5c35121fdb/monthly.csv",
+    "field": "signal_date → entry",
+    "n": 237,
+    "missing_rate": 0.0,
+    "unit": "日期",
+    "provenance": "signal_date 为信号月最后交易日，entry 为次月首个交易日；alpha 属 entry 起持有期",
+    "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a",
+    "note": "G4 校验五档净序列与 phasei 的 signal_date 逐位同序，防月度错位。"
+   }
+  ],
+  "n_items": 7,
+  "n_available": 6,
+  "blocking_items": [
+   "原始交易或订单记录"
+  ],
+  "turnover_available": true,
+  "turnover_source_is_phasei": false,
+  "verdict": "TURNOVER_AVAILABLE_VIA_PHASE_O"
+ },
+ "n_months": 237,
+ "window": [
+  "2007-01-31",
+  "2026-09-30"
+ ],
+ "alpha_identity": {
+  "max_abs_diff": 0.0,
+  "n_compared": 237,
+  "phaseo_dates_equal": true
+ },
+ "turnover": {
+  "mean": 0.18782366244725737,
+  "sd": 0.04839398679268593,
+  "min": 0.0,
+  "max": 0.592874,
+  "n_zero": 1,
+  "n_over_one": 0,
+  "median_k": 1937.0,
+  "unit": "单边比例",
+  "definition": "to_t = 0.5 × (|新增持仓| + |退出持仓|) / max(k_t, 1)"
+ },
+ "cost_arithmetic": {
+  "max_abs_resid": 5.319999999975344e-07,
+  "unit_conversion_max_abs": 0.0,
+  "formula": "cost_pp = 2 × to × rate × 100"
+ },
+ "net_identity": {
+  "tolerance": 4.578011e-06,
+  "residuals": {
+   "3000w|BASE": 2.9498839997366133e-06,
+   "1000w|BASE": 2.175404000048786e-06,
+   "3000w|CONS": 1.9498839995968353e-06,
+   "3000w|STRESS": 1.9498840000409245e-06
+  },
+  "max_abs_resid": 2.9498839997366133e-06,
+  "formula": "net = finv×alpha − cost − 0.000784（构造 Q，phase O 落盘口径）"
+ },
+ "gross": {
+  "n": 237,
+  "n_eff": 234,
+  "mean_pp": 0.1634105358649789,
+  "sd_pp": 0.7453261127693832,
+  "se_iid_pp": 0.04841413358411035,
+  "t_iid": 3.375265108918745,
+  "p_iid": 0.0008621011563942899,
+  "se_nw3_pp": 0.03608599327529562,
+  "t_nw3": 4.52836463772356,
+  "p_nw3": 9.435983315166961e-06,
+  "ci95_iid": [
+   0.06803145606926576,
+   0.25878961566069203
+  ],
+  "ci95_nw3": [
+   0.09231871665205359,
+   0.23450235507790418
+  ],
+  "t_crit": 1.9700668531021033,
+  "lag": 3,
+  "n_dropped": 0
+ },
+ "alpha_v0": {
+  "n": 237,
+  "n_eff": 234,
+  "mean_pp": 0.23070257383966244,
+  "sd_pp": 0.7439896973902463,
+  "se_iid_pp": 0.04832732407672709,
+  "t_iid": 4.773750217855772,
+  "p_iid": 3.173310923705681e-06,
+  "se_nw3_pp": 0.03629017559905252,
+  "t_nw3": 6.357163337773591,
+  "p_nw3": 1.05216887760739e-09,
+  "ci95_iid": [
+   0.1354945145769792,
+   0.3259106331023457
+  ],
+  "ci95_nw3": [
+   0.15920850179871432,
+   0.30219664588061057
+  ],
+  "t_crit": 1.9700668531021033,
+  "lag": 3,
+  "n_dropped": 0
+ },
+ "tiers": [
+  {
+   "id": "T_0p3",
+   "label": "0.3%（压力费率，phasei 冻结主成本）",
+   "role": "primary",
+   "rate": 0.003,
+   "rate_pct": 0.3,
+   "cost_pp_month": 0.11269419746835442,
+   "cost_sd_pp": 0.029036392075611556,
+   "net_pp_month": 0.050716338396624476,
+   "net": {
+    "n": 237,
+    "n_eff": 234,
+    "mean_pp": 0.050716338396624476,
+    "sd_pp": 0.7454371826697862,
+    "se_iid_pp": 0.04842134834943677,
+    "t_iid": 1.0473962441240943,
+    "p_iid": 0.29598836432538367,
+    "se_nw3_pp": 0.035812636854623284,
+    "t_nw3": 1.4161576150480295,
+    "p_nw3": 0.15804784118815096,
+    "ci95_iid": [
+     -0.044676954969111136,
+     0.14610963176236008
+    ],
+    "ci95_nw3": [
+     -0.019836950392851625,
+     0.12126962718610057
+    ],
+    "t_crit": 1.9700668531021033,
+    "lag": 3,
+    "n_dropped": 0
+   },
+   "variance": {
+    "n": 237,
+    "var_gross": 0.5555110143759193,
+    "var_cost": 0.0008431120647686377,
+    "cov": 0.00033876656700983676,
+    "two_cov": 0.0006775331340196735,
+    "var_net": 0.5556765933066683,
+    "var_identity_residual": 0.0,
+    "var_cost_over_gross": 0.0015177233987265213,
+    "rho_alpha_cost": 0.01565350347269451,
+    "se_net_over_gross": 1.0001490218825024,
+    "se_net_ge_gross": true,
+    "cost_variance_dominates": true,
+    "note": "se_net ≥ se_gross ⟺ Var(cost) ≥ 2Cov。前者不是恒真，后者才是判据。"
+   },
+   "l3ae": {
+    "turnover_mean_all_months": 0.18782366244725737,
+    "turnover_mean_nonzero_months": 0.1886195254237288,
+    "n_all": 237,
+    "n_nonzero": 236,
+    "turnover_gap": 0.0007958629764714398,
+    "cost_pp_month": 0.11317171525423728,
+    "net_pp_month": 0.050238820610741614,
+    "t_reused_se": 1.0376891393390573
+   },
+   "delta_vs_l3ae_net": 0.0004775177858828625,
+   "delta_vs_l3ae_cost": -0.00047751778588285554,
+   "t_delta_vs_l3ae_total": 0.009707104785037002,
+   "t_shift_from_se_only": -0.00015608496002506023
+  },
+  {
+   "id": "T_0p1",
+   "label": "0.1%（对照费率）",
+   "role": "sensitivity",
+   "rate": 0.001,
+   "rate_pct": 0.1,
+   "cost_pp_month": 0.037564732489451476,
+   "cost_sd_pp": 0.009678797358537185,
+   "net_pp_month": 0.12584580337552745,
+   "net": {
+    "n": 237,
+    "n_eff": 234,
+    "mean_pp": 0.12584580337552745,
+    "sd_pp": 0.7452374447893908,
+    "se_iid_pp": 0.04840837397988552,
+    "t_iid": 2.599670119632989,
+    "p_iid": 0.009919720856408555,
+    "se_nw3_pp": 0.03596633213032144,
+    "t_nw3": 3.4989890801078674,
+    "p_nw3": 0.0005581000958746672,
+    "ci95_iid": [
+     0.030478070385184644,
+     0.22121353636587027
+    ],
+    "ci95_nw3": [
+     0.054989724617920024,
+     0.1967018821331349
+    ],
+    "t_crit": 1.9700668531021033,
+    "lag": 3,
+    "n_dropped": 0
+   },
+   "variance": {
+    "n": 237,
+    "var_gross": 0.5555110143759193,
+    "var_cost": 9.367911830762641e-05,
+    "cov": 0.00011292218900327874,
+    "two_cov": 0.00022584437800655748,
+    "var_net": 0.5553788491162204,
+    "var_identity_residual": 0.0,
+    "var_cost_over_gross": 0.0001686359331918357,
+    "rho_alpha_cost": 0.015653503472694487,
+    "se_net_over_gross": 0.9998810346525189,
+    "se_net_ge_gross": false,
+    "cost_variance_dominates": false,
+    "note": "se_net ≥ se_gross ⟺ Var(cost) ≥ 2Cov。前者不是恒真，后者才是判据。"
+   },
+   "l3ae": {
+    "turnover_mean_all_months": 0.18782366244725737,
+    "turnover_mean_nonzero_months": 0.1886195254237288,
+    "n_all": 237,
+    "n_nonzero": 236,
+    "turnover_gap": 0.0007958629764714398,
+    "cost_pp_month": 0.03772390508474576,
+    "net_pp_month": 0.12568663078023312,
+    "t_reused_se": 2.596073119058849
+   },
+   "delta_vs_l3ae_net": 0.0001591725952943268,
+   "delta_vs_l3ae_cost": -0.00015917259529428518,
+   "t_delta_vs_l3ae_total": 0.003597000574139919,
+   "t_shift_from_se_only": 0.0003092706591183436
+  },
+  {
+   "id": "T_1e8",
+   "label": "0.051%（真实等价单边，1 亿档，最低佣金不约束）",
+   "role": "sensitivity",
+   "rate": 0.00051,
+   "rate_pct": 0.051000000000000004,
+   "cost_pp_month": 0.019158013569620255,
+   "cost_sd_pp": 0.004936186652853966,
+   "net_pp_month": 0.14425252229535865,
+   "net": {
+    "n": 237,
+    "n_eff": 234,
+    "mean_pp": 0.14425252229535865,
+    "sd_pp": 0.7452651874881905,
+    "se_iid_pp": 0.04841017606182342,
+    "t_iid": 2.9797975142899165,
+    "p_iid": 0.0031858667225369195,
+    "se_nw3_pp": 0.036021424810537384,
+    "t_nw3": 4.004631217506986,
+    "p_nw3": 8.324991219139301e-05,
+    "ci95_iid": [
+     0.04888123908312342,
+     0.23962380550759388
+    ],
+    "ci95_nw3": [
+     0.07328790727460924,
+     0.21521713731610806
+    ],
+    "t_crit": 1.9700668531021033,
+    "lag": 3,
+    "n_dropped": 0
+   },
+   "variance": {
+    "n": 237,
+    "var_gross": 0.5555110143759193,
+    "var_cost": 2.4365938671813635e-05,
+    "cov": 5.759031639167218e-05,
+    "two_cov": 0.00011518063278334436,
+    "var_net": 0.5554201996818078,
+    "var_identity_residual": 0.0,
+    "var_cost_over_gross": 4.386220622319647e-05,
+    "rho_alpha_cost": 0.015653503472694494,
+    "se_net_over_gross": 0.9999182568809158,
+    "se_net_ge_gross": false,
+    "cost_variance_dominates": false,
+    "note": "se_net ≥ se_gross ⟺ Var(cost) ≥ 2Cov。前者不是恒真，后者才是判据。"
+   },
+   "l3ae": {
+    "turnover_mean_all_months": 0.18782366244725737,
+    "turnover_mean_nonzero_months": 0.1886195254237288,
+    "n_all": 237,
+    "n_nonzero": 236,
+    "turnover_gap": 0.0007958629764714398,
+    "cost_pp_month": 0.01923919159322034,
+    "net_pp_month": 0.14417134427175854,
+    "t_reused_se": 2.977877194090198
+   },
+   "delta_vs_l3ae_net": 8.117802360010917e-05,
+   "delta_vs_l3ae_cost": -8.117802360008489e-05,
+   "t_delta_vs_l3ae_total": 0.0019203201997184394,
+   "t_shift_from_se_only": 0.0002435779430576268
+  },
+  {
+   "id": "T_3e7",
+   "label": "0.0585%（3000 万档，含 5 元最低佣金）",
+   "role": "sensitivity",
+   "rate": 0.000585,
+   "rate_pct": 0.0585,
+   "cost_pp_month": 0.021975368506329113,
+   "cost_sd_pp": 0.005662096454744254,
+   "net_pp_month": 0.1414351673586498,
+   "net": {
+    "n": 237,
+    "n_eff": 234,
+    "mean_pp": 0.1414351673586498,
+    "sd_pp": 0.7452589850186634,
+    "se_iid_pp": 0.04840977316813287,
+    "t_iid": 2.921624252760465,
+    "p_iid": 0.0038200098613720614,
+    "se_nw3_pp": 0.03601255033902631,
+    "t_nw3": 3.9273854816491136,
+    "p_nw3": 0.00011277603533081638,
+    "ci95_iid": [
+     0.04606467787391964,
+     0.23680565684337995
+    ],
+    "ci95_nw3": [
+     0.07048803564006316,
+     0.21238229907723644
+    ],
+    "t_crit": 1.9700668531021033,
+    "lag": 3,
+    "n_dropped": 0
+   },
+   "variance": {
+    "n": 237,
+    "var_gross": 0.5555110143759193,
+    "var_cost": 3.205933626282745e-05,
+    "cov": 6.605948056691814e-05,
+    "two_cov": 0.00013211896113383628,
+    "var_net": 0.5554109547510482,
+    "var_identity_residual": -1.1102230246251565e-16,
+    "var_cost_over_gross": 5.7711432236575976e-05,
+    "rho_alpha_cost": 0.015653503472694504,
+    "se_net_over_gross": 0.9999099350612171,
+    "se_net_ge_gross": false,
+    "cost_variance_dominates": false,
+    "note": "se_net ≥ se_gross ⟺ Var(cost) ≥ 2Cov。前者不是恒真，后者才是判据。"
+   },
+   "l3ae": {
+    "turnover_mean_all_months": 0.18782366244725737,
+    "turnover_mean_nonzero_months": 0.1886195254237288,
+    "n_all": 237,
+    "n_nonzero": 236,
+    "turnover_gap": 0.0007958629764714398,
+    "cost_pp_month": 0.022068484474576273,
+    "net_pp_month": 0.14134205139040262,
+    "t_reused_se": 2.919437794850706
+   },
+   "delta_vs_l3ae_net": 9.31159682471816e-05,
+   "delta_vs_l3ae_cost": -9.311596824716079e-05,
+   "t_delta_vs_l3ae_total": 0.002186457909759021,
+   "t_shift_from_se_only": 0.00026313590947157905
+  },
+  {
+   "id": "T_1e7",
+   "label": "0.1234%（1000 万档，含 5 元最低佣金）",
+   "role": "sensitivity",
+   "rate": 0.001234,
+   "rate_pct": 0.12340000000000001,
+   "cost_pp_month": 0.04635487989198313,
+   "cost_sd_pp": 0.011943635940434889,
+   "net_pp_month": 0.11705565597299578,
+   "net": {
+    "n": 237,
+    "n_eff": 234,
+    "mean_pp": 0.11705565597299578,
+    "sd_pp": 0.745234844094757,
+    "se_iid_pp": 0.04840820504661556,
+    "t_iid": 2.418095359253145,
+    "p_iid": 0.016360350711489037,
+    "se_nw3_pp": 0.035942432752003,
+    "t_nw3": 3.256753842475298,
+    "p_nw3": 0.0012925486103404723,
+    "ci95_iid": [
+     0.02168825579248851,
+     0.21242305615350304
+    ],
+    "ci95_nw3": [
+     0.04624666058842326,
+     0.1878646513575683
+    ],
+    "t_crit": 1.9700668531021033,
+    "lag": 3,
+    "n_dropped": 0
+   },
+   "variance": {
+    "n": 237,
+    "var_gross": 0.5555110143759193,
+    "var_cost": 0.00014265043947764798,
+    "cov": 0.0001393459812300462,
+    "two_cov": 0.0002786919624600924,
+    "var_net": 0.5553749728529368,
+    "var_identity_residual": -1.1102230246251565e-16,
+    "var_cost_over_gross": 0.000256791379083467,
+    "rho_alpha_cost": 0.01565350347269451,
+    "se_net_over_gross": 0.9998775453146448,
+    "se_net_ge_gross": false,
+    "cost_variance_dominates": false,
+    "note": "se_net ≥ se_gross ⟺ Var(cost) ≥ 2Cov。前者不是恒真，后者才是判据。"
+   },
+   "l3ae": {
+    "turnover_mean_all_months": 0.18782366244725737,
+    "turnover_mean_nonzero_months": 0.1886195254237288,
+    "n_all": 237,
+    "n_nonzero": 236,
+    "turnover_gap": 0.0007958629764714398,
+    "cost_pp_month": 0.04655129887457628,
+    "net_pp_month": 0.11685923699040261,
+    "t_reused_se": 2.4137421934316334
+   },
+   "delta_vs_l3ae_net": 0.00019641898259316337,
+   "delta_vs_l3ae_cost": -0.0001964189825931495,
+   "t_delta_vs_l3ae_total": 0.004353165821511684,
+   "t_shift_from_se_only": 0.00029610710637628657
+  }
+ ],
+ "q_tiers": [
+  {
+   "id": "net_BASE_1000w",
+   "label": "1000万|BASE",
+   "capital": 10000000.0,
+   "fee": "BASE",
+   "n": 237,
+   "n_eff": 234,
+   "mean_pp": 0.12546723628691983,
+   "sd_pp": 0.6414309784272827,
+   "se_iid_pp": 0.041665419394978066,
+   "t_iid": 3.0113038128218723,
+   "p_iid": 0.002884213957257291,
+   "se_nw3_pp": 0.0313506890291708,
+   "t_nw3": 4.0020567385353685,
+   "p_nw3": 8.410264687059588e-05,
+   "ci95_iid": [
+    0.04338357461627605,
+    0.2075508979575636
+   ],
+   "ci95_nw3": [
+    0.06370428300863867,
+    0.187230189565201
+   ],
+   "t_crit": 1.9700668531021033,
+   "lag": 3,
+   "n_dropped": 0
+  },
+  {
+   "id": "net_BASE_3000w",
+   "label": "3000万|BASE",
+   "capital": 30000000.0,
+   "fee": "BASE",
+   "n": 237,
+   "n_eff": 234,
+   "mean_pp": 0.13595891139240507,
+   "sd_pp": 0.6902937092562058,
+   "se_iid_pp": 0.04483939483620601,
+   "t_iid": 3.032130828015183,
+   "p_iid": 0.002699459295998213,
+   "se_nw3_pp": 0.033664658822536955,
+   "t_nw3": 4.0386243659593175,
+   "p_nw3": 7.273409740837666e-05,
+   "ci95_iid": [
+    0.04762230591243799,
+    0.22429551687237215
+   ],
+   "ci95_nw3": [
+    0.06963728292513373,
+    0.20228053985967642
+   ],
+   "t_crit": 1.9700668531021033,
+   "lag": 3,
+   "n_dropped": 0
+  },
+  {
+   "id": "net_CONS_1000w",
+   "label": "1000万|CONS",
+   "capital": 10000000.0,
+   "fee": "CONSERVATIVE",
+   "n": 237,
+   "n_eff": 234,
+   "mean_pp": 0.09807313924050633,
+   "sd_pp": 0.6422107889250794,
+   "se_iid_pp": 0.0417160735300792,
+   "t_iid": 2.3509676472736847,
+   "p_iid": 0.019548390067816338,
+   "se_nw3_pp": 0.03148193999155652,
+   "t_nw3": 3.1152190515200022,
+   "p_nw3": 0.0020656054116752437,
+   "ci95_iid": [
+    0.01588968553732724,
+    0.1802565929436854
+   ],
+   "ci95_nw3": [
+    0.036051612791791324,
+    0.16009466568922132
+   ],
+   "t_crit": 1.9700668531021033,
+   "lag": 3,
+   "n_dropped": 0
+  },
+  {
+   "id": "net_CONS_3000w",
+   "label": "3000万|CONS",
+   "capital": 30000000.0,
+   "fee": "CONSERVATIVE",
+   "n": 237,
+   "n_eff": 234,
+   "mean_pp": 0.13148608860759495,
+   "sd_pp": 0.6905434195558373,
+   "se_iid_pp": 0.04485561526320644,
+   "t_iid": 2.9313183608351614,
+   "p_iid": 0.0037068979416548594,
+   "se_nw3_pp": 0.03371757691487145,
+   "t_nw3": 3.899630419456441,
+   "p_nw3": 0.00012563126085195748,
+   "ci95_iid": [
+    0.043117527802051164,
+    0.21985464941313873
+   ],
+   "ci95_nw3": [
+    0.06506020796068603,
+    0.19791196925450388
+   ],
+   "t_crit": 1.9700668531021033,
+   "lag": 3,
+   "n_dropped": 0
+  },
+  {
+   "id": "net_STRESS_3000w",
+   "label": "3000万|STRESS",
+   "capital": 30000000.0,
+   "fee": "STRESS",
+   "n": 237,
+   "n_eff": 234,
+   "mean_pp": 0.042422713080168775,
+   "sd_pp": 0.6904233423572868,
+   "se_iid_pp": 0.04484781541099217,
+   "t_iid": 0.945925965209244,
+   "p_iid": 0.3451538290144839,
+   "se_nw3_pp": 0.0334383188492849,
+   "t_nw3": 1.2686855840862947,
+   "p_nw3": 0.20580316050090142,
+   "ci95_iid": [
+    -0.04593048149506858,
+    0.13077590765540614
+   ],
+   "ci95_nw3": [
+    -0.023453010508266675,
+    0.10829843666860423
+   ],
+   "t_crit": 1.9700668531021033,
+   "lag": 3,
+   "n_dropped": 0
+  }
+ ],
+ "se_crosscheck": [
+  {
+   "tier": "1000万|BASE",
+   "mine": 0.041665419394978066,
+   "phaseo": 0.041665,
+   "rel_diff": 1.0065882108859855e-05,
+   "t_mine": 3.0113038128218723,
+   "t_phaseo": 3.0113
+  },
+  {
+   "tier": "3000万|BASE",
+   "mine": 0.04483939483620601,
+   "phaseo": 0.044839,
+   "rel_diff": 8.805642543654784e-06,
+   "t_mine": 3.032130828015183,
+   "t_phaseo": 3.0321
+  },
+  {
+   "tier": "1000万|CONS",
+   "mine": 0.0417160735300792,
+   "phaseo": 0.041716,
+   "rel_diff": 1.7626349410064373e-06,
+   "t_mine": 2.3509676472736847,
+   "t_phaseo": 2.351
+  },
+  {
+   "tier": "3000万|CONS",
+   "mine": 0.04485561526320644,
+   "phaseo": 0.044856,
+   "rel_diff": 8.577153414543599e-06,
+   "t_mine": 2.9313183608351614,
+   "t_phaseo": 2.9313
+  },
+  {
+   "tier": "3000万|STRESS",
+   "mine": 0.04484781541099217,
+   "phaseo": 0.044848,
+   "rel_diff": 4.115880481379704e-06,
+   "t_mine": 0.945925965209244,
+   "t_phaseo": 0.9459
+  }
+ ],
+ "primary": {
+  "tier": "T_0p3",
+  "rate": 0.003,
+  "net_pp_month": 0.050716338396624476,
+  "t_iid": 1.0473962441240943,
+  "t_nw3": 1.4161576150480295,
+  "p_iid": 0.29598836432538367,
+  "significance": "NOT_SIGNIFICANT"
+ },
+ "l3ae_claim": {
+  "claimed": "se_net ≥ se_gross，故 t 是真实净收益 t 的上界",
+  "measured": [
+   {
+    "tier": "T_0p3",
+    "se_net_over_gross": 1.0001490218825024,
+    "se_net_ge_gross": true,
+    "var_cost_over_gross": 0.0015177233987265213,
+    "rho": 0.01565350347269451
+   },
+   {
+    "tier": "T_0p1",
+    "se_net_over_gross": 0.9998810346525189,
+    "se_net_ge_gross": false,
+    "var_cost_over_gross": 0.0001686359331918357,
+    "rho": 0.015653503472694487
+   },
+   {
+    "tier": "T_1e8",
+    "se_net_over_gross": 0.9999182568809158,
+    "se_net_ge_gross": false,
+    "var_cost_over_gross": 4.386220622319647e-05,
+    "rho": 0.015653503472694494
+   },
+   {
+    "tier": "T_3e7",
+    "se_net_over_gross": 0.9999099350612171,
+    "se_net_ge_gross": false,
+    "var_cost_over_gross": 5.7711432236575976e-05,
+    "rho": 0.015653503472694504
+   },
+   {
+    "tier": "T_1e7",
+    "se_net_over_gross": 0.9998775453146448,
+    "se_net_ge_gross": false,
+    "var_cost_over_gross": 0.000256791379083467,
+    "rho": 0.01565350347269451
+   }
+  ],
+  "verdict": {
+   "code": "TIER_DEPENDENT",
+   "n_holds": 1,
+   "n": 5,
+   "max_se_ratio_deviation": 0.00014902188250243142,
+   "max_t_shift": 0.0003092706591183436,
+   "note": "「t 是上界」在方向上是错的（真实档 se_net < se_gross），但幅度可忽略：|se 相对偏差| < 0.1%。正确的表述是「成本对标准误的影响 < 0.1%，因此 L3ae 的 t 仍可用，但它不是上界，而是近似值」。"
+  }
+ },
+ "gates": [],
+ "predictions": [
+  {
+   "id": "P1",
+   "timing": "priori",
+   "recon_observed": true,
+   "claim": "phaseo 的 alpha_pp 与 phasei 的 alpha_v1_pp 在 237 个月上逐位相同（max|diff| = 0.0）",
+   "observed": "max|diff|=0.0，共同月 237",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P2",
+   "timing": "priori",
+   "recon_observed": true,
+   "claim": "cost_BASE_pp = 0.102×to，max|残差| ≤ 6e-7",
+   "observed": "max|cost−0.102×to|=5.320e-07",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P3",
+   "timing": "priori",
+   "recon_observed": true,
+   "claim": "五档净收益随费率单调递减，且相邻档差 = 2×mean(to)×Δrate×100",
+   "observed": "净额 0.144253 > 0.141435 > 0.125846 > 0.050716",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P4",
+   "timing": "priori",
+   "recon_observed": true,
+   "claim": "Var(cost)/Var(gross) < 1e-2（全部五档）",
+   "observed": "Var(cost)/Var(gross): T_0p3=1.52e-03, T_0p1=1.69e-04, T_1e8=4.39e-05, T_3e7=5.77e-05, T_1e7=2.57e-04",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P5",
+   "timing": "priori",
+   "recon_observed": true,
+   "claim": "se_net/se_gross ∈ [0.99, 1.01]（全部五档）——即成本对标准误的影响 < 1%",
+   "observed": "se_net/se_gross: T_0p3=1.000149, T_0p1=0.999881, T_1e8=0.999918, T_3e7=0.999910, T_1e7=0.999878",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P6",
+   "timing": "priori",
+   "recon_observed": true,
+   "claim": "「se_net ≥ se_gross」在 T_0p3（压力档）成立，在 T_1e8（真实档）**不成立**",
+   "observed": "0.3% 档 Var(c)≥2Cov=True；0.051% 档=False",
+   "holds": true,
+   "note": "方向分裂正是 L3ae「上界」说法不成立的证据"
+  },
+  {
+   "id": "P10",
+   "timing": "priori",
+   "recon_observed": false,
+   "claim": "真实费率档下 phasei 的净收益 iid t ∈ [2.8, 3.2]、NW(3) t ∈ [3.8, 4.2]，但**这不改变** phasei 的 EXQ5_COST_ABSORBED 判定（判定档是 0.3%）",
+   "observed": "1亿档 t_iid=2.9798、t_nw3=4.0046",
+   "holds": true,
+   "note": "显著性与 phasei 的 EXQ5_COST_ABSORBED 判定不矛盾：判定档是 0.3%"
+  },
+  {
+   "id": "P12",
+   "timing": "priori",
+   "recon_observed": false,
+   "claim": "L3ae 的月度成本被高估：它用 236 个非零交易月的均值 0.188620，而 237 个月的序列均值是 0.187824，差 0.000796 ⇒ 0.3% 档成本高估 4.8e-4 pp",
+   "observed": "非零月均值 0.188620 vs 全月均值 0.187824（差 +0.000796）",
+   "holds": true,
+   "note": "0.3% 档成本因此被 L3ae 高估 -0.000478 pp/月"
+  }
+ ]
+}

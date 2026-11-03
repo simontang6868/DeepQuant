@@ -1,0 +1,4055 @@
+{
+  "schema_version": "w1-window-record-v1",
+  "run_at": "2026-10-27T10:17:59+08:00",
+  "design_version": "oos75-v3",
+  "request_range": {
+    "start": "20170101",
+    "end": "20241231"
+  },
+  "price_limit_mode": "board",
+  "n_experiments": 288,
+  "experiments": [
+    {
+      "experiment_id": "fec6f2336d066e84",
+      "symbol": "000001.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.016540800000000022,
+      "median_strategy_minus_median_benchmark": 0.020820299999999903,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\fec6f2336d066e84\\windows.csv"
+    },
+    {
+      "experiment_id": "0cd1f6b59ae1e383",
+      "symbol": "000001.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01650470000000004,
+      "median_strategy_minus_median_benchmark": 0.020890799999999987,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\0cd1f6b59ae1e383\\windows.csv"
+    },
+    {
+      "experiment_id": "792b13bb87c80aeb",
+      "symbol": "000001.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.018378099999999953,
+      "median_strategy_minus_median_benchmark": 0.017910900000000063,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\792b13bb87c80aeb\\windows.csv"
+    },
+    {
+      "experiment_id": "7d2a3204faeeb941",
+      "symbol": "000001.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.013987799999999995,
+      "median_strategy_minus_median_benchmark": 0.07659859999999996,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\7d2a3204faeeb941\\windows.csv"
+    },
+    {
+      "experiment_id": "cd9cd897b6bbaaf6",
+      "symbol": "000001.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.014142700000000064,
+      "median_strategy_minus_median_benchmark": 0.07655880000000004,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\cd9cd897b6bbaaf6\\windows.csv"
+    },
+    {
+      "experiment_id": "79c95cb15805e700",
+      "symbol": "000001.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.007156199999999946,
+      "median_strategy_minus_median_benchmark": 0.07888890000000004,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\79c95cb15805e700\\windows.csv"
+    },
+    {
+      "experiment_id": "4fa652ec44617968",
+      "symbol": "000301.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.09316480000000016,
+      "median_strategy_minus_median_benchmark": 0.057195100000000165,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\4fa652ec44617968\\windows.csv"
+    },
+    {
+      "experiment_id": "83a482b920b1127d",
+      "symbol": "000301.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.09324420000000011,
+      "median_strategy_minus_median_benchmark": 0.057274600000000064,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\83a482b920b1127d\\windows.csv"
+    },
+    {
+      "experiment_id": "52a1cb86d132ea73",
+      "symbol": "000301.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.08754719999999994,
+      "median_strategy_minus_median_benchmark": 0.05102749999999989,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\52a1cb86d132ea73\\windows.csv"
+    },
+    {
+      "experiment_id": "6326d77e86d88947",
+      "symbol": "000301.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.036473100000000036,
+      "median_strategy_minus_median_benchmark": 0.03901880000000002,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6326d77e86d88947\\windows.csv"
+    },
+    {
+      "experiment_id": "1918dd32828daab2",
+      "symbol": "000301.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.03655490000000006,
+      "median_strategy_minus_median_benchmark": 0.038978999999999986,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1918dd32828daab2\\windows.csv"
+    },
+    {
+      "experiment_id": "8adaf3c9c1491c9c",
+      "symbol": "000301.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.034599500000000005,
+      "median_strategy_minus_median_benchmark": 0.03721589999999997,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8adaf3c9c1491c9c\\windows.csv"
+    },
+    {
+      "experiment_id": "a31745baa340aad8",
+      "symbol": "000657.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.013694799999999896,
+      "median_strategy_minus_median_benchmark": 0.002053699999999936,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a31745baa340aad8\\windows.csv"
+    },
+    {
+      "experiment_id": "f77134f9f222e550",
+      "symbol": "000657.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.013765599999999933,
+      "median_strategy_minus_median_benchmark": 0.0021244999999999736,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f77134f9f222e550\\windows.csv"
+    },
+    {
+      "experiment_id": "5deb3dd781480d09",
+      "symbol": "000657.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.010843600000000064,
+      "median_strategy_minus_median_benchmark": -0.0004176999999999653,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5deb3dd781480d09\\windows.csv"
+    },
+    {
+      "experiment_id": "6735aee6c3f29ee2",
+      "symbol": "000657.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06725940000000019,
+      "median_strategy_minus_median_benchmark": 0.07955179999999984,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6735aee6c3f29ee2\\windows.csv"
+    },
+    {
+      "experiment_id": "6e7bad6845bc6667",
+      "symbol": "000657.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.0672195000000001,
+      "median_strategy_minus_median_benchmark": 0.07971380000000006,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6e7bad6845bc6667\\windows.csv"
+    },
+    {
+      "experiment_id": "9bc40d94e4ef41d5",
+      "symbol": "000657.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06784270000000003,
+      "median_strategy_minus_median_benchmark": 0.0700194999999999,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\9bc40d94e4ef41d5\\windows.csv"
+    },
+    {
+      "experiment_id": "080f406d9fb18269",
+      "symbol": "000807.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.050376999999999894,
+      "median_strategy_minus_median_benchmark": -0.005062700000000087,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\080f406d9fb18269\\windows.csv"
+    },
+    {
+      "experiment_id": "2c1a165d312177dd",
+      "symbol": "000807.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.050589899999999965,
+      "median_strategy_minus_median_benchmark": -0.004849799999999904,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2c1a165d312177dd\\windows.csv"
+    },
+    {
+      "experiment_id": "5885283eef00293f",
+      "symbol": "000807.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.03787599999999991,
+      "median_strategy_minus_median_benchmark": -0.020362199999999997,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5885283eef00293f\\windows.csv"
+    },
+    {
+      "experiment_id": "2c1a16d0e6f93095",
+      "symbol": "000807.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06357630000000003,
+      "median_strategy_minus_median_benchmark": 0.01407959999999997,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2c1a16d0e6f93095\\windows.csv"
+    },
+    {
+      "experiment_id": "c11841c39595d7a4",
+      "symbol": "000807.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06366240000000012,
+      "median_strategy_minus_median_benchmark": 0.014119600000000121,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\c11841c39595d7a4\\windows.csv"
+    },
+    {
+      "experiment_id": "a853bc3856feee0b",
+      "symbol": "000807.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.060695899999999914,
+      "median_strategy_minus_median_benchmark": 0.013949800000000123,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a853bc3856feee0b\\windows.csv"
+    },
+    {
+      "experiment_id": "650d44bf5cb272be",
+      "symbol": "000977.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.024802200000000107,
+      "median_strategy_minus_median_benchmark": -0.06629090000000004,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\650d44bf5cb272be\\windows.csv"
+    },
+    {
+      "experiment_id": "91a8d78a63430c2b",
+      "symbol": "000977.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.024548500000000084,
+      "median_strategy_minus_median_benchmark": -0.06625269999999994,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\91a8d78a63430c2b\\windows.csv"
+    },
+    {
+      "experiment_id": "d8fc894b73279887",
+      "symbol": "000977.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01427529999999999,
+      "median_strategy_minus_median_benchmark": -0.0677947000000001,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\d8fc894b73279887\\windows.csv"
+    },
+    {
+      "experiment_id": "fabfe2bf238edbaa",
+      "symbol": "000977.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.011044399999999843,
+      "median_strategy_minus_median_benchmark": -0.047965600000000164,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\fabfe2bf238edbaa\\windows.csv"
+    },
+    {
+      "experiment_id": "8222ac272930cc9b",
+      "symbol": "000977.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.010953699999999955,
+      "median_strategy_minus_median_benchmark": -0.047792899999999916,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8222ac272930cc9b\\windows.csv"
+    },
+    {
+      "experiment_id": "b9747f5a01da9163",
+      "symbol": "000977.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0190226,
+      "median_strategy_minus_median_benchmark": -0.05619200000000002,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\b9747f5a01da9163\\windows.csv"
+    },
+    {
+      "experiment_id": "f3ab2560bbe4f546",
+      "symbol": "001979.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0731132000000001,
+      "median_strategy_minus_median_benchmark": -0.020904400000000045,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f3ab2560bbe4f546\\windows.csv"
+    },
+    {
+      "experiment_id": "bae579e60f298341",
+      "symbol": "001979.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.07293149999999993,
+      "median_strategy_minus_median_benchmark": -0.020865500000000092,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\bae579e60f298341\\windows.csv"
+    },
+    {
+      "experiment_id": "b710f439c77619f7",
+      "symbol": "001979.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.07781600000000011,
+      "median_strategy_minus_median_benchmark": -0.03485159999999998,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\b710f439c77619f7\\windows.csv"
+    },
+    {
+      "experiment_id": "84f8b04badb32975",
+      "symbol": "001979.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.010712300000000008,
+      "median_strategy_minus_median_benchmark": 0.03513649999999979,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\84f8b04badb32975\\windows.csv"
+    },
+    {
+      "experiment_id": "eddf4be27a26f7aa",
+      "symbol": "001979.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.010836199999999963,
+      "median_strategy_minus_median_benchmark": 0.035214499999999815,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\eddf4be27a26f7aa\\windows.csv"
+    },
+    {
+      "experiment_id": "374c9f8e46078de4",
+      "symbol": "001979.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.012580900000000006,
+      "median_strategy_minus_median_benchmark": 0.030652799999999814,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\374c9f8e46078de4\\windows.csv"
+    },
+    {
+      "experiment_id": "60501d6f72631154",
+      "symbol": "002074.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.009133699999999911,
+      "median_strategy_minus_median_benchmark": -0.0015136999999999512,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\60501d6f72631154\\windows.csv"
+    },
+    {
+      "experiment_id": "f7f64278d1d7feae",
+      "symbol": "002074.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.009060100000000126,
+      "median_strategy_minus_median_benchmark": -0.0014783000000000435,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f7f64278d1d7feae\\windows.csv"
+    },
+    {
+      "experiment_id": "d332ee436e7a5355",
+      "symbol": "002074.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.013985200000000031,
+      "median_strategy_minus_median_benchmark": 0.012503599999999948,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\d332ee436e7a5355\\windows.csv"
+    },
+    {
+      "experiment_id": "00be434503665e78",
+      "symbol": "002074.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.07235840000000016,
+      "median_strategy_minus_median_benchmark": 0.059786399999999906,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\00be434503665e78\\windows.csv"
+    },
+    {
+      "experiment_id": "bef2c8ca4a1a7bab",
+      "symbol": "002074.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.07239680000000015,
+      "median_strategy_minus_median_benchmark": 0.05986299999999978,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\bef2c8ca4a1a7bab\\windows.csv"
+    },
+    {
+      "experiment_id": "f1542851181238a3",
+      "symbol": "002074.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.07151630000000009,
+      "median_strategy_minus_median_benchmark": 0.056502699999999684,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f1542851181238a3\\windows.csv"
+    },
+    {
+      "experiment_id": "8f8814fc29281b91",
+      "symbol": "002241.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.011699300000000079,
+      "median_strategy_minus_median_benchmark": 0.02094509999999994,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8f8814fc29281b91\\windows.csv"
+    },
+    {
+      "experiment_id": "dfde005281514e9a",
+      "symbol": "002241.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.011788499999999758,
+      "median_strategy_minus_median_benchmark": 0.020905700000000027,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\dfde005281514e9a\\windows.csv"
+    },
+    {
+      "experiment_id": "6d950db0501cd5cb",
+      "symbol": "002241.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.002241099999999885,
+      "median_strategy_minus_median_benchmark": 0.020298199999999933,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6d950db0501cd5cb\\windows.csv"
+    },
+    {
+      "experiment_id": "63b4f416c2c1befc",
+      "symbol": "002241.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06576130000000002,
+      "median_strategy_minus_median_benchmark": 0.04026099999999999,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\63b4f416c2c1befc\\windows.csv"
+    },
+    {
+      "experiment_id": "c21a7ca52d05ab32",
+      "symbol": "002241.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06592310000000001,
+      "median_strategy_minus_median_benchmark": 0.040424000000000126,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\c21a7ca52d05ab32\\windows.csv"
+    },
+    {
+      "experiment_id": "10677bb6c6696ed8",
+      "symbol": "002241.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.05711820000000012,
+      "median_strategy_minus_median_benchmark": 0.03258739999999993,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\10677bb6c6696ed8\\windows.csv"
+    },
+    {
+      "experiment_id": "35e2b93dc9885ee6",
+      "symbol": "002415.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.05597359999999996,
+      "median_strategy_minus_median_benchmark": 0.027299700000000038,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\35e2b93dc9885ee6\\windows.csv"
+    },
+    {
+      "experiment_id": "87ccdff54a1bb6b0",
+      "symbol": "002415.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.05593900000000007,
+      "median_strategy_minus_median_benchmark": 0.027259799999999945,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\87ccdff54a1bb6b0\\windows.csv"
+    },
+    {
+      "experiment_id": "e220dfcf9d41d3d8",
+      "symbol": "002415.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.059147200000000066,
+      "median_strategy_minus_median_benchmark": 0.027939900000000017,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\e220dfcf9d41d3d8\\windows.csv"
+    },
+    {
+      "experiment_id": "5b22ec3d9a1ab0bb",
+      "symbol": "002415.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 22,
+      "median_paired_excess": 0.03487275000000012,
+      "median_strategy_minus_median_benchmark": 0.035552150000000005,
+      "status_counts": {
+        "selection_failed": 1,
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5b22ec3d9a1ab0bb\\windows.csv"
+    },
+    {
+      "experiment_id": "3e7c12f8e8f0133d",
+      "symbol": "002415.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 22,
+      "median_paired_excess": 0.035004949999999924,
+      "median_strategy_minus_median_benchmark": 0.03558984999999992,
+      "status_counts": {
+        "selection_failed": 1,
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3e7c12f8e8f0133d\\windows.csv"
+    },
+    {
+      "experiment_id": "5bc9f9e94ecedea1",
+      "symbol": "002415.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 22,
+      "median_paired_excess": 0.027801349999999947,
+      "median_strategy_minus_median_benchmark": 0.03231895000000001,
+      "status_counts": {
+        "selection_failed": 1,
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5bc9f9e94ecedea1\\windows.csv"
+    },
+    {
+      "experiment_id": "d7bdc88f5e7fac75",
+      "symbol": "002493.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01599930000000005,
+      "median_strategy_minus_median_benchmark": -0.03330110000000008,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\d7bdc88f5e7fac75\\windows.csv"
+    },
+    {
+      "experiment_id": "255d8a353b88a0ca",
+      "symbol": "002493.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03014349999999988,
+      "median_strategy_minus_median_benchmark": -0.08367729999999995,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\255d8a353b88a0ca\\windows.csv"
+    },
+    {
+      "experiment_id": "6c82d1ff12ee7c8c",
+      "symbol": "002493.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.00951129999999989,
+      "median_strategy_minus_median_benchmark": -0.03666019999999992,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6c82d1ff12ee7c8c\\windows.csv"
+    },
+    {
+      "experiment_id": "ce8c004f7c1ef4e6",
+      "symbol": "002493.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01942199999999994,
+      "median_strategy_minus_median_benchmark": -0.03330110000000008,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ce8c004f7c1ef4e6\\windows.csv"
+    },
+    {
+      "experiment_id": "4bba32019b659826",
+      "symbol": "002493.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.019337100000000107,
+      "median_strategy_minus_median_benchmark": -0.03334090000000001,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\4bba32019b659826\\windows.csv"
+    },
+    {
+      "experiment_id": "80063d9e00f520c5",
+      "symbol": "002493.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.025267600000000057,
+      "median_strategy_minus_median_benchmark": -0.03151079999999995,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\80063d9e00f520c5\\windows.csv"
+    },
+    {
+      "experiment_id": "8540abcc249f2437",
+      "symbol": "002625.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": -0.024956199999999984,
+      "median_strategy_minus_median_benchmark": -0.043516599999999794,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8540abcc249f2437\\windows.csv"
+    },
+    {
+      "experiment_id": "00bb2f8a10eb76fd",
+      "symbol": "002625.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": -0.02473190000000003,
+      "median_strategy_minus_median_benchmark": -0.04336759999999984,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\00bb2f8a10eb76fd\\windows.csv"
+    },
+    {
+      "experiment_id": "de6a1dd51cad0a67",
+      "symbol": "002625.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": -0.03755300000000006,
+      "median_strategy_minus_median_benchmark": -0.03589109999999984,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\de6a1dd51cad0a67\\windows.csv"
+    },
+    {
+      "experiment_id": "283fe68cc14f6b15",
+      "symbol": "002625.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.03386,
+      "median_strategy_minus_median_benchmark": 0.047550800000000115,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\283fe68cc14f6b15\\windows.csv"
+    },
+    {
+      "experiment_id": "750b0357b5e18139",
+      "symbol": "002625.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.03386,
+      "median_strategy_minus_median_benchmark": 0.04759150000000012,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\750b0357b5e18139\\windows.csv"
+    },
+    {
+      "experiment_id": "aa56cecbf77e5f23",
+      "symbol": "002625.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 21,
+      "n_paired": 21,
+      "median_paired_excess": 0.03379999999999994,
+      "median_strategy_minus_median_benchmark": 0.045850700000000244,
+      "status_counts": {
+        "ok": 21
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\aa56cecbf77e5f23\\windows.csv"
+    },
+    {
+      "experiment_id": "1e093f4ea3679a53",
+      "symbol": "002916.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 20,
+      "n_paired": 20,
+      "median_paired_excess": -0.046745199999999876,
+      "median_strategy_minus_median_benchmark": -0.07227734999999996,
+      "status_counts": {
+        "ok": 20
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1e093f4ea3679a53\\windows.csv"
+    },
+    {
+      "experiment_id": "a9606997daf795ca",
+      "symbol": "002916.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 20,
+      "n_paired": 20,
+      "median_paired_excess": -0.04663275,
+      "median_strategy_minus_median_benchmark": -0.07227810000000001,
+      "status_counts": {
+        "ok": 20
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a9606997daf795ca\\windows.csv"
+    },
+    {
+      "experiment_id": "241c783613de8ae5",
+      "symbol": "002916.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 20,
+      "n_paired": 20,
+      "median_paired_excess": -0.051270799999999894,
+      "median_strategy_minus_median_benchmark": -0.07226889999999997,
+      "status_counts": {
+        "ok": 20
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\241c783613de8ae5\\windows.csv"
+    },
+    {
+      "experiment_id": "765604f4e6e07ede",
+      "symbol": "002916.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 20,
+      "n_paired": 20,
+      "median_paired_excess": 0.0476639499999999,
+      "median_strategy_minus_median_benchmark": -0.02897974999999986,
+      "status_counts": {
+        "ok": 20
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\765604f4e6e07ede\\windows.csv"
+    },
+    {
+      "experiment_id": "a5e206977cd19237",
+      "symbol": "002916.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 20,
+      "n_paired": 20,
+      "median_paired_excess": 0.047771200000000014,
+      "median_strategy_minus_median_benchmark": -0.028857350000000004,
+      "status_counts": {
+        "ok": 20
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a5e206977cd19237\\windows.csv"
+    },
+    {
+      "experiment_id": "3e649db8bbe77fa6",
+      "symbol": "002916.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 20,
+      "n_paired": 20,
+      "median_paired_excess": 0.04201575000000002,
+      "median_strategy_minus_median_benchmark": -0.03409119999999988,
+      "status_counts": {
+        "ok": 20
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3e649db8bbe77fa6\\windows.csv"
+    },
+    {
+      "experiment_id": "ca53455dc594ec4d",
+      "symbol": "300059.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03315020000000013,
+      "median_strategy_minus_median_benchmark": -0.06329549999999995,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ca53455dc594ec4d\\windows.csv"
+    },
+    {
+      "experiment_id": "4771a1582b803c7c",
+      "symbol": "300059.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.033020700000000014,
+      "median_strategy_minus_median_benchmark": -0.06329610000000008,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\4771a1582b803c7c\\windows.csv"
+    },
+    {
+      "experiment_id": "a7d81f2d04c37772",
+      "symbol": "300059.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.07295000000000007,
+      "median_strategy_minus_median_benchmark": -0.07200299999999993,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a7d81f2d04c37772\\windows.csv"
+    },
+    {
+      "experiment_id": "20ec6fad8cc6535c",
+      "symbol": "300059.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.022071399999999963,
+      "median_strategy_minus_median_benchmark": -0.05102410000000002,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\20ec6fad8cc6535c\\windows.csv"
+    },
+    {
+      "experiment_id": "dc0d79fe0138710e",
+      "symbol": "300059.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.022071300000000016,
+      "median_strategy_minus_median_benchmark": -0.050983699999999965,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\dc0d79fe0138710e\\windows.csv"
+    },
+    {
+      "experiment_id": "82e4170e2c32c89a",
+      "symbol": "300059.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.013631400000000071,
+      "median_strategy_minus_median_benchmark": -0.052273400000000025,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\82e4170e2c32c89a\\windows.csv"
+    },
+    {
+      "experiment_id": "4af3d6c86d6db822",
+      "symbol": "300316.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.09764880000000009,
+      "median_strategy_minus_median_benchmark": -0.16723069999999995,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\4af3d6c86d6db822\\windows.csv"
+    },
+    {
+      "experiment_id": "963a587f0f2cf8a0",
+      "symbol": "300316.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.09764759999999983,
+      "median_strategy_minus_median_benchmark": -0.16707929999999993,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\963a587f0f2cf8a0\\windows.csv"
+    },
+    {
+      "experiment_id": "fe1c75001b933493",
+      "symbol": "300316.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0977821000000001,
+      "median_strategy_minus_median_benchmark": -0.17418579999999995,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\fe1c75001b933493\\windows.csv"
+    },
+    {
+      "experiment_id": "e20685ef93928fec",
+      "symbol": "300316.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0393730000000001,
+      "median_strategy_minus_median_benchmark": -0.13450600000000001,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\e20685ef93928fec\\windows.csv"
+    },
+    {
+      "experiment_id": "21312ca5b3e6804b",
+      "symbol": "300316.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.039338399999999996,
+      "median_strategy_minus_median_benchmark": -0.13439769999999984,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\21312ca5b3e6804b\\windows.csv"
+    },
+    {
+      "experiment_id": "344fd65c5803870d",
+      "symbol": "300316.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03881279999999998,
+      "median_strategy_minus_median_benchmark": -0.13456439999999992,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\344fd65c5803870d\\windows.csv"
+    },
+    {
+      "experiment_id": "affafab6b8303634",
+      "symbol": "300442.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.037271799999999855,
+      "median_strategy_minus_median_benchmark": -0.05709520000000001,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\affafab6b8303634\\windows.csv"
+    },
+    {
+      "experiment_id": "8fcfb33ff74b2d3d",
+      "symbol": "300442.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.03746869999999991,
+      "median_strategy_minus_median_benchmark": -0.05689870000000019,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8fcfb33ff74b2d3d\\windows.csv"
+    },
+    {
+      "experiment_id": "caddb2fcbc8fa890",
+      "symbol": "300442.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.019474300000000055,
+      "median_strategy_minus_median_benchmark": -0.06644590000000006,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\caddb2fcbc8fa890\\windows.csv"
+    },
+    {
+      "experiment_id": "1c97d8e4ab3c1dab",
+      "symbol": "300442.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 22,
+      "median_paired_excess": -0.04887419999999998,
+      "median_strategy_minus_median_benchmark": -0.02429754999999989,
+      "status_counts": {
+        "ok": 22,
+        "selection_failed": 1
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1c97d8e4ab3c1dab\\windows.csv"
+    },
+    {
+      "experiment_id": "ce8c488a11d97ef6",
+      "symbol": "300442.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 22,
+      "median_paired_excess": -0.04877339999999997,
+      "median_strategy_minus_median_benchmark": -0.024180750000000084,
+      "status_counts": {
+        "ok": 22,
+        "selection_failed": 1
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ce8c488a11d97ef6\\windows.csv"
+    },
+    {
+      "experiment_id": "cdcc7a365d2762d4",
+      "symbol": "300442.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 22,
+      "median_paired_excess": -0.053249699999999955,
+      "median_strategy_minus_median_benchmark": -0.025202200000000063,
+      "status_counts": {
+        "ok": 22,
+        "selection_failed": 1
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\cdcc7a365d2762d4\\windows.csv"
+    },
+    {
+      "experiment_id": "4a3174e590ac4ede",
+      "symbol": "300661.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.056469349999999974,
+      "median_strategy_minus_median_benchmark": -0.07367250000000014,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\4a3174e590ac4ede\\windows.csv"
+    },
+    {
+      "experiment_id": "749ecb6eed0f5754",
+      "symbol": "300661.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.05636649999999993,
+      "median_strategy_minus_median_benchmark": -0.07361845000000017,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\749ecb6eed0f5754\\windows.csv"
+    },
+    {
+      "experiment_id": "ce350a65157df595",
+      "symbol": "300661.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.06184544999999997,
+      "median_strategy_minus_median_benchmark": -0.07658485000000015,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ce350a65157df595\\windows.csv"
+    },
+    {
+      "experiment_id": "6037a77a15c49638",
+      "symbol": "300661.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": 0.02912904999999999,
+      "median_strategy_minus_median_benchmark": -0.039323150000000195,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6037a77a15c49638\\windows.csv"
+    },
+    {
+      "experiment_id": "5040d6107c7d4255",
+      "symbol": "300661.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": 0.029199999999999948,
+      "median_strategy_minus_median_benchmark": -0.03928355000000017,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5040d6107c7d4255\\windows.csv"
+    },
+    {
+      "experiment_id": "f659eb9a377cb3d4",
+      "symbol": "300661.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": 0.023908549999999973,
+      "median_strategy_minus_median_benchmark": -0.04117475000000015,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f659eb9a377cb3d4\\windows.csv"
+    },
+    {
+      "experiment_id": "3914d95425b19d5b",
+      "symbol": "300896.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 11,
+      "n_paired": 11,
+      "median_paired_excess": 0.031172599999999884,
+      "median_strategy_minus_median_benchmark": -0.011898300000000028,
+      "status_counts": {
+        "ok": 11
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3914d95425b19d5b\\windows.csv"
+    },
+    {
+      "experiment_id": "183c1e85da3bc4e9",
+      "symbol": "300896.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 11,
+      "n_paired": 11,
+      "median_paired_excess": 0.031192700000000073,
+      "median_strategy_minus_median_benchmark": -0.011707399999999812,
+      "status_counts": {
+        "ok": 11
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\183c1e85da3bc4e9\\windows.csv"
+    },
+    {
+      "experiment_id": "ba807efff525bfd9",
+      "symbol": "300896.SZ",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 11,
+      "n_paired": 11,
+      "median_paired_excess": 0.030098600000000086,
+      "median_strategy_minus_median_benchmark": 0.01891670000000001,
+      "status_counts": {
+        "ok": 11
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ba807efff525bfd9\\windows.csv"
+    },
+    {
+      "experiment_id": "d2e7611c3f9a1d41",
+      "symbol": "300896.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 11,
+      "n_paired": 11,
+      "median_paired_excess": 0.11054609999999987,
+      "median_strategy_minus_median_benchmark": 0.0460197,
+      "status_counts": {
+        "ok": 11
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\d2e7611c3f9a1d41\\windows.csv"
+    },
+    {
+      "experiment_id": "251b0cd921385250",
+      "symbol": "300896.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 11,
+      "n_paired": 11,
+      "median_paired_excess": 0.11064180000000001,
+      "median_strategy_minus_median_benchmark": 0.04601170000000021,
+      "status_counts": {
+        "ok": 11
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\251b0cd921385250\\windows.csv"
+    },
+    {
+      "experiment_id": "a803b6e0950360b4",
+      "symbol": "300896.SZ",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 11,
+      "n_paired": 11,
+      "median_paired_excess": 0.10550539999999986,
+      "median_strategy_minus_median_benchmark": 0.04644170000000003,
+      "status_counts": {
+        "ok": 11
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a803b6e0950360b4\\windows.csv"
+    },
+    {
+      "experiment_id": "6bff25a08c145830",
+      "symbol": "600000.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.020497399999999888,
+      "median_strategy_minus_median_benchmark": -0.007521400000000011,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6bff25a08c145830\\windows.csv"
+    },
+    {
+      "experiment_id": "9bf587c0aba1f8f7",
+      "symbol": "600000.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.02026580000000011,
+      "median_strategy_minus_median_benchmark": -0.007482299999999942,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\9bf587c0aba1f8f7\\windows.csv"
+    },
+    {
+      "experiment_id": "74a335615ec31f83",
+      "symbol": "600000.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.02642369999999994,
+      "median_strategy_minus_median_benchmark": -0.015735899999999914,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\74a335615ec31f83\\windows.csv"
+    },
+    {
+      "experiment_id": "14c936ea306d8311",
+      "symbol": "600000.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.011641800000000035,
+      "median_strategy_minus_median_benchmark": 0.015677200000000058,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\14c936ea306d8311\\windows.csv"
+    },
+    {
+      "experiment_id": "1e3d8c45a39f3a1c",
+      "symbol": "600000.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.01180850000000011,
+      "median_strategy_minus_median_benchmark": 0.01584960000000013,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1e3d8c45a39f3a1c\\windows.csv"
+    },
+    {
+      "experiment_id": "1d2668feef03996a",
+      "symbol": "600000.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.006013600000000174,
+      "median_strategy_minus_median_benchmark": 0.009103000000000083,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1d2668feef03996a\\windows.csv"
+    },
+    {
+      "experiment_id": "0da5bd444cab74d6",
+      "symbol": "600018.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.058518099999999906,
+      "median_strategy_minus_median_benchmark": -0.06767629999999991,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\0da5bd444cab74d6\\windows.csv"
+    },
+    {
+      "experiment_id": "64295d54a97e3440",
+      "symbol": "600018.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0584384,
+      "median_strategy_minus_median_benchmark": -0.06759989999999994,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\64295d54a97e3440\\windows.csv"
+    },
+    {
+      "experiment_id": "7feee9a4dd95d1bc",
+      "symbol": "600018.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.06374719999999989,
+      "median_strategy_minus_median_benchmark": -0.07527919999999999,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\7feee9a4dd95d1bc\\windows.csv"
+    },
+    {
+      "experiment_id": "49ad13d344aa0d10",
+      "symbol": "600018.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.014436899999999753,
+      "median_strategy_minus_median_benchmark": 0.01797369999999998,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\49ad13d344aa0d10\\windows.csv"
+    },
+    {
+      "experiment_id": "a9cb7d05331e83ec",
+      "symbol": "600018.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.014608499999999802,
+      "median_strategy_minus_median_benchmark": 0.018071700000000135,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a9cb7d05331e83ec\\windows.csv"
+    },
+    {
+      "experiment_id": "cc8971286ba5c2d2",
+      "symbol": "600018.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.009370300000000165,
+      "median_strategy_minus_median_benchmark": 0.015606699999999973,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\cc8971286ba5c2d2\\windows.csv"
+    },
+    {
+      "experiment_id": "3bf12d30b4440995",
+      "symbol": "600028.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.06145149999999988,
+      "median_strategy_minus_median_benchmark": -0.05381610000000003,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3bf12d30b4440995\\windows.csv"
+    },
+    {
+      "experiment_id": "a6c47c3c1b722667",
+      "symbol": "600028.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.06141199999999991,
+      "median_strategy_minus_median_benchmark": -0.0536335,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a6c47c3c1b722667\\windows.csv"
+    },
+    {
+      "experiment_id": "1477389e8958e734",
+      "symbol": "600028.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.06457579999999996,
+      "median_strategy_minus_median_benchmark": -0.06158409999999992,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1477389e8958e734\\windows.csv"
+    },
+    {
+      "experiment_id": "624359b2c19713de",
+      "symbol": "600028.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.02237050000000007,
+      "median_strategy_minus_median_benchmark": -0.01628089999999993,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\624359b2c19713de\\windows.csv"
+    },
+    {
+      "experiment_id": "038d3c1af03452cd",
+      "symbol": "600028.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.022370400000000235,
+      "median_strategy_minus_median_benchmark": -0.016199400000000086,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\038d3c1af03452cd\\windows.csv"
+    },
+    {
+      "experiment_id": "2e992b198edaede5",
+      "symbol": "600028.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.022339499999999957,
+      "median_strategy_minus_median_benchmark": -0.0231463999999999,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2e992b198edaede5\\windows.csv"
+    },
+    {
+      "experiment_id": "df59c95c5447758e",
+      "symbol": "600048.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.05851390000000001,
+      "median_strategy_minus_median_benchmark": -0.05477429999999983,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\df59c95c5447758e\\windows.csv"
+    },
+    {
+      "experiment_id": "c0e43591c9f9b8d7",
+      "symbol": "600048.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.05836369999999991,
+      "median_strategy_minus_median_benchmark": -0.05455149999999975,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\c0e43591c9f9b8d7\\windows.csv"
+    },
+    {
+      "experiment_id": "5027821c38094e74",
+      "symbol": "600048.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0667276,
+      "median_strategy_minus_median_benchmark": -0.0667276,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5027821c38094e74\\windows.csv"
+    },
+    {
+      "experiment_id": "50f7dd874eae1add",
+      "symbol": "600048.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.007277599999999884,
+      "median_strategy_minus_median_benchmark": 0.0058515000000001205,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\50f7dd874eae1add\\windows.csv"
+    },
+    {
+      "experiment_id": "2583e50a3ebcbcc4",
+      "symbol": "600048.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.007277900000000059,
+      "median_strategy_minus_median_benchmark": 0.006060699999999919,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2583e50a3ebcbcc4\\windows.csv"
+    },
+    {
+      "experiment_id": "5ff0e6bb7c3897a8",
+      "symbol": "600048.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.006790399999999863,
+      "median_strategy_minus_median_benchmark": -0.006656999999999913,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5ff0e6bb7c3897a8\\windows.csv"
+    },
+    {
+      "experiment_id": "3c563c8527d7c958",
+      "symbol": "600104.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.025765100000000096,
+      "median_strategy_minus_median_benchmark": -0.05206999999999995,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3c563c8527d7c958\\windows.csv"
+    },
+    {
+      "experiment_id": "38d62e347dd7f274",
+      "symbol": "600104.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.025658100000000017,
+      "median_strategy_minus_median_benchmark": -0.05188080000000006,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\38d62e347dd7f274\\windows.csv"
+    },
+    {
+      "experiment_id": "2ce284ecf105f597",
+      "symbol": "600104.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.029871399999999992,
+      "median_strategy_minus_median_benchmark": -0.061729000000000145,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2ce284ecf105f597\\windows.csv"
+    },
+    {
+      "experiment_id": "588993c71ed32910",
+      "symbol": "600104.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06007680000000015,
+      "median_strategy_minus_median_benchmark": -0.008824299999999896,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\588993c71ed32910\\windows.csv"
+    },
+    {
+      "experiment_id": "dfb6654a9b38e74d",
+      "symbol": "600104.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.060077100000000105,
+      "median_strategy_minus_median_benchmark": -0.00886370000000003,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\dfb6654a9b38e74d\\windows.csv"
+    },
+    {
+      "experiment_id": "e292a813f75094a8",
+      "symbol": "600104.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.052884299999999884,
+      "median_strategy_minus_median_benchmark": -0.012354000000000087,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\e292a813f75094a8\\windows.csv"
+    },
+    {
+      "experiment_id": "2ba5a3f1a536791f",
+      "symbol": "600176.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.020119200000000004,
+      "median_strategy_minus_median_benchmark": -0.010107100000000036,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2ba5a3f1a536791f\\windows.csv"
+    },
+    {
+      "experiment_id": "43c59c584504b581",
+      "symbol": "600176.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01988740000000011,
+      "median_strategy_minus_median_benchmark": -0.009985400000000033,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\43c59c584504b581\\windows.csv"
+    },
+    {
+      "experiment_id": "6e1bc9b37e5026b3",
+      "symbol": "600176.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.02724979999999999,
+      "median_strategy_minus_median_benchmark": -0.015211700000000161,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6e1bc9b37e5026b3\\windows.csv"
+    },
+    {
+      "experiment_id": "97457108be3aee46",
+      "symbol": "600176.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.02214930000000015,
+      "median_strategy_minus_median_benchmark": 0.02218769999999992,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\97457108be3aee46\\windows.csv"
+    },
+    {
+      "experiment_id": "704d20cc31f1a21d",
+      "symbol": "600176.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.022303900000000043,
+      "median_strategy_minus_median_benchmark": 0.022303900000000043,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\704d20cc31f1a21d\\windows.csv"
+    },
+    {
+      "experiment_id": "cabb39f700afbdec",
+      "symbol": "600176.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.014195500000000028,
+      "median_strategy_minus_median_benchmark": 0.020051099999999766,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\cabb39f700afbdec\\windows.csv"
+    },
+    {
+      "experiment_id": "56a00e5b7c35b38c",
+      "symbol": "600233.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01887910000000015,
+      "median_strategy_minus_median_benchmark": -0.017662900000000037,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\56a00e5b7c35b38c\\windows.csv"
+    },
+    {
+      "experiment_id": "5e5f6d709f999bbb",
+      "symbol": "600233.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.018879300000000043,
+      "median_strategy_minus_median_benchmark": -0.017550799999999867,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5e5f6d709f999bbb\\windows.csv"
+    },
+    {
+      "experiment_id": "1c9e4f7cc577ec20",
+      "symbol": "600233.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.018838700000000097,
+      "median_strategy_minus_median_benchmark": -0.023988200000000126,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1c9e4f7cc577ec20\\windows.csv"
+    },
+    {
+      "experiment_id": "07f77be57ddf8436",
+      "symbol": "600233.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06707380000000007,
+      "median_strategy_minus_median_benchmark": 0.06257020000000002,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\07f77be57ddf8436\\windows.csv"
+    },
+    {
+      "experiment_id": "c8a7c8e96163377f",
+      "symbol": "600233.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.06723970000000001,
+      "median_strategy_minus_median_benchmark": 0.0626481000000001,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\c8a7c8e96163377f\\windows.csv"
+    },
+    {
+      "experiment_id": "3e11d1acc27b70d1",
+      "symbol": "600233.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.05696230000000002,
+      "median_strategy_minus_median_benchmark": 0.058645599999999964,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3e11d1acc27b70d1\\windows.csv"
+    },
+    {
+      "experiment_id": "28023a8032dc4b43",
+      "symbol": "600415.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.011054800000000253,
+      "median_strategy_minus_median_benchmark": 0.07124979999999992,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\28023a8032dc4b43\\windows.csv"
+    },
+    {
+      "experiment_id": "62227595cb33d6d2",
+      "symbol": "600415.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.011321400000000148,
+      "median_strategy_minus_median_benchmark": 0.07128979999999996,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\62227595cb33d6d2\\windows.csv"
+    },
+    {
+      "experiment_id": "756e09417b2d21af",
+      "symbol": "600415.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.007254399999999994,
+      "median_strategy_minus_median_benchmark": 0.06739640000000002,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\756e09417b2d21af\\windows.csv"
+    },
+    {
+      "experiment_id": "83c8eac452669ac2",
+      "symbol": "600415.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.04767519999999992,
+      "median_strategy_minus_median_benchmark": 0.12126249999999994,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\83c8eac452669ac2\\windows.csv"
+    },
+    {
+      "experiment_id": "9590f4e2837b59bf",
+      "symbol": "600415.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.047784999999999966,
+      "median_strategy_minus_median_benchmark": 0.12134860000000003,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\9590f4e2837b59bf\\windows.csv"
+    },
+    {
+      "experiment_id": "356dd2e0169984a8",
+      "symbol": "600415.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.05516300000000007,
+      "median_strategy_minus_median_benchmark": 0.1145784999999998,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\356dd2e0169984a8\\windows.csv"
+    },
+    {
+      "experiment_id": "969db89ba2d8931d",
+      "symbol": "600489.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.08149169999999994,
+      "median_strategy_minus_median_benchmark": -0.0139648,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\969db89ba2d8931d\\windows.csv"
+    },
+    {
+      "experiment_id": "0f0207ac7a917edd",
+      "symbol": "600489.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.08123139999999984,
+      "median_strategy_minus_median_benchmark": -0.013745700000000083,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\0f0207ac7a917edd\\windows.csv"
+    },
+    {
+      "experiment_id": "2439ba1fc20981ac",
+      "symbol": "600489.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.09439219999999993,
+      "median_strategy_minus_median_benchmark": 0.012179799999999963,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2439ba1fc20981ac\\windows.csv"
+    },
+    {
+      "experiment_id": "805d47fbb4b50c81",
+      "symbol": "600489.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.0397227,
+      "median_strategy_minus_median_benchmark": 0.03191630000000001,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\805d47fbb4b50c81\\windows.csv"
+    },
+    {
+      "experiment_id": "44e6fbb662e5c761",
+      "symbol": "600489.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.03972240000000005,
+      "median_strategy_minus_median_benchmark": 0.0319569999999999,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\44e6fbb662e5c761\\windows.csv"
+    },
+    {
+      "experiment_id": "f5dae41c4f267c6b",
+      "symbol": "600489.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.038150099999999965,
+      "median_strategy_minus_median_benchmark": 0.030866199999999955,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f5dae41c4f267c6b\\windows.csv"
+    },
+    {
+      "experiment_id": "93d6d0123353cdd0",
+      "symbol": "600570.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.06379180000000007,
+      "median_strategy_minus_median_benchmark": -0.04458279999999992,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\93d6d0123353cdd0\\windows.csv"
+    },
+    {
+      "experiment_id": "8a3b9737e9e2d365",
+      "symbol": "600570.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.06364840000000005,
+      "median_strategy_minus_median_benchmark": -0.04443940000000002,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8a3b9737e9e2d365\\windows.csv"
+    },
+    {
+      "experiment_id": "1285c4675ed3287d",
+      "symbol": "600570.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.07053789999999993,
+      "median_strategy_minus_median_benchmark": -0.04984580000000005,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1285c4675ed3287d\\windows.csv"
+    },
+    {
+      "experiment_id": "7479d2918d50290b",
+      "symbol": "600570.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.048582500000000084,
+      "median_strategy_minus_median_benchmark": 0.03787010000000002,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\7479d2918d50290b\\windows.csv"
+    },
+    {
+      "experiment_id": "88bf942378940129",
+      "symbol": "600570.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.04858210000000007,
+      "median_strategy_minus_median_benchmark": 0.03787000000000007,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\88bf942378940129\\windows.csv"
+    },
+    {
+      "experiment_id": "f5b64558b812c05c",
+      "symbol": "600570.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.046556000000000264,
+      "median_strategy_minus_median_benchmark": 0.038080299999999845,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f5b64558b812c05c\\windows.csv"
+    },
+    {
+      "experiment_id": "2e144767bb4ed51b",
+      "symbol": "600674.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.04126099999999999,
+      "median_strategy_minus_median_benchmark": -0.021540499999999962,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2e144767bb4ed51b\\windows.csv"
+    },
+    {
+      "experiment_id": "0856414b8e3a7f19",
+      "symbol": "600674.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.041133399999999876,
+      "median_strategy_minus_median_benchmark": -0.021580399999999944,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\0856414b8e3a7f19\\windows.csv"
+    },
+    {
+      "experiment_id": "53f28be581f7a1e7",
+      "symbol": "600674.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.05032890000000001,
+      "median_strategy_minus_median_benchmark": -0.019742700000000113,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\53f28be581f7a1e7\\windows.csv"
+    },
+    {
+      "experiment_id": "7c63cdac0e9254a8",
+      "symbol": "600674.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03111570000000008,
+      "median_strategy_minus_median_benchmark": -0.021540499999999962,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\7c63cdac0e9254a8\\windows.csv"
+    },
+    {
+      "experiment_id": "854b0c63e8a105f0",
+      "symbol": "600674.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.030868099999999954,
+      "median_strategy_minus_median_benchmark": -0.021580399999999944,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\854b0c63e8a105f0\\windows.csv"
+    },
+    {
+      "experiment_id": "223de87260912d18",
+      "symbol": "600674.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.04410949999999991,
+      "median_strategy_minus_median_benchmark": -0.020416100000000048,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\223de87260912d18\\windows.csv"
+    },
+    {
+      "experiment_id": "7dea20000d81f886",
+      "symbol": "600900.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0392370999999998,
+      "median_strategy_minus_median_benchmark": -0.04949249999999994,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\7dea20000d81f886\\windows.csv"
+    },
+    {
+      "experiment_id": "6f38d6d4ff2df2f6",
+      "symbol": "600900.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.039195800000000114,
+      "median_strategy_minus_median_benchmark": -0.049371000000000054,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6f38d6d4ff2df2f6\\windows.csv"
+    },
+    {
+      "experiment_id": "34296ae62d8cba9e",
+      "symbol": "600900.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.04155859999999989,
+      "median_strategy_minus_median_benchmark": -0.07098999999999989,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\34296ae62d8cba9e\\windows.csv"
+    },
+    {
+      "experiment_id": "e3ffebff4755eece",
+      "symbol": "600900.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.014478199999999886,
+      "median_strategy_minus_median_benchmark": -0.03581040000000013,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\e3ffebff4755eece\\windows.csv"
+    },
+    {
+      "experiment_id": "a0460e6bdb7fbef3",
+      "symbol": "600900.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.014435799999999999,
+      "median_strategy_minus_median_benchmark": -0.03576950000000001,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a0460e6bdb7fbef3\\windows.csv"
+    },
+    {
+      "experiment_id": "cc14aaef1809d876",
+      "symbol": "600900.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01636329999999986,
+      "median_strategy_minus_median_benchmark": -0.03777129999999995,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\cc14aaef1809d876\\windows.csv"
+    },
+    {
+      "experiment_id": "949e5987f6a88dbf",
+      "symbol": "600938.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 6,
+      "n_paired": 6,
+      "median_paired_excess": -0.05986365000000016,
+      "median_strategy_minus_median_benchmark": -0.07963065000000003,
+      "status_counts": {
+        "ok": 6
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\949e5987f6a88dbf\\windows.csv"
+    },
+    {
+      "experiment_id": "867d5b411c25e64a",
+      "symbol": "600938.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 6,
+      "n_paired": 6,
+      "median_paired_excess": -0.059800900000000046,
+      "median_strategy_minus_median_benchmark": -0.07957179999999997,
+      "status_counts": {
+        "ok": 6
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\867d5b411c25e64a\\windows.csv"
+    },
+    {
+      "experiment_id": "7a3990be60c0037d",
+      "symbol": "600938.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 6,
+      "n_paired": 6,
+      "median_paired_excess": -0.06280960000000013,
+      "median_strategy_minus_median_benchmark": -0.08234595000000011,
+      "status_counts": {
+        "ok": 6
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\7a3990be60c0037d\\windows.csv"
+    },
+    {
+      "experiment_id": "1b378aa10d508482",
+      "symbol": "600938.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 6,
+      "n_paired": 6,
+      "median_paired_excess": -0.11798059999999999,
+      "median_strategy_minus_median_benchmark": -0.11489865000000005,
+      "status_counts": {
+        "ok": 6
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1b378aa10d508482\\windows.csv"
+    },
+    {
+      "experiment_id": "55f1779eea6a60f3",
+      "symbol": "600938.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 6,
+      "n_paired": 6,
+      "median_paired_excess": -0.11788214999999996,
+      "median_strategy_minus_median_benchmark": -0.11475029999999986,
+      "status_counts": {
+        "ok": 6
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\55f1779eea6a60f3\\windows.csv"
+    },
+    {
+      "experiment_id": "6418ff44553b62f7",
+      "symbol": "600938.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 6,
+      "n_paired": 6,
+      "median_paired_excess": -0.12301715000000002,
+      "median_strategy_minus_median_benchmark": -0.12086370000000013,
+      "status_counts": {
+        "ok": 6
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6418ff44553b62f7\\windows.csv"
+    },
+    {
+      "experiment_id": "8eeceb254a8f8997",
+      "symbol": "601009.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.012158799999999914,
+      "median_strategy_minus_median_benchmark": -0.037529899999999894,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8eeceb254a8f8997\\windows.csv"
+    },
+    {
+      "experiment_id": "97da89731a5ad476",
+      "symbol": "601009.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.012197400000000025,
+      "median_strategy_minus_median_benchmark": -0.03752989999999967,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\97da89731a5ad476\\windows.csv"
+    },
+    {
+      "experiment_id": "dac9557e0750a68d",
+      "symbol": "601009.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.00991490000000006,
+      "median_strategy_minus_median_benchmark": -0.037039399999999945,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\dac9557e0750a68d\\windows.csv"
+    },
+    {
+      "experiment_id": "ae159637df023e67",
+      "symbol": "601009.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.038885499999999906,
+      "median_strategy_minus_median_benchmark": -0.02757199999999982,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ae159637df023e67\\windows.csv"
+    },
+    {
+      "experiment_id": "387112f28a704896",
+      "symbol": "601009.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03863989999999973,
+      "median_strategy_minus_median_benchmark": -0.0274118999999996,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\387112f28a704896\\windows.csv"
+    },
+    {
+      "experiment_id": "f790e2627a347632",
+      "symbol": "601009.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.042386900000000116,
+      "median_strategy_minus_median_benchmark": -0.03469749999999994,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f790e2627a347632\\windows.csv"
+    },
+    {
+      "experiment_id": "13d42b78acab691d",
+      "symbol": "601066.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 19,
+      "n_paired": 19,
+      "median_paired_excess": -0.08222180000000001,
+      "median_strategy_minus_median_benchmark": -0.0310222,
+      "status_counts": {
+        "ok": 19
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\13d42b78acab691d\\windows.csv"
+    },
+    {
+      "experiment_id": "724842a7d30849a5",
+      "symbol": "601066.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 19,
+      "n_paired": 19,
+      "median_paired_excess": -0.0821128000000001,
+      "median_strategy_minus_median_benchmark": -0.03099189999999974,
+      "status_counts": {
+        "ok": 19
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\724842a7d30849a5\\windows.csv"
+    },
+    {
+      "experiment_id": "e28d5dfb7b612f24",
+      "symbol": "601066.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 19,
+      "n_paired": 19,
+      "median_paired_excess": -0.08783839999999998,
+      "median_strategy_minus_median_benchmark": -0.032944399999999985,
+      "status_counts": {
+        "ok": 19
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\e28d5dfb7b612f24\\windows.csv"
+    },
+    {
+      "experiment_id": "ba91bd83e2fe51c5",
+      "symbol": "601066.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 19,
+      "n_paired": 19,
+      "median_paired_excess": 0.03788729999999996,
+      "median_strategy_minus_median_benchmark": 0.005639899999999809,
+      "status_counts": {
+        "ok": 19
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ba91bd83e2fe51c5\\windows.csv"
+    },
+    {
+      "experiment_id": "d3b4c26fadcec420",
+      "symbol": "601066.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 19,
+      "n_paired": 19,
+      "median_paired_excess": 0.03792850000000014,
+      "median_strategy_minus_median_benchmark": 0.005679700000000176,
+      "status_counts": {
+        "ok": 19
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\d3b4c26fadcec420\\windows.csv"
+    },
+    {
+      "experiment_id": "756d914ddf2480e6",
+      "symbol": "601066.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 19,
+      "n_paired": 19,
+      "median_paired_excess": 0.03542580000000006,
+      "median_strategy_minus_median_benchmark": 0.0032327000000000883,
+      "status_counts": {
+        "ok": 19
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\756d914ddf2480e6\\windows.csv"
+    },
+    {
+      "experiment_id": "db037a8c2d740989",
+      "symbol": "601127.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.018057700000000065,
+      "median_strategy_minus_median_benchmark": -0.03440779999999999,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\db037a8c2d740989\\windows.csv"
+    },
+    {
+      "experiment_id": "8bb05de8858862f3",
+      "symbol": "601127.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.017867100000000136,
+      "median_strategy_minus_median_benchmark": -0.03440819999999989,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8bb05de8858862f3\\windows.csv"
+    },
+    {
+      "experiment_id": "ba62b6b6c0c91d85",
+      "symbol": "601127.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.017592300000000005,
+      "median_strategy_minus_median_benchmark": -0.03465710000000011,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ba62b6b6c0c91d85\\windows.csv"
+    },
+    {
+      "experiment_id": "c555c304fb92ce32",
+      "symbol": "601127.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.025291000000000063,
+      "median_strategy_minus_median_benchmark": 0.00029850000000009036,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\c555c304fb92ce32\\windows.csv"
+    },
+    {
+      "experiment_id": "3bcc025348b038c5",
+      "symbol": "601127.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.025360200000000055,
+      "median_strategy_minus_median_benchmark": 0.0002585999999999977,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3bcc025348b038c5\\windows.csv"
+    },
+    {
+      "experiment_id": "8c11c0e2b1aabd33",
+      "symbol": "601127.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.021871499999999933,
+      "median_strategy_minus_median_benchmark": 0.0020185999999999815,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8c11c0e2b1aabd33\\windows.csv"
+    },
+    {
+      "experiment_id": "5100f4261c054e80",
+      "symbol": "601211.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0054419000000001105,
+      "median_strategy_minus_median_benchmark": -0.017873499999999987,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5100f4261c054e80\\windows.csv"
+    },
+    {
+      "experiment_id": "ae3d6f2d13d8327a",
+      "symbol": "601211.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.005250900000000058,
+      "median_strategy_minus_median_benchmark": -0.01779300000000006,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ae3d6f2d13d8327a\\windows.csv"
+    },
+    {
+      "experiment_id": "39b7ce9236127b00",
+      "symbol": "601211.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.007550999999999863,
+      "median_strategy_minus_median_benchmark": -0.022299500000000028,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\39b7ce9236127b00\\windows.csv"
+    },
+    {
+      "experiment_id": "b41b5a7b55aa3559",
+      "symbol": "601211.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.008219699999999941,
+      "median_strategy_minus_median_benchmark": 0.0061491000000000184,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\b41b5a7b55aa3559\\windows.csv"
+    },
+    {
+      "experiment_id": "768a37f6f23c8d34",
+      "symbol": "601211.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.008138200000000095,
+      "median_strategy_minus_median_benchmark": 0.00623079999999987,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\768a37f6f23c8d34\\windows.csv"
+    },
+    {
+      "experiment_id": "fdc64b7ad720bfd7",
+      "symbol": "601211.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.01307769999999997,
+      "median_strategy_minus_median_benchmark": 0.0007205000000000128,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\fdc64b7ad720bfd7\\windows.csv"
+    },
+    {
+      "experiment_id": "2a8beb690643b639",
+      "symbol": "601319.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 17,
+      "n_paired": 17,
+      "median_paired_excess": 0.009063299999999996,
+      "median_strategy_minus_median_benchmark": 0.04050619999999994,
+      "status_counts": {
+        "ok": 17
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2a8beb690643b639\\windows.csv"
+    },
+    {
+      "experiment_id": "2083c4b0d1977b76",
+      "symbol": "601319.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 17,
+      "n_paired": 17,
+      "median_paired_excess": 0.009101100000000084,
+      "median_strategy_minus_median_benchmark": 0.04054599999999986,
+      "status_counts": {
+        "ok": 17
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2083c4b0d1977b76\\windows.csv"
+    },
+    {
+      "experiment_id": "64efaea6a7093048",
+      "symbol": "601319.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 17,
+      "n_paired": 17,
+      "median_paired_excess": -0.0034209999999998963,
+      "median_strategy_minus_median_benchmark": 0.03820710000000005,
+      "status_counts": {
+        "ok": 17
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\64efaea6a7093048\\windows.csv"
+    },
+    {
+      "experiment_id": "b77e55c58cb290d8",
+      "symbol": "601319.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 17,
+      "n_paired": 17,
+      "median_paired_excess": 0.02525260000000007,
+      "median_strategy_minus_median_benchmark": 0.04671190000000003,
+      "status_counts": {
+        "ok": 17
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\b77e55c58cb290d8\\windows.csv"
+    },
+    {
+      "experiment_id": "05f8d184b21726d9",
+      "symbol": "601319.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 17,
+      "n_paired": 17,
+      "median_paired_excess": 0.025335900000000078,
+      "median_strategy_minus_median_benchmark": 0.04675170000000006,
+      "status_counts": {
+        "ok": 17
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\05f8d184b21726d9\\windows.csv"
+    },
+    {
+      "experiment_id": "732e61745045d2c6",
+      "symbol": "601319.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 17,
+      "n_paired": 17,
+      "median_paired_excess": 0.02251649999999983,
+      "median_strategy_minus_median_benchmark": 0.044052199999999986,
+      "status_counts": {
+        "ok": 17
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\732e61745045d2c6\\windows.csv"
+    },
+    {
+      "experiment_id": "70f0136a1603cd8a",
+      "symbol": "601398.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.019921199999999972,
+      "median_strategy_minus_median_benchmark": -0.028042200000000017,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\70f0136a1603cd8a\\windows.csv"
+    },
+    {
+      "experiment_id": "80128917f626fbb2",
+      "symbol": "601398.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.019640900000000183,
+      "median_strategy_minus_median_benchmark": -0.027812800000000193,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\80128917f626fbb2\\windows.csv"
+    },
+    {
+      "experiment_id": "a2bd8606ee40a6e0",
+      "symbol": "601398.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.04141730000000021,
+      "median_strategy_minus_median_benchmark": -0.04540939999999993,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a2bd8606ee40a6e0\\windows.csv"
+    },
+    {
+      "experiment_id": "73dbf4a87ec82b93",
+      "symbol": "601398.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.007965600000000128,
+      "median_strategy_minus_median_benchmark": -0.0022044000000001063,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\73dbf4a87ec82b93\\windows.csv"
+    },
+    {
+      "experiment_id": "fe72084be4804d3d",
+      "symbol": "601398.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.007754599999999723,
+      "median_strategy_minus_median_benchmark": -0.0021632000000000318,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\fe72084be4804d3d\\windows.csv"
+    },
+    {
+      "experiment_id": "fef6dc23fafb2a33",
+      "symbol": "601398.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.024183899999999703,
+      "median_strategy_minus_median_benchmark": -0.005472499999999991,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\fef6dc23fafb2a33\\windows.csv"
+    },
+    {
+      "experiment_id": "48e1a32f5f485c66",
+      "symbol": "601628.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.007551000000000085,
+      "median_strategy_minus_median_benchmark": -0.045074100000000006,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\48e1a32f5f485c66\\windows.csv"
+    },
+    {
+      "experiment_id": "a91c24cd05b04a30",
+      "symbol": "601628.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.007722999999999924,
+      "median_strategy_minus_median_benchmark": -0.04503530000000011,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a91c24cd05b04a30\\windows.csv"
+    },
+    {
+      "experiment_id": "6990edd93b433686",
+      "symbol": "601628.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03719440000000018,
+      "median_strategy_minus_median_benchmark": -0.04752409999999996,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6990edd93b433686\\windows.csv"
+    },
+    {
+      "experiment_id": "b75b30ab0b8cb038",
+      "symbol": "601628.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.005971599999999966,
+      "median_strategy_minus_median_benchmark": -0.028406399999999943,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\b75b30ab0b8cb038\\windows.csv"
+    },
+    {
+      "experiment_id": "f3785f1647c48e8c",
+      "symbol": "601628.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.005972699999999831,
+      "median_strategy_minus_median_benchmark": -0.028445500000000123,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f3785f1647c48e8c\\windows.csv"
+    },
+    {
+      "experiment_id": "a3d7b43d02fb6595",
+      "symbol": "601628.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.002983500000000028,
+      "median_strategy_minus_median_benchmark": -0.02624789999999999,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a3d7b43d02fb6595\\windows.csv"
+    },
+    {
+      "experiment_id": "54e276e469e60fb6",
+      "symbol": "601689.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03810400000000003,
+      "median_strategy_minus_median_benchmark": -0.09949500000000011,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\54e276e469e60fb6\\windows.csv"
+    },
+    {
+      "experiment_id": "28411353a8c69246",
+      "symbol": "601689.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03792820000000008,
+      "median_strategy_minus_median_benchmark": -0.09932019999999986,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\28411353a8c69246\\windows.csv"
+    },
+    {
+      "experiment_id": "df0760f2536dcc54",
+      "symbol": "601689.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.04306960000000004,
+      "median_strategy_minus_median_benchmark": -0.10532029999999992,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\df0760f2536dcc54\\windows.csv"
+    },
+    {
+      "experiment_id": "95defebaf2d5bb89",
+      "symbol": "601689.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.0030679000000000123,
+      "median_strategy_minus_median_benchmark": -0.00715380000000021,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\95defebaf2d5bb89\\windows.csv"
+    },
+    {
+      "experiment_id": "f12eb586677aeaa2",
+      "symbol": "601689.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.003204600000000113,
+      "median_strategy_minus_median_benchmark": -0.007037299999999913,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f12eb586677aeaa2\\windows.csv"
+    },
+    {
+      "experiment_id": "21f3f53656595421",
+      "symbol": "601689.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.003782800000000197,
+      "median_strategy_minus_median_benchmark": -0.012193099999999957,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\21f3f53656595421\\windows.csv"
+    },
+    {
+      "experiment_id": "ea7179708571c0c3",
+      "symbol": "601800.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.008778300000000017,
+      "median_strategy_minus_median_benchmark": 0.026121600000000078,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ea7179708571c0c3\\windows.csv"
+    },
+    {
+      "experiment_id": "455738c01ebabb38",
+      "symbol": "601800.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.00859130000000008,
+      "median_strategy_minus_median_benchmark": 0.026159299999999996,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\455738c01ebabb38\\windows.csv"
+    },
+    {
+      "experiment_id": "94ec959e073c7c7b",
+      "symbol": "601800.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.009918199999999988,
+      "median_strategy_minus_median_benchmark": 0.02409909999999993,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\94ec959e073c7c7b\\windows.csv"
+    },
+    {
+      "experiment_id": "5c7dca4b2581c277",
+      "symbol": "601800.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.03944420000000004,
+      "median_strategy_minus_median_benchmark": 0.06802019999999998,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5c7dca4b2581c277\\windows.csv"
+    },
+    {
+      "experiment_id": "1f2fcacb7141c7f1",
+      "symbol": "601800.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.03958200000000012,
+      "median_strategy_minus_median_benchmark": 0.06802020000000009,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\1f2fcacb7141c7f1\\windows.csv"
+    },
+    {
+      "experiment_id": "0c7d86a2f755a90b",
+      "symbol": "601800.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": 0.03312100000000007,
+      "median_strategy_minus_median_benchmark": 0.06600539999999999,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\0c7d86a2f755a90b\\windows.csv"
+    },
+    {
+      "experiment_id": "40535dd63b054909",
+      "symbol": "601872.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.05753855000000002,
+      "median_strategy_minus_median_benchmark": -0.05816085000000004,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\40535dd63b054909\\windows.csv"
+    },
+    {
+      "experiment_id": "e7e4886053a40b1b",
+      "symbol": "601872.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.05742839999999999,
+      "median_strategy_minus_median_benchmark": -0.058180750000000114,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\e7e4886053a40b1b\\windows.csv"
+    },
+    {
+      "experiment_id": "ae4b46dbe5eafc38",
+      "symbol": "601872.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.06421174999999996,
+      "median_strategy_minus_median_benchmark": -0.06215214999999996,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ae4b46dbe5eafc38\\windows.csv"
+    },
+    {
+      "experiment_id": "2dc9f4deef797168",
+      "symbol": "601872.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.014024050000000066,
+      "median_strategy_minus_median_benchmark": -0.030755500000000047,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2dc9f4deef797168\\windows.csv"
+    },
+    {
+      "experiment_id": "f85bff92466cf635",
+      "symbol": "601872.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.01392404999999991,
+      "median_strategy_minus_median_benchmark": -0.030754600000000076,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f85bff92466cf635\\windows.csv"
+    },
+    {
+      "experiment_id": "24f3980bd1b7dcd8",
+      "symbol": "601872.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 22,
+      "n_paired": 22,
+      "median_paired_excess": -0.023160849999999955,
+      "median_strategy_minus_median_benchmark": -0.03193475000000001,
+      "status_counts": {
+        "ok": 22
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\24f3980bd1b7dcd8\\windows.csv"
+    },
+    {
+      "experiment_id": "4ed125ba224543d4",
+      "symbol": "601899.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.11663020000000013,
+      "median_strategy_minus_median_benchmark": -0.07656020000000008,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\4ed125ba224543d4\\windows.csv"
+    },
+    {
+      "experiment_id": "893b9f0de3b8ae85",
+      "symbol": "601899.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.11648059999999993,
+      "median_strategy_minus_median_benchmark": -0.07660020000000012,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\893b9f0de3b8ae85\\windows.csv"
+    },
+    {
+      "experiment_id": "aa46baf7130d1e08",
+      "symbol": "601899.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0917962,
+      "median_strategy_minus_median_benchmark": -0.07645030000000008,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\aa46baf7130d1e08\\windows.csv"
+    },
+    {
+      "experiment_id": "47305ebb2b26fae3",
+      "symbol": "601899.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.019338700000000042,
+      "median_strategy_minus_median_benchmark": -0.019338700000000042,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\47305ebb2b26fae3\\windows.csv"
+    },
+    {
+      "experiment_id": "c6a49183c5440670",
+      "symbol": "601899.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.019212600000000135,
+      "median_strategy_minus_median_benchmark": -0.019212600000000135,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\c6a49183c5440670\\windows.csv"
+    },
+    {
+      "experiment_id": "127ebf84157a88de",
+      "symbol": "601899.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.02557239999999994,
+      "median_strategy_minus_median_benchmark": -0.025085900000000105,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\127ebf84157a88de\\windows.csv"
+    },
+    {
+      "experiment_id": "0da8f8cedff553c4",
+      "symbol": "601988.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.030752699999999966,
+      "median_strategy_minus_median_benchmark": -0.020080499999999946,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\0da8f8cedff553c4\\windows.csv"
+    },
+    {
+      "experiment_id": "3b82269c09ba3224",
+      "symbol": "601988.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.030473899999999943,
+      "median_strategy_minus_median_benchmark": -0.019881999999999955,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3b82269c09ba3224\\windows.csv"
+    },
+    {
+      "experiment_id": "398b50591398b550",
+      "symbol": "601988.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.020586300000000057,
+      "median_strategy_minus_median_benchmark": -0.03646640000000001,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\398b50591398b550\\windows.csv"
+    },
+    {
+      "experiment_id": "641dc099a522da4a",
+      "symbol": "601988.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.02174290000000001,
+      "median_strategy_minus_median_benchmark": -0.011200300000000274,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\641dc099a522da4a\\windows.csv"
+    },
+    {
+      "experiment_id": "b2bf7180176e8b13",
+      "symbol": "601988.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.0215382999999999,
+      "median_strategy_minus_median_benchmark": -0.011114599999999975,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\b2bf7180176e8b13\\windows.csv"
+    },
+    {
+      "experiment_id": "f7bbb34dc1d6aeea",
+      "symbol": "601988.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.029117200000000065,
+      "median_strategy_minus_median_benchmark": -0.01561060000000003,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f7bbb34dc1d6aeea\\windows.csv"
+    },
+    {
+      "experiment_id": "c415de36a0ea9ca4",
+      "symbol": "603288.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.07110229999999995,
+      "median_strategy_minus_median_benchmark": -0.03969770000000006,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\c415de36a0ea9ca4\\windows.csv"
+    },
+    {
+      "experiment_id": "6b9ca6df86798d6c",
+      "symbol": "603288.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.07099,
+      "median_strategy_minus_median_benchmark": -0.03973669999999996,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\6b9ca6df86798d6c\\windows.csv"
+    },
+    {
+      "experiment_id": "36ceb263f5ef0ab4",
+      "symbol": "603288.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.08951350000000002,
+      "median_strategy_minus_median_benchmark": -0.03772970000000009,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\36ceb263f5ef0ab4\\windows.csv"
+    },
+    {
+      "experiment_id": "f0a33f2d0f3ff9e6",
+      "symbol": "603288.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.036905500000000035,
+      "median_strategy_minus_median_benchmark": -0.022516300000000156,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f0a33f2d0f3ff9e6\\windows.csv"
+    },
+    {
+      "experiment_id": "2ede980023da8aeb",
+      "symbol": "603288.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.03694479999999989,
+      "median_strategy_minus_median_benchmark": -0.022317299999999873,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2ede980023da8aeb\\windows.csv"
+    },
+    {
+      "experiment_id": "caaa064a974a9876",
+      "symbol": "603288.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 23,
+      "n_paired": 23,
+      "median_paired_excess": -0.034696700000000025,
+      "median_strategy_minus_median_benchmark": -0.032970000000000166,
+      "status_counts": {
+        "ok": 23
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\caaa064a974a9876\\windows.csv"
+    },
+    {
+      "experiment_id": "8897c97928cd5cc3",
+      "symbol": "603893.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 13,
+      "n_paired": 13,
+      "median_paired_excess": 0.07175379999999998,
+      "median_strategy_minus_median_benchmark": 0.011342799999999986,
+      "status_counts": {
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8897c97928cd5cc3\\windows.csv"
+    },
+    {
+      "experiment_id": "eab66f961435724a",
+      "symbol": "603893.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 13,
+      "n_paired": 13,
+      "median_paired_excess": 0.07190239999999992,
+      "median_strategy_minus_median_benchmark": 0.011375299999999977,
+      "status_counts": {
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\eab66f961435724a\\windows.csv"
+    },
+    {
+      "experiment_id": "5017b36504126d92",
+      "symbol": "603893.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 13,
+      "n_paired": 13,
+      "median_paired_excess": 0.06598029999999999,
+      "median_strategy_minus_median_benchmark": 0.00968469999999999,
+      "status_counts": {
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5017b36504126d92\\windows.csv"
+    },
+    {
+      "experiment_id": "a8aadc99627bbda8",
+      "symbol": "603893.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 13,
+      "n_paired": 13,
+      "median_paired_excess": 0.053474799999999933,
+      "median_strategy_minus_median_benchmark": 0.07852720000000013,
+      "status_counts": {
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a8aadc99627bbda8\\windows.csv"
+    },
+    {
+      "experiment_id": "5db08f9b66aad7a2",
+      "symbol": "603893.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 13,
+      "n_paired": 13,
+      "median_paired_excess": 0.05355409999999994,
+      "median_strategy_minus_median_benchmark": 0.07856550000000007,
+      "status_counts": {
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5db08f9b66aad7a2\\windows.csv"
+    },
+    {
+      "experiment_id": "3e62475bdbd951c3",
+      "symbol": "603893.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 13,
+      "n_paired": 13,
+      "median_paired_excess": 0.049267199999999844,
+      "median_strategy_minus_median_benchmark": 0.07647359999999992,
+      "status_counts": {
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3e62475bdbd951c3\\windows.csv"
+    },
+    {
+      "experiment_id": "58ac93ac44bd691a",
+      "symbol": "688009.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 15,
+      "n_paired": 15,
+      "median_paired_excess": -0.021841999999999806,
+      "median_strategy_minus_median_benchmark": -0.049894799999999906,
+      "status_counts": {
+        "ok": 15
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\58ac93ac44bd691a\\windows.csv"
+    },
+    {
+      "experiment_id": "8e3ca114c716da4d",
+      "symbol": "688009.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 15,
+      "n_paired": 15,
+      "median_paired_excess": -0.021482299999999732,
+      "median_strategy_minus_median_benchmark": -0.04981670000000005,
+      "status_counts": {
+        "ok": 15
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8e3ca114c716da4d\\windows.csv"
+    },
+    {
+      "experiment_id": "f156c0df22c4ef33",
+      "symbol": "688009.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 15,
+      "n_paired": 15,
+      "median_paired_excess": -0.039945099999999956,
+      "median_strategy_minus_median_benchmark": -0.05437880000000017,
+      "status_counts": {
+        "ok": 15
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f156c0df22c4ef33\\windows.csv"
+    },
+    {
+      "experiment_id": "36712cdd1dbff39d",
+      "symbol": "688009.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 15,
+      "n_paired": 13,
+      "median_paired_excess": 0.012604700000000024,
+      "median_strategy_minus_median_benchmark": -0.03138059999999987,
+      "status_counts": {
+        "selection_failed": 2,
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\36712cdd1dbff39d\\windows.csv"
+    },
+    {
+      "experiment_id": "8079255dc4c5d7d2",
+      "symbol": "688009.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 15,
+      "n_paired": 13,
+      "median_paired_excess": 0.012688699999999997,
+      "median_strategy_minus_median_benchmark": -0.03142050000000007,
+      "status_counts": {
+        "selection_failed": 2,
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\8079255dc4c5d7d2\\windows.csv"
+    },
+    {
+      "experiment_id": "916c56dea07f0a9f",
+      "symbol": "688009.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 15,
+      "n_paired": 13,
+      "median_paired_excess": 0.006573000000000162,
+      "median_strategy_minus_median_benchmark": -0.029142200000000118,
+      "status_counts": {
+        "selection_failed": 2,
+        "ok": 13
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\916c56dea07f0a9f\\windows.csv"
+    },
+    {
+      "experiment_id": "af90d95ea2587c79",
+      "symbol": "688082.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 8,
+      "n_paired": 8,
+      "median_paired_excess": -0.1478947000000002,
+      "median_strategy_minus_median_benchmark": -0.10956370000000004,
+      "status_counts": {
+        "ok": 8
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\af90d95ea2587c79\\windows.csv"
+    },
+    {
+      "experiment_id": "5deae3351bce099d",
+      "symbol": "688082.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 8,
+      "n_paired": 8,
+      "median_paired_excess": -0.1478048500000001,
+      "median_strategy_minus_median_benchmark": -0.10945280000000007,
+      "status_counts": {
+        "ok": 8
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5deae3351bce099d\\windows.csv"
+    },
+    {
+      "experiment_id": "3040d5642978fd4a",
+      "symbol": "688082.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 8,
+      "n_paired": 8,
+      "median_paired_excess": -0.15258539999999987,
+      "median_strategy_minus_median_benchmark": -0.11532139999999991,
+      "status_counts": {
+        "ok": 8
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\3040d5642978fd4a\\windows.csv"
+    },
+    {
+      "experiment_id": "89585d307b913429",
+      "symbol": "688082.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 8,
+      "n_paired": 8,
+      "median_paired_excess": 0.0021179499999998685,
+      "median_strategy_minus_median_benchmark": -0.028597400000000106,
+      "status_counts": {
+        "ok": 8
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\89585d307b913429\\windows.csv"
+    },
+    {
+      "experiment_id": "b258d738712f7a87",
+      "symbol": "688082.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 8,
+      "n_paired": 8,
+      "median_paired_excess": 0.002300049999999998,
+      "median_strategy_minus_median_benchmark": -0.02846725000000011,
+      "status_counts": {
+        "ok": 8
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\b258d738712f7a87\\windows.csv"
+    },
+    {
+      "experiment_id": "d658cb25ca02d184",
+      "symbol": "688082.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 8,
+      "n_paired": 8,
+      "median_paired_excess": -0.007450149999999822,
+      "median_strategy_minus_median_benchmark": -0.03546859999999996,
+      "status_counts": {
+        "ok": 8
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\d658cb25ca02d184\\windows.csv"
+    },
+    {
+      "experiment_id": "f6f79cf086894294",
+      "symbol": "688271.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 5,
+      "n_paired": 5,
+      "median_paired_excess": -0.0218275,
+      "median_strategy_minus_median_benchmark": -0.0218275,
+      "status_counts": {
+        "ok": 5
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\f6f79cf086894294\\windows.csv"
+    },
+    {
+      "experiment_id": "2feee4b78cd709a8",
+      "symbol": "688271.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 5,
+      "n_paired": 5,
+      "median_paired_excess": -0.021562599999999987,
+      "median_strategy_minus_median_benchmark": -0.021562599999999987,
+      "status_counts": {
+        "ok": 5
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\2feee4b78cd709a8\\windows.csv"
+    },
+    {
+      "experiment_id": "de5f759b6e8844d8",
+      "symbol": "688271.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 5,
+      "n_paired": 5,
+      "median_paired_excess": -0.035842700000000116,
+      "median_strategy_minus_median_benchmark": -0.031645399999999935,
+      "status_counts": {
+        "ok": 5
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\de5f759b6e8844d8\\windows.csv"
+    },
+    {
+      "experiment_id": "9e1a3d0993d9cd45",
+      "symbol": "688271.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 5,
+      "n_paired": 5,
+      "median_paired_excess": 0.06126190000000009,
+      "median_strategy_minus_median_benchmark": 0.07174819999999982,
+      "status_counts": {
+        "ok": 5
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\9e1a3d0993d9cd45\\windows.csv"
+    },
+    {
+      "experiment_id": "5b331bfff872d421",
+      "symbol": "688271.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 5,
+      "n_paired": 5,
+      "median_paired_excess": 0.061308499999999766,
+      "median_strategy_minus_median_benchmark": 0.07181320000000002,
+      "status_counts": {
+        "ok": 5
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5b331bfff872d421\\windows.csv"
+    },
+    {
+      "experiment_id": "a73f9e73c12c7fea",
+      "symbol": "688271.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 5,
+      "n_paired": 5,
+      "median_paired_excess": 0.05879590000000001,
+      "median_strategy_minus_median_benchmark": 0.06833040000000012,
+      "status_counts": {
+        "ok": 5
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a73f9e73c12c7fea\\windows.csv"
+    },
+    {
+      "experiment_id": "bd9cd9f571932fc3",
+      "symbol": "688981.SH",
+      "strategy": "ma_cross",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 12,
+      "n_paired": 12,
+      "median_paired_excess": -0.044175500000000034,
+      "median_strategy_minus_median_benchmark": -0.027472600000000014,
+      "status_counts": {
+        "ok": 12
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\bd9cd9f571932fc3\\windows.csv"
+    },
+    {
+      "experiment_id": "d486edd5746ff459",
+      "symbol": "688981.SH",
+      "strategy": "ma_cross",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 12,
+      "n_paired": 12,
+      "median_paired_excess": -0.04407644999999999,
+      "median_strategy_minus_median_benchmark": -0.027363399999999927,
+      "status_counts": {
+        "ok": 12
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\d486edd5746ff459\\windows.csv"
+    },
+    {
+      "experiment_id": "ab0c1fb5f389fda9",
+      "symbol": "688981.SH",
+      "strategy": "ma_cross",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 12,
+      "n_paired": 12,
+      "median_paired_excess": -0.04891374999999998,
+      "median_strategy_minus_median_benchmark": -0.033244949999999995,
+      "status_counts": {
+        "ok": 12
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\ab0c1fb5f389fda9\\windows.csv"
+    },
+    {
+      "experiment_id": "e2c17c5ba5e17f16",
+      "symbol": "688981.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "simulation_placeholder",
+      "n_windows": 12,
+      "n_paired": 12,
+      "median_paired_excess": 0.007911100000000115,
+      "median_strategy_minus_median_benchmark": 0.010032999999999959,
+      "status_counts": {
+        "ok": 12
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\e2c17c5ba5e17f16\\windows.csv"
+    },
+    {
+      "experiment_id": "5a7ed21e4af43011",
+      "symbol": "688981.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "broker_reference_common_2024",
+      "n_windows": 12,
+      "n_paired": 12,
+      "median_paired_excess": 0.008010899999999987,
+      "median_strategy_minus_median_benchmark": 0.010091850000000124,
+      "status_counts": {
+        "ok": 12
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\5a7ed21e4af43011\\windows.csv"
+    },
+    {
+      "experiment_id": "a21a473c142220d9",
+      "symbol": "688981.SH",
+      "strategy": "mean_reversion",
+      "fee_source": "research_scenario_high_cost",
+      "n_windows": 12,
+      "n_paired": 12,
+      "median_paired_excess": 0.006988249999999863,
+      "median_strategy_minus_median_benchmark": 0.00837199999999999,
+      "status_counts": {
+        "ok": 12
+      },
+      "write": "saved:D:\\DeepQuant power by txm\\DeepQuant-main\\ma_cross_audit\\runs\\v3\\windows\\a21a473c142220d9\\windows.csv"
+    }
+  ],
+  "note": "每个 experiment_id 对应一个子目录的 windows.csv（逐窗一行）。median_paired_excess 是逐窗差的中位数，median_strategy_minus_median_benchmark 是两个中位数之差，两者不相等。"
+}

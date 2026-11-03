@@ -1,0 +1,356 @@
+{
+  "generated_at": "2026-10-27T14:10:13",
+  "category_coverage": {
+    "required": [
+      "outbound",
+      "privilege",
+      "breaker",
+      "cleanup"
+    ],
+    "present": [
+      "breaker",
+      "cleanup",
+      "outbound",
+      "privilege"
+    ],
+    "missing_categories": [],
+    "ratio": 1.0,
+    "n_codes": 17
+  },
+  "criteria": {
+    "criterion_1_outbound_denial": {
+      "must_block_total": 26,
+      "blocked": 26,
+      "block_rate": 1.0,
+      "control_allowed": true,
+      "mismatches": [],
+      "dns_cases": {
+        "resolves_private": "outbound_private_address",
+        "second_record_private": "outbound_loopback",
+        "resolver_error": "outbound_dns_unresolvable"
+      },
+      "source_scan": {
+        "ok": true,
+        "n_urls": 0,
+        "note": "当前 backend/src 无 URL 字面量；绊线本身可用（见测试用 tmp 源码树验证）"
+      },
+      "cases": [
+        {
+          "url": "https://example.com/callback",
+          "expected": null,
+          "allowed": true,
+          "code": null
+        },
+        {
+          "url": "https://api.example.com/callback",
+          "expected": null,
+          "allowed": true,
+          "code": null
+        },
+        {
+          "url": "https://evil.io/callback",
+          "expected": "outbound_not_whitelisted",
+          "allowed": false,
+          "code": "outbound_not_whitelisted"
+        },
+        {
+          "url": "https://example.com.evil.io/",
+          "expected": "outbound_not_whitelisted",
+          "allowed": false,
+          "code": "outbound_not_whitelisted"
+        },
+        {
+          "url": "file:///etc/passwd",
+          "expected": "outbound_scheme_forbidden",
+          "allowed": false,
+          "code": "outbound_scheme_forbidden"
+        },
+        {
+          "url": "ftp://example.com/x",
+          "expected": "outbound_scheme_forbidden",
+          "allowed": false,
+          "code": "outbound_scheme_forbidden"
+        },
+        {
+          "url": "gopher://example.com/",
+          "expected": "outbound_scheme_forbidden",
+          "allowed": false,
+          "code": "outbound_scheme_forbidden"
+        },
+        {
+          "url": "http://127.0.0.1/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://[::1]/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://10.0.0.5/",
+          "expected": "outbound_private_address",
+          "allowed": false,
+          "code": "outbound_private_address"
+        },
+        {
+          "url": "http://192.168.1.1/",
+          "expected": "outbound_private_address",
+          "allowed": false,
+          "code": "outbound_private_address"
+        },
+        {
+          "url": "http://172.16.0.1/",
+          "expected": "outbound_private_address",
+          "allowed": false,
+          "code": "outbound_private_address"
+        },
+        {
+          "url": "http://169.254.169.254/latest/meta-data/",
+          "expected": "outbound_metadata_endpoint",
+          "allowed": false,
+          "code": "outbound_metadata_endpoint"
+        },
+        {
+          "url": "http://100.100.100.200/latest/meta-data/",
+          "expected": "outbound_metadata_endpoint",
+          "allowed": false,
+          "code": "outbound_metadata_endpoint"
+        },
+        {
+          "url": "http://2130706433/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://0x7f000001/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://0x7f.0.0.1/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://0177.0.0.1/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://127.1/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://017700000001/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://[::ffff:127.0.0.1]/",
+          "expected": "outbound_loopback",
+          "allowed": false,
+          "code": "outbound_loopback"
+        },
+        {
+          "url": "http://example.com@127.0.0.1/",
+          "expected": "outbound_ambiguous_host",
+          "allowed": false,
+          "code": "outbound_ambiguous_host"
+        },
+        {
+          "url": "http://user:pw@example.com/",
+          "expected": "outbound_ambiguous_host",
+          "allowed": false,
+          "code": "outbound_ambiguous_host"
+        },
+        {
+          "url": "http://example.com\\@127.0.0.1/",
+          "expected": "outbound_ambiguous_host",
+          "allowed": false,
+          "code": "outbound_ambiguous_host"
+        },
+        {
+          "url": "http://0.0.0.0/",
+          "expected": "outbound_reserved_address",
+          "allowed": false,
+          "code": "outbound_reserved_address"
+        },
+        {
+          "url": "http://224.0.0.1/",
+          "expected": "outbound_reserved_address",
+          "allowed": false,
+          "code": "outbound_reserved_address"
+        },
+        {
+          "url": "example.com/callback",
+          "expected": "outbound_malformed_url",
+          "allowed": false,
+          "code": "outbound_malformed_url"
+        },
+        {
+          "url": "https:///callback",
+          "expected": "outbound_malformed_url",
+          "allowed": false,
+          "code": "outbound_malformed_url"
+        }
+      ]
+    },
+    "criterion_2_least_privilege": {
+      "default_mode": "open",
+      "minimal_anonymous_mutating": {
+        "allowed": false,
+        "code": "privilege_unidentified"
+      },
+      "minimal_mutating_no_grant": {
+        "allowed": false,
+        "code": "privileged_operation_denied"
+      },
+      "minimal_mutating_granted": {
+        "allowed": true,
+        "code": null
+      },
+      "minimal_mutating_not_listed": {
+        "allowed": false,
+        "code": "privileged_operation_denied"
+      },
+      "minimal_readonly_identified": {
+        "allowed": true,
+        "code": null
+      },
+      "open_mode_allows": {
+        "allowed": true,
+        "code": null
+      },
+      "matrix": {
+        "n_capabilities": 6,
+        "n_mutating": 2,
+        "caveat": "无认证：X-Operator 为调用方自称，本机制防误操作，不防伪造身份。接入真实身份后才是完整的越权防护。"
+      }
+    },
+    "criterion_3_breaker_drill": {
+      "initial": true,
+      "after_3_failures": {
+        "allowed": false,
+        "code": "breaker_open",
+        "retry_after_s": 59
+      },
+      "survives_restart": {
+        "allowed": false,
+        "state": "open"
+      },
+      "half_open": {
+        "allowed": true,
+        "state": "half_open"
+      },
+      "after_probe_success": "closed",
+      "cli_path": "blocked:BreakerStateError",
+      "http_path": {
+        "status_code": 503,
+        "reason_code": "breaker_open",
+        "retry_after": "59",
+        "business_executed": false
+      }
+    },
+    "criterion_4_crash_and_cleanup": {
+      "stale_session_detected": true,
+      "dirty_restart": {
+        "blocked": true,
+        "message": "检测到未完成的退出清理（C:\\Users\\77436\\AppData\\Local\\Temp\\tmpgmqkase8\\cleanup\\session.json）：开始于 2026-10-27T00:00:00，原因 上次进程（pid=999999）未走退出钩子，资源可能未释放；需执行 `scripts/safety.py cleanup` 后重启。请执行 `scripts/safety.py cle"
+      },
+      "cleanup_ok": true,
+      "marker_cleared": true,
+      "session_removed": true,
+      "snapshot_before_after": {
+        "before_in_flight": 0,
+        "after_in_flight": 0,
+        "not_applicable": [
+          "cancel_open_orders",
+          "liquidate_positions"
+        ]
+      },
+      "steps": [
+        {
+          "name": "stop_new_tasks",
+          "ok": true,
+          "detail": "draining 标记已置",
+          "critical": true,
+          "status": "ran"
+        },
+        {
+          "name": "drain_in_flight",
+          "ok": true,
+          "detail": "在飞请求已归零",
+          "critical": true,
+          "status": "ran"
+        },
+        {
+          "name": "release_caches",
+          "ok": true,
+          "detail": "依赖运行期缓存已清空",
+          "critical": true,
+          "status": "ran"
+        },
+        {
+          "name": "cancel_open_orders",
+          "ok": true,
+          "detail": "本仓库无委托域（无券商连接、无订单状态机），不存在未成交委托可撤；待业务形态确认（计划 §10 第 1 项）后启用",
+          "critical": false,
+          "status": "skipped_not_applicable"
+        },
+        {
+          "name": "liquidate_positions",
+          "ok": true,
+          "detail": "本仓库不做真实持仓管理（回测持仓只在内存/结果文档中），无实盘仓位可平",
+          "critical": false,
+          "status": "skipped_not_applicable"
+        }
+      ],
+      "drain_timeout": {
+        "ok": false,
+        "marker_kept": true,
+        "drain_detail": "超时窗 0.05s 内仍有 1 个请求未结束"
+      },
+      "restart_after_failed_cleanup": "blocked",
+      "recovered": true,
+      "log_chain": {
+        "ok": true,
+        "entries": 3,
+        "broken_at": null
+      },
+      "log_events": [
+        "cleanup",
+        "cleanup",
+        "cleanup"
+      ],
+      "not_applicable_register": {
+        "cancel_open_orders": "本仓库无委托域（无券商连接、无订单状态机），不存在未成交委托可撤；待业务形态确认（计划 §10 第 1 项）后启用",
+        "liquidate_positions": "本仓库不做真实持仓管理（回测持仓只在内存/结果文档中），无实盘仓位可平"
+      }
+    }
+  },
+  "snapshot_after": {
+    "taken_at": "2026-10-27T06:10:16.249511+00:00",
+    "pid": 9832,
+    "in_flight": 0,
+    "draining": true,
+    "deps_runtime_cache": 0,
+    "safety_dir": "C:\\Users\\77436\\AppData\\Local\\Temp\\tmpgmqkase8\\cleanup",
+    "safety_files": [
+      "cleanup_log.jsonl"
+    ],
+    "not_applicable": [
+      "cancel_open_orders",
+      "liquidate_positions"
+    ]
+  }
+}

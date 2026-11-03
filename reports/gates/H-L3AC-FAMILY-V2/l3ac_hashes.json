@@ -1,0 +1,12 @@
+{
+ "generated": "2026-10-29",
+ "status": "VERIFIED_WITH_DOCUMENTED_LIMITATIONS",
+ "prereg_sha256": "9d4c39d8873bdb650e57ee4e39b04533de17f2e73ff93117ce2e79e5f2a81086",
+ "files": {
+  "reports/gates/H-L3AC-FAMILY-V2/l3ac_family_v2.json": "fce9b39d1395784f46ad88b6dcf801cf98f90038ab918e58d7c7b7b1bc61456c",
+  "reports/L3AC_FAMILY_V2_AUDIT.md": "5b034a57e5fed5c7303430b9772636a36ec71c17052d1309c2f607c32d915438",
+  "reports/L3AC_MULTIPLICITY_V2.md": "005069225b0ff9ccea0a38a07bbb47426f31018ce654c5f28fbd0186d58ae31c",
+  "docs/DELIVERABLE_QUOTE_SHEET_L3AC.md": "1fd72a5f8ee191cdafda7ba96ad828c320d68ba544e75abba0b63f1e41a65eb3",
+  "reports/STAGE_REPORT_L3AC_FINAL.md": "c09e972c0ea4a0017a2a4dab8f62a47f5045eaa7dd85503d0f6baa55cd79b97e"
+ }
+}

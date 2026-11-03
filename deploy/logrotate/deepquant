@@ -1,4 +1,4 @@
-/opt/deepquant/var/log/*.log {
+__REPO__/var/log/*.log {
     daily
     rotate 30
     missingok

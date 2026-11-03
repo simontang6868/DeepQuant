@@ -1,0 +1,1287 @@
+{
+ "experiment_id": "H-L3AD-INDEPENDENCE",
+ "prereg_sha256": "a5d86c50e85c8644257fb7f259986fa79cee7a2cf75751b592f38793f2ee3e26",
+ "inputs_frozen": {
+  "l3ac_prereg": {
+   "path": "docs/gates/l3ac_prereg.json",
+   "sha256": "9d4c39d8873bdb650e57ee4e39b04533de17f2e73ff93117ce2e79e5f2a81086"
+  },
+  "l3ac_result": {
+   "path": "reports/gates/H-L3AC-FAMILY-V2/l3ac_family_v2.json",
+   "sha256": "fce9b39d1395784f46ad88b6dcf801cf98f90038ab918e58d7c7b7b1bc61456c"
+  },
+  "l3u_prereg": {
+   "path": "docs/gates/l3u_prereg.json",
+   "sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493"
+  },
+  "l3z_result": {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+   "sha256": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc"
+  },
+  "phase_l_prereg": {
+   "path": "docs/PHASE_L_SURGE_PREREG_2026-10-21.md",
+   "sha256": "9ffc3710cf6f2c43390d0ef0f91f663909eca44967c00214b4958b578b8c995c"
+  },
+  "phase_r_prereg": {
+   "path": "docs/PHASE_R_SURGE_IMPACT_PREREG_2026-10-22.md",
+   "sha256": "7b5e7643e8ca2c48c077a206cf8e84d0b006e2d1f1d4a1ef7c54225247483e11"
+  },
+  "phase_o_prereg": {
+   "path": "docs/PHASE_O_FEE_CONVENTION_PREREG_2026-10-21.md",
+   "sha256": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f"
+  },
+  "phase_v_prereg": {
+   "path": "docs/PHASE_V_COST_CONVENTION_PREREG_2026-10-23.md",
+   "sha256": "3614e12a0546249f7857d2e1146069d13bc14e5acec417b1cb80089c916546fe"
+  },
+  "phase_s_prereg": {
+   "path": "docs/PHASE_S_EXQ5_MODERN_PREREG_2026-10-22.md",
+   "sha256": "f098a59fb1b584eda3ce69a8ecfc890b1be93cae9091bf2ba776469f949f2371"
+  },
+  "phase_t_prereg": {
+   "path": "docs/PHASE_T_EXQ5_ROBUSTNESS_PREREG_2026-10-22.md",
+   "sha256": "ef29a743997b5371bf7f1bad5aa5880563867591859e48dea787407122139f4e"
+  },
+  "phase_p_prereg": {
+   "path": "docs/PHASE_P_SEGMENT_EQUALITY_PREREG_2026-10-21.md",
+   "sha256": "3d19f7508e109d17420f2d13cfb811b893e68c555ed6e6130ceadcce465e15d9"
+  },
+  "phasei_monthly": {
+   "path": "phasei_out/8f5c35121fdb/monthly.csv",
+   "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a"
+  }
+ },
+ "n_registered": 27,
+ "n_added": 2,
+ "n_scored": 20,
+ "skipped": [
+  {
+   "key": "phasem_spread",
+   "error": "SeriesColumnMissing",
+   "detail": "[phasem_spread] phasem_out/2f5f61dd0b5f/monthly.csv 没有任何日期列（候选 ('month', 'signal_date', 'date')）"
+  },
+  {
+   "key": "l3r_delta",
+   "error": "DependenceError",
+   "detail": "[l3r_delta] 序列形态 json_list 没有月份索引，不能进入依赖诊断"
+  },
+  {
+   "key": "l3s_ic",
+   "error": "DependenceError",
+   "detail": "[l3s_ic] 序列形态 json_list 没有月份索引，不能进入依赖诊断"
+  },
+  {
+   "key": "l3_test",
+   "error": "DependenceError",
+   "detail": "[l3_test] 序列形态 json_list 没有月份索引，不能进入依赖诊断"
+  },
+  {
+   "key": "l3p_test",
+   "error": "DependenceError",
+   "detail": "[l3p_test] 序列形态 json_list 没有月份索引，不能进入依赖诊断"
+  }
+ ],
+ "partition": {
+  "groups": [
+   [
+    "gate1_d"
+   ],
+   [
+    "gate2_d"
+   ],
+   [
+    "gate3_d"
+   ],
+   [
+    "gate4_d"
+   ],
+   [
+    "gate5_d"
+   ],
+   [
+    "gate6_d"
+   ],
+   [
+    "phasec2_d"
+   ],
+   [
+    "phasec3_d"
+   ],
+   [
+    "phasec_d"
+   ],
+   [
+    "phasee_alpha"
+   ],
+   [
+    "phasef_delta"
+   ],
+   [
+    "phaseg_alpha"
+   ],
+   [
+    "phasej_netA"
+   ],
+   [
+    "phasek_m1net"
+   ],
+   [
+    "phasel_alpha",
+    "phaser_alpha"
+   ],
+   [
+    "phaseo_netBASE",
+    "phasep_late",
+    "phasev_net"
+   ],
+   [
+    "phaseq_max5"
+   ],
+   [
+    "phases_net",
+    "phaset_net"
+   ]
+  ],
+  "n_groups": 18,
+  "n_merged_away": 4,
+  "pairs": [
+   {
+    "a": "phasel_alpha",
+    "b": "phaser_alpha",
+    "n_a": 237,
+    "n_b": 237,
+    "n_common": 237,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": true
+   },
+   {
+    "a": "phaseo_netBASE",
+    "b": "phasep_late",
+    "n_a": 237,
+    "n_b": 129,
+    "n_common": 129,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": false
+   },
+   {
+    "a": "phaseo_netBASE",
+    "b": "phasev_net",
+    "n_a": 237,
+    "n_b": 237,
+    "n_common": 237,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": true
+   },
+   {
+    "a": "phasep_late",
+    "b": "phasev_net",
+    "n_a": 129,
+    "n_b": 237,
+    "n_common": 129,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": false
+   },
+   {
+    "a": "phases_net",
+    "b": "phaset_net",
+    "n_a": 129,
+    "n_b": 129,
+    "n_common": 129,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": true
+   }
+  ]
+ },
+ "partition_with_added": {
+  "groups": [
+   [
+    "gate1_d"
+   ],
+   [
+    "gate2_d"
+   ],
+   [
+    "gate3_d"
+   ],
+   [
+    "gate4_d"
+   ],
+   [
+    "gate5_d"
+   ],
+   [
+    "gate6_d"
+   ],
+   [
+    "phasec2_d"
+   ],
+   [
+    "phasec3_d"
+   ],
+   [
+    "phasec_d"
+   ],
+   [
+    "phasee_alpha"
+   ],
+   [
+    "phasef_delta"
+   ],
+   [
+    "phaseg_alpha"
+   ],
+   [
+    "phasei_v0"
+   ],
+   [
+    "phasei_v1"
+   ],
+   [
+    "phasej_netA"
+   ],
+   [
+    "phasek_m1net"
+   ],
+   [
+    "phasel_alpha",
+    "phaser_alpha"
+   ],
+   [
+    "phaseo_netBASE",
+    "phasep_late",
+    "phasev_net"
+   ],
+   [
+    "phaseq_max5"
+   ],
+   [
+    "phases_net",
+    "phaset_net"
+   ]
+  ],
+  "n_groups": 20,
+  "n_merged_away": 4,
+  "pairs": [
+   {
+    "a": "phasel_alpha",
+    "b": "phaser_alpha",
+    "n_a": 237,
+    "n_b": 237,
+    "n_common": 237,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": true
+   },
+   {
+    "a": "phaseo_netBASE",
+    "b": "phasep_late",
+    "n_a": 237,
+    "n_b": 129,
+    "n_common": 129,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": false
+   },
+   {
+    "a": "phaseo_netBASE",
+    "b": "phasev_net",
+    "n_a": 237,
+    "n_b": 237,
+    "n_common": 237,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": true
+   },
+   {
+    "a": "phasep_late",
+    "b": "phasev_net",
+    "n_a": 129,
+    "n_b": 237,
+    "n_common": 129,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": false
+   },
+   {
+    "a": "phases_net",
+    "b": "phaset_net",
+    "n_a": 129,
+    "n_b": 129,
+    "n_common": 129,
+    "coverage": 1.0,
+    "max_abs_diff": 0.0,
+    "equal_length": true
+   }
+  ]
+ },
+ "groups": [
+  {
+   "members": [
+    "gate1_d"
+   ],
+   "representative": "gate1_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "gate1_d": 48
+   }
+  },
+  {
+   "members": [
+    "gate2_d"
+   ],
+   "representative": "gate2_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "gate2_d": 125
+   }
+  },
+  {
+   "members": [
+    "gate3_d"
+   ],
+   "representative": "gate3_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "gate3_d": 108
+   }
+  },
+  {
+   "members": [
+    "gate4_d"
+   ],
+   "representative": "gate4_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "gate4_d": 237
+   }
+  },
+  {
+   "members": [
+    "gate5_d"
+   ],
+   "representative": "gate5_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "gate5_d": 249
+   }
+  },
+  {
+   "members": [
+    "gate6_d"
+   ],
+   "representative": "gate6_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "gate6_d": 237
+   }
+  },
+  {
+   "members": [
+    "phasec2_d"
+   ],
+   "representative": "phasec2_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasec2_d": 237
+   }
+  },
+  {
+   "members": [
+    "phasec3_d"
+   ],
+   "representative": "phasec3_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasec3_d": 237
+   }
+  },
+  {
+   "members": [
+    "phasec_d"
+   ],
+   "representative": "phasec_d",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasec_d": 237
+   }
+  },
+  {
+   "members": [
+    "phasee_alpha"
+   ],
+   "representative": "phasee_alpha",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasee_alpha": 237
+   }
+  },
+  {
+   "members": [
+    "phasef_delta"
+   ],
+   "representative": "phasef_delta",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasef_delta": 237
+   }
+  },
+  {
+   "members": [
+    "phaseg_alpha"
+   ],
+   "representative": "phaseg_alpha",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phaseg_alpha": 237
+   }
+  },
+  {
+   "members": [
+    "phasei_v0"
+   ],
+   "representative": "phasei_v0",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasei_v0": 237
+   }
+  },
+  {
+   "members": [
+    "phasei_v1"
+   ],
+   "representative": "phasei_v1",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasei_v1": 237
+   }
+  },
+  {
+   "members": [
+    "phasej_netA"
+   ],
+   "representative": "phasej_netA",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasej_netA": 237
+   }
+  },
+  {
+   "members": [
+    "phasek_m1net"
+   ],
+   "representative": "phasek_m1net",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phasek_m1net": 237
+   }
+  },
+  {
+   "members": [
+    "phasel_alpha",
+    "phaser_alpha"
+   ],
+   "representative": "phasel_alpha",
+   "absorbed": [
+    "phaser_alpha"
+   ],
+   "n_members": 2,
+   "evidence": {
+    "kind": "代码复用 + 逐月对照",
+    "quote": "阶段 R 预登记第 50–51 行：「用阶段 L 的**同一套** `build_records()` + `filter_v1()` 重建 V1 alpha，逐月对照 `phasel_out/9ffc3710cf6f/monthly.csv::alpha_v1_pp`」",
+    "why_same": "R 的 `alpha_v1_pp` 是对 L 的 `alpha_v1_pp` 的复现校验。冲击成本只进净收益（`net_t = f_inv × alpha − comm − impact`），不改毛 alpha，所以这一列就是 L 的那一列。"
+   },
+   "member_n": {
+    "phasel_alpha": 237,
+    "phaser_alpha": 237
+   }
+  },
+  {
+   "members": [
+    "phaseo_netBASE",
+    "phasep_late",
+    "phasev_net"
+   ],
+   "representative": "phaseo_netBASE",
+   "absorbed": [
+    "phasep_late",
+    "phasev_net"
+   ],
+   "n_members": 3,
+   "evidence": {
+    "kind": "列名显式声明复现 + 子窗口",
+    "quote": "阶段 V 的列名是 `net_O_BASE_3000w`——`O_BASE` 表示「按阶段 O 的 BASE 口径复现」；阶段 V 预登记写明 drift 口径成本对记录为 0.994×（口径复现成立），其**新**口径是 rebalance，产出在另外的列。",
+    "why_same": "`net_O_BASE_3000w` 逐位等于 O 的 `net_BASE_3000w`；`phasep_late` 又是 O 的 late 段截取（严格更短）。三者同一份数据。"
+   },
+   "member_n": {
+    "phaseo_netBASE": 237,
+    "phasep_late": 129,
+    "phasev_net": 237
+   }
+  },
+  {
+   "members": [
+    "phaseq_max5"
+   ],
+   "representative": "phaseq_max5",
+   "absorbed": [],
+   "n_members": 1,
+   "evidence": {
+    "kind": "UNKNOWN",
+    "quote": "",
+    "why_same": ""
+   },
+   "member_n": {
+    "phaseq_max5": 237
+   }
+  },
+  {
+   "members": [
+    "phases_net",
+    "phaset_net"
+   ],
+   "representative": "phases_net",
+   "absorbed": [
+    "phaset_net"
+   ],
+   "n_members": 2,
+   "evidence": {
+    "kind": "同列名 + 同段，仅标签写法不同",
+    "quote": "两条取的都是 `net_S_3000w`；`phases_out` 的 segment 取值是 `2007-2015` / `2016-2026`，`phaset_out` 是 `early` / `modern`——`modern` 与 `2016-2026` 指同一段。",
+    "why_same": "T 复现了 S 的现代段，只是换了个标签。这不是两条检验，是同一条检验被查询了两次。"
+   },
+   "member_n": {
+    "phases_net": 129,
+    "phaset_net": 129
+   }
+  }
+ ],
+ "merged_into": {
+  "phaser_alpha": "phasel_alpha",
+  "phasep_late": "phaseo_netBASE",
+  "phasev_net": "phaseo_netBASE",
+  "phaset_net": "phases_net"
+ },
+ "p_unchanged": [
+  {
+   "absorbed": "phaser_alpha",
+   "representative": "phasel_alpha",
+   "p_absorbed": 0.0019717240450335526,
+   "p_rep": 0.0019717240450335526,
+   "identical": true
+  },
+  {
+   "absorbed": "phasep_late",
+   "representative": "phaseo_netBASE",
+   "p_absorbed": 0.010969566550594374,
+   "p_rep": 7.273409740837666e-05,
+   "identical": false
+  },
+  {
+   "absorbed": "phasev_net",
+   "representative": "phaseo_netBASE",
+   "p_absorbed": 7.273409740837666e-05,
+   "p_rep": 7.273409740837666e-05,
+   "identical": true
+  },
+  {
+   "absorbed": "phaset_net",
+   "representative": "phases_net",
+   "p_absorbed": 0.02831672555412718,
+   "p_rep": 0.02831672555412718,
+   "identical": true
+  }
+ ],
+ "stats": {
+  "gate1_d": {
+   "n": 48,
+   "mean_pp": -0.3961063903264166,
+   "se_nw_pp": 0.6501802166674705,
+   "t_nw3": -0.6092255349704097,
+   "p": 0.545308791389788,
+   "mde_pp": 1.8215448950155855,
+   "in_registered": true
+  },
+  "gate2_d": {
+   "n": 125,
+   "mean_pp": -0.38457783768000003,
+   "se_nw_pp": 0.24117557945976353,
+   "t_nw3": -1.5945969261956763,
+   "p": 0.1133481204862753,
+   "mde_pp": 0.6756775034144735,
+   "in_registered": true
+  },
+  "gate3_d": {
+   "n": 108,
+   "mean_pp": 0.48414844361111115,
+   "se_nw_pp": 0.21225293676815202,
+   "t_nw3": 2.2809976200233018,
+   "p": 0.024529238183913747,
+   "mde_pp": 0.5946478276496547,
+   "in_registered": true
+  },
+  "gate4_d": {
+   "n": 237,
+   "mean_pp": 0.16636050198312238,
+   "se_nw_pp": 0.17169426025774773,
+   "t_nw3": 0.9689345568883998,
+   "p": 0.3335697864563164,
+   "mde_pp": 0.48101863953810603,
+   "in_registered": true
+  },
+  "gate5_d": {
+   "n": 249,
+   "mean_pp": 0.023587832168674695,
+   "se_nw_pp": 0.1521851731787846,
+   "t_nw3": 0.15499428542203716,
+   "p": 0.8769518929614457,
+   "mde_pp": 0.426361981177683,
+   "in_registered": true
+  },
+  "gate6_d": {
+   "n": 237,
+   "mean_pp": 0.7084456860759494,
+   "se_nw_pp": 0.15253960661050311,
+   "t_nw3": 4.644339275666975,
+   "p": 5.668407884527412e-06,
+   "mde_pp": 0.42735496187998556,
+   "in_registered": true
+  },
+  "phasec_d": {
+   "n": 237,
+   "mean_pp": 1.9389677751054852,
+   "se_nw_pp": 0.3045103141606557,
+   "t_nw3": 6.367494580438122,
+   "p": 9.934532578330494e-10,
+   "mde_pp": 0.8531160961524931,
+   "in_registered": true
+  },
+  "phasec2_d": {
+   "n": 237,
+   "mean_pp": 0.10694447497890297,
+   "se_nw_pp": 0.02132541748453989,
+   "t_nw3": 5.014883064138538,
+   "p": 1.042990002819018e-06,
+   "mde_pp": 0.059745289624686955,
+   "in_registered": true
+  },
+  "phasec3_d": {
+   "n": 237,
+   "mean_pp": 0.0468041687341772,
+   "se_nw_pp": 0.0783518213406754,
+   "t_nw3": 0.5973590394366414,
+   "p": 0.5508403998670676,
+   "mde_pp": 0.21951046266803623,
+   "in_registered": true
+  },
+  "phasee_alpha": {
+   "n": 237,
+   "mean_pp": 0.2766985906329114,
+   "se_nw_pp": 0.14552974918416922,
+   "t_nw3": 1.9013197795232013,
+   "p": 0.05847823289789561,
+   "mde_pp": 0.4077161453143685,
+   "in_registered": true
+  },
+  "phasef_delta": {
+   "n": 237,
+   "mean_pp": 0.740492584556962,
+   "se_nw_pp": 0.217243941211765,
+   "t_nw3": 3.408576462140064,
+   "p": 0.0007677795015819844,
+   "mde_pp": 0.6086306256988808,
+   "in_registered": true
+  },
+  "phaseg_alpha": {
+   "n": 237,
+   "mean_pp": 0.18130837848101264,
+   "se_nw_pp": 0.1027794309444896,
+   "t_nw3": 1.7640531457985589,
+   "p": 0.07901679190325701,
+   "mde_pp": 0.2879468537340821,
+   "in_registered": true
+  },
+  "phasel_alpha": {
+   "n": 237,
+   "mean_pp": 0.10605702953586497,
+   "se_nw_pp": 0.033889615822938715,
+   "t_nw3": 3.129484562173131,
+   "p": 0.0019717240450335526,
+   "mde_pp": 0.09494514768954511,
+   "in_registered": true
+  },
+  "phasej_netA": {
+   "n": 237,
+   "mean_pp": 0.03244149789029536,
+   "se_nw_pp": 0.03112318329632752,
+   "t_nw3": 1.0423579613118623,
+   "p": 0.2983123454549297,
+   "mde_pp": 0.08719471032299118,
+   "in_registered": true
+  },
+  "phasek_m1net": {
+   "n": 237,
+   "mean_pp": 0.03989106751054852,
+   "se_nw_pp": 0.0333940534607447,
+   "t_nw3": 1.194556017508961,
+   "p": 0.23345971280445088,
+   "mde_pp": 0.09355678017562236,
+   "in_registered": true
+  },
+  "phaseo_netBASE": {
+   "n": 237,
+   "mean_pp": 0.13595891139240507,
+   "se_nw_pp": 0.033664658822536955,
+   "t_nw3": 4.0386243659593175,
+   "p": 7.273409740837666e-05,
+   "mde_pp": 0.09431490815721953,
+   "in_registered": true
+  },
+  "phasep_late": {
+   "n": 129,
+   "mean_pp": 0.129407503875969,
+   "se_nw_pp": 0.050132765867541514,
+   "t_nw3": 2.581295917681533,
+   "p": 0.010969566550594374,
+   "mde_pp": 0.14045195685450432,
+   "in_registered": true
+  },
+  "phaser_alpha": {
+   "n": 237,
+   "mean_pp": 0.10605702953586497,
+   "se_nw_pp": 0.033889615822938715,
+   "t_nw3": 3.129484562173131,
+   "p": 0.0019717240450335526,
+   "mde_pp": 0.09494514768954511,
+   "in_registered": true
+  },
+  "phases_net": {
+   "n": 129,
+   "mean_pp": 0.111195653875969,
+   "se_nw_pp": 0.050132765867541514,
+   "t_nw3": 2.2180235211790436,
+   "p": 0.02831672555412718,
+   "mde_pp": 0.14045195685450432,
+   "in_registered": true
+  },
+  "phaset_net": {
+   "n": 129,
+   "mean_pp": 0.111195653875969,
+   "se_nw_pp": 0.050132765867541514,
+   "t_nw3": 2.2180235211790436,
+   "p": 0.02831672555412718,
+   "mde_pp": 0.14045195685450432,
+   "in_registered": true
+  },
+  "phasev_net": {
+   "n": 237,
+   "mean_pp": 0.13595891139240507,
+   "se_nw_pp": 0.033664658822536955,
+   "t_nw3": 4.0386243659593175,
+   "p": 7.273409740837666e-05,
+   "mde_pp": 0.09431490815721953,
+   "in_registered": true
+  },
+  "phaseq_max5": {
+   "n": 237,
+   "mean_pp": 0.04241433514767933,
+   "se_nw_pp": 0.16701119476345913,
+   "t_nw3": 0.25396103062283637,
+   "p": 0.7997467860913298,
+   "mde_pp": 0.4678985632493071,
+   "in_registered": true
+  },
+  "phasei_v0": {
+   "n": 237,
+   "mean_pp": 0.23070257383966244,
+   "se_nw_pp": 0.03629017559905252,
+   "t_nw3": 6.357163337773591,
+   "p": 1.05216887760739e-09,
+   "mde_pp": 0.10167055595830553,
+   "in_registered": false
+  },
+  "phasei_v1": {
+   "n": 237,
+   "mean_pp": 0.1634105358649789,
+   "se_nw_pp": 0.03608599327529562,
+   "t_nw3": 4.52836463772356,
+   "p": 9.435983315166961e-06,
+   "mde_pp": 0.10109851876006822,
+   "in_registered": false
+  }
+ },
+ "pvals": {
+  "gate1_d": 0.545308791389788,
+  "gate2_d": 0.1133481204862753,
+  "gate3_d": 0.024529238183913747,
+  "gate4_d": 0.3335697864563164,
+  "gate5_d": 0.8769518929614457,
+  "gate6_d": 5.668407884527412e-06,
+  "phasec_d": 9.934532578330494e-10,
+  "phasec2_d": 1.042990002819018e-06,
+  "phasec3_d": 0.5508403998670676,
+  "phasee_alpha": 0.05847823289789561,
+  "phasef_delta": 0.0007677795015819844,
+  "phaseg_alpha": 0.07901679190325701,
+  "phasel_alpha": 0.0019717240450335526,
+  "phasej_netA": 0.2983123454549297,
+  "phasek_m1net": 0.23345971280445088,
+  "phaseo_netBASE": 7.273409740837666e-05,
+  "phases_net": 0.02831672555412718,
+  "phaseq_max5": 0.7997467860913298,
+  "phasei_v0": 1.05216887760739e-09,
+  "phasei_v1": 9.435983315166961e-06
+ },
+ "p_order": [
+  "phasec_d",
+  "phasei_v0",
+  "phasec2_d",
+  "gate6_d",
+  "phasei_v1",
+  "phaseo_netBASE",
+  "phasef_delta",
+  "phasel_alpha",
+  "gate3_d",
+  "phases_net",
+  "phasee_alpha",
+  "phaseg_alpha",
+  "gate2_d",
+  "phasek_m1net",
+  "phasej_netA",
+  "gate4_d",
+  "gate1_d",
+  "phasec3_d",
+  "phaseq_max5",
+  "gate5_d"
+ ],
+ "variants": [
+  {
+   "id": "IND_m25",
+   "m": 25,
+   "rule": "独立随机变量数（逐位相同即合并，含等长）",
+   "note": "**本阶段主口径**"
+  },
+  {
+   "id": "L3AC_m27",
+   "m": 27,
+   "rule": "L3ac 口径（只合并严格子窗口）",
+   "note": "对照：等长同值占两个名额"
+  },
+  {
+   "id": "FP_m26",
+   "m": 26,
+   "rule": "L3z 指纹去重 + phasei",
+   "note": "对照：指纹抓不到子窗口"
+  },
+  {
+   "id": "ALL_m29",
+   "m": 29,
+   "rule": "全部登记不合并 + phasei",
+   "note": "对照：最保守"
+  }
+ ],
+ "runs": {
+  "IND_m25": {
+   "m": 25,
+   "rule": "独立随机变量数（逐位相同即合并，含等长）",
+   "note": "**本阶段主口径**",
+   "bonferroni_threshold": 0.002,
+   "by_unit_threshold": 0.0005241147588198727,
+   "n_scored": 20,
+   "n_padded": 5,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 8,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "L3AC_m27": {
+   "m": 27,
+   "rule": "L3ac 口径（只合并严格子窗口）",
+   "note": "对照：等长同值占两个名额",
+   "bonferroni_threshold": 0.001851851851851852,
+   "by_unit_threshold": 0.0004758762513046723,
+   "n_scored": 20,
+   "n_padded": 7,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "FP_m26": {
+   "m": 26,
+   "rule": "L3z 指纹去重 + phasei",
+   "note": "对照：指纹抓不到子窗口",
+   "bonferroni_threshold": 0.0019230769230769232,
+   "by_unit_threshold": 0.0004989277413113022,
+   "n_scored": 20,
+   "n_padded": 6,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  },
+  "ALL_m29": {
+   "m": 29,
+   "rule": "全部登记不合并 + phasei",
+   "note": "对照：最保守",
+   "bonferroni_threshold": 0.001724137931034483,
+   "by_unit_threshold": 0.0004352066129767854,
+   "n_scored": 20,
+   "n_padded": 9,
+   "rejected": {
+    "bonferroni": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta"
+    ],
+    "holm": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "bh": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ],
+    "by": [
+     "phasec_d",
+     "phasei_v0",
+     "phasec2_d",
+     "gate6_d",
+     "phasei_v1",
+     "phaseo_netBASE",
+     "phasef_delta",
+     "phasel_alpha"
+    ]
+   },
+   "counts": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  }
+ },
+ "fwer": {
+  "n_sims": 200000,
+  "alpha": 0.05,
+  "seed": 20261029,
+  "reject_rate_m2": 0.024785,
+  "reject_rate_m1": 0.049715,
+  "expected_m2": 0.025,
+  "expected_m1": 0.05
+ },
+ "gates": [],
+ "predictions": [
+  {
+   "id": "P1",
+   "claim": "三对共 6 条全部逐位相同，合并后归为 3 组、合并掉 4 条",
+   "observed": "等长同值 3 对；合并 4 条，剩 18 组",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P2",
+   "claim": "m=25，Bonferroni 门槛 0.00200000",
+   "observed": "m=25，门槛 0.00200000",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P3",
+   "claim": "四种校正全部 8 条、彼此不再分歧",
+   "observed": "Bonf=8 Holm=8 BH=8 BY=8",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P4",
+   "claim": "相对 L3ac 的 7 条，唯一新增 `phasel_alpha`",
+   "observed": "新增 ['phasel_alpha']",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P5",
+   "claim": "正面结论数不变（7 条）",
+   "observed": "m=25 通过中正面 7 条；m=27 正面 7 条",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P6",
+   "claim": "`phasel_alpha` 在新门槛下余量 1.41%，仍极薄",
+   "observed": "(0.05/25 − p)/0.05/25 = 1.41%",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P7",
+   "claim": "`phases/phaset` 的合并不改变任何结论（两条在任何口径与校正下都不通过）",
+   "observed": "p=0.028317（单条显著、全族不通过）；16 个组合里出现 0 次",
+   "holds": true,
+   "note": ""
+  },
+  {
+   "id": "P8",
+   "claim": "FWER 模拟：计 2 个名额 ≈ α/2，计 1 个名额 ≈ α",
+   "observed": "0.0248 vs 0.0497（α=0.05，200,000 次）",
+   "holds": true,
+   "note": "模拟只能证明「同一 p 被读两次」的算术后果，不能代替对真实家族依赖结构的分析"
+  },
+  {
+   "id": "P9",
+   "claim": "逐组报告代表、被吸收者与证据类型",
+   "observed": "见 §3 的分组表",
+   "holds": true,
+   "note": ""
+  }
+ ],
+ "status": "VERIFIED_WITH_DOCUMENTED_LIMITATIONS",
+ "generated": "2026-10-29"
+}

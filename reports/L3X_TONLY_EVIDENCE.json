@@ -1,0 +1,27 @@
+{
+ "experiment_id": "H-L3X-TONLY-000001",
+ "prereg_sha256": "ffdff3b75f9c3f16029e34b205c40300518a82bb6758af102968cbefe0438dfd",
+ "subject_l3u_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+ "subject_l3w_sha256": "ce10baa7dabb1e1219177448e7e4ba6d1d81769cbcbde40c8dae85860445b6c0",
+ "outputs": {
+  "json": "reports/gates/H-L3X-TONLY/l3x_unseal.json",
+  "markdown": "reports/gates/H-L3X-TONLY/l3x_unseal.md",
+  "patch": "reports/gates/H-L3X-TONLY/l3v_claims_patch.json"
+ },
+ "n_unsealed": 5,
+ "n_stay_sealed": 1,
+ "counts_after": {
+  "DIRECTION_ONLY": 3,
+  "NOT_GRADED": 6,
+  "NULL_CONFIRMED": 1,
+  "QUOTABLE": 1,
+  "QUOTABLE_MARGINAL": 4,
+  "UNDERPOWERED": 12
+ },
+ "n_changed_total": 9,
+ "refuted_predictions": [
+  "P1",
+  "P2",
+  "P5"
+ ]
+}

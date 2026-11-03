@@ -1,0 +1,235 @@
+{
+ "experiment_id": "L3ae",
+ "prereg_sha256": "b452f926840bb198d9458dec3bd206ec19f5bca895cfe064edc729bd28fa1a73",
+ "phasei_prereg_sha256": "8f5c35121fdb81398aa3a75cb780e4273dee88c2f5684b0ba8e3028d8fdd78e1",
+ "phasei_verdict": "EXQ5_COST_ABSORBED",
+ "phasei_criteria": {
+  "A_stat": true,
+  "B_stable": true,
+  "C_cost": false,
+  "verdict": "EXQ5_COST_ABSORBED"
+ },
+ "phasei_primary_cost": 0.003,
+ "n": 237,
+ "mean_gross_pp": 0.1634105358649789,
+ "summary_mean_pp": 0.163411,
+ "mean_source": "逐月 alpha_v1_pp 的算术均值（非 summary.mean_pp）",
+ "turnover_one_side": 0.18862,
+ "turnover_source": "summary.turnover.v1_one_side（逐月文件无换手列，这是唯一可用来源）",
+ "se_iid_pp": 0.04841413358411035,
+ "se_nw3_pp": 0.03608599327529562,
+ "se_ratio": 1.3416322841598083,
+ "nw3_reproduced_t": 4.52836463772356,
+ "summary_se_nw_pp": 0.036086,
+ "n_keep_median": 1948,
+ "phasei_0p1": {
+  "net": 0.125687,
+  "t": 2.596073
+ },
+ "tiers": [
+  {
+   "rate": 0.001,
+   "rate_pct": 0.1,
+   "cost_pp_month": 0.03772400000000001,
+   "cost_pp_year": 0.4526880000000001,
+   "net_pp_month": 0.12568653586497888,
+   "t_iid": 2.596071158572371,
+   "t_nw3": 3.4829728783168497,
+   "id": "T_0p1",
+   "label": "0.1%（既有档，复现用）",
+   "role": "对照 —— 必须与 phasei 产物逐位一致，否则判 G1 失败"
+  },
+  {
+   "rate": 0.003,
+   "rate_pct": 0.3,
+   "cost_pp_month": 0.11317200000000001,
+   "cost_pp_year": 1.3580640000000002,
+   "net_pp_month": 0.05023853586497888,
+   "t_iid": 1.0376832578796227,
+   "t_nw3": 1.3921893595034296,
+   "id": "T_0p3",
+   "label": "0.3%（既有档，预登记主成本）",
+   "role": "对照 —— 同上；这也是判定 C_cost 的档位"
+  },
+  {
+   "rate": 0.00051,
+   "rate_pct": 0.051000000000000004,
+   "cost_pp_month": 0.01923924,
+   "cost_pp_year": 0.23087088,
+   "net_pp_month": 0.1441712958649789,
+   "t_iid": 2.9778761942420946,
+   "t_nw3": 3.9952148404261383,
+   "id": "T_base_1e8",
+   "label": "0.051%（真实等价单边，1 亿档，无最低佣金）",
+   "role": "本阶段新增的主披露档"
+  },
+  {
+   "rate": 0.000585,
+   "rate_pct": 0.0585,
+   "cost_pp_month": 0.02206854,
+   "cost_pp_year": 0.26482248,
+   "net_pp_month": 0.1413419958649789,
+   "t_iid": 2.9194366479661165,
+   "t_nw3": 3.9168104584706347,
+   "id": "T_base_3e7",
+   "label": "0.0585%（3000 万档，含 5 元最低佣金）",
+   "role": "资金规模敏感性"
+  },
+  {
+   "rate": 0.001234,
+   "rate_pct": 0.12340000000000001,
+   "cost_pp_month": 0.046551416000000005,
+   "cost_pp_year": 0.558616992,
+   "net_pp_month": 0.11685911986497888,
+   "t_iid": 2.413739774191319,
+   "t_nw3": 3.2383512066156794,
+   "id": "T_base_1e7",
+   "label": "0.1234%（1000 万档，含 5 元最低佣金）",
+   "role": "资金规模敏感性（小资金端）"
+  }
+ ],
+ "min_commission": [
+  {
+   "capital": 100000000.0,
+   "notional_per_stock": 51334.7022587269,
+   "commission_effective": 0.00025,
+   "equivalent_single_side": 0.00051,
+   "tier": "T_base_1e8",
+   "tier_rate": 0.00051
+  },
+  {
+   "capital": 30000000.0,
+   "notional_per_stock": 15400.41067761807,
+   "commission_effective": 0.0003246666666666666,
+   "equivalent_single_side": 0.0005846666666666667,
+   "tier": "T_base_3e7",
+   "tier_rate": 0.000585
+  },
+  {
+   "capital": 10000000.0,
+   "notional_per_stock": 5133.47022587269,
+   "commission_effective": 0.0009739999999999999,
+   "equivalent_single_side": 0.0012339999999999999,
+   "tier": "T_base_1e7",
+   "tier_rate": 0.001234
+  }
+ ],
+ "reproduction": [
+  {
+   "tier": "T_0p1",
+   "field": "cost_pp_month",
+   "mine": 0.03772400000000001,
+   "phasei": 0.037724,
+   "rel_diff": 1.839384451253109e-16,
+   "net_ref": 0.125687
+  },
+  {
+   "tier": "T_0p1",
+   "field": "net_pp_month",
+   "mine": 0.12568653586497888,
+   "phasei": 0.125687,
+   "rel_diff": 3.6927846245910754e-06,
+   "net_ref": 0.125687
+  },
+  {
+   "tier": "T_0p1",
+   "field": "t_iid",
+   "mine": 2.596071158572371,
+   "phasei": 2.596073,
+   "rel_diff": 7.093127308229434e-07,
+   "net_ref": 0.125687
+  },
+  {
+   "tier": "T_0p3",
+   "field": "cost_pp_month",
+   "mine": 0.11317200000000001,
+   "phasei": 0.113172,
+   "rel_diff": 1.226256300835406e-16,
+   "net_ref": 0.050239
+  },
+  {
+   "tier": "T_0p3",
+   "field": "net_pp_month",
+   "mine": 0.05023853586497888,
+   "phasei": 0.050239,
+   "rel_diff": 9.238540200201384e-06,
+   "net_ref": 0.050239
+  },
+  {
+   "tier": "T_0p3",
+   "field": "t_iid",
+   "mine": 1.0376832578796227,
+   "phasei": 1.037689,
+   "rel_diff": 5.533565815389305e-06,
+   "net_ref": 0.050239
+  }
+ ],
+ "g1_floor": 3.978136163644609e-06,
+ "gates": [
+  {
+   "code": "G1_REPRODUCTION_FAILED",
+   "detail": "T_0p1.net_pp_month: 我 0.12568653586497888 vs 产物 0.125687（相对偏差 3.693e-06）"
+  },
+  {
+   "code": "G1_REPRODUCTION_FAILED",
+   "detail": "T_0p3.net_pp_month: 我 0.05023853586497888 vs 产物 0.050239（相对偏差 9.239e-06）"
+  },
+  {
+   "code": "G1_REPRODUCTION_FAILED",
+   "detail": "T_0p3.t_iid: 我 1.0376832578796227 vs 产物 1.037689（相对偏差 5.534e-06）"
+  }
+ ],
+ "predictions": [
+  {
+   "id": "P1",
+   "timing": "priori",
+   "claim": "两档既有档逐位复现（相对偏差 ≤ 1e-6）",
+   "observed": "最大相对偏差 9.239e-06；存储下限 3.978e-06（判据 **不可满足**）",
+   "holds": false,
+   "note": "判据不可满足：产物 net 存 6 位小数，相对下限已达 4e-6。实测偏差落在舍入范围内 ⇒ 属判据缺陷 D1，非实现错误"
+  },
+  {
+   "id": "P2",
+   "timing": "priori",
+   "claim": "0.051% 档 t_iid ∈ [2.90,3.05]、net ∈ [0.1435,0.1449]",
+   "observed": "t_iid=2.9779、net=0.144171",
+   "holds": true
+  },
+  {
+   "id": "P3",
+   "timing": "priori",
+   "claim": "0.051% 档 t_nw3 ∈ [3.90,4.10]",
+   "observed": "t_nw3=3.9952（比值 1.3416）",
+   "holds": true
+  },
+  {
+   "id": "P4",
+   "timing": "priori",
+   "claim": "两档含最低佣金的档位 t_iid 均 > 1.96",
+   "observed": "3000万 2.9194、1000万 2.4137",
+   "holds": true
+  },
+  {
+   "id": "P5",
+   "timing": "priori",
+   "claim": "phasei verdict 不变",
+   "observed": "EXQ5_COST_ABSORBED",
+   "holds": true
+  },
+  {
+   "id": "P6",
+   "timing": "priori",
+   "claim": "0.3% 档 NW(3) t 仍 < 1.96",
+   "observed": "t_nw3=1.3922",
+   "holds": true
+  },
+  {
+   "id": "P7",
+   "timing": "descriptive",
+   "claim": "最低佣金摆脱点：单笔 ≥ 20,000 元",
+   "observed": "n_keep 中位 1948 只 ⇒ W ≥ 3896 万元",
+   "holds": true
+  }
+ ],
+ "status": "COST_TIERS_COMPLETED_WITH_DEFECTS"
+}

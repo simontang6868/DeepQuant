@@ -1,0 +1,107 @@
+{
+  "generated_at": "2026-10-27T03:17:09+00:00",
+  "criteria": {
+    "criterion_1_registry_coverage": {
+      "required_kinds": [
+        "market_data",
+        "notification",
+        "downstream"
+      ],
+      "by_kind": {
+        "market_data": [
+          "market_data.eastmoney",
+          "market_data.tencent"
+        ],
+        "notification": [],
+        "downstream": []
+      },
+      "market_data_has_fallback": true,
+      "empty_kinds_reported_honestly": [
+        "notification",
+        "downstream"
+      ],
+      "pass": true
+    },
+    "criterion_2_failover_transparent": {
+      "failover_channel": "tencent",
+      "failover_attempts": [
+        {
+          "channel": "eastmoney",
+          "ok": false,
+          "latency_ms": 0.005,
+          "error": "ConnectionError: Unable to connect to proxy"
+        },
+        {
+          "channel": "tencent",
+          "ok": true,
+          "latency_ms": 0.002,
+          "error": null
+        }
+      ],
+      "degraded": true,
+      "value_returned": true,
+      "pass": true
+    },
+    "criterion_3_switch_events": {
+      "directions": [
+        "failover",
+        "recover"
+      ],
+      "n_events": 2,
+      "events_file": "C:\\Users\\77436\\AppData\\Local\\Temp\\deps_t3_f1nh2aha\\events.jsonl",
+      "first_event_attempts": 2,
+      "pass": true
+    },
+    "criterion_4_manual_lock": {
+      "channel": "tencent",
+      "pinned": true,
+      "pass": true
+    },
+    "criterion_5_latency_archive": {
+      "days": [
+        "20261026",
+        "20261027"
+      ],
+      "method": "nearest-rank",
+      "sample_table": {
+        "20261026": {
+          "market_data.eastmoney": {
+            "n": 2,
+            "n_failed": 0,
+            "p50": 20.0,
+            "p90": 25.0,
+            "p99": 25.0
+          }
+        },
+        "20261027": {
+          "market_data.eastmoney": {
+            "n": 6,
+            "n_failed": 1,
+            "p50": 10.0,
+            "p90": 99.0,
+            "p99": 99.0
+          },
+          "market_data.tencent": {
+            "n": 1,
+            "n_failed": 0,
+            "p50": 0.002,
+            "p90": 0.002,
+            "p99": 0.002
+          }
+        }
+      },
+      "percentiles_present": true,
+      "p50_of_ten": 12.0,
+      "pass": true
+    },
+    "all_fail_semantics": {
+      "raises": true,
+      "detail": {
+        "n_attempts": 2,
+        "message": "market_data 全部通道失败（2 次尝试）：[eastmoney] TimeoutError: timeout | [tencent] TimeoutError: timeout"
+      },
+      "pass": true
+    }
+  },
+  "overall_pass": true
+}

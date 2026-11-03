@@ -1,0 +1,36 @@
+{
+  "hypothesis_id": "H-L2-MACROSS-000001",
+  "title": "双均线（ma_cross）在 000001.SZ 上的 L2 蒙特卡洛",
+  "derived_from": {
+    "l1a_spec": "docs/gates/specs/H_L1A_MACROSS_000001.json",
+    "l1b_spec": "docs/gates/specs/H_L1B_MACROSS_000001.json",
+    "l1b_result": "reports/gates/H-L1B-MACROSS-000001/l1b_result.json",
+    "note": "L2 不新增假设，只在 L1b 产出的权益路径上做重抽样；曲线取精验档（含摩擦），因为那才是可执行路径。"
+  },
+  "curve": "stressed",
+  "monte_carlo": {
+    "replications": 2000,
+    "mean_block_length": 20,
+    "seed": 20261027,
+    "block_lengths": [
+      20,
+      10,
+      40,
+      60
+    ],
+    "top_day_fraction": 0.01,
+    "min_trimmed_return": 0.0,
+    "min_repeatable_ratio": 0.5,
+    "max_terminal_loss_p5": -0.3,
+    "max_mdd_p95": 0.4,
+    "max_cvar5": -0.45,
+    "trim_profile_fractions": [
+      0.002,
+      0.005,
+      0.01,
+      0.02,
+      0.05
+    ]
+  },
+  "basis": "块长 20 日 ≈ n^(1/3)（n≈1460），文献常用初值；块长网格 10/20/40/60 用于检验结论是否依赖该选择。min_repeatable_ratio 0.5 = 重抽样后还能留住一半收益才认为『不完全靠运气』。尾部阈值 5% 分位 −30%、回撤 95% 分位 40%、CVaR5 −45% 为单标的容忍上限。全部阈值为首版初值，跑前写定，不因结果调整；需研究员后续校准。"
+}

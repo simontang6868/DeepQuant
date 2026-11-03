@@ -1,0 +1,33 @@
+{
+ "experiment_id": "H-L3V-CLAIM-REGISTRY",
+ "prereg_sha256": "16f10272652681143ffa3e97d6896958083c0264fee01b10284d2962167dfb39",
+ "prereg_bytes": 9014,
+ "subject_l3u_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+ "claims_sha256": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+ "unseal_sha256": [
+  "ce10baa7dabb1e1219177448e7e4ba6d1d81769cbcbde40c8dae85860445b6c0",
+  "e70703b2f69072194f943a8ab64abe4a7377534dc6a82948061d34623422e5c7",
+  "7aa350edfadb46a074695a4b77b065a59d37584eb38631b3270fc7c19a93888f"
+ ],
+ "n_quoted_via_unseal": 11,
+ "outputs": {
+  "json": "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims.json",
+  "markdown": "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims.md"
+ },
+ "status": "CLAIMS_CONSISTENT",
+ "n_violations": 0,
+ "violation_counts": {},
+ "tier_counts": {
+  "EXPLORATORY": 3,
+  "NOT_GRADED": 6,
+  "NULL_CONFIRMED": 1,
+  "QUOTABLE": 1,
+  "QUOTABLE_MARGINAL": 4,
+  "UNDERPOWERED": 12
+ },
+ "n_independent_numbers": 24,
+ "spot_check_all_ok": true,
+ "refuted_predictions": [
+  "P2"
+ ]
+}

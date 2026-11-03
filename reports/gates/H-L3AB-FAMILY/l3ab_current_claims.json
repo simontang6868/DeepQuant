@@ -1,0 +1,400 @@
+{
+ "generated_at": "2026-10-29 22:38 +0800",
+ "sheet_status": "CURRENT_WITH_DOCUMENTED_LIMITATIONS",
+ "hashes": {
+  "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+  "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc",
+  "reports/gates/H-L3AA-DEPENDENCE/l3aa_dependence.json": "dffcf4645cfe8c2b155b1d53f3a4e5b6c5afd007772d1fc5d3206fe99e6854ec",
+  "reports/gates/H-L3AB-FAMILY/l3ab_family.json": "116a06aa683932054f39de514ffdd99236036b4bef2b5f4ec3c7a9c1882e90dc",
+  "docs/gates/l3v_claims.json": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0",
+  "docs/gates/l3ab_family_decisions.json": "afdf3fded8def1a090d82cb42f0439d0892fb9fc7dd7b2b93485631ec0a9df75",
+  "reports/L3Z_LAG_SENSITIVITY.json": "b60428758948e261bdd4ee9b26165376ac9a4810e5c888780c1fba56a7f1a4f6"
+ },
+ "sheet_version": "L3AB-CURRENT-v1",
+ "m_primary": 24,
+ "m_alt": 27,
+ "n_claims_registered": 27,
+ "n_quotable": 6,
+ "claims": [
+  {
+   "key": "phasel_alpha",
+   "tier": "NULL_CONFIRMED",
+   "headline": "SURGE 避让后的 alpha 只剩 +0.11pp（t=+3.13），MDE 0.09pp、事后功效 88%：判「净效应被吸收」，即确认无增量。",
+   "hypothesis": "SURGE 避免型效应是否留下未被吸收的 alpha",
+   "n": 237,
+   "window": "2007-01~2026-09",
+   "p": 0.0019717240450335526,
+   "t_nw3": 3.129484562173131,
+   "traceability": {
+    "l3u_class": "MATCH",
+    "detail": ""
+   },
+   "verified_independently": true,
+   "verification": {
+    "l3u_class": "MATCH",
+    "later_layer": null,
+    "later_note": "L3u 核对一致，未检出且事后功效 87.9%，可引为「确认无效应」",
+    "conclusion": "PASS"
+   },
+   "multiplicity": {
+    "m": 24,
+    "bonferroni": true,
+    "holm": true,
+    "bh": true,
+    "by": true,
+    "at_m27": {
+     "bonferroni": false,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "passes_all_four": true,
+   "sensitivity": {
+    "lag_crosses_tier": false,
+    "lag_tiers": [
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL"
+    ],
+    "m_changes_verdict": true
+   },
+   "economic_basis": "gross_alpha",
+   "economic_label": "毛利 alpha（未扣成本）",
+   "economic_short": "毛利 alpha",
+   "economic_note": "判定为「净效应被成本吸收」，方向与正向收益相反",
+   "cost_adjusted_positive_evidence": false,
+   "out_of_sample_evidence": false,
+   "out_of_sample_note": "全部为历史样本内结果；无前瞻期数据参与",
+   "allowed_wording": "SURGE 避让后的 alpha 只剩 +0.11pp（t=+3.13），MDE 0.09pp、事后功效 88%：判「净效应被吸收」，即确认无增量。",
+   "limits_of_use": [
+    "「确认无效应」限定于相对同池平均的增量，不是绝对收益为零",
+    "该序列与 phaser 完全同一份数字，不能当作两次独立验证"
+   ],
+   "forbidden": [
+    "SURGE 有可交易 alpha"
+   ],
+   "null_claim": true
+  },
+  {
+   "key": "phasec_d",
+   "tier": "QUOTABLE",
+   "headline": "池效应的判定量 spread(B)−spread(A) 为 +1.94pp（t=+6.37）、MDE 0.85pp，|效应|/MDE 2.27 倍；格 A 自身的水平是 +0.01pp，与本条的差值不可混用。",
+   "hypothesis": "池效应：spread(B) 与 spread(A) 之差是否为零",
+   "n": 237,
+   "window": "2007-01~2026-09",
+   "p": 9.934532578330494e-10,
+   "t_nw3": 6.367494580438122,
+   "traceability": {
+    "l3u_class": "MISMATCH_MEAN",
+    "detail": "mean: L3t=+0.014071 vs 判定=+1.938968（差 -1.924897）"
+   },
+   "verified_independently": true,
+   "verification": {
+    "l3u_class": "MISMATCH_MEAN",
+    "later_layer": "l3w_unseal",
+    "later_note": "L3u 判核对未通过（L3t 取了格 A 自身水平 +0.0141pp）；L3w 复核证明判定量与序列同源，|效应|/MDE=2.273，NW 滞后 0/1/2/3/4/6 全档恒为 QUOTABLE",
+    "conclusion": "PASS"
+   },
+   "multiplicity": {
+    "m": 24,
+    "bonferroni": true,
+    "holm": true,
+    "bh": true,
+    "by": true,
+    "at_m27": {
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "passes_all_four": true,
+   "sensitivity": {
+    "lag_crosses_tier": false,
+    "lag_tiers": [
+     "QUOTABLE",
+     "QUOTABLE",
+     "QUOTABLE",
+     "QUOTABLE",
+     "QUOTABLE",
+     "QUOTABLE"
+    ],
+    "m_changes_verdict": false
+   },
+   "economic_basis": "cross_section_spread",
+   "economic_label": "横截面价差（不是任何组合的收益水平）",
+   "economic_short": "横截面价差",
+   "economic_note": "",
+   "cost_adjusted_positive_evidence": false,
+   "out_of_sample_evidence": false,
+   "out_of_sample_note": "全部为历史样本内结果；无前瞻期数据参与",
+   "allowed_wording": "池效应的判定量 spread(B)−spread(A) 为 +1.94pp（t=+6.37）、MDE 0.85pp，|效应|/MDE 2.27 倍；格 A 自身的水平是 +0.01pp，与本条的差值不可混用。",
+   "limits_of_use": [
+    "该值是两格 spread 之差，不是任何单一组合的收益水平",
+    "spread 与 d 差 2 倍，跨文献引用须换算"
+   ],
+   "forbidden": [],
+   "null_claim": false
+  },
+  {
+   "key": "gate6_d",
+   "tier": "QUOTABLE_MARGINAL",
+   "headline": "全 A as-of 口径的 d 均值为 +0.71pp（t=+4.39 iid／+4.64 NW3），MDE 0.43pp、事后功效 100%，但 |效应|/MDE 只有 1.66 倍。",
+   "hypothesis": "反转信号在 as-of 全A 池、全样本上 d 是否为正",
+   "n": 237,
+   "window": "2007-02~2026-10",
+   "p": 5.668407884527412e-06,
+   "t_nw3": 4.644339275666975,
+   "traceability": {
+    "l3u_class": "MISMATCH_MEAN",
+    "detail": "mean 一致但 t 不同：L3t=+4.6443 vs 判定=+4.3861（多为 NW 滞后或估计量口径差异）"
+   },
+   "verified_independently": true,
+   "verification": {
+    "l3u_class": "MISMATCH_MEAN",
+    "later_layer": "l3w_unseal",
+    "later_note": "L3u 判核对未通过（仅 t 口径不同：判定用 iid、L3t 用 NW3）；L3x 复核：stat.t 与 t_iid 一致、mean 与 n 全等，ratio 1.658，NW 滞后网格全档 QUOTABLE_MARGINAL",
+    "conclusion": "PASS"
+   },
+   "multiplicity": {
+    "m": 24,
+    "bonferroni": true,
+    "holm": true,
+    "bh": true,
+    "by": true,
+    "at_m27": {
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "passes_all_four": true,
+   "sensitivity": {
+    "lag_crosses_tier": false,
+    "lag_tiers": [
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL"
+    ],
+    "m_changes_verdict": false
+   },
+   "economic_basis": "cross_section_spread",
+   "economic_label": "横截面价差（不是任何组合的收益水平）",
+   "economic_short": "横截面价差",
+   "economic_note": "",
+   "cost_adjusted_positive_evidence": false,
+   "out_of_sample_evidence": false,
+   "out_of_sample_note": "全部为历史样本内结果；无前瞻期数据参与",
+   "allowed_wording": "全 A as-of 口径的 d 均值为 +0.71pp（t=+4.39 iid／+4.64 NW3），MDE 0.43pp、事后功效 100%，但 |效应|/MDE 只有 1.66 倍。",
+   "limits_of_use": [
+    "头条 +4.39 是 iid t，同序列 NW3 为 +4.64，引用时须同列两数",
+    "这是横截面月度差距，不是可交易组合的账户收益",
+    "d 与文献 spread 差 2 倍"
+   ],
+   "forbidden": [],
+   "null_claim": false
+  },
+  {
+   "key": "phasec2_d",
+   "tier": "QUOTABLE_MARGINAL",
+   "headline": "停牌效应的增量 +0.11pp（t=+5.01）、MDE 0.06pp，|效应|/MDE 1.79 倍；池效应本身的水平是 +0.66pp，不是本条的增量。",
+   "hypothesis": "加入停牌约束后 spread 的增量是否为零",
+   "n": 237,
+   "window": "2007-02~2026-10",
+   "p": 1.042990002819018e-06,
+   "t_nw3": 5.014883064138538,
+   "traceability": {
+    "l3u_class": "MISMATCH_MEAN",
+    "detail": "mean: L3t=+0.658190 vs 判定=+0.106944（差 +0.551245）"
+   },
+   "verified_independently": true,
+   "verification": {
+    "l3u_class": "MISMATCH_MEAN",
+    "later_layer": "l3w_unseal",
+    "later_note": "L3u 判核对未通过（L3t 记成 POOL_EFFECT_CONFIRMED，取的是池效应水平）；L3w 复核证明判定量与序列同源，|效应|/MDE=1.790，NW 滞后 0/1/2/3/4/6 全档恒为 QUOTABLE_MARGINAL",
+    "conclusion": "PASS"
+   },
+   "multiplicity": {
+    "m": 24,
+    "bonferroni": true,
+    "holm": true,
+    "bh": true,
+    "by": true,
+    "at_m27": {
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "passes_all_four": true,
+   "sensitivity": {
+    "lag_crosses_tier": false,
+    "lag_tiers": [
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL"
+    ],
+    "m_changes_verdict": false
+   },
+   "economic_basis": "cross_section_spread",
+   "economic_label": "横截面价差（不是任何组合的收益水平）",
+   "economic_short": "横截面价差",
+   "economic_note": "",
+   "cost_adjusted_positive_evidence": false,
+   "out_of_sample_evidence": false,
+   "out_of_sample_note": "全部为历史样本内结果；无前瞻期数据参与",
+   "allowed_wording": "停牌效应的增量 +0.11pp（t=+5.01）、MDE 0.06pp，|效应|/MDE 1.79 倍；池效应本身的水平是 +0.66pp，不是本条的增量。",
+   "limits_of_use": [
+    "检验的是相对基准格的增量，不是停牌效应的绝对规模",
+    "统计显著但量级小：0.11pp/月 对一个组合的实际影响需另算"
+   ],
+   "forbidden": [
+    "停牌效应就是池效应"
+   ],
+   "null_claim": false
+  },
+  {
+   "key": "phasef_delta",
+   "tier": "QUOTABLE_MARGINAL",
+   "headline": "MAX5 的 delta 为 +0.74pp（t=+3.41），MDE 0.61pp，|效应|/MDE 1.22 倍，是本项目最接近可引用的横截面结论。",
+   "hypothesis": "MAX5 五分层中最高与最低层的 delta 是否为零",
+   "n": 237,
+   "window": "2007-02~2026-10",
+   "p": 0.0007677795015819844,
+   "t_nw3": 3.408576462140064,
+   "traceability": {
+    "l3u_class": "MATCH",
+    "detail": ""
+   },
+   "verified_independently": true,
+   "verification": {
+    "l3u_class": "MATCH",
+    "later_layer": null,
+    "later_note": "L3u 核对一致，|效应|/MDE=1.22 落 1~2 倍档",
+    "conclusion": "PASS"
+   },
+   "multiplicity": {
+    "m": 24,
+    "bonferroni": true,
+    "holm": true,
+    "bh": true,
+    "by": true,
+    "at_m27": {
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "passes_all_four": true,
+   "sensitivity": {
+    "lag_crosses_tier": false,
+    "lag_tiers": [
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL"
+    ],
+    "m_changes_verdict": false
+   },
+   "economic_basis": "cross_section_spread",
+   "economic_label": "横截面价差（不是任何组合的收益水平）",
+   "economic_short": "横截面价差",
+   "economic_note": "",
+   "cost_adjusted_positive_evidence": false,
+   "out_of_sample_evidence": false,
+   "out_of_sample_note": "全部为历史样本内结果；无前瞻期数据参与",
+   "allowed_wording": "MAX5 的 delta 为 +0.74pp（t=+3.41），MDE 0.61pp，|效应|/MDE 1.22 倍，是本项目最接近可引用的横截面结论。",
+   "limits_of_use": [
+    "1.22 倍仍低于 2 倍门槛，只能作为「可引用且须标 MDE」处理",
+    "delta 是两格 d 之差，不是组合收益"
+   ],
+   "forbidden": [],
+   "null_claim": false
+  },
+  {
+   "key": "phaseo_netBASE",
+   "tier": "QUOTABLE_MARGINAL",
+   "headline": "3000 万档、BASE 费率（单边 0.051%）下净 alpha 为 +0.14pp（t=+4.04），MDE 0.09pp，|效应|/MDE 1.44 倍。",
+   "hypothesis": "BASE 费率、3000 万资金下净 alpha 是否为正",
+   "n": 237,
+   "window": "2007-01~2026-09",
+   "p": 7.273409740837666e-05,
+   "t_nw3": 4.0386243659593175,
+   "traceability": {
+    "l3u_class": "MATCH",
+    "detail": ""
+   },
+   "verified_independently": true,
+   "verification": {
+    "l3u_class": "MATCH",
+    "later_layer": null,
+    "later_note": "L3u 核对一致，|效应|/MDE=1.44 落 1~2 倍档",
+    "conclusion": "PASS"
+   },
+   "multiplicity": {
+    "m": 24,
+    "bonferroni": true,
+    "holm": true,
+    "bh": true,
+    "by": true,
+    "at_m27": {
+     "bonferroni": true,
+     "holm": true,
+     "bh": true,
+     "by": true
+    }
+   },
+   "passes_all_four": true,
+   "sensitivity": {
+    "lag_crosses_tier": false,
+    "lag_tiers": [
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL",
+     "QUOTABLE_MARGINAL"
+    ],
+    "m_changes_verdict": false
+   },
+   "economic_basis": "net_return",
+   "economic_label": "扣除成本后的组合净收益（已带成本口径与资金档）",
+   "economic_short": "净收益",
+   "economic_note": "",
+   "cost_adjusted_positive_evidence": true,
+   "out_of_sample_evidence": false,
+   "out_of_sample_note": "全部为历史样本内结果；无前瞻期数据参与",
+   "allowed_wording": "3000 万档、BASE 费率（单边 0.051%）下净 alpha 为 +0.14pp（t=+4.04），MDE 0.09pp，|效应|/MDE 1.44 倍。",
+   "limits_of_use": [
+    "1.44 倍仍低于 2 倍门槛，引用必须同时给 MDE",
+    "EXECUTABLE_UNDER_BASE_FEES 不等于「可用」：换到压力费率档后净 alpha 逼近 0",
+    "该序列与 phasev 完全同一份数字，不能当作两次独立验证"
+   ],
+   "forbidden": [],
+   "null_claim": false
+  }
+ ],
+ "global_limits": [
+  "多重检验主口径 m=24（数值指纹去重）；m=27 为替代口径，两者对 5 条正面结论的结论相同，仅 `phasel_alpha` 在 m=27 + Bonferroni 下掉出。",
+  "Benjamini–Yekutieli 在任意依赖下控制错误发现率；它不验证正相依（PRDS）假设，只是绕开。",
+  "标准误一律 Newey-West(3)，p 用 t 分布双侧；滞后网格 {0,1,2,3,4,6} 下的分级轨迹单独列出。",
+  "全部结论都在历史样本内产生，不存在前瞻期证据；「统计显著」不等于「经济有意义」，「净收益为正（样本内）」也不等于「可实盘交易」。",
+  "本清单只覆盖 L3u 登记在册的 27 条。至少有一个已产生结论的实验（`phasei_out`，exQ5 可成交）不在该家族内，因此也不在本清单的校正范围内。"
+ ],
+ "l3aa_status": "ROBUST_AT_MAIN_SPEC_LAG_SENSITIVE"
+}

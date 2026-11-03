@@ -1,0 +1,384 @@
+{
+  "bound_checks": [
+    {
+      "actual": 0.9318016,
+      "direction": ">=",
+      "name": "样本内累计收益",
+      "passed": true,
+      "reason": "",
+      "threshold": 0.58
+    },
+    {
+      "actual": 0.32840854997130214,
+      "direction": "<=",
+      "name": "样本内最大回撤",
+      "passed": false,
+      "reason": "",
+      "threshold": 0.25
+    },
+    {
+      "actual": 23.0,
+      "direction": ">=",
+      "name": "样本内完成交易笔数",
+      "passed": true,
+      "reason": "",
+      "threshold": 10.0
+    },
+    {
+      "actual": -0.12838759999999994,
+      "direction": ">=",
+      "name": "样本外累计收益",
+      "passed": false,
+      "reason": "",
+      "threshold": 0.0
+    },
+    {
+      "actual": 0.23405469852731578,
+      "direction": "<=",
+      "name": "样本外最大回撤",
+      "passed": true,
+      "reason": "",
+      "threshold": 0.25
+    },
+    {
+      "actual": -0.13778426652197198,
+      "direction": ">=",
+      "name": "样本外收益保留率",
+      "passed": false,
+      "reason": "",
+      "threshold": 0.5
+    }
+  ],
+  "data": {
+    "blocking_failures": [],
+    "checks": [
+      {
+        "blocking": false,
+        "code": "research_file",
+        "detail": "data/qfq_all/000001.SZ.qfq.csv（5140 行）",
+        "passed": true,
+        "title": "研究层数据可读"
+      },
+      {
+        "blocking": true,
+        "code": "pipeline_validation",
+        "detail": "无 ERROR 级问题",
+        "passed": true,
+        "title": "既有导入管线校验（ERROR 级）"
+      },
+      {
+        "blocking": true,
+        "code": "ohlc_relations",
+        "detail": "违例行数 0 / 5140",
+        "passed": true,
+        "title": "OHLC 结构关系（high ≥ max(open,close)，low ≤ min(open,close)）"
+      },
+      {
+        "blocking": true,
+        "code": "positive_prices",
+        "detail": "非正价格行数 0",
+        "passed": true,
+        "title": "价格全为正数"
+      },
+      {
+        "blocking": false,
+        "code": "volume_present",
+        "detail": "0 成交量行数 0 / 5140",
+        "passed": true,
+        "title": "成交量字段存在（0 量视为停牌，不否决）"
+      },
+      {
+        "blocking": true,
+        "code": "duplicate_dates",
+        "detail": "重复日期行数 0",
+        "passed": true,
+        "title": "日期不重复"
+      },
+      {
+        "blocking": true,
+        "code": "in_sample_coverage",
+        "detail": "样本内 1461 行（门槛 250）",
+        "passed": true,
+        "title": "样本内交易日数量"
+      },
+      {
+        "blocking": true,
+        "code": "cross_source",
+        "detail": "日期覆盖 1.0000（门槛 ≥0.99）；收益不一致 19 天，占比 0.0037（上限 0.05）",
+        "passed": true,
+        "title": "跨源一致性（日期覆盖 + 非除权日收益一致）"
+      },
+      {
+        "blocking": false,
+        "code": "trading_file",
+        "detail": "data/exec_all/000001.SZ.exec.csv（5140 行）",
+        "passed": true,
+        "title": "交易层数据可读"
+      }
+    ],
+    "ok": true,
+    "period": {
+      "end": "2026-10-16",
+      "start": "2005-01-04"
+    },
+    "rows_in_sample": 1461,
+    "rows_total": 5140,
+    "undetermined": []
+  },
+  "honesty": [],
+  "leakage": {
+    "dynamic": [],
+    "dynamic_note": "",
+    "leaked": false,
+    "probes_skipped": 0,
+    "probes_tested": 8,
+    "static": []
+  },
+  "metrics": {
+    "in_sample.annualized_return": {
+      "name": "annualized_return",
+      "reason": "",
+      "samples": null,
+      "status": "ok",
+      "unit": "ratio",
+      "value": 0.12027367572254
+    },
+    "in_sample.closed_trades": {
+      "name": "closed_trades",
+      "reason": "",
+      "samples": 23,
+      "status": "ok",
+      "unit": "count",
+      "value": 23.0
+    },
+    "in_sample.cumulative_return": {
+      "name": "cumulative_return",
+      "reason": "",
+      "samples": null,
+      "status": "ok",
+      "unit": "ratio",
+      "value": 0.9318016
+    },
+    "in_sample.max_drawdown": {
+      "name": "max_drawdown",
+      "reason": "",
+      "samples": null,
+      "status": "ok",
+      "unit": "ratio",
+      "value": 0.32840854997130214
+    },
+    "out_sample.annualized_return": {
+      "name": "annualized_return",
+      "reason": "",
+      "samples": null,
+      "status": "ok",
+      "unit": "ratio",
+      "value": -0.03141078625645077
+    },
+    "out_sample.closed_trades": {
+      "name": "closed_trades",
+      "reason": "",
+      "samples": 25,
+      "status": "ok",
+      "unit": "count",
+      "value": 25.0
+    },
+    "out_sample.cumulative_return": {
+      "name": "cumulative_return",
+      "reason": "",
+      "samples": null,
+      "status": "ok",
+      "unit": "ratio",
+      "value": -0.12838759999999994
+    },
+    "out_sample.max_drawdown": {
+      "name": "max_drawdown",
+      "reason": "",
+      "samples": null,
+      "status": "ok",
+      "unit": "ratio",
+      "value": 0.23405469852731578
+    }
+  },
+  "notes": [],
+  "report_version": "l1a-report-v1",
+  "spec": {
+    "boundaries": {
+      "max_in_sample_drawdown": 0.25,
+      "max_oos_degradation": 0.5,
+      "max_out_sample_drawdown": 0.25,
+      "min_closed_trades": 10,
+      "min_in_sample_return": 0.58,
+      "min_out_sample_return": 0.0
+    },
+    "boundary_basis": "样本内累计收益门槛 0.58 = 项目既定 8%/年目标 × 6 年（1.08^6-1≈0.587）；回撤 0.25 = 项目对单标的容忍上限；样本外收益门槛 0 = 对齐表 7 中 L3 的「样本外收益符号反转即否决」；衰减 0.5 为待研究员校准的初值。上述阈值在跑之前写定，不因结果调整。",
+    "constraints": [
+      [
+        "fast_window",
+        "slow_window"
+      ]
+    ],
+    "data": {
+      "research_path": "data/qfq_all/000001.SZ.qfq.csv",
+      "source_note": "研究层=qfq（复权，算收益）；交易层=exec（真不复权，仅做跨源一致性抽检）",
+      "symbol": "000001.SZ",
+      "trading_path": "data/exec_all/000001.SZ.exec.csv"
+    },
+    "declared_grid_points": 15,
+    "excluded_by_constraint": 1,
+    "grid_size": 15,
+    "hypothesis_id": "H-L1A-MACROSS-000001",
+    "in_sample": {
+      "end": "2021-12-31",
+      "start": "2016-01-01"
+    },
+    "initial_cash": 100000.0,
+    "out_sample": {
+      "end": "2026-06-30",
+      "start": "2022-01-01"
+    },
+    "param_grid": {
+      "fast_window": [
+        3,
+        5,
+        10,
+        20
+      ],
+      "slow_window": [
+        15,
+        25,
+        40,
+        60
+      ]
+    },
+    "selection_metric": "cumulative_return",
+    "spec_digest": "4f171fe2b6165cd875e6959728b0b9b4ddc8d0cc1e3fda0bbfa8dffe70674d4c",
+    "spec_version": "l1a-hypothesis-v1",
+    "strategy_id": "ma_cross",
+    "title": "双均线（ma_cross）在 000001.SZ 上的 L1a 粗筛"
+  },
+  "spec_file": "docs\\gates\\specs\\H_L1A_MACROSS_000001.json",
+  "stages": [
+    {
+      "detail": "契约摘要 4f171fe2b6165cd8…",
+      "name": "spec",
+      "status": "pass"
+    },
+    {
+      "detail": "阻塞项全部通过",
+      "name": "data",
+      "status": "pass"
+    },
+    {
+      "detail": "静态 0 命中；动态截断 8 个点全部一致",
+      "name": "leakage",
+      "status": "pass"
+    },
+    {
+      "detail": "覆盖 15/15 = 100%",
+      "name": "coverage",
+      "status": "pass"
+    },
+    {
+      "detail": "样本内最大回撤：实际 0.32840854997130214，要求 <= 0.25；样本外累计收益：实际 -0.12838759999999994，要求 >= 0.0；样本外收益保留率：实际 -0.13778426652197198，要求 >= 0.5",
+      "name": "bounds",
+      "status": "fail"
+    }
+  ],
+  "sweep": {
+    "best": {
+      "error": "",
+      "metrics": {
+        "annualized_return": {
+          "name": "annualized_return",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": 0.12027367572254
+        },
+        "closed_trades": {
+          "name": "closed_trades",
+          "reason": "",
+          "samples": 23,
+          "status": "ok",
+          "unit": "count",
+          "value": 23.0
+        },
+        "cumulative_return": {
+          "name": "cumulative_return",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": 0.9318016
+        },
+        "max_drawdown": {
+          "name": "max_drawdown",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": 0.32840854997130214
+        }
+      },
+      "ok": true,
+      "params": {
+        "fast_window": 3,
+        "slow_window": 60
+      }
+    },
+    "coverage": 1.0,
+    "declared_points": 15,
+    "executed_points": 15,
+    "failed_detail": [],
+    "failed_points": 0,
+    "oos": {
+      "error": "",
+      "metrics": {
+        "annualized_return": {
+          "name": "annualized_return",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": -0.03141078625645077
+        },
+        "closed_trades": {
+          "name": "closed_trades",
+          "reason": "",
+          "samples": 25,
+          "status": "ok",
+          "unit": "count",
+          "value": 25.0
+        },
+        "cumulative_return": {
+          "name": "cumulative_return",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": -0.12838759999999994
+        },
+        "max_drawdown": {
+          "name": "max_drawdown",
+          "reason": "",
+          "samples": null,
+          "status": "ok",
+          "unit": "ratio",
+          "value": 0.23405469852731578
+        }
+      },
+      "ok": true,
+      "params": {
+        "fast_window": 3,
+        "slow_window": 60
+      }
+    },
+    "oos_evaluations": 1,
+    "plateau_note": "邻域 2 点中 2 点收益为正",
+    "plateau_ratio": 1.0,
+    "points_total": 15
+  },
+  "verdict": "L1A_REJECTED_BOUNDS"
+}

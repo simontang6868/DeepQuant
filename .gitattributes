@@ -24,6 +24,14 @@ docs/*[Pp][Rr][Ee][Rr][Ee][Gg]*.json -text
 docs/GATE1_PREREGISTRATION.md        -text
 docs/GATE1_PREREGISTRATION.sha256    -text
 
+# ---- docs/gates/ 下全部冻结输入（阶段 L3q 起） ----
+# 这里必须单独写一条：上面 docs/*PREREG*.json 里的 * 不跨目录，
+# 只匹配 docs/ 的直接子项，覆盖不到 docs/gates/。而这一层的文件正是
+# 「脚本启动即校验 sha256」的预登记与结果快照（l3u_prereg、l3z_prereg、l3aa_prereg…）。
+# 漏掉这条的后果：core.autocrlf=true 时 checkout 出 CRLF，冻结校验全红，
+# 且报错看起来像「预登记被人改过」，很难查到是行尾转换。
+docs/gates/** -text
+
 # ---- 原始实验产物（只读归档，不得因 checkout 改变一个字节） ----
 gate1_out/** -text
 gate2_out/** -text

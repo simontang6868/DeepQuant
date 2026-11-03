@@ -1,0 +1,205 @@
+{
+  "artifacts": {
+    "json": "reports/gates/H-L3Q-CASH-AUDIT/l3q_audit.json",
+    "markdown": "reports/gates/H-L3Q-CASH-AUDIT/l3q_audit.md"
+  },
+  "audit_id": "H-L3Q-CASH-AUDIT-000001",
+  "capital_sweep": [
+    {
+      "avg_cash_ratio_median": 0.14374804519603215,
+      "capital": 1000000.0,
+      "delta_vs_base": 0.025091275936669353,
+      "folds": 28,
+      "rounding_median": 0.02607309747858203
+    },
+    {
+      "avg_cash_ratio_median": 0.12187267294367457,
+      "capital": 3000000.0,
+      "delta_vs_base": 0.004856768465621837,
+      "folds": 28,
+      "rounding_median": 0.0050241414797029
+    },
+    {
+      "avg_cash_ratio_median": 0.11967850074943974,
+      "capital": 10000000.0,
+      "delta_vs_base": 0.001538444110129135,
+      "folds": 28,
+      "rounding_median": 0.0016111806175248483
+    },
+    {
+      "avg_cash_ratio_median": 0.11798050865638732,
+      "capital": 30000000.0,
+      "delta_vs_base": 0.0003261601474841558,
+      "folds": 27,
+      "rounding_median": 0.00041882706718253274
+    },
+    {
+      "avg_cash_ratio_median": 0.11735874711273024,
+      "capital": 100000000.0,
+      "delta_vs_base": 0.00011824002097710062,
+      "folds": 27,
+      "rounding_median": 0.00016265565736573337
+    }
+  ],
+  "control_summary": {
+    "avg_cash_ratio_mean": 0.1775676653405512,
+    "avg_cash_ratio_median": 0.1489339657665973,
+    "component_median": {
+      "cap": 0.0,
+      "dead": 0.032510764940619594,
+      "fees": -5.40878916502622e-05,
+      "insufficient": 1.747604607285936e-05,
+      "not_listed": 0.06187520575136467,
+      "other": 0.0,
+      "overweight": -4.7161865626242104e-05,
+      "prestart": 0.007936507936507936,
+      "rounding": 1.9496635028481274e-05,
+      "suspended": 0.002826085960345809
+    },
+    "component_sum_gap_max": 9.169703885092417e-11,
+    "component_total": {
+      "cap": 0.0,
+      "dead": 2.688161268020538,
+      "fees": -0.001506981188386288,
+      "insufficient": 0.0005849341482468877,
+      "not_listed": 1.6363240732872184,
+      "other": 0.008572796770683901,
+      "overweight": -0.0013669448195180371,
+      "prestart": 0.2222222222222222,
+      "rounding": 0.0009400435074525229,
+      "suspended": 0.41796321747082876
+    },
+    "folds": 28,
+    "ledger_gap_max": 0.0,
+    "periods_total": 200,
+    "periods_with_cap": 0,
+    "periods_with_unpriced": 200,
+    "residual_identity_max": 0.0046668663853779435,
+    "residual_ledger_max": 9.313225746154785e-10,
+    "share_total": {
+      "cap": 0.0,
+      "dead": 0.5406714076590382,
+      "fees": -0.00030309998515843495,
+      "insufficient": 0.00011764813855582607,
+      "not_listed": 0.32911479330332066,
+      "other": 0.0017242514996109637,
+      "overweight": -0.00027493439048962616,
+      "prestart": 0.044695682186687374,
+      "rounding": 0.00018907148632840582,
+      "suspended": 0.08406518010210658
+    },
+    "unpriced_share": 0.8697862009623589
+  },
+  "diagnostic_arm": {
+    "avg_cash_ratio_median": 0.032673304189978734,
+    "folds": 28,
+    "paired_folds": 28,
+    "paired_mean_delta": 0.0018528675000000097,
+    "paired_sd": 0.037912152674538735,
+    "paired_t": 0.2586097739918769,
+    "test_positive_fold_ratio": 0.6785714285714286,
+    "test_return_mean": 0.054696973714285724
+  },
+  "diagnostic_arm_2": {
+    "avg_cash_ratio_median": 0.0755155061801274,
+    "definition": "只剔「行情已终止 / 未上市」的持仓，保留停牌；**未预登记**（事后设计）",
+    "folds": 28,
+    "paired_folds": 28,
+    "paired_mean_delta": 0.0017516868928571477,
+    "paired_sd": 0.006805138264883932,
+    "paired_t": 1.3620672241934246,
+    "test_positive_fold_ratio": 0.6785714285714286,
+    "test_return_mean": 0.05459579310714286
+  },
+  "folds_total": 28,
+  "predictions": [
+    {
+      "actual": "中位 +0.154pp，最大 +0.604pp",
+      "claim": "整手增量中位 < 0.5pp，最大 < 2pp",
+      "id": "P1",
+      "refuted": false
+    },
+    {
+      "actual": "触发期 8.50%（17/200），中位贡献 +0.000pp",
+      "claim": "上限触发期 < 10%，对现金占比的中位贡献 < 1pp",
+      "id": "P2",
+      "refuted": false
+    },
+    {
+      "actual": "ρ = 0.7767；折 28 − 折 1 = +10.463pp",
+      "caveat": "机制非盲测（探针先看过 3 折），只有量级与相关计为预测",
+      "claim": "死票权重与现金占比 Spearman > 0.7；末折比首折高 5pp 以上",
+      "id": "P3",
+      "refuted": false
+    },
+    {
+      "actual": "中位 14.89%；未上市 + 数据终止占现金 86.98%",
+      "claim": "对照臂现金中位 > 8pp，其中未上市 + 数据终止占现金 > 70%",
+      "id": "P4",
+      "refuted": false
+    },
+    {
+      "actual": "100 万 +2.509pp；300 万 +0.486pp；1000 万 +0.154pp；3000 万 +0.033pp；1 亿 +0.012pp",
+      "claim": "整手增量随资金单调递减；100 万 > 3pp，1 亿 < 0.1pp",
+      "id": "P5",
+      "refuted": true
+    },
+    {
+      "actual": "现金中位 3.27%；收益均值 +0.185pp；正收益折 67.86%（基线 67.86%）；逐折配对差 +0.0019（t = 0.259）",
+      "claim": "诊断臂现金中位 < 3pp，收益均值升 1~6pp，正收益折占比不跨 50%",
+      "id": "P6",
+      "refuted": true
+    }
+  ],
+  "prereg_sha256": "176cd8c3b1d4661194fa9b1f32d2487436a60a7b4114efc247b4d0e665f86857",
+  "repro_max_gap": 0.0,
+  "reproduced_folds": 28,
+  "summary": {
+    "avg_cash_ratio_mean": 0.12157301246704508,
+    "avg_cash_ratio_median": 0.11710299230138822,
+    "component_median": {
+      "cap": 0.0,
+      "dead": 0.0,
+      "fees": -0.0005350162730465236,
+      "insufficient": 0.0002627097157398247,
+      "not_listed": 0.0,
+      "other": 0.0,
+      "overweight": -0.00018168682922378658,
+      "prestart": 0.007936507936507936,
+      "rounding": 1.756172625423031e-05,
+      "suspended": 0.011349919294398436
+    },
+    "component_sum_gap_max": 1.6653345369377348e-16,
+    "component_total": {
+      "cap": 0.7192351684877023,
+      "dead": 1.191901806044035,
+      "fees": -0.014264259039785454,
+      "insufficient": 0.09864038474241103,
+      "not_listed": 0.0,
+      "other": 0.0620824553367747,
+      "overweight": -0.16380223737646277,
+      "prestart": 0.2222222222222222,
+      "rounding": 0.0006415659509669064,
+      "suspended": 1.287387242709398
+    },
+    "folds": 28,
+    "ledger_gap_max": 0.0,
+    "periods_total": 200,
+    "periods_with_cap": 17,
+    "periods_with_unpriced": 124,
+    "residual_identity_max": 4.649628237984871e-09,
+    "residual_ledger_max": 1.3969838619232178e-09,
+    "share_total": {
+      "cap": 0.21128842480641186,
+      "dead": 0.35014285473898865,
+      "fees": -0.004190385781446144,
+      "insufficient": 0.02897740881935031,
+      "not_listed": 0.0,
+      "other": 0.01823785149967375,
+      "overweight": -0.04811988933718352,
+      "prestart": 0.06528182345287606,
+      "rounding": 0.00018847167814979156,
+      "suspended": 0.3781934401231792
+    }
+  }
+}

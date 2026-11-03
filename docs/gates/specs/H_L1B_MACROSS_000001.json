@@ -1,0 +1,50 @@
+{
+  "hypothesis_id": "H-L1B-MACROSS-000001",
+  "title": "双均线（ma_cross）在 000001.SZ 上的 L1b 精验",
+  "strategy_id": "ma_cross",
+  "param_grid": {
+    "fast_window": [3, 5, 10, 20],
+    "slow_window": [15, 25, 40, 60]
+  },
+  "constraints": [["fast_window", "slow_window"]],
+  "data": {
+    "symbol": "000001.SZ",
+    "research_path": "data/qfq_all/000001.SZ.qfq.csv",
+    "trading_path": "data/exec_all/000001.SZ.exec.csv",
+    "source_note": "研究层=qfq（复权，算收益与成交）；交易层=exec（真不复权，仅用于涨跌停/停牌判定与跨源抽检）"
+  },
+  "in_sample": {
+    "start": "2016-01-01",
+    "end": "2021-12-31"
+  },
+  "out_sample": {
+    "start": "2022-01-01",
+    "end": "2026-06-30"
+  },
+  "boundaries": {
+    "min_in_sample_return": 0.58,
+    "max_in_sample_drawdown": 0.25,
+    "min_closed_trades": 10,
+    "min_out_sample_return": 0.0,
+    "max_out_sample_drawdown": 0.25,
+    "max_oos_degradation": 0.5
+  },
+  "initial_cash": 100000.0,
+  "selection_metric": "cumulative_return",
+  "declared_grid_points": 15,
+  "boundary_basis": "沿用 L1a 契约（H-L1A-MACROSS-000001），逐字不变，避免两级闸门用不同边界导致结论不可归因。",
+  "execution": {
+    "participation_limit": 0.1,
+    "queue_position": 0.5,
+    "slippage_mode": "none",
+    "slippage_bps": 0.0,
+    "slippage_eta": 1.0,
+    "price_limit_rate": 0.1,
+    "volume_multiplier": 100.0,
+    "max_return_decay": 0.5,
+    "min_fill_rate": 0.9,
+    "price_tolerance_ticks": 1.0,
+    "sensitivity_cash": [1000000.0, 10000000.0, 30000000.0, 100000000.0],
+    "basis": "参与率 0.10 与队列 0.5 为首版初值，非实测标定：本仓库无分钟/逐笔数据，无法估计真实排队位置。slippage_mode=none 表示主判定不含冲击成本，冲击敏感性另列。max_return_decay=0.5 与 min_fill_rate=0.90 在跑之前写定，不因结果调整。"
+  }
+}

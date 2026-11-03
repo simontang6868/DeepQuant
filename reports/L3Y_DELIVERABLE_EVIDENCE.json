@@ -1,0 +1,45 @@
+{
+ "experiment_id": "H-L3Y-DELIVERABLE",
+ "prereg_sha256": "a3625b0ca61e3ec571353d2ebce266d3f769f3ac98566997ec4678c2525cbe0b",
+ "subject_l3u_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+ "subject_l3v_sha256": "31879f37b348d033e49241ce9c730472ae31e7d0197e437e94b677fa3fd19243",
+ "subject_cards_sha256": "9da9b09771076fbe485366e76a2517bf9988bd93948c1f652617304de179c08a",
+ "outputs": {
+  "json": "reports/gates/H-L3Y-DELIVERABLE/l3y_deliverable.json",
+  "markdown": "reports/gates/H-L3Y-DELIVERABLE/l3y_deliverable.md",
+  "deliverable_md": "docs/DELIVERABLE_QUOTE_SHEET.md",
+  "deliverable_docx": "docs/DELIVERABLE_QUOTE_SHEET.docx"
+ },
+ "status": "DELIVERABLE_CONSISTENT",
+ "n_violations": 0,
+ "n_facts_verified": 5,
+ "n_allowed_tokens": 117,
+ "n_clip_claims": 9,
+ "n_sealed_claims": 6,
+ "n_weak_claims": 12,
+ "tier_counts": {
+  "QUOTABLE": 1,
+  "QUOTABLE_MARGINAL": 4,
+  "DIRECTION_ONLY": 3,
+  "NULL_CONFIRMED": 1,
+  "UNDERPOWERED": 12,
+  "NOT_GRADED": 6
+ },
+ "sealed_reason_codes": {
+  "phasej_netA": "B_different_budget",
+  "phasep_late": "B_regression_coef",
+  "phasek_m1net": "B_missing_stat",
+  "phasem_spread": "NOT_APPLICABLE",
+  "phaser_alpha": "NOT_APPLICABLE",
+  "phasev_net": "NOT_APPLICABLE"
+ },
+ "firstrun": {
+  "n_unsourced_number": 20,
+  "breakdown": "渲染噪声 5（标题序号、序列路径 hash、d 定义系数、window_note 日期）｜内部分级依据 10（quotability_note 的 3 位小数比值）｜限定里的数字 5",
+  "real_data_error": "phaset_net 的限定写「22.1% 的 alpha 来自最低 ADV 组」，阶段 T 报告的 T3 分解表（g1 最低 ADV 组）记为 44.1%；22.1 在全部机器可读产物里都找不到出处。已改写为不含数字的定性表述。",
+  "root_cause": "L3v 只校验 headline，limits_of_use 与 window_note 里的数字从未受管——这条错误因此活到了今天。"
+ },
+ "amendments": ["A1", "A2", "A3", "A4"],
+ "refuted_predictions": ["P4"],
+ "note": "P4 按首跑判定（20 处 > 预登记的 ≤2），不因事后修好仪器而翻案。终跑违规 0 处。"
+}

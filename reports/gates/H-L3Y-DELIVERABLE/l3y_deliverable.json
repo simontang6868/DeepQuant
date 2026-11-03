@@ -1,0 +1,609 @@
+{
+ "experiment_id": "H-L3Y-DELIVERABLE",
+ "prereg_sha256": "3b4e1bb334c4572c41150a1176fec969a2aa5f4a2014bd99395585961c800f35",
+ "status": "DELIVERABLE_CONSISTENT",
+ "facts": [
+  {
+   "key": "n_exec_symbols",
+   "note": "交易层股票数（真不复权，用于判定交易状态）",
+   "display": "5472",
+   "computed": "5472",
+   "source": {
+    "path": "reports/ASOF_UNIVERSE_SELFCHECK.json",
+    "pointer": "describe.n_total"
+   },
+   "source_sha256": "b70d4d49e7ca99edfa1c9e075d2cf64483fe79a5e7657c741126ccf41f7c0e3b"
+  },
+  {
+   "key": "n_qfq_symbols",
+   "note": "研究层股票数（后复权，用于计算收益）",
+   "display": "5444",
+   "computed": "5444",
+   "source": {
+    "path": "reports/MAX5_FEASIBILITY.json",
+    "pointer": "data.n_symbols"
+   },
+   "source_sha256": "128e61f84c30b6b44d0de85e8f1ed2657b8994c03b94ca2969cb2ed696dacdae"
+  },
+  {
+   "key": "n_ic_pool",
+   "note": "截面 IC 检验所用的股票池规模",
+   "display": "518",
+   "computed": "518",
+   "source": {
+    "path": "reports/gates/H-L3S-IC-000001/l3s_result.json",
+    "pointer": "pool.loaded"
+   },
+   "source_sha256": "56b3c658ded6c3f5abd41e5a7a0707ea9ac70f37d3ef052149045750950c410b"
+  },
+  {
+   "key": "first_investable_year",
+   "note": "首个出现可投资股票的年份",
+   "display": "2005",
+   "computed": "2005",
+   "source": {
+    "path": "reports/ASOF_UNIVERSE_SELFCHECK.json",
+    "pointer": "investable_by_year",
+    "op": "first_nonzero_key"
+   },
+   "source_sha256": "b70d4d49e7ca99edfa1c9e075d2cf64483fe79a5e7657c741126ccf41f7c0e3b"
+  },
+  {
+   "key": "n_first_year_investable",
+   "note": "该年份的可投资股票数（早期样本少到不可跨期比较）",
+   "display": "6",
+   "computed": "6",
+   "source": {
+    "path": "reports/ASOF_UNIVERSE_SELFCHECK.json",
+    "pointer": "investable_by_year.2005"
+   },
+   "source_sha256": "b70d4d49e7ca99edfa1c9e075d2cf64483fe79a5e7657c741126ccf41f7c0e3b"
+  }
+ ],
+ "n_facts": 5,
+ "n_allowed_tokens": 118,
+ "allowed_tokens": {
+  "0": [
+   "schema:统计零点（「区间跨 0」「净 alpha 趋于 0」），不是观测值"
+  ],
+  "0.01": [
+   "card:phasec_d:l3t_mean"
+  ],
+  "0.02": [
+   "card:gate5_d:mean"
+  ],
+  "0.023": [
+   "card:l3s_ic:mean"
+  ],
+  "0.03": [
+   "card:phasej_netA:mean"
+  ],
+  "0.038": [
+   "card:l3s_ic:mde"
+  ],
+  "0.04": [
+   "card:phasek_m1net:mean",
+   "card:phaseq_max5:mean"
+  ],
+  "0.05": [
+   "card:phasec3_d:mean"
+  ],
+  "0.051": [
+   "literal:phaseo_netBASE"
+  ],
+  "0.06": [
+   "card:phasec2_d:mde"
+  ],
+  "0.09": [
+   "card:phasel_alpha:mde",
+   "card:phasej_netA:mde",
+   "card:phasek_m1net:mde",
+   "card:phaseo_netBASE:mde",
+   "card:phaser_alpha:mde",
+   "card:phasev_net:mde"
+  ],
+  "0.11": [
+   "card:phasec2_d:mean",
+   "card:phasel_alpha:mean",
+   "card:phaser_alpha:mean",
+   "card:phases_net:mean",
+   "card:phaset_net:mean"
+  ],
+  "0.13": [
+   "card:phasep_late:mean"
+  ],
+  "0.14": [
+   "card:phaseo_netBASE:mean",
+   "card:phasep_late:mde",
+   "card:phases_net:mde",
+   "card:phaset_net:mde",
+   "card:phasev_net:mean"
+  ],
+  "0.15": [
+   "card:gate5_d:t_nw3"
+  ],
+  "0.16": [
+   "card:gate5_d:t_iid"
+  ],
+  "0.17": [
+   "card:gate4_d:mean"
+  ],
+  "0.18": [
+   "card:phaseg_alpha:mean"
+  ],
+  "0.22": [
+   "card:phasec3_d:mde"
+  ],
+  "0.25": [
+   "card:phaseq_max5:t_nw3"
+  ],
+  "0.28": [
+   "card:phasee_alpha:mean"
+  ],
+  "0.29": [
+   "card:phaseg_alpha:mde"
+  ],
+  "0.3": [
+   "literal:phasev_net"
+  ],
+  "0.33": [
+   "card:l3r_delta:mean"
+  ],
+  "0.38": [
+   "card:gate2_d:mean"
+  ],
+  "0.40": [
+   "card:gate1_d:mean",
+   "card:gate3_d:l3t_mean"
+  ],
+  "0.41": [
+   "card:phasee_alpha:mde"
+  ],
+  "0.43": [
+   "card:gate5_d:mde",
+   "card:gate6_d:mde"
+  ],
+  "0.47": [
+   "card:phaseq_max5:mde"
+  ],
+  "0.48": [
+   "card:gate3_d:mean",
+   "card:gate4_d:mde"
+  ],
+  "0.5": [
+   "schema:d 定义的等权系数（0.5*long-0.5*short），取自 claims.D_DEFINITIONS 的字面"
+  ],
+  "0.57": [
+   "card:gate1_d:t_iid"
+  ],
+  "0.59": [
+   "card:gate3_d:mde"
+  ],
+  "0.60": [
+   "card:phasec3_d:t_nw3"
+  ],
+  "0.61": [
+   "card:gate1_d:t_nw3",
+   "card:phasef_delta:mde"
+  ],
+  "0.66": [
+   "card:phasec2_d:l3t_mean",
+   "card:phasec3_d:l3t_mean"
+  ],
+  "0.68": [
+   "card:gate2_d:mde"
+  ],
+  "0.71": [
+   "card:gate6_d:mean",
+   "card:phasem_spread:mde"
+  ],
+  "0.72": [
+   "card:phasem_spread:mean"
+  ],
+  "0.74": [
+   "card:phasef_delta:mean"
+  ],
+  "0.81": [
+   "card:gate3_d:ratio"
+  ],
+  "0.85": [
+   "card:phasec_d:mde"
+  ],
+  "0.87": [
+   "card:gate4_d:t_iid"
+  ],
+  "0.95": [
+   "card:l3r_delta:mde"
+  ],
+  "0.96": [
+   "card:l3r_delta:t_nw3"
+  ],
+  "0.97": [
+   "card:gate4_d:t_nw3"
+  ],
+  "1": [
+   "literal:gate1_d",
+   "tier_counts:QUOTABLE",
+   "tier_counts:NULL_CONFIRMED",
+   "schema:分级门槛 1×（QUOTABLE_MARGINAL 下界）"
+  ],
+  "1.04": [
+   "card:phasej_netA:t_nw3"
+  ],
+  "1.19": [
+   "card:phasek_m1net:t_nw3"
+  ],
+  "1.22": [
+   "card:phasef_delta:ratio"
+  ],
+  "1.42": [
+   "card:l3_test:t_nw3"
+  ],
+  "1.44": [
+   "card:phaseo_netBASE:ratio"
+  ],
+  "1.58": [
+   "card:phases_net:t_iid"
+  ],
+  "1.59": [
+   "card:gate2_d:t_nw3"
+  ],
+  "1.64": [
+   "card:gate2_d:t_iid"
+  ],
+  "1.66": [
+   "card:gate6_d:ratio"
+  ],
+  "1.69": [
+   "card:gate3_d:l3t_t"
+  ],
+  "1.71": [
+   "card:l3s_ic:t_nw3"
+  ],
+  "1.74": [
+   "card:l3_test:t_iid"
+  ],
+  "1.76": [
+   "card:phaseg_alpha:t_nw3"
+  ],
+  "1.79": [
+   "card:phasec2_d:ratio"
+  ],
+  "1.82": [
+   "card:gate1_d:mde"
+  ],
+  "1.90": [
+   "card:phasee_alpha:t_nw3"
+  ],
+  "1.92": [
+   "card:l3p_test:t_nw3"
+  ],
+  "1.94": [
+   "card:phasec_d:mean"
+  ],
+  "100": [
+   "card:gate6_d:power"
+  ],
+  "108": [
+   "card:gate3_d:n",
+   "n:gate3_d"
+  ],
+  "11": [
+   "l3v:n_quoted_via_unseal"
+  ],
+  "12": [
+   "tier_counts:UNDERPOWERED"
+  ],
+  "125": [
+   "card:gate3_d:l3t_n",
+   "n:gate2_d"
+  ],
+  "129": [
+   "card:phasep_late:n",
+   "n:phasep_late",
+   "n:phases_net",
+   "n:phaset_net"
+  ],
+  "16": [
+   "card:gate4_d:power",
+   "card:l3r_delta:power"
+  ],
+  "18": [
+   "card:phasej_netA:power"
+  ],
+  "197": [
+   "n:l3r_delta"
+  ],
+  "198": [
+   "n:l3s_ic"
+  ],
+  "2": [
+   "literal:gate2_d",
+   "schema:分级门槛 2×（QUOTABLE 下界），也是 spread 与 d 的倍数关系"
+  ],
+  "2.00": [
+   "card:l3p_test:t_iid"
+  ],
+  "2.22": [
+   "card:phases_net:t_nw3"
+  ],
+  "2.27": [
+   "card:phasec_d:ratio"
+  ],
+  "2.28": [
+   "card:gate3_d:t_nw3"
+  ],
+  "2.58": [
+   "card:phasep_late:t_nw3"
+  ],
+  "2.85": [
+   "card:phasem_spread:t_nw3"
+  ],
+  "2005": [
+   "fact:first_investable_year"
+  ],
+  "22": [
+   "card:phasek_m1net:power"
+  ],
+  "237": [
+   "card:phasep_late:stat_n",
+   "n:gate4_d",
+   "n:gate6_d",
+   "n:phasec_d",
+   "n:phasec2_d",
+   "n:phasec3_d",
+   "n:phasee_alpha",
+   "n:phasef_delta",
+   "n:phaseg_alpha",
+   "n:phasel_alpha",
+   "n:phasem_spread",
+   "n:phasej_netA",
+   "n:phasek_m1net",
+   "n:phaseo_netBASE",
+   "n:phaser_alpha",
+   "n:phasev_net",
+   "n:phaseq_max5"
+  ],
+  "24": [
+   "l3v:n_independent_numbers"
+  ],
+  "249": [
+   "n:gate5_d"
+  ],
+  "27": [
+   "l3v:n_claims",
+   "l3v:n_l3u_rows",
+   "n:l3_test"
+  ],
+  "28": [
+   "n:l3p_test"
+  ],
+  "29": [
+   "card:l3_test:power"
+  ],
+  "3": [
+   "literal:gate3_d",
+   "tier_counts:EXPLORATORY",
+   "schema:NW 估计量的默认滞后阶数，方法参数。它原先靠 DIRECTION_ONLY 的计数偶然放行——分级分布一变定稿就会拒绝生成，必须给它自己的出处"
+  ],
+  "3.13": [
+   "card:phasel_alpha:t_nw3",
+   "card:phaser_alpha:t_nw3"
+  ],
+  "3.41": [
+   "card:phasef_delta:t_nw3"
+  ],
+  "3000": [
+   "literal:phaseo_netBASE"
+  ],
+  "36": [
+   "card:gate2_d:power"
+  ],
+  "4": [
+   "literal:gate4_d",
+   "tier_counts:QUOTABLE_MARGINAL"
+  ],
+  "4.00": [
+   "card:l3_test:mean"
+  ],
+  "4.04": [
+   "card:phaseo_netBASE:t_nw3"
+  ],
+  "4.39": [
+   "card:gate6_d:t_iid"
+  ],
+  "4.6": [
+   "card:gate1_d:mde_over_mean"
+  ],
+  "4.64": [
+   "card:gate6_d:t_nw3"
+  ],
+  "40": [
+   "card:l3s_ic:power"
+  ],
+  "42": [
+   "card:phaseg_alpha:power"
+  ],
+  "48": [
+   "card:phasee_alpha:power",
+   "card:l3p_test:power",
+   "n:gate1_d"
+  ],
+  "5": [
+   "card:gate5_d:power"
+  ],
+  "5.01": [
+   "card:phasec2_d:t_nw3"
+  ],
+  "5.28": [
+   "card:l3p_test:mean"
+  ],
+  "518": [
+   "fact:n_ic_pool"
+  ],
+  "5444": [
+   "fact:n_qfq_symbols"
+  ],
+  "5472": [
+   "fact:n_exec_symbols"
+  ],
+  "6": [
+   "card:phaseq_max5:power",
+   "fact:n_first_year_investable",
+   "tier_counts:NOT_GRADED",
+   "tier_counts:clip_total"
+  ],
+  "6.37": [
+   "card:phasec_d:t_nw3"
+  ],
+  "60": [
+   "card:phases_net:power"
+  ],
+  "7.72": [
+   "card:l3p_test:mde"
+  ],
+  "7.89": [
+   "card:l3_test:mde"
+  ],
+  "88": [
+   "card:phasel_alpha:power"
+  ],
+  "9": [
+   "card:phasec3_d:power"
+  ],
+  "95": [
+   "schema:bootstrap 置信水平，方法参数"
+  ]
+ },
+ "tier_recount": {
+  "UNDERPOWERED": 12,
+  "EXPLORATORY": 3,
+  "QUOTABLE_MARGINAL": 4,
+  "QUOTABLE": 1,
+  "NULL_CONFIRMED": 1,
+  "NOT_GRADED": 6
+ },
+ "tier_counts_frozen": {
+  "EXPLORATORY": 3,
+  "NOT_GRADED": 6,
+  "NULL_CONFIRMED": 1,
+  "QUOTABLE": 1,
+  "QUOTABLE_MARGINAL": 4,
+  "UNDERPOWERED": 12
+ },
+ "n_clip_claims": 6,
+ "n_sealed_claims": 6,
+ "n_weak_claims": 12,
+ "sealed_reason_codes": {
+  "phasem_spread": "NOT_APPLICABLE",
+  "phasej_netA": "B_different_budget",
+  "phasek_m1net": "B_missing_stat",
+  "phasep_late": "B_regression_coef",
+  "phaser_alpha": "NOT_APPLICABLE",
+  "phasev_net": "NOT_APPLICABLE"
+ },
+ "schema_tokens": {
+  "0.5": "d 定义的等权系数（0.5*long-0.5*short），取自 claims.D_DEFINITIONS 的字面",
+  "0": "统计零点（「区间跨 0」「净 alpha 趋于 0」），不是观测值",
+  "1": "分级门槛 1×（QUOTABLE_MARGINAL 下界）",
+  "2": "分级门槛 2×（QUOTABLE 下界），也是 spread 与 d 的倍数关系",
+  "3": "NW 估计量的默认滞后阶数，方法参数。它原先靠 DIRECTION_ONLY 的计数偶然放行——分级分布一变定稿就会拒绝生成，必须给它自己的出处",
+  "95": "bootstrap 置信水平，方法参数"
+ },
+ "n_violations": 0,
+ "violation_counts": {},
+ "violations": [],
+ "predictions": [
+  {
+   "id": "P1",
+   "statement": "定稿「可对外引用」章节收录 6 条，其中恰好 1 条为 QUOTABLE；另有 3 条降级为探索性观察（EXPLORATORY）单独成章。",
+   "quantity": "n_clip_claims 与 tier_counts.QUOTABLE",
+   "observed": {
+    "n_clip": 6,
+    "quotable": 1
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P2",
+   "statement": "可对外引用的 6 条里至少 4 条的分级来源是解封复核或审计降级（tier_basis 非 l3u_grade）。",
+   "quantity": "cards 中 quotability 属于前四档且 tier_basis != l3u_grade 的条数",
+   "observed": {
+    "unseal_based_clip": 3
+   },
+   "holds": false,
+   "refuted": true
+  },
+  {
+   "id": "P3",
+   "statement": "封印的 6 条里，恰好 3 条的原因码来自解封复核产物（不同源），另 3 条回落到 L3u 的 NOT_APPLICABLE（非单一均值）。",
+   "quantity": "sealed_reason_codes 的分布",
+   "observed": {
+    "unseal": 3,
+    "l3u": 3
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P4",
+   "statement": "首跑 UNSOURCED_NUMBER ≤ 2 处。若超过，说明我对「定稿里会自然出现哪些数字」的估计是错的。",
+   "quantity": "violation_counts.UNSOURCED_NUMBER",
+   "observed": {
+    "unsourced_firstrun": 20,
+    "unsourced_final": 0
+   },
+   "holds": false,
+   "refuted": true
+  },
+  {
+   "id": "P5",
+   "statement": "三条 facts 首跑全部从源文件实算通过（FACT_DRIFT = 0），指针一次写对。",
+   "quantity": "violation_counts.FACT_DRIFT",
+   "observed": {
+    "fact_drift": 0
+   },
+   "holds": true,
+   "refuted": false
+  },
+  {
+   "id": "P6",
+   "statement": "SEALED_LEAK = 0 且 WINDOW_N_MISMATCH = 0——封印条目一个数字都不漏，引用块里的 n 全部对得上实算。",
+   "quantity": "violation_counts 的两个键",
+   "observed": {
+    "sealed_leak": 0,
+    "window_n_mismatch": 0
+   },
+   "holds": true,
+   "refuted": false
+  }
+ ],
+ "inputs_frozen": {
+  "facts": {
+   "path": "docs/gates/l3y_facts.json",
+   "sha256": "7cec45b00634708420b0f72cbc274bec3f5839346377a528365221de35d5cb11"
+  },
+  "claims_cards": {
+   "path": "docs/gates/l3v_claims.json",
+   "sha256": "5b4173c7265e5dd5be0cbf37b9af8620ed3488ea3480224d249a91740b1317b0"
+  },
+  "l3v_result": {
+   "path": "reports/gates/H-L3V-CLAIM-REGISTRY/l3v_claims.json",
+   "sha256": "8cc5f64883b6797af535ed43e0d2b1d508199e745550fc3466a2a0fcc9be59c7"
+  },
+  "l3u_result": {
+   "path": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+   "sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b"
+  },
+  "unseal_l3w": {
+   "path": "reports/gates/H-L3W-UNSEAL/l3w_unseal.json",
+   "sha256": "ce10baa7dabb1e1219177448e7e4ba6d1d81769cbcbde40c8dae85860445b6c0"
+  },
+  "unseal_l3x": {
+   "path": "reports/gates/H-L3X-TONLY/l3x_unseal.json",
+   "sha256": "e70703b2f69072194f943a8ab64abe4a7377534dc6a82948061d34623422e5c7"
+  }
+ },
+ "elapsed_seconds": 0.013
+}

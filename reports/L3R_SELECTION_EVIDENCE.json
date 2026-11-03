@@ -1,0 +1,87 @@
+{
+  "artifacts": {
+    "periods": "reports/gates/H-L3R-SELECTION/periods.json",
+    "report": "reports/gates/H-L3R-SELECTION/l3r_report.md",
+    "result": "reports/gates/H-L3R-SELECTION/l3r_result.json"
+  },
+  "cash_comparison": {
+    "control_median": 0.010244217850043643,
+    "gap_median": 0.10186300264944764,
+    "strategy_median": 0.11710299230138822
+  },
+  "experiment_id": "H-L3R-SELECTION-000001",
+  "folds_total": 28,
+  "folds_usable": 28,
+  "instrument_consistency": {
+    "folds": 28,
+    "pearson": 0.7146891798359248,
+    "same_sign": 23
+  },
+  "maturity": "M0",
+  "predictions": [
+    {
+      "actual": "月均 -0.329pp，t_iid -0.994",
+      "claim": "R2 月均 Δ ∈ [−0.40pp, +0.40pp] 且 \\|t_iid\\| < 2",
+      "id": "P1",
+      "refuted": false
+    },
+    {
+      "actual": "折均 -0.807pp，胜率 53.57%",
+      "claim": "R1 折均 Δ ∈ [−0.5pp, +1.0pp]，折胜率 40%~62%",
+      "id": "P2",
+      "refuted": true
+    },
+    {
+      "actual": "C_t 现金中位 1.02%，现金差中位 10.19%",
+      "claim": "C_t 现金中位 ≤ 4pp，且两臂现金差中位 ≥ 5pp",
+      "id": "P3",
+      "refuted": false
+    },
+    {
+      "actual": "胜率 51.78%（197 期）",
+      "claim": "R2 中 Δ>0 的期数占比 ∈ 40%~58%",
+      "id": "P4",
+      "refuted": false
+    },
+    {
+      "actual": "r = 0.715（28 折）",
+      "claim": "R1 折级 Δ 与 R2 折内均值 Δ 相关 > 0.5",
+      "id": "P5",
+      "refuted": false
+    }
+  ],
+  "preliminary_reason": "R2 月均 -0.329pp、t_iid=-0.994，但 MDE 0.926pp > 0.5pp：样本量不足以排除可交易的效应",
+  "preliminary_verdict": "INCONCLUSIVE_POWER",
+  "prereg_sha256": "b5cfca5589c0d6470925c699bb76c6e6eb0382ec0b9fa11508aa29736524cc83",
+  "r1_summary": {
+    "folds": 28,
+    "mean": -0.008071226000000015,
+    "median": 0.011028696499999935,
+    "se_iid": 0.022119279196629316,
+    "t_iid": -0.3648955252226285,
+    "t_nw3": -0.4186942830680662,
+    "win_rate": 0.5357142857142857,
+    "wins": 15
+  },
+  "r2_summary": {
+    "ci_high": 0.0034548789346863515,
+    "ci_low": -0.01124840580937251,
+    "mde": 0.009264927816522116,
+    "mean": -0.0032886743580748624,
+    "mean_coverage": 0.8844795660101707,
+    "mean_n_strategy": 12.543147208121827,
+    "mean_n_universe": 23.730964467005077,
+    "median": 0.0006026352397370191,
+    "nw_variance_fell_back": false,
+    "periods": 198,
+    "periods_compared": 197,
+    "power": 0.16870196499124335,
+    "sd": 0.04641614032331195,
+    "se_iid": 0.003307013069860835,
+    "se_nw": 0.003408308343381871,
+    "t_iid": -0.9944545995438886,
+    "t_nw3": -0.9648993068542904,
+    "win_rate": 0.5177664974619289
+  },
+  "verdict": "L3R_BLOCKED_PREREQUISITE"
+}

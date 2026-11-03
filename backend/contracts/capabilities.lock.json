@@ -1,0 +1,73 @@
+{
+  "lock_version": 1,
+  "note": "能力契约锁：每个 (cap_id, version) 对应唯一摘要。改契约必须升版本后重跑 scripts/capabilities.py lock；工具拒绝同版本覆盖。",
+  "capabilities": {
+    "audit.replay": {
+      "current": "1.0.0",
+      "history": [
+        {
+          "version": "1.0.0",
+          "digest": "8ad369c6bb412f43155a93a00fec2720",
+          "schema_digest": "5b4b5a14a9f89d1e55de16622e39c144",
+          "recorded_at": "2026-10-27"
+        }
+      ]
+    },
+    "backtest.compare": {
+      "current": "1.0.0",
+      "history": [
+        {
+          "version": "1.0.0",
+          "digest": "a0f0d27231a3e1fa5d4b4ca12ba10106",
+          "schema_digest": "51e17e4df16aedf8ff479bf62886ca26",
+          "recorded_at": "2026-10-27"
+        }
+      ]
+    },
+    "backtest.run": {
+      "current": "1.0.0",
+      "history": [
+        {
+          "version": "1.0.0",
+          "digest": "c7d898e141c2e5dce3d7be4a04cf02c6",
+          "schema_digest": "772641011daa5e35e82129eaa5a103c2",
+          "recorded_at": "2026-10-27"
+        }
+      ]
+    },
+    "dataset.list": {
+      "current": "1.0.0",
+      "history": [
+        {
+          "version": "1.0.0",
+          "digest": "06454a02bc1e0a1482111653d913dc79",
+          "schema_digest": "6fe80dca20a4fd41175ccff5b5d01ae1",
+          "recorded_at": "2026-10-27"
+        }
+      ]
+    },
+    "portfolio.backtest": {
+      "current": "1.0.0",
+      "history": [
+        {
+          "version": "1.0.0",
+          "digest": "767516fa303293be4ecde0852aa116b7",
+          "schema_digest": "ed37d541a30644558d56a6db7212bd5a",
+          "recorded_at": "2026-10-27"
+        }
+      ]
+    },
+    "strategy.list": {
+      "current": "1.0.0",
+      "history": [
+        {
+          "version": "1.0.0",
+          "digest": "4dbc8fa380cf541a09fe9a65ad4a89e4",
+          "schema_digest": "94258db0beeeaa0d3cf40a3a8428f395",
+          "recorded_at": "2026-10-27"
+        }
+      ]
+    }
+  },
+  "removed_capabilities": []
+}

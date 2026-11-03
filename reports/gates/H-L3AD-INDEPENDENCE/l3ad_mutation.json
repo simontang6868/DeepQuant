@@ -1,0 +1,237 @@
+{
+ "experiment_id": "H-L3AD-INDEPENDENCE",
+ "mutation_count": 6,
+ "caught": 5,
+ "all_caught": false,
+ "restored_matches_baseline": true,
+ "baseline": {
+  "n_groups": 18,
+  "merged_away": 4,
+  "m_ind": 25,
+  "n_pairs": 5,
+  "max_diff": 0.0,
+  "min_coverage": 1.0,
+  "rep_never_shorter": true,
+  "fwer_m2": 0.024785,
+  "counts": {
+   "IND_m25": {
+    "bonferroni": 8,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "L3AC_m27": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "FP_m26": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   },
+   "ALL_m29": {
+    "bonferroni": 7,
+    "holm": 8,
+    "bh": 8,
+    "by": 8
+   }
+  }
+ },
+ "mutations": [
+  {
+   "id": "M1",
+   "description": "判据去掉「完全覆盖」要求（本数据上惰性）",
+   "caught": false,
+   "changed_output": false,
+   "signal": {
+    "merged_away": [
+     4,
+     4
+    ],
+    "m_ind": [
+     25,
+     25
+    ],
+    "max_diff": [
+     0.0,
+     0.0
+    ],
+    "min_coverage": [
+     1.0,
+     1.0
+    ],
+    "rep_never_shorter": [
+     true,
+     true
+    ],
+    "fwer_m2": [
+     0.024785,
+     0.024785
+    ]
+   }
+  },
+  {
+   "id": "M2",
+   "description": "退回 L3ac：只认严格更短",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "merged_away": [
+     4,
+     2
+    ],
+    "m_ind": [
+     25,
+     27
+    ],
+    "max_diff": [
+     0.0,
+     0.0
+    ],
+    "min_coverage": [
+     1.0,
+     1.0
+    ],
+    "rep_never_shorter": [
+     true,
+     true
+    ],
+    "fwer_m2": [
+     0.024785,
+     0.024785
+    ]
+   }
+  },
+  {
+   "id": "M3",
+   "description": "用相关系数代替逐位相同",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "merged_away": [
+     4,
+     7
+    ],
+    "m_ind": [
+     25,
+     22
+    ],
+    "max_diff": [
+     0.0,
+     0.6000000000000001
+    ],
+    "min_coverage": [
+     1.0,
+     1.0
+    ],
+    "rep_never_shorter": [
+     true,
+     true
+    ],
+    "fwer_m2": [
+     0.024785,
+     0.024785
+    ]
+   }
+  },
+  {
+   "id": "M4",
+   "description": "代表改成「窗口最短」",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "merged_away": [
+     4,
+     4
+    ],
+    "m_ind": [
+     25,
+     25
+    ],
+    "max_diff": [
+     0.0,
+     0.0
+    ],
+    "min_coverage": [
+     1.0,
+     1.0
+    ],
+    "rep_never_shorter": [
+     true,
+     false
+    ],
+    "fwer_m2": [
+     0.024785,
+     0.024785
+    ]
+   }
+  },
+  {
+   "id": "M5",
+   "description": "FWER 按两次独立抽样",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "merged_away": [
+     4,
+     4
+    ],
+    "m_ind": [
+     25,
+     25
+    ],
+    "max_diff": [
+     0.0,
+     0.0
+    ],
+    "min_coverage": [
+     1.0,
+     1.0
+    ],
+    "rep_never_shorter": [
+     true,
+     true
+    ],
+    "fwer_m2": [
+     0.024785,
+     0.04917
+    ]
+   }
+  },
+  {
+   "id": "M6",
+   "description": "容差放宽到 0.5pp",
+   "caught": true,
+   "changed_output": true,
+   "signal": {
+    "merged_away": [
+     4,
+     7
+    ],
+    "m_ind": [
+     25,
+     22
+    ],
+    "max_diff": [
+     0.0,
+     0.4646980000000003
+    ],
+    "min_coverage": [
+     1.0,
+     1.0
+    ],
+    "rep_never_shorter": [
+     true,
+     true
+    ],
+    "fwer_m2": [
+     0.024785,
+     0.024785
+    ]
+   }
+  }
+ ]
+}

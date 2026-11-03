@@ -1,0 +1,261 @@
+{
+  "experiment_id": "H-L3U-CITATION-REGISTRY-000001",
+  "kind": "audit_only",
+  "created": "2026-10-28",
+  "question": "L3t 分辨率登记表的每一行，登记的是不是该实验**判定时真正用的那个统计量**？据此把每条结论的「可引用强度」写成可执行的规范。",
+  "why_now": "L3t 的 below_family_best 列出 5 条「效应量低于同族最好分辨率」，准备据此复盘引用口径；复核时发现 phasec_d 登记的是格 A 自己的 d_raw 水平（+0.014pp），而阶段 C 的主判定是 spread(B)−spread(A)（+1.9390pp, t=6.37），差 138 倍。若直接拿 L3t 做引用规范，会把一个 t=6.37 的结论写成「分辨率不足」。必须先核对口径，再谈分级。",
+
+  "subject": {
+    "path": "reports/gates/H-L3T-RESOLUTION/l3t_registry.json",
+    "note": "被审计对象。本实验**不修改**该文件，更正以独立产物给出（R5：保留原始结果 + 出更正）"
+  },
+
+  "hardcoded": {
+    "mde_coefficient": 2.8016,
+    "nw_lag": 3,
+    "min_n": 50,
+    "note_n": "n < 50 的序列不参与 MDE 分级（沿用 L3t §2 的既定规则）"
+  },
+
+  "tolerance": {
+    "mean_abs": 1e-06,
+    "t_abs": 1e-04,
+    "n_exact": true,
+    "note": "mean 与 t 都按**绝对值**比较（方向由 effect 的符号单独记录，不靠容差）"
+  },
+
+  "match_classes": {
+    "MATCH": "登记行与判定统计量在同一单位下 mean、t、n 全部在容差内一致",
+    "MISMATCH_MEAN": "mean 或 t 越界（取了别的列 / 别的资金档 / 别的窗口）",
+    "MISMATCH_N": "n 不一致（窗口或过滤不同）",
+    "UNVERIFIABLE": "原产物缺失必要字段，无法核对（**不得**记为通过）"
+  },
+
+  "quotability_rules": {
+    "principle": "「检出」类看效应量相对该设计 MDE 的倍数；「未检出」类看功效。两者不可互换——功效不足时『没检出』只能写成『无法判断』。",
+    "detected_true": {
+      "ratio_ge_2": "QUOTABLE",
+      "ratio_1_to_2": "QUOTABLE_MARGINAL",
+      "ratio_0.5_to_1": "DIRECTION_ONLY",
+      "ratio_lt_0.5": "NOT_QUOTABLE"
+    },
+    "detected_false": {
+      "power_ge_0.8": "NULL_CONFIRMED",
+      "power_0.5_to_0.8": "NULL_WEAK",
+      "power_lt_0.5": "UNDERPOWERED"
+    },
+    "ratio_definition": "|effect| / mde，两者同单位同分母（月度 pp / IC / %每折）",
+    "power_definition": "Φ(|t|−1.96) + Φ(−|t|−1.96)，与 L3r/L3s 同式",
+    "not_classified": "n < min_n 或为 MISMATCH_* / UNVERIFIABLE 的条目不下分级结论"
+  },
+
+  "verdict_semantics": {
+    "negative_markers": ["NOT_DETECTED", "NOT_EXECUTABLE", "FAILURE", "failure", "ABSORBED", "INSUFFICIENT", "NEGLIGIBLE", "BLOCKED", "INCONCLUSIVE", "REJECTED"],
+    "positive_markers": ["CONFIRMED", "SUCCESS", "DETECTED", "SIGNIFICANT", "EXECUTABLE", "FRAGILE", "SENSITIVE", "DEPENDENT"],
+    "rule": "先查 negative_markers（任一命中即 detected=false），再查 positive_markers；两者都不含则 detected=null 并记 UNCLASSIFIED——不得默认成任一边",
+    "known_trap": "phaseq 的 MAX5 判定原文是 INCREMENTAL_ABSORBED（吸收＝未检出），L3t 表里写成 MAX5_INCREMENTAL（听起来像成立）。这条规则要求按原文匹配，不按记忆"
+  },
+
+  "entries": [
+    {"key": "gate1_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "column", "path": "gate1_out/032a11f591553e25/monthly_paired.csv", "column": "d", "scale": 100},
+     "stat": {"mean": "main.mean_d", "scale": 100, "t": "main.t_stat", "n": "main.n"},
+     "verdict": "judgement.verdict"},
+    {"key": "gate2_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "column", "path": "gate2_out/c440c77d284a/monthly_paired.csv", "column": "d", "scale": 100},
+     "stat": {"mean": "main.mean_d", "scale": 100, "t": "main.t_stat", "n": "main.n"},
+     "verdict": "judgement.verdict"},
+    {"key": "gate3_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "column", "path": "gate3_out/9b7235d77689/monthly_paired.csv", "column": "d", "scale": 100},
+     "stat": {"mean": "main.mean_d", "scale": 100, "t": "main.t_stat", "n": "main.n"},
+     "verdict": "judgement.verdict"},
+    {"key": "gate4_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "column", "path": "gate4_out/94988f7c57d1/monthly_paired.csv", "column": "d", "scale": 100},
+     "stat": {"mean": "main.mean_d", "scale": 100, "t": "main.t_stat", "n": "main.n"},
+     "verdict": "judgement.verdict"},
+    {"key": "gate5_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "column", "path": "gate5_out/7c0c89916b0c/monthly_paired.csv", "column": "d", "scale": 100},
+     "stat": {"mean": "main.mean_d", "scale": 100, "t": "main.t_stat", "n": "main.n"},
+     "verdict": "judgement.verdict"},
+    {"key": "gate6_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "column", "path": "gate6_out/b8c4f1ecba44/monthly_paired.csv", "column": "d", "scale": 100},
+     "stat": {"mean": "main.mean_d", "scale": 100, "t": "main.t_stat", "n": "main.n"},
+     "verdict": "judgement.verdict"},
+
+    {"key": "phasec_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "pivot", "path": "phasec_out/3a01759a37f0/five_cells.csv", "index": "signal_date",
+                "pivot_column": "cell", "value_column": "d",
+                "terms": [{"key": "B", "weight": 1.0}, {"key": "A", "weight": -1.0}],
+                "multiplier": 2.0, "scale": 100},
+     "stat": {"mean": "main_test.mean_pp", "scale": 1, "t": "main_test.t_nw", "n": "main_test.n"},
+     "verdict": "main_test.judgement.verdict"},
+    {"key": "phasec2_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "terms", "path": "phasec2_out/953c32fdc556/cells.csv", "index": "signal_date",
+                "terms": [{"column": "spread_v1", "weight": 1.0}, {"column": "spread", "weight": -1.0}],
+                "filter": {"cell": "D"}, "multiplier": 1.0, "scale": 100},
+     "stat": {"mean": "main_test.mean_pp", "scale": 1, "t": "main_test.t_nw", "n": "main_test.n"},
+     "verdict": "main_test.judgement.verdict"},
+    {"key": "phasec3_d", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "terms", "path": "phasec3_out/6a76a10687b4/cells.csv", "index": "signal_date",
+                "terms": [{"column": "spread_v1", "weight": 1.0}, {"column": "spread_v0", "weight": -1.0}],
+                "multiplier": 1.0, "scale": 100},
+     "stat": {"mean": "main_test.mean_pp", "scale": 1, "t": "main_test.t_nw", "n": "main_test.n"},
+     "verdict": "main_test.judgement.verdict"},
+
+    {"key": "phasee_alpha", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phasee_out/2a3893f3f5b1/monthly.csv", "column": "alpha", "scale": 100},
+     "stat": {"mean": "main.mean_pp", "scale": 1, "t": "main.t_nw", "n": "main.n"},
+     "verdict": "main.judgement.verdict"},
+    {"key": "phasef_delta", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "column", "path": "phasef_out/aec46d88bbda/monthly.csv", "column": "delta", "scale": 100},
+     "stat": {"mean": "main.mean_pp", "scale": 1, "t": "main.t_nw", "n": "main.n"},
+     "verdict": "main.judgement.verdict"},
+    {"key": "phaseg_alpha", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phaseg_out/e7da0f9ff3f1/monthly.csv", "column": "alpha_v1", "scale": 100},
+     "stat": {"mean": "main.mean_pp", "scale": 1, "t": "main.t_nw", "n": "main.n"},
+     "verdict": "main.judgement.verdict"},
+    {"key": "phasel_alpha", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phasel_out/9ffc3710cf6f/monthly.csv", "column": "alpha_v1_pp", "scale": 1},
+     "stat": {"mean": "V1_executable.mean_pp", "scale": 1, "t": "V1_executable.t_nw", "n": "V1_executable.n"},
+     "verdict": "verdict"},
+    {"key": "phasem_spread",
+     "grading_basis": "multi_criteria", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "column", "path": "phasem_out/2f5f61dd0b5f/monthly.csv", "column": "spread_pp", "scale": 1},
+     "stat": {"mean": null, "scale": 1, "t": null, "n": null},
+     "stat_note": "判定依据是 ratio_buy 的区间与 H1/H2 两条，不是序列均值；本实验只核对序列能否重建 MDE，不对比 mean/t",
+     "verdict": "verdict"},
+
+    {"key": "phasej_netA", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phasej_out/f76de8a277f6/monthly.csv", "column": "net_A_pp", "scale": 1},
+     "stat": {"mean": "attribution_best_tier.net_pp", "scale": 1, "t": "attribution_best_tier.t_net", "n": "by_capital.3000万.n"},
+     "tier_note": "判定档 = attribution_best_tier.budget = 3000 万（pass_by_w 全 False，最好档即判定档）",
+     "series_tier_note": "CSV 的 net_A_pp 列对应 1000 万档（同文件 f_inv_1000w），与判定档不同——这是要暴露的差异",
+     "verdict": "verdict"},
+    {"key": "phasek_m1net", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phasek_out/3bc31a35903d/monthly.csv", "column": "m1_net", "scale": 1},
+     "stat": {"mean": "net_m1_pp", "scale": 1, "t": "by_period.1.t_nw6", "t_alt": "by_period.1.t_nw3", "n": null},
+     "verdict": "verdict"},
+    {"key": "phaseo_netBASE", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phaseo_out/ac7aa2830ab0/monthly.csv", "column": "net_BASE_3000w", "scale": 1},
+     "stat": {"mean": "results.W_3000万|BASE.net_pp", "mean_alt_keys": ["net_pp"], "scale": 1,
+              "t": "results.W_3000万|BASE.t_nw", "n": "results.W_3000万|BASE.n"},
+     "verdict": "verdict"},
+    {"key": "phasep_late", "family": "C_regression", "unit": "pp",
+     "series": {"kind": "column", "path": "phasep_out/3d19f7508e10/monthly.csv", "column": "net_BASE_3000w_pp", "scale": 1,
+                "filter": {"segment": "late"}},
+     "stat": {"mean": "main_test.alpha_late_pp", "scale": 1, "t": "main_test.t_nw", "n": "main_test.n"},
+     "verdict": "main_test.verdict"},
+    {"key": "phaser_alpha",
+     "grading_basis": "multi_criteria", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phaser_out/7b5e7643e8ca/monthly.csv", "column": "alpha_v1_pp", "scale": 1},
+     "stat": {"mean": null, "scale": 1, "t": null, "n": null},
+     "stat_note": "判定按资本档 A/B 两条规则给出（SURGE_SCALE_DEPENDENT），无单一判定均值的上限检验；只核对序列",
+     "verdict": "criteria.verdict"},
+    {"key": "phases_net", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phases_out/f098a59fb1b5/monthly.csv", "column": "net_S_3000w", "scale": 1,
+                "filter": {"segment": "2016-2026"}},
+     "stat": {"mean": "primary.mean_pp", "scale": 1, "t": "primary.t_nw", "n": "primary.n"},
+     "verdict": "primary.verdict"},
+    {"key": "phaset_net", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phaset_out/ef29a743997b/monthly.csv", "column": "net_S_3000w", "scale": 1,
+                "filter": {"segment": "modern"}},
+     "stat": {"mean": "baseline_modern.mean_pp", "scale": 1, "t": "baseline_modern.t_nw", "n": "baseline_modern.n"},
+     "verdict": "verdict"},
+    {"key": "phasev_net",
+     "grading_basis": "multi_criteria", "family": "B_long_only", "unit": "pp",
+     "series": {"kind": "column", "path": "phasev_out/3614e12a0546/monthly.csv", "column": "net_O_BASE_3000w", "scale": 1},
+     "stat": {"mean": null, "scale": 1, "t": null, "n": "n_months"},
+     "stat_note": "判定按 G1~G5 五条门槛（成本口径一致性），主量是 cost_means.delta_BASE_pp，不是净收益均值；只核对序列",
+     "verdict": "criteria.verdict"},
+    {"key": "phaseq_max5", "family": "C_regression", "unit": "pp",
+     "series": {"kind": "column", "path": "phaseq_out/ae7fc45acab0/monthly.csv", "column": "coef_MAX5_pp", "scale": 1},
+     "stat": {"mean": "main_test_REV21.coefficients.MAX5.coef_pp_per_sd", "scale": 1,
+              "t": "main_test_REV21.coefficients.MAX5.t_nw", "n": "main_test_REV21.coefficients.MAX5.n_months"},
+     "verdict": "main_test_REV21.verdicts.MAX5"},
+
+    {"key": "l3r_delta",
+     "grading_basis": "self_series", "family": "A_cross_spread", "unit": "pp",
+     "series": {"kind": "json_list", "path": "reports/gates/H-L3R-SELECTION/periods.json", "value": "delta", "scale": 100},
+     "stat": {"mean": null, "scale": 1, "t": null, "n": null},
+     "stat_note": "本实验自身即该序列的持有者，判定统计量由 L3r 报告给出；此处只核对序列行数",
+     "verdict": null, "verdict_literal": "INCONCLUSIVE_POWER"},
+    {"key": "l3s_ic",
+     "grading_basis": "self_series", "family": "D_ic", "unit": "ic",
+     "series": {"kind": "json_list", "path": "reports/gates/H-L3S-IC-000001/l3s_result.json", "list_path": "periods", "value": "ic", "scale": 1},
+     "stat": {"mean": null, "scale": 1, "t": null, "n": null},
+     "stat_note": "同 L3r：本实验自身持有该序列",
+     "verdict": null, "verdict_literal": "IC_INCONCLUSIVE_POWER"},
+    {"key": "l3_test",
+     "grading_basis": "self_series", "family": "E_fold", "unit": "pct_fold",
+     "series": {"kind": "json_list", "path": "reports/gates/H-L3-MACROSS-000001/l3_result.json", "list_path": "result.folds", "value": "test_return", "scale": 100},
+     "stat": {"mean": null, "scale": 1, "t": null, "n": null},
+     "stat_note": "同 L3r",
+     "verdict": null, "verdict_literal": "L3_BLOCKED_PREREQUISITE"},
+    {"key": "l3p_test",
+     "grading_basis": "self_series", "family": "E_fold", "unit": "pct_fold",
+     "series": {"kind": "json_list", "path": "reports/gates/H-L3P-MACROSS-000001/l3p_result.json", "list_path": "result.folds", "value": "test_return", "scale": 100},
+     "stat": {"mean": null, "scale": 1, "t": null, "n": null},
+     "stat_note": "同 L3r",
+     "verdict": null, "verdict_literal": "L3P_BLOCKED_PREREQUISITE"}
+  ],
+
+  "predictions": [
+    {"id": "P1", "claim": "判定字符串（verdict 原文）与 L3t 记录的字符串完全一致的条目 ≥ 18/27",
+     "rationale": "多数条目是逐字抄的；已知 gate1（failure vs INCONCLUSIVE）、phasec2、phasec3、phasee、phasep、phaseq 至少 6 条不一致"},
+    {"id": "P2", "claim": "判定统计量与 L3t 行一致的条目 ≥ 18/27（mean 与 t 均在容差内）",
+     "rationale": "多数阶段判定量就是该列均值；phasec 三条、gate3、phasej 已知有问题"},
+    {"id": "P3", "claim": "需要重建序列（非单列）的条目恰好 3 条",
+     "rationale": "只有 phasec / phasec2 / phasec3 的判定是格间配对差"},
+    {"id": "P4", "claim": "更正后 pp 口径内 MDE 极差 < 20.9×（相对 L3t 变窄或持平）",
+     "rationale": "phasec 类改用配对差序列后 sd 更小、MDE 更小，压缩最大值与最小值之比"},
+    {"id": "P5", "claim": "更正后 below_family_best 的条目数 ≤ 3（L3t 为 5 条）",
+     "rationale": "phasec（效应 1.94pp vs MDE≈0.85pp）与 phasec2（0.107 vs ≈0.06）会移出该名单"},
+    {"id": "P6", "claim": "detected=true 的条目中 ratio ≥ 2（QUOTABLE）的 ≥ 3 条",
+     "rationale": "gate6（0.708/0.427=1.66 不算）、phasec（2.3）、phasec2（1.8）、phaseo（1.44）… 需实测；若 <3 则说明「可引点估计」的结论极少"},
+    {"id": "P7", "claim": "UNVERIFIABLE 条目数为 0",
+     "rationale": "27 条的原始产物全部在仓"}
+  ],
+
+  "amendments": [
+    {
+      "when": "首次成功产出之前（脚本第一次运行因读不到 phaseo 判定均值而抛错，未产出任何结果文件）",
+      "changes": [
+        "phaseo_netBASE 的 stat.mean：results.W_3000万|BASE.mean_pp → results.W_3000万|BASE.net_pp（该 summary 的字段名是 net_pp，原写 mean_pp 为笔误）",
+        "phaseo_netBASE 补充 stat.t / stat.n（原为 null）：results.W_3000万|BASE.t_nw / .n",
+        "phasep_late 的 stat.t：main_test.beta1_t_nw → main_test.t_nw（前者不是该 summary 的键）"
+      ],
+      "why_not_a_judgement_change": "三处都只是定位字段的写法修正，判据（用该实验判定时的统计量比对）与分级阈值一律未动。修订发生在任何结果写入磁盘之前，故不属于事后调口径。"
+    },
+    {
+      "when": "第一次运行已产出中间结果之后（该结果保留为 l3u_citation_firstrun_scalebug.{json,md}）",
+      "changes": [
+        "phasek_m1net / phaseo_netBASE / phases_net / phaset_net / phasev_net 五条的 series.scale：100 → 1。这五列存的本来就是 pp 值（列均值分别 0.039891 / 0.135959 / 0.117747 / 0.117747 / 0.135959，与各自 summary 的 net_pp 逐位一致），乘 100 后 MDE 被放大 100 倍（9.36~14.05pp，而同族应为 0.09~0.14pp）"
+      ],
+      "how_found": "量级自检：phasek 重建 MDE 9.3557pp 与同族（B_long_only）中位 0.094pp 差 99 倍，超过任何合理的口径差异",
+      "why_not_a_judgement_change": "只改单位换算（1 还是 100），判据、分级阈值、条目集合一律未动。这属于项目里已犯过三次的「pp÷小数」错误，本次是第四次，故同时新增量级自检：任何条目重建后的 MDE 若超过同族中位 20 倍即标记 MDE_MAGNITUDE_SUSPECT，不再静默通过。",
+      "effect_on_conclusions": "这五条的 NOT_QUOTABLE / NOT_GRADED 判定会改变；第一次运行的产物原样保留，可用于对照。"
+    },
+    {
+      "when": "第二次运行之后（第一次修正 scale 后的产物已产出）",
+      "changes": [
+        "给 7 条 stat.mean 为空（NOT_APPLICABLE）的条目补 grading_basis 字段：phasem_spread / phaser_alpha / phasev_net = multi_criteria；l3r_delta / l3s_ic / l3_test / l3p_test = self_series"
+      ],
+      "why_needed": "无此字段时，脚本把 NOT_APPLICABLE 与 MATCH 一起当成可分级，于是用**序列自身的功效**去判 null 类分级。后果是 phasel_alpha 被判成 NULL_CONFIRMED（= 确认无效应），而它的毛 alpha 是 t=3.13 显著的——它的判定原文 SURGE_AVOID_ABSORBED 说的是「成本后净效应被吸收」，与「这个序列没有效应」是两件事。这是语义错配，必须修。",
+      "rule_after_change": "multi_criteria：判定由多门槛/区间规则给出，序列均值不是判定量 ⇒ 只报 reference_tier，不报正式分级。self_series：本实验自身持有判定序列 ⇒ 序列均值即判定量，可正常分级。",
+      "why_not_a_judgement_change": "不触碰任何阈值（2×/1×/0.5×、功效 0.8/0.5），也不改条目集合；补的是一个**语义标注**，用来防止把「净效应被吸收」误读成「序列无效应」。"
+    }
+  ],
+
+  "disclosures": [
+    "撰预登记前已逐一查看过 27 条的 summary 结构，并已确认 phasec_d 的 L3t 登记值（+0.014pp）与阶段 C 主判定（+1.9390pp）不符。因此 P2/P5 不是盲测，属于「按已知反例估算比例」。",
+    "P3 的「恰好 3 条」是在已知 phasec/c2/c3 定义后写的，属已披露的确定性预测，权重低于 P1/P6。",
+    "本次不重跑任何实验；MDE 用 L3t 同一实现（2.8016×se_NW3）在**重建后的序列**上重算。",
+    "分类阈值（2×、1×、0.5×）在跑数前固定，不因结果调整；若某条落在边界附近，如实报数值不移动阈值。"
+  ],
+
+  "outputs": {
+    "json": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+    "markdown": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.md",
+    "evidence": "reports/L3U_CITATION_EVIDENCE.json"
+  }
+}

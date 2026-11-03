@@ -1,0 +1,25 @@
+{
+  "cards_written": 423,
+  "corpus_dir": "reports\\t6_shadow\\corpus",
+  "elapsed_s": 206.46,
+  "plan_distribution": {
+    "browse": 22,
+    "compare": 23,
+    "compare_three": 7,
+    "explore_run": 10,
+    "inspect": 15,
+    "missing": 12,
+    "portfolio": 8,
+    "portfolio_after_run": 10,
+    "quick_compare": 8,
+    "retry": 16,
+    "single": 19
+  },
+  "seed": 20261027,
+  "sessions_requested": 150,
+  "status_codes": {
+    "200": 395,
+    "404": 12,
+    "422": 16
+  }
+}

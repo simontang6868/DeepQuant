@@ -1,0 +1,33 @@
+{
+ "experiment_id": "H-L3U-CITATION-REGISTRY-000001",
+ "prereg_sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+ "prereg_bytes": 19653,
+ "subject_sha256": "d6137a869aa1653c333e8c5e208df50cb10abf66698844451fda7e57a89a8004",
+ "outputs": {
+  "json": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+  "markdown": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.md"
+ },
+ "class_counts": {
+  "MISMATCH_MEAN": 10,
+  "MISMATCH_N": 2,
+  "MATCH": 8,
+  "NOT_APPLICABLE": 7
+ },
+ "verdict_mismatch_count": 13,
+ "mismatched_count": 12,
+ "below_family_best_count": 1,
+ "quotable_count": 0,
+ "refuted_predictions": [
+  "P1",
+  "P2",
+  "P4",
+  "P6"
+ ],
+ "limits": [
+  "本次只核对「登记值 vs 判定值」，不重跑实验；MDE 是在**重建后的判定序列**上用 L3t 同一实现重算的。",
+  "phasem / phaser / phasev / l3r / l3s / l3 / l3p 七条的判定不是单一均值（区间判定 / 多门槛 / 自持有序列），标记为 NOT_APPLICABLE，只核对了它们的序列与 MDE，未做 mean/t 对比。",
+  "分级阈值（2×/1×/0.5× 与功效 0.8/0.5）在预登记中固定，未因结果调整；落在边界附近的条目按数值原样报告。",
+  "「可引用强度」是**引用规范**，不是对结论对错的重新判定；L3t 与各阶段原判定字符串均未被修改。",
+  "phasej 的判定档是 3000 万，而 CSV 里的 net_A_pp 对应 1000 万档；本实验按预登记比对两者的差异，不改用另一档重算（那属于新实验）。"
+ ]
+}

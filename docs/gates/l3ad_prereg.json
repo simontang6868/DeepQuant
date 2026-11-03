@@ -1,0 +1,214 @@
+{
+ "experiment_id": "H-L3AD-INDEPENDENCE",
+ "kind": "preregistration",
+ "created": "2026-10-29",
+ "title": "检验独立性：m 应按「独立随机变量数」还是「登记条数」计",
+ "objective": "L3ac 把 U1（等长同值是否合并）留成 UNKNOWN，因此主口径取 m=27。本阶段用原始预登记与产物把这个问题定论：三对登记的月度序列在共同月上**逐位完全相同**，它们是同一个随机变量被读出了两次。多重检验的 m 计的是「独立检验数」，同一随机变量不提供第二个犯错机会，因此应当计 1。本阶段据此外推 m=25，并如实报出这个方向会让一条条目从「不通过」变成「通过」。",
+ "why_now": [
+  "L3ac 的缺陷表把 U1 标为 UNKNOWN，并把 m=27 与 m=25 都列在对照表里——但那是「两种做法并列」，不是「哪个对」。悬着不解决，对外说「可引 7 条」就永远要说「但取决于一个未定的判断」。",
+  "L3ab 曾判「A 类重复登记 0 条」，理由是「5 对同值的登记判定字符串全不同」。那个判定在**假设层面**是对的，但它被误当成「m 不需要减」的理由——这是两个不同层面的问题。本阶段把它们分开。",
+  "docs/ 里保存着 L/O/R/S/T/V 六个阶段的原始预登记。此前 L3ab 说「原始假设文本缺失、只能反推」，这个说法在本阶段可以**被推翻**：文本在，而且直接写明了几对之间的复制关系（R 的预登记第 50–51 行、V 的列名 `net_O_BASE_3000w`）。"
+ ],
+ "inputs_frozen": {
+  "l3ac_prereg": {
+   "path": "docs/gates/l3ac_prereg.json",
+   "sha256": "9d4c39d8873bdb650e57ee4e39b04533de17f2e73ff93117ce2e79e5f2a81086"
+  },
+  "l3ac_result": {
+   "path": "reports/gates/H-L3AC-FAMILY-V2/l3ac_family_v2.json",
+   "sha256": "fce9b39d1395784f46ad88b6dcf801cf98f90038ab918e58d7c7b7b1bc61456c"
+  },
+  "l3u_prereg": {
+   "path": "docs/gates/l3u_prereg.json",
+   "sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493"
+  },
+  "l3z_result": {
+   "path": "reports/gates/H-L3Z-MULTIPLICITY/l3z_multiplicity.json",
+   "sha256": "a138f8803ea45ca0717bc6bd6f53a654096f5dfde84200f42f2db17d1c3b3edc"
+  },
+  "phase_l_prereg": {
+   "path": "docs/PHASE_L_SURGE_PREREG_2026-10-21.md",
+   "sha256": "9ffc3710cf6f2c43390d0ef0f91f663909eca44967c00214b4958b578b8c995c"
+  },
+  "phase_r_prereg": {
+   "path": "docs/PHASE_R_SURGE_IMPACT_PREREG_2026-10-22.md",
+   "sha256": "7b5e7643e8ca2c48c077a206cf8e84d0b006e2d1f1d4a1ef7c54225247483e11"
+  },
+  "phase_o_prereg": {
+   "path": "docs/PHASE_O_FEE_CONVENTION_PREREG_2026-10-21.md",
+   "sha256": "ac7aa2830ab0c80bb08a4443d348ce32040ba306eb97de2bb32ba6539eda435f"
+  },
+  "phase_v_prereg": {
+   "path": "docs/PHASE_V_COST_CONVENTION_PREREG_2026-10-23.md",
+   "sha256": "3614e12a0546249f7857d2e1146069d13bc14e5acec417b1cb80089c916546fe"
+  },
+  "phase_s_prereg": {
+   "path": "docs/PHASE_S_EXQ5_MODERN_PREREG_2026-10-22.md",
+   "sha256": "f098a59fb1b584eda3ce69a8ecfc890b1be93cae9091bf2ba776469f949f2371"
+  },
+  "phase_t_prereg": {
+   "path": "docs/PHASE_T_EXQ5_ROBUSTNESS_PREREG_2026-10-22.md",
+   "sha256": "ef29a743997b5371bf7f1bad5aa5880563867591859e48dea787407122139f4e"
+  },
+  "phase_p_prereg": {
+   "path": "docs/PHASE_P_SEGMENT_EQUALITY_PREREG_2026-10-21.md",
+   "sha256": "3d19f7508e109d17420f2d13cfb811b893e68c555ed6e6130ceadcce465e15d9"
+  },
+  "phasei_monthly": {
+   "path": "phasei_out/8f5c35121fdb/monthly.csv",
+   "sha256": "aa1404cf3b68da30fd31113deade356c98829d85e13e23c267cb4b40e870a99a"
+  }
+ },
+ "criterion": {
+  "statement": "若两条登记的月度序列在**共同月份**上逐位完全相同（max|差| ≤ 1e-12），则它们是同一个随机变量的两次读出，在多重检验里计 **1** 个名额。",
+  "direction_of_merge": "该判据只会**减少** m，不会增加。减少 m ⇒ 门槛变松 ⇒ 只可能让条目从「不通过」变「通过」，不可能反向。因此本阶段是一个**已知会变松**的动作，必须逐条交代它改变了什么。",
+  "neutrality": "判据只依赖「数值是否逐位相同」，与 p 的大小、显著性、结论方向、条目属于哪个阶段**全部无关**。任何一对同值的条目都会被合并，不管它显不显著；反之，p 相同但数值不同的两条（例如恰好算出同一 p 的不同序列）不会被合并。",
+  "not_same_as_l3ab": "L3ab 的「A 类重复登记 0 条」是**假设层面**的判断：那三对的研究问题确实不同（L 问「SURGE 该不该被排除」、R 问「加上冲击后还能不能执行」）。本阶段改的是**检验层面**：它们用同一份数字，只有一次犯错机会。两个结论同时成立、互不否定。",
+  "what_it_is_not": "本判据**不**是「数据同值 ⇒ 同一假设」。研究假设仍然各算一个、分别报结论。合并的只是「名额」。"
+ },
+ "evidence": {
+  "pair_A_phasel_phaser": {
+   "keys": [
+    "phasel_alpha",
+    "phaser_alpha"
+   ],
+   "kind": "代码复用 + 逐月对照",
+   "quote": "阶段 R 预登记第 50–51 行：「用阶段 L 的**同一套** `build_records()` + `filter_v1()` 重建 V1 alpha，逐月对照 `phasel_out/9ffc3710cf6f/monthly.csv::alpha_v1_pp`」",
+   "why_same": "R 的 `alpha_v1_pp` 是对 L 的 `alpha_v1_pp` 的复现校验。冲击成本只进净收益（`net_t = f_inv × alpha − comm − impact`），不改毛 alpha，所以这一列就是 L 的那一列。"
+  },
+  "pair_B_phaseo_phasev": {
+   "keys": [
+    "phaseo_netBASE",
+    "phasep_late",
+    "phasev_net"
+   ],
+   "kind": "列名显式声明复现 + 子窗口",
+   "quote": "阶段 V 的列名是 `net_O_BASE_3000w`——`O_BASE` 表示「按阶段 O 的 BASE 口径复现」；阶段 V 预登记写明 drift 口径成本对记录为 0.994×（口径复现成立），其**新**口径是 rebalance，产出在另外的列。",
+   "why_same": "`net_O_BASE_3000w` 逐位等于 O 的 `net_BASE_3000w`；`phasep_late` 又是 O 的 late 段截取（严格更短）。三者同一份数据。"
+  },
+  "pair_C_phases_phaset": {
+   "keys": [
+    "phases_net",
+    "phaset_net"
+   ],
+   "kind": "同列名 + 同段，仅标签写法不同",
+   "quote": "两条取的都是 `net_S_3000w`；`phases_out` 的 segment 取值是 `2007-2015` / `2016-2026`，`phaset_out` 是 `early` / `modern`——`modern` 与 `2016-2026` 指同一段。",
+   "why_same": "T 复现了 S 的现代段，只是换了个标签。这不是两条检验，是同一条检验被查询了两次。"
+  }
+ },
+ "m_variants": {
+  "IND_m25": "独立随机变量数：27 − 4（三对各自合并）+ 2（phasei）= 25。**本阶段主口径**",
+  "L3AC_m27": "L3ac 口径：只合并严格子窗口、等长同值不合并 = 27（对照）",
+  "ALL_m29": "全部登记不合并 + phasei = 29（对照）",
+  "FP_m26": "L3z 指纹去重 + phasei = 26（对照）"
+ },
+ "predictions": [
+  {
+   "id": "P1",
+   "timing": "priori",
+   "claim": "三对共 6 条登记全部满足「共同月逐位相同」，且合并后归为 3 组。",
+   "direction": "3 组、合并 4 条",
+   "mechanism": "L3ac 已实测出 3 对等长同值 + 1 处严格子窗口；本阶段只是换判据把它们并起来。",
+   "computable": "27 − 4 = 23，+ 2 = 25"
+  },
+  {
+   "id": "P2",
+   "timing": "priori",
+   "claim": "m=25，Bonferroni 门槛 = 0.00200000。",
+   "direction": "门槛由 0.00185185 放宽到 0.00200000",
+   "mechanism": "α/m，m 从 27 降到 25。",
+   "computable": "0.05/25"
+  },
+  {
+   "id": "P3",
+   "timing": "priori",
+   "claim": "四种校正的通过数**全部为 8**，且互相之间不再分歧。",
+   "direction": "8 / 8 / 8 / 8",
+   "mechanism": "`phasel_alpha` 的 p=0.00197172，低于 0.00200000；Holm 第 8 档 0.05/18=0.0027778、BH 第 8 档 0.016、BY 第 8 档 0.0041929，也都高于它。L3ac 里「Bonferroni 比其余三种少 1 条」的分裂是 m=27 造成的门槛几何，m=25 下消失。",
+   "computable": "0.00197172 vs 0.00200000 / 0.0027778 / 0.016 / 0.0041929"
+  },
+  {
+   "id": "P4",
+   "timing": "priori",
+   "claim": "与 L3ac 的 7 条相比，**唯一新增**的是 `phasel_alpha`；其余 7 条一条不动。",
+   "direction": "7 → 8，新增 1 条",
+   "mechanism": "m 变小只放宽门槛；前 7 条的 p 都远低于新旧两个门槛，不受影响。",
+   "computable": "8 − 7 = 1"
+  },
+  {
+   "id": "P5",
+   "timing": "priori",
+   "claim": "**正面结论数不变（7 条）**。新增的 `phasel_alpha` 是零效应方向判定（`SURGE_AVOID_ABSORBED`）。",
+   "direction": "正面 7 条不动，多 1 条零效应判定",
+   "mechanism": "`phasel_alpha` 的判定是「净效应被吸收」，不是「有正向收益」。它的毛 alpha +0.106pp/t=+3.13 显著，但判定方向与正向结论相反。",
+   "computable": "8 条中 `phasel_alpha` 不属于正面结论"
+  },
+  {
+   "id": "P6",
+   "timing": "priori",
+   "claim": "`phasel_alpha` 在新门槛下的余量 = 1.41%，仍然极薄。",
+   "direction": "临界",
+   "mechanism": "(0.00200000 − 0.00197172)/0.00200000。任何再纳入一条检验（m=26 → 0.00192308）都会让它再次掉出。",
+   "computable": "1.41%"
+  },
+  {
+   "id": "P7",
+   "timing": "priori",
+   "claim": "`phases_net` / `phaset_net` 的合并**不改变任何结论**（两条 p 都是 0.028317，本来就不通过）。",
+   "direction": "无影响",
+   "mechanism": "它们的 p 相同且都远大于任何门槛；合并只是把「同一个不显著」从算两次变算一次。",
+   "computable": "0.028317 > 0.05"
+  },
+  {
+   "id": "P8",
+   "timing": "priori",
+   "claim": "FWER 模拟：同一随机变量被读两次时，「计 2 个名额」的实际拒绝率约为 α/2，「计 1 个名额」约为 α。",
+   "direction": "前者 ≈ 0.025、后者 ≈ 0.05（α=0.05）",
+   "mechanism": "两个拒绝事件完全重合 ⇒ 并集概率等于单个概率。Bonferroni 在 m=2 时门槛 α/2 把单个检验的实际水平压到 α/2。",
+   "computable": "蒙特卡洛 20 万次，零假设标准正态"
+  },
+  {
+   "id": "P9",
+   "timing": "descriptive",
+   "claim": "报告每一组的「代表」是谁、被吸收的是谁、以及吸收的**证据类型**（代码复用 / 列名声明 / 同列同段 / 子窗口）。",
+   "direction": "描述性",
+   "mechanism": "读者要能逐组核「凭什么说这两条是同一个变量」，而不是面对一个 m=25 的黑箱。",
+   "computable": "3 组 × 证据类型"
+  }
+ ],
+ "gates": {
+  "G1_frozen_inputs": "所有 inputs_frozen 的 sha256 必须一致，否则拒跑。",
+  "G2_prereg_self_hash": "脚本校验本文件 sha256，改动即拒跑。",
+  "G3_exact_pairs_only": "合并只能由「逐位相同」触发；必须逐对报告 max|差| 与共同月数。任一 max|差| > 1e-12 的边即为实现错误。",
+  "G4_pair_count": "等长同值对必须恰为 3 对、涉及 6 条；加上 1 处严格子窗口，共合并 4 条。",
+  "G5_p_unchanged": "合并不得改变任何一条的 p。合并前后逐条 p 必须完全相同。",
+  "G6_m_recomputable": "m 必须等于「登记数 − 合并量 + 新增数」。",
+  "G7_by_subset_of_bh": "每个 m 下 BY ⊆ BH。",
+  "G8_independent_of_p": "判据中立性：把判据应用到一个**全部不显著**的子集上，合并仍应发生——证明判据不依赖 p。",
+  "G9_no_self_serving": "必须同时报 m=25 / 26 / 27 / 29 四种口径的结果，任何口径的差异都要写明是门槛造成还是成员造成。"
+ },
+ "decision_rule": "对外集合 = 四种校正 × 四种 m 口径的**交集**；主口径（IND m=25）下通过、但在更严口径下不通过的条目单列为「对口径敏感」。若该条目是正面结论，对外表述必须按更严口径；若它是零效应方向判定（如 `phasel_alpha`），可单列并注明「仅在去重口径下成立」。",
+ "forbidden": [
+  "不得因为 `phasel_alpha` 会在 m=25 下通过而选择该口径；判据在跑数前已固定，且与 p 无关。",
+  "不得把「检验数合并」写成「假设合并」；研究问题仍然各算一个、结论分别报。",
+  "不得在合并后修改任何一条的 p、均值或标准误。",
+  "不得用相关系数判定独立性（只用逐位相同）。",
+  "不新增因子、不新增回测、不启动实盘。",
+  "不改写 L3z / L3aa / L3ab / L3ac 的任何预登记与产物。"
+ ],
+ "outputs": {
+  "reports": [
+   "reports/L3AD_INDEPENDENCE_AUDIT.md",
+   "reports/L3AD_MULTIPLICITY_M25.md",
+   "reports/L3AD_FINAL_CLAIM_SET.md"
+  ],
+  "machine": "reports/gates/H-L3AD-INDEPENDENCE/l3ad_independence.json",
+  "sheet": "docs/DELIVERABLE_QUOTE_SHEET_L3AD.md（另立，不覆盖 L3ab / L3ac 的清单）"
+ },
+ "note": "本阶段会**减少** m，也就是**放宽**门槛。这是全项目唯一一次朝这个方向的家族调整，因此三条约束必须同时成立：判据与 p 无关、四种口径全部并报、新增条目不是正面结论。任何一条不成立，都不应采用 m=25。",
+ "fwer_argument": {
+  "claim": "把同一随机变量计两个名额不是「更严格」，而是把实际 FWER 压到名义 α 之下——是保守偏差，不是正确性。",
+  "reasoning": "设两项检验的拒绝事件完全相同（同一个随机变量、同一个 α）。则 P(至少一次假阳性) = P(拒绝任一) = α，而不是 2α。若按 m=2 做 Bonferroni（门槛 α/2），实际 FWER ≈ α/2 < α。名义水平被压低，功效白损失。",
+  "testable": "用零假设下的模拟直接验证：生成同一随机变量被读两次，比较「计 2 个名额」与「计 1 个名额」的实际拒绝率。预期前者 ≈ α/2、后者 ≈ α。这一条写进预测 P8。"
+ }
+}

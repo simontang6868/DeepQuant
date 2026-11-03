@@ -1,0 +1,98 @@
+{
+  "experiment_id": "H-L3X-TONLY-000001",
+  "kind": "sealed_entry_review",
+  "created": "2026-10-28",
+  "question": "L3w 只复核了 6 条「取错量」的条目，把 6 条「仅 t 不同」的留在封印里。这 6 条的判定均值与分母本来就和序列完全一致，只是 summary 给 iid t、登记表用 NW3 t——它们凭什么不能分级？",
+  "why_now": "L3w 证明「过度保守」是一个真实存在、且与「被漂亮数字骗」方向相反的风险，并且解封出了全项目唯一一条 QUOTABLE。剩下 11 条 NOT_GRADED 里有 6 条属于同一类问题：不是判定量错了，而是 t 的估计量口径不同。若这里也解封，NOT_GRADED 会降到 5 条（那 5 条才是真正不该分级的：2 条不同源 + 3 条判定非单一均值）。",
+  "subject": {
+    "l3u_result": "reports/gates/H-L3U-CITATION-REGISTRY/l3u_citation.json",
+    "l3u_result_sha256": "f7d1a66d64c386e1a9c14e717c1606f9d931d2f789230d470a37cc83ce5c6e6b",
+    "l3u_prereg": "docs/gates/l3u_prereg.json",
+    "l3u_prereg_sha256": "0bbdc5ff4ad80f1de528f48544ee49094bc43a3a5fed19759e6fd878915ef493",
+    "l3w_result": "reports/gates/H-L3W-UNSEAL/l3w_unseal.json",
+    "l3w_result_sha256": "ce10baa7dabb1e1219177448e7e4ba6d1d81769cbcbde40c8dae85860445b6c0",
+    "note": "L3u 与 L3w 产物均冻结校验；本实验不改动它们，只对 t_only 的 6 条追加分级意见。"
+  },
+  "hardcoded": {
+    "n_sealed": 6,
+    "n_expected_unsealed": 6,
+    "lags": [0, 1, 2, 3, 4, 6],
+    "primary_lag": 3,
+    "tol_mean_rel": 0.0001,
+    "tol_t_abs": 0.0001,
+    "expected_not_graded_after": 5,
+    "expected_quotable_marginal_after": 4,
+    "expected_quotable_after": 1
+  },
+  "rules": {
+    "scope": "只复核 comparison.t_only=True 的 6 条（gate1/gate2/gate4/gate5/gate6/phasek）。与 L3w 的 6 条互不重叠。",
+    "same_source_gates": [
+      "U1 均值同源：|stat.mean − recomputed.mean| / max(|·|) ≤ 1e-4",
+      "U2 t 同源：stat.t 必须与 recomputed.t_iid 或 recomputed.t_nw3 之一的差 ≤ 1e-4",
+      "U3 分母同源：stat.n == recomputed.n"
+    ],
+    "tier_rule": "与 L3w 完全相同：citation.grade_quotability 的同一套阈值，效应取序列自身均值，MDE 取 NW(3)。不定义新门槛。",
+    "stability_rule": "同一序列在 lag ∈ {0,1,2,3,4,6} 上重算；tier 跨桶即维持封印。",
+    "why_this_is_not_loosening": "t_only 的条目里 mean 与 n 已经逐位一致，唯一差异是 t 用了 iid 还是 NW(3)。这不是「口径没对上硬放行」，而是「同一批数字的两种标准误」。稳定性闸门仍然要求分级在 6 个滞后下不变。",
+    "l3w_untouched": "L3w 的产物与结论不改；本实验与之并列，合并进卡片是第三个动作（L3v 重跑）。"
+  },
+  "predictions": [
+    {
+      "id": "P1",
+      "statement": "6 条全部通过同源三关（U1/U2/U3 无一失败）。",
+      "mechanism": "t_only 的定义就是「mean 一致、只有 t 不同」，因此 U1 与 U3 必然过；U2 比的是 summary 的 t 与重建序列的 t_iid，两者来自同一实现，应逐位一致。",
+      "quantity": "same_source.ok=True 的条数"
+    },
+    {
+      "id": "P2",
+      "statement": "6 条全部解封，无一条因跨桶被拒。",
+      "mechanism": "这 6 条的 ratio 与功效离各自门槛都有距离（gate6 的 ratio 约 1.66 距 2 有 20%，其余功效都在 0.36 以下距 0.5 更远），NW 滞后只改 se 的几个百分点，不足以跨桶。",
+      "quantity": "status=UNSEALED 的条数"
+    },
+    {
+      "id": "P3",
+      "statement": "gate6_d 解封为 QUOTABLE_MARGINAL，ratio 落在 1.5~1.8。",
+      "mechanism": "+0.708pp / MDE 0.427pp = 1.66；L=0 用 iid se（t=4.39）使 MDE 略增到约 0.452、ratio 降到 1.57，L=6 反向到约 1.71。两头都不到 2。",
+      "quantity": "gate6_d 的 tier 与 ratio_primary"
+    },
+    {
+      "id": "P4",
+      "statement": "gate2_d 解封为 UNDERPOWERED，功效在网格内始终低于 0.5。",
+      "mechanism": "事后功效 0.358（t=−1.59）；要跨到 NULL_WEAK 需要 |t| 到 1.96，即 se 缩小 23%，超出滞后调整的范围。",
+      "quantity": "gate2_d 的 tier 与 stability.tiers"
+    },
+    {
+      "id": "P5",
+      "statement": "合并后全项目 NOT_GRADED 从 11 降到 5。",
+      "mechanism": "6 条全部解封后，剩下的 NOT_GRADED 恰好是 2 条不同源（phasej/phasep）+ 3 条判定非单一均值（phasem/phaser/phasev）。",
+      "quantity": "merge.counts_after.NOT_GRADED"
+    },
+    {
+      "id": "P6",
+      "statement": "解封后 QUOTABLE 仍为 1，QUOTABLE_MARGINAL 变为 4。",
+      "mechanism": "这 6 条里只有 gate6 进 MARGINAL 档，没有一条 ratio 能到 2；phasec_d 的唯一性不变。",
+      "quantity": "merge.counts_after 的 QUOTABLE 与 QUOTABLE_MARGINAL"
+    }
+  ],
+  "amendments": [
+    {
+      "date": "2026-10-28",
+      "field": "subject.l3w_result_sha256",
+      "change": "L3w 产物 sha256 36b3b55e… → ce10baa7…",
+      "reason": "L3x 给 check_same_source 增加了 stat_n 字段（用于区分「分母不等」与「分母缺失」），重跑 L3w 后其 JSON 多一个键。L3w 的 6 条结论与分级完全未变：phasej 走 B_different_budget（mean 不匹配，第一分支）、phasep 走 B_regression_coef（stat_n=237 非空，不进 B_missing_stat）。",
+      "affects_predictions": "none",
+      "artifacts_kept": "L3w 的报告正文未变；旧 JSON 已被覆盖，差异仅为新增 same_source.stat_n 字段"
+    }
+  ],
+  "disclosures": [
+    "本实验不重跑任何策略，只从 L3u 已重建的判定序列上重算 NW 滞后网格；L3u 与 L3w 产物 sha256 在启动时校验。",
+    "解封不等于推翻 L3u：L3u 的封印记录原样保留，本实验是追加的分级意见。",
+    "t_only 的解封理由比 L3w 更弱一档——它不涉及「判定量取错」，只涉及「同一个 t 的两种标准误」。所以这 6 条即使解封，分级也全部落在 MARGINAL 及以下，不会产生新的强结论。",
+    "gate1 的 n=48、gate5 的 n=249 等窗口差异仍在，解封不改变「窗口级统计 ≠ 账户收益」这条限定。"
+  ],
+  "outputs": [
+    "reports/gates/H-L3X-TONLY/l3x_unseal.json",
+    "reports/gates/H-L3X-TONLY/l3x_unseal.md",
+    "reports/gates/H-L3X-TONLY/l3v_claims_patch.json"
+  ]
+}

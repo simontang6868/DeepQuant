@@ -1,0 +1,122 @@
+{
+ "baseline": {
+  "n_by": 6,
+  "by_set": [
+   "gate6_d",
+   "phasec2_d",
+   "phasec_d",
+   "phasef_delta",
+   "phasel_alpha",
+   "phaseo_netBASE"
+  ],
+  "m_used": 24,
+  "median_overlap": 1.0,
+  "median_abs_rho": 0.413499612030639,
+  "m_eff": 12.326490272763964,
+  "gate_codes": [],
+  "refuted": [
+   "P4"
+  ]
+ },
+ "mutations": [
+  {
+   "id": "M1",
+   "defect": "BY 丢掉 H_m（退化为 BH）",
+   "expectation": "caught",
+   "caught": true,
+   "behavior_changed": true,
+   "gates_fired": [],
+   "refuted_after": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+   ],
+   "n_by_after": 7,
+   "m_used_after": 24,
+   "satisfied": true
+  },
+  {
+   "id": "M2",
+   "defect": "step-up 丢掉 k 因子",
+   "expectation": "caught",
+   "caught": true,
+   "behavior_changed": true,
+   "gates_fired": [],
+   "refuted_after": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+   ],
+   "n_by_after": 4,
+   "m_used_after": 24,
+   "satisfied": true
+  },
+  {
+   "id": "M3",
+   "defect": "只计名额的条目不占 m",
+   "expectation": "caught",
+   "caught": true,
+   "behavior_changed": true,
+   "gates_fired": [
+    "BY_M_MISMATCH"
+   ],
+   "refuted_after": [
+    "P4"
+   ],
+   "n_by_after": 6,
+   "m_used_after": 20,
+   "satisfied": true
+  },
+  {
+   "id": "M4",
+   "defect": "重叠率分母用 max(n)",
+   "expectation": "caught",
+   "caught": true,
+   "behavior_changed": true,
+   "gates_fired": [
+    "OVERLAP_RATIO_NOT_ONE_ON_SUBSET"
+   ],
+   "refuted_after": [
+    "P4"
+   ],
+   "n_by_after": 6,
+   "m_used_after": 24,
+   "satisfied": true
+  },
+  {
+   "id": "M5",
+   "defect": "m_eff 无视相关性",
+   "expectation": "caught",
+   "caught": true,
+   "behavior_changed": true,
+   "gates_fired": [
+    "M_EFF_NOT_REDUCED"
+   ],
+   "refuted_after": [
+    "P4"
+   ],
+   "n_by_after": 6,
+   "m_used_after": 24,
+   "satisfied": true
+  },
+  {
+   "id": "M6",
+   "defect": "相关性只取 lag 0",
+   "expectation": "not_caught_expected",
+   "caught": false,
+   "behavior_changed": true,
+   "gates_fired": [],
+   "refuted_after": [
+    "P4"
+   ],
+   "n_by_after": 6,
+   "m_used_after": 24,
+   "satisfied": true
+  }
+ ],
+ "restored_matches_baseline": true,
+ "all_satisfied": true,
+ "note": "M6 未抓到属预期：它只改变披露的相关性口径（|ρ| 中位数 0.41→0.12），而 P6 是单侧阈值 0.5，两种口径都在阈值下方，结论不变。闸门按设计只管算得对不对，不管披露得多保守。"
+}

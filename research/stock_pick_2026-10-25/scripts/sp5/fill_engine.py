@@ -23,11 +23,15 @@ from __future__ import annotations
 
 import glob
 import os
+import pathlib
 
 import numpy as np
 import pandas as pd
 
-ROOT = r"D:/DeepQuant power by txm/DeepQuant-main"
+# 仓库根：优先 DEEPQUANT_HOME（云主机 /opt/quant），否则由本文件位置推导
+# （scripts/sp5/ → 上四层是仓库根，锚点是 STATUS.md 所在目录）。
+# 不写死绝对路径，Linux/Windows 都能跑。
+ROOT = os.environ.get("DEEPQUANT_HOME") or str(pathlib.Path(__file__).resolve().parents[4])
 QFQ_DIR = os.path.join(ROOT, "data", "qfq_all")
 EXEC_DIR = os.path.join(ROOT, "data", "exec_all")
 
