@@ -88,9 +88,27 @@ def build_message(cfg: dict[str, str], subject: str, body: str,
     return msg
 
 
+#: 附件每 MB 预留的秒数。实测（2026-11-03，QQ→本机，腾讯云内网出口）：
+#:   13 MB 附件的 DATA 阶段耗时 55.3 s ⇒ 约 4.3 s/MB。
+#:   取 8 s/MB（≈2 倍余量）＋ 60 s 固定开销，再与下限 180 s 取大。
+#: 为什么不再写死 120：每周异地包从 13 MB 长到 25 MB 时，120 s 会刚好撞线——
+#: 而"刚好撞线"的失败是**间歇性**的，某周成功某周失败，最难查。
+SEC_PER_MB = 8.0
+MIN_TIMEOUT = 180.0
+
+
+def timeout_for(total_bytes: int) -> float:
+    """按附件总量推算 SMTP 会话超时（秒）。"""
+    mb = max(0.0, total_bytes / 1048576.0)
+    return max(MIN_TIMEOUT, 60.0 + SEC_PER_MB * mb)
+
+
 def send(msg: EmailMessage, cfg: dict[str, str], timeout: float = 120.0) -> None:
-    """timeout 覆盖整个会话（含 DATA）。实测 QQ 收 13 MB 附件 DATA 阶段耗时 ~55s
-    （2026-11-03），30s 超时会中途断连（SMTPServerDisconnected）——故取 120s。"""
+    """timeout 覆盖整个会话（含 DATA）。
+
+    历史：30 s 时 13 MB 附件会中途断连（SMTPServerDisconnected）；改为 120 s 后
+    13 MB 通过。现改为由 :func:`timeout_for` 按附件大小推算，避免包变大后复发。
+    """
     ctx = ssl.create_default_context()
     with smtplib.SMTP_SSL(cfg["host"], int(cfg["port"]), context=ctx,
                           timeout=timeout) as s:
@@ -148,7 +166,11 @@ def main(argv: list[str] | None = None) -> int:
         return EXIT_OK
 
     try:
-        send(msg, cfg)
+        to = timeout_for(total)
+        if env.get("DEEPQUANT_SMTP_TIMEOUT"):
+            to = float(env["DEEPQUANT_SMTP_TIMEOUT"])   # 显式覆盖（排查时用）
+        print(f"[mail] SMTP 会话超时 {to:.0f}s（附件 {total / 1048576:.1f} MB）")
+        send(msg, cfg, timeout=to)
     except Exception as e:  # noqa: BLE001 - 任何发送失败都必须转成非零退出
         print(f"[mail] ✗ 发送失败：{type(e).__name__}: {e}", file=sys.stderr)
         return EXIT_SEND

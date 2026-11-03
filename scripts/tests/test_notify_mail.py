@@ -127,3 +127,22 @@ def test_body_file_is_read(monkeypatch, tmp_path):
     msg = nm.build_message(cfg, "s", bf.read_text(encoding="utf-8"), [])
     assert "归档行数 42" in msg.get_content()
     assert base64.b64encode("x".encode()).decode()  # import sanity
+
+
+# ---------------------------------------------------------------------------
+# 超时按附件大小推算（2026-11-03：每周包 13→25 MB 时 120s 会撞线）
+# ---------------------------------------------------------------------------
+def test_timeout_scales_with_attachment_size():
+    assert nm.timeout_for(0) == nm.MIN_TIMEOUT
+    t13 = nm.timeout_for(13 * 1024 * 1024)
+    t25 = nm.timeout_for(25 * 1024 * 1024)
+    t45 = nm.timeout_for(45 * 1024 * 1024)
+    assert t13 < t25 < t45, (t13, t25, t45)
+    # 13 MB 实测 55.3 s，推算值必须显著大于实测（否则等于没留余量）
+    assert t13 > 55.3 * 2
+
+
+def test_timeout_never_below_floor():
+    """空附件也必须 ≥ 下限，防止 0 字节直接给 60s 导致登录阶段就超时。"""
+    assert nm.timeout_for(0) == nm.MIN_TIMEOUT == 180.0
+    assert nm.timeout_for(-1) == nm.MIN_TIMEOUT
