@@ -109,6 +109,51 @@ def lot_cost(price: float, lot: int = 100) -> float:
     return price * lot
 
 
+def append_lots(prices: list[float], per_budget: float,
+                cap_mult: float = 1.3) -> dict:
+    """SP5-LOTAPP-1（预登记 `a693026f`）：等权取整后用剩余现金追加一手。
+
+    规则原文（见 `SP5_LOTAPP_PREREG.md` §2）：
+      ① 按等权目标向下取整；② 剩余现金给**权重缺口最大**的标的追加一手；
+      ③ 重复直到剩余现金 < 池内最小一手金额；④ 单只不得超过等权目标的 1.3 倍；
+      ⑤ 不加只数、不改选股。
+
+    返回 dict：lots / invested / cash / adds / cap_blocked / overshoot。
+    `cap_blocked` 记录"因为 1.3× 上限而被跳过的候选次数"——⚠️ 它是**尝试计数**，
+    不等于"上限改变了结果"：5 万档实测 1 次跳过，但把上限放宽到 2.0 后手数完全相同
+    （`[1,2,4,3]`、投入 7,947 元），即那次拦截**没有改变最终配置**。
+    `overshoot` 统计"追加后超过等权目标"的只数——追加必然可能超目标，这是规则的代价，
+    必须如实报，不能因为"没到 1.3 倍"就说没超配。
+    """
+    n = len(prices)
+    lots = [int(per_budget // lot_cost(p)) for p in prices]
+    spent = sum(l * lot_cost(p) for l, p in zip(lots, prices))
+    cash = per_budget * n - spent
+    min_lot = min(lot_cost(p) for p in prices)
+    cap = cap_mult * per_budget
+    adds = cap_blocked = 0
+    while cash >= min_lot:
+        cands = []
+        for i, p in enumerate(prices):
+            lc = lot_cost(p)
+            if lc > cash:                     # 买不起，跳过
+                continue
+            if (lots[i] + 1) * lc > cap:      # 触 1.3× 上限，跳过
+                cap_blocked += 1
+                continue
+            cands.append((per_budget - lots[i] * lc, i))   # 缺口
+        if not cands:
+            break
+        _, i = max(cands)                     # 缺口最大者；同缺口按索引确定
+        lots[i] += 1
+        cash -= lot_cost(prices[i])
+        adds += 1
+    invested = sum(l * lot_cost(p) for l, p in zip(lots, prices))
+    overshoot = sum(1 for l, p in zip(lots, prices) if l * lot_cost(p) > per_budget)
+    return {"lots": lots, "invested": invested, "cash": per_budget * n - invested,
+            "adds": adds, "cap_blocked": cap_blocked, "overshoot": overshoot}
+
+
 def commission(amount: float) -> float:
     return max(amount * COMMISSION_RATE, MIN_COMMISSION)
 
@@ -136,6 +181,12 @@ def main(argv: list[str] | None = None) -> int:
                          "但会在输出里注明取价日")
     ap.add_argument("--lot-sweep", action="store_true",
                     help="额外打印「整手浪费 vs 本金」敏感度表（只读，不改本次结论）")
+    ap.add_argument("--lot-append", action="store_true",
+                    help="R5-2：评估整手「追加一手」规则（SP5-LOTAPP-1），"
+                         "启动时校验预登记 sha256；只算不改，不上线")
+    ap.add_argument("--mirror-check", action="store_true",
+                    help="R5-5：月末演练额外校验 universe_state 本地镜像与云端逐文件一致"
+                         "（不一致直接判演练失败，不写任何文件）")
     args = ap.parse_args(argv)
 
     print("=" * 78)
@@ -403,6 +454,66 @@ def main(argv: list[str] | None = None) -> int:
                   "故附「期望投入率」。")
             print("   ⚠️ 价格是单月快照、整手浪费率随标的价格波动；"
                   "本表是**算术**，不是新回测。")
+
+    # ---- ⑧b SP5-LOTAPP-1：现行 vs 追加一手（同一份价格、同一批参数）----
+    if args.lot_append:
+        prereg = SP / "SP5_LOTAPP_PREREG.md"
+        sidecar = SP / "sp5_lotapp_prereg.sha256"
+        if not (prereg.is_file() and sidecar.is_file()):
+            print("\n⑧b [✗] 缺预登记或哈希文件，拒绝评估")
+            return 3
+        want = sidecar.read_text(encoding="utf-8").split()[0]
+        got = hashlib.sha256(prereg.read_bytes()).hexdigest()
+        print(f"\n⑧b SP5-LOTAPP-1 评估（预登记 {want[:12]} 校验"
+              f"{'通过' if want == got else '失败'}）")
+        if want != got:
+            print("   [✗] 预登记哈希不符——登记后被改过，拒绝评估")
+            return 3
+        prices = []
+        for code, _ in kept:
+            got_p = last_price_on_or_before(code, args.exec_day)
+            if got_p is not None:
+                prices.append(got_p[1])
+        if not prices:
+            print("   [跳过] 取不到任何收盘价")
+        else:
+            s_net = ((ANN_FULL_INVESTED - (1 - args.weight) * CASH_ANN) / args.weight)
+            min_lot = min(lot_cost(p) for p in prices)
+            print(f"   价格 {len(prices)} 只｜池内最小一手 {min_lot:,.0f} 元｜"
+                  f"口径=已分配额度内（第 5 只缺位两规则同口径）")
+            print("   本金(万) | 每只预算 | 现行抽样 | 现行期望 | 追加实测 | 追加期望"
+                  " | 现行年化 | 追加年化 | 1.3×拦截")
+            for cap_w in (5, 10, 20, 50):
+                per = cap_w * 10_000 * args.weight / args.n_hold
+                allocated = per * len(prices)
+                inv_c = sum(int(per // lot_cost(p)) * 100 * p for p in prices)
+                w_c = 1 - inv_c / allocated
+                e_c = sum(lot_cost(p) / 2 for p in prices) / allocated
+                a = append_lots(prices, per)
+                w_a = 1 - a["invested"] / allocated
+                e_a = (min_lot / 2) / allocated
+                ann_c = ((1 - args.weight) * CASH_ANN
+                         + args.weight * ((1 - e_c) * s_net + e_c * CASH_ANN))
+                ann_a = ((1 - args.weight) * CASH_ANN
+                         + args.weight * ((1 - e_a) * s_net + e_a * CASH_ANN))
+                print(f"   {cap_w:>7.0f} | {per:>9,.0f} | {w_c:>8.1%} | {e_c:>8.1%} | "
+                      f"{w_a:>8.1%} | {e_a:>8.1%} | {ann_c:>7.2%} | {ann_a:>7.2%} | "
+                      f"{a['cap_blocked']:>3d} 次")
+            print("   追加规则明细（10 万档）：", end=" ")
+            a10 = append_lots(prices, 10 * 10_000 * args.weight / args.n_hold)
+            print(f"手数 {a10['lots']}｜追加 {a10['adds']} 手｜残金 "
+                  f"{a10['cash']:,.0f} 元｜超目标只数 {a10['overshoot']}")
+            print("   ⚠️ 只评估建仓时点的闲置与年化；不建模追加手数对后续换手/费用的二阶影响。"
+                  "本表是**算术**，不是新回测，也不构成上线依据（11-30 后由用户决定）。")
+
+    # ---- ⑨ 月末演练新增（R5-5）：本地 universe_state 镜像 vs 云端 ----
+    if args.mirror_check:
+        print("\n⑨ universe_state 镜像一致性（R5-5）")
+        import check_universe_mirror as _mir          # 同目录脚本
+        rc = _mir.main(["--no-write"])
+        if rc != 0:
+            print("   [✗] 本地快照与云端不一致 —— 演练结论作废（不许用残镜像判事）")
+            return 1
 
     print("\n[DRYRUN] 本次未写任何台账、未发任何单。")
     return 0
