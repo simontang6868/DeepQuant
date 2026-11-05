@@ -62,6 +62,13 @@ MIN_COMMISSION = 5.00
 STAMP_RATE = 0.0005        # 仅卖出
 TRANSFER_RATE = 0.00001    # 双边
 
+#: 整手敏感度换算用的两个锚（都不是本脚本算出来的，来自既有产物）：
+#: ① 20% 仓、100% 投入、d4aff + 4,000 元/只口径下的组合年化 = 8.11%
+#:    （R4-8 成本校准后，见 docs/BROKER_STATEMENT_CALIBRATION_2026-11-03.md §4）
+#: ② 闲置现金按年化 3% 计息（同 sp4 回测的现金假设）
+ANN_FULL_INVESTED = 0.0811
+CASH_ANN = 0.03
+
 
 def load_price(code: str, day: str) -> tuple[float, float] | None:
     """取 ``day`` 的 (收盘价, 0) —— 返回 None 表示该日无数据。"""
@@ -127,6 +134,8 @@ def main(argv: list[str] | None = None) -> int:
                     help="严格按 stale 判定（本地行情只到 10-30，"
                          "与执行日不同即算陈旧）。默认关闭：演练用最近价近似，"
                          "但会在输出里注明取价日")
+    ap.add_argument("--lot-sweep", action="store_true",
+                    help="额外打印「整手浪费 vs 本金」敏感度表（只读，不改本次结论）")
     args = ap.parse_args(argv)
 
     print("=" * 78)
@@ -355,6 +364,45 @@ def main(argv: list[str] | None = None) -> int:
               f"（闲置 {sleeve - tot2:,.0f} 元 = {1 - tot2 / sleeve:.1%}）")
         print(f"   ⚠️ 回测没有整手约束，把策略仓当成 100% 已投入——"
               f"这部分闲置在实盘不产生策略收益，是**未建模的结构性偏差**。")
+
+    # ---- ⑧ 整手浪费 × 本金 敏感度（只读；不改上面任何结论）----
+    if args.lot_sweep:
+        print(f"\n⑧ 整手浪费对每只预算的敏感度（用本次 {len(kept)} 只的真实收盘价）")
+        print("   假设：① d4 补位后仍为 %d 只、等额预算；② 补位那只的整手"
+              "浪费率 = 已知各只均值；" % args.n_hold)
+        print(f"        ③ 满额投入时组合年化 {ANN_FULL_INVESTED:+.2%}（R4-8 校准），"
+              f"闲置现金按 {CASH_ANN:.0%} 计息")
+        print("   ④ 不同预算下的换手/费率按同一比例缩放——本表**不**建模这一点，"
+              "只算整手")
+        prices = []
+        for code, _ in kept:
+            got = last_price_on_or_before(code, args.exec_day)
+            if got is not None:
+                prices.append(got[1])
+        if not prices:
+            print("   [跳过] 取不到任何收盘价")
+        else:
+            # 满额投入的组合年化反推策略仓年化（把现金腿剥掉）
+            s_net = ((ANN_FULL_INVESTED - (1 - args.weight) * CASH_ANN)
+                     / args.weight)
+            print(f"\n   本金(万元) | 每只预算(元) | 整手投入率 | 期望投入率 | 混合年化 | 距 8%")
+            for cap_w in (5, 10, 15, 20, 30, 50, 100):
+                per = cap_w * 10_000 * args.weight / args.n_hold
+                inv = sum(int(per // lot_cost(p)) * 100 * p for p in prices)
+                util = inv / (per * len(prices))          # 已分配额度内的投入率
+                # 解析期望：余数在 [0, 一手金额) 内均匀 ⇒ E[浪费] = 一手金额 / 2
+                e_waste = sum(lot_cost(p) / 2 for p in prices) / len(prices) / per
+                ann = ((1 - args.weight) * CASH_ANN
+                       + args.weight * (util * s_net + (1 - util) * CASH_ANN))
+                ann_e = ((1 - args.weight) * CASH_ANN
+                         + args.weight * ((1 - e_waste) * s_net + e_waste * CASH_ANN))
+                print(f"   {cap_w:>9.0f} | {per:>11,.0f} | {util:>9.1%} | "
+                      f"{1 - e_waste:>9.1%} | {ann:>7.2%} | {(ann - 0.08) * 100:+.2f}pp"
+                      f"   (期望 {ann_e:.2%})")
+            print("   ⚠️ 「整手投入率」是**单月单次抽样**（余数落在 [0,一手) 的哪一段看运气），"
+                  "故附「期望投入率」。")
+            print("   ⚠️ 价格是单月快照、整手浪费率随标的价格波动；"
+                  "本表是**算术**，不是新回测。")
 
     print("\n[DRYRUN] 本次未写任何台账、未发任何单。")
     return 0
