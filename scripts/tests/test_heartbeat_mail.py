@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import importlib.util
+import time
 import json
 import sys
 from pathlib import Path
@@ -41,7 +42,14 @@ def _write_hb(tmp_path: Path, ok: bool = True, day: str = "20261103") -> Path:
     return hb
 
 
-def _run(monkeypatch, tmp_path, ok, sent_ok, mail_on, today="20261103", day="20261103"):
+def _run(monkeypatch, tmp_path, ok, sent_ok, mail_on, today=None, day=None):
+    # ⚠️ 日期必须相对"今天"，不能写死。
+    # 原版写死 20261103：11-03 当天跑 age_h≈0 通过，到 11-05 就变成
+    # "心跳过旧 48 小时"而红——**测试失败的原因是它自己在老去**，不是代码回归。
+    # 这类脆测试（依赖真实时钟）比不写测试更危险：它会在无关改动上制造假红灯，
+    # 久了就会被人习惯性忽略。
+    today = today or time.strftime("%Y%m%d")
+    day = day or today
     calls = []
 
     def fake_send(msg, cfg):

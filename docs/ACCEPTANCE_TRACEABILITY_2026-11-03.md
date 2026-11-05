@@ -2,6 +2,7 @@
 
 **生成时间**：2026-11-03
 **口径**：每条验收条款 → 对应测试 ID → 三态判定（`PASS` / `PASS_WITH_GAPS` / `NOT_IMPLEMENTED`）。
+**最后更新**：2026-11-05（2.2-c / 2.2-d 由 `NOT_IMPLEMENTED` 改判 `PASS`，依据见该两行）。
 **重判原则**：**只看条款原文是否被代码实现，不看测试是否全绿。** 2.2 的教训是测试全绿但调度部分根本没实现。
 
 > 全量测试清单：`var/test_inventory_backend.txt`（344 条）｜`var/test_inventory_sp5.txt`（206 条）。
@@ -44,8 +45,8 @@
 | --- | --- | --- |
 | 2.2-a 先卖后买 + 整手 | **PASS** | `test_planner.py::test_sell_before_buy_on_rebalance`、`::test_rounds_target_shares_down_to_whole_lot` |
 | 2.2-b `client_order_id` 幂等无时钟 | **PASS** | `::test_client_order_id_is_deterministic`、`::test_client_order_id_contains_no_clock_or_randomness` |
-| **2.2-c 执行时点/重定价/顺延** | **NOT_IMPLEMENTED** | ❌ 09:35 时点无发单循环；10:30/14:30 重定价**无调度器**；收盘未成交顺延 10 日**无实现**。见 §4 |
-| **2.2-d 重定价次数上限 2** | **NOT_IMPLEMENTED** | ❌ 只有 `client_order_id` 的 `-r1` 后缀，**没有计数器** |
+| **2.2-c 执行时点/重定价/顺延** | **PASS**（2026-11-05 补实现） | ✅ `execution/session.py` 时段闸（`phase_of` / `is_trading_time`，含午休与 14:57 收盘竞价）+ `execution/order_loop.py` 发单循环；09:35 前/午休/收盘竞价一概不发；10:30、14:30 两个时点；收盘未成交 → `CARRY`，顺延 **10 个交易日**（`MAX_CARRY_DAYS`，只认交易日序列，不按自然日）。测试：`test_session.py` 44 条 + `test_order_loop.py` 31 条；变异测试 **11/11 被检出**（`scripts/session_mutation_test.py`）。端到端纸面演练：`scripts/dryrun_decision_day.py` |
+| **2.2-d 重定价次数上限 2** | **PASS**（2026-11-05 补实现） | ✅ `OrderTracker.reprice_count` 跨日累计**不重置**；第 3 次 `raise RepriceNotAllowed`（**硬失败，不静默跳过**——跳过会让账本显示"没超"）。口径歧义已在 `session.py` docstring 记录：2.2-c「各最多一次」与 2.2-d「上限 2」按**更严格的累计口径**实现。变异 M4（改成静默 `return`）与 M1（上限放宽到 3）均被检出 |
 | 2.2-e 不假定卖出回款 | **PASS** | `::test_buy_budget_excludes_pending_sale_proceeds` |
 
 ⇒ **本节整体：`PASS_WITH_GAPS`**（3/5 实现，2 条未实现）
@@ -94,7 +95,7 @@
 | 2.10-a 只准备草稿不提交 | **PASS** | `docs/reporting/` 三份材料 + `00_README.md`；无任何提交动作 |
 | 2.10-b 数字与实际实现一致 | **PASS** | `test_execution_config.py` 16 条（配置↔代码一致性 + 描述实测） |
 
-⇒ **2.9 整体：`PASS_WITH_GAPS`**（机制 PASS，20 日 NOT_IMPLEMENTED）
+⇒ **2.9 整体：`PASS_WITH_GAPS`**（机制 PASS，20 日 NOT_IMPLEMENTED；该条缺时间是必然的，G2 判定期在 12-01 前后）
 ⇒ **2.2 整体：`PASS_WITH_GAPS`**
 
 ---
@@ -135,5 +136,5 @@
 | 阶段 | 判定 | 说明 |
 | --- | --- | --- |
 | Phase 1 | `PASS_WITH_GAPS` | 1.3 的 **9 条全部 PASS**；**G1 未通过**（缺机器） |
-| Phase 2 | `PASS_WITH_GAPS` | **31/34 条款 PASS**；2.2-c / 2.2-d / 2.9-b 未实现 |
+| Phase 2 | `PASS_WITH_GAPS` | **33/34 条款 PASS**（2026-11-05：2.2-c / 2.2-d 补实现并过变异测试）；仅 2.9-b（跑满 20 个交易日）未实现——它缺的是**时间**不是代码 |
 | G1 / G2 | `NOT_PASSED` | 两者同卡「没有一台每天醒着的机器」 |
