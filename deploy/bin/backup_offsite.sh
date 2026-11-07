@@ -29,7 +29,9 @@ mkdir -p "$VAR"
 # ---- 1. 打包（只打证据）----
 INCLUDE=()
 for p in "$FWD/ledger" "$FWD/observations.csv" "$FWD/corrections.jsonl" \
+         "$FWD/shadow_reconcile" "$FWD/universe_state_mirror.json" \
          "$FWD/sp4_config_v1.json" "$FWD/sp4_config_v1.sha256" \
+         "$FWD/sp4_config_v2.json" "$FWD/sp4_config_v2.sha256" \
          "$FWD/execution_config_v1.json" "$FWD/trade_calendar.json" \
          "$FWD/heartbeat.json" "$REPO/STATUS.md"; do
   [ -e "$p" ] && INCLUDE+=("$p")

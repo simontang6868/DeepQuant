@@ -144,6 +144,26 @@ elif [ "$stage_ok" = "1" ]; then
   esac
 fi
 
+# ---------------- 3b. SHADOW 每日对账（只读，绝不发单） ----------------
+# 2.9-a 的"生成不发送"机制早已 PASS，但此前只被测试调用、日更链一次没跑过，
+# 所以 G2 的「连续 20 个交易日」一直是 0 天。这里把它接进来。
+#
+# ⚠️ 三条纪律：
+#  1. **不阻断链路**：对账是观测，不是决策前置；失败只告警并写进心跳 stage_note
+#     （17:40 状态邮件可见），不改 stage_ok。
+#  2. **不把"没账户"当故障**：LIVE_ENABLED=false 且无仿真账户时，脚本每天如实
+#     产出 SELF_CHECK_ONLY、counts_toward_g2=false；接入管道≠G2 开始计数。
+#  3. **不静默吞掉异常**：非零退出必须落在日志与心跳里，否则"没检出=没问题"。
+if [ "$DRY" = "0" ]; then
+  run shadow_reconcile "$PY" "$REPO/scripts/shadow_daily_reconcile.py" \
+      --date "${TS:0:8}"
+  sh_rc=$?
+  if [ "$sh_rc" -ne 0 ]; then
+    echo "[shadow] ⚠️ 对账 rc=$sh_rc（不阻断链路，必须人工核对）"
+    stage_note="${stage_note:+$stage_note; }SHADOW_RECONCILE_RC=$sh_rc"
+  fi
+fi
+
 # ---------------- 4. 心跳（无条件写） ----------------
 # dry-run 必须与真跑区分开：一个写着 DECIDED 的 dry-run 日志，
 # 事后看与真决策完全一样——这正是"看起来跑过了"的经典来源。

@@ -6,7 +6,8 @@
   "20261102",
   "20261103",
   "20261104",
-  "20261105"
+  "20261105",
+  "20261106"
  ],
  "files": {
   "20261102.csv": "58f980b1e4ad283c8dca1556a78838cde21a26586c3c6199c4155028eecea7cd",
@@ -16,10 +17,12 @@
   "20261104.csv": "2d39553bb5ff5cc3e51927449d950ec7aa4182947bd64ffc51424dcfdd3353f0",
   "20261104.json": "5de1d6830b4e1064f55a636162d4dc3408a72cd75a17bc6eb5455f8e3f028c9d",
   "20261105.csv": "b5d4c078defaee08036c9452967f8b51b608037bbd7b4c8eb4ce130f64fb08d6",
-  "20261105.json": "9a1253689064e12674df4a053189a4e6d3641affa5cbf658a8ebb1ae0ee13c04"
+  "20261105.json": "9a1253689064e12674df4a053189a4e6d3641affa5cbf658a8ebb1ae0ee13c04",
+  "20261106.csv": "29b9075dcf0a0a13d46fef3d7c21840cedc6e580d9a6aa2d7f3224726ab96110",
+  "20261106.json": "8886d21c252fe8ac1969948ada21f3a356c4ca6e1dffe5604b67e2e84be3fdea"
  },
  "all_identical": true,
  "mismatch": [],
  "note": "云端 SHA256S.txt 只登记 20261103.json 一行（生产者只写当日），故本清单由本机重算并与云端逐文件比对；11-27 演练用 scripts/check_universe_mirror.py 复核。",
- "verified_at": "2026-11-05T20:04:11"
+ "verified_at": "2026-11-08T02:07:58"
 }
