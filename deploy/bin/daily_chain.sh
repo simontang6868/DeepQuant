@@ -144,6 +144,24 @@ elif [ "$stage_ok" = "1" ]; then
   esac
 fi
 
+# ---------------- 3a. 仿真账户快照（可选；无凭证时完全跳过） ----------------
+# DQ_GM_TOKEN / DQ_GM_ACCOUNT_ID 由 EnvironmentFile 注入（env 文件 600、不进 git）。
+# 没配凭证就一步都不跑——否则每天都会产生一次"缺配置"的假告警。
+# 适配器只读 get_cash/get_positions，**绝不调用任何 order_* 函数**。
+#
+# ⚠️ 时点口径：本链路 17:10 跑，而掘金沪深账户 18:00 才结算。
+# 因此这里取的是「收盘后、结算前」的账户状态。当前不向仿真账户报单，
+# 无当日未结委托，故与 17:10 的对账自洽；**将来若允许报单，必须重评时点**。
+if [ "$DRY" = "0" ] && [ -n "${DQ_GM_TOKEN:-}" ]; then
+  run paper_snapshot "$PY" "$REPO/scripts/paper_account_adapter.py" \
+      --date "${TS:0:8}"
+  pa_rc=$?
+  if [ "$pa_rc" -ne 0 ]; then
+    echo "[paper] ⚠️ 快照 rc=$pa_rc（对账将退回 SELF_CHECK_ONLY，不计 G2）"
+    stage_note="${stage_note:+$stage_note; }PAPER_SNAPSHOT_RC=$pa_rc"
+  fi
+fi
+
 # ---------------- 3b. SHADOW 每日对账（只读，绝不发单） ----------------
 # 2.9-a 的"生成不发送"机制早已 PASS，但此前只被测试调用、日更链一次没跑过，
 # 所以 G2 的「连续 20 个交易日」一直是 0 天。这里把它接进来。

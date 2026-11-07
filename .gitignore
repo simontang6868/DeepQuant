@@ -112,3 +112,10 @@ probe_out/*.log
 /data/_backup_*/
 /data/_all_a_*.txt
 /data/_all_a_*manifest.json
+
+# ---------- 仿真账户（2026-11-08）----------
+# 每日快照是时点证据，走每日邮件备份 + 周包；不进 git 以免每天一次提交噪音。
+/research/stock_pick_2026-10-25/forward/account_snapshot.json
+# token 等同「用户 ID + 密码」，任何本地副本都不入库
+**/paper_gm.env
+**/paper_gm*.env
