@@ -43,7 +43,7 @@ G2 判据是「连续 20 个交易日无未解释差异」。当前 `LIVE_ENABLE
 补充限定：台账缺 `target_holds_d4`（11-30 前的 `LEGACY_NO_D4` 老记录）时，
 即便有真实账户也**不计入** G2——与 STATUS §3「证据窗口只用 11-30 起含 d4 字段的记录」一致。
 
-⇒ 20 天倒计时从「有真实仿真账户快照」的第一个交易日起。
+⇒ 20 天倒计时从「**有真实仿真账户快照 且 台账含 `target_holds_d4`**」的第一个交易日起。11-30 前的老台账是 `LEGACY_NO_D4`，即便 11-09 起有真实账户，也只产出 `REAL_PAPER` 记录、不计天。
 `python scripts/shadow_daily_reconcile.py --summary` 可随时查连续段。
 
 ### 输入契约（`forward/account_snapshot.json`）

@@ -5,6 +5,8 @@
 
 # ---------- Python 虚拟环境 / 缓存 ----------
 .venv/
+.venv-gm/
+.venv-paper/
 venv/
 env/
 __pycache__/

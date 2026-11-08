@@ -153,7 +153,17 @@ fi
 # 因此这里取的是「收盘后、结算前」的账户状态。当前不向仿真账户报单，
 # 无当日未结委托，故与 17:10 的对账自洽；**将来若允许报单，必须重评时点**。
 if [ "$DRY" = "0" ] && [ -n "${DQ_GM_TOKEN:-}" ]; then
-  run paper_snapshot "$PY" "$REPO/scripts/paper_account_adapter.py" \
+  # gmtrade 官方只发布 cp36~cp310 的 wheel（无 sdist、无 cp311/cp312）。
+  # 主 venv 是 3.12、系统 python3 是 3.11，直接 pip 会 "No matching distribution"，
+  # 强行按 cp311 改名加载 C 扩展会段错误（实测 rc=139）。所以单独放一个 3.10 venv。
+  PAPER_PY="${DQ_GM_PYTHON:-$PY}"
+  if [ -x "$REPO/.venv-gm/bin/python" ]; then
+    PAPER_PY="$REPO/.venv-gm/bin/python"
+  fi
+  # gmtrade 的 C SDK 会往 /tmp/goldminer 写日志；目录被 tmpfiles 清掉后，
+  # 由运行用户自己重建即可（它自己就是属主），否则 journal 每天一条 ERROR。
+  mkdir -p /tmp/goldminer 2>/dev/null || true
+  run paper_snapshot "$PAPER_PY" "$REPO/scripts/paper_account_adapter.py" \
       --date "${TS:0:8}"
   pa_rc=$?
   if [ "$pa_rc" -ne 0 ]; then
