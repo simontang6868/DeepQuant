@@ -169,6 +169,10 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--paths", type=int, default=200)
     ap.add_argument("--pool", choices=["wide", "d4", "d4aff"], default="d4aff")
+    # R6-5：只导出既有 strict 臂的逐路径净值，供 11-30 后的块自助法重算。
+    # 默认 None ⇒ 不改任何默认输出、不改参数、不写文件；不是新实验。
+    ap.add_argument("--export-navs", default=None,
+                    help="把 tiers[strict].navs 写成 JSON（只读导出，不改回测）")
     args = ap.parse_args()
     prereg = check_prereg()
     os.makedirs(OUT, exist_ok=True)
@@ -443,6 +447,19 @@ def main() -> int:
                   f"q95={out_bt[f'mix{int(w*100)}']['q95']*100:.1f}%")
         res_mdd_bootstrap = out_bt
 
+    # ---------- R6-5：只读导出逐路径净值（默认不执行） ----------
+    if args.export_navs:
+        nv_list = [[float(x) for x in nv] for nv in tiers["strict"]["navs"]]
+        payload = {
+            "source": "p03e_afford.py --pool {} tiers[strict].navs".format(args.pool),
+            "pool": args.pool, "n_paths": len(nv_list),
+            "months": len(months), "seed": SEED, "navs": nv_list,
+            "note": "只读导出，供 SP5-LOTAPP-DECISION-1 的块自助法重算；不是新回测",
+        }
+        with open(args.export_navs, "w", encoding="utf-8", newline="\n") as f:
+            json.dump(payload, f, ensure_ascii=False)
+        print(f"[export] {len(nv_list)} 条 navs → {args.export_navs}（未改默认输出）")
+
     # ---------- R4-4 可买数分段统计 ----------
     res_pc36 = res_pc60 = None
     if pool_counts:
@@ -461,7 +478,14 @@ def main() -> int:
                      "limit_pct": rec["limit"], "is_st": rec["is_st"], "n_orders": n})
     led = pd.DataFrame(rows).sort_values(["date", "code", "side"])
     led["yr"] = led["date"].str[:4]
-    led.to_csv(os.path.join(OUT, f"sp5_fill_ledger_{args.pool}.csv"), index=False, encoding="utf-8-sig")
+    if args.export_navs:
+        # ⚠️ 2026-11-08 踩过：导出模式只跳过 JSON 却仍写 csv，
+        # 一次 --paths 5 的验证把 73,395 行的既有台账覆盖成 3,823 行。
+        # 导出模式必须**零写主产物**。
+        print("[export] 导出模式：跳过 fill ledger 写入")
+    else:
+        led.to_csv(os.path.join(OUT, f"sp5_fill_ledger_{args.pool}.csv"),
+                   index=False, encoding="utf-8-sig")
 
     stat = {}
     for side in ("buy", "sell"):
@@ -528,8 +552,13 @@ def main() -> int:
         "note": ("T0(none) 必须复现审计口径；不通过则整个 P0-3 结果作废。"
                  "成交约束是否被吸收（净年化）与回撤是否达标（P0-4）是两件事，不得互相暗示。"),
     }
-    with open(os.path.join(OUT, f"sp5_tradability_{args.pool}.json"), "w", encoding="utf-8", newline="\n") as f:
-        json.dump(res, f, ensure_ascii=False, indent=2)
+    if args.export_navs:
+        # ⚠️ 导出模式必须跳过主产物写入：否则一次 --paths 5 的验证就会
+        # 把既有 sp5_tradability_*.json 覆盖掉（不静默覆盖是项目铁律）。
+        print("[export] 导出模式：跳过主产物写入，既有 JSON 未被改动")
+    else:
+        with open(os.path.join(OUT, f"sp5_tradability_{args.pool}.json"), "w", encoding="utf-8", newline="\n") as f:
+            json.dump(res, f, ensure_ascii=False, indent=2)
 
     print("\n" + "=" * 92)
     print("失败订单统计")
@@ -541,7 +570,10 @@ def main() -> int:
     print(f"\n【判定】{verdict}")
     if verdict == "FILL_ABSORBED":
         print("  ⚠️ 仅表示「成交约束未吃掉 8% 目标」；回撤是否达标归 P0-4，不得据此外推策略可用。")
-    print(f"[saved] d4_strict_out/sp5_tradability_{args.pool}.json + sp5_fill_ledger_{args.pool}.csv")
+    if args.export_navs:
+        print("[export] 导出模式：主产物（JSON / csv）均未写入")
+    else:
+        print(f"[saved] d4_strict_out/sp5_tradability_{args.pool}.json + sp5_fill_ledger_{args.pool}.csv")
     return 0
 
 

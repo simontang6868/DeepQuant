@@ -1,0 +1,8 @@
+# R6-4：2026 年 12 月交易日历补刷（缺 2027 只记录、不阻塞）
+# 与每月 1 日 09:00 的 deepquant-calendar.timer 错开 5 分钟。
+# 只在 12 月的这两天触发，其余月份零影响；crond 自动读取 cron.d，无需 reload。
+# 脚本会写 forward/calendar_gaps.json；失败关闭仅发生在「当月也无法判定」时。
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+5 9 15 12 * deepquant /opt/quant/.venv/bin/python /opt/quant/research/stock_pick_2026-10-25/scripts/sp5/trade_calendar.py --refresh >> /opt/quant/var/log/calendar_retry.log 2>&1
+5 9 31 12 * deepquant /opt/quant/.venv/bin/python /opt/quant/research/stock_pick_2026-10-25/scripts/sp5/trade_calendar.py --refresh >> /opt/quant/var/log/calendar_retry.log 2>&1

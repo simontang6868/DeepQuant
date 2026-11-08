@@ -203,6 +203,56 @@ def is_month_end(day: str, days: list[str]) -> bool:
     return d == last_trading_day(d[:6], days)
 
 
+def next_months(ym: str, n: int = 12) -> list[str]:
+    """从 ``ym`` 的**下一个月**起列 n 个 YYYYMM（用于检查未来缺口）。"""
+    y, m = int(ym[:4]), int(ym[4:6])
+    out = []
+    for _ in range(n):
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+        out.append(f"{y:04d}{m:02d}")
+    return out
+
+
+def assert_window_covered(days: list[str], through_ym: str) -> None:
+    """R6-4：``through_ym`` 之前（含）的判定只依赖已有日历，**不看后续年份**。
+
+    12 月的决策只需要 2026 年完整；即便 2027 年一天都没有，也不得因此
+    报错阻塞。这里复用生产的 :func:`ensure_covered`（不另写判据）。
+    """
+    ensure_covered(days, through_ym)
+
+
+def missing_months(days: list[str], from_ym: str, n: int = 12) -> list[str]:
+    """列出未来 n 个月里日历未覆盖的月份（只记录，不判失败）。"""
+    out: list[str] = []
+    for ym in next_months(from_ym, n):
+        try:
+            ensure_covered(days, ym)
+        except CalendarUnavailable:
+            out.append(ym)
+    return out
+
+
+def write_gaps(path: pathlib.Path, *, status: str, days: list[str],
+               required_ym: str, note: str, source: str = SOURCE) -> pathlib.Path:
+    """R6-4 缺口台账：缺未来年份只**记录**，不阻塞刷新。"""
+    p = pathlib.Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "status": status,
+        "fetch_ts": dt.datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+        "required_ym": required_ym,
+        "calendar_first": days[0] if days else None,
+        "calendar_last": days[-1] if days else None,
+        "missing_months": missing_months(days, required_ym),
+        "source": source,
+        "note": note,
+    }
+    p.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n",
+                 encoding="utf-8", newline="\n")
+    return p
+
+
 def describe(day: str, days: list[str]) -> str:
     """给错误消息用的一句话说明：该月真正的月末是哪天。"""
     d = _norm(day)
@@ -215,29 +265,83 @@ def describe(day: str, days: list[str]) -> str:
     return f"{d[:6]} 的最后一个交易日是 {want}，不是 {d}"
 
 
-def _main(argv: list[str]) -> int:
-    """``--refresh`` 刷新缓存并打印摘要。
+def _opt_path(argv: list[str], name: str, default: pathlib.Path | None = None):
+    if name not in argv:
+        return default
+    i = argv.index(name) + 1
+    if i >= len(argv):
+        raise ValueError(f"{name} 缺参数")
+    return pathlib.Path(argv[i])
 
-    刻意做成极简 CLI：部署到云主机后，每季度（或每年假日表发布后）跑一次
-    ``python -m trade_calendar --refresh`` 即可。**不自动刷新**——
-    自动刷新意味着某天接口变了会静默换掉日历；月末判断依赖它，必须留痕。
+
+def refresh(argv: list[str], *, fetcher=fetch) -> tuple[int, pathlib.Path | None]:
+    """R6-4 刷新：缺未来年份**只记录不阻塞**；拉取失败但现有缓存覆盖当月也不阻塞。
+
+    ``fetcher`` 可注入，供测试模拟「接口挂了 / 返回缺 2027 的日历」。
+    ⚠️ 校验必须在 ``save`` **之前**：否则一次接口异常会把坏日历写进缓存，
+    之后的月末判定会静默错。
     """
-    if "--refresh" not in argv:
-        print("用法：python trade_calendar.py --refresh [--path PATH]")
-        return 2
-    path = None
-    if "--path" in argv:
-        path = pathlib.Path(argv[argv.index("--path") + 1])
-    days = fetch()
-    p = save(days, path)
-    print(f"[calendar] {len(days)} 个交易日｜{days[0]} → {days[-1]}")
-    print(f"[calendar] 已写入 {p}")
-    for ym in ("202609", "202610", "202611", "202612", "202701"):
+    path = _opt_path(argv, "--path")
+    gaps_path = _opt_path(argv, "--gaps-path",
+                          DEFAULT_PATH.parent / "calendar_gaps.json")
+    i = argv.index("--today") + 1 if "--today" in argv else -1
+    if "--today" in argv and i >= len(argv):
+        raise ValueError("--today 缺参数")
+    today = argv[i] if i > 0 else dt.date.today().strftime("%Y%m%d")
+    required_ym = today[:6]
+
+    status, note = "OK", "刷新成功"
+    try:
+        days = fetcher()
+        assert_window_covered(days, required_ym)      # 先验证，再落盘
+    except CalendarUnavailable as exc:
+        # 拉取失败 / 新日历缺当月：沿用现有缓存，只要它覆盖当月就不阻塞。
+        try:
+            days = load(path, today=today)
+            assert_window_covered(days, required_ym)
+            status = "FETCH_FAILED_USING_CACHE"
+            note = (f"拉取或校验失败（{type(exc).__name__}: {exc}）；"
+                    f"沿用现有缓存，{required_ym} 仍完整覆盖")
+        except CalendarUnavailable as exc2:
+            print(f"[calendar] ✗ 拉取失败且缓存不覆盖 {required_ym}：{exc2}",
+                  file=sys.stderr)
+            return 1, None
+    else:
+        p = save(days, path)
+        print(f"[calendar] {len(days)} 个交易日｜{days[0]} → {days[-1]}｜已写入 {p}")
+
+    gaps = write_gaps(gaps_path, status=status, days=days,
+                      required_ym=required_ym, note=note)
+    miss = json.loads(gaps.read_text(encoding="utf-8"))["missing_months"]
+    print(f"[calendar] 缺口台账 {gaps.name}｜status={status}｜"
+          f"末日={days[-1]}｜未来未覆盖月份 {len(miss)} 个"
+          + (f"（{', '.join(miss[:3])}…）" if miss else ""))
+    print("[calendar] ⚠️ 缺 2027 只记录、不报错阻塞；12 月决策只依赖 2026 年。"
+          "12-15 与 12-31 各补刷一次，仍缺则按 MANUAL 流程处理。")
+    for ym in (required_ym, "202612", "202701"):
         try:
             print(f"  {ym} 月末交易日 = {last_trading_day(ym, days)}")
         except CalendarUnavailable as e:
             print(f"  {ym} 未覆盖：{e}")
-    return 0
+    return 0, gaps
+
+
+def _main(argv: list[str]) -> int:
+    """``--refresh`` 刷新缓存并打印摘要。
+
+    刻意做成极简 CLI：部署到云主机后按月跑一次。**不自动无痕刷新**——
+    接口变了会静默换掉日历，而月末判断依赖它，必须留痕（含缺口台账）。
+    """
+    if "--refresh" not in argv:
+        print("用法：python trade_calendar.py --refresh "
+              "[--path PATH] [--gaps-path PATH] [--today YYYYMMDD]")
+        return 2
+    try:
+        rc, _ = refresh(list(argv))
+    except ValueError as exc:
+        print(f"[calendar] ✗ 参数错误：{exc}", file=sys.stderr)
+        return 2
+    return rc
 
 
 if __name__ == "__main__":

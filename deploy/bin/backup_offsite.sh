@@ -31,6 +31,8 @@ INCLUDE=()
 for p in "$FWD/ledger" "$FWD/observations.csv" "$FWD/corrections.jsonl" \
          "$FWD/shadow_reconcile" "$FWD/account_snapshot.json" \
          "$FWD/universe_state_mirror.json" \
+         "$FWD/calendar_gaps.json" \
+         "$FWD/deploy_manifest.json" "$FWD/deploy_manifest.prev.json" \
          "$FWD/sp4_config_v1.json" "$FWD/sp4_config_v1.sha256" \
          "$FWD/sp4_config_v2.json" "$FWD/sp4_config_v2.sha256" \
          "$FWD/execution_config_v1.json" "$FWD/trade_calendar.json" \

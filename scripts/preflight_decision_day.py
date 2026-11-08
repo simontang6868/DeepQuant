@@ -30,8 +30,10 @@ SP5 = REPO / "research" / "stock_pick_2026-10-25" / "scripts" / "sp5"
 FWD = REPO / "research" / "stock_pick_2026-10-25" / "forward"
 sys.path.insert(0, str(SP5))
 sys.path.insert(0, str(SP5.parent))
+sys.path.insert(0, str(REPO / "scripts"))
 
 import trade_calendar as tcal  # noqa: E402
+import deploy_manifest as dm  # noqa: E402  R6-3 部署可证性
 
 OK = "PASS"
 BAD = "FAIL"
@@ -160,6 +162,27 @@ def check(args) -> tuple[list[tuple[str, str, str]], int]:
     else:
         rows.append(("C10 快照镜像", BAD, "缺 universe_state_mirror.json（跑 check_universe_mirror.py）"))
 
+    # C11 部署可证性（R6-3）：本地文件必须与 manifest 逐位一致；
+    # 云端一致性默认 PENDING（离线预检拿不到云端哈希，绝不假装 PASS），
+    # 加 --cloud 才实检；11-27 演练与 11-30 17:10 后各跑一次。
+    try:
+        rec = dm.load_manifest()
+        ok11, why11, diffs11 = dm.verify_local(rec)
+        rows.append(("C11a 本地部署与清单", OK if ok11 else BAD,
+                     f"commit {str(rec.get('commit',''))[:8]}｜{why11}｜差异 {len(diffs11)}"))
+    except Exception as e:
+        rec = None
+        rows.append(("C11a 本地部署与清单", BAD,
+                     f"{type(e).__name__}: {e}（先跑 deploy_manifest.py --write）"))
+    if getattr(args, "cloud", False) and rec is not None:
+        okc, whyc, diffc = dm.verify_remote(rec)
+        rows.append(("C11b 云端 /opt/quant 一致", OK if okc else BAD,
+                     whyc + (f"｜{diffc[0]}" if diffc else "")))
+    else:
+        rows.append(("C11b 云端 /opt/quant 一致", PEND,
+                     "须加 --cloud 或由 11-27 演练/11-30 17:10 后在云端实检；"
+                     "未检 ≠ 一致（/opt/quant 非 git 工作副本）"))
+
     n_bad = sum(1 for _, st, _ in rows if st == BAD)
     return rows, n_bad
 
@@ -170,6 +193,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--data-last", default=None,
                     help="模拟的数据末日；不给则等于 today。11-30 当天须重跑并核对真实值")
     ap.add_argument("--calendar", default=None)
+    ap.add_argument("--cloud", action="store_true",
+                    help="R6-3：额外 ssh 到云端比对部署文件 sha256（默认只判 PENDING）")
     args = ap.parse_args(argv)
 
     print("=" * 78)
