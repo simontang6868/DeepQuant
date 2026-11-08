@@ -24,5 +24,5 @@
  "all_identical": true,
  "mismatch": [],
  "note": "云端 SHA256S.txt 只登记 20261103.json 一行（生产者只写当日），故本清单由本机重算并与云端逐文件比对；11-27 演练用 scripts/check_universe_mirror.py 复核。",
- "verified_at": "2026-11-08T02:07:58"
+ "verified_at": "2026-11-08T12:43:59"
 }
