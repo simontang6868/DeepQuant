@@ -47,6 +47,14 @@ ADAPTER_REL = "scripts/paper_account_adapter.py"
 BROKER_DIR_REL = "backend/src/deepquant/broker"
 ENV_REL = "env"
 
+#: 仿真授权文件与所有 forward 证据同目录；真实通道授权另放 /opt/quant/config/
+#: （不同目录是 R6-1 的硬要求）。
+#: ⚠️ 2026-11-09 修：原实现查 root/"forward"/paper_authorization.json，但部署根下
+#: 根本没有 /opt/quant/forward/，项目 forward 目录在 research/.../forward/ ⇒
+#: 用户放对位置也会被判「不存在」。单一真相源，本地与远端共用这一条相对路径。
+FORWARD_DIR_REL = "research/stock_pick_2026-10-25/forward"
+PAPER_AUTH_REL = FORWARD_DIR_REL + "/paper_authorization.json"
+
 #: 只读适配器里绝不允许出现下单调用。docstring 里的 ``order_*`` 不是调用，
 #: 故只匹配「order_ + 标识符 + (」。
 ORDER_CALL_RE = re.compile(r"\border_[A-Za-z_][A-Za-z0-9_]*\s*\(")
@@ -83,7 +91,7 @@ def collect_local(root: Path = REPO) -> dict[str, Any]:
     adapter = root / ADAPTER_REL
     adapter_src = adapter.read_text(encoding="utf-8") if adapter.is_file() else None
 
-    paper_auth = root / "forward" / "paper_authorization.json"
+    paper_auth = root / PAPER_AUTH_REL
     auth_channel = None
     if paper_auth.is_file():
         try:
@@ -104,7 +112,7 @@ def collect_local(root: Path = REPO) -> dict[str, Any]:
 
 
 #: 远端只读采集：只回文件名 / 变量名 / 计数，不回任何凭证值或文件内容。
-REMOTE_SCRIPT = r'''
+REMOTE_SCRIPT = rf'''
 echo ---FILES---
 find /opt/quant -maxdepth 5 -type f \( \
   -iname "*authorization*" -o -iname "*qmt*" -o -iname "*mini_qmt*" \
@@ -119,8 +127,8 @@ for f in /opt/quant/backend/src/deepquant/broker/*.py; do [ -e "$f" ] && basenam
 echo ---ORDER---
 grep -cE "\border_[A-Za-z_][A-Za-z0-9_]*\s*\(" /opt/quant/scripts/paper_account_adapter.py 2>/dev/null || echo 0
 echo ---AUTH---
-[ -f /opt/quant/forward/paper_authorization.json ] && \
-  grep -o '"channel"[[:space:]]*:[[:space:]]*"[^"]*"' /opt/quant/forward/paper_authorization.json 2>/dev/null | head -1 || echo NONE
+[ -f /opt/quant/{PAPER_AUTH_REL} ] && \
+  grep -o '"channel"[[:space:]]*:[[:space:]]*"[^"]*"' /opt/quant/{PAPER_AUTH_REL} 2>/dev/null | head -1 || echo NONE
 echo ---END---
 '''
 

@@ -21,6 +21,12 @@
 
 ## 三、自动化检查与授权流程
 
-`scripts/check_channel_isolation.py`（本地 / `--remote`）：查真实授权文件、禁用 env 前缀、`LIVE_ENABLED`、broker 白名单、只读适配器 `order_*(`；**采集失败/空输出判 FAIL 关闭**，只输出文件名与变量名、不输出凭证值。27 条测试 + 9/9 变异检出，本地与云端均 PASS。
+`scripts/check_channel_isolation.py`（本地 / `--remote`）：查真实授权文件、禁用 env 前缀、`LIVE_ENABLED`、broker 白名单、只读适配器 `order_*(`；**采集失败/空输出判 FAIL 关闭**，只输出文件名与变量名、不输出凭证值。**29 条测试 + 10/10 变异检出**（2026-11-09 修订后），本地与云端均 PASS。
 
 用户书面给出要素 → **本人**签发 → `--remote` 只读核验 → 用户再明确「开始 12-01 演练」才执行（每次报单前重校）→ 异常即停机 + 告警 + 留证。**本授权不解锁 `LIVE_ENABLED`、不改变四道门**；仿真与实盘是两份文件、两条校验路径、两个时间点。
+
+## 四、文件位置（2026-11-09 补；**更正**，原文不改写）
+
+**唯一有效路径**：`/opt/quant/research/stock_pick_2026-10-25/forward/paper_authorization.json`（与所有 forward 证据同目录；属主 `deepquant`、权限 `600`）。真实通道授权另放 `/opt/quant/config/`，满足「不同目录」。
+
+⚠️ **发现的缺陷**：R6-1 首版检查器查的是 `/opt/quant/forward/paper_authorization.json`，而部署根下**没有** `forward/` 目录（`find` 实测 MISSING）⇒ 用户把文件放对位置也会被判「不存在」。27 条测试全绿却没覆盖这条路径分叉，正是「测试全绿≠验收项覆盖」的又一例。2026-11-09 已改为本地/远端共用单一常量 `PAPER_AUTH_REL`，补 2 条真调 `collect_local` 的测试与 1 条真改行为的变异 M10（10/10 检出），并重新部署与复验。**本段为更正记录，前面的方案正文按原文保留。**

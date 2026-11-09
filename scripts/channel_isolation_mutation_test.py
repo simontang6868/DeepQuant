@@ -141,7 +141,35 @@ def main() -> int:
     detected += 1
     print("[M9] ✓ 检出：远端 order_ 计数恒为 0（真调 collect_remote）")
 
-    total = len(MUTATIONS) + 1
+    # M10：2026-11-09 实际抓到的路径分叉。变异点在 collect_local 用的常量，
+    # 必须真调本地采集；只测 evaluate 就是「替换了文本但没改被测行为」的假变异。
+    old10 = 'PAPER_AUTH_REL = FORWARD_DIR_REL + "/paper_authorization.json"'
+    new10 = 'PAPER_AUTH_REL = "forward/paper_authorization.json"'
+    if old10 not in ORIGINAL:
+        print("[M10] ✗ 变异定义失效：替换文本未命中源码")
+        return 1
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+        real = root / base.FORWARD_DIR_REL
+        real.mkdir(parents=True)
+        (real / "paper_authorization.json").write_text(
+            '{"channel": "gm-paper"}', encoding="utf-8")
+
+        def auth_read(ns):
+            return ns["collect_local"](root)["paper_auth_channel"]
+
+        if auth_read(base_ns) != "gm-paper":
+            print("[M10] ✗ 测试用例无效：原版未读到授权文件")
+            return 1
+        var10 = load_variant(ORIGINAL.replace(old10, new10, 1))
+        if auth_read(var10) is not None:
+            print("[M10] ✗ 变异未被检出：路径回退到不存在的根 forward/")
+            return 1
+    detected += 1
+    print("[M10] ✓ 检出：授权文件路径回退（真调 collect_local）")
+
+    total = len(MUTATIONS) + 2
     print(f"[mutation] {detected}/{total} 检出；全部变异均真改行为")
     return 0
 

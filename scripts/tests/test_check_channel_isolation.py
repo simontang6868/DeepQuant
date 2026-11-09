@@ -137,3 +137,30 @@ def test_remote_empty_env_is_fail_closed(monkeypatch):
     meta = cci.collect_remote()
     assert meta["present"] is False
     assert fails(cci.evaluate(meta), "远端/本地采集")
+
+
+def test_local_paper_auth_in_project_forward_dir_is_detected(tmp_path):
+    """⭐ 2026-11-09 修：用户把授权文件放对位置，检查器必须真能读到。
+
+    原实现查 root/"forward"/，而部署根下没有 /opt/quant/forward/ ⇒ 放对位置
+    也被判「不存在」（27 条测试全绿却没覆盖路径分叉）。这里真调 collect_local，
+    不靠 mock 的 meta 自证。
+    """
+    real = tmp_path / cci.FORWARD_DIR_REL
+    real.mkdir(parents=True)
+    (real / "paper_authorization.json").write_text(
+        '{"channel": "gm-paper"}', encoding="utf-8")
+    assert cci.collect_local(tmp_path)["paper_auth_channel"] == "gm-paper"
+
+    # 反例：独立 root 里只放根目录 forward/ ⇒ 必须判「无授权文件」
+    wrong_root = tmp_path / "wrong_root"
+    (wrong_root / "forward").mkdir(parents=True)
+    (wrong_root / "forward" / "paper_authorization.json").write_text(
+        '{"channel": "gm-paper"}', encoding="utf-8")
+    assert cci.collect_local(wrong_root)["paper_auth_channel"] is None
+
+
+def test_remote_script_uses_same_auth_path():
+    """本地与远端必须是同一条相对路径；旧硬编码不得残留。"""
+    assert f"/opt/quant/{cci.PAPER_AUTH_REL}" in cci.REMOTE_SCRIPT
+    assert "/opt/quant/forward/paper_authorization.json" not in cci.REMOTE_SCRIPT
