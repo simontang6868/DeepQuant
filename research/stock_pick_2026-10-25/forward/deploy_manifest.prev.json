@@ -1,5 +1,5 @@
 {
- "commit": "c7fb586038880ac45644ec5c75769bb05f183a2b",
+ "commit": "d0e83945b8465e2cf9a518fad4e52ee0164432b9",
  "commit_note": "commit 来自生成方本地 HEAD；/opt/quant 无 .git，云端一致性以逐文件 sha256 为准",
  "files": {
   "backend/src/deepquant/broker/__init__.py": "d603695a7f201687ce80a86b341d2f93e70b66998d66d72814d65ab1e528f639",
@@ -28,7 +28,7 @@
   "deploy/bin/notify_mail.py": "9c220a4685fed95abde295311bf0d2ace8f983ce53788cd4480b3c74f321e22e",
   "deploy/bin/preflight_sources.py": "763d864c1dfa95e807221517016a838adf9de8b96ded124875757e920355425f",
   "deploy/bin/weekly_offsite.sh": "645c1d9509589466429e0804dd3de96d8bc3068a108cf0c0d092e4ac79bfbab2",
-  "research/stock_pick_2026-10-25/scripts/sp5/p03e_afford.py": "2402ec61c88717f2d7946db3900d5d0bf3e7444998ff5d7e26b1c90528633f87",
+  "research/stock_pick_2026-10-25/scripts/sp5/p03e_afford.py": "c525c67d2f131feadf764ea74ae1be2b2bd38998fc00ef470f56362b8cfa9e0b",
   "research/stock_pick_2026-10-25/scripts/sp5/p13_forward.py": "1c78c942d95b982058241755e64222f943298dff33114b9ab42e85c93cb9d421",
   "research/stock_pick_2026-10-25/scripts/sp5/p17_universe_filter.py": "3a0cd2f8261f4ae19c5181e2aa8254028b05f6cf5868c334556eade7f8fee24c",
   "research/stock_pick_2026-10-25/scripts/sp5/strategy_params.py": "c84520e67057e66dd035fc6ab613a79565d683f590d36643555a21575c651282",
@@ -47,8 +47,8 @@
   "scripts/verify_qfq_rebuild.py": "bb3ef671e549094aec6a755fa5447ff321c9c8802f776a98c76414c39dcbbe69",
   "scripts/verify_token_rotation.py": "415b181d3ca74eb6ecdc073b2e5754551184faa201da029dd1be4de72910dac1"
  },
- "generated_at": "2026-11-08T13:38:01",
+ "generated_at": "2026-11-08T14:05:56",
  "n_files": 44,
  "schema_version": "deploy_manifest_v1",
- "sha256_of_files": "11766ac8c7c2e132be7395a8c1fdac3753026b0e836156936cb5c1da533b4e96"
+ "sha256_of_files": "a8c8958730e7045af9859d521a41c979e62ad734b780b2b73000be399c50d410"
 }
