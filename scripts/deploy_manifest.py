@@ -50,6 +50,7 @@ DEPLOY_FILES = [
     "scripts/preflight_decision_day.py",
     "scripts/check_universe_mirror.py",
     "scripts/check_channel_isolation.py",
+    "scripts/paper_authorization_guard.py",   # PA-GUARD-1：授权闸门，纳入部署可证性
     "scripts/deploy_manifest.py",
     "scripts/lotapp_decision_brief.py",
     "scripts/verify_token_rotation.py",
