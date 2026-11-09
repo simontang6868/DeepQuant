@@ -1,0 +1,224 @@
+{
+  "prereg_sha256": "cd5d016b8c9f407847a217e3b327cb4a83d6c391975bfa5bc4bc83d05ced49a0",
+  "out_dir": "research/stock_pick_2026-10-25/oct2026_out/cd5d016b8c9f",
+  "script_sha256": "a30538c564bdad5b111639578255123054f53bbac5267991c0aeb1fc18237516",
+  "run_at": "2026-11-10T00:20:28+08:00",
+  "statistical_verdict": "NOT_TESTED_SINGLE_PATH",
+  "maturity_level": "EXPLORATORY_ONLY",
+  "conclusion_tag": "DESCRIPTIVE_SINGLE_MONTH",
+  "asof": "20261030",
+  "exec_date": "20261008",
+  "n_trade_days": 17,
+  "asof_guard": "ASOF_OK",
+  "config_diff_keys": [
+    "rebalance_rule",
+    "stock_weight"
+  ],
+  "v1_config_sha256": "d4dacb7113cc72eebb88ccbf84ca692a5deafb21f0ad5e3a0434e5ae7d85fa9a",
+  "market": {
+    "r_pool_samewindow_pct": -11.564757572353423,
+    "r_pool_exec_crosscheck_pct": -11.666979565730495,
+    "n_pool_valid": 5190,
+    "n_pool_missing_endpoints": 254,
+    "n_exec_valid": 5202,
+    "n_exec_missing_endpoints": 270,
+    "spot_check": [
+      {
+        "code": "000001.SZ",
+        "qfq_pct": -1.1884550084889534,
+        "exec_pct": -1.1884550084889534
+      },
+      {
+        "code": "600519.SH",
+        "qfq_pct": 10.850540297342715,
+        "exec_pct": 10.850540297342715
+      },
+      {
+        "code": "000002.SZ",
+        "qfq_pct": -21.42857142857142,
+        "exec_pct": -21.42857142857142
+      },
+      {
+        "code": "601318.SH",
+        "qfq_pct": 0.24681982153027526,
+        "exec_pct": 0.24681982153027526
+      },
+      {
+        "code": "600036.SH",
+        "qfq_pct": 4.411412131383363,
+        "exec_pct": 4.411412131383363
+      },
+      {
+        "code": "002415.SZ",
+        "qfq_pct": 4.696969696969688,
+        "exec_pct": 4.696969696969688
+      },
+      {
+        "code": "300750.SZ",
+        "qfq_pct": -18.772449869224072,
+        "exec_pct": -18.772449869224072
+      },
+      {
+        "code": "601988.SH",
+        "qfq_pct": 4.111600587371522,
+        "exec_pct": 4.111600587371522
+      }
+    ],
+    "background_0930_1030_pct": -12.4625
+  },
+  "holdings": {
+    "codes": [
+      "603193",
+      "301336",
+      "301202",
+      "000597",
+      "002692"
+    ],
+    "r_stock_1008_1030_pct": -12.341964217360902,
+    "alpha_vs_pool_pp": -0.7772066450074777,
+    "daily_noise_sd_pct": 1.9768475593459043,
+    "daily_noise_not_mde_pp": 1.343243813074475,
+    "n_daily_returns": 17
+  },
+  "arms": {
+    "A": {
+      "label": "V1_HISTORICAL_REPLAY",
+      "w": 0.25,
+      "mdd": -0.03688422359484378,
+      "r_gross": -0.029379500707336748,
+      "cost_pp_month": 0.025500000000000002,
+      "net_pp_month": -2.963450070733675,
+      "t_net": null,
+      "t_net_reason": "single month, se not estimable",
+      "cost_pp_month_with_spread": 0.0755,
+      "nav_end_net_of_cost": 97036.54992926633
+    },
+    "B": {
+      "label": "V2_EX_POST_REPLAY",
+      "w": 0.2,
+      "mdd": -0.029209521862964327,
+      "r_gross": -0.023110157942918597,
+      "cost_pp_month": 0.0204,
+      "net_pp_month": -2.3314157942918596,
+      "t_net": null,
+      "t_net_reason": "single month, se not estimable",
+      "cost_pp_month_with_spread": 0.0604,
+      "nav_end_net_of_cost": 97668.58420570815
+    }
+  },
+  "lot_execution_A": {
+    "fee_with_min_commission": 25.0,
+    "fee_proportional_only": 5.24275,
+    "ratio": 4.768489819274236,
+    "buy_amount": 20971.0,
+    "fee_transfer": 0.20971,
+    "fee_spread": 10.4855,
+    "fee_total": 35.69521,
+    "cash_after_buy": 78993.30479,
+    "lot_nav_end": 97562.70145516066,
+    "lot_r_pct": -2.437298544839339
+  },
+  "old_nav_crosscheck": {
+    "n_rows": 7,
+    "max_abs_diff": 0.017914949799887836,
+    "rows": [
+      {
+        "date": "20261008",
+        "old_nav_top5": 99964.30479,
+        "reproduced": 99964.30479,
+        "abs_diff": 0.0
+      },
+      {
+        "date": "20261009",
+        "old_nav_top5": 100505.01708157253,
+        "reproduced": 100505.01708157253,
+        "abs_diff": 0.0
+      },
+      {
+        "date": "20261012",
+        "old_nav_top5": 100795.73056727927,
+        "reproduced": 100795.72937314508,
+        "abs_diff": 0.0011941341945203021
+      },
+      {
+        "date": "20261013",
+        "old_nav_top5": 100302.44524726705,
+        "reproduced": 100302.44166471761,
+        "abs_diff": 0.003582549441489391
+      },
+      {
+        "date": "20261014",
+        "old_nav_top5": 99498.1611216827,
+        "reproduced": 99498.15395629016,
+        "abs_diff": 0.0071653925406280905
+      },
+      {
+        "date": "20261015",
+        "old_nav_top5": 98715.87819067307,
+        "reproduced": 98715.8662478627,
+        "abs_diff": 0.011942810378968716
+      },
+      {
+        "date": "20261016",
+        "old_nav_top5": 99249.59645438504,
+        "reproduced": 99249.57853943524,
+        "abs_diff": 0.017914949799887836
+      }
+    ]
+  },
+  "mde": {
+    "this_experiment": "MDE_NOT_ESTIMABLE_FROM_THIS_EXPERIMENT",
+    "reason": "n=1 单月单一路径，无法估计 se；禁止用横截面/日频 sd 冒充",
+    "borrowed_not_estimated_pp": {
+      "L3r": 0.926,
+      "L3t_range": [
+        0.087,
+        0.955
+      ],
+      "S_exQ5_late": 0.14
+    },
+    "borrowed_citation": ".workbuddy/memory/RESULTS_INDEX.md",
+    "daily_noise_not_mde_pp": 1.343243813074475
+  },
+  "predictions": {
+    "P1": {
+      "delta_pp": 0.6269342764418151,
+      "identity_pp": 0.6269342764418155,
+      "identity_holds": true,
+      "delta_positive": true,
+      "in_predicted_band_pp": [
+        0.5,
+        1.0
+      ],
+      "in_band": true
+    },
+    "P2": {
+      "r_combo_B_pct": -2.3110157942918597,
+      "r_pool_samewindow_pct": -11.564757572353423,
+      "ratio": 0.19983261904396055,
+      "below_035": true,
+      "in_predicted_band_pct": [
+        -4.0,
+        -1.0
+      ],
+      "in_band": true
+    },
+    "P3": {
+      "mdd_A_pct": -3.688422359484378,
+      "mdd_B_pct": -2.9209521862964327,
+      "B_less_than_A": false,
+      "B_gt_minus5pct": true
+    },
+    "P4": {
+      "alpha_pp": -0.7772066450074777,
+      "verdict": "NOT_TESTABLE_SINGLE_PATH",
+      "note": "n=1 无 se；借用 MDE 来自不同信号/窗口，禁止与 alpha 并列判显著性"
+    },
+    "P5": {
+      "r_stock_pct": -12.341964217360902,
+      "r_pool_pct": -11.564757572353423,
+      "stock_negative": true,
+      "same_sign": true
+    }
+  }
+}

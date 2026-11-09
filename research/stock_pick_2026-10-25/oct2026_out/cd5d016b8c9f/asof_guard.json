@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "reasons": [],
+  "max_date_seen": "20261030",
+  "future_rows": 0,
+  "n_files": 5,
+  "asof": "20261030",
+  "root": "D:\\DeepQuant power by txm\\DeepQuant-main\\data\\qfq_all",
+  "n_trade_days": 17,
+  "codes": [
+    "603193",
+    "301336",
+    "301202",
+    "000597",
+    "002692"
+  ],
+  "verdict": "ASOF_OK",
+  "prereg_sha256": "cd5d016b8c9f407847a217e3b327cb4a83d6c391975bfa5bc4bc83d05ced49a0"
+}
