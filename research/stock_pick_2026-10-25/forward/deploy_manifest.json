@@ -1,5 +1,5 @@
 {
- "commit": "2aab998a3ff244eb6eac474a06ee2d76ac154ad9",
+ "commit": "cc82b7fd6961c7169e8c0e382d5232175139c6e0",
  "commit_note": "commit 来自生成方本地 HEAD；/opt/quant 无 .git，云端一致性以逐文件 sha256 为准",
  "files": {
   "backend/src/deepquant/broker/__init__.py": "d603695a7f201687ce80a86b341d2f93e70b66998d66d72814d65ab1e528f639",
@@ -35,11 +35,12 @@
   "research/stock_pick_2026-10-25/scripts/sp5/trade_calendar.py": "7e6704b57fea82182431f5ed285e68bb59b038893ab9b29eba195155892a8d9e",
   "scripts/check_channel_isolation.py": "bf209208a4649cbcb0939ef5efdfb3f4b695fffca7872f9d846d559c9e3ffb97",
   "scripts/check_universe_mirror.py": "6baf59949e2432232fd6cda0b6ea1f1f97d79ed4029b4222b83ecbabba6dbe6a",
-  "scripts/deploy_manifest.py": "b9a8d581e128de2349d0424693f47f9b7428a67c5fea7b7a10f7a656c6b3eabc",
+  "scripts/deploy_manifest.py": "f5288e3c47aa60cf2fefa30e3ea5d013e468558e578f4a5c392e7ba3ed456ef3",
   "scripts/dryrun_decision_day.py": "ab0776ba46205126a0c6c978c1eb89903d714ff5f8b090ef446172d0507534ea",
   "scripts/g1_progress.py": "198df0ed67be777d81e24e228f067044212b5d192834bdf7b67dd37ed8727c37",
   "scripts/lotapp_decision_brief.py": "e0c5fde5af9d55939f75a2717b632b1e1fb5c13dc05b55fad7a3ee4e066969fc",
   "scripts/paper_account_adapter.py": "fb9f57cabf1212ad5423d905b63f6d5638a6cc8795bf928ceb551cc557715d1d",
+  "scripts/paper_authorization_guard.py": "325d6b1d15ed26644486217943fdeda1949937651183d729cdbee9d619f91202",
   "scripts/preflight_decision_day.py": "46875a206fbbd9e84591743abb84c104a8a71f5cc694dc322935d2cbd4676456",
   "scripts/rebuild_adj_from_exec.py": "59beb1cf6f3ea1d01f56d5cf034544501bc5aec623d3197c219b7aee18b2a4c1",
   "scripts/shadow_daily_reconcile.py": "efcaeb1a29ce154950662054b50d0645c13875cb007d936e2058bf0a2b0b3eca",
@@ -47,8 +48,8 @@
   "scripts/verify_qfq_rebuild.py": "bb3ef671e549094aec6a755fa5447ff321c9c8802f776a98c76414c39dcbbe69",
   "scripts/verify_token_rotation.py": "415b181d3ca74eb6ecdc073b2e5754551184faa201da029dd1be4de72910dac1"
  },
- "generated_at": "2026-11-09T11:14:27",
- "n_files": 44,
+ "generated_at": "2026-11-09T11:30:05",
+ "n_files": 45,
  "schema_version": "deploy_manifest_v1",
- "sha256_of_files": "3244033c81e7d7547c107977f8e0c4bfdc243aee894359b8a684d047a0af7996"
+ "sha256_of_files": "c21f6663f1b0b8e48dea0ee1f3c74f48669ff2728740ce080a17e9564ba7bb38"
 }

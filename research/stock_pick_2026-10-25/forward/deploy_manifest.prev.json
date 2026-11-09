@@ -1,5 +1,5 @@
 {
- "commit": "d0e83945b8465e2cf9a518fad4e52ee0164432b9",
+ "commit": "2aab998a3ff244eb6eac474a06ee2d76ac154ad9",
  "commit_note": "commit 来自生成方本地 HEAD；/opt/quant 无 .git，云端一致性以逐文件 sha256 为准",
  "files": {
   "backend/src/deepquant/broker/__init__.py": "d603695a7f201687ce80a86b341d2f93e70b66998d66d72814d65ab1e528f639",
@@ -33,7 +33,7 @@
   "research/stock_pick_2026-10-25/scripts/sp5/p17_universe_filter.py": "3a0cd2f8261f4ae19c5181e2aa8254028b05f6cf5868c334556eade7f8fee24c",
   "research/stock_pick_2026-10-25/scripts/sp5/strategy_params.py": "c84520e67057e66dd035fc6ab613a79565d683f590d36643555a21575c651282",
   "research/stock_pick_2026-10-25/scripts/sp5/trade_calendar.py": "7e6704b57fea82182431f5ed285e68bb59b038893ab9b29eba195155892a8d9e",
-  "scripts/check_channel_isolation.py": "4bd6112ad8df3dfd18fa48ed27bb17de022fd0b2b611146a261018036ca5ef40",
+  "scripts/check_channel_isolation.py": "bf209208a4649cbcb0939ef5efdfb3f4b695fffca7872f9d846d559c9e3ffb97",
   "scripts/check_universe_mirror.py": "6baf59949e2432232fd6cda0b6ea1f1f97d79ed4029b4222b83ecbabba6dbe6a",
   "scripts/deploy_manifest.py": "b9a8d581e128de2349d0424693f47f9b7428a67c5fea7b7a10f7a656c6b3eabc",
   "scripts/dryrun_decision_day.py": "ab0776ba46205126a0c6c978c1eb89903d714ff5f8b090ef446172d0507534ea",
@@ -47,8 +47,8 @@
   "scripts/verify_qfq_rebuild.py": "bb3ef671e549094aec6a755fa5447ff321c9c8802f776a98c76414c39dcbbe69",
   "scripts/verify_token_rotation.py": "415b181d3ca74eb6ecdc073b2e5754551184faa201da029dd1be4de72910dac1"
  },
- "generated_at": "2026-11-08T14:05:56",
+ "generated_at": "2026-11-09T11:14:27",
  "n_files": 44,
  "schema_version": "deploy_manifest_v1",
- "sha256_of_files": "a8c8958730e7045af9859d521a41c979e62ad734b780b2b73000be399c50d410"
+ "sha256_of_files": "3244033c81e7d7547c107977f8e0c4bfdc243aee894359b8a684d047a0af7996"
 }
