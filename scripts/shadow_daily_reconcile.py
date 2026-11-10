@@ -40,6 +40,7 @@ import csv
 import datetime as dt
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -58,13 +59,15 @@ FWD = ROOT / "research" / "stock_pick_2026-10-25" / "forward"
 LEDGER_DIR = FWD / "ledger"
 UNIVERSE_DIR = FWD / "universe_state"
 OUT_DIR = FWD / "shadow_reconcile"
-ACCOUNT_SNAPSHOT = FWD / "account_snapshot.json"
+ACCOUNT_SNAPSHOT = FWD / "account_snapshot.json"   # 旧单文件：ECR 后冻结，仅兼容旧调用
+ACCOUNT_DIR = FWD                                   # 新布局：按 day 解析 rev 文件
 CONFIG = FWD / "sp4_config_v2.json"
 CALENDAR = FWD / "trade_calendar.json"
 
 REAL_PAPER = "REAL_PAPER"
 SELF_CHECK_ONLY = "SELF_CHECK_ONLY"
 NO_INPUTS = "NO_INPUTS"
+REV_CONFLICT = "REV_CONFLICT"   # R7 2e：同日多 rev 账户内容不一致 ⇒ 不计 G2
 
 EXIT_OK = 0
 EXIT_INPUT = 2          # 输入缺失/损坏：失败关闭
@@ -157,6 +160,50 @@ def load_account_snapshot(day: str, path: Path = ACCOUNT_SNAPSHOT) -> tuple[str,
     return "ok", d
 
 
+def load_daily_snapshot(day: str, directory: Path = ACCOUNT_DIR
+                        ) -> tuple[str, dict[str, Any] | None, dict[str, Any]]:
+    """R7 2a/2e：**按 day 直接解析 rev 文件**，完全不依赖 ``latest.json``。
+
+    返回 ``(reason, payload, meta)``。只有所有 rev 的**账户内容**
+    （asof/source/cash/positions）完全一致时才取 rev 号最大者；
+    否则返回 ``REV_CONFLICT``、payload=None ⇒ 该日 ``SELF_CHECK_ONLY``、
+    ``counts_toward_g2=false``，待人工复核。
+    """
+    meta: dict[str, Any] = {"n_revs": 0, "revs": [], "sha256": None, "rev": None,
+                            "path": None}
+    paths: list[tuple[int, Path]] = []
+    for p in directory.glob(f"account_snapshot_{day}_rev*.json"):
+        m = re.search(r"_rev(\d+)\.json$", p.name)
+        if m and p.is_file():
+            paths.append((int(m.group(1)), p))
+    paths.sort()
+    meta["n_revs"] = len(paths)
+    meta["revs"] = [n for n, _ in paths]
+    if not paths:
+        return "no_daily_snapshot_file", None, meta
+    docs: list[tuple[int, Path, dict[str, Any]]] = []
+    for n, p in paths:
+        try:
+            docs.append((n, p, json.loads(p.read_text(encoding="utf-8"))))
+        except Exception as exc:
+            return f"account_snapshot_unparsable:{type(exc).__name__}", None, meta
+    for _, _, d in docs:
+        if str(d.get("asof", "")) != day:
+            return f"account_snapshot_stale:asof={d.get('asof')}", None, meta
+        if not str(d.get("source", "")).strip():
+            return "account_snapshot_missing_source", None, meta
+        if not isinstance(d.get("cash"), dict) or not isinstance(d.get("positions"), list):
+            return "account_snapshot_bad_structure", None, meta
+    bodies = {json.dumps({k: d.get(k) for k in ("asof", "source", "cash", "positions")},
+                         ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+              for _, _, d in docs}
+    if len(bodies) != 1:
+        return REV_CONFLICT, None, meta
+    n, p, d = docs[-1]
+    meta.update({"rev": n, "sha256": sha256_file(p), "path": str(p)})
+    return "ok", d, meta
+
+
 def make_snapshot(payload: dict[str, Any] | None, day: str, cfg: dict[str, Any]
                   ) -> tuple[AccountSnapshot, str]:
     """真实快照直接用；没有则合成一个**仅供自检**的空仓快照。"""
@@ -216,6 +263,7 @@ def build_record(day: str, *, config_path: Path = CONFIG,
                  ledger_dir: Path = LEDGER_DIR,
                  universe_dir: Path = UNIVERSE_DIR,
                  account_path: Path = ACCOUNT_SNAPSHOT,
+                 account_dir: Path | None = None,
                  today: str | None = None) -> tuple[dict[str, Any], int]:
     """核心逻辑，供日更链与测试共用。返回 ``(记录, 退出码)``。
 
@@ -252,7 +300,13 @@ def build_record(day: str, *, config_path: Path = CONFIG,
         return rec, EXIT_INPUT
 
     legacy = "target_holds_d4" not in led_rec
-    snap_reason, snap_payload = load_account_snapshot(day, account_path)
+    acct_meta: dict[str, Any] = {}
+    if account_dir is not None:
+        # ECR 后的运行路径：按 day 解析 rev 文件，不依赖 latest.json
+        snap_reason, snap_payload, acct_meta = load_daily_snapshot(day, account_dir)
+    else:
+        # 兼容旧调用（既有测试注入单文件路径）
+        snap_reason, snap_payload = load_account_snapshot(day, account_path)
     snapshot, mode = make_snapshot(snap_payload, day, cfg)
     quotes = make_quotes(universe, day)
 
@@ -278,9 +332,12 @@ def build_record(day: str, *, config_path: Path = CONFIG,
                      "仅可用于管道复核")
     if legacy:
         notes.append("LEGACY_NO_D4：台账缺 d4 字段（11-30 前的老记录），本日不计入 G2")
-    if mode == SELF_CHECK_ONLY:
+    if mode == SELF_CHECK_ONLY and snap_reason != REV_CONFLICT:
         notes.append(f"管道自检（{snap_reason}）：没有真实仿真账户快照，"
                      "diff 只记录不判定、不计入 G2")
+    if snap_reason == REV_CONFLICT:
+        notes.append(f"REV_CONFLICT：当日 {acct_meta.get('n_revs')} 个 rev 的账户内容不一致；"
+                     "mode=SELF_CHECK_ONLY、不计 G2，待人工复核")
     if constitutes and legacy:
         constitutes = False
     if n_unexplained and mode == REAL_PAPER:
@@ -296,14 +353,19 @@ def build_record(day: str, *, config_path: Path = CONFIG,
         "legacy_no_d4": legacy,
         "ledger_date": str(led_rec.get("date", "")),
         "account_snapshot_reason": snap_reason,
+        "account_rev": acct_meta.get("rev"),
+        "n_account_revs": acct_meta.get("n_revs"),
+        "account_snapshot_sha256": acct_meta.get("sha256"),
         "inputs": {
             "config": {"path": cfg["path"], "sha256": cfg["sha256"]},
             "ledger": {"path": str(led_path), "sha256": sha256_file(led_path)},
             "universe": {"path": str(uni_path), "sha256": sha256_file(uni_path)},
-            "account": ({"path": str(account_path),
-                         "sha256": sha256_file(account_path),
+            "account": ({"path": acct_meta.get("path") or str(account_path),
+                         "sha256": acct_meta.get("sha256") or sha256_file(account_path),
                          "source": snap_payload.get("source"),
-                         "asof": snap_payload.get("asof")}
+                         "asof": snap_payload.get("asof"),
+                         "rev": acct_meta.get("rev"),
+                         "n_revs": acct_meta.get("n_revs")}
                         if snap_payload is not None else None),
         },
         "params": {"n_hold": cfg["n_hold"], "per_name_weight": cfg["per_name"],
@@ -378,7 +440,8 @@ def main(argv: list[str] | None = None) -> int:
               f"｜断点 {s['first_break']}｜{'PASS' if s['passed'] else '未通过'}")
         return EXIT_OK
 
-    rec, rc = build_record(args.date)
+    # ECR 后的运行路径：按 day 解析 rev 文件；不依赖 latest.json、不读冻结的旧单文件
+    rec, rc = build_record(args.date, account_dir=FWD)
     p, wrc = write_record(rec, args.date, write=not args.no_write)
     if wrc == EXIT_CONFLICT:
         print(f"[shadow] ✗ 同日记录已存在且内容不同，拒绝覆盖：{p}", file=sys.stderr)

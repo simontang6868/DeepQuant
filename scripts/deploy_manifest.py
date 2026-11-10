@@ -51,6 +51,8 @@ DEPLOY_FILES = [
     "scripts/check_universe_mirror.py",
     "scripts/check_channel_isolation.py",
     "scripts/paper_authorization_guard.py",   # PA-GUARD-1：授权闸门，纳入部署可证性
+    "scripts/stage_rc_gate.py",               # ECR-P0-SNAPSHOT-1 / R7-3：日更链阶段 rc 闸门
+    "scripts/r7_dryrun_check.py",             # ECR-P0-SNAPSHOT-1 / R7-5：11-27 DRYRUN 自检
     "scripts/deploy_manifest.py",
     "scripts/lotapp_decision_brief.py",
     "scripts/verify_token_rotation.py",

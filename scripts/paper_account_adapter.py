@@ -1,62 +1,78 @@
-"""掘金仿真账户 → ``forward/account_snapshot.json`` 的**只读**适配器。
+"""掘金仿真账户 → 按日期分文件的**只读**快照适配器（ECR-P0-SNAPSHOT-1）。
 
-状态：``CODE_READY_NO_CREDENTIALS`` —— 代码就绪，但没有 token / 账户 ID，
-因为那两样必须由用户本人在官网注册、登录后生成（token 等同用户 ID+密码）。
+状态：代码就绪；凭证 ``DQ_GM_TOKEN`` / ``DQ_GM_ACCOUNT_ID`` 由用户本人在官网
+生成，云端经 ``/opt/quant/env``（600、deepquant）由 systemd EnvironmentFile 注入。
 
 ⭐ 三条硬边界
 -------------
 1. **绝不发单**：只调用 ``set_token`` / ``set_endpoint`` / ``account`` /
-   ``login`` / ``get_cash`` / ``get_positions``（或 ``get_position``）。
-   源码里没有任何 ``order_*`` 调用，静态测试守着这条。
-2. **不猜协议**：Cash / Position 的字段名取自掘金官方 Python SDK 文档。
-   ``Cash`` **没有 ``total`` 字段**，所以 ``total = available + frozen``
-   是显式算术，不是把 ``nav`` 塞进去（nav 含持仓市值，会让
-   ``Cash.__post_init__`` 的「分项对不上」直接抛错）。
-   ``Position.symbol`` 形如 ``SHSE.600990``，必须显式转成 6 位代码。
-3. **失败关闭**：缺凭证、非交易日、SDK 不可用、字段不认识、账户状态
-   读不出来，一律非零退出并**不写文件**——绝不产出一个"看起来有账户"
-   的假快照。``--probe`` 可在真账号上只打印字段名（不打印值）供校准。
+   ``login`` / ``get_cash`` / ``get_positions``。源码里没有任何 ``order_*``。
+2. **不猜协议**：Cash 没有 ``total`` 字段，``total = available + frozen``
+   是显式算术；``Position.symbol`` 形如 ``SHSE.600990`` 需转 6 位代码。
+3. **失败关闭**：缺凭证、非交易日、SDK 不可用、字段不认识、账户读不出来，
+   一律非零退出且**不写文件**。
 
-凭证只从环境变量读，不进命令行、不进日志、不进仓库：
-``DQ_GM_TOKEN`` / ``DQ_GM_ACCOUNT_ID`` / ``DQ_GM_ENDPOINT``（可选）。
-云端建议由 ``/opt/quant/env``（600、属主 deepquant）经 EnvironmentFile 注入，
-**不要**复用别的任务的凭证文件。
+⭐ ECR-P0-SNAPSHOT-1 修复（跨日快照停滞）
+----------------------------------------
+旧实现把所有日期写进**同一个** ``account_snapshot.json``，且只要「文件存在且
+内容不同」就 ``EXIT_CONFLICT=4``；因为 ``asof`` 写在内容里，跨日必然不同 ⇒
+第二天起永远拒绝覆盖，SHADOW 退回 ``SELF_CHECK_ONLY``，G2 永远 0/20。
+
+新布局（R7 2a/2b/2d/2e）：
+  * 每日写入 ``account_snapshot_YYYYMMDD_rev<N>.json``；
+  * ``latest.json`` 是**原子写入的指针**（``os.replace``，**不用符号链接**）；
+  * SHADOW **按 day 直接解析目录**，不依赖 latest.json；
+  * 冲突判定只比较**账户内容**（asof/source/cash/positions），不含采集时刻等
+    元数据 ⇒ 同日重跑且账户未变 = 幂等，账户变了 = 拒绝并告警；
+  * 仅显式 ``--supersede <原因>`` 才生成 rev2，并记录原因；
+  * ``--migrate`` 把旧单文件**复制**成 ``..._20261109_rev1.json``，原文件
+    **冻结不动**（不 mv、不删），重复执行幂等。
+
+⚠️ 快照时点（R7 2f）：确认前**保持现有 17:10 调度**。元数据记录
+``collected_at`` 与 ``settlement_verified="unknown"``；掘金沪深 18:00 结算，
+将来允许报单前必须重评时点，方案交用户确认。
 
 用法：
-    python scripts/paper_account_adapter.py --probe          # 字段名校准
-    python scripts/paper_account_adapter.py --date 20261109  # 写当日快照
-    python scripts/paper_account_adapter.py --date 20261109 --no-write
+    python scripts/paper_account_adapter.py --probe
+    python scripts/paper_account_adapter.py --date 20261110           # 写当日 rev1
+    python scripts/paper_account_adapter.py --date 20261110 --no-write
+    python scripts/paper_account_adapter.py --date 20261110 --supersede "结算后重取"
+    python scripts/paper_account_adapter.py --migrate                  # 一次性迁移
 """
 
 from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import os
+import re
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 FWD = ROOT / "research" / "stock_pick_2026-10-25" / "forward"
-OUT = FWD / "account_snapshot.json"
+OUT = FWD / "account_snapshot.json"          # 旧单文件：ECR 后**冻结**，只读留痕
 CALENDAR = FWD / "trade_calendar.json"
 SOURCE = "gm-paper"
+SCHEMA_VERSION = "paper_snapshot_v2"
+SNAPSHOT_GLOB = "account_snapshot_{day}_rev*.json"
+LATEST_NAME = "latest.json"
 
 EXIT_OK = 0
 EXIT_FAIL = 2       # 失败关闭
-EXIT_CONFLICT = 4   # 同日已有不同内容
+EXIT_CONFLICT = 4   # 同日已有不同账户内容且未 --supersede
 
 ENV_TOKEN = "DQ_GM_TOKEN"
 ENV_ACCOUNT = "DQ_GM_ACCOUNT_ID"
 ENV_ENDPOINT = "DQ_GM_ENDPOINT"
 DEFAULT_ENDPOINT = "api.myquant.cn:9000"
 
-#: 官方文档里 Cash 的字段名；``total`` 不在其中，由算术补出。
 CASH_AVAILABLE = "available"
 CASH_FROZEN = "frozen"
-#: Position 的字段名。``vwap`` 是加权均价，对应 AccountSnapshot.avg_cost。
 POS_SYMBOL = "symbol"
 POS_VOLUME = "volume"
 POS_AVAILABLE = "available"
@@ -71,7 +87,6 @@ def read_credentials(env: dict[str, str] | None = None) -> dict[str, str]:
     e = os.environ if env is None else env
     missing = [k for k in (ENV_TOKEN, ENV_ACCOUNT) if not (e.get(k) or "").strip()]
     if missing:
-        # 只报缺了哪个变量名，绝不打印值
         raise AdapterError(f"缺少环境变量：{', '.join(missing)}（不打印值）")
     return {"token": e[ENV_TOKEN].strip(),
             "account_id": e[ENV_ACCOUNT].strip(),
@@ -90,7 +105,6 @@ def is_trading_day(day: str, cal: Path = CALENDAR) -> bool:
 
 
 def _field(obj: Any, name: str) -> Any:
-    """对象属性或 dict 键都支持；取不到就抛错，不用默认值蒙混。"""
     if isinstance(obj, dict):
         if name not in obj:
             raise AdapterError(f"缺字段 {name}（实际字段：{sorted(obj)}）")
@@ -102,7 +116,6 @@ def _field(obj: Any, name: str) -> Any:
 
 
 def normalize_symbol(sym: Any) -> str:
-    """``SHSE.600990`` / ``SZSE.000001`` → 6 位代码。别的格式一律拒绝。"""
     s = str(sym).strip()
     if "." in s:
         s = s.rsplit(".", 1)[-1]
@@ -112,7 +125,6 @@ def normalize_symbol(sym: Any) -> str:
 
 
 def cash_of(obj: Any) -> dict[str, float]:
-    """⭐ ``total`` 不在官方 Cash 字段表里，必须由分项相加。"""
     available = float(_field(obj, CASH_AVAILABLE))
     frozen = float(_field(obj, CASH_FROZEN))
     if available < 0 or frozen < 0:
@@ -152,13 +164,32 @@ def read_account(gm: Any, creds: dict[str, str]) -> tuple[Any, Any]:
     return cash, poses
 
 
-def build_snapshot(day: str, cash: Any, poses: Any) -> dict[str, Any]:
-    return {"asof": day, "source": SOURCE,
-            "cash": cash_of(cash), "positions": positions_of(poses)}
+def build_snapshot(day: str, cash: Any, poses: Any,
+                   *, collected_at: str | None = None) -> dict[str, Any]:
+    """R7 2f：元数据带采集时刻与结算核验状态（确认调度前恒为 unknown）。"""
+    return {"schema_version": SCHEMA_VERSION,
+            "asof": day, "source": SOURCE,
+            "cash": cash_of(cash), "positions": positions_of(poses),
+            "collected_at": collected_at or
+                dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+            "settlement_verified": "unknown"}
+
+
+def account_body(rec: dict[str, Any]) -> dict[str, Any]:
+    """冲突/一致性比较**只看账户内容**，不含 rev / 采集时刻等元数据。"""
+    return {k: rec[k] for k in ("asof", "source", "cash", "positions") if k in rec}
+
+
+def canonical(obj: Any) -> str:
+    return json.dumps(obj, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
 
 
 def write_snapshot(rec: dict[str, Any], path: Path | None = None,
                    write: bool = True) -> int:
+    """旧单文件语义，**仅为向后兼容既有测试保留**；运行路径不再调用本函数。
+
+    ECR 后 ``main()`` 一律走 :func:`write_daily_snapshot`。
+    """
     path = path or OUT
     body = json.dumps(rec, ensure_ascii=False, indent=1, sort_keys=True) + "\n"
     if not write:
@@ -168,6 +199,121 @@ def write_snapshot(rec: dict[str, Any], path: Path | None = None,
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(body, encoding="utf-8", newline="\n")
     return EXIT_OK
+
+
+def _atomic_write(path: Path, body: str) -> None:
+    """原子写入：同目录临时文件 + os.replace。**不用符号链接**。"""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix=path.name + ".", suffix=".tmp",
+                               dir=str(path.parent))
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as f:
+            f.write(body)
+        # mkstemp 默认 600；若迁移由 root 执行而日更链/SHADOW 以 deepquant
+        # 运行，600 会让次日读不到 rev 文件（「没检出≠没问题」）。
+        os.chmod(tmp, 0o644)
+        os.replace(tmp, path)
+    except Exception:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
+
+def daily_snapshot_paths(day: str, directory: Path = FWD) -> list[tuple[int, Path]]:
+    """按 rev 号升序返回当日全部快照文件。"""
+    out: list[tuple[int, Path]] = []
+    for p in directory.glob(SNAPSHOT_GLOB.format(day=day)):
+        m = re.search(r"_rev(\d+)\.json$", p.name)
+        if m and p.is_file():
+            out.append((int(m.group(1)), p))
+    return sorted(out)
+
+
+def write_daily_snapshot(rec: dict[str, Any], *, directory: Path = FWD,
+                         supersede_reason: str | None = None
+                         ) -> tuple[int, Path | None, str]:
+    """R7 2a/2d/2e：跨日推进写新文件；同日内容不同拒绝；仅 supersede 生成 rev2。"""
+    day = str(rec["asof"])
+    try:
+        existing = daily_snapshot_paths(day, directory)
+        base = canonical(account_body(rec))
+        if existing:
+            bodies = []
+            for n, p in existing:
+                try:
+                    d = json.loads(p.read_text(encoding="utf-8"))
+                except Exception:
+                    return EXIT_FAIL, None, f"unparsable_rev{n}"
+                bodies.append((n, p, canonical(account_body(d))))
+            if all(b == base for _, _, b in bodies):
+                # 同日重跑且账户未变 ⇒ 幂等，零写入
+                return EXIT_OK, existing[-1][1], "idempotent"
+            if not supersede_reason:
+                print("[paper] ✗ 同日快照账户内容不同，拒绝覆盖；"
+                      "需显式 --supersede <原因>（已告警）", file=sys.stderr)
+                return EXIT_CONFLICT, None, "conflict"
+            rev = max(n for n, _, _ in bodies) + 1
+        else:
+            rev = 1
+        meta = dict(rec)
+        meta["rev"] = rev
+        if supersede_reason:
+            meta["supersedes_rev"] = rev - 1
+            meta["supersede_reason"] = supersede_reason
+        body = json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True) + "\n"
+        path = directory / f"account_snapshot_{day}_rev{rev}.json"
+        _atomic_write(path, body)
+        latest = {"day": day, "rev": rev, "path": path.name,
+                  "sha256": hashlib.sha256(body.encode("utf-8")).hexdigest(),
+                  "updated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
+        _atomic_write(directory / LATEST_NAME,
+                      json.dumps(latest, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
+        return EXIT_OK, path, "written" if rev == 1 else "superseded"
+    except OSError as exc:
+        print(f"[paper] ✗ 快照写入失败：{type(exc).__name__}", file=sys.stderr)
+        return EXIT_FAIL, None, "write_error"
+
+
+def migrate_legacy_snapshot(*, directory: Path = FWD,
+                            legacy: Path | None = None) -> dict[str, Any]:
+    """R7 2b：把旧单文件**复制**成 20261109_rev1；原文件冻结不动；重复执行幂等。"""
+    legacy = legacy or OUT
+    if not legacy.is_file():
+        return {"status": "no_legacy", "legacy_sha256": None}
+    raw = legacy.read_bytes()
+    legacy_sha = hashlib.sha256(raw).hexdigest()
+    try:
+        d = json.loads(raw.decode("utf-8"))
+    except Exception as exc:
+        return {"status": "legacy_unparsable", "error": type(exc).__name__}
+    day = str(d.get("asof", ""))
+    if not (day.isdigit() and len(day) == 8):
+        return {"status": "legacy_bad_asof", "asof": day}
+    target = directory / f"account_snapshot_{day}_rev1.json"
+    if target.is_file():
+        try:
+            cur = json.loads(target.read_text(encoding="utf-8"))
+        except Exception as exc:
+            return {"status": "migration_conflict", "error": type(exc).__name__}
+        same = canonical(account_body(cur)) == canonical(account_body(d))
+        return {"status": "already_migrated" if same else "migration_conflict",
+                "day": day, "path": str(target),
+                "legacy_sha256": legacy_sha,
+                "target_sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+                "legacy_unchanged": True}
+    meta = dict(d)
+    meta["rev"] = 1
+    meta.setdefault("schema_version", SCHEMA_VERSION)
+    meta.setdefault("collected_at", "unknown(legacy)")
+    meta.setdefault("settlement_verified", "unknown")
+    body = json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True) + "\n"
+    _atomic_write(target, body)
+    return {"status": "migrated", "day": day, "path": str(target),
+            "legacy_sha256": legacy_sha,
+            "target_sha256": hashlib.sha256(body.encode("utf-8")).hexdigest(),
+            "legacy_unchanged": True}
 
 
 def load_gmtrade() -> Any:
@@ -184,7 +330,21 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--no-write", action="store_true")
     ap.add_argument("--probe", action="store_true",
                     help="登录后只打印 Cash/Position 的**字段名**（不打印值）")
+    ap.add_argument("--migrate", action="store_true",
+                    help="一次性迁移旧单文件快照（不需要凭证，不联网）")
+    ap.add_argument("--supersede", default=None, metavar="REASON",
+                    help="同日账户内容变化时，显式生成 rev2 并记录原因")
+    ap.add_argument("--snapshot-dir", default=None,
+                    help="快照目录（默认 forward/；测试/演练可注入）")
     args = ap.parse_args(argv)
+    directory = Path(args.snapshot_dir) if args.snapshot_dir else FWD
+
+    # 迁移不需要凭证、不联网、不校验交易日（旧文件 asof 自证）
+    if args.migrate:
+        res = migrate_legacy_snapshot(directory=directory)
+        print("[migrate] " + json.dumps(res, ensure_ascii=False))
+        return EXIT_OK if res["status"] in ("migrated", "already_migrated", "no_legacy") \
+            else EXIT_FAIL
 
     try:
         if not is_trading_day(args.date):
@@ -206,20 +366,23 @@ def main(argv: list[str] | None = None) -> int:
             return EXIT_OK
 
         rec = build_snapshot(args.date, cash, poses)
-        rc = write_snapshot(rec, write=not args.no_write)
-        if rc == EXIT_CONFLICT:
-            print("[paper] ✗ 当日快照已存在且内容不同，拒绝覆盖", file=sys.stderr)
+        if args.no_write:
+            print(f"[paper] {args.date} no-write（零副作用）；未发任何委托")
+            return EXIT_OK
+        rc, path, why = write_daily_snapshot(rec, directory=directory,
+                                             supersede_reason=args.supersede)
+        if rc != EXIT_OK:
             return rc
         c, n = rec["cash"], len(rec["positions"])
-        print(f"[paper] {args.date} source={SOURCE} "
-              f"cash_avail={c['available']:.2f} cash_frozen={c['frozen']:.2f} "
-              f"total={c['total']:.2f} positions={n} "
-              f"｜{'no-write' if args.no_write else 'written'}｜未发任何委托")
+        print(f"[paper] {args.date} rev={why} file={path.name if path else '-'} "
+              f"source={SOURCE} cash_avail={c['available']:.2f} "
+              f"cash_frozen={c['frozen']:.2f} total={c['total']:.2f} "
+              f"positions={n}｜未发任何委托")
         return EXIT_OK
     except AdapterError as exc:
         print(f"[paper] ✗ {exc}", file=sys.stderr)
         return EXIT_FAIL
-    except Exception as exc:  # 不把 SDK 的异常原始内容（可能含凭证）打出来
+    except Exception as exc:
         print(f"[paper] ✗ 未预期异常 {type(exc).__name__}；不产出快照", file=sys.stderr)
         return EXIT_FAIL
 

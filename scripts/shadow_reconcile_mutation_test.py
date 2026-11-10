@@ -9,7 +9,7 @@
 | # | 注入的缺陷 | 为什么危险 | 期望 |
 |---|---|---|---|
 | M1 | 去掉「必须有真实仿真账户」 | ⭐ 拿自己造的快照自证 G2，最危险 | 红 |
-| M2 | 不校验账户快照 asof | 用三天前的持仓对账，时点证据造假 | 红 |
+| M2 | 旧单文件路径不校验账户快照 asof | 用三天前的持仓对账，时点证据造假 | 红 |
 | M3 | 输入缺失改为静默成功 | 失败关闭被绕过 | 红 |
 | M4 | 停牌股也填 last_price | 已知口径差被误判成 UNEXPLAINED 假告警 | 红 |
 | M5 | 未知跳过原因硬塞进"整手不足" | ⭐ 自己把闸门关了（模块文档原话） | 红 |
@@ -19,6 +19,11 @@
 | M9 | 老台账（LEGACY_NO_D4）也计入 G2 | 11-30 前的记录冒充样本外 | 红 |
 | M10 | G2 门槛 20 日改成 1 日 | 闸门形同虚设 | 红 |
 | M11 | 事后补跑也计入 G2 | ⭐ 把回顾包装成连续前瞻 | 红 |
+| M12 | 新按 day 解析路径不校验 asof（ECR 后新增） | 新布局下同样会拿陈旧快照造假 | 红 |
+
+⚠️ ECR-P0-SNAPSHOT-1 后 `TESTS` 同时包含 `test_p0_snapshot_r7.py`：新增的
+``load_daily_snapshot`` 是独立代码路径，只跑旧测试会让新闸门没有变异覆盖。
+M2 的锚点也因此必须带上下文唯一化（否则在源码里出现 2 次被判「定义失效」）。
 
 局限：只证明**这些**缺陷会被抓到，不证明所有缺陷都会被抓到。
 
@@ -37,7 +42,10 @@ import sys
 HERE = pathlib.Path(__file__).resolve()
 REPO = HERE.parents[1]
 TARGET = REPO / "scripts" / "shadow_daily_reconcile.py"
-TESTS = REPO / "scripts" / "tests" / "test_shadow_daily_reconcile.py"
+#: ECR-P0-SNAPSHOT-1 后新增按 day 解析 rev 的测试，变异脚本必须一并跑，
+#: 否则新代码路径的闸门没有变异覆盖（11-10 踩到 M2 锚点变成 2 次而失效）。
+TESTS = [REPO / "scripts" / "tests" / "test_shadow_daily_reconcile.py",
+         REPO / "scripts" / "tests" / "test_p0_snapshot_r7.py"]
 PY = sys.executable
 
 #: (编号, 说明, 原文片段, 替换片段) —— old 必须在源码里恰好出现一次
@@ -47,9 +55,11 @@ MUTANTS: list[tuple[str, str, str, str]] = [
      "                   and not is_backfill)",
      "    constitutes = (n_unexplained == 0\n"
      "                   and not is_backfill)"),
-    ("M2", "不校验账户快照 asof",
-     'if str(d.get("asof", "")) != day:',
-     'if False:'),
+    ("M2", "旧单文件路径不校验账户快照 asof",
+     '    if str(d.get("asof", "")) != day:\n'
+     '        return f"account_snapshot_stale:asof={d.get(\'asof\')}", None',
+     '    if False:\n'
+     '        return f"account_snapshot_stale:asof={d.get(\'asof\')}", None'),
     ("M3", "输入缺失改成静默成功",
      "        return rec, EXIT_INPUT\n\n    led_path, led_rec = led",
      "        return rec, EXIT_OK\n\n    led_path, led_rec = led"),
@@ -85,11 +95,15 @@ MUTANTS: list[tuple[str, str, str, str]] = [
      "    constitutes = (mode == REAL_PAPER and n_unexplained == 0\n"
      "                   and not is_backfill)",
      "    constitutes = (mode == REAL_PAPER and n_unexplained == 0)"),
+    ("M12", "新按 day 解析路径不校验 asof（ECR 后新增）",
+     '    for _, _, d in docs:\n        if str(d.get("asof", "")) != day:',
+     '    for _, _, d in docs:\n        if False:'),
 ]
 
 
 def run_tests() -> tuple[int, str]:
-    r = subprocess.run([PY, "-m", "pytest", str(TESTS), "-q", "--no-header"],
+    r = subprocess.run([PY, "-m", "pytest", *(str(p) for p in TESTS),
+                        "-q", "--no-header"],
                        cwd=str(REPO), capture_output=True, text=True)
     lines = [x for x in (r.stdout + r.stderr).splitlines() if x.strip()]
     return r.returncode, (lines[-1] if lines else "<no output>")

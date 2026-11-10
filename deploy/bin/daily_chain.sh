@@ -43,6 +43,12 @@ exec > >(tee -a "$LOG") 2>&1
 echo "=== daily_chain $TS | repo=$REPO | dry_run=$DRY ==="
 command -v "$PY" >/dev/null 2>&1 || { echo "[fatal] 解释器不存在：$PY"; exit 70; }
 
+# R7-5：11-27 月末 DRYRUN 必须覆盖本修复（跨日推进 / REV_CONFLICT / rc 闸门 / 迁移幂等）
+if [ "$DRY" = "1" ]; then
+  echo "--- [r7_selfcheck] ECR-P0-SNAPSHOT-1 DRYRUN 覆盖"
+  "$PY" "$REPO/scripts/r7_dryrun_check.py" || { echo "[r7] ✗ 自检失败"; exit 71; }
+fi
+
 run() {  # run <名字> <命令...>
   local name="$1"; shift
   if [ "$DRY" = "1" ]; then echo "[dry] $name :: $*"; return 0; fi
@@ -57,6 +63,32 @@ stage_ok=1
 stage_note=""
 decision=""
 mode="CHAIN_OK"
+STAGES=""
+STAGE_RESULTS="$FWD/stage_results.json"
+
+# ECR-P0-SNAPSHOT-1 / R7-3：关键阶段（行情、宇宙快照、决策、账户快照、
+# SHADOW、备份）任一非零 ⇒ ok=false ⇒ 17:40 告警 ⇒ 该日不计 G1。
+# 忽略项必须逐条写理由并落进 stage_note，避免「没检出＝没问题」。
+record_stage() {  # <名字> <rc> <关键|忽略> [忽略理由]
+  local name="$1" rc="$2" kind="$3" why="${4:-}"
+  STAGES="${STAGES:+$STAGES;}$name=$rc:$kind"
+  if [ "$rc" = "0" ]; then return 0; fi
+  if [ "$kind" = "关键" ]; then
+    if [ "$DRY" = "1" ]; then
+      # DRYRUN 里 run() 不执行任何命令，也不产文件；模拟出的「缺产物」
+      # 不是真失败，只记 note，不计入 ok（否则 11-27 DRYRUN 会永远 exit 3）。
+      stage_note="${stage_note:+$stage_note; }${name}_DRY_RC=$rc"
+      echo "[stage] DRYRUN 模拟 $name rc=$rc（不计入 ok）"
+    else
+      stage_ok=0
+      stage_note="${stage_note:+$stage_note; }${name}_RC=$rc"
+      echo "[stage] ✗ 关键阶段 $name 失败 rc=$rc ⇒ ok=false、须告警"
+    fi
+  else
+    stage_note="${stage_note:+$stage_note; }${name}_IGNORED=$rc($why)"
+    echo "[stage] ⚠ 忽略阶段 $name rc=$rc：${why}（已写 note）"
+  fi
+}
 
 # ---------------- 1. 增量更新（exec_all） ----------------
 upd_rc=0
@@ -66,6 +98,7 @@ else
   run update "$PY" "$REPO/scripts/update_exec_incremental.py" --apply \
       --report "$VAR/update_$(date +%Y%m%d).json"
   upd_rc=$?
+  record_stage update "$upd_rc" 关键
   # 0=干净；1=有 flag（两源打架）；2=有 ERROR
   if [ "$upd_rc" = "1" ]; then
     stage_ok=0; stage_note="两源比对有 flag 的股票 >0"
@@ -84,13 +117,17 @@ else
   if run universe_snap "$PY" "$SP5/p17_universe_filter.py" --fetch; then
     SNAP="$REPO/research/stock_pick_2026-10-25/forward/universe_state/$(date +%Y%m%d).json"
     if [ -f "$SNAP" ]; then
+      record_stage universe_snap 0 关键
       sha256sum "$SNAP" >> "$REPO/research/stock_pick_2026-10-25/forward/universe_state/SHA256S.txt"
       echo "[universe] 快照已存档并记 sha256：$(basename "$SNAP")"
     else
-      echo "[universe] ⚠️ --fetch 成功但未见今日快照文件（检查 p17 输出路径）"
+      # rc=0 却没有产物 ⇒ 同样判失败（「没检出≠没问题」）
+      record_stage universe_snap 1 关键
+      echo "[universe] ⚠️ --fetch 成功但未见今日快照文件（R7-3：按失败处理）"
     fi
   else
-    echo "[universe] ⚠️ 快照抓取失败（不中断链路；决策将沿用最近可用快照）"
+    record_stage universe_snap 1 关键
+    echo "[universe] ⚠️ 快照抓取失败（R7-3：ok=false、该日不计 G1）"
   fi
 fi
 
@@ -104,6 +141,7 @@ if [ "$stage_ok" = "1" ]; then
   else
     due_line="$("$PY" "$REPO/deploy/bin/is_due.py")"
     due_rc=$?
+    record_stage is_due "$due_rc" 关键
     echo "[is_due] $due_line"
   fi
 else
@@ -166,9 +204,9 @@ if [ "$DRY" = "0" ] && [ -n "${DQ_GM_TOKEN:-}" ]; then
   run paper_snapshot "$PAPER_PY" "$REPO/scripts/paper_account_adapter.py" \
       --date "${TS:0:8}"
   pa_rc=$?
+  record_stage paper_snapshot "$pa_rc" 关键
   if [ "$pa_rc" -ne 0 ]; then
-    echo "[paper] ⚠️ 快照 rc=$pa_rc（对账将退回 SELF_CHECK_ONLY，不计 G2）"
-    stage_note="${stage_note:+$stage_note; }PAPER_SNAPSHOT_RC=$pa_rc"
+    echo "[paper] ⚠️ 快照 rc=$pa_rc（R7-3：ok=false、告警；对账将退回 SELF_CHECK_ONLY，不计 G2）"
   fi
 fi
 
@@ -177,8 +215,8 @@ fi
 # 所以 G2 的「连续 20 个交易日」一直是 0 天。这里把它接进来。
 #
 # ⚠️ 三条纪律：
-#  1. **不阻断链路**：对账是观测，不是决策前置；失败只告警并写进心跳 stage_note
-#     （17:40 状态邮件可见），不改 stage_ok。
+#  1. **ECR-P0-SNAPSHOT-1 收紧**：对账非零 rc 现在会置 stage_ok=0、心跳 ok=false、
+#     17:40 告警、该日不计 G1（R7-3）。旧口径「失败只告警不阻断」已作废。
 #  2. **不把"没账户"当故障**：LIVE_ENABLED=false 且无仿真账户时，脚本每天如实
 #     产出 SELF_CHECK_ONLY、counts_toward_g2=false；接入管道≠G2 开始计数。
 #  3. **不静默吞掉异常**：非零退出必须落在日志与心跳里，否则"没检出=没问题"。
@@ -186,9 +224,9 @@ if [ "$DRY" = "0" ]; then
   run shadow_reconcile "$PY" "$REPO/scripts/shadow_daily_reconcile.py" \
       --date "${TS:0:8}"
   sh_rc=$?
+  record_stage shadow_reconcile "$sh_rc" 关键
   if [ "$sh_rc" -ne 0 ]; then
-    echo "[shadow] ⚠️ 对账 rc=$sh_rc（不阻断链路，必须人工核对）"
-    stage_note="${stage_note:+$stage_note; }SHADOW_RECONCILE_RC=$sh_rc"
+    echo "[shadow] ⚠️ 对账 rc=$sh_rc（R7-3：ok=false、告警，必须人工核对）"
   fi
 fi
 
@@ -197,19 +235,32 @@ fi
 # 事后看与真决策完全一样——这正是"看起来跑过了"的经典来源。
 if [ "$DRY" = "1" ]; then mode="DRY_RUN"; decision=""; fi
 if [ "$DRY" = "0" ]; then
-  "$PY" - "$HB" "$mode" "$decision" "$stage_ok" "$stage_note" <<'PYEOF'
+  # R7-3：最终 ok 由独立闸门判定（唯一真源，可单测）；shell 的 record_stage 只采集。
+  if ! "$PY" "$REPO/scripts/stage_rc_gate.py" --check "$STAGES"; then
+    stage_ok=0
+    echo "[stage] ✗ 闸门判定失败 ⇒ ok=false、17:40 须告警、该日不计 G1"
+  fi
+  "$PY" - "$HB" "$STAGE_RESULTS" "$mode" "$decision" "$stage_ok" "$stage_note" "$STAGES" <<'PYEOF'
 import json, sys, time, pathlib
-hb, mode, decision, ok, note = sys.argv[1:6]
+hb, sr, mode, decision, ok, note, stages = sys.argv[1:8]
 p = pathlib.Path(hb)
+stage_list = [x for x in stages.split(";") if x]
 payload = {
     "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
     "decision": decision or None,
     "mode": mode,
     "ok": ok == "1",
     "stage_note": note,
+    "stages": stage_list,
+    "stage_results_path": str(sr),
     "source": "daily_chain",
     "duration_s": None,
 }
+# R7-3：阶段结果单独落盘，供 17:40 告警/审计读取（不只依赖 ok 字段）
+pathlib.Path(sr).write_text(json.dumps({
+    "ts": payload["ts"], "mode": mode, "ok": payload["ok"],
+    "stages": stage_list, "stage_note": note,
+}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n")
 if p.exists():
     try:
         old = json.loads(p.read_text(encoding="utf-8"))
@@ -233,9 +284,12 @@ if [ "$DRY" = "0" ]; then
     # 成功才 ping；失败时 ping /fail 让外部立刻告警（而不是等超时）
     if [ "$stage_ok" = "1" ]; then PING="$DEEPQUANT_HEARTBEAT_PING_URL"; else PING="$DEEPQUANT_HEARTBEAT_PING_URL/fail"; fi
     if curl -fsS -m 10 -o /dev/null "$PING"; then
+      record_stage heartbeat_ping 0 忽略 "外部存活信号"
       echo "[alert] 外部心跳已上报"
     else
-      echo "[alert] ⚠️ 外部心跳上报失败（网络/URL 问题，需人工确认）"
+      # 忽略理由：网络/外部服务问题，不改变本机已完成的链路事实；但必须写 note
+      record_stage heartbeat_ping 1 忽略 "网络或外部服务问题，不影响本机链路事实"
+      echo "[alert] ⚠️ 外部心跳上报失败（网络/URL 问题，需人工确认；已写 note）"
     fi
   else
     echo "[alert] ⚠️ 未配置 DEEPQUANT_HEARTBEAT_PING_URL：本机整机故障将无人知晓"
@@ -246,7 +300,9 @@ fi
 if [ "$DRY" = "0" ] && [ -n "${DEEPQUANT_BACKUP_CMD:-}" ]; then
   echo "--- [backup] $DEEPQUANT_BACKUP_CMD"
   eval "$DEEPQUANT_BACKUP_CMD"
-  [ $? -ne 0 ] && echo "[backup] ⚠️ 备份失败（不改变本次链路结论，但必须人工处理）"
+  brc=$?
+  record_stage backup "$brc" 关键
+  [ "$brc" -ne 0 ] && echo "[backup] ⚠️ 备份失败（R7-3：ok=false、该日不计 G1，必须人工处理）"
 fi
 
 echo "=== daily_chain 结束 mode=$mode ok=$stage_ok $stage_note ==="
@@ -260,6 +316,8 @@ if [ -r "$MEMPEAK" ]; then
   echo "$(date +%Y%m%dT%H%M%S),$(cat "$MEMPEAK"),$mode" >> "$LOG_DIR/mem_peak.csv"
   echo "[mem] 本次峰值 $(awk -F, 'END{printf "%.0f MB", $2/1048576}' "$LOG_DIR/mem_peak.csv")"
 else
+  # R7-3 忽略项（理由）：mem_peak 是纯诊断项，不影响证据链；
+  # 且它运行在心跳写入之后，故不进入 STAGES/stage_results.json，只在此说明。
   echo "[mem] 非 systemd 运行，cgroup memory.peak 不可读（不计入统计）"
 fi
 
