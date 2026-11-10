@@ -278,7 +278,7 @@ G2 计入一天需**同时**：`mode=REAL_PAPER`（当日真实账户快照）�
 | 权限隐患（实跑发现） | root 执行 `--migrate` 产物默认 `600 root:root` ⇒ `deepquant` 次日读不到；已改 `_atomic_write` 为 `644` 并云端 chown，**以 deepquant 身份实读 rc=0** |
 | 11-27 DRYRUN | ✅ `scripts/r7_dryrun_check.py` 四项自检已接入 `daily_chain.sh --dry-run`；并修掉 DRYRUN 因收紧误判 `exit 3` 的回归（DRY=1 时模拟阶段只记 note） |
 | 实施记录 | `docs/ECR_P0_SNAPSHOT_1_IMPLEMENTATION_RECORD_2026-11-10.md`（另立，不改变更单冻结原文） |
-| git | `45851e6` → `41938c9` → `90db703` → R7 提交；cloud 与 origin 均已同步 |
+| git | `45851e6` → `41938c9` → `90db703` → `f7d9a5f`（R7 全量）→ `6559ab4`（47 基线 + 云端日志）。**cloud 裸仓库 `90db703..6559ab4` 已同步**；⚠️ **origin(GitHub) 落后 2 个提交**：两次 `schannel: server closed abruptly`（代理不稳），按纪律不再重试，待恢复后 `push origin`；本地与 cloud 完整 |
 
 ---
 
