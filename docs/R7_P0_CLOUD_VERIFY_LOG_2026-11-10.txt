@@ -1,0 +1,35 @@
+=== R7 P0 云端实跑 2026-11-10 21:55:40 CST ===
+--- 0 迁移前原单文件 sha ---
+fcaeec0de9044ad9603e12470d9d8cbc927eddada3062c0715f591e364af7323  /opt/quant/research/stock_pick_2026-10-25/forward/account_snapshot.json
+--- 1 --migrate ---
+[migrate] {"status": "migrated", "day": "20261109", "path": "/opt/quant/research/stock_pick_2026-10-25/forward/account_snapshot_20261109_rev1.json", "legacy_sha256": "fcaeec0de9044ad9603e12470d9d8cbc927eddada3062c0715f591e364af7323", "target_sha256": "7f7308bc270dbb2d262f75f44e77c6895c914a6a991a78e2b411b955164e7c02", "legacy_unchanged": true}
+rc=0
+--- 2 迁移后原单文件 sha（必须逐位不变）---
+fcaeec0de9044ad9603e12470d9d8cbc927eddada3062c0715f591e364af7323  /opt/quant/research/stock_pick_2026-10-25/forward/account_snapshot.json
+--- 2b 新增 rev 文件 ---
+-rw------- 1 root root 264 Nov 10 21:55 /opt/quant/research/stock_pick_2026-10-25/forward/account_snapshot_20261109_rev1.json
+latest.json: NOT_YET(首次真实快照写入时创建)
+--- 3 迁移幂等 ---
+[migrate] {"status": "already_migrated", "day": "20261109", "path": "/opt/quant/research/stock_pick_2026-10-25/forward/account_snapshot_20261109_rev1.json", "legacy_sha256": "fcaeec0de9044ad9603e12470d9d8cbc927eddada3062c0715f591e364af7323", "target_sha256": "7f7308bc270dbb2d262f75f44e77c6895c914a6a991a78e2b411b955164e7c02", "legacy_unchanged": true}
+rc=0
+--- 4 DRYRUN 自检（R7-5 四项）---
+[r7_dryrun] {"ok": true, "checks": [{"name": "cross_day_advance", "ok": true}, {"name": "rev_conflict", "ok": true}, {"name": "stage_rc_gate", "ok": true}, {"name": "migration_idempotent", "ok": true}]}
+  [PASS] cross_day_advance
+  [PASS] rev_conflict
+  [PASS] stage_rc_gate
+  [PASS] migration_idempotent
+rc=0
+--- 5 rc 闸门 ---
+{"ok": false, "alert": true, "failed_key_stages": ["paper_snapshot"], "unknown_stages": [], "ignored_nonzero": [], "n_stages": 1}
+rc=1 (预期 1)
+{"ok": true, "alert": false, "failed_key_stages": [], "unknown_stages": [], "ignored_nonzero": [], "n_stages": 1}
+rc=0 (预期 0)
+--- 6 SHADOW --no-write：11-10 应按「缺失」处理、不补写 ---
+[shadow] 20261110 管道自检｜diff 1 条｜未解释 0 条｜计入G2=否｜本应下单 5 笔（未发送）｜rc=0｜20261110.json [no-write]
+[shadow] note: LEGACY_NO_D4：台账缺 d4 字段（11-30 前的老记录），本日不计入 G2；管道自检（no_daily_snapshot_file）：没有真实仿真账户快照，diff 只记录不判定、不计入 G2
+rc=0
+--- 7 当日 rev 文件清单（应只有 11-09，无 11-10）---
+account_snapshot_20261109_rev1.json
+--- 8 授权文件命中数（应 0）---
+0
+=== END ===

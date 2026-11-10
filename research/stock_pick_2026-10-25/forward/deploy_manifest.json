@@ -1,5 +1,5 @@
 {
- "commit": "cc82b7fd6961c7169e8c0e382d5232175139c6e0",
+ "commit": "f7d9a5fb128c09457494ff66320f3b60c353624b",
  "commit_note": "commit 来自生成方本地 HEAD；/opt/quant 无 .git，云端一致性以逐文件 sha256 为准",
  "files": {
   "backend/src/deepquant/broker/__init__.py": "d603695a7f201687ce80a86b341d2f93e70b66998d66d72814d65ab1e528f639",
@@ -21,7 +21,7 @@
   "backend/src/deepquant/execution/shadow.py": "272c0d3de8ac1409f0c15f3a30c0b7b3bd2a2705c29c342f1334f12786b97587",
   "backend/src/deepquant/execution/state_machine.py": "26ab4b698449ced80229f879307a20c2033298c8d189efcdddcf3ab5e4880d72",
   "deploy/bin/backup_offsite.sh": "e52f90b91add1fa5663f37d4f5a18a2bb19fec88bee043c8a95958b89be7bfa0",
-  "deploy/bin/daily_chain.sh": "0e65c7e2c75869364032bc2734189526a5a90cc9e0ac4a994e4a7f3ae4429bca",
+  "deploy/bin/daily_chain.sh": "2c5ff7cc743591049a0d6d2b5b311e34b5e1ae23939d84c79e9f8b2ba217e16f",
   "deploy/bin/heartbeat_alert.py": "2bea7b653a439c23a3801a406a0fd97c2507b5ba99d0fdf99f994c2db1205b75",
   "deploy/bin/is_due.py": "0341fd39ce4fa6d09b940de4022405c83ccd60568ef6c8e1ddf008c1fd071c69",
   "deploy/bin/migrate_data.py": "6fc3e0c6eb36e972a0ae1357c0deedaa644d2873f7aec888b2b5e79cb51d4d62",
@@ -35,21 +35,23 @@
   "research/stock_pick_2026-10-25/scripts/sp5/trade_calendar.py": "7e6704b57fea82182431f5ed285e68bb59b038893ab9b29eba195155892a8d9e",
   "scripts/check_channel_isolation.py": "bf209208a4649cbcb0939ef5efdfb3f4b695fffca7872f9d846d559c9e3ffb97",
   "scripts/check_universe_mirror.py": "6baf59949e2432232fd6cda0b6ea1f1f97d79ed4029b4222b83ecbabba6dbe6a",
-  "scripts/deploy_manifest.py": "f5288e3c47aa60cf2fefa30e3ea5d013e468558e578f4a5c392e7ba3ed456ef3",
+  "scripts/deploy_manifest.py": "1db4d0f2b7c37a8ed838bda732017e2fa74b66f028d53dc457ad5cf2177f0fad",
   "scripts/dryrun_decision_day.py": "ab0776ba46205126a0c6c978c1eb89903d714ff5f8b090ef446172d0507534ea",
   "scripts/g1_progress.py": "198df0ed67be777d81e24e228f067044212b5d192834bdf7b67dd37ed8727c37",
   "scripts/lotapp_decision_brief.py": "e0c5fde5af9d55939f75a2717b632b1e1fb5c13dc05b55fad7a3ee4e066969fc",
-  "scripts/paper_account_adapter.py": "fb9f57cabf1212ad5423d905b63f6d5638a6cc8795bf928ceb551cc557715d1d",
+  "scripts/paper_account_adapter.py": "452ad200dadb0f570d2399c767beeab7d11fe45631de01726c73d284f8876005",
   "scripts/paper_authorization_guard.py": "325d6b1d15ed26644486217943fdeda1949937651183d729cdbee9d619f91202",
   "scripts/preflight_decision_day.py": "46875a206fbbd9e84591743abb84c104a8a71f5cc694dc322935d2cbd4676456",
+  "scripts/r7_dryrun_check.py": "572e6aaf2e7443a7d7348ef0bbea3f6513c3acea816374ce80ac4f489f9d4f83",
   "scripts/rebuild_adj_from_exec.py": "59beb1cf6f3ea1d01f56d5cf034544501bc5aec623d3197c219b7aee18b2a4c1",
-  "scripts/shadow_daily_reconcile.py": "efcaeb1a29ce154950662054b50d0645c13875cb007d936e2058bf0a2b0b3eca",
+  "scripts/shadow_daily_reconcile.py": "a81caf4dc534fcb12283a4625e10861d734bb587fe1037e7e18e303bff0c1a3c",
+  "scripts/stage_rc_gate.py": "91d572b36e960a16a2201b205ec5462f6080a1794c4a7f3b2ebdb98e15971073",
   "scripts/update_exec_incremental.py": "8f57f41091b8c57012c41d989caa369b5c235d6a231421df3ad40eb1d109ad4f",
   "scripts/verify_qfq_rebuild.py": "bb3ef671e549094aec6a755fa5447ff321c9c8802f776a98c76414c39dcbbe69",
   "scripts/verify_token_rotation.py": "415b181d3ca74eb6ecdc073b2e5754551184faa201da029dd1be4de72910dac1"
  },
- "generated_at": "2026-11-09T11:30:05",
- "n_files": 45,
+ "generated_at": "2026-11-10T21:59:26",
+ "n_files": 47,
  "schema_version": "deploy_manifest_v1",
- "sha256_of_files": "c21f6663f1b0b8e48dea0ee1f3c74f48669ff2728740ce080a17e9564ba7bb38"
+ "sha256_of_files": "e33e180e6dc2288adb451ab2ba0aa19a16a56476f7334e803d608c472902f93a"
 }
