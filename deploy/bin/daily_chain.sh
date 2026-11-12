@@ -141,6 +141,7 @@ if [ "$stage_ok" = "1" ]; then
   else
     due_line="$("$PY" "$REPO/deploy/bin/is_due.py")"
     due_rc=$?
+    case "$due_line" in NOT_DUE*) due_rc=0 ;; esac
     record_stage is_due "$due_rc" 关键
     echo "[is_due] $due_line"
   fi

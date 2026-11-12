@@ -30,8 +30,9 @@ REPO = Path(__file__).resolve().parents[1]
 FWD = REPO / "research" / "stock_pick_2026-10-25" / "forward"
 MANIFEST = FWD / "deploy_manifest.json"
 PREV = FWD / "deploy_manifest.prev.json"
-SSH_KEY = REPO / "var" / "inbox" / "dq_deploy_ed25519"
-REMOTE_HOST = "root@110.40.190.225"
+#: 2026-11-12 迁移：新机 1.92.141.140；云端副本不跑 --remote，故 Path.home() 差异无影响。
+SSH_KEY = Path.home() / ".ssh" / "fk_server_ed25519"
+REMOTE_HOST = "root@1.92.141.140"
 REMOTE_ROOT = "/opt/quant"
 SCHEMA = "deploy_manifest_v1"
 

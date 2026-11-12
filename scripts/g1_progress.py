@@ -26,8 +26,11 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 FWD = REPO / "research" / "stock_pick_2026-10-25" / "forward"
-HOST = "root@110.40.190.225"
-KEY = REPO / "var" / "inbox" / "dq_deploy_ed25519"
+#: 2026-11-12 迁移：新机 1.92.141.140；旧部署密钥已不在册（见迁移核查报告）。
+#: ⚠️ 口径副作用：换机后 journalctl 只见新机 11-12 起的记录，历史 11-03~11-11 在旧机，
+#:    故本脚本输出的 G1 是「单机视角」，与原口径 6/10 不可直接比较；两机合并属 D3 另立记录。
+HOST = "root@1.92.141.140"
+KEY = Path.home() / ".ssh" / "fk_server_ed25519"
 NEED = 10
 START = "20261103"          # R4 起算日（首次真实日更全绿）
 

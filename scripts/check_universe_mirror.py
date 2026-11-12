@@ -32,8 +32,9 @@ STATE_DIR = REPO / "research" / "stock_pick_2026-10-25" / "forward" / "universe_
 #: 清单放在 `forward/` 而不是 `universe_state/`：后者被 .gitignore 忽略，
 #: 而"我核对过哪些文件"这件事必须能随仓库审计。
 MIRROR = STATE_DIR.parent / "universe_state_mirror.json"
-HOST = "root@110.40.190.225"
-KEY = REPO / "var" / "inbox" / "dq_deploy_ed25519"
+#: 2026-11-12 迁移：新机 1.92.141.140；--offline 模式不依赖这两个常量。
+HOST = "root@1.92.141.140"
+KEY = Path.home() / ".ssh" / "fk_server_ed25519"
 REMOTE = "/opt/quant/research/stock_pick_2026-10-25/forward/universe_state"
 
 

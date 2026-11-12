@@ -25,9 +25,10 @@ from pathlib import Path
 from typing import Any
 
 REPO = Path(__file__).resolve().parents[1]
-REMOTE_HOST = "root@110.40.190.225"
+#: 2026-11-12 迁移：新机 1.92.141.140（REMOTE_SCRIPT 内容不变，只换目标与密钥）。
+REMOTE_HOST = "root@1.92.141.140"
 REMOTE_ROOT = "/opt/quant"
-SSH_KEY = REPO / "var" / "inbox" / "dq_deploy_ed25519"
+SSH_KEY = Path.home() / ".ssh" / "fk_server_ed25519"
 
 OK, BAD, INFO = "PASS", "FAIL", "INFO"
 

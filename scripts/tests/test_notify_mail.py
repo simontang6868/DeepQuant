@@ -143,6 +143,11 @@ def test_timeout_scales_with_attachment_size():
 
 
 def test_timeout_never_below_floor():
-    """空附件也必须 ≥ 下限，防止 0 字节直接给 60s 导致登录阶段就超时。"""
-    assert nm.timeout_for(0) == nm.MIN_TIMEOUT == 180.0
+    """空附件也必须 ≥ 下限，防止 0 字节直接给 60s 导致登录阶段就超时。
+
+    2026-11-12：MIN_TIMEOUT 由 180 提升到 300（26MB 周包实测撞线后的回灌）。
+    本闸门校验的是「不变量 + 不得回退到历史基线以下」，不写死具体数值。
+    """
+    assert nm.timeout_for(0) == nm.MIN_TIMEOUT
     assert nm.timeout_for(-1) == nm.MIN_TIMEOUT
+    assert nm.MIN_TIMEOUT >= 180.0  # 防回退：不得低于迁移前基线

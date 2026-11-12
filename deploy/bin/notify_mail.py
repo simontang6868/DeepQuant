@@ -93,8 +93,8 @@ def build_message(cfg: dict[str, str], subject: str, body: str,
 #:   取 8 s/MB（≈2 倍余量）＋ 60 s 固定开销，再与下限 180 s 取大。
 #: 为什么不再写死 120：每周异地包从 13 MB 长到 25 MB 时，120 s 会刚好撞线——
 #: 而"刚好撞线"的失败是**间歇性**的，某周成功某周失败，最难查。
-SEC_PER_MB = 8.0
-MIN_TIMEOUT = 180.0
+SEC_PER_MB = 30.0
+MIN_TIMEOUT = 300.0
 
 
 def timeout_for(total_bytes: int) -> float:
