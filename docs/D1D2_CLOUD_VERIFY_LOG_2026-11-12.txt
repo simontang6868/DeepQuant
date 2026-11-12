@@ -1,0 +1,26 @@
+=== D1/D2 云端实跑 2026-11-12 11:00:02 CST ===
+--- R7 DRYRUN 自检 ---
+[r7_dryrun] {"ok": true, "checks": [{"name": "cross_day_advance", "ok": true}, {"name": "rev_conflict", "ok": true}, {"name": "stage_rc_gate", "ok": true}, {"name": "migration_idempotent", "ok": true}]}
+  [PASS] cross_day_advance
+  [PASS] rev_conflict
+  [PASS] stage_rc_gate
+  [PASS] migration_idempotent
+rc=0
+--- 通道隔离（本地模式，不 ssh）---
+  [PASS] 只读适配器无 order_* 调用            仅 set_token/login/get_cash/get_positions
+  [INFO] paper_authorization.json     不存在（当前预期：agent 不得创建）
+[isolate] 结论：FAIL 0 项｜PASS
+rc=0
+--- 宇宙镜像 --offline ---
+[mirror] 本地 16 个快照文件：['20261102', '20261103', '20261104', '20261105', '20261106', '20261109', '20261110', '20261111']
+[mirror] 离线核对（清单 2026-11-05T19:58:00+08:00）：MISMATCH
+         差异=[] 本地缺=[] 清单外=['20261109.csv', '20261109.json', '20261110.csv', '20261110.json', '20261111.csv', '20261111.json']
+rc=0
+--- g1_progress --help（不联网）---
+usage: g1_progress.py [-h] [--today TODAY] [--journal-file JOURNAL_FILE]
+                      [--start START]
+
+rc=0
+--- 授权文件命中数（应 0）---
+0
+=== END ===
