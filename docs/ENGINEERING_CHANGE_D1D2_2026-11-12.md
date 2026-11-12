@@ -65,3 +65,31 @@
 ## 7. 边界
 
 未改策略参数、`p13_forward.py`、sp4 配置 v1/v2、任何授权文件；11-09/10/11 原产物保留；未报单；`LIVE_ENABLED` 未设；不改 systemd/cron/调度（今天 17:10 首跑按现有配置执行）；不改 hc-ping 外部后台（属账号持有人）；不碰 `/root/.ssh/authorized_keys`。
+
+
+---
+
+## 8. 实施记录与已知限制（2026-11-12 11:00，追加，不改上文）
+
+### 8.1 验收结果
+
+| 项 | 结果 |
+|---|---|
+| 回归 | backend **3651/1**、`property_checks` **9/9**、`scripts/tests` **641/1**、`verify_exec_all` **PASS** |
+| 变异 | d1d2 **11/11**、p0 7/7、asof 12/12、channel 10/10、manifest 5/5、calendar 5/5、shadow **12/12**、paper_adapter **7/7**、guard 10/10、session 全检出（串行） |
+| 两处陈旧检查器 | `test_notify_mail.py` 去掉硬编码 180（改为不变量 + ≥180 防回退）；`test_corrections_jsonl.py` 为第 48 行已登记笔误加唯一显式例外并另立 `EVENT_NAME_FORMAT_EXCEPTION` 更正记录。**原文不改写、未弱化一般规则** |
+| 工具层意外 | 一条命令因沙箱升级被执行两次，向 corrections 写了两条完全相同的记录；已去掉完全相同的重复副本（内容未改、CRLF=0） |
+| 部署 | 6 文件云端留 `.bak.20261112d1` 后 scp；本地/云端 sha **逐位一致**；云端 `bash -n` + `py_compile` OK |
+| 云端实跑 | R7 DRYRUN 四项 PASS、通道隔离 FAIL 0 项、授权文件命中 0；日志 `docs/D1D2_CLOUD_VERIFY_LOG_2026-11-12.txt` |
+| manifest | `--write` 记录 commit `40cfb2d` ⇒ 本地 **47/47 PASS**、云端 **47/47 PASS**；`.prev.json` 保留 `f7d9a5f` |
+| 推送 | `cloud` 已切到 `1.92.141.140:/opt/quant-backup/repo.git`，`953fd8d..5a9bd6c` **推送成功**；origin 两次 `schannel` 断连，按纪律不再重试，待代理恢复 |
+
+### 8.2 ⚠️ 三条已知限制（不得误读）
+
+1. **G1 已变为「单机视角」**：换 HOST 后 `g1_progress.py` 实测输出「链路 ok 0 天 / G1 0/10 / 断点 20261111」。原因是新机 journal 里 `deepquant-daily` 尚无业务记录（今天 17:10 首跑才有），历史 11-03~11-11 在旧机。**这不是 G1 从 6/10 倒退**，两个数字依据不同、不可比较。原口径 6/10 与 R7/Q3 条件式日期按原文保留；两机合并属 D3。
+2. **C11b / `--cloud` 只能从本地 Agent 发起**：`preflight_decision_day.py` 在 `--cloud` 时调 `dm.verify_remote()`，而云端 `Path.home()` 为 `/home/deepquant`，没有该私钥。11-27 演练如需云端一致性核验，应由我在本地跑 `--verify --remote` 并回传结果，**不要在云端带 `--cloud`**。`daily_chain.sh` 不调用 preflight ⇒ 今天 17:10 首跑不受影响。
+3. **`check_universe_mirror.py --offline` 报 MISMATCH 属既有状态**：镜像台账 `source` 仍是 11-05 的旧机回拉，本地已有 11-09/10/11 六个新快照被判「清单外」。与本轮改动无关，且 C10 只查文件存在、不查内容，不触发预检失败。按「原文不改写」不改动该留痕；若要刷新镜像需另立记录。
+
+### 8.3 边界复核
+
+未改策略参数、`p13_forward.py`、sp4 配置 v1/v2、任何授权文件；未报单；`LIVE_ENABLED` 未设；未改 systemd/cron/调度、未触碰 `/root/.ssh/authorized_keys`；11-09/10/11 原产物保留；hc-ping 外部后台未动。
