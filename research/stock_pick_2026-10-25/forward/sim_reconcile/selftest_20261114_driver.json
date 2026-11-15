@@ -1,0 +1,148 @@
+{
+ "asof": "20261114",
+ "checks": [
+  {
+   "evidence": {
+    "n_orders": 1,
+    "replay_events": 1,
+    "second_accepted": false
+   },
+   "id": "S1",
+   "name": "幂等重复委托",
+   "ok": true
+  },
+  {
+   "evidence": {
+    "cumulative": 2,
+    "max": 2,
+    "results": [
+     "OK",
+     "OK",
+     "MAX_REPRICE_EXCEEDED"
+    ],
+    "unfavorable": "UNFAVORABLE_REJECTED"
+   },
+   "id": "S2",
+   "name": "撤单与重定价",
+   "ok": true
+  },
+  {
+   "evidence": {
+    "carry": 80,
+    "carry_max_days": 10,
+    "carry_order_quantity": 80,
+    "n_orders_before_after": [
+     3,
+     4
+    ],
+    "rest": 80
+   },
+   "id": "S3",
+   "name": "部分成交",
+   "ok": true
+  },
+  {
+   "evidence": {
+    "n_fills_before_after": [
+     1,
+     1
+    ],
+    "price_unchanged": true,
+    "stale_quote_repriced": false,
+    "status": "REJECTED_UNTRADABLE"
+   },
+   "id": "S4",
+   "name": "涨跌停 / 不可成交",
+   "ok": true
+  },
+  {
+   "evidence": {
+    "cond_drawdown": true,
+    "cond_vol": true,
+    "downgraded": "AGGRESSIVE",
+    "fired": true,
+    "manual_confirm": true,
+    "n_orders_before_after": [
+     5,
+     5
+    ],
+    "no_new_buys": true,
+    "real_order_sent": false,
+    "stock_weight_unchanged": true,
+    "v3_config_created": false
+   },
+   "id": "S5",
+   "name": "熔断（模拟触发）",
+   "ok": true
+  }
+ ],
+ "decision": "SELF_CHECK_PASS",
+ "events": [
+  {
+   "cid": "SIM-1",
+   "event": "SUBMIT"
+  },
+  {
+   "cid": "SIM-1",
+   "event": "REPLAY_IGNORED"
+  },
+  {
+   "cid": "SIM-2",
+   "event": "SUBMIT"
+  },
+  {
+   "cid": "SIM-2",
+   "event": "CANCEL"
+  },
+  {
+   "cid": "SIM-2",
+   "event": "REPRICE",
+   "n": 1
+  },
+  {
+   "cid": "SIM-2",
+   "event": "REPRICE",
+   "n": 2
+  },
+  {
+   "cid": "SIM-3",
+   "event": "SUBMIT"
+  },
+  {
+   "cid": "SIM-3",
+   "event": "PARTIAL_FILL",
+   "rest": 80
+  },
+  {
+   "cid": "SIM-3-CARRY-1",
+   "event": "SUBMIT"
+  },
+  {
+   "cid": "SIM-4",
+   "event": "SUBMIT"
+  },
+  {
+   "cid": "SIM-4",
+   "event": "UNTRADABLE"
+  }
+ ],
+ "generated_at": "2026-11-14T15:15:51+00:00",
+ "mode": "SELF_CHECK_ONLY",
+ "n_passed": 5,
+ "n_scenarios": 5,
+ "no_order_sent": true,
+ "not_wired_into_daily_chain": true,
+ "offline_only": true,
+ "reconcile_baseline": {
+  "decision": "PASS",
+  "n_differences": 0
+ },
+ "scenario_ids": [
+  "IDEMPOTENT_REPLAY",
+  "CANCEL_REPRICE",
+  "PARTIAL_FILL",
+  "LIMIT_UNTRADABLE",
+  "CIRCUIT_SIM"
+ ],
+ "schema_version": "sim_drill_driver_v1"
+}

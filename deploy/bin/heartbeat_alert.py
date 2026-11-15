@@ -41,6 +41,9 @@ import urllib.request
 REPO = pathlib.Path(__file__).resolve().parents[2]
 SP5 = REPO / "research" / "stock_pick_2026-10-25" / "scripts" / "sp5"
 HB = REPO / "research" / "stock_pick_2026-10-25" / "forward" / "heartbeat.json"
+#: R8 §2：更正台账旁路哈希链（链头随每日状态邮件外发，形成第二条时点锚）。
+CHAIN = (REPO / "research" / "stock_pick_2026-10-25" / "forward"
+         / "corrections.hashchain.jsonl")
 sys.path.insert(0, str(SP5))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
@@ -68,6 +71,34 @@ def _mail_status(cfg, subject: str, body: str) -> bool:
     except Exception as e:  # noqa: BLE001
         print(f"[mail] ✗ 状态邮件发送失败：{type(e).__name__}: {e}", file=sys.stderr)
         return False
+
+
+def _corrections_chain_head() -> str:
+    """R8 §2：读旁路链链头；任何异常都**显式标注 CHAIN_UNAVAILABLE**（失败关闭，不静默）。
+
+    ⚠️ 链头只是时点锚，**不是**更正完整性证明；完整性须由
+    ``corrections_hashchain.py --verify`` 独立复算，且云端同步完成前
+    **不得**用备份包证明完整性（R8 §2）。
+    """
+    try:
+        rows = [x for x in CHAIN.read_text(encoding="utf-8").splitlines() if x.strip()]
+        if not rows:
+            raise ValueError("空链")
+        rec = json.loads(rows[-1])
+        h = str(rec.get("chain_head") or "")
+        if len(h) != 64 or any(c not in "0123456789abcdef" for c in h):
+            raise ValueError("链头格式非法")
+        return (f"更正台账链头（第 {rec.get('seq')} 行）：{h}\n"
+                "链头是时点锚，不构成更正完整性证明；完整性以 --verify 独立复算为准。")
+    except Exception as e:  # noqa: BLE001
+        return (f"更正台账链头：CHAIN_UNAVAILABLE（{type(e).__name__}）\n"
+                "⚠️ 链不可用，本邮件**不构成**更正完整性证明，请查 "
+                "corrections.hashchain.jsonl 与同步状态。")
+
+
+def _with_chain(body: str) -> str:
+    """R8 §2：把链头追加到状态邮件正文（正常／告警都带）。可单测，不依赖 SMTP。"""
+    return body + "\n" + _corrections_chain_head()
 
 
 def _load_hb() -> dict | None:
@@ -129,6 +160,11 @@ def main(argv: list[str] | None = None) -> int:
 
     def finish(subject: str, body: str, rc: int) -> int:
         """收口：发状态邮件（每日一封，缺信=没跑），再按检查结论退出。"""
+        # R8 §2：链头写进**每一封**状态邮件（正常／告警都带）。
+        # 链缺失只标注、不改 rc：状态邮件的 rc 语义仍由心跳检查结论决定
+        # （沿用本模块既有设计「邮件挂了不改变检查结论」），避免新增旁路证据
+        # 把正常日更误报成告警。链完整性另由 --verify 独立复算。
+        body = _with_chain(body)
         if mail_cfg is not None:
             # 邮件发送失败不改变 rc 的告警语义：告警时本来就非 0；
             # 但"一切正常却发不出邮件"必须非 0——否则人会以为每天有信。

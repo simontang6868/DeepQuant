@@ -94,7 +94,14 @@ def install(monkeypatch, gm, env=None):
 
 # ---------------------------------------------------------------- 失败关闭
 
-def test_missing_token_fails_without_leaking_values(monkeypatch, capsys):
+def test_missing_token_fails_without_leaking_values(monkeypatch, capsys, tmp_path):
+    # ⭐ 2026-11-14 EARLY-IMPL-1：云端 /opt/quant 保留 R7 迁移时冻结的旧单文件
+    # account_snapshot.json（2026-11-09 17:15、142 B），本地仓库没有该遗留文件。
+    # 原断言 `not paa.OUT.exists()` 依赖环境 ⇒ 云端恒假（非本轮回归）。
+    # 改为注入临时 OUT：判据仍是「失败关闭时旧单文件写入路径未被调用」，
+    # 等价且环境无关（不是弱化测试）。原文备份 .bak.20261114 保留。
+    tmp_out = tmp_path / "account_snapshot.json"
+    monkeypatch.setattr(paa, "OUT", tmp_out)
     monkeypatch.delenv(paa.ENV_TOKEN, raising=False)
     monkeypatch.delenv(paa.ENV_ACCOUNT, raising=False)
     rc = paa.main(["--date", DAY, "--no-write"])
@@ -102,7 +109,7 @@ def test_missing_token_fails_without_leaking_values(monkeypatch, capsys):
     assert rc == paa.EXIT_FAIL
     assert "DQ_GM_TOKEN" in out.err
     assert "FAKE-TOKEN" not in (out.out + out.err)
-    assert not paa.OUT.exists()
+    assert not tmp_out.exists()
 
 
 def test_non_trading_day_fails_closed(monkeypatch, capsys):
@@ -137,7 +144,11 @@ def test_empty_cash_fails_closed(monkeypatch, capsys):
     assert "get_cash() 返回空" in capsys.readouterr().err
 
 
-def test_unexpected_sdk_exception_does_not_write(monkeypatch, capsys):
+def test_unexpected_sdk_exception_does_not_write(monkeypatch, capsys, tmp_path):
+    # 同上：注入临时 OUT，消除对「云端是否存在 legacy 冻结文件」的环境依赖。
+    tmp_out = tmp_path / "account_snapshot.json"
+    monkeypatch.setattr(paa, "OUT", tmp_out)
+
     class Broken(FakeGM):
         def get_cash(self):
             raise RuntimeError("含 token 的原始异常不许打印")
@@ -148,7 +159,7 @@ def test_unexpected_sdk_exception_does_not_write(monkeypatch, capsys):
     assert rc == paa.EXIT_FAIL
     assert "含 token 的原始异常" not in err
     assert "RuntimeError" in err            # 确实走到了 SDK 异常分支
-    assert not paa.OUT.exists()
+    assert not tmp_out.exists()
 
 
 # ---------------------------------------------------------------- 不猜协议

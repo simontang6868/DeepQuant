@@ -29,6 +29,8 @@ mkdir -p "$VAR"
 # ---- 1. 打包（只打证据）----
 INCLUDE=()
 for p in "$FWD/ledger" "$FWD/observations.csv" "$FWD/corrections.jsonl" \
+         "$FWD/corrections.hashchain.jsonl" \
+         "$FWD/stage_results.json" \
          "$FWD/shadow_reconcile" "$FWD/account_snapshot.json" \
          "$FWD/universe_state_mirror.json" \
          "$FWD/calendar_gaps.json" \
@@ -38,6 +40,20 @@ for p in "$FWD/ledger" "$FWD/observations.csv" "$FWD/corrections.jsonl" \
          "$FWD/execution_config_v1.json" "$FWD/trade_calendar.json" \
          "$FWD/heartbeat.json" "$REPO/STATUS.md"; do
   [ -e "$p" ] && INCLUDE+=("$p")
+done
+
+# R8 §3：归档日志（.log.1 / .log-YYYYMMDD，含 logrotate 压缩后的 .gz）纳入每日备份。
+# ⭐ 两个日志目录都要：var/log（daily_*.log 归档）与 logs（weekly_offsite / offsite_history
+#    归档实际在后者）。只写前者会漏掉 weekly_offsite 的证据。
+# 只备份**已封存的归档**，不备份仍在写的当天 .log。glob 未匹配时 bash 保留字面量，
+# 下面的 [ -e ] 会过滤掉；[ -e ] 也保证「文件不存在」不被计成一条备份。
+for LOGDIR in "$REPO/var/log" "$REPO/logs"; do
+  for p in "$LOGDIR"/*.log.1 "$LOGDIR"/*.log.1.gz \
+           "$LOGDIR"/*.log-20[0-9][0-9][0-9][0-9][0-9][0-9] \
+           "$LOGDIR"/*.log-20[0-9][0-9][0-9][0-9][0-9][0-9].gz \
+           "$LOGDIR"/*.log.2.gz; do
+    [ -e "$p" ] && INCLUDE+=("$p")
+  done
 done
 if [ "${#INCLUDE[@]}" -eq 0 ]; then
   echo "[backup] 没有可备份的证据文件——先确认 forward/ 是否就位" >&2

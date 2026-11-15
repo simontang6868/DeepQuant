@@ -54,11 +54,21 @@ DEPLOY_FILES = [
     "scripts/paper_authorization_guard.py",   # PA-GUARD-1：授权闸门，纳入部署可证性
     "scripts/stage_rc_gate.py",               # ECR-P0-SNAPSHOT-1 / R7-3：日更链阶段 rc 闸门
     "scripts/r7_dryrun_check.py",             # ECR-P0-SNAPSHOT-1 / R7-5：11-27 DRYRUN 自检
+    "scripts/sim_reconcile.py",               # EARLY-IMPL-1：成交回报对账器（未接日更链）
+    "scripts/sim_drill_driver.py",            # EARLY-IMPL-1：演练驱动，仅 --self-check
+    "scripts/sim_drill_mutation_test.py",     # EARLY-IMPL-1：真变异测试，云端自检可复跑
     "scripts/deploy_manifest.py",
     "scripts/lotapp_decision_brief.py",
     "scripts/verify_token_rotation.py",
     "scripts/dryrun_decision_day.py",
     "scripts/g1_progress.py",
+    "scripts/corrections_hashchain.py",        # R8 §2：更正台账旁路哈希链
+    "scripts/gm_paper_order_adapter.py",       # R8 §5：探针适配器（--execute 恒拒绝）
+    "scripts/g1_progress_mutation_test.py",    # R8 §1：D3 真变异（云端可复跑）
+    "scripts/r8_hashchain_mutation_test.py",   # R8 §2：链真变异
+    "scripts/gm_paper_probe_mutation_test.py", # R8 §5：DENY→ALLOW 真变异
+    "docs/GM_PAPER_PROBE_PREREG_2026-11-15.md",   # 适配器启动校验**运行期依赖**
+    "docs/ENGINEERING_CHANGE_R8_2026-11-15.md",   # R8 冻结变更单（sha 侧车另存）
     "scripts/rebuild_adj_from_exec.py",
     "scripts/verify_qfq_rebuild.py",
     "scripts/update_exec_incremental.py",

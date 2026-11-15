@@ -1,0 +1,11 @@
+{"asof": "20261114", "cid": "SIM-1", "event": "SUBMIT", "mode": "SELF_CHECK_ONLY"}
+{"asof": "20261114", "cid": "SIM-1", "event": "REPLAY_IGNORED", "mode": "SELF_CHECK_ONLY"}
+{"asof": "20261114", "cid": "SIM-2", "event": "SUBMIT", "mode": "SELF_CHECK_ONLY"}
+{"asof": "20261114", "cid": "SIM-2", "event": "CANCEL", "mode": "SELF_CHECK_ONLY"}
+{"asof": "20261114", "cid": "SIM-2", "event": "REPRICE", "mode": "SELF_CHECK_ONLY", "n": 1}
+{"asof": "20261114", "cid": "SIM-2", "event": "REPRICE", "mode": "SELF_CHECK_ONLY", "n": 2}
+{"asof": "20261114", "cid": "SIM-3", "event": "SUBMIT", "mode": "SELF_CHECK_ONLY"}
+{"asof": "20261114", "cid": "SIM-3", "event": "PARTIAL_FILL", "mode": "SELF_CHECK_ONLY", "rest": 80}
+{"asof": "20261114", "cid": "SIM-3-CARRY-1", "event": "SUBMIT", "mode": "SELF_CHECK_ONLY"}
+{"asof": "20261114", "cid": "SIM-4", "event": "SUBMIT", "mode": "SELF_CHECK_ONLY"}
+{"asof": "20261114", "cid": "SIM-4", "event": "UNTRADABLE", "mode": "SELF_CHECK_ONLY"}

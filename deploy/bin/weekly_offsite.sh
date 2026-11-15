@@ -58,7 +58,8 @@ EV="$OUT/evidence"
 mkdir -p "$EV/ledger" "$EV/universe_state"
 cp "$REPO/STATUS.md" "$EV/" 2>/dev/null || log "⚠️ STATUS.md 缺失"
 for f in sp4_config_v1.json sp4_config_v1.sha256 sp4_config_v2.json sp4_config_v2.sha256 \
-         corrections.jsonl heartbeat.json trade_calendar.json execution_config_v1.json; do
+         corrections.jsonl corrections.hashchain.jsonl \
+         stage_results.json heartbeat.json trade_calendar.json execution_config_v1.json; do
   [ -f "$FWD/$f" ] && cp "$FWD/$f" "$EV/" || true
 done
 cp "$FWD"/ledger/*.json "$FWD"/ledger/*.csv "$FWD"/ledger/*.LEGACY_NO_D4 "$EV/ledger/" 2>/dev/null || true

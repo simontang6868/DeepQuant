@@ -7,6 +7,8 @@ cd /d "%~dp0"
 set "PY="
 if exist "%~dp0..\venv\Scripts\python.exe" set "PY=%~dp0..\venv\Scripts\python.exe"
 if not defined PY if exist "%~dp0.venv\Scripts\python.exe" set "PY=%~dp0.venv\Scripts\python.exe"
+rem Prefer the verified WorkBuddy env: system python lacks fastapi/uvicorn/pyarrow.
+if not defined PY if exist "%USERPROFILE%\.workbuddy\binaries\python\envs\dq_clean\Scripts\python.exe" set "PY=%USERPROFILE%\.workbuddy\binaries\python\envs\dq_clean\Scripts\python.exe"
 if not defined PY set "PY=python"
 
 echo [DeepQuant] python = %PY%

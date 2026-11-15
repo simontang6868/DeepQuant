@@ -82,3 +82,109 @@ def test_offline_two_day_run_reports_2_of_10(tmp_path):
 def test_calendar_is_required():
     days = g.official_days()
     assert "20261130" in days and "20261116" in days
+
+
+# ============================================================================
+# R8 §1 / D3 严格口径（2026-11-15 追加；上方历史口径测试原文一律不改）
+# ============================================================================
+
+import json  # noqa: E402
+
+
+def _state(chain, hb, *, hb_ok=True, sr_ok=True, hb_day="2026-11-13T17:14:24",
+           errors=None, old_machine_days=()):
+    """构造 D3 离线 state。独立构造，不调用被测函数。"""
+    return {
+        "host": "/opt/quant",
+        "chain_days": sorted(set(chain) | set(old_machine_days)),
+        "hb_days": sorted(set(hb) | set(old_machine_days)),
+        "heartbeat": {"ts": hb_day, "ok": hb_ok, "mode": "NOT_DUE",
+                      "stages": ["update=0:关键"]},
+        "stage_results": {"ts": hb_day, "ok": sr_ok, "stage_note": "",
+                          "stages": ["update=0:关键"]},
+        "errors": list(errors or []),
+    }
+
+
+D3_DAYS = ["20261112", "20261113"]
+
+
+def test_d3_start_and_decision_day_are_frozen_by_calendar():
+    assert g.START == "20261112" and g.DECISION_DAY == "20261125"
+    # 独立算术：D 起第 10 个交易日必须恰为 11-25（不按星期几猜）
+    assert g.decision_day(g.official_days()) == "20261125"
+
+
+def test_d3_start_cannot_be_moved_back(tmp_path):
+    f = tmp_path / "s.json"
+    f.write_text(json.dumps(_state(D3_DAYS, D3_DAYS)), encoding="utf-8")
+    assert g.main(["--state-file", str(f), "--today", "20261115",
+                   "--start", "20261103"]) == 2
+
+
+def test_d3_conditional_decision_day(tmp_path, capsys):
+    f = tmp_path / "s.json"
+    f.write_text(json.dumps(_state(D3_DAYS, D3_DAYS)), encoding="utf-8")
+    assert g.main(["--state-file", str(f), "--today", "20261115"]) == 0
+    out = capsys.readouterr().out
+    assert "若此后全绿，则 2026-11-25 收盘后判" in out
+    assert "G1 = 2/10" in out
+    assert "D3 严格口径" in out
+    assert "LEGACY" not in out
+
+
+def test_d3_red_day_resets_and_gives_no_new_date(tmp_path, capsys):
+    # 11-13 心跳行缺失 ⇒ 红日 ⇒ 不给判定日
+    f = tmp_path / "s.json"
+    f.write_text(json.dumps(_state(D3_DAYS, ["20261112"])), encoding="utf-8")
+    assert g.main(["--state-file", str(f), "--today", "20261115"]) == 0
+    out = capsys.readouterr().out
+    assert "2026-11-25 收盘后判" not in out
+    assert "不预先给新日期" in out
+
+
+def test_d3_artifact_failure_marks_day_red(tmp_path, capsys):
+    f = tmp_path / "s.json"
+    f.write_text(json.dumps(_state(D3_DAYS, D3_DAYS, sr_ok=False)), encoding="utf-8")
+    assert g.main(["--state-file", str(f), "--today", "20261115"]) == 0
+    out = capsys.readouterr().out
+    assert "产物校验不通过" in out and "该日判红" in out
+    assert "2026-11-25 收盘后判" not in out
+
+
+def test_d3_missing_artifact_fails_closed(tmp_path):
+    f = tmp_path / "s.json"
+    s = _state(D3_DAYS, D3_DAYS)
+    s["errors"] = ["stage_results.json:FileNotFoundError"]
+    f.write_text(json.dumps(s), encoding="utf-8")
+    assert g.main(["--state-file", str(f), "--today", "20261115"]) == 2
+
+
+def test_d3_bad_artifact_ts_fails_closed(tmp_path):
+    f = tmp_path / "s.json"
+    f.write_text(json.dumps(_state(D3_DAYS, D3_DAYS, hb_day="not-a-date")),
+                 encoding="utf-8")
+    assert g.main(["--state-file", str(f), "--today", "20261115"]) == 2
+
+
+def test_d3_never_merges_old_machine_days():
+    # 旧机 11-03~11-11 即使出现在日志里，也**不得**进入严格口径的全绿集合
+    old = ["20261103", "20261104", "20261105", "20261106",
+           "20261109", "20261110", "20261111"]
+    good, _ = g.build_days(_state(D3_DAYS, D3_DAYS, old_machine_days=old),
+                           g.official_days(), g.START)
+    assert all(d not in good for d in old)
+    assert sorted(good) == D3_DAYS
+
+
+def test_d3_state_has_no_days_fails_closed(tmp_path):
+    f = tmp_path / "s.json"
+    f.write_text(json.dumps(_state([], [])), encoding="utf-8")
+    assert g.main(["--state-file", str(f), "--today", "20261115"]) == 2
+
+
+def test_legacy_offline_mode_is_explicitly_labelled(tmp_path, capsys):
+    f = tmp_path / "j.log"
+    f.write_text(JOURNAL, encoding="utf-8")
+    assert g.main(["--journal-file", str(f), "--today", "20261105"]) == 0
+    assert "LEGACY_HISTORICAL_ONLY" in capsys.readouterr().out

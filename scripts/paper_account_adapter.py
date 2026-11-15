@@ -71,6 +71,28 @@ ENV_ACCOUNT = "DQ_GM_ACCOUNT_ID"
 ENV_ENDPOINT = "DQ_GM_ENDPOINT"
 DEFAULT_ENDPOINT = "api.myquant.cn:9000"
 
+# ⭐ EARLY-IMPL-1（2026-11-14）：方案 §2 的「外部真值优先」需要成交回报与
+# 未完结委托。这里**只查询、只原样搬运**，语义映射集中在 sim_reconcile.py，
+# 缺字段由对账器判 NO_INPUTS；本模块绝不补默认值、绝不猜协议。
+# ⚠️ 本模块及其新增函数保持零下单调用，通道隔离检查器会 grep 本文件。
+TRUTH_SCHEMA_VERSION = "paper_external_truth_v1"
+TRUTH_QUERY_NAMES = {
+    "execution_reports": "get_execution_reports",
+    "unfinished_orders": "get_unfinished_orders",
+}
+
+#: ⭐ 2026-11-14 云端只读探测实证：gmtrade 的 ExecRpt / Order 是 protobuf
+#: 对象，除业务字段外还带 ``account_id`` / ``account_name`` / ``strategy_id``。
+#: 外部真值记录会落盘 ⇒ 这些身份字段必须脱敏，绝不把账户标识写进证据文件。
+#: 字段名本身保留在 ``fields_seen``（诊断需要），只脱敏**值**。
+REDACTED_FIELDS = frozenset({"account_id", "account_name", "strategy_id",
+                             "token", "password"})
+
+
+def _redact(row: dict[str, Any]) -> dict[str, Any]:
+    return {k: ("<redacted>" if k in REDACTED_FIELDS else v)
+            for k, v in row.items()}
+
 CASH_AVAILABLE = "available"
 CASH_FROZEN = "frozen"
 POS_SYMBOL = "symbol"
@@ -316,6 +338,113 @@ def migrate_legacy_snapshot(*, directory: Path = FWD,
             "legacy_unchanged": True}
 
 
+def _plain_value(v: Any) -> Any:
+    """把 SDK 属性值降为 JSON 可序列化标量；不认识的类型转字符串留痕。"""
+    if v is None or isinstance(v, (str, int, float, bool)):
+        return v
+    if isinstance(v, (dt.date, dt.datetime)):
+        return v.isoformat()
+    return str(v)
+
+
+def _field_names(obj: Any) -> list[str]:
+    """优先按 protobuf 协议读 ``DESCRIPTOR.fields``，不遍历 ``dir()``。
+
+    ⭐ 2026-11-14 云端实跑发现：gmtrade 的 ExecRpt / Order 是 protobuf 对象，
+    ``dir()`` 里的 ``Extensions`` 属性访问会抛 AttributeError（还有
+    DESCRIPTOR / UnknownFields 等非业务属性）。遍历 dir() 既会撞异常，也会把
+    描述符混进字段名。按 DESCRIPTOR.fields 取业务字段是「按协议读」，不是猜。
+    """
+    desc = getattr(obj, "DESCRIPTOR", None)
+    fields = getattr(desc, "fields", None)
+    if fields is not None:
+        try:
+            names = [f.name for f in fields]
+        except (TypeError, AttributeError):
+            names = []
+        if names:
+            return names
+    return [n for n in dir(obj) if not n.startswith("_")]
+
+
+def _as_plain(obj: Any) -> dict[str, Any]:
+    """原样搬运 SDK 对象为字典。**不猜字段语义、不填缺失默认值**。
+
+    字段名来自 :func:`_field_names`；后续规范化由 ``sim_reconcile.py`` 的
+    显式 FIELD_MAP 完成。字段访问抛异常 ⇒ 失败关闭，不静默丢弃。
+    """
+    if isinstance(obj, dict):
+        return {str(k): _plain_value(v) for k, v in obj.items()}
+    names = _field_names(obj)
+    if not names:
+        raise AdapterError("SDK 对象无可读字段，外部真值不可用")
+    out: dict[str, Any] = {}
+    for n in names:
+        try:
+            v = getattr(obj, n)
+        except Exception as exc:
+            raise AdapterError(f"字段 {n} 读取失败：{type(exc).__name__}") from exc
+        if callable(v):
+            continue
+        out[n] = _plain_value(v)
+    return out
+
+
+def query_names_of(gm: Any) -> list[str]:
+    """诊断用：列出 SDK 中与查询相关的公开函数名（不调用、不打印值）。"""
+    return sorted(n for n in dir(gm)
+                  if not n.startswith("_")
+                  and any(t in n.lower() for t in ("report", "order", "cash", "position", "trade")))
+
+
+def read_external_truth(gm: Any, creds: dict[str, str]) -> dict[str, Any]:
+    """只读拉取四类外部真值：资金 / 持仓 / 成交回报 / 未完结委托。
+
+    ⚠️ **空列表不判异常**（账户今天没成交是合法状态），但也不判「无差异」——
+    「空回报 ⇒ NO_INPUTS 停机」由对账器负责，本模块只如实返回。
+    ⚠️ getter 不存在 / 返回 None / 字段读不出来 ⇒ 失败关闭，不猜协议。
+    """
+    cash, poses = read_account(gm, creds)
+    rows: dict[str, list[dict[str, Any]]] = {}
+    for key, fname in TRUTH_QUERY_NAMES.items():
+        fn = getattr(gm, fname, None)
+        if fn is None or not callable(fn):
+            raise AdapterError(f"SDK 缺 {fname}；外部真值不可用（不猜协议）")
+        items = fn()
+        if items is None:
+            raise AdapterError(f"{fname} 返回 None；外部真值不可用")
+        rows[key] = [_as_plain(x) for x in items]
+    return {"cash": _as_plain(cash),
+            "positions": [_as_plain(p) for p in (poses or [])],
+            **rows}
+
+
+def build_truth_record(day: str, truth: dict[str, Any],
+                       *, collected_at: str | None = None) -> dict[str, Any]:
+    """规范化外部真值记录；``fields_seen`` 只含**字段名**，绝不含值。"""
+    lists = {k: truth[k] for k in TRUTH_QUERY_NAMES}
+    all_names = set(truth["cash"]) | {n for r in truth["positions"] for n in r} \
+        | {n for v in lists.values() for r in v for n in r}
+    return {
+        "schema_version": TRUTH_SCHEMA_VERSION,
+        "asof": day,
+        "source": SOURCE,
+        "cash": _redact(truth["cash"]),
+        "positions": [_redact(p) for p in truth["positions"]],
+        **{k: [_redact(r) for r in v] for k, v in lists.items()},
+        "fields_seen": {
+            "cash": sorted(truth["cash"]),
+            "positions": sorted({n for r in truth["positions"] for n in r}),
+            **{k: sorted({n for r in v for n in r}) for k, v in lists.items()},
+        },
+        "redacted_fields": sorted(all_names & REDACTED_FIELDS),
+        "query_names": dict(TRUTH_QUERY_NAMES),
+        "collected_at": collected_at or
+            dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "settlement_verified": "unknown",
+    }
+
+
 def load_gmtrade() -> Any:
     try:
         import gmtrade.api as gm  # type: ignore
@@ -336,6 +465,10 @@ def main(argv: list[str] | None = None) -> int:
                     help="同日账户内容变化时，显式生成 rev2 并记录原因")
     ap.add_argument("--snapshot-dir", default=None,
                     help="快照目录（默认 forward/；测试/演练可注入）")
+    ap.add_argument("--truth-probe", action="store_true",
+                    help="只读探测外部真值：只打印字段名与条数，不打印任何值")
+    ap.add_argument("--truth-out", default=None, metavar="PATH",
+                    help="把外部真值原样记录写到指定 JSON（自检/12-01 用；禁止写 ledger/）")
     args = ap.parse_args(argv)
     directory = Path(args.snapshot_dir) if args.snapshot_dir else FWD
 
@@ -351,6 +484,33 @@ def main(argv: list[str] | None = None) -> int:
             raise AdapterError(f"{args.date} 不是交易日历里的交易日，拒绝产出快照")
         creds = read_credentials()
         gm = load_gmtrade()
+
+        if args.truth_probe or args.truth_out:
+            if "ledger" in Path(args.truth_out or "").parts:
+                raise AdapterError("外部真值记录禁止写入 ledger/ 正式台账目录")
+            print(f"[truth-probe] SDK 查询函数：{query_names_of(gm)}")
+            print(f"[truth-probe] 冻结的查询名：{TRUTH_QUERY_NAMES}")
+            missing = [f for f in TRUTH_QUERY_NAMES.values()
+                       if not callable(getattr(gm, f, None))]
+            if missing:
+                print(f"[truth-probe] ✗ 缺查询函数 {missing}；失败关闭，不猜协议",
+                      file=sys.stderr)
+                return EXIT_FAIL
+            rec = build_truth_record(args.date, read_external_truth(gm, creds))
+            print("[truth-probe] 条数：cash=1 "
+                  f"positions={len(rec['positions'])} "
+                  f"execution_reports={len(rec['execution_reports'])} "
+                  f"unfinished_orders={len(rec['unfinished_orders'])}")
+            for k, v in rec["fields_seen"].items():
+                print(f"[truth-probe] 字段名 {k}: {v}")
+            print("[truth-probe] 只打印字段名与条数，未打印任何值；未发任何委托")
+            if args.truth_out:
+                out = Path(args.truth_out)
+                _atomic_write(out, json.dumps(rec, ensure_ascii=False,
+                                              indent=1, sort_keys=True) + "\n")
+                print(f"[truth] 已写外部真值记录：{out.name}")
+            return EXIT_OK
+
         cash, poses = read_account(gm, creds)
 
         if args.probe:
