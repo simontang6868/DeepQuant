@@ -1,5 +1,5 @@
 {
- "commit": "9f76f66bc92ff2ba63861c9d2d24d39077dd5b73",
+ "commit": "822fb976f898450ddafb931d4fb9a56524122d58",
  "commit_note": "commit 来自生成方本地 HEAD；/opt/quant 无 .git，云端一致性以逐文件 sha256 为准",
  "files": {
   "backend/src/deepquant/broker/__init__.py": "d603695a7f201687ce80a86b341d2f93e70b66998d66d72814d65ab1e528f639",
@@ -38,7 +38,7 @@
   "scripts/check_channel_isolation.py": "b5fe41a7dcf3156dab78f0f8b4fa216d1503e00c36c550b3c7d03ee449a8eb06",
   "scripts/check_universe_mirror.py": "ae4004e52ff98b1958e104f6667e768f7e883b3719ab1b2c910e680dfe299eb6",
   "scripts/corrections_hashchain.py": "047b1fc07be85d63166f62ecca5353bb1b4607734be186e80081ab68fde56224",
-  "scripts/deploy_manifest.py": "34792df861e8d434d695ed3c3f38bea77a6ecdcf417d4af7232f74994b8efa15",
+  "scripts/deploy_manifest.py": "83d34377f86013b88b174f45089311cedd9ae0ae87f329a2b48427b00a9f48f3",
   "scripts/dryrun_decision_day.py": "ab0776ba46205126a0c6c978c1eb89903d714ff5f8b090ef446172d0507534ea",
   "scripts/g1_progress.py": "db30b829a71263ee0cf529dc292813b72a94dfadec53dd20bb27217aaa3303ed",
   "scripts/g1_progress_mutation_test.py": "28f9b97ed94cdd6f25b36e47ca1aa934cdaa9be092cc876f9783b053707aa160",
@@ -54,14 +54,16 @@
   "scripts/shadow_daily_reconcile.py": "a81caf4dc534fcb12283a4625e10861d734bb587fe1037e7e18e303bff0c1a3c",
   "scripts/sim_drill_driver.py": "393195ff86e95ce4d1b27944a6fc48ab470072fb3ae6639e592d683c2d3b2b76",
   "scripts/sim_drill_mutation_test.py": "26896b313465685f3339ce8c0a75a821eb9c6a6bfe9184e243fc37827829a4e8",
+  "scripts/sim_rebalance_executor.py": "be3d31fcd34ca4805ff359e4d7170c154d62370adb302559c27bbe57d664a5de",
+  "scripts/sim_rebalance_executor_mutation_test.py": "e1fe0446a40c0d7e85cb2addf5de12b171b8d9a04d3557052308f28454c91740",
   "scripts/sim_reconcile.py": "45cf4e66a165a8f66df14ca927497e1218c2dff2472a3ffbd89ce6656ddf2316",
   "scripts/stage_rc_gate.py": "91d572b36e960a16a2201b205ec5462f6080a1794c4a7f3b2ebdb98e15971073",
   "scripts/update_exec_incremental.py": "8f57f41091b8c57012c41d989caa369b5c235d6a231421df3ad40eb1d109ad4f",
   "scripts/verify_qfq_rebuild.py": "bb3ef671e549094aec6a755fa5447ff321c9c8802f776a98c76414c39dcbbe69",
   "scripts/verify_token_rotation.py": "415b181d3ca74eb6ecdc073b2e5754551184faa201da029dd1be4de72910dac1"
  },
- "generated_at": "2026-11-15T15:06:19",
- "n_files": 57,
+ "generated_at": "2026-11-16T20:15:27",
+ "n_files": 59,
  "schema_version": "deploy_manifest_v1",
- "sha256_of_files": "09479729942125bffd2ce128a0c9a9a9623cd5c6f5091aa95c1242d1b4ef28ed"
+ "sha256_of_files": "a6b95f6cd60d8f55fc0787e5ad94544e46326a84f97e5b63cb144c4a41fd2579"
 }
