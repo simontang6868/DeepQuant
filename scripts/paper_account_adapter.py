@@ -338,12 +338,40 @@ def migrate_legacy_snapshot(*, directory: Path = FWD,
             "legacy_unchanged": True}
 
 
+def _proto_timestamp_to_iso(v: Any) -> str | None:
+    """把 google.protobuf.Timestamp 转成 ISO-8601（+08:00 北京时间）。
+
+    依据 gmtrade 的 pb_to_dict.py：`ExecRpt.created_at` 是 protobuf
+    Timestamp（seconds + nanos），SDK 对外语义是 UTC 秒 + 转北京时间。
+    这里用 DESCRIPTOR.full_name 精确识别该类型，不用 getattr 猜字段。
+    无法识别/读不出秒数 ⇒ 返回 None（交给调用方失败关闭，不静默编造时间）。
+    """
+    desc = getattr(v, "DESCRIPTOR", None)
+    if desc is None or getattr(desc, "full_name", "") != "google.protobuf.Timestamp":
+        return None
+    try:
+        secs = int(getattr(v, "seconds"))
+        nanos = int(getattr(v, "nanos", 0))
+    except Exception:  # noqa: BLE001
+        return None
+    try:
+        # UTC 基准 + 秒 + 纳秒，再转 +08:00（与 SDK is_utc_time=True 同口径）
+        utc = dt.datetime(1970, 1, 1, tzinfo=dt.timezone.utc) + dt.timedelta(
+            seconds=secs, microseconds=nanos // 1000)
+        return utc.astimezone(dt.timezone(dt.timedelta(hours=8))).isoformat()
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def _plain_value(v: Any) -> Any:
     """把 SDK 属性值降为 JSON 可序列化标量；不认识的类型转字符串留痕。"""
     if v is None or isinstance(v, (str, int, float, bool)):
         return v
     if isinstance(v, (dt.date, dt.datetime)):
         return v.isoformat()
+    ts_iso = _proto_timestamp_to_iso(v)
+    if ts_iso is not None:
+        return ts_iso
     return str(v)
 
 

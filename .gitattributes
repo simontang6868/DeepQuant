@@ -40,6 +40,21 @@ gate2_out/** -text
 docs/STAGE3_SIGMA_D*.md   -text
 docs/STAGE3_SIGMA_D*.json -text
 
+# ---- 行尾敏感源码：按字节冻结（U16-EXEC-2 专家审查发现 2，2026-11-19）----
+# 背景：deploy_manifest 对 63 个文件做 sha256 逐位比对，其中 scripts/**、deploy/**
+# 及 research/stock_pick_2026-10-25/ 下的清单覆盖文件此前 text 未指定。
+# core.autocrlf=true 时 Windows re-clone 会把这些文件 checkout 成 CRLF ⇒
+# 字节哈希变 ⇒ --verify 必红、与云端逐位一致断裂（.gitattributes 上文已记载
+# ARCHIVE_MANIFEST 误报先例）。提交字节必须 == 清单哈希字节，故一律 -text。
+scripts/** -text
+deploy/**  -text
+research/stock_pick_2026-10-25/** -text
+reports/** -text
+# 凡带 .sha256 侧车的文档正文必须字节稳定：docs/*.md 若不覆盖，
+# checkout 转 CRLF 而其侧车(*.sha256 已 -text)不变 ⇒ 侧车校验全红
+# （同 ARCHIVE_MANIFEST 误报先例）
+docs/*.md  -text
+
 # ---- 二进制：禁止任何形式的转换 ----
 *.parquet binary
 *.zip      binary

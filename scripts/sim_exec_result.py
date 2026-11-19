@@ -8,6 +8,9 @@
 - ``started_at/finished_at`` 记**真实系统时钟**（E0 事后复核证据），
   不由 EXEC_DATE 派生。
 - 哨兵四态：SUCCESS / 非 SUCCESS / 不存在 / 损坏(schema 不符) ⇒ 告警。
+- 哨兵新鲜度（专家审查发现 1，2026-11-19）：结果文件 started_at 必须落在
+  意图时点 ±10min 内；窗口外判 STALE（演练未发生，检出过期结果文件），
+  防止 12-01 timer 未触发时误读历史验证产物。
 """
 from __future__ import annotations
 
@@ -23,6 +26,28 @@ RESULT_REL = "research/stock_pick_2026-10-25/forward/sim_exec/20261201_result.js
 SCHEMA = "sim_exec_result/v1"
 OUTCOMES = ("SUCCESS", "GATE_FAIL", "CLOCK_FAIL", "NOT_AUTHORIZED", "ERROR")
 GATE_KEYS = ("E0", "E1", "E2", "E3", "E4")
+EXEC_INTENT = "2026-12-01T09:35:00+08:00"   # 与 E0 / 验收第9条同口径
+FRESHNESS_WINDOW_MIN = 10                    # started_at 必须落在此窗口内
+
+
+def _fresh(started_at: Any) -> tuple[bool, str]:
+    """started_at 落在意图时点 ±FRESHNESS_WINDOW_MIN 内 ⇒ (True, "")。
+
+    不可解析 / 缺字段 / 窗口外 ⇒ (False, 原因)，按 STALE 告警，不静默放行。
+    """
+    if not isinstance(started_at, str) or not started_at:
+        return False, "STARTED_AT_MISSING"
+    try:
+        want = dt.datetime.fromisoformat(EXEC_INTENT)
+        got = dt.datetime.fromisoformat(started_at.replace("Z", "+00:00"))
+        if got.tzinfo is None:
+            got = got.replace(tzinfo=want.tzinfo)
+        dev = abs((got - want).total_seconds()) / 60.0
+    except Exception:  # noqa: BLE001
+        return False, "STARTED_AT_UNPARSEABLE"
+    if dev > FRESHNESS_WINDOW_MIN:
+        return False, f"STARTED_AT_STALE:{dev:.1f}min"
+    return True, ""
 
 
 def now_real_iso() -> str:
@@ -87,19 +112,27 @@ def read_sentinel(path: Path | None = None) -> dict[str, Any]:
     outcome = rec.get("outcome")
     if outcome not in OUTCOMES:
         return {"state": "CORRUPT", "outcome": None, "error": "OUTCOME_INVALID"}
+    fresh, why = _fresh(rec.get("started_at"))
+    if not fresh:
+        # 过期结果文件：12-01 timer 未触发时被误读的验证产物 ⇒ 按“演练未发生”
+        return {"state": "STALE", "outcome": None,
+                "error": "演练未发生（检出过期结果文件）:" + why}
     return {"state": "SUCCESS" if outcome == "SUCCESS" else "FAILED",
             "outcome": outcome, "error": None}
 
 
 def self_check() -> dict[str, Any]:
-    """离线自检：四态判读 + 原子写sha不变（临时目录），不碰正式路径。"""
+    """离线自检：五态判读 + 原子写sha不变（临时目录），不碰正式路径。"""
     checks = []
+    fresh_ts = EXEC_INTENT  # 窗口内的 started_at，保证 success/failed 基线成立
+    stale_ts = "2026-11-19T23:35:13+08:00"  # 真实历史验证产物时点（H9 现场）
     with tempfile.TemporaryDirectory() as d:
         p = Path(d) / "result.json"
         s0 = read_sentinel(p)
         checks.append(("missing", s0["state"] == "MISSING"))
         rec = build_result(outcome="SUCCESS", rc=0,
-                           gates={k: "PASS" for k in GATE_KEYS}, n_real_orders=3)
+                           gates={k: "PASS" for k in GATE_KEYS}, n_real_orders=3,
+                           started_at=fresh_ts, finished_at=fresh_ts)
         write_result(rec, p)
         s1 = read_sentinel(p)
         checks.append(("success", s1["state"] == "SUCCESS"))
@@ -107,6 +140,11 @@ def self_check() -> dict[str, Any]:
         write_result(rec, p)
         s2 = read_sentinel(p)
         checks.append(("failed", s2["state"] == "FAILED"))
+        # 新鲜度：过期结果文件（真实历史时点）必须判 STALE，不误报 SUCCESS/FAILED
+        rec["outcome"] = "SUCCESS"; rec["rc"] = 0; rec["started_at"] = stale_ts
+        write_result(rec, p)
+        s_stale = read_sentinel(p)
+        checks.append(("stale_detected", s_stale["state"] == "STALE"))
         p.write_text("{broken", encoding="utf-8", newline="\n")
         s3 = read_sentinel(p)
         checks.append(("corrupt", s3["state"] == "CORRUPT"))
@@ -122,11 +160,11 @@ def self_check() -> dict[str, Any]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    """CLI：--sentinel 四态判读（09:45 哨兵）；--self-check 离线自检。"""
+    """CLI：--sentinel 五态判读（09:45 哨兵）；--self-check 离线自检。"""
     import argparse
     ap = argparse.ArgumentParser(description="sim_exec_result/v1 哨兵与自检")
     g = ap.add_mutually_exclusive_group(required=True)
-    g.add_argument("--sentinel", action="store_true", help="四态判读并打印结果")
+    g.add_argument("--sentinel", action="store_true", help="五态判读并打印结果")
     g.add_argument("--self-check", action="store_true")
     ap.add_argument("--file", default=None)
     args = ap.parse_args(argv)
@@ -136,7 +174,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if s["decision"] == "PASS" else 1
     s = read_sentinel(Path(args.file) if args.file else None)
     print(json.dumps(s, ensure_ascii=False))
-    # SUCCESS ⇒ 0；其余三态均告警（非 0），由上层 systemd/alert 链发信
+    # SUCCESS ⇒ 0；其余四态（FAILED/STALE/MISSING/CORRUPT）均告警，由 alert 链发信
     return 0 if s["state"] == "SUCCESS" else 2
 
 

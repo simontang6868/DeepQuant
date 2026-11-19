@@ -1,5 +1,5 @@
 [Unit]
-Description=DeepQuant U-16 sentinel (12-01 09:45, four states)
+Description=DeepQuant U-16 sentinel (12-01 09:45, five states)
 
 [Service]
 Type=oneshot
@@ -8,7 +8,7 @@ Group=deepquant
 WorkingDirectory=__REPO__
 EnvironmentFile=__REPO__/env
 Environment=HOME=/home/deepquant
-# rc=0=SUCCESS；rc=2=非SUCCESS/未发生/损坏 ⇒ 由 alert 链发信
+# rc=0=SUCCESS；rc=2=FAILED/STALE(过期结果文件)/MISSING/CORRUPT ⇒ alert 链发信
 ExecStart=__REPO__/.venv/bin/python __REPO__/scripts/sim_exec_result.py --sentinel
 TimeoutStartSec=120
 StandardOutput=journal
