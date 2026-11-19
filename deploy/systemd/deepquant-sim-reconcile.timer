@@ -1,0 +1,10 @@
+[Unit]
+Description=DeepQuant U-16 reconcile timer (12-01 18:10 one-shot)
+
+[Timer]
+OnCalendar=2026-12-01 18:10:00
+Persistent=false
+Unit=deepquant-sim-reconcile.service
+
+[Install]
+WantedBy=timers.target

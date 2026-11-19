@@ -47,6 +47,7 @@ unfinished_orders/strerror/version），因此：
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import hashlib
 import json
 import math
@@ -66,6 +67,13 @@ import paper_authorization_guard as guard  # noqa: E402
 #: 冻结预登记（`U16-EXEC-1`，**先于本文件第一行代码冻结**）。
 PREREG_REL = "docs/U16_EXEC_PREREG_2026-11-16.md"
 PREREG_SHA256 = "53ace8c5064f615806a07ae012bd3c2d344103e4b93b7a74e9e047eb8b0b703b"
+#: U16-EXEC-2 增补预登记（2026-11-19 冻结，先于本轮任何代码改动）。
+#: 与 U16-EXEC-1 并列校验；改其一即 HALT。
+PREREG_V2_REL = "docs/U16_EXEC_PREREG_V2_2026-11-19.md"
+PREREG_V2_SHA256 = "ec322be5fcdcdb81c889d93ec301e3c07294a29f131b0d521f7ec6614934140b"
+E0_TOLERANCE_MIN = 10
+NTP_REQUIRED = True
+EXEC_REPORT_WINDOW_MIN = 10
 #: U-16 授权存证（版本 A）+ 署名补记（引用时须同时给）。
 AUTH_STATEMENT_REL = "research/stock_pick_2026-10-25/forward/authorization_statements/U16_statement_2026-11-16.md"
 
@@ -119,7 +127,51 @@ def verify_prereg() -> str:
     if canonical != ("20261201", "20261130", "09:35", 2, 10, 100, "0.25",
                      "SIM_DRILL", "sim_rebalance_order"):
         raise Halt("PREREG_PARAMS_MISMATCH")
+    # U16-EXEC-2 增补校验（并列，不替代 U16-EXEC-1）
+    p2 = ROOT / PREREG_V2_REL
+    if not p2.exists():
+        raise Halt("PREREG_V2_MISSING")
+    if hashlib.sha256(p2.read_bytes()).hexdigest() != PREREG_V2_SHA256:
+        raise Halt("PREREG_V2_MISMATCH")
+    if (E0_TOLERANCE_MIN, NTP_REQUIRED, EXEC_REPORT_WINDOW_MIN) != (10, True, 10):
+        raise Halt("PREREG_V2_PARAMS_MISMATCH")
     return h
+
+
+def intended_now() -> str:
+    """意图时点（冻结常量派生，供门控/对账比对；不冒充真实时钟）。"""
+    return f"{EXEC_DATE[:4]}-{EXEC_DATE[4:6]}-{EXEC_DATE[6:]}T{FIRST_ORDER_TIME}:00+08:00"
+
+
+def gate_clock(*, real_now: dt.datetime | None = None,
+               ntp_check=None) -> dict:
+    """E0：真实系统时钟与意图时点偏差 ≤10min 且 NTP 同步。
+
+    ``real_now`` / ``ntp_check`` 可注入供离线测试；默认读本机时钟与
+    ``timedatectl show -p NTPSynchronized``。失败关闭，不用意图 now 冒充。
+    """
+    import subprocess as _sp
+    tz = dt.timezone(dt.timedelta(hours=8))
+    if real_now is None:
+        real_now = dt.datetime.now(tz)
+    wanted = dt.datetime.fromisoformat(intended_now())
+    delta_min = abs((real_now - wanted).total_seconds()) / 60.0
+    if ntp_check is None:
+        def ntp_check():
+            cp = _sp.run(["timedatectl", "show", "-p", "NTPSynchronized"],
+                         capture_output=True, text=True, timeout=15)
+            line = (cp.stdout or "").strip().lower()
+            return cp.returncode == 0 and line.endswith("=yes")
+    try:
+        ntp_ok = bool(ntp_check())
+    except Exception:  # noqa: BLE001
+        ntp_ok = False
+    ok = delta_min <= E0_TOLERANCE_MIN and (ntp_ok or not NTP_REQUIRED)
+    reason = None if ok else (
+        "CLOCK_SKEW" if delta_min > E0_TOLERANCE_MIN else "NTP_NOT_SYNC")
+    return {"gate": "E0", "ok": ok, "reason": reason,
+            "delta_min": round(delta_min, 4), "ntp_ok": ntp_ok,
+            "real_now": real_now.isoformat(), "intended": intended_now()}
 
 
 # ---------------------------------------------------------------- 四道门控
@@ -196,6 +248,37 @@ def _default_runner(cmd: list[str]) -> tuple[int, str]:
     return cp.returncode, (cp.stdout or "") + (cp.stderr or "")
 
 
+CORROB_REL = "research/stock_pick_2026-10-25/forward/corroboration/20261130.json"
+
+
+def gate_corroboration(*, file_path=None, root: Path | None = None,
+                       expected_sha: str = "", expected_commit: str = "",
+                       required: bool = True) -> dict:
+    """E4 旁证三条件：内嵌哈希 / commit / 双向集合全等（U16-EXEC-2）。
+
+    ``required=False`` 仅用于离线 self-check（无旁证文件时不误触发）。
+    云端执行时 required=True，文件缺失/校验失败一律 FAIL。
+    """
+    p = Path(file_path) if file_path else ROOT / CORROB_REL
+    if not p.is_file():
+        return {"gate": "E4-CORROB", "ok": not required,
+                "reason": None if not required else "CORROB_MISSING", "path": str(p)}
+    try:
+        import sim_corroboration as cor
+        rec = json.loads(p.read_text(encoding="utf-8"))
+        v = cor.verify_corroboration(
+            rec, root=root, expected_sha=expected_sha,
+            expected_commit=expected_commit)
+        return {"gate": "E4-CORROB", "ok": bool(v["ok"]),
+                "reason": None if v["ok"] else "CORROB_" + ",".join(
+                    k for k, ok in v["checks"].items() if not ok),
+                "checks": v["checks"], "diffs": v.get("diffs", [])[:10],
+                "sha256": cor.corrob_sha(rec)}
+    except Exception as exc:  # noqa: BLE001
+        return {"gate": "E4-CORROB", "ok": False,
+                "reason": f"CORROB_ERROR:{type(exc).__name__}"}
+
+
 def gate_isolation_manifest(runner=None) -> dict:
     """E4：通道隔离 FAIL 0 + 部署清单一致（子进程，可注入 runner）。"""
     run = runner or _default_runner
@@ -213,11 +296,15 @@ def gate_isolation_manifest(runner=None) -> dict:
 
 
 def run_gates(*, now: str, notional: float, cumulative: float, available: float,
-              ledger_path=None, auth_path=None, runner=None) -> list[dict]:
-    return [gate_ledger(ledger_path),
+              ledger_path=None, auth_path=None, runner=None, clock=None,
+              corroboration=None) -> list[dict]:
+    return [gate_clock(**(clock or {})),
+            gate_ledger(ledger_path),
             gate_dryrun(),
             gate_auth(auth_path, now=now, notional=notional,
                       cumulative=cumulative, available=available),
+            gate_corroboration(**(corroboration if corroboration is not None
+                                  else {})),
             gate_isolation_manifest(runner)]
 
 
@@ -498,13 +585,32 @@ def self_check() -> dict:
         assert len(fp.read_text(encoding="utf-8").splitlines()) == 1
         checks.append("append_dedup")
 
-        # 10) 四道门控：缺台账/缺授权 ⇒ 整体不过
+        # 10) 六道门控：时钟偏差 / 缺台账 / 缺授权 / 旁证缺失 ⇒ 整体不过
+        # E0 注入确定失败的时钟，保证 self-check 纯离线且不读真实时钟。
+        bad_clock = {"real_now": dt.datetime.fromisoformat(
+                         intended_now().replace("09:35", "10:35")),
+                     "ntp_check": lambda: True}
         gates = run_gates(now="2026-12-01T09:35:00+08:00", notional=5000,
                           cumulative=0, available=100000,
                           ledger_path=d / "none.json", auth_path=d / "none.json",
-                          runner=lambda cmd: (7, "FAIL"))
-        assert [g["ok"] for g in gates] == [False, False, False, False]
+                          runner=lambda cmd: (7, "FAIL"), clock=bad_clock,
+                          corroboration={"file_path": d / "none.json"})
+        assert [g["ok"] for g in gates] == [False] * 6
         checks.append("gates_all_deny")
+
+        # 11) E0 时钟：偏差大 / NTP 不同步 ⇒ 失败；准点且同步 ⇒ 通过
+        import sim_exec_result as _ser
+        t0 = dt.datetime.fromisoformat(intended_now())
+        assert gate_clock(real_now=t0, ntp_check=lambda: True)["ok"] is True
+        assert gate_clock(real_now=t0.replace(hour=10, minute=35),
+                          ntp_check=lambda: True)["ok"] is False
+        assert gate_clock(real_now=t0, ntp_check=lambda: False)["ok"] is False
+        checks.append("gate_e0")
+
+        # 12) 失败日志四态 + 原子写（临时目录，不碰正式路径）
+        s = _ser.self_check()
+        assert s["decision"] == "PASS"
+        checks.append("exec_result_4states")
 
     return {"decision": "PASS", "statistical_verdict": "ENGINEERING_SELF_CHECK_ONLY",
             "maturity_level": "EXECUTION_READY_GATED", "checks": checks,
@@ -538,8 +644,19 @@ def _read_account() -> dict:
                 "available": 0.0, "positions": {}}
 
 
+def _log_exec_result(gates: list[dict], outcome: str, rc: int) -> None:
+    """U16-EXEC-2：所有 execute 退出路径原子落盘（失败静默也不允许）。"""
+    import sim_exec_result as ser
+    try:
+        gmap = {g["gate"]: ("PASS" if g["ok"] else "FAIL") for g in gates}
+        rec = ser.build_result(outcome=outcome, rc=rc, gates=gmap)
+        ser.write_result(rec)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[exec] CRITICAL:RESULT_WRITE_FAILED:{type(exc).__name__}: {exc}")
+
+
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="U-16 仿真调仓执行器（四道生效条件门控）")
+    ap = argparse.ArgumentParser(description="U-16 仿真调仓执行器（五道生效条件门控）")
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--self-check", action="store_true")
     g.add_argument("--plan", action="store_true")
@@ -599,8 +716,9 @@ def main(argv: list[str] | None = None) -> int:
 
     blocked = [x for x in gates if not x["ok"]]
     if plan_err or blocked:
-        reason = ("PLAN_FAILED:" + plan_err) if plan_err else "四道生效条件未全部满足"
+        reason = ("PLAN_FAILED:" + plan_err) if plan_err else "五道生效条件未全部满足"
         if args.execute:
+            _log_exec_result(gates, "GATE_FAIL", 4)
             print(json.dumps({"decision": "NOT_AUTHORIZED", "reason": reason,
                               "failed": blocked, "plan_error": plan_err,
                               "n_real_orders": 0,
@@ -628,6 +746,7 @@ def main(argv: list[str] | None = None) -> int:
                                            price=it.price, cid=it.client_order_id))
     path = ROOT / f"research/stock_pick_2026-10-25/forward/sim_orders/{EXEC_DATE}.jsonl"
     n = append_orders(path, out)
+    _log_exec_result(gates, "SUCCESS", 0)
     print(json.dumps({"decision": "EXECUTED", "n_orders": len(out), "n_appended": n,
                       "path": str(path.relative_to(ROOT)),
                       "limitation": IMPLEMENTATION_LIMITATION}, ensure_ascii=False))
@@ -642,5 +761,56 @@ def _env(name: str) -> str:
     return v
 
 
+def _outcome_from(rc: int, gates: list[dict] | None) -> str:
+    if rc == 0:
+        return "SUCCESS"
+    if gates:
+        if any(g["gate"] == "E0" and not g["ok"] for g in gates):
+            return "CLOCK_FAIL"
+        return "GATE_FAIL"
+    return "ERROR"
+
+
+def main_logged(argv: list[str] | None = None) -> int:
+    """``--execute`` 专用：保证所有退出路径原子落盘 sim_exec_result/v1。"""
+    import sim_exec_result as ser
+    args = list(argv or [])
+    started = ser.now_real_iso()
+    gates_seen: list[dict] = []
+    rc = 4
+    outcome = "ERROR"
+    orig_run = globals().get("run_gates")
+
+    def wrapped(*a, **kw):
+        nonlocal gates_seen
+        gates_seen = orig_run(*a, **kw)
+        return gates_seen
+
+    globals()["run_gates"] = wrapped
+    try:
+        rc = main(args)
+        outcome = _outcome_from(rc, gates_seen)
+        return rc
+    except Halt as e:
+        rc, outcome = 3, ("CLOCK_FAIL" if "CLOCK" in str(e) else "ERROR")
+        print(f"[exec] HALT:{e}")
+        return rc
+    except Exception as exc:  # noqa: BLE001
+        rc, outcome = 2, "ERROR"
+        print(f"[exec] HALT:UNEXPECTED:{type(exc).__name__}: {exc}")
+        return rc
+    finally:
+        globals()["run_gates"] = orig_run
+        try:
+            gmap = {g["gate"]: ("PASS" if g["ok"] else "FAIL") for g in gates_seen}
+            rec = ser.build_result(outcome=outcome, rc=rc, gates=gmap,
+                                   started_at=started, finished_at=ser.now_real_iso())
+            ser.write_result(rec)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[exec] CRITICAL:RESULT_WRITE_FAILED:{type(exc).__name__}: {exc}")
+
+
 if __name__ == "__main__":
+    if "--execute" in sys.argv:
+        sys.exit(main_logged(sys.argv[1:]))
     sys.exit(main())

@@ -1,0 +1,10 @@
+[Unit]
+Description=DeepQuant U-16 sim exec timer (12-01 09:35 one-shot)
+
+[Timer]
+OnCalendar=2026-12-01 09:35:00
+Persistent=false
+Unit=deepquant-sim-exec.service
+
+[Install]
+WantedBy=timers.target

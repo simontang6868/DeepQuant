@@ -1,0 +1,10 @@
+[Unit]
+Description=DeepQuant U-16 prep timer (11-27 17:20 one-shot)
+
+[Timer]
+OnCalendar=2026-11-27 17:20:00
+Persistent=false
+Unit=deepquant-sim-prep.service
+
+[Install]
+WantedBy=timers.target

@@ -57,8 +57,12 @@ DEPLOY_FILES = [
     "scripts/sim_reconcile.py",               # EARLY-IMPL-1：成交回报对账器（未接日更链）
     "scripts/sim_drill_driver.py",            # EARLY-IMPL-1：演练驱动，仅 --self-check
     "scripts/sim_drill_mutation_test.py",     # EARLY-IMPL-1：真变异测试，云端自检可复跑
-    "scripts/sim_rebalance_executor.py",      # U16-EXEC-1：调仓执行器（四道生效条件门控）
+    "scripts/sim_rebalance_executor.py",      # U16-EXEC-1/2：调仓执行器（六道生效条件门控）
     "scripts/sim_rebalance_executor_mutation_test.py",  # U16-EXEC-1：八条真变异
+    "scripts/sim_exec_result.py",             # U16-EXEC-2：失败日志 schema + 哨兵四态
+    "scripts/sim_corroboration.py",           # U16-EXEC-2：旁证生成与三条件校验
+    "scripts/sim_corroboration_mutation_test.py",  # U16-EXEC-2：M9 旁证真变异
+    "scripts/sim_settlement_gate.py",         # U16-EXEC-2：T3 结算完成性判别
     "scripts/deploy_manifest.py",
     "scripts/lotapp_decision_brief.py",
     "scripts/verify_token_rotation.py",

@@ -169,7 +169,43 @@ def _result(decision: str, diffs: list[dict[str, Any]], *,
             "generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")}
 
 
-def reconcile(truth: Any, local: Any, *, mode: str = "SELF_CHECK_ONLY") -> dict[str, Any]:
+EXEC_TIME_WINDOW_MIN = 10  # U16-EXEC-2 验收第 9 条：created_at ∈ 09:35±10min
+
+
+def check_exec_timestamps(rows: Any, *, intended: str = "2026-12-01T09:35:00+08:00",
+                          window_min: int = EXEC_TIME_WINDOW_MIN) -> tuple[bool, list[str]]:
+    """验收第 9 条：execution_reports.created_at 必须落在意图时点±window_min。
+
+    `created_at` 经 DESCRIPTOR 实测存在于 ExecRpt；SDK 是否服务端时点须上线
+    后核对（H9）。缺字段/不可解析/超窗 ⇒ 失败关闭，不假设"未知即通过"。
+    """
+    if not isinstance(rows, list) or not rows:
+        return False, ["created_at:NO_INPUTS"]
+    want = dt.datetime.fromisoformat(intended)
+    problems: list[str] = []
+    for i, r in enumerate(rows):
+        if not isinstance(r, dict) or "created_at" not in r:
+            problems.append(f"[{i}]created_at:MISSING")
+            continue
+        try:
+            val = r["created_at"]
+            if isinstance(val, (int, float)):
+                t = dt.datetime.fromtimestamp(val, want.tzinfo)
+            else:
+                t = dt.datetime.fromisoformat(str(val).replace("Z", "+00:00"))
+            if t.tzinfo is None:
+                t = t.replace(tzinfo=want.tzinfo)
+        except Exception:  # noqa: BLE001
+            problems.append(f"[{i}]created_at:UNPARSEABLE")
+            continue
+        dev = abs((t - want).total_seconds()) / 60.0
+        if dev > window_min:
+            problems.append(f"[{i}]created_at:SKEW:{dev:.2f}min")
+    return (not problems), problems
+
+
+def reconcile(truth: Any, local: Any, *, mode: str = "SELF_CHECK_ONLY",
+              exec_window_min: int = 0) -> dict[str, Any]:
     """四类对象全量比对。**纯函数**：不读文件、不联网、不改状态。
 
     判定顺序冻结：输入可用性 → 委托集合双向差集 → 逐字段 → 成交累计/重复回报
@@ -195,6 +231,14 @@ def reconcile(truth: Any, local: Any, *, mode: str = "SELF_CHECK_ONLY") -> dict[
         return _result(NO_INPUTS, [_d("INPUT", "orders",
                                       "external and local both non-empty lists",
                                       "at least one is empty or not a list")], mode=mode)
+
+    ts_ok, ts_problems = (True, []) if exec_window_min <= 0 else \
+        check_exec_timestamps(truth.get("execution_reports"),
+                              window_min=exec_window_min)
+    if not ts_ok:
+        return _result("FAIL", [_d("INPUT", "created_at_window",
+                                   f"±{exec_window_min}min", ";".join(ts_problems))],
+                       mode=mode)
 
     ext, why = normalize_orders(truth["execution_reports"], "external")
     if why:
@@ -313,6 +357,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", help="结果 JSON 输出路径")
     ap.add_argument("--differences-out", help="差异逐条留痕 JSONL（不写正式 corrections.jsonl）")
     ap.add_argument("--mode", default="SELF_CHECK_ONLY")
+    ap.add_argument("--exec-window-min", type=int, default=0,
+                    help="U16-EXEC-2 验收第9条：>0 时校验 created_at ∈ 09:35±N 分钟")
     ap.add_argument("--self-check", action="store_true", help="用离线基线跑一次，零文件写入")
     args = ap.parse_args(argv)
 
@@ -325,7 +371,8 @@ def main(argv: list[str] | None = None) -> int:
                 return RC["ERROR"]
             truth = json.loads(Path(args.truth).read_text(encoding="utf-8"))
             local = json.loads(Path(args.local).read_text(encoding="utf-8"))
-        res = reconcile(truth, local, mode=args.mode)
+        res = reconcile(truth, local, mode=args.mode,
+                        exec_window_min=args.exec_window_min)
     except Exception as exc:
         print(f"[sim-reconcile] ✗ 未预期异常 {type(exc).__name__}；失败关闭",
               file=sys.stderr)

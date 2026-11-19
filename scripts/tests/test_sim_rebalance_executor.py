@@ -192,12 +192,17 @@ def test_gate_isolation_manifest_uses_runner():
 
 
 def test_run_gates_all_deny_when_inputs_missing(tmp_path):
+    # E0 注入确定失败的时钟；旁证注入缺失；六门全 deny 是冻结判据，不放宽。
+    bad_clock = {"real_now": __import__("datetime").datetime.fromisoformat(
+                     ex.intended_now().replace("09:35", "10:35")),
+                 "ntp_check": lambda: True}
     gates = ex.run_gates(now="2026-12-01T09:35:00+08:00", notional=5000,
                          cumulative=0, available=100000,
                          ledger_path=tmp_path / "none.json",
                          auth_path=tmp_path / "none.json",
-                         runner=lambda c: (7, "FAIL"))
-    assert [g["ok"] for g in gates] == [False, False, False, False]
+                         runner=lambda c: (7, "FAIL"), clock=bad_clock,
+                         corroboration={"file_path": tmp_path / "none.json"})
+    assert [g["ok"] for g in gates] == [False] * 6
 
 
 # ------------------------------------------------------------ CLI 闸门

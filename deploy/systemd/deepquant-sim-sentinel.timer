@@ -1,0 +1,10 @@
+[Unit]
+Description=DeepQuant U-16 sentinel timer (12-01 09:45 one-shot)
+
+[Timer]
+OnCalendar=2026-12-01 09:45:00
+Persistent=false
+Unit=deepquant-sim-sentinel.service
+
+[Install]
+WantedBy=timers.target

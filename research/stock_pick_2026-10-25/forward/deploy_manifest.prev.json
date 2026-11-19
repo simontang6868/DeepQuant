@@ -1,5 +1,5 @@
 {
- "commit": "b5f56083095e607acd6c3d2b293a2f47c62a6edc",
+ "commit": "822fb976f898450ddafb931d4fb9a56524122d58",
  "commit_note": "commit 来自生成方本地 HEAD；/opt/quant 无 .git，云端一致性以逐文件 sha256 为准",
  "files": {
   "backend/src/deepquant/broker/__init__.py": "d603695a7f201687ce80a86b341d2f93e70b66998d66d72814d65ab1e528f639",
@@ -62,7 +62,7 @@
   "scripts/verify_qfq_rebuild.py": "bb3ef671e549094aec6a755fa5447ff321c9c8802f776a98c76414c39dcbbe69",
   "scripts/verify_token_rotation.py": "415b181d3ca74eb6ecdc073b2e5754551184faa201da029dd1be4de72910dac1"
  },
- "generated_at": "2026-11-16T19:02:19",
+ "generated_at": "2026-11-16T20:15:27",
  "n_files": 59,
  "schema_version": "deploy_manifest_v1",
  "sha256_of_files": "a6b95f6cd60d8f55fc0787e5ad94544e46326a84f97e5b63cb144c4a41fd2579"

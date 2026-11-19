@@ -1,0 +1,18 @@
+[Unit]
+Description=DeepQuant U-16 sim rebalance execute (one-shot, 12-01 09:35)
+# 不设 Requires=prep：那是 11-27 的跨天 one-shot，systemd Requires 不适用。
+# prep 产物 completeness 由 E2 门 + E4 旁证门在运行时校验（失败关闭）。
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+# gmtrade 只在 .venv-gm(py3.10)；main_logged 保证失败日志原子落盘
+ExecStart=__REPO__/.venv-gm/bin/python __REPO__/scripts/sim_rebalance_executor.py --execute
+TimeoutStartSec=1800
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-sim-exec

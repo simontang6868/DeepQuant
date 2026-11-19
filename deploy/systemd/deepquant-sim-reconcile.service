@@ -1,0 +1,16 @@
+[Unit]
+Description=DeepQuant U-16 post-settlement reconcile (18:10+, one-shot)
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+# 先过结算门（退避重试至多 30min），再补快照 + 对账；--exec-window-min 10 = 验收第9条
+ExecStart=/bin/sh -c '__REPO__/.venv/bin/python __REPO__/scripts/sim_settlement_gate.py && __REPO__/.venv-gm/bin/python __REPO__/scripts/paper_account_adapter.py --no-write && __REPO__/.venv/bin/python __REPO__/scripts/sim_reconcile.py --exec-window-min 10'
+TimeoutStartSec=1800
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-sim-reconcile

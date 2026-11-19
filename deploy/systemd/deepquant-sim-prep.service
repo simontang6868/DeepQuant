@@ -1,0 +1,17 @@
+[Unit]
+Description=DeepQuant U-16 DRYRUN + preflight prep (one-shot)
+Documentation=reports/SIM_FULL_AUTO_PROPOSAL_V3_FINAL_2026-11-19.md
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+# 主 venv（有 pandas）；一次性，不常驻。preflight 须等 ledger 完整（由脚本/链保证）。
+ExecStart=/bin/sh -c '__REPO__/.venv/bin/python __REPO__/scripts/dryrun_decision_day.py && __REPO__/.venv/bin/python __REPO__/scripts/preflight_decision_day.py --cloud'
+TimeoutStartSec=900
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-sim-prep
