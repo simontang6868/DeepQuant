@@ -60,8 +60,10 @@ DEPLOY_FILES = [
     "scripts/sim_rebalance_executor.py",      # U16-EXEC-1/2：调仓执行器（六道生效条件门控）
     "scripts/sim_rebalance_executor_mutation_test.py",  # U16-EXEC-1：八条真变异
     "scripts/sim_exec_result.py",             # U16-EXEC-2：失败日志 schema + 哨兵五态(含 STALE 新鲜度)
-    "scripts/sim_corroboration.py",           # U16-EXEC-2：旁证生成与三条件校验
+    "scripts/sim_corroboration.py",           # U16-EXEC-2/3：旁证生成 + 出证 CLI（断链 A）
     "scripts/sim_corroboration_mutation_test.py",  # U16-EXEC-2：M9 旁证真变异
+    "scripts/exec_result_window_mutation_test.py",  # U16-EXEC-3：方案甲双向变异
+    "scripts/probe_executor.py",              # U16-EXEC-3：PROBE 真实执行器（PA-GM-PROBE-2）
     "scripts/sim_settlement_gate.py",         # U16-EXEC-2：T3 结算完成性判别
     "scripts/deploy_manifest.py",
     "scripts/lotapp_decision_brief.py",

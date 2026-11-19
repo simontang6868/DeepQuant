@@ -17,7 +17,9 @@ from __future__ import annotations
 import datetime as dt
 import hashlib
 import json
+import os
 import subprocess
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -179,3 +181,92 @@ def self_check(tmp: Path | None = None) -> dict[str, Any]:
     return {"decision": "PASS" if all(v for _, v in checks) else "FAIL",
             "checks": [k for k, v in checks],
             "statistical_verdict": "ENGINEERING_SELF_CHECK_ONLY"}
+
+
+# ------------------------------------------------ U16-EXEC-3：出证 CLI（断链 A）
+def corrob_path(root: Path | None = None) -> Path:
+    return (Path(root) if root else ROOT) / CORROB_REL
+
+
+def sidecar_path(path: Path) -> Path:
+    return Path(str(path) + ".sha256")
+
+
+def write_corroboration(rec: dict[str, Any], path: Path | None = None) -> tuple[Path, str]:
+    """原子写旁证（tmp+replace, LF）+ 侧车 sha256；返回 (路径, sha)。"""
+    p = Path(path) if path else corrob_path()
+    p.parent.mkdir(parents=True, exist_ok=True)
+    body = json.dumps(rec, ensure_ascii=False, sort_keys=True, indent=1) + "\n"
+    fd, tmp = tempfile.mkstemp(prefix=p.name + ".", suffix=".tmp", dir=p.parent)
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as f:
+            f.write(body)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, p)
+    except Exception:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+    sha = hashlib.sha256(p.read_bytes()).hexdigest()
+    sidecar_path(p).write_text(sha + "  " + p.name + "\n",
+                               encoding="utf-8", newline="\n")
+    return p, sha
+
+
+def verify_corroboration_file(path: Path | None = None, *,
+                              expected_commit: str | None = None,
+                              root: Path | None = None) -> dict[str, Any]:
+    """--verify：读旁证文件，做内部一致性 + 部署树双向集合全等。"""
+    p = Path(path) if path else corrob_path()
+    if not p.is_file():
+        return {"ok": False, "reason": "CORROB_MISSING"}
+    try:
+        rec = json.loads(p.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        return {"ok": False, "reason": f"CORROB_CORRUPT:{type(exc).__name__}"}
+    sc = sidecar_path(p)
+    if sc.is_file():
+        want = sc.read_text(encoding="utf-8").split(maxsplit=1)[0]
+        if hashlib.sha256(p.read_bytes()).hexdigest() != want:
+            return {"ok": False, "reason": "SIDECAR_MISMATCH"}
+    return verify_corroboration(rec, root=root, expected_commit=expected_commit)
+
+
+def main(argv: list[str] | None = None) -> int:
+    """CLI：--build（本机出证）/ --verify（复核）/ --self-check。"""
+    import argparse
+    ap = argparse.ArgumentParser(description="U16-EXEC-3 旁证出证 CLI")
+    g = ap.add_mutually_exclusive_group(required=True)
+    g.add_argument("--build", action="store_true", help="从 manifest 生成本机旁证并落盘+侧车")
+    g.add_argument("--verify", action="store_true", help="复核旁证文件内部一致性+部署树全等")
+    g.add_argument("--self-check", action="store_true")
+    ap.add_argument("--out", default=None, help="旁证输出路径（默认 CORROB_REL）")
+    ap.add_argument("--remote", action="store_true", help="--verify 时对云端 /opt/quant 复核")
+    args = ap.parse_args(argv)
+
+    if args.self_check:
+        r = self_check()
+        print(json.dumps(r, ensure_ascii=False))
+        return 0 if r["decision"] == "PASS" else 1
+
+    if args.build:
+        rec = build_corroboration()
+        p, sha = write_corroboration(rec, Path(args.out) if args.out else None)
+        print(json.dumps({"decision": "BUILT", "path": str(p),
+                          "sha256": sha, "n_files": rec["n_files"],
+                          "commit": rec["commit"]}, ensure_ascii=False))
+        return 0
+
+    # --verify
+    root = Path("/opt/quant") if args.remote else None
+    r = verify_corroboration_file(Path(args.out) if args.out else None, root=root)
+    print(json.dumps(r, ensure_ascii=False))
+    return 0 if r["ok"] else 1
+
+
+if __name__ == "__main__":
+    import sys as _sys
+    _sys.exit(main())

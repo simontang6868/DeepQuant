@@ -44,6 +44,10 @@ HB = REPO / "research" / "stock_pick_2026-10-25" / "forward" / "heartbeat.json"
 #: R8 §2：更正台账旁路哈希链（链头随每日状态邮件外发，形成第二条时点锚）。
 CHAIN = (REPO / "research" / "stock_pick_2026-10-25" / "forward"
          / "corrections.hashchain.jsonl")
+#: U16-EXEC-3 断链 A：旁证 sha256 随 11-30 告警邮件外发（tamper-evidence 锚）。
+CORROB = (REPO / "research" / "stock_pick_2026-10-25" / "forward"
+          / "corroboration" / "20261130.json")
+CORROB_SIDECAR = pathlib.Path(str(CORROB) + ".sha256")
 sys.path.insert(0, str(SP5))
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
@@ -99,6 +103,35 @@ def _corrections_chain_head() -> str:
 def _with_chain(body: str) -> str:
     """R8 §2：把链头追加到状态邮件正文（正常／告警都带）。可单测，不依赖 SMTP。"""
     return body + "\n" + _corrections_chain_head()
+
+
+def _with_corroboration(body: str) -> str:
+    """U16-EXEC-3：把旁证 sha256 + commit 追加到状态邮件（tamper-evidence 锚）。
+
+    旁证文件存在才附带（预期 11-30 出证后）；不存在是正常的（其他交易日），
+    不标注、不改 rc。旁证存在但侧车缺失/不符 ⇒ 显式标注 ANCHOR_UNAVAILABLE，
+    但不改心跳检查结论（与 corrections 链头同口径：邮件外发不干扰告警语义）。
+    """
+    if not CORROB.is_file():
+        return body
+    try:
+        if not CORROB_SIDECAR.is_file():
+            raise FileNotFoundError("SIDECAR_MISSING")
+        want = CORROB_SIDECAR.read_text(encoding="utf-8").split(maxsplit=1)[0]
+        got = __import__("hashlib").sha256(CORROB.read_bytes()).hexdigest()
+        if want != got:
+            raise ValueError("SIDECAR_MISMATCH")
+        rec = json.loads(CORROB.read_text(encoding="utf-8"))
+        return (body + "\n"
+                f"旁证 sha256（U16-EXEC-3，11-30 出证）：{want}\n"
+                f"旁证 commit：{rec.get('commit', '')}\n"
+                f"旁证文件数：{rec.get('n_files', '')}\n"
+                "该 sha 由 11-30 告警邮件外发，12-02 归档邮件对验（事后可检测）。")
+    except Exception as e:  # noqa: BLE001
+        return (body + "\n"
+                f"旁证锚：ANCHOR_UNAVAILABLE（{type(e).__name__}）\n"
+                "⚠️ 旁证存在但 sha 不可用，本邮件不构成旁证完整性锚，请查 "
+                "corroboration/20261130.json 及侧车。")
 
 
 def _load_hb() -> dict | None:
@@ -165,6 +198,8 @@ def main(argv: list[str] | None = None) -> int:
         # （沿用本模块既有设计「邮件挂了不改变检查结论」），避免新增旁路证据
         # 把正常日更误报成告警。链完整性另由 --verify 独立复算。
         body = _with_chain(body)
+        # U16-EXEC-3：旁证 sha256 随邮件外发（不干扰 rc 语义，旁证不存在时 no-op）
+        body = _with_corroboration(body)
         if mail_cfg is not None:
             # 邮件发送失败不改变 rc 的告警语义：告警时本来就非 0；
             # 但"一切正常却发不出邮件"必须非 0——否则人会以为每天有信。

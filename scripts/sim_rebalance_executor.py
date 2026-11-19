@@ -71,7 +71,10 @@ PREREG_SHA256 = "53ace8c5064f615806a07ae012bd3c2d344103e4b93b7a74e9e047eb8b0b703
 #: 与 U16-EXEC-1 并列校验；改其一即 HALT。
 PREREG_V2_REL = "docs/U16_EXEC_PREREG_V2_2026-11-19.md"
 PREREG_V2_SHA256 = "ec322be5fcdcdb81c889d93ec301e3c07294a29f131b0d521f7ec6614934140b"
-E0_TOLERANCE_MIN = 10
+# U16-EXEC-3 方案甲：窗口单一来源——E0 门与落盘门槛共用 sim_exec_result 的常量。
+# 本地 import 供常量引用（sim_exec_result 不反向 import 本模块，无循环）。
+import sim_exec_result as _ser
+E0_TOLERANCE_MIN = _ser.FRESHNESS_WINDOW_MIN   # 原独立定义 10，现收敛为单一来源
 NTP_REQUIRED = True
 EXEC_REPORT_WINDOW_MIN = 10
 #: U-16 授权存证（版本 A）+ 署名补记（引用时须同时给）。
@@ -139,8 +142,14 @@ def verify_prereg() -> str:
 
 
 def intended_now() -> str:
-    """意图时点（冻结常量派生，供门控/对账比对；不冒充真实时钟）。"""
-    return f"{EXEC_DATE[:4]}-{EXEC_DATE[4:6]}-{EXEC_DATE[6:]}T{FIRST_ORDER_TIME}:00+08:00"
+    """意图时点（冻结常量派生，供门控/对账比对；不冒充真实时钟）。
+
+    U16-EXEC-3：与 sim_exec_result.EXEC_INTENT 单一来源，启动校验须一致。
+    """
+    derived = f"{EXEC_DATE[:4]}-{EXEC_DATE[4:6]}-{EXEC_DATE[6:]}T{FIRST_ORDER_TIME}:00+08:00"
+    if derived != _ser.EXEC_INTENT:
+        raise Halt("INTENT_SOURCE_MISMATCH")
+    return derived
 
 
 def gate_clock(*, real_now: dt.datetime | None = None,

@@ -55,6 +55,16 @@ def now_real_iso() -> str:
     return dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).isoformat(timespec="seconds")
 
 
+def in_window(started_at: Any) -> bool:
+    """U16-EXEC-3 方案甲：started_at 是否落在意图时点 ±FRESHNESS_WINDOW_MIN。
+
+    单一窗口来源：E0 门与落盘门槛共用本函数（不得另立阈值）。
+    不可解析/缺字段 ⇒ False（失败关闭，落 .TEST_ 名）。
+    """
+    ok, _ = _fresh(started_at)
+    return ok
+
+
 def build_result(*, outcome: str, rc: int, gates: dict[str, str] | None = None,
                  n_real_orders: int = 0, corroboration_sha256: str = "",
                  started_at: str = "", finished_at: str = "") -> dict[str, Any]:
@@ -76,8 +86,21 @@ def build_result(*, outcome: str, rc: int, gates: dict[str, str] | None = None,
 
 
 def write_result(rec: dict[str, Any], path: Path | None = None) -> Path:
-    """原子写（tmp+replace），LF，返回落盘路径。"""
-    p = Path(path) if path else ROOT / RESULT_REL
+    """原子写（tmp+replace），LF，返回落盘路径。
+
+    U16-EXEC-3 方案甲：未显式指定 path 时，仅当 started_at 落在意图窗口内
+    才写生产文件名；窗口外/不可解析一律写 ``.TEST_<stamp>.json`` 隔离，
+    杜绝测试/误触发污染 12-01 生产路径。显式 path（self_check 临时目录）不受影响。
+    """
+    if path is None:
+        if not in_window(rec.get("started_at")):
+            stamp = str(rec.get("started_at") or "unknown").replace(":", "").replace("+", "_P")
+            p = ROOT / RESULT_REL
+            p = Path(str(p).replace(".json", f".TEST_{stamp}.json"))
+        else:
+            p = ROOT / RESULT_REL
+    else:
+        p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
     body = json.dumps(rec, ensure_ascii=False, indent=1) + "\n"
     fd, tmp = tempfile.mkstemp(prefix=p.name + ".", suffix=".tmp", dir=p.parent)
