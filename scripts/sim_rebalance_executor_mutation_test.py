@@ -91,6 +91,30 @@ def d8_gate_e4(mod) -> bool:
     return g["ok"] is True                       # 隔离失败却通过 ⇒ 检出
 
 
+def d9_d4_price_coverage(mod) -> bool:
+    """M-D4A 检测：d4 目标缺价格，E1 应失败关闭；若放行 ⇒ 检出。"""
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        led = mod._fake_ledger()
+        led["ref_close_d4"].pop(next(iter(led["ref_close_d4"])))  # 删一个价 ⇒ 覆盖不全
+        p = Path(td) / "led.json"
+        p.write_text(json.dumps(led), encoding="utf-8")
+        g = mod.gate_ledger(p)
+        return g["ok"] is True                   # 覆盖不全却放行 ⇒ 检出
+
+
+def d10_d4_price_source(mod) -> bool:
+    """M-D4B 检测：ref_close_d4 字段被换成空 dict，E1 应失败；若放行 ⇒ 检出。"""
+    import tempfile
+    with tempfile.TemporaryDirectory() as td:
+        led = mod._fake_ledger()
+        led["ref_close_d4"] = {}                 # d4 价格映射丢失
+        p = Path(td) / "led.json"
+        p.write_text(json.dumps(led), encoding="utf-8")
+        g = mod.gate_ledger(p)
+        return g["ok"] is True                   # 无 d4 价格却放行 ⇒ 检出
+
+
 MUTATIONS = [
     ("M1_IDEMPOTENT",
      'raw = f"{day}|{code}|{side}|{qty}".encode("utf-8")',
@@ -130,6 +154,14 @@ MUTATIONS = [
      '    return {"gate": "E4", "ok": not missing,',
      '    return {"gate": "E4", "ok": True,',
      d8_gate_e4, "E4 整体恒通过 ⇒ 隔离/清单失败也放行"),
+    ("M9_D4_COVERAGE_ALWAYS_OK",
+     "    if missing_px:\n        return {\"gate\": \"E1\", \"ok\": False, \"reason\": \"NO_PRICE_COVERAGE_D4\",",
+     "    if False:\n        return {\"gate\": \"E1\", \"ok\": False, \"reason\": \"NO_PRICE_COVERAGE_D4\",",
+     d9_d4_price_coverage, "D4 价格覆盖校验恒放行 ⇒ 缺价台账被放行"),
+    ("M10_D4_TARGET_MISSING_IGNORED",
+     "            if nc is None or nc not in norm_px:\n                missing_px.append(str(c))",
+     "            if False:\n                missing_px.append(str(c))",
+     d10_d4_price_source, "D4 目标缺价不计入 missing ⇒ 空价格映射被放行"),
 ]
 
 

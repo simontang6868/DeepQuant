@@ -537,6 +537,8 @@ def build_d4_targets(raw: pd.DataFrame, base: pd.Series, me: str) -> dict:
         return {
             "target_holds_d4": None,
             "target_holds_d4_gem": None,
+            "ref_close_d4": None,
+            "ref_close_d4_gem": None,
             "signal_pool_n_d4": None,
             "signal_pool_n_d4_gem": None,
             "ok_buy_n_d4": None,
@@ -567,6 +569,14 @@ def build_d4_targets(raw: pd.DataFrame, base: pd.Series, me: str) -> dict:
         s["ok_buy"] = ok_price & raw["code"].map(lambda c: bool(mask.get(c, False)))
         pool, top, _ = pick(s)
         out[f"target_holds_{key}"] = list(top["code"])
+        # D4 价格映射：与 target_holds_<key> 同源同键（同一次 pick 的 top），
+        # 供 U-16 执行器按 d4 目标取价（orders 只覆盖主口径，与 d4 目标常不重合）。
+        # 只保留有限正价；异常值不写入，让 E1 门以 NO_PRICE_COVERAGE_D4 失败关闭。
+        out[f"ref_close_{key}"] = {
+            str(r["code"]): float(r["close"])
+            for _, r in top.iterrows()
+            if np.isfinite(r["close"]) and float(r["close"]) > 0
+        }
         out[f"signal_pool_n_{key}"] = int(len(pool))
         out[f"ok_buy_n_{key}"] = int(s["ok_buy"].sum())
     return out
@@ -1029,6 +1039,9 @@ def main() -> int:
         # ---- D4 安全过滤（Amendment A2）。主口径三行**不得**被这些覆盖。----
         "target_holds_d4": d4["target_holds_d4"],
         "target_holds_d4_gem": d4["target_holds_d4_gem"],
+        # 与 d4 目标同源同键的价格（U-16 执行器唯一价格源；orders 只覆盖主口径）
+        "ref_close_d4": d4["ref_close_d4"],
+        "ref_close_d4_gem": d4["ref_close_d4_gem"],
         "signal_pool_n_d4": d4["signal_pool_n_d4"],
         "signal_pool_n_d4_gem": d4["signal_pool_n_d4_gem"],
         "ok_buy_n_d4": d4["ok_buy_n_d4"],

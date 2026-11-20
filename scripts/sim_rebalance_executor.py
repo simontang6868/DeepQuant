@@ -24,7 +24,7 @@
 ``gmtrade`` 该版本**没有行情接口**（``get_*`` 仅 cash/positions/orders/execution_reports/
 unfinished_orders/strerror/version），因此：
 
-- **价格来源只能是台账 ``ref_close``（11-30 收盘价）**，``PRICE_SOURCE = "LEDGER_REF_CLOSE"``；
+- **价格来源只能是台账 ``ref_close_d4``（与 d4 目标同源同键，11-30 收盘价）**，``PRICE_SOURCE = "LEDGER_D4_REF_CLOSE"``；
 - 预登记 §2 的「10:30 / 14:30 重定价」**不可实现**（无实时价可重定价），
   ``REPRICE_IMPLEMENTABLE = False``；实际行为＝**单次限价挂单 + ``CARRY`` 顺延**，
   未成交部分靠 ``CARRY_MAX_DAYS`` 与对账解释，**不伪装成已实现重定价**。
@@ -97,10 +97,12 @@ ORDER_TYPE_LIMIT = 1                    # gmtrade `OrderType_Limit`
 ORDER_SIDE = {"BUY": 1, "SELL": 2}      # `OrderSide_Buy` / `OrderSide_Sell`
 
 #: ⚠️ 预登记缺口：无行情接口 ⇒ 只能用台账收盘价；重定价不可实现。
-PRICE_SOURCE = "LEDGER_REF_CLOSE"
+#: U16-D4-PRICE-FIX：价格源改为台账 ref_close_d4（与 d4 目标同源同键），
+#: 不再用 orders[].ref_close（主口径，与 d4 目标常不重合）。
+PRICE_SOURCE = "LEDGER_D4_REF_CLOSE"
 REPRICE_IMPLEMENTABLE = False
 IMPLEMENTATION_LIMITATION = (
-    "gmtrade 无 tick/quote 接口 ⇒ 价格只能取台账 ref_close；"
+    "gmtrade 无 tick/quote 接口 ⇒ 价格只能取台账 ref_close_d4（与 d4 目标同源同键）；"
     "预登记 §2 的 10:30/14:30 重定价不可实现，实际为单次限价 + CARRY 顺延"
 )
 
@@ -200,6 +202,31 @@ def gate_ledger(path: Path | None = None) -> dict:
     if not isinstance(codes, list) or not codes:
         return {"gate": "E1", "ok": False, "reason": "NO_TARGET_HOLDS_D4",
                 "note": "老台账（LEGACY_NO_D4）不得顶替"}
+    # D4 价格覆盖（U16-D4-PRICE-FIX）：每个 d4 目标必须在 ref_close_d4 有正有限价。
+    # 该字段与 target_holds_d4 在 p13 同一次 pick 构造、同源同键；orders 只覆盖主口径，
+    # 不能作为 d4 价格源（两条选股路径常不重合，独立复现已坐实 NO_PRICE）。
+    pmap = rec.get("ref_close_d4")
+    missing_px: list[str] = []
+    if not isinstance(pmap, dict):
+        missing_px = [str(c) for c in codes]
+    else:
+        norm_px: dict[str, float] = {}
+        for k, v in pmap.items():
+            nc = normalize_code(k)
+            try:
+                fv = float(v)
+            except (TypeError, ValueError):
+                continue
+            if nc is not None and math.isfinite(fv) and fv > 0:
+                norm_px[nc] = fv
+        for c in codes:
+            nc = normalize_code(c)
+            if nc is None or nc not in norm_px:
+                missing_px.append(str(c))
+    if missing_px:
+        return {"gate": "E1", "ok": False, "reason": "NO_PRICE_COVERAGE_D4",
+                "missing": missing_px,
+                "note": "ref_close_d4 须与 target_holds_d4 同源同键"}
     return {"gate": "E1", "ok": True, "reason": None, "mode": mode,
             "n_targets": len(codes), "codes": [str(c) for c in codes]}
 
@@ -485,8 +512,13 @@ def append_orders(path: Path, rows: list[dict]) -> int:
 
 # ---------------------------------------------------------------- 自检
 def _fake_ledger(n=5) -> dict:
+    codes = ["600519", "600036", "601318", "600276", "601888"][:n]
+    px = {"600519": 1500.0, "600036": 35.0, "601318": 45.0,
+          "600276": 40.0, "601888": 70.0}
     return {"date": LEDGER_DATE, "mode": "FORWARD",
-            "target_holds_d4": ["600519", "600036", "601318", "600276", "601888"][:n]}
+            "target_holds_d4": codes,
+            # U16-D4-PRICE-FIX：与 target_holds_d4 同源同键
+            "ref_close_d4": {c: px[c] for c in codes}}
 
 
 def self_check() -> dict:
@@ -552,6 +584,19 @@ def self_check() -> dict:
         ok_led = d / "ok.json"
         ok_led.write_text(json.dumps(_fake_ledger()), encoding="utf-8")
         assert gate_ledger(ok_led)["ok"] is True
+        # U16-D4-PRICE-FIX：d4 目标价格覆盖——删一个价 ⇒ NO_PRICE_COVERAGE_D4；
+        # 非正价（0.0）不算覆盖。p13 的 ref_close_d4 键为纯 6 位代码（无交易所后缀）。
+        no_px = _fake_ledger()
+        no_px["ref_close_d4"].pop(next(iter(no_px["ref_close_d4"])))
+        np_led = d / "no_px.json"
+        np_led.write_text(json.dumps(no_px), encoding="utf-8")
+        gn = gate_ledger(np_led)
+        assert gn["ok"] is False and gn["reason"] == "NO_PRICE_COVERAGE_D4"
+        bad_px = _fake_ledger()
+        bad_px["ref_close_d4"][bad_px["target_holds_d4"][0]] = 0.0
+        bp_led = d / "bad_px.json"
+        bp_led.write_text(json.dumps(bad_px), encoding="utf-8")
+        assert gate_ledger(bp_led)["ok"] is False
         checks.append("gate_e1")
 
         # 6) E2：无产物 ⇒ 失败；给假产物 ⇒ 通过
@@ -665,7 +710,7 @@ def _log_exec_result(gates: list[dict], outcome: str, rc: int) -> None:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description="U-16 仿真调仓执行器（五道生效条件门控）")
+    ap = argparse.ArgumentParser(description="U-16 仿真调仓执行器（六道生效条件门控）")
     g = ap.add_mutually_exclusive_group(required=True)
     g.add_argument("--self-check", action="store_true")
     g.add_argument("--plan", action="store_true")
@@ -699,8 +744,11 @@ def main(argv: list[str] | None = None) -> int:
     if led["ok"] and acct["error"] is None:
         try:
             rec = json.loads((ROOT / LEDGER_REL).read_text(encoding="utf-8"))
-            prices = {normalize_code(o.get("code")): o.get("ref_close")
-                      for o in (rec.get("orders") or [])}
+            # D4 价格源（U16-D4-PRICE-FIX）：只认与 target_holds_d4 同源的 ref_close_d4。
+            # 历史 orders[].ref_close 属主口径，与 d4 目标常不重合，不得作为 d4 价格源。
+            raw_px = rec.get("ref_close_d4") or {}
+            prices = {normalize_code(k): v for k, v in raw_px.items()
+                      if normalize_code(k) is not None}
             plan = build_plan(ledger=rec, positions=acct["positions"],
                               cash=acct["nav"], price_of=prices.get, warnings=warns)
         except Halt as e:

@@ -23,8 +23,11 @@ def _px(c):
 
 
 def _ledger(n=5):
+    codes = ["600519", "600036", "601318", "600276", "601888"][:n]
     return {"date": ex.LEDGER_DATE, "mode": "FORWARD",
-            "target_holds_d4": ["600519", "600036", "601318", "600276", "601888"][:n]}
+            "target_holds_d4": codes,
+            # U16-D4-PRICE-FIX：与 target_holds_d4 同源同键的价格映射
+            "ref_close_d4": {c: PXS[c] for c in codes}}
 
 
 def _auth_doc(**kw):
@@ -50,10 +53,15 @@ def test_canonical_constants_frozen():
 
 
 def test_limitation_is_documented_not_hidden():
-    """预登记缺口必须显式登记，不得伪装成已实现重定价。"""
+    """预登记缺口必须显式登记，不得伪装成已实现重定价。
+
+    U16-D4-PRICE-FIX：价格源改为 ref_close_d4（与 d4 目标同源同键），
+    但仍受"无行情接口⇒单次限价"限制，不得伪装成已实现重定价。
+    """
     assert ex.REPRICE_IMPLEMENTABLE is False
-    assert ex.PRICE_SOURCE == "LEDGER_REF_CLOSE"
+    assert ex.PRICE_SOURCE == "LEDGER_D4_REF_CLOSE"
     assert "无 tick/quote" in ex.IMPLEMENTATION_LIMITATION
+    assert "ref_close_d4" in ex.IMPLEMENTATION_LIMITATION
 
 
 # ------------------------------------------------------------ 计划层
@@ -151,6 +159,45 @@ def test_gate_ledger_requires_forward_and_d4(tmp_path):
     ok = tmp_path / "ok.json"
     ok.write_text(json.dumps(_ledger()), encoding="utf-8")
     assert ex.gate_ledger(ok)["ok"] is True
+
+
+def test_gate_ledger_requires_d4_price_coverage(tmp_path):
+    """U16-D4-PRICE-FIX：每个 d4 目标须在 ref_close_d4 有正有限价。
+
+    缺一个价 / 空映射 / 非正价 ⇒ NO_PRICE_COVERAGE_D4 失败关闭；
+    这正是 P0 缺陷（d4 目标与 orders 主口径价格不重合）的门控防线。
+    """
+    ok = _ledger()
+    # 缺 ref_close_d4 字段 ⇒ 覆盖失败（不是文件缺失）
+    no_field = {k: v for k, v in ok.items() if k != "ref_close_d4"}
+    pf = tmp_path / "no_field.json"
+    pf.write_text(json.dumps(no_field), encoding="utf-8")
+    gf = ex.gate_ledger(pf)
+    assert gf["ok"] is False and gf["reason"] == "NO_PRICE_COVERAGE_D4"
+    # 正常夹具应通过
+    p = tmp_path / "ok.json"
+    p.write_text(json.dumps(ok), encoding="utf-8")
+    assert ex.gate_ledger(p)["ok"] is True
+    # 删一个目标价格 ⇒ 覆盖不全
+    no_px = _ledger()
+    no_px["ref_close_d4"].pop(no_px["target_holds_d4"][0])
+    p2 = tmp_path / "no_px.json"
+    p2.write_text(json.dumps(no_px), encoding="utf-8")
+    g2 = ex.gate_ledger(p2)
+    assert g2["ok"] is False and g2["reason"] == "NO_PRICE_COVERAGE_D4"
+    assert no_px["target_holds_d4"][0] in g2["missing"]
+    # 空映射 ⇒ 覆盖不全
+    empty = _ledger()
+    empty["ref_close_d4"] = {}
+    p3 = tmp_path / "empty.json"
+    p3.write_text(json.dumps(empty), encoding="utf-8")
+    assert ex.gate_ledger(p3)["ok"] is False
+    # 非正价 ⇒ 不算覆盖
+    bad = _ledger()
+    bad["ref_close_d4"][bad["target_holds_d4"][0]] = 0.0
+    p4 = tmp_path / "bad.json"
+    p4.write_text(json.dumps(bad), encoding="utf-8")
+    assert ex.gate_ledger(p4)["ok"] is False
 
 
 def test_gate_dryrun_needs_both_artifacts(tmp_path):
