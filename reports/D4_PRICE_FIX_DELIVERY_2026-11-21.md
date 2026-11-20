@@ -74,3 +74,12 @@
 引用口径：`StatisticalVerdict=ENGINEERING_SELF_CHECK_ONLY`；`MaturityLevel=EXECUTION_READY_GATED`。本件为工程修复交付，不构成统计结论或样本外证据。
 
 署名：simontang
+
+---
+
+## 6. 推送状态追加（2026-11-21 00:30）
+
+- **cloud 裸仓库备份**：✅ 已推送至 `e5e5138`（`GIT_SSH_COMMAND` 带 fk_server_ed25519）。
+- **origin（GitHub）**：⚠️ **未同步**，远端仍停在 `f6aa17f`。原因：代理对 github.com 反复 `CONNECT tunnel failed, response 502` / `schannel server closed abruptly`；重试 3 次 + 禁用代理直连均失败（无外网直连能力）。备用 API 通道 `scripts/api_push_report_v2.py` 的 token 源（`CODEBUDDY_MCP_CONFIG` 的 github-pat）当前不可用。
+- **代码不丢**：本地 commit `dee3906`/`e5e5138` 完整，cloud 备份机已同步；待代理恢复后一次 `git push origin` 即可补齐，无需重做。
+- 这不是工程缺陷，是网络通道问题；按事实登记，不伪装成已推送。
