@@ -1,5 +1,5 @@
 {
- "commit": "dee39065c37095dcdbaa843dffe2b979b6b12bec",
+ "commit": "9b5236daa30099062a74a470e57f8f269fb5a133",
  "commit_note": "commit 来自生成方本地 HEAD；/opt/quant 无 .git，云端一致性以逐文件 sha256 为准",
  "files": {
   "backend/src/deepquant/broker/__init__.py": "d603695a7f201687ce80a86b341d2f93e70b66998d66d72814d65ab1e528f639",
@@ -59,8 +59,8 @@
   "scripts/sim_drill_driver.py": "393195ff86e95ce4d1b27944a6fc48ab470072fb3ae6639e592d683c2d3b2b76",
   "scripts/sim_drill_mutation_test.py": "26896b313465685f3339ce8c0a75a821eb9c6a6bfe9184e243fc37827829a4e8",
   "scripts/sim_exec_result.py": "c80d0e8c87db97bee97eaa86c2a7132cac795c6e0cad215c923f9dabb3a5c480",
-  "scripts/sim_rebalance_executor.py": "0c3725218036c7f222a64a351f1ce3cdafe8a7ad91288b26bec08bf4dc24d190",
-  "scripts/sim_rebalance_executor_mutation_test.py": "eaaa6911df03b70d2f8f5940e99c96dff282385618013a143325261a9fa784b6",
+  "scripts/sim_rebalance_executor.py": "70c039cd6eb83624a97760f398757f88d82c16fd75b4daeef4a7710c1d9dcd54",
+  "scripts/sim_rebalance_executor_mutation_test.py": "82e4175d594b6684fa13c28e086400f2dddc87ce420cf2858d6fe2a439d88b14",
   "scripts/sim_reconcile.py": "6f1d39fa11ecd7ed708a010a3cd9c9a57f705ed794f8205ecd7549d3139bcdab",
   "scripts/sim_settlement_gate.py": "7ccca3f2f41f10db2c731f7b10826f513b01759869a32acb3a9a359474ed17ec",
   "scripts/stage_rc_gate.py": "91d572b36e960a16a2201b205ec5462f6080a1794c4a7f3b2ebdb98e15971073",
@@ -68,8 +68,8 @@
   "scripts/verify_qfq_rebuild.py": "bb3ef671e549094aec6a755fa5447ff321c9c8802f776a98c76414c39dcbbe69",
   "scripts/verify_token_rotation.py": "415b181d3ca74eb6ecdc073b2e5754551184faa201da029dd1be4de72910dac1"
  },
- "generated_at": "2026-11-21T00:23:35",
+ "generated_at": "2026-11-21T01:02:14",
  "n_files": 65,
  "schema_version": "deploy_manifest_v1",
- "sha256_of_files": "53d11e12210eae9b481c75c3acd5894e258971c5de3a516d30115fc89eb030ce"
+ "sha256_of_files": "246f7930d99450a7d59a0baa112b758a96aca1cfe575ad9a2fe106ff696ac47a"
 }

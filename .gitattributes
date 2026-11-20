@@ -50,6 +50,8 @@ scripts/** -text
 deploy/**  -text
 research/stock_pick_2026-10-25/** -text
 reports/** -text
+# 评审整改记录（2026-11-21 起）同样带 .sha256 侧车，字节须稳定
+reviews/** -text
 # 凡带 .sha256 侧车的文档正文必须字节稳定：docs/*.md 若不覆盖，
 # checkout 转 CRLF 而其侧车(*.sha256 已 -text)不变 ⇒ 侧车校验全红
 # （同 ARCHIVE_MANIFEST 误报先例）
