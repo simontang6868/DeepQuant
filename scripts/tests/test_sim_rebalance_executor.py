@@ -18,6 +18,35 @@ PXS = {"600519": 1500.0, "600036": 35.0, "601318": 45.0,
        "600276": 40.0, "601888": 70.0, "000001": 12.0}
 
 
+def test_price_map_from_ledger_single_source_and_sanitization():
+    """评审整改：E1 门与 main 共用的价格构造器，只认 d4 同源字段、只收正有限价。
+
+    - 只读 ref_close_d4，不读 orders（主口径）；
+    - NaN / inf / 0 / 负数 / 非数字 / 带后缀键一律丢弃；
+    - 这正是 P2 价格源与 P3 覆盖校验的统一防线。
+    """
+    rec = {
+        "ref_close_d4": {
+            "600519": 1500.0,       # 正常
+            "600036": "35.5",       # 字符串数字 → 收
+            "601318": float("nan"), # NaN → 丢
+            "600276": float("inf"), # inf → 丢
+            "601888": 0.0,          # 0 → 丢
+            "000001": -12.0,        # 负 → 丢
+            "600030": "not-a-num",  # 非数字 → 丢
+            "999999.SH": 10.0,      # 带后缀 → normalize 后为 SH → 丢
+        },
+        "orders": [{"code": c, "ref_close": p} for c, p in PXS.items()],
+    }
+    got = ex.price_map_from_ledger(rec)
+    assert got == {"600519": 1500.0, "600036": 35.5}, got
+    # 只有 orders 时返回空（证明价格源不回落到主口径）
+    assert ex.price_map_from_ledger({"orders": rec["orders"]}) == {}
+    # 字段缺失/非 dict 也返回空
+    assert ex.price_map_from_ledger({}) == {}
+    assert ex.price_map_from_ledger({"ref_close_d4": []}) == {}
+
+
 def _px(c):
     return PXS.get(ex.normalize_code(c))
 

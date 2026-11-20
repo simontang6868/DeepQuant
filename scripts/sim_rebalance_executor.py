@@ -205,24 +205,13 @@ def gate_ledger(path: Path | None = None) -> dict:
     # D4 价格覆盖（U16-D4-PRICE-FIX）：每个 d4 目标必须在 ref_close_d4 有正有限价。
     # 该字段与 target_holds_d4 在 p13 同一次 pick 构造、同源同键；orders 只覆盖主口径，
     # 不能作为 d4 价格源（两条选股路径常不重合，独立复现已坐实 NO_PRICE）。
-    pmap = rec.get("ref_close_d4")
+    # 价格映射唯一构造器与 main 共用，校验标准不再两处漂移。
+    norm_px = price_map_from_ledger(rec)
     missing_px: list[str] = []
-    if not isinstance(pmap, dict):
-        missing_px = [str(c) for c in codes]
-    else:
-        norm_px: dict[str, float] = {}
-        for k, v in pmap.items():
-            nc = normalize_code(k)
-            try:
-                fv = float(v)
-            except (TypeError, ValueError):
-                continue
-            if nc is not None and math.isfinite(fv) and fv > 0:
-                norm_px[nc] = fv
-        for c in codes:
-            nc = normalize_code(c)
-            if nc is None or nc not in norm_px:
-                missing_px.append(str(c))
+    for c in codes:
+        nc = normalize_code(c)
+        if nc is None or nc not in norm_px:
+            missing_px.append(str(c))
     if missing_px:
         return {"gate": "E1", "ok": False, "reason": "NO_PRICE_COVERAGE_D4",
                 "missing": missing_px,
@@ -360,6 +349,34 @@ def normalize_code(code) -> str | None:
     if "." in s:
         s = s.rsplit(".", 1)[-1]
     return s if len(s) == 6 and s.isdigit() else None
+
+
+def price_map_from_ledger(rec: dict) -> dict[str, float]:
+    """台账 d4 价格映射的唯一构造器（E1 门与 main 下单共用）。
+
+    U16-D4-PRICE-FIX：只读 ``ref_close_d4``（与 target_holds_d4 同源同键），
+    **不读** ``orders[].ref_close``（主口径，与 d4 目标常不重合）。
+    只收正有限价：非数字 / NaN / inf / <=0 一律丢弃 ⇒ 由 E1 门以
+    NO_PRICE_COVERAGE_D4 失败关闭，不静默放行。
+
+    注：normalize_code 取点后末段，故 ``000721.SZ`` → ``SZ`` → None；
+    p13 写的 ref_close_d4 是纯 6 位码，正常路径不受影响。
+    """
+    raw = rec.get("ref_close_d4")
+    if not isinstance(raw, dict):
+        return {}
+    out: dict[str, float] = {}
+    for k, v in raw.items():
+        nc = normalize_code(k)
+        if nc is None:
+            continue
+        try:
+            fv = float(v)
+        except (TypeError, ValueError):
+            continue
+        if math.isfinite(fv) and fv > 0:
+            out[nc] = fv
+    return out
 
 
 @dataclass(frozen=True)
@@ -746,9 +763,7 @@ def main(argv: list[str] | None = None) -> int:
             rec = json.loads((ROOT / LEDGER_REL).read_text(encoding="utf-8"))
             # D4 价格源（U16-D4-PRICE-FIX）：只认与 target_holds_d4 同源的 ref_close_d4。
             # 历史 orders[].ref_close 属主口径，与 d4 目标常不重合，不得作为 d4 价格源。
-            raw_px = rec.get("ref_close_d4") or {}
-            prices = {normalize_code(k): v for k, v in raw_px.items()
-                      if normalize_code(k) is not None}
+            prices = price_map_from_ledger(rec)
             plan = build_plan(ledger=rec, positions=acct["positions"],
                               cash=acct["nav"], price_of=prices.get, warnings=warns)
         except Halt as e:
