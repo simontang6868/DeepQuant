@@ -65,5 +65,22 @@
     }
   },
   "verdict": "D4_ALPHA_ESTABLISHED",
-  "verdict_basis": "C1_live_10w|modern_2016（预登记 §4）"
+  "verdict_basis": "C1_live_10w|modern_2016（预登记 §4）",
+  "amendments": [
+    {
+      "id": "A1",
+      "at": "2026-11-22T01:40:00+08:00",
+      "trigger": "外部专家第3轮意见 §一/§二/§六：七档作用域不同不可互推；ESTABLISHED 会继续被引用",
+      "original_verdict": "D4_ALPHA_ESTABLISHED",
+      "superseded_verdict": "NOT_ESTIMABLE",
+      "reason": "F0（预登记口径）达 ESTABLISHED；但该口径的收益定义在 20.08% 的持仓槽位上缺失（可读 18.41% / 停牌 0.09% / 无前窗 1.58%）。单轴扫描显示：只要'无前窗'那 4,061 个槽位平均亏损超过 27.1%，超额即归零；该亏损幅度无法从现有数据判定。⇒ 结论降级为不可估，不作 S2/S3 依据。",
+      "evidence": {
+        "diag": "d4_alpha_out/a1801ece1ad7/diag.json",
+        "zero_crossing_x": "-0.271",
+        "missing_slot_rate": 0.2008,
+        "monotone_sweep_ok": true
+      },
+      "note": "verdict 字段保留原值不改写；引用时以 superseded_verdict 为准"
+    }
+  ]
 }
