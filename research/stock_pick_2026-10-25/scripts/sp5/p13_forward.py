@@ -1076,10 +1076,6 @@ def main() -> int:
                   f"（晚于决策日 {me}，非决策日当日状态）"),
         ],
     }
-    rec["ledger_sha256"] = hashlib.sha256(
-        json.dumps({k: v for k, v in rec.items() if k != "ledger_sha256"},
-                   ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()[:16]
-
     # ---- R3-5：d4 档内可买数熔断检查 ----
     # 连续 D4_STOP_MONTHS 个月（含当月）ok_buy_n_d4 < D4_STOP_MIN_BUYABLE
     # → 协议停止条件触发：写进台账 + 邮件通知用户（邮件失败不阻断台账落盘）。
@@ -1091,6 +1087,14 @@ def main() -> int:
             f"⚠️ 协议停止条件触发：d4 档内可买数连续 {D4_STOP_MONTHS} 个月 "
             f"< {D4_STOP_MIN_BUYABLE} 只（序列见 d4_stop_check.series）")
         _notify_d4_stop(me, d4_stop)
+
+    # 自校验 hash 必须在 rec 所有字段写入完成后计算。
+    # 原实现在此前先算 hash，之后才写 d4_stop_check / notes.append，导致
+    # 声明 hash ≠ 最终 body 重算（verify 与 test_ledger_hash 均失败）。
+    # 只对「本次新生成」台账生效；历史台账已逐条验证自洽，不受影响。
+    rec["ledger_sha256"] = hashlib.sha256(
+        json.dumps({k: v for k, v in rec.items() if k != "ledger_sha256"},
+                   ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()[:16]
 
     obs_row = {
         "date": me, "signal_time": rec["record_time"],

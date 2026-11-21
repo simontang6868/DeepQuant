@@ -149,13 +149,34 @@ def test_next_td_unknown_is_pending_not_judged_on_decision_day():
 
 
 # ---------------------------------------------------------------- 1.3-f 来源
+def _git_truth():
+    """独立真相源：直接问 git，而非把 True/commit 硬编码进断言。
+
+    契约修订（2026-11-21）：`code_provenance` 的要求是「如实报告 git 状态」，
+    不是「报告未跟踪」。当初写此测试时 research/ 恰好未入 git；后来整仓入库，
+    代码正确返回 True + 真实 HEAD，测试硬编码的 False/NOT_IN_GIT 反而失效。
+    """
+    import subprocess
+    root = Path(pf.__file__).resolve().parents[4]  # .../DeepQuant-main（仓库根）
+    head = subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"],
+                          capture_output=True, text=True, timeout=15).stdout.strip()
+    tracked = subprocess.run(
+        ["git", "-C", str(root), "ls-files", "--error-unmatch", str(Path(pf.__file__).resolve())],
+        capture_output=True, timeout=15).returncode == 0
+    return tracked, head
+
+
 def test_provenance_records_code_hash_and_git_truth():
     prov = pf.code_provenance()
     real = hashlib.sha256(Path(pf.__file__).read_bytes()).hexdigest()
+    tracked, head = _git_truth()
     assert prov["code_sha"] == real
     assert prov["code_sha_algo"] == "sha256"
-    assert prov["code_in_git"] is False, "research/ 未入 git，必须如实写 False"
-    assert prov["git_commit"] == "NOT_IN_GIT", "未跟踪时不得写一个看似可定位的 commit"
+    assert prov["code_in_git"] is tracked, "code_in_git 必须如实反映 git 跟踪状态"
+    if tracked:
+        assert prov["git_commit"] == head, "已跟踪时必须写真实 HEAD"
+    else:
+        assert prov["git_commit"] == "NOT_IN_GIT", "未跟踪时不得写看似可定位的 commit"
     assert prov["code_path"].endswith("p13_forward.py")
 
 
@@ -288,9 +309,10 @@ def test_selftest_not_counted(env, monkeypatch):
 def test_record_carries_provenance_and_data_last_date(env, monkeypatch):
     assert _run(monkeypatch, "--asof", "20260930", "--selftest") == 0
     rec = json.loads((env / "ledger" / "20260930.json").read_text(encoding="utf-8"))
+    tracked, head = _git_truth()
     assert rec["data_last_date"] == "20260930"
     assert rec["code_sha"] == hashlib.sha256(Path(pf.__file__).read_bytes()).hexdigest()
-    assert rec["git_commit"] == "NOT_IN_GIT"
+    assert rec["git_commit"] == (head if tracked else "NOT_IN_GIT")
     assert len(rec["ledger_sha256"]) == 16
 
 

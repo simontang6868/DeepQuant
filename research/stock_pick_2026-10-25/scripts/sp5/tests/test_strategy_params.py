@@ -44,6 +44,11 @@ PARAM_NAMES = frozenset({
 #: 硬编码站点基线。**任何新增/删除都会让测试失败**——这是有意的：
 #: 强制作者在「改用 import」和「显式登记」之间做选择，而不是悄悄多一份。
 #: 键 = 相对 ROOT 的 posix 路径，值 = 该文件里出现的参数名集合。
+# ── 基线登记（2026-11-21）────────────────────────────────────────────
+# p03d_d4_strict / p03e_afford 是 D4 严格口径研究脚本（Amendment A2），
+# 历史遗留的硬编码站点。scan_hardcoded 实测各含 K/THRESH/LIQ_MAX，
+# 值与 strategy_params 配置一致（test_no_hardcoded_drift 已证明无漂移），
+# 属"历史脚本不便改动"，按本文件断言提示加入基线并登记原因。
 EXPECTED_SITES: dict[str, set[str]] = {
     "scripts/audit/audit_sp4_controls.py": {"K", "THRESH", "LIQ_MAX"},
     "scripts/audit/audit_sp4_cost_f3.py": {"K", "THRESH", "LIQ_MAX"},
@@ -58,6 +63,8 @@ EXPECTED_SITES: dict[str, set[str]] = {
     "scripts/sp5/p03_tradability.py": {"K", "THRESH", "LIQ_MAX"},
     "scripts/sp5/p04_position_dd.py": {"K", "STAMP"},
     "scripts/sp5/p04b_ledger_independent.py": {"K", "STAMP", "SPREAD"},
+    "scripts/sp5/p03d_d4_strict.py": {"K", "THRESH", "LIQ_MAX"},
+    "scripts/sp5/p03e_afford.py": {"K", "THRESH", "LIQ_MAX"},
     "scripts/sp5/p11_exec_window.py": {"K"},
     "scripts/sp5/p12_industry.py": {"K"},
     "scripts/sp5/p13b_forward_track.py": {"K", "STAMP", "SPREAD"},
