@@ -1,0 +1,69 @@
+{
+  "experiment": "sp5-d4-alpha-decomp-v1",
+  "prereg_sha256": "a1801ece1ad7bfd0e8b7ced5275f55ce3a7ff5fe195d4402640da34dd7d3ad76",
+  "design": {
+    "k": 5,
+    "thresh": 0.7,
+    "liq_max": 0.2,
+    "seed": 20261026,
+    "n_paths": 200,
+    "n_months": 257,
+    "bench": "同月 d4 合格池 fwd20 等权均值",
+    "cost_roundtrip": {
+      "C0_backtest": 0.00102,
+      "C1_live_10w": 0.00302
+    },
+    "mde_k": 2.8016,
+    "modern_from": "20160101"
+  },
+  "path_distribution_C1": {
+    "min": -0.0001299344918017953,
+    "p05": 0.0031664658847118223,
+    "median": 0.009677611372092054,
+    "p95": 0.017111700007831528,
+    "max": 0.023235010642632052,
+    "mean": 0.00996745527891346,
+    "share_mean_positive": 0.995,
+    "share_t_ge_1.96": 0.575
+  },
+  "cases": {
+    "C0_backtest|full": {
+      "n_months": 257,
+      "mean_pp": 1.05827782361119,
+      "se_nw_pp": 0.15031104077728896,
+      "t_nw": 7.040586094931019,
+      "mde_pp": 0.42111141184165274,
+      "p_nw": 1.9143288036987495e-12,
+      "variance_fell_back_to_g0": false
+    },
+    "C0_backtest|modern_2016": {
+      "n_months": 128,
+      "mean_pp": 0.9463710320527426,
+      "se_nw_pp": 0.16178261647921158,
+      "t_nw": 5.849645979574991,
+      "mde_pp": 0.4532501783281591,
+      "p_nw": 4.926203741178093e-09,
+      "variance_fell_back_to_g0": false
+    },
+    "C1_live_10w|full": {
+      "n_months": 257,
+      "mean_pp": 0.996745527891346,
+      "se_nw_pp": 0.14969241081504164,
+      "t_nw": 6.658624324802373,
+      "mde_pp": 0.41937825813942065,
+      "p_nw": 2.7640242764242568e-11,
+      "variance_fell_back_to_g0": false
+    },
+    "C1_live_10w|modern_2016": {
+      "n_months": 128,
+      "mean_pp": 0.8759741570527427,
+      "se_nw_pp": 0.16117640807223088,
+      "t_nw": 5.4348782649392255,
+      "mde_pp": 0.451551824855162,
+      "p_nw": 5.4833855420901355e-08,
+      "variance_fell_back_to_g0": false
+    }
+  },
+  "verdict": "D4_ALPHA_ESTABLISHED",
+  "verdict_basis": "C1_live_10w|modern_2016（预登记 §4）"
+}
