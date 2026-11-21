@@ -1,0 +1,144 @@
+{
+  "schema": "p03f_d4_alpha_audit/v1",
+  "prereg_sha256": "a1801ece1ad7",
+  "note": "审计层：回答专家第 4 轮的六个口径问题；不参与预登记判定，不改任何既有产物",
+  "ok_dimension": {
+    "source": "research/stock_pick_2026-10-25/scripts/build_panel.py:152-169",
+    "shape": "(n_ME,)",
+    "per_stock": true,
+    "broadcast_to_other_stocks": false,
+    "evidence": "ok = pos >= W - 1; ok &= (stale <= MAX_STALE); ok &= (sell < len(dates))，其中 ME_arr 是广播常量、dates 是标量长度 ⇒ 一维；每只股票各 append 一段 DataFrame",
+    "implication": "偏差是股票级（该股末 1~2 月），不会因一只股退市而删掉整个 ME"
+  },
+  "slot_denominators": {
+    "path_slots": 257000,
+    "unique_hold_slots": 89619,
+    "compression": 2.8676954663631595,
+    "unique_missing": 15079,
+    "unique_missing_rate": 0.16825673127350227,
+    "path_slot_missing": 51605,
+    "path_slot_missing_rate": 0.2007976653696498
+  },
+  "missing_reasons_unique": {
+    "amt_le_5e6": 10716,
+    "panel_no_row": 3828,
+    "close_lt_1": 535
+  },
+  "readable": {
+    "n_full": 13267,
+    "abs_mean_pp_full": 6.269450991535316,
+    "exc_mean_pp_full": 3.7481944902005195,
+    "exc_median_pp_full": 0.18763827626921137,
+    "n_modern": 1996,
+    "abs_mean_pp_modern": 0.3337384090265808,
+    "exc_mean_pp_modern": -0.46013398548059314,
+    "exc_median_pp_modern": -0.45142200408147953,
+    "bench_mean_pp": 1.7267888059652978,
+    "stale_le15_share": 0.8481193939850757,
+    "by_year_modern": {
+      "2016": {
+        "n": 243,
+        "exc_mean_pp": -0.9311747237284996,
+        "exc_median_pp": -2.8642525721532572
+      },
+      "2017": {
+        "n": 270,
+        "exc_mean_pp": 2.8065054359930723,
+        "exc_median_pp": -2.1454975054748124
+      },
+      "2018": {
+        "n": 657,
+        "exc_mean_pp": -0.07583293050661931,
+        "exc_median_pp": 0.270877688452216
+      },
+      "2019": {
+        "n": 288,
+        "exc_mean_pp": -1.050611145570644,
+        "exc_median_pp": -1.385652416800215
+      },
+      "2020": {
+        "n": 154,
+        "exc_mean_pp": -11.373798650898607,
+        "exc_median_pp": -3.4751151109883347
+      },
+      "2021": {
+        "n": 240,
+        "exc_mean_pp": 0.6652648861128864,
+        "exc_median_pp": 0.9443179966908433
+      },
+      "2022": {
+        "n": 54,
+        "exc_mean_pp": 2.9463410972887156,
+        "exc_median_pp": 0.1456624619490721
+      },
+      "2023": {
+        "n": 47,
+        "exc_mean_pp": 2.757781413797367,
+        "exc_median_pp": 1.8000517048009659
+      },
+      "2024": {
+        "n": 41,
+        "exc_mean_pp": 0.28712573291033705,
+        "exc_median_pp": -1.894525685386543
+      },
+      "2025": {
+        "n": 1,
+        "exc_mean_pp": -1.6940307049938776,
+        "exc_median_pp": -1.6940307049938776
+      },
+      "2026": {
+        "n": 1,
+        "exc_mean_pp": 195.59494992072223,
+        "exc_median_pp": 195.59494992072223
+      }
+    }
+  },
+  "autocorr": {
+    "n_months_modern": 128,
+    "lag1_rho": -0.003053150276802762,
+    "t_iid": 5.310395280743301,
+    "t_nw3": 5.849645979574991,
+    "se_nw_over_iid": 0.9078148146546695,
+    "verdict": "负自相关 ⇒ NW 后 t 更高"
+  },
+  "observation_months": {
+    "note": "σ 为超额（相对池等权）口径；绝对收益口径见 diag.json 的 vol（单路径 11.26%/月）",
+    "vol_100pct_single_path": 0.0487788536298582,
+    "vol_100pct_expected_path": 0.020162276859792303,
+    "vol_20pct_single_path": 0.00975577072597164,
+    "vol_20pct_expected_path": 0.0040324553719584605,
+    "by_cost": {
+      "C0_回测成本": {
+        "mu_100pct_pp": 0.9463710320527424,
+        "mu_20pct_pp": 0.1892742064105485,
+        "n_single_path_t2": 106.26745845903541,
+        "n_expected_path_t2": 18.155836484947265,
+        "n_single_path_mde": 208.522325697831
+      },
+      "C1_实盘成本": {
+        "mu_100pct_pp": 0.8759741570527427,
+        "mu_20pct_pp": 0.17519483141054853,
+        "n_single_path_t2": 124.03395237895174,
+        "n_expected_path_t2": 21.19124886045972,
+        "n_single_path_mde": 243.38446209780375
+      }
+    }
+  },
+  "A_F_diff": {
+    "A_baseline_drop_and_reweight": {
+      "full": 1.05827782361119,
+      "modern_2016": 0.9463710320527426
+    },
+    "D_gone_gets_bench": {
+      "full": 0.9969282390241199,
+      "modern_2016": 0.8813536961819083
+    },
+    "F_gone_actual_from_bars": {
+      "full": 1.6572583606741589,
+      "modern_2016": 0.883372849504277
+    },
+    "F_minus_A_full_pp": 0.5989805370629688,
+    "F_minus_A_modern_pp": -0.06299818254846568,
+    "F_minus_D_modern_pp": 0.002019153322368683
+  }
+}
