@@ -1,5 +1,5 @@
 {
- "commit": "9b5236daa30099062a74a470e57f8f269fb5a133",
+ "commit": "537fb4c382526465e54f3979c6325df278572fe8",
  "commit_note": "commit 来自生成方本地 HEAD；/opt/quant 无 .git，云端一致性以逐文件 sha256 为准",
  "files": {
   "backend/src/deepquant/broker/__init__.py": "d603695a7f201687ce80a86b341d2f93e70b66998d66d72814d65ab1e528f639",
@@ -31,7 +31,7 @@
   "docs/ENGINEERING_CHANGE_R8_2026-11-15.md": "604dc54b88ac232c597666ca3acee2b0bb936a85a32242fadd0c1149282998cc",
   "docs/GM_PAPER_PROBE_PREREG_2026-11-15.md": "ebe51bec9202f4660d9b568d924f706b0a85f742426d1c0db8a0eb43d5a8e502",
   "research/stock_pick_2026-10-25/scripts/sp5/p03e_afford.py": "c525c67d2f131feadf764ea74ae1be2b2bd38998fc00ef470f56362b8cfa9e0b",
-  "research/stock_pick_2026-10-25/scripts/sp5/p13_forward.py": "cd27055e1e4321764115f4960e7957a2d8e65dfda82b8e27e5628415651d0c02",
+  "research/stock_pick_2026-10-25/scripts/sp5/p13_forward.py": "c09d81282918de9930421463a46cfb056cf09b31b5b50050b83027f3f237c95e",
   "research/stock_pick_2026-10-25/scripts/sp5/p17_universe_filter.py": "3a0cd2f8261f4ae19c5181e2aa8254028b05f6cf5868c334556eade7f8fee24c",
   "research/stock_pick_2026-10-25/scripts/sp5/strategy_params.py": "c84520e67057e66dd035fc6ab613a79565d683f590d36643555a21575c651282",
   "research/stock_pick_2026-10-25/scripts/sp5/trade_calendar.py": "7e6704b57fea82182431f5ed285e68bb59b038893ab9b29eba195155892a8d9e",
@@ -68,8 +68,8 @@
   "scripts/verify_qfq_rebuild.py": "bb3ef671e549094aec6a755fa5447ff321c9c8802f776a98c76414c39dcbbe69",
   "scripts/verify_token_rotation.py": "415b181d3ca74eb6ecdc073b2e5754551184faa201da029dd1be4de72910dac1"
  },
- "generated_at": "2026-11-21T01:02:14",
+ "generated_at": "2026-11-21T21:00:32",
  "n_files": 65,
  "schema_version": "deploy_manifest_v1",
- "sha256_of_files": "246f7930d99450a7d59a0baa112b758a96aca1cfe575ad9a2fe106ff696ac47a"
+ "sha256_of_files": "ad43c9c4b07a8130e1307993614bcfe6504ee668ad6022c106a5d2a2f82e185c"
 }
