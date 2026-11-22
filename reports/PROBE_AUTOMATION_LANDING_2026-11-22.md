@@ -43,5 +43,5 @@
 
 ## 五、提交与推送
 
-- 本地提交：`TBD`
-- GitHub API 提交：`TBD`（git 直连仍 502，走 `api_push_report_v2.py` 同树推送）
+- 本地提交：`1bdc4b5`（26 files changed）
+- GitHub API 提交：`ca439b7d08161d96bb576b66e4a5668f2f82db75`（同树不同 sha，预期；git 直连仍 502，走 `api_push_report_v2.py` 推送并逐 sha 校验树一致）
