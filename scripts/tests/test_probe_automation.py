@@ -78,15 +78,23 @@ def test_classify_technical_beats_market(monkeypatch):
     assert r["action"] == "NO_POSTPONE_ESCALATE_HUMAN"
 
 
-def test_classify_market_requires_independent_evidence():
+def test_classify_market_requires_independent_preobserved_evidence():
     st = {"attempts": [{"decision": "PASS", "positions": []},
                        {"decision": "FAIL", "positions": ["601398"]}]}
     assert pa.classify(state=st)["decision"] == "GATE_FAIL_TECHNICAL"  # 无证据 ⇒ 变严
-    pa.MARKET_CAUSE_FILE.write_text(json.dumps({"reason": "SUSPENDED",
-                                                "symbols": ["601398"]}), encoding="utf-8")
+    good = {"reason": "SUSPENDED", "symbols": ["601398"],
+            "source": "exec_all", "producer": "market_data_watch",
+            "observed_at": "2026-11-26T14:30:00+08:00"}
+    pa.MARKET_CAUSE_FILE.write_text(json.dumps(good), encoding="utf-8")
     r = pa.classify(state=st)
-    assert r["decision"] == "GATE_NO_GO_MARKET"
-    assert r["action"] == "POSTPONE_BRANCH_B"
+    assert r["decision"] == "GATE_NO_GO_MARKET" and r["action"] == "POSTPONE_BRANCH_B"
+
+    for bad in ({**good, "observed_at": "2026-11-26T15:01:00+08:00"},
+                {**good, "producer": "probe_executor"},
+                {**good, "source": "probe_executor"},
+                {k: v for k, v in good.items() if k != "producer"}):
+        pa.MARKET_CAUSE_FILE.write_text(json.dumps(bad), encoding="utf-8")
+        assert pa.classify(state=st)["decision"] == "GATE_FAIL_TECHNICAL", bad
 
 
 def test_classify_clean():
@@ -169,6 +177,23 @@ def test_watch_lock_ack_and_disable():
     r = pa.watch_lock(alert_id="T3", wait_seconds=1, sleep_fn=lambda s: None,
                       systemctl=sc, mail_fn=lambda *a: True)
     assert r["decision"] == "LOCKDOWN" and r["disabled"] == ["deepquant-sim-exec.timer"]
+
+
+def test_unlock_requires_written_confirmation_and_reviewed_snapshot():
+    pa.ACK_DIR.mkdir(parents=True, exist_ok=True)
+    (pa.ACK_DIR / "LOCK1.ack").write_text(
+        json.dumps({"written_confirmation": "CONFIRMED_BY_HOLDER", "reviewed_snapshot": False}),
+        encoding="utf-8")
+    called = []
+    assert pa.unlock(alert_id="LOCK1", predict_fn=lambda: called.append(1))["decision"] == "UNLOCK_DENIED"
+    assert called == []
+
+    (pa.ACK_DIR / "LOCK1.ack").write_text(
+        json.dumps({"written_confirmation": "CONFIRMED_BY_HOLDER", "reviewed_snapshot": True}),
+        encoding="utf-8")
+    pa._write(pa.FW / "alert_snapshot_LOCK1.json", {"decision": "SNAPSHOT_READONLY"})
+    r = pa.unlock(alert_id="LOCK1", predict_fn=lambda: {"decision": "ARMED"})
+    assert r["decision"] == "UNLOCK_VIA_A5" and r["a5"]["decision"] == "ARMED"
 
 
 def test_snapshot_cancel_unknown_id_is_noop():

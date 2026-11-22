@@ -46,7 +46,9 @@
 | 本人动作 | 接电话/看 webhook → 按 `forward/alert_cards/P0_ORDER_FAIL.md` 执行（含撤单命令、持仓快照命令） |
 | 联系电话 | `[HUMAN-FILL: 本人填写]`（执行方不代填） |
 | 第二人 | `[HUMAN-FILL: 本人填写]` |
-| 响应窗口 | 15 分钟；未确认 ⇒ 脚本自动 disable 全部 `deepquant-sim-*.timer` 并锁定，等待人工 |
+| 响应窗口 | 15 分钟；未确认 ⇒ 脚本自动 `disable + stop` 全部 `deepquant-sim-*.timer` 并锁定，等待人工 |
+| ⚠️ 锁定边界 | 锁定只阻止**新单**，不会撤销服务端已发委托；先在卡片里跑“持仓与委托快照命令”并落盘 |
+| 解锁路径（写死） | ① 本人书面确认 `ack` 文件含 `written_confirmation=CONFIRMED_BY_HOLDER`、`reviewed_snapshot=true`；② 快照经本人核对；③ **重跑 A5** `probe_automation.py predict`，由六门决定是否重新武装；**禁止人工直接 enable/start timer** |
 | 状态 | ⬜ 未触发（正常不打扰） |
 
 ---
@@ -62,4 +64,8 @@
 - H1：11-23 开盘后一次性提醒。
 - H2：11-24 一次性提醒。
 - H3：11-25 09:34 一次性提醒（含 A/B/C 选择）。
-- H4：事件驱动，无定时提醒；告警卡片已预生成。
+- H4：事件驱动，无定时提醒；告警卡片已预生成（含解锁路径）。
+
+## S0 期间预检留痕（本次不做，只登记）
+
+S0 要跑 1~3 个月，U-16 为月度调仓；**每次调仓日 T-1 都需要一次 preflight**。当前 `deepquant-sim-preflight.timer`（11-30 18:00）是一次性的，12-02 之后的月度预检 timer **暂未建**，待 12-01 后按实际调仓日历补。不得把这条写成“已有每日预检”。

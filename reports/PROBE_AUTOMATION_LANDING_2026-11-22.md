@@ -11,8 +11,9 @@
 | A1 补充 timer | `deepquant-smoke`(11-24 17:40)、`deepquant-predict`(11-30 17:50)、`sim-prep`(11-27 17:20) 已 enable+start | next 时点分别为 11-24 17:40 / 11-30 17:50 / 11-27 17:20 |
 | A2 前置命令块 | 所有新 service 的 `ExecStart` 写死 `cd /opt/quant`、`set -a; . /opt/quant/env; set +a`、`/opt/quant/.venv-gm/bin/python` | 施工单原文写 `/opt/quant/DeepQuant-main`，执行机**不存在**该路径；已按现场真实根 `/opt/quant` 落地 |
 | A3 缺价硬门 | `probe_automation.buy-from-file` 从本人价格文件取价，缺任一 code ⇒ `MISSING_PRICE`、零报单、不建连、rc=4；仍调 `probe_executor.run_buy` 原硬门 | 单测 + M1 变异检出（去掉预检后真会下单） |
-| A4 去污三次分类 | 三次时点严格映射；第三次后 `GATE_NO_GO_MARKET`（须独立市场证据文件）或 `GATE_FAIL_TECHNICAL`（含“无市场证据”）；两类字段/动作不同 | 单测 + M2 变异检出；非三时点 `SLOT_NOT_RECOGNIZED` rc=4 |
-| A5 M-1201-PREDICT | `probe_automation.predict` 调既有 `--gates`（注入时点已是 12-01 09:35），六门全 PASS 才 `enable **+ start**` exec/sentinel/reconcile 三个 timer；否则 `POSTPONED` 不武装 | 单测 + M3 变异检出；**enable 不等于 active** 已修并写进代码注释 |
+| A4 去污三次分类 | 三次时点严格映射；`GATE_NO_GO_MARKET` 必须 `source ∈ {exec_all, gmtrade_get_positions}`、`producer` 非去污脚本、`observed_at ≤ 2026-11-26T15:00+08:00`；否则一律 `GATE_FAIL_TECHNICAL`；两类字段/动作不同 | 单测（含迟到/自产/来源非法）+ M2 变异检出；非三时点 `SLOT_NOT_RECOGNIZED` rc=4 |
+| A5 M-1201-PREDICT | `probe_automation.predict` 调既有 `--gates`（注入时点已是 12-01 09:35），六门全 PASS 才武装；否则 `POSTPONED` 不武装 | 单测 + M3 变异检出；**enable 不等于 active** 已修并写进代码注释 |
+| **A5 武装命令原文** | `systemctl enable deepquant-sim-exec.timer` → `systemctl start deepquant-sim-exec.timer`；同两行用于 sentinel/reconcile 的 `.timer`。**全程不 start 任何 `.service`**，12-01 09:35 前不会发出订单 | `scripts/probe_automation.py` 的 `POST_CHAIN_TIMERS` 全为 `.timer` |
 | A6 告警卡片 | P0/P1/P2 三张卡片落 `forward/alert_cards/`，含现象、字段、持仓快照命令、撤单命令、电话占位；告警服务 `deepquant-alert-p0/p1/p2.service` | 执行机 `gen-cards` 已跑，三张卡片存在 |
 | §4 告警链 | 邮件（`notify_mail`，SMTP 已配）+ 企业微信 webhook（`DEEPQUANT_ALERT_WEBHOOK` 已配）；sim-exec/sentinel 失败 → P0，sim-reconcile 失败 → P1（drop-in `OnFailure`）；P0 启动 900 秒确认窗口，无 ack ⇒ disable **+ stop** 全部 `deepquant-sim-*.timer` | `systemd-analyze verify` 仅报系统里既有 snapd/ai-team 无关告警；新单元无告警 |
 | H1–H4 卡片 | `docs/PROBE_HUMAN_CARDS_2026-11-22.md`，四项均标 ⬜ 未授权/未核对/未选/未触发 | 未代勾、未代填 |
@@ -40,6 +41,19 @@
 ## 四、机制未变声明
 
 门控顺序、落盘位置、幂等逻辑、**六门判据**均未改动；A2–A5 全部是外围编排（读价格文件、调既有函数、解析既有 `--gates` 输出、控制 timer 开关）。新增的只有：分类留痕字段、告警投递、timer 编排。判据方向：`GATE_FAIL_TECHNICAL` 优先于市场原因、无独立市场证据按技术失败 ⇒ **只严不严**。
+
+## 四B、H1 验收标准已进脚本（21:48 追加）
+
+- 验收增补 `docs/PROBE_MIN_ORDER_ACCEPTANCE_2026-11-22.md`（sha `df3d42fb…`）独立冻结；原预登记 `ccbc420d…` 保留不改写。脚本 `verify_prereg()` 同时校两个哈希，docstring 与产物 JSON 均含完整 P-1/P-2/P-3、E-1/E-2/E-3、V-1..V-4、X-1/X-2/X-3 原文。
+- **P-1 事实校正**：`2026-11-21` 是周六非交易日；独立数据 `data/exec_all/601398.SH.exec.csv` 的上一交易日为 `11-20`（收盘 `9.400`）。脚本按周末过滤取 11-20，并在产物同时记录字面请求 `20261121` 与实际 `20261120` 及说明。
+- **P-3 修正**：跌停价由 ROUND_HALF_UP 改为 **ROUND_FLOOR(0.01)**；`9.40×0.9=8.46`。修改原预登记参数需新预登记，故以增补冻结并保留原文件。
+- **X-1**：意外成交不再按“失败”处理，而是 `X-FILLED`：立即市价反向卖出（用户 21:48 书面授权覆盖原“不自动卖出”），纳入 11-26 去污，`positions=0` 门标 SKIP 而非 FAIL。X-2/X-3 单独留痕，不合并。
+- **边界写进文档**：探针 PASS 只说明权限/白名单/额度/下单/撤单链路通；**不推出 11-25 一定成**，正确表述是“11-25 失败只可能来自价格或市场”。
+- 验证：13 条 H1 验收测试 + 2/2 新变异（M4 取整、M5 反向卖出）；A4 独立证据新增迟到/自产/非法来源三类测试。
+
+## 四C、S0 期间的预检留痕（只登记，本次不做）
+
+S0 跑 1~3 个月、U-16 月度调仓 ⇒ **每次调仓日 T-1 都要 preflight**。现建的 11-30 18:00 是一次性 timer，12-02 后的月度预检 timer **暂未建**，待 12-01 后按实际调仓日历补；不得写成“已有每日预检”。
 
 ## 五、提交与推送
 

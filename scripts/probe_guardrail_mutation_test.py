@@ -77,6 +77,8 @@ def _load(tag: str, text: str):
 
 def _detects(tag: str, text: str) -> bool:
     p, mod = _load(tag, text)
+    # 变异体真走下单路径，绝不能落到 forward/sim_orders（曾污染过一次）
+    mod._write_json = lambda rel, obj: None
     saved = pe.ex.GmTradeBroker
     os.environ["DQ_GM_TOKEN"] = "TEST_ONLY"
     os.environ["DQ_GM_ACCOUNT_ID"] = "0a4706b2-db2c-11f1-937c-00163e022aa6"

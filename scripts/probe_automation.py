@@ -228,16 +228,33 @@ def classify(*, state: dict | None = None) -> dict:
         rec["action"] = "NO_POSTPONE_ESCALATE_HUMAN"
     else:
         cause = _read_json(MARKET_CAUSE_FILE) or {}
-        if cause.get("reason") in ("SUSPENDED", "LIMIT_UP_DOWN") and cause.get("symbols"):
+        # A4 外部约束：独立数据源 + 15:00 前已观测 + 非去污脚本自产；
+        # 任一不满足一律按技术失败（判据只严不严）。
+        allowed_sources = {"exec_all", "gmtrade_get_positions"}
+        forbidden_producers = {"probe_executor", "probe_automation", "decontam"}
+        observed_ok = False
+        try:
+            observed = dt.datetime.fromisoformat(str(cause.get("observed_at", "")))
+            observed_ok = observed <= dt.datetime.fromisoformat("2026-11-26T15:00:00+08:00")
+        except (ValueError, TypeError):
+            observed_ok = False
+        independent = (cause.get("source") in allowed_sources
+                       and str(cause.get("producer", "")).strip().lower() not in forbidden_producers
+                       and bool(str(cause.get("producer", "")).strip()))
+        if (cause.get("reason") in ("SUSPENDED", "LIMIT_UP_DOWN")
+                and cause.get("symbols") and observed_ok and independent):
             rec["decision"] = "GATE_NO_GO_MARKET"
             rec["reason"] = cause["reason"]
             rec["evidence"] = {"file": _rel(MARKET_CAUSE_FILE),
+                               "source": cause["source"],
+                               "producer": cause["producer"],
+                               "observed_at": cause["observed_at"],
                                "symbols": cause["symbols"]}
             rec["action"] = "POSTPONE_BRANCH_B"
         else:
             # 没有独立市场证据 ⇒ 不许猜成市场原因（判据只许变严）
             rec["decision"] = "GATE_FAIL_TECHNICAL"
-            rec["reason"] = "NO_MARKET_EVIDENCE"
+            rec["reason"] = "NO_INDEPENDENT_PREOBSERVED_EVIDENCE"
             rec["action"] = "NO_POSTPONE_ESCALATE_HUMAN"
     _write(DECONTAM_RESULT, rec)
     return rec
@@ -314,7 +331,12 @@ def gen_cards() -> list[Path]:
              "字段：decision / n_real_orders / order_id_mask / positions_after / error_type",
              f"持仓快照命令：`{snap}`", f"撤单命令（人工确认后）：`{cancel}`",
              "联系电话：[HUMAN-FILL: 本人填写]；第二人：[HUMAN-FILL: 本人填写]",
-             "15 分钟无确认 ⇒ 自动 disable 全部 deepquant-sim-*.timer，等待人工"]),
+             "15 分钟无确认 ⇒ 自动 disable + stop 全部 deepquant-sim-*.timer，等待人工",
+             "⚠️ 锁定只阻止新单，**不会撤销已发委托**；先跑快照命令核持仓/委托",
+             f"快照落盘命令：`{snap} --write-id <告警ID>`",
+             "解锁硬条件：本人书面确认 + 快照经本人核对；随后**必须重跑 A5** "
+             "(`/opt/quant/.venv-gm/bin/python -u scripts/probe_automation.py predict`)，"
+             "不得人工直接 enable/start timer"]),
         "P1_FILL_SLIP": ("P1 成交率<95%/滑点>0.3%/对账差异", "邮件", "当日",
             ["现象：成交回报与计划不一致、滑点超阈值、对账差异",
              "字段：fill_rate / slippage_pct / reconcile_diff",
@@ -422,7 +444,8 @@ def watch_lock(*, alert_id: str, wait_seconds: int = 900, sleep_fn=None,
 
 
 # ---------------------------------------------------------------- 人工卡片命令
-def snapshot(*, cancel_cl_ord_id: str | None = None, gm: Any = None) -> dict:
+def snapshot(*, cancel_cl_ord_id: str | None = None, gm: Any = None,
+             write_id: str | None = None) -> dict:
     gm = gm or _gm()
     _login_gm(gm)
     orders = [{"cl_ord_id": getattr(o, "cl_ord_id", None),
@@ -441,7 +464,26 @@ def snapshot(*, cancel_cl_ord_id: str | None = None, gm: Any = None) -> dict:
         rec["decision"] = "CANCEL_DONE_BY_HUMAN"
     else:
         rec["decision"] = "SNAPSHOT_READONLY"
+    if write_id:
+        _write(FW / f"alert_snapshot_{write_id}.json", rec)
     return rec
+
+
+def unlock(*, alert_id: str, predict_fn=None) -> dict:
+    """锁定后唯一解锁路径：书面确认 + 快照经核对 + 重跑 A5，不允许人工直接.enable。"""
+    ack = _read_json(ACK_DIR / f"{alert_id}.ack") or {}
+    snap = _read_json(FW / f"alert_snapshot_{alert_id}.json")
+    ok = (ack.get("written_confirmation") == "CONFIRMED_BY_HOLDER"
+          and ack.get("reviewed_snapshot") is True
+          and snap is not None and snap.get("decision") == "SNAPSHOT_READONLY")
+    if not ok:
+        return {"decision": "UNLOCK_DENIED",
+                "reason": "NEED_WRITTEN_CONFIRMATION_AND_REVIEWED_SNAPSHOT",
+                "ack_fields": sorted(ack.keys()),
+                "snapshot_exists": snap is not None}
+    rec = (predict_fn or predict)()
+    return {"decision": "UNLOCK_VIA_A5", "a5": rec,
+            "note": "解锁不撤销已发委托；须先按卡片撤单/核持仓"}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -462,6 +504,9 @@ def main(argv: list[str] | None = None) -> int:
     w.add_argument("--wait-seconds", type=int, default=900)
     s = sub.add_parser("snapshot")
     s.add_argument("--cancel-cl-ord-id", default=None)
+    s.add_argument("--write-id", default=None, help="落盘 forward/alert_snapshot_<id>.json")
+    u = sub.add_parser("unlock")
+    u.add_argument("--id", required=True)
     sub.add_parser("gen-cards")
     args = ap.parse_args(argv)
 
@@ -481,7 +526,9 @@ def main(argv: list[str] | None = None) -> int:
     elif args.cmd == "watch-lock":
         r = watch_lock(alert_id=args.id, wait_seconds=args.wait_seconds)
     elif args.cmd == "snapshot":
-        r = snapshot(cancel_cl_ord_id=args.cancel_cl_ord_id)
+        r = snapshot(cancel_cl_ord_id=args.cancel_cl_ord_id, write_id=args.write_id)
+    elif args.cmd == "unlock":
+        r = unlock(alert_id=args.id)
     else:
         r = {"decision": "CARDS", "paths": [_rel(p) for p in gen_cards()]}
 
@@ -489,7 +536,7 @@ def main(argv: list[str] | None = None) -> int:
     good = {"PREFLIGHT_PASS", "DRYRUN", "EXECUTED", "RECORDED", "DECONTAM_OK",
             "GATE_NO_GO_MARKET", "GATE_FAIL_TECHNICAL", "ARMED", "POSTPONED", "SENT",
             "ACKNOWLEDGED", "LOCKDOWN", "SNAPSHOT_READONLY", "CANCEL_DONE_BY_HUMAN",
-            "CANCEL_TARGET_NOT_FOUND", "CARDS", "PARTIAL"}
+            "CANCEL_TARGET_NOT_FOUND", "CARDS", "PARTIAL", "UNLOCK_VIA_A5"}
     return 0 if r.get("decision") in good else 4
 
 
