@@ -1,7 +1,9 @@
 # 最小下单探针验收标准（PA-GM-PROBE-3 增补，冻结 2026-11-22 21:48 CST）
 
 > 性质：H1 授权的**验收标准**，不是新纪律、不是新因子。原预登记 `PROBE_MIN_ORDER_PREREG_2026-11-23.md`（sha `ccbc420d…`）**保留不改写**；本文件是独立冻结增补，脚本同时校两个哈希。
-> 来源：账户持有人 2026-11-22 21:48 书面消息 §五。X-1 的反向卖出为该消息明确授权，覆盖原预登记“不自动卖出”一句；其余限制不变。
+> 来源：账户持有人 2026-11-22 21:48 书面消息 §五；同日 23:59 施工单 v2 P0-2 修正 X-1：
+> A 股主板 T+1，“立即反向卖出”在成交当日物理不可执行，改为 D0 只记录 / D1 次日卖出。
+> 原 X-1 授权中的“反向卖出”意图保留，但执行时点改为 T+1 最早可卖时点；其余限制不变。
 
 ---
 
@@ -27,9 +29,12 @@
   V-4  产物落盘 forward/probe_min_order_2026-11-23.json
 
 异常分支（FAIL 之外，必须单独记录）：
-  X-1  若 E-2 显示 filled（意外成交）⇒ 立即反向卖出，记录为 X-FILLED
-       —— 此时 V-1 永远不可能满足，不能用"positions=0"判 FAIL，
-       要按 X-FILLED 单独分类，并纳入 11-26 去污范围
+  X-1  D0（11-23 成交当日）：A 股主板 T+1，当日不可卖出。只记录
+       symbol / qty / fill_price / order_id / filled_at，probe_carry=true，
+       V-1 置 SKIP（不判 FAIL），单独落 X-FILLED-D0 分类。
+  X-1  D1（11-24 09:35 后，T+1 最早可卖时点）：由 probe_automation
+       liquidate-probe-carry 卖出全部 probe_carry；成功 probe_carry=false，
+       失败（跌停/停牌/拒单）保持 true 并升 P0；11-24 收盘仍 true ⇒ 11-25 PROBE 顺延。
   X-2  若 cancel 返回失败 ⇒ 记录为 X-CANCEL-FAIL，人工核委托
   X-3  若 available 未恢复 ⇒ 记录为 X-FREEZE，人工核资金冻结
 ```

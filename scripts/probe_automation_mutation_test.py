@@ -18,13 +18,8 @@ SRC = (SCRIPTS / "probe_automation.py").read_text(encoding="utf-8")
 
 MUTATIONS = [
     ("M1_MISSING_PRICE_OFF", [
-        ("    missing = [] if rec is None else sorted(c for c in BUY_PRICES\n"
-         "                                            if c not in rec or not str(rec[c]).strip())\n"
-         "    if rec is None:\n"
-         "        missing = sorted(BUY_PRICES)",
+        ("    missing = sorted(c for c in BUY_PRICES if c not in prices or not prices[c])",
          "    missing = []"),
-        ("    prices = {c: str(rec[c]).strip() for c in BUY_PRICES}",
-         "    prices = {c: str(rec.get(c, '0')).strip() for c in BUY_PRICES}"),
     ]),
     ("M2_NO_MARKET_EVIDENCE_ACCEPTED", [
         ('            rec["decision"] = "GATE_FAIL_TECHNICAL"\n'
@@ -53,9 +48,12 @@ def load(tag: str, text: str, tmp: Path):
 def detects(tag: str, text: str, tmp: Path) -> bool:
     mod = load(tag, text, tmp)
     for n in ("PRICE_FILE", "PREFLIGHT_OUT", "DECONTAM_STATE", "MARKET_CAUSE_FILE",
-              "DECONTAM_RESULT", "PREDICT_OUT", "CARD_DIR", "ACK_DIR"):
+              "DECONTAM_RESULT", "PREDICT_OUT", "CARD_DIR", "ACK_DIR",
+              "PRICE_MODE_FILE", "PRICE_MODE_AUDIT", "FW"):
         setattr(mod, n, tmp / n)
     if tag == "M1_MISSING_PRICE_OFF":
+        mod.FW.mkdir(parents=True, exist_ok=True)
+        mod.PRICE_MODE_FILE.write_text(json.dumps({"mode": "A"}), encoding="utf-8")
         mod.PRICE_FILE.write_text(json.dumps({"601398": "6.10"}), encoding="utf-8")
         import probe_executor as pe
         saved = pe.run_buy

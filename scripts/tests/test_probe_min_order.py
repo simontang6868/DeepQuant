@@ -196,16 +196,16 @@ def test_order_rejected_no_second_try():
     assert r["acceptance"]["E-1"]["status"] == "FAIL"
 
 
-def test_x1_filled_reverse_sells_and_is_not_fail():
+def test_x1_filled_d0_never_sells_t1():
     gm = FakeGm()
     gm.fill_after_order = True
     r = _run_with(gm)
-    assert r["decision"] == "X-FILLED"
-    assert len(gm.sent) == 2 and gm.sent[1]["side"] == pmo.SIDE_SELL
-    assert gm.sent[1]["order_type"] == pmo.ORDER_TYPE_MARKET
-    assert [x["class"] for x in r["exceptions"]] == ["X-FILLED"]
+    assert r["decision"] == "X-FILLED-D0"
+    # T+1：11-23 当日绝不产生卖单
+    assert len(gm.sent) == 1 and gm.sent[0]["side"] == pmo.SIDE_BUY
+    assert [x["class"] for x in r["exceptions"]] == ["X-FILLED-D0"]
+    assert r["probe_carry"] is True and r["carry_label"] == "PROBE_CARRY"
     assert r["include_in_1126_decontam"] is True
-    # X-1 不能用 positions==0 判 FAIL
     assert r["acceptance"]["V-1"]["status"] == "SKIP"
 
 

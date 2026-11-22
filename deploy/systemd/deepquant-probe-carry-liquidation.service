@@ -1,0 +1,20 @@
+[Unit]
+Description=DeepQuant X-FILLED-D1 11-24 09:35+ probe_carry liquidation (T+1)
+OnFailure=deepquant-alert-p0.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+# 无 carry 时 NO_CARRY 直接退出 rc=0；失败保持 probe_carry=true 并升 P0
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv-gm/bin/python -u scripts/probe_automation.py liquidate-probe-carry'
+TimeoutStartSec=300
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-probe-carry-liquidation
+
+[Install]
+WantedBy=multi-user.target
