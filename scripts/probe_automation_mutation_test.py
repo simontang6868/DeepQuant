@@ -28,7 +28,7 @@ MUTATIONS = [
     ]),
     ("M2_NO_MARKET_EVIDENCE_ACCEPTED", [
         ('            rec["decision"] = "GATE_FAIL_TECHNICAL"\n'
-         '            rec["reason"] = "NO_MARKET_EVIDENCE"',
+         '            rec["reason"] = "NO_INDEPENDENT_PREOBSERVED_EVIDENCE"',
          '            rec["decision"] = "GATE_NO_GO_MARKET"\n'
          '            rec["reason"] = "GUESSED_MARKET"'),
     ]),
