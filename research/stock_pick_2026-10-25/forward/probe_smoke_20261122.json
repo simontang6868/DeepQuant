@@ -18,6 +18,10 @@
       "rc": 0,
       "out": "{\"decision\": \"DRYRUN\", \"positions\": []}"
     },
+    "missing_price_dryrun": {
+      "rc": 4,
+      "out": "{\"decision\": \"MISSING_PRICE\", \"codes\": [\"601398\", \"600000\"], \"missing\": [\"600000\"], \"n_real_orders\": 0}"
+    },
     "auth_untouched": {
       "local_auth_exists": false,
       "before_sha12": null,
@@ -27,5 +31,6 @@
       "note": "本地仓库无授权文件（执行机专有）；dryrun 用临时夹具，实际执行机 mtime/hash 由外部 SSH 命令核对"
     }
   },
+  "missing_price_guard": "PASS",
   "n_real_orders": 0
 }

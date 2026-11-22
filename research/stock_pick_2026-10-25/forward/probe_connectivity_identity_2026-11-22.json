@@ -1,0 +1,16 @@
+{
+  "verdict": "CONNECT_OK",
+  "at": "2026-11-22T20:08:57+08:00",
+  "nav": 100000.0,
+  "available": 100000.0,
+  "account_id_mask": "0a47****************************2aa6",
+  "expected_account_id_mask": "0a47****************************2aa6",
+  "account_env_match": true,
+  "account_mask_ok": true,
+  "account_name_masked": "0a47****************************2aa6",
+  "auth_account_ref_label": "虚拟盘测试202611",
+  "channel_hint": "SIM",
+  "positions_with_volume": [],
+  "n_real_orders": 0,
+  "note": "只读探针：login + get_cash + get_positions，未发任何单；账户只回显前4+后4"
+}
