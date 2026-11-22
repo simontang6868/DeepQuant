@@ -1,0 +1,13 @@
+{
+  "mode": "PROBE",
+  "prereg_sha12": "ccbc420d0761",
+  "day": "20261123",
+  "code": "601398",
+  "qty": 100,
+  "side": "BUY",
+  "price": "5.50",
+  "notional": 550.0,
+  "decision": "DRYRUN",
+  "n_real_orders": 0,
+  "note": "dryrun 不导入 gmtrade、不建连、不读授权、不发单"
+}

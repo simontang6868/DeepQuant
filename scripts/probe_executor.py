@@ -65,22 +65,54 @@ def _date_gate(leg: str, today: str) -> None:
         raise ex.Halt(f"DATE_GATE:{leg}:expected {want},got {today}")
 
 
-def _auth_ok(*, auth_path: Path, now: str, notional: float) -> dict:
+def mask_account(account_id: str | None) -> str:
+    """§五：账户标识只回显前4+后4，中间打星；绝不回显完整值。"""
+    s = str(account_id or "")
+    if len(s) <= 8:
+        return "*" * len(s)
+    return s[:4] + "*" * (len(s) - 8) + s[-4:]
+
+
+def _require_prices(codes: list[str], prices: dict[str, str]) -> list[str]:
+    """§二 P0：整批缺价预检，必须在建连/循环之前调用。
+
+    原实现在下单循环里用 ``prices[c]``，第 2 只缺价时第 1 只已发出，
+    服务端委托不会随进程退出而撤销 ⇒ 部分发送。此处失败关闭、零报单。
+    """
+    return [c for c in codes if c not in prices or not str(prices[c]).strip()]
+
+
+def _auth_ok(*, auth_path: Path, now: str, notional: float, available: float) -> dict:
     doc = guard.load_doc(auth_path)
     if doc is None:
         return {"decision": guard.DENY, "reason": "NO_AUTH"}
     v = guard.check(doc=doc, now=now, action=AUTH_ACTION, notional=notional,
-                    cumulative=0.0, available=MAX_NOTIONAL)
+                    cumulative=0.0, available=available)
     return v
 
 
+def _field(row: Any, name: str, default: Any = None) -> Any:
+    """兼容 gm protobuf 对象与 dict：真实 Cash 没有 .get（第11轮新发现的隐性坑）。"""
+    if isinstance(row, dict):
+        return row.get(name, default)
+    return getattr(row, name, default)
+
+
 def _cash_fields(gm: Any) -> dict:
-    """现金三字段（记录型）：cash_before/cash_after/费用合计来自账户快照。"""
-    cash = gm.cash()
-    row = cash[0] if cash else {}
-    return {"cash_before": row.get("cash"),
-            "cash_after": row.get("cash"),
-            "fee_total": row.get("cum_commission")}
+    """现金三字段（记录型）+ 实时 available + 账户标识（掩码后才落盘）。"""
+    # 执行机实测：gmtrade.api 只有 get_cash()，且返回 Cash 对象（不是 list）；
+    # 旧代码 gm.cash()[0] 在真实环境必然 AttributeError/TypeError。
+    getter = getattr(gm, "get_cash", None) or getattr(gm, "cash", None)
+    if getter is None:
+        raise ex.Halt("GM_CASH_API_MISSING")
+    cash = getter()
+    row = cash[0] if isinstance(cash, (list, tuple)) and cash else (cash or {})
+    return {"cash_before": _field(row, "cash"),
+            "cash_after": _field(row, "cash"),
+            "fee_total": _field(row, "cum_commission"),
+            "available_at_check": float(_field(row, "available", 0) or 0),
+            "account_name_masked": mask_account(_field(row, "account_name")),
+            "account_id_mask": mask_account(_field(row, "account_id"))}
 
 
 def _created_at_dual(rec: dict) -> dict:
@@ -115,24 +147,39 @@ def run_buy(*, today: str, now: str, auth_path: Path, prices: dict[str, str],
             dryrun: bool) -> dict:
     _date_gate("buy", today)
     codes = list(DEFAULT_CODES)[:N_SYMBOLS]
-    notional = sum(float(prices.get(c, 0)) * LOTS * SHARES_PER_LOT for c in codes)
-    v = _auth_ok(auth_path=auth_path, now=now, notional=notional)
-    if v["decision"] != guard.ALLOW:
-        return {"decision": "NOT_AUTHORIZED", "reason": v.get("reason"), "n_real_orders": 0}
-    if notional > MAX_NOTIONAL:
-        return {"decision": "NOTIONAL_EXCEEDED", "notional": notional, "n_real_orders": 0}
+    missing = _require_prices(codes, prices)
+    if missing:
+        return {"decision": "MISSING_PRICE", "codes": codes, "missing": missing,
+                "n_real_orders": 0}
+    notional = sum(float(prices[c]) * LOTS * SHARES_PER_LOT for c in codes)
     if dryrun:
+        v = _auth_ok(auth_path=auth_path, now=now, notional=notional,
+                     available=MAX_NOTIONAL)
+        if v["decision"] != guard.ALLOW:
+            return {"decision": "NOT_AUTHORIZED", "reason": v.get("reason"),
+                    "n_real_orders": 0}
         return {"decision": "DRYRUN", "codes": codes, "prices": prices,
                 "notional": notional, "n_real_orders": 0}
     broker = ex.GmTradeBroker(token=os.environ["DQ_GM_TOKEN"],
                               account_id=os.environ["DQ_GM_ACCOUNT_ID"])
     cash0 = _cash_fields(broker._gm)
+    v = _auth_ok(auth_path=auth_path, now=now, notional=notional,
+                 available=cash0["available_at_check"])
+    if v["decision"] != guard.ALLOW:
+        return {"decision": "NOT_AUTHORIZED", "reason": v.get("reason"),
+                "available_at_check": cash0["available_at_check"], "n_real_orders": 0}
+    if notional > MAX_NOTIONAL:
+        return {"decision": "NOTIONAL_EXCEEDED", "notional": notional, "n_real_orders": 0}
     results = [_place(broker, side="BUY", code=c, price=prices[c]) for c in codes]
     cash1 = _cash_fields(broker._gm)
     rec = {"schema": "probe_exec/v1", "mode": PROBE_TAG, "leg": "buy",
            "day": BUY_DAY, "now": now, "codes": codes, "orders": results,
            "cash_before": cash0["cash_before"], "cash_after": cash1["cash_after"],
-           "fee_total": cash1["fee_total"], "n_real_orders": len(results)}
+           "fee_total": cash1["fee_total"],
+           "available_at_check": cash0["available_at_check"],
+           "account_id_mask": cash0["account_id_mask"],
+           "account_name_masked": cash0["account_name_masked"],
+           "n_real_orders": len(results)}
     _write_json(f"{ORDER_DIR}/PROBE_{BUY_DAY}_buy.json", rec)
     return {"decision": "EXECUTED", "n_real_orders": len(results), "record": rec}
 
@@ -141,20 +188,37 @@ def run_sell(*, today: str, now: str, auth_path: Path, prices: dict[str, str],
              dryrun: bool) -> dict:
     _date_gate("sell", today)
     codes = list(DEFAULT_CODES)[:N_SYMBOLS]
-    v = _auth_ok(auth_path=auth_path, now=now, notional=BUDGET_PER_SYMBOL * N_SYMBOLS)
-    if v["decision"] != guard.ALLOW:
-        return {"decision": "NOT_AUTHORIZED", "reason": v.get("reason"), "n_real_orders": 0}
+    missing = _require_prices(codes, prices)
+    if missing:
+        return {"decision": "MISSING_PRICE", "codes": codes, "missing": missing,
+                "n_real_orders": 0}
     if dryrun:
+        v = _auth_ok(auth_path=auth_path, now=now,
+                     notional=BUDGET_PER_SYMBOL * N_SYMBOLS,
+                     available=MAX_NOTIONAL)
+        if v["decision"] != guard.ALLOW:
+            return {"decision": "NOT_AUTHORIZED", "reason": v.get("reason"),
+                    "n_real_orders": 0}
         return {"decision": "DRYRUN", "codes": codes, "n_real_orders": 0}
     broker = ex.GmTradeBroker(token=os.environ["DQ_GM_TOKEN"],
                               account_id=os.environ["DQ_GM_ACCOUNT_ID"])
     cash0 = _cash_fields(broker._gm)
+    v = _auth_ok(auth_path=auth_path, now=now,
+                 notional=BUDGET_PER_SYMBOL * N_SYMBOLS,
+                 available=cash0["available_at_check"])
+    if v["decision"] != guard.ALLOW:
+        return {"decision": "NOT_AUTHORIZED", "reason": v.get("reason"),
+                "available_at_check": cash0["available_at_check"], "n_real_orders": 0}
     results = [_place(broker, side="SELL", code=c, price=prices[c]) for c in codes]
     cash1 = _cash_fields(broker._gm)
     rec = {"schema": "probe_exec/v1", "mode": PROBE_TAG, "leg": "sell",
            "day": SELL_DAY, "now": now, "codes": codes, "orders": results,
            "cash_before": cash0["cash_before"], "cash_after": cash1["cash_after"],
-           "fee_total": cash1["fee_total"], "n_real_orders": len(results)}
+           "fee_total": cash1["fee_total"],
+           "available_at_check": cash0["available_at_check"],
+           "account_id_mask": cash0["account_id_mask"],
+           "account_name_masked": cash0["account_name_masked"],
+           "n_real_orders": len(results)}
     _write_json(f"{ORDER_DIR}/PROBE_{SELL_DAY}_sell.json", rec)
     return {"decision": "EXECUTED", "n_real_orders": len(results), "record": rec}
 

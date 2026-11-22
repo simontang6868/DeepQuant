@@ -59,6 +59,11 @@ def main() -> int:
     rc, out = run(["--leg", "decontam", "--dryrun", "--today", "20261126"])
     checks["decontam_dryrun"] = {"rc": rc, "out": out}
 
+    # 第11轮 §二：第 2 只缺价也必须整批退出（rc=4、零报单）
+    rc, out = run(["--leg", "buy", "--dryrun", "--today", "20261125",
+                   "--price", PRICES_BUY[0]])
+    checks["missing_price_dryrun"] = {"rc": rc, "out": out}
+
     after = sha12(auth) if auth_local else None
     mtime_after = auth.stat().st_mtime if auth_local else None
     checks["auth_untouched"] = {
@@ -68,12 +73,16 @@ def main() -> int:
         "note": "本地仓库无授权文件（执行机专有）；dryrun 用临时夹具，实际执行机 mtime/hash 由外部 SSH 命令核对",
     }
 
+    missing_ok = (checks["missing_price_dryrun"]["rc"] == 4
+                  and "MISSING_PRICE" in checks["missing_price_dryrun"]["out"])
     all_ok = (checks["self_check"]["rc"] == 0
               and checks["buy_dryrun"]["rc"] == 0
               and checks["sell_dryrun"]["rc"] == 0
-              and checks["decontam_dryrun"]["rc"] == 0)
+              and checks["decontam_dryrun"]["rc"] == 0
+              and missing_ok)
     rec = {"at": "2026-11-22T19:35:00+08:00", "verdict": "SMOKE_PASS" if all_ok else "SMOKE_FAIL",
-           "checks": checks, "n_real_orders": 0}
+           "checks": checks, "missing_price_guard": "PASS" if missing_ok else "FAIL",
+           "n_real_orders": 0}
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(rec, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"verdict": rec["verdict"], "n_real_orders": 0,
