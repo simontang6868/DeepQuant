@@ -1,0 +1,19 @@
+[Unit]
+Description=DeepQuant 11-24 17:40 smoke test over real-input snapshot
+OnFailure=deepquant-alert-p1.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; PYTHONPATH=scripts __REPO__/.venv/bin/python -u scripts/probe_smoke_test.py'
+TimeoutStartSec=300
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-smoke
+
+[Install]
+WantedBy=multi-user.target

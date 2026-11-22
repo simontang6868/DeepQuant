@@ -1,0 +1,16 @@
+[Unit]
+Description=DeepQuant P0 alert (email + WeCom webhook + 15min lockdown watch; phone stays HUMAN)
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv/bin/python -u scripts/probe_automation.py alert --level P0 --card research/stock_pick_2026-10-25/forward/alert_cards/P0_ORDER_FAIL.md --id unit_%n --wait-seconds 900'
+TimeoutStartSec=120
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-alert-p0
+
+[Install]
+WantedBy=multi-user.target

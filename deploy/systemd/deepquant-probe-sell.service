@@ -1,0 +1,20 @@
+[Unit]
+Description=DeepQuant 11-26 decontam slot (10:00/14:00/14:55 -> classify on 3rd)
+OnFailure=deepquant-alert-p0.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+# --slot 0 = 按触发时钟严格映射；非三个时点直接 SLOT_NOT_RECOGNIZED（rc=4）
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv-gm/bin/python -u scripts/probe_automation.py decontam --slot 0'
+TimeoutStartSec=300
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-probe-sell
+
+[Install]
+WantedBy=multi-user.target

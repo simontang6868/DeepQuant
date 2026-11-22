@@ -1,0 +1,18 @@
+[Unit]
+Description=DeepQuant P2 alert (email next-day: NTP / disk / stale files)
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv/bin/python -u scripts/probe_automation.py alert --level P2 --card research/stock_pick_2026-10-25/forward/alert_cards/P2_SELFCHECK.md --id unit_%n'
+TimeoutStartSec=120
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-alert-p2
+
+[Install]
+WantedBy=multi-user.target

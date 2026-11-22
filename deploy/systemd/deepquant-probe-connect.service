@@ -1,0 +1,19 @@
+[Unit]
+Description=DeepQuant 11-25 09:30 PROBE preflight (NTP/venv/env/auth/ledger)
+OnFailure=deepquant-alert-p0.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv-gm/bin/python -u scripts/probe_automation.py preflight'
+TimeoutStartSec=180
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-probe-connect
+
+[Install]
+WantedBy=multi-user.target
