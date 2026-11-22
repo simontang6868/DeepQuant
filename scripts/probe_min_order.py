@@ -28,9 +28,10 @@
   V-4  产物落盘 forward/probe_min_order_2026-11-23.json
 
 异常分支（FAIL 之外，必须单独记录）：
-  X-1  若 E-2 显示 filled（意外成交）⇒ 立即反向卖出，记录为 X-FILLED
-       —— 此时 V-1 永远不可能满足，不能用"positions=0"判 FAIL，
-       要按 X-FILLED 单独分类，并纳入 11-26 去污范围
+  X-1  D0（11-23 成交当日）：T+1 禁止卖出；只记 symbol/qty/fill_price/order_id/filled_at，
+       probe_carry=true，V-1 置 SKIP（不判 FAIL），单独落 X-FILLED-D0 分类
+  X-1  D1（11-24 09:35 后）：由 probe_automation liquidate-probe-carry 卖出全部 probe_carry；
+       成功 carry=false；失败保持 carry=true 并升 P0，11-25 PROBE 顺延
   X-2  若 cancel 返回失败 ⇒ 记录为 X-CANCEL-FAIL，人工核委托
   X-3  若 available 未恢复 ⇒ 记录为 X-FREEZE，人工核资金冻结
 
@@ -59,7 +60,7 @@ sys.path.insert(0, str(ROOT / "backend" / "src"))
 PREREG_REL = "docs/PROBE_MIN_ORDER_PREREG_2026-11-23.md"
 PREREG_SHA = "ccbc420d0761cb919fa24e9873cac424eaf6232db83dbcd84609628a7a653044"
 ACCEPT_REL = "docs/PROBE_MIN_ORDER_ACCEPTANCE_2026-11-22.md"
-ACCEPT_SHA = "df3d42fbd30608d35d59b304d3875810a3d5d5cc11da972047171441251a5f8d"
+ACCEPT_SHA = "0fcb4c3922c0f0e460ad575a4168d06cd056b7dd4ed6e0470d5d85cd30f87033"
 PRICE_SOURCE_REL = "data/exec_all/601398.SH.exec.csv"
 REQUESTED_PREV_DATE = "20261121"      # 字面值；11-21 是周六，实际取独立数据上一交易日
 ORDER_DAY = "20261123"
@@ -130,6 +131,19 @@ def _gm_module():
 
 def _positions_snapshot(gm: Any) -> list[str]:
     return sorted(str(getattr(p, "symbol", p)) for p in (gm.get_positions() or []))
+
+
+def _position_detail(gm: Any, code: str) -> dict:
+    """X-FILLED-D0：只记录成交持仓字段，不做任何卖出动作（A 股 T+1）。"""
+    for p in (gm.get_positions() or []):
+        if str(getattr(p, "symbol", p)) != code:
+            continue
+        return {"symbol": code,
+                "qty": int(getattr(p, "volume", 0) or 0),
+                "fill_price": getattr(p, "cost_price", None) or getattr(p, "vwap", None),
+                "filled_at": str(getattr(p, "created_at", None)
+                                 or dt.datetime.now(dt.timezone(dt.timedelta(hours=8))).isoformat(timespec="seconds"))}
+    return {"symbol": code, "qty": 0, "fill_price": None, "filled_at": None}
 
 
 def _order_status(gm: Any, cl: Any) -> str:
@@ -253,24 +267,25 @@ def run(*, prev_close: str, today: str, dryrun: bool = False,
     rec["n_real_orders"] = 1
     rec["acceptance"]["E-1"] = _item("PASS", {"order_id_mask": rec["order_id_mask"]})
 
-    # E-2 委托状态 + X-1 意外成交识别
+    # E-2 委托状态 + X-FILLED-D0（A 股 T+1：当日买入不可卖，禁止反向卖出）
     status = _order_status(gm, cl)
     pos_after_order = _positions_snapshot(gm)
     if status == "filled" or pos_after_order:
+        detail = _position_detail(gm, CODE)
         rec["acceptance"]["E-2"] = _item("PASS", {"status": "filled",
                                                   "positions": pos_after_order})
-        rec["exceptions"].append({"code": "X-1", "class": "X-FILLED",
-                                  "note": "跌停买单意外成交；按 H1 验收授权立即反向卖出，纳入 11-26 去污"})
+        rec["acceptance"]["V-1"] = _item("SKIP", "X-FILLED-D0：不判 FAIL")
+        rec["exceptions"].append({
+            "code": "X-1", "class": "X-FILLED-D0",
+            "symbol": CODE, "qty": detail["qty"],
+            "fill_price": detail["fill_price"], "order_id_mask": rec["order_id_mask"],
+            "filled_at": detail["filled_at"],
+            "note": "T+1：11-23 不卖出、不改持仓；11-24 09:35 后由 X-FILLED-D1 处理",
+        })
+        rec["probe_carry"] = True
+        rec["carry_label"] = "PROBE_CARRY"
         rec["include_in_1126_decontam"] = True
-        try:
-            rev = gm.order_volume(symbol=CODE, volume=QTY, side=SIDE_SELL,
-                                  order_type=ORDER_TYPE_MARKET,
-                                  position_effect=POSITION_EFFECT_CLOSE, price=0)
-            rec["reverse_sell"] = {"submitted": True, "response": str(rev)[:120]}
-        except Exception as exc:  # noqa: BLE001
-            rec["reverse_sell"] = {"submitted": False, "error_type": type(exc).__name__}
-            rec["exceptions"].append({"code": "X-2", "class": "X-REVERSE-SELL-FAIL"})
-        return {**rec, "decision": "X-FILLED"}
+        return {**rec, "decision": "X-FILLED-D0"}
     rec["acceptance"]["E-2"] = _item("PASS", {"status": status or "pending"})
 
     # E-3 30 秒内撤单

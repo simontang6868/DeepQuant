@@ -1,0 +1,47 @@
+{
+  "mock": true,
+  "milestone": "M-1201-PREDICT",
+  "injected_at": "2026-11-30T18:15:00+08:00",
+  "injected_now": "2026-12-01T09:35:00+08:00",
+  "E2": {
+    "gate": "E2",
+    "ok": true,
+    "reason": null,
+    "dryrun": [
+      "research/stock_pick_2026-10-25/forward/mock_pred/DRYRUN_20261127_MOCK.json"
+    ],
+    "preflight": [
+      "research/stock_pick_2026-10-25/forward/mock_pred/preflight_20261130_MOCK.json"
+    ]
+  },
+  "gates": [
+    {
+      "gate": "E2",
+      "ok": true
+    },
+    {
+      "gate": "G1",
+      "ok": true
+    },
+    {
+      "gate": "G3",
+      "ok": true
+    },
+    {
+      "gate": "G4",
+      "ok": true
+    },
+    {
+      "gate": "G5",
+      "ok": true
+    },
+    {
+      "gate": "G6",
+      "ok": true
+    }
+  ],
+  "systemctl_calls_MUST_BE_EMPTY": [],
+  "armed": [],
+  "decision": "MOCK_PASS",
+  "note": "用假 DRYRUN/PREFLIGHT 产物验证 E2 判据；不调用 systemctl，不武装任何 timer"
+}
