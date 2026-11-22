@@ -1,0 +1,13 @@
+[Unit]
+Description=DeepQuant PROBE decontam timer (11-26 x3, one-shot slots)
+
+[Timer]
+OnCalendar=2026-11-26 10:00:00
+OnCalendar=2026-11-26 14:00:00
+OnCalendar=2026-11-26 14:55:00
+Persistent=false
+AccuracySec=1s
+Unit=deepquant-probe-sell.service
+
+[Install]
+WantedBy=timers.target

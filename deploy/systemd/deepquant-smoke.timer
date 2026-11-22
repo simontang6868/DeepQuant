@@ -1,0 +1,11 @@
+[Unit]
+Description=DeepQuant smoke timer (11-24 17:40 one-shot)
+
+[Timer]
+OnCalendar=2026-11-24 17:40:00
+Persistent=false
+AccuracySec=1s
+Unit=deepquant-smoke.service
+
+[Install]
+WantedBy=timers.target

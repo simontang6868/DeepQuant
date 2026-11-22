@@ -1,0 +1,19 @@
+[Unit]
+Description=DeepQuant 11-30 18:00 PREFLIGHT (existing preflight_decision_day --cloud)
+OnFailure=deepquant-alert-p1.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv/bin/python -u scripts/preflight_decision_day.py --cloud'
+TimeoutStartSec=600
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-sim-preflight
+
+[Install]
+WantedBy=multi-user.target

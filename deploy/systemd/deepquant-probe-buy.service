@@ -1,0 +1,20 @@
+[Unit]
+Description=DeepQuant 11-25 09:35 PROBE buy leg (price file -> hard gates -> orders)
+OnFailure=deepquant-alert-p0.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+# 价格由本人 09:34:59 写入 forward/probe_price_20261125.json；缺价即 MISSING_PRICE 零报单
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv-gm/bin/python -u scripts/probe_automation.py buy-from-file'
+TimeoutStartSec=300
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-probe-buy
+
+[Install]
+WantedBy=multi-user.target
