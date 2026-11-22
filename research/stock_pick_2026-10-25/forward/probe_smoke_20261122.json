@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-22T19:35:00+08:00",
+  "verdict": "SMOKE_PASS",
+  "checks": {
+    "self_check": {
+      "rc": 0,
+      "out": "{\"decision\": \"PASS\", \"checks\": [\"date_buy_ok\", \"date_wrong_detected\"]}"
+    },
+    "buy_dryrun": {
+      "rc": 0,
+      "out": "{\"decision\": \"DRYRUN\", \"codes\": [\"601398\", \"600000\"], \"prices\": {\"601398\": \"6.10\", \"600000\": \"9.80\"}, \"notional\": 1590.0, \"n_real_orders\": 0}"
+    },
+    "sell_dryrun": {
+      "rc": 0,
+      "out": "{\"decision\": \"DRYRUN\", \"codes\": [\"601398\", \"600000\"], \"n_real_orders\": 0}"
+    },
+    "decontam_dryrun": {
+      "rc": 0,
+      "out": "{\"decision\": \"DRYRUN\", \"positions\": []}"
+    },
+    "auth_untouched": {
+      "local_auth_exists": false,
+      "before_sha12": null,
+      "after_sha12": null,
+      "before_mtime": null,
+      "after_mtime": null,
+      "note": "本地仓库无授权文件（执行机专有）；dryrun 用临时夹具，实际执行机 mtime/hash 由外部 SSH 命令核对"
+    }
+  },
+  "n_real_orders": 0
+}
