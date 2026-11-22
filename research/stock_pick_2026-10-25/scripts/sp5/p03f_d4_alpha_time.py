@@ -101,7 +101,12 @@ def main() -> int:
         "t_iid": {"min": float(np.min(t_list)), "median": float(np.median(t_list)),
                   "p05": float(np.percentile(t_list, 5)), "max": float(np.max(t_list)),
                   "share_below_1": float(np.mean(t_list < 1.0)),
-                  "share_below_1_96": float(np.mean(t_list < 1.96))},
+                  "share_below_1_96": float(np.mean(t_list < 1.96)),
+                  "n_below_1_65": int(np.sum(t_list < 1.65)),
+                  "share_below_1_65": float(np.mean(t_list < 1.65)),
+                  "n_below_1_96": int(np.sum(t_list < 1.96)),
+                  "note": "alpha 检验是单边，5% 门槛 1.65；'无 t<1' 门槛过宽，已废止",
+                  "independent_windows_approx": len(months) / 36},
         "t_nw3": {"min": float(np.min(t_nw_list)), "median": float(np.median(t_nw_list)),
                   "p05": float(np.percentile(t_nw_list, 5)), "max": float(np.max(t_nw_list)),
                   "share_below_1": float(np.mean(t_nw_list < 1.0))},
@@ -176,7 +181,8 @@ def main() -> int:
     for k in ("t_iid", "t_nw3"):
         v = r[k]
         print(f"  {k}: min {v['min']:+.2f} | p05 {v['p05']:+.2f} | 中位 {v['median']:+.2f} "
-              f"| max {v['max']:+.2f} | t<1 占 {v['share_below_1']*100:.0f}%")
+              f"| max {v['max']:+.2f} | t<1.65 共 {v.get('n_below_1_65','?')} 个 "
+              f"({v.get('share_below_1_65',0)*100:.1f}%) | 独立窗口≈{v.get('independent_windows_approx',0):.1f}")
     print("\n=== 四行口径表 ===")
     for row in four_rows:
         print(f"  {row['cost']:<3} {row['series']:<12} μ={row['mu_pp']:.4f} σ={row['sigma_pp']:.3f}% "

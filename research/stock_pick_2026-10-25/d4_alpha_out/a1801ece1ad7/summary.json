@@ -81,6 +81,17 @@
         "monotone_sweep_ok": true
       },
       "note": "verdict 字段保留原值不改写；引用时以 superseded_verdict 为准"
+    },
+    {
+      "id": "A2",
+      "at": "2026-11-22T16:05:00+08:00",
+      "trigger": "外部专家第6轮§一：主口径从NW(3)改为iid属事后更换估计量，预登记明确写NW",
+      "original_estimator": "NW(3)（预登记 :37/:44/:68 明确指定，判据 t_nw>=1.96）",
+      "proposed_change": "报告主口径改 iid t=5.31(C0)/4.92(C1)",
+      "status": "**撤回该变更**——判据与报告主口径均恢复为预登记的 NW(3)",
+      "reason": "预登记写死 NW(3)；虽然 iid 与 NW 均>1.96、不改变 ESTABLISHED 结论，但换估计量属判据邻接变更，不得事后执行；若需改须新预登记+专家书面同意",
+      "final_statement": "判据 t_nw=5.43(C1) >= 1.96 => ESTABLISHED 成立（按预登记）。iid t=4.92 仅作保守参考值并列报告，不作为判据、不称主口径",
+      "note": "A1(superseded_verdict=NOT_ESTIMABLE) 与 A2 并存；引用时取 amendments[-1] 的有效结论"
     }
   ]
 }
