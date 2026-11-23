@@ -82,6 +82,32 @@ GO 已由本人在 11-22 消息中给出（「H1 的授权收到」），但 GO 
 
 ---
 
+## 5.2 施工单 §1 总表逐条现场核对（21:20，全部 14 个 timer）
+
+> 方法：SSH 执行机 `systemctl is-enabled / is-active` + `systemctl cat | grep OnCalendar`，不采信本地模板。
+
+| 施工单 §1 项 | timer | OnCalendar（现场） | enabled | active | 与 §1 一致 |
+|---|---|---|---|---|---|
+| 11-24 17:10 台账 | deepquant-daily | Mon..Fri 17:10 | ✅ | ✅ | ✅ |
+| 11-24 17:40 旁证+邮件 | deepquant-alert | Mon..Fri 17:40 | ✅ | ✅ | ✅ |
+| 11-24 17:40 smoke 复跑 | deepquant-smoke | 2026-11-24 17:40 | ✅ | ✅ | ✅ |
+| 11-24 09:35 carry 卖出 | deepquant-probe-carry-liquidation | 2026-11-24 09:35 | ✅ | ✅ | ✅ |
+| 11-25 09:30 前置自检 | deepquant-probe-connect | 2026-11-25 09:30 | ✅ | ✅ | ✅ |
+| 11-25 09:35 买腿 | deepquant-probe-buy | 2026-11-25 09:35 | ✅ | ✅ | ✅ |
+| 11-26 10:00/14:00/14:55 去污 | deepquant-probe-sell | 首时点 10:00（另两个在 timer 内） | ✅ | ✅ | ✅ |
+| 11-27 17:20 DRYRUN | deepquant-sim-prep | 2026-11-27 17:20 | ✅ | ✅ | ✅ |
+| 11-30 18:00 PREFLIGHT | deepquant-sim-preflight | 2026-11-30 18:00 | ✅ | ✅ | ✅ |
+| 11-30 出证后 PREDICT | deepquant-predict | 2026-11-30 18:15 | ✅ | ✅ | ✅（晚于 PREFLIGHT 15min） |
+| 12-01 09:35 主演练 | deepquant-sim-exec | 2026-12-01 09:35 | **disabled** | inactive | ✅ 等六门 |
+| 12-01 09:45 哨兵 | deepquant-sim-sentinel | 2026-12-01 09:45 | **disabled** | inactive | ✅ 等六门 |
+| 12-01 18:10 对账 | deepquant-sim-reconcile | 2026-12-01 18:10 | **disabled** | inactive | ✅ 等六门 |
+| 每月 1 日日历 | deepquant-calendar | *-*-01 09:00 | ✅ | ✅ | 附带项 |
+| **11-23 探针执行（§1 AUTO）** | **无对应 timer** | — | — | — | ❌ **F1 唯一缺口** |
+
+**结论**：14 个 timer 中 13 个与施工单对得上且状态正确，唯一缺口是 F1 的 min-order。这不是"抽查几个没问题"，是全表逐条核过。
+
+---
+
 ## 6. 本次自审的边界
 
 - 未修改任何冻结预登记的正文与哈希（`ccbc420d…` / `df3d42fb…` / `0fcb4c39…` 一字未动）；
