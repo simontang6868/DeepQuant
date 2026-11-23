@@ -620,19 +620,29 @@ def snapshot(*, cancel_cl_ord_id: str | None = None, gm: Any = None,
 
 
 def liquidate_probe_carry(*, gm: Any = None, alert_fn=None,
-                          now: dt.datetime | None = None) -> dict:
-    """X-FILLED-D1：11-24 09:35 后卖掉 probe_carry；失败保持 carry=true 并升 P0。"""
+                          now: dt.datetime | None = None,
+                          day: str = "20261124",
+                          min_order_out: Path | None = None) -> dict:
+    """X-FILLED-D1：最早可卖时点后卖掉 probe_carry；失败保持 carry=true 并升 P0。
+
+    默认 day=20261124 / min_order_out=MIN_ORDER_OUT（11-23 探针的原路径，不变）。
+    11-24 补跑探针的 D1 由 timer 传 day=20261125、min_order_out=probe_min_order_2026-11-24.json。
+    """
     n = now or dt.datetime.now(dt.timezone(dt.timedelta(hours=8)))
-    if n.date() != dt.date(2026, 11, 24) or (n.hour, n.minute) < (9, 35):
-        return {"decision": "HALT_TOO_EARLY", "now": n.isoformat(timespec="seconds")}
+    expect = dt.date(int(day[:4]), int(day[4:6]), int(day[6:]))
+    if n.date() != expect or (n.hour, n.minute) < (9, 35):
+        return {"decision": "HALT_TOO_EARLY", "now": n.isoformat(timespec="seconds"),
+                "expected_day": day}
     if not probe_carry_state():
         return {"decision": "NO_CARRY", "now": n.isoformat(timespec="seconds")}
-    carry = next((x for x in (_read_json(MIN_ORDER_OUT) or {}).get("exceptions", [])
+    out = min_order_out or MIN_ORDER_OUT
+    carry = next((x for x in (_read_json(out) or {}).get("exceptions", [])
                   if x.get("class") == "X-FILLED-D0"), {})
     sym = str(carry.get("symbol") or "601398")
     qty = int(carry.get("qty") or 0)
-    rec = {"day": "20261124", "at": n.isoformat(timespec="seconds"),
-           "mode": "PROBE_LIQUIDATION", "symbol": sym, "qty": qty}
+    rec = {"day": day, "at": n.isoformat(timespec="seconds"),
+           "mode": "PROBE_LIQUIDATION", "symbol": sym, "qty": qty,
+           "min_order_out": _rel(out)}
     g = gm if gm is not None else _gm()
     _login_gm(g)
     before = [x for x in positions_labelled(g) if x["label"] == "PROBE_CARRY"]
@@ -686,7 +696,10 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("classify")
     sub.add_parser("predict")
     sub.add_parser("predict-mock")
-    sub.add_parser("liquidate-probe-carry")
+    liq = sub.add_parser("liquidate-probe-carry")
+    liq.add_argument("--day", default="20261124", help="D1 可卖日；补跑探针传 20261125")
+    liq.add_argument("--min-order-out", default=None,
+                     help="探针产物相对路径；补跑探针传 probe_min_order_2026-11-24.json")
     sm = sub.add_parser("set-price-mode")
     sm.add_argument("--mode", choices=("A", "B", "C"), required=True)
     sm.add_argument("--by", required=True, help="本人姓名/签字主体")
@@ -723,7 +736,8 @@ def main(argv: list[str] | None = None) -> int:
         r = set_price_mode(mode=args.mode, by=args.by, basis=args.basis,
                            buy_factor=args.buy_factor, sell_factor=args.sell_factor)
     elif args.cmd == "liquidate-probe-carry":
-        r = liquidate_probe_carry()
+        mo = (ROOT / args.min_order_out) if args.min_order_out else None
+        r = liquidate_probe_carry(day=args.day, min_order_out=mo)
     elif args.cmd == "predict-mock":
         d = FW / "mock_pred"
         d.mkdir(parents=True, exist_ok=True)

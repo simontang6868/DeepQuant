@@ -1,0 +1,11 @@
+[Unit]
+Description=DeepQuant PROBE min-order timer (2026-11-24 09:35 one-shot, PA-GM-PROBE-3B)
+
+[Timer]
+OnCalendar=2026-11-24 09:35:00
+Persistent=false
+AccuracySec=1s
+Unit=deepquant-probe-min-order.service
+
+[Install]
+WantedBy=timers.target

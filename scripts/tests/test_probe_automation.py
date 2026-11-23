@@ -336,3 +336,32 @@ def test_price_mode_switch_is_audited():
     assert r["decision"] == "MODE_SET" and r["selected_by"] == "账户持有人"
     lines = pa.PRICE_MODE_AUDIT.read_text(encoding="utf-8").splitlines()
     assert len(lines) == 1 and '"mode": "B"' in lines[0]
+
+
+# ---------------------------------------------------------------- 11-24 补跑 D1 参数化
+def test_liquidation_1124_default_unchanged():
+    """默认仍 11-24 / 11-23 产物，旧 timer 行为不变。"""
+    _seed_carry()
+    gm = _LiquidationGm()
+    r = pa.liquidate_probe_carry(
+        gm=gm, now=dt.datetime(2026, 11, 24, 9, 35,
+                               tzinfo=dt.timezone(dt.timedelta(hours=8))))
+    assert r["day"] == "20261124"
+    assert r["min_order_out"] == pa._rel(pa.MIN_ORDER_OUT)
+
+
+def test_liquidation_1125_param_accepts_and_rejects_1124():
+    """补跑 D1：day=20261125 + 11-24 产物；11-24 当日不得卖出。"""
+    _seed_carry()
+    gm = _LiquidationGm()
+    too_early = pa.liquidate_probe_carry(
+        gm=gm, day="20261125", min_order_out=pa.FW / "probe_min_order_2026-11-24.json",
+        now=dt.datetime(2026, 11, 24, 9, 36,
+                        tzinfo=dt.timezone(dt.timedelta(hours=8))))
+    assert too_early["decision"] == "HALT_TOO_EARLY" and gm.sent == []
+    ok = pa.liquidate_probe_carry(
+        gm=gm, day="20261125", min_order_out=pa.FW / "probe_min_order_2026-11-24.json",
+        now=dt.datetime(2026, 11, 25, 9, 36,
+                        tzinfo=dt.timezone(dt.timedelta(hours=8))))
+    assert ok["day"] == "20261125"
+    assert ok["min_order_out"].endswith("probe_min_order_2026-11-24.json")

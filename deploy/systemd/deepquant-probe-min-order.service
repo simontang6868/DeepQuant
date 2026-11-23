@@ -1,0 +1,21 @@
+[Unit]
+Description=DeepQuant 11-24 09:35 PROBE min-order (PA-GM-PROBE-3B, limit-down 100sh -> cancel)
+OnFailure=deepquant-alert-p0.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+# 前置命令块三行写死：venv-gm / source env / cd 仓库根（11-22 三真坑）
+# --prev-close 9.150 为 11-23 独立数据收盘，脚本内交叉校验，不一致即 HALT
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv-gm/bin/python -u scripts/probe_min_order_1124.py --prev-close 9.150 >> __REPO__/logs/probe_min_order_1124.log 2>&1'
+TimeoutStartSec=300
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-probe-min-order
+
+[Install]
+WantedBy=multi-user.target

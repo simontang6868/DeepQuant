@@ -1,0 +1,21 @@
+[Unit]
+Description=DeepQuant X-FILLED-D1 11-25 09:36+ 补跑探针 carry liquidation (PA-GM-PROBE-3B)
+OnFailure=deepquant-alert-p0.service
+
+[Service]
+Type=oneshot
+User=deepquant
+Group=deepquant
+WorkingDirectory=__REPO__
+EnvironmentFile=__REPO__/env
+Environment=HOME=/home/deepquant
+# 11-24 补跑探针若 X-FILLED-D0，T+1 最早 11-25 可卖；无 carry 时 NO_CARRY rc=0
+# 读补跑产物 probe_min_order_2026-11-24.json，不读 11-23 那份
+ExecStart=/bin/bash -lc 'set -a; . __REPO__/env; set +a; cd __REPO__; __REPO__/.venv-gm/bin/python -u scripts/probe_automation.py liquidate-probe-carry --day 20261125 --min-order-out research/stock_pick_2026-10-25/forward/probe_min_order_2026-11-24.json >> __REPO__/logs/min_order_carry_1124.log 2>&1'
+TimeoutStartSec=300
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=deepquant-min-order-carry-1124
+
+[Install]
+WantedBy=multi-user.target

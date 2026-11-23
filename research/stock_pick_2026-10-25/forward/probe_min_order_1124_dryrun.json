@@ -1,0 +1,70 @@
+{
+  "mode": "PROBE",
+  "prereg_sha12": "b6aa6145dd64",
+  "accept_sha12": "c826fcaa6224",
+  "day": "20261124",
+  "code": "601398",
+  "qty": 100,
+  "side": "BUY",
+  "price": "8.23",
+  "notional": 823.0,
+  "acceptance": {
+    "P-1": {
+      "status": "PASS",
+      "observed": {
+        "requested_prev_close_date": "20261123",
+        "prev_close_date": "2026-11-23",
+        "prev_close": "9.150",
+        "note": "11-23 为交易日，字面=实际；前收取独立数据 11-23 收盘 9.150"
+      }
+    },
+    "P-2": {
+      "status": "PASS",
+      "observed": {
+        "code": "601398",
+        "board": "SH_MAIN",
+        "limit_factor": 0.9
+      }
+    },
+    "P-3": {
+      "status": "PASS",
+      "observed": {
+        "prev_close": "9.150",
+        "limit_price": "8.23",
+        "rounding": "ROUND_FLOOR(0.01)"
+      }
+    },
+    "E-1": {
+      "status": "SKIP",
+      "observed": null
+    },
+    "E-2": {
+      "status": "SKIP",
+      "observed": null
+    },
+    "E-3": {
+      "status": "SKIP",
+      "observed": null
+    },
+    "V-1": {
+      "status": "SKIP",
+      "observed": null
+    },
+    "V-2": {
+      "status": "SKIP",
+      "observed": null
+    },
+    "V-3": {
+      "status": "SKIP",
+      "observed": null
+    },
+    "V-4": {
+      "status": "PASS",
+      "observed": "research/stock_pick_2026-10-25/forward/probe_min_order_1124_dryrun.json"
+    }
+  },
+  "exceptions": [],
+  "decision": "DRYRUN",
+  "n_real_orders": 0,
+  "note": "dryrun 不导入 gmtrade、不建连、不读授权、不发单；V-4 由落盘后回填"
+}

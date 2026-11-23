@@ -1,0 +1,11 @@
+[Unit]
+Description=DeepQuant 补跑探针 X-FILLED-D1 timer (2026-11-25 09:36, PA-GM-PROBE-3B)
+
+[Timer]
+OnCalendar=2026-11-25 09:36:00
+Persistent=false
+AccuracySec=1s
+Unit=deepquant-min-order-carry-1124.service
+
+[Install]
+WantedBy=timers.target

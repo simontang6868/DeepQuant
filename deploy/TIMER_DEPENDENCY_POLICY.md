@@ -17,6 +17,8 @@
 | `deepquant-probe-connect.timer` | 2026-11-25 09:30 | env/venv/授权/11-24 台账 | 11-24 17:10 | OK |
 | `deepquant-probe-buy.timer` | 2026-11-25 09:35 | 09:30 前置自检 + 本人 09:34:59 价格 | 09:30 / 09:34:59 | OK（自检 5 min；价格仅 1 s，属**有意的最晚读价**；缺价即 `MISSING_PRICE` 零报单，失败关闭） |
 | `deepquant-probe-carry-liquidation.timer` | 2026-11-24 09:35 | 11-23 X-FILLED-D0 持仓记录（T+1） | 11-23 盘中 | OK（隔夜；09:35 是 T+1 最早可卖时点） |
+| `deepquant-probe-min-order.timer` | **2026-11-24 09:35**（补跑新增） | 11-23 独立数据前收 9.150（已落盘）+ 冻结双哈希 | 11-23 收盘 / 11-23 21:30 | OK（隔夜；**本次补的核心缺口就是它——11-23 探针无此 timer 故从未执行**） |
+| `deepquant-min-order-carry-1124.timer` | **2026-11-25 09:36**（补跑新增） | 11-24 补跑探针 X-FILLED-D0（T+1） | 11-24 09:35 | OK（隔夜；09:36 比主买腿 09:35 晚 1 min——先让 carry 门 HALT 买腿，再卖 carry，避免带仓执行） |
 | `deepquant-probe-sell.timer` | 2026-11-26 10:00/14:00/14:55 | 11-25 买腿成交/持仓（T+1） | 11-25 09:35 | OK（隔夜；第三次留 5 min 日到 14:55） |
 | `deepquant-sim-prep.timer` | 2026-11-27 17:20 | 11-27 日更（DRYRUN 用 mock 台账） | 17:10（观测 6–10 min） | OK（10 min）；最坏 1h race，已登记限制，本单不改 |
 | `deepquant-sim-preflight.timer` | 2026-11-30 18:00 | 17:10 台账 + 17:40 旁证出证/邮件 | 17:10 / 17:40 | OK（20 min） |
