@@ -52,3 +52,8 @@
 
 11-23 探针"GO 后无触发器"→ 自审查出 → 本人授权补跑 → 11-24 新预登记（不污染 11-23 冻结件）→ **新建真 timer 且现场 active** → 执行机 dryrun 全绿 → 等 11-24 09:35 真发单。
 本轮回执不再出现"到点自动跑"这类没有触发器支撑的措辞——**有没有 timer，现场说了算**。
+
+## 五、提交
+
+- 本地提交：`7bccba0`（16 files changed，1115 insertions / 9 deletions）
+- 远端推送：**未完成**——GitHub 经典 ghp_ token 已被拒用于 Git 操作（`Invalid username or token`），新 PAT 不在本会话 `CODEBUDDY_MCP_CONFIG`（`github-pat` 键消失），git 直连亦不通。凭据恢复后补推；**不得报"已推送"**。
