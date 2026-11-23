@@ -115,6 +115,11 @@ probe_out/*.log
 /data/_all_a_*.txt
 /data/_all_a_*manifest.json
 
+# ---------- 变异测试产物（2026-11-23）----------
+# exec_result_window_mutation_test.py 故意生成的 .TEST_ 结果文件；
+# 是测试证据不是执行真相，留在本地供核对，但不入库。
+/research/stock_pick_2026-10-25/forward/sim_exec/*.TEST_*.json
+
 # ---------- 仿真账户（2026-11-08）----------
 # 每日快照是时点证据，走每日邮件备份 + 周包；不进 git 以免每天一次提交噪音。
 /research/stock_pick_2026-10-25/forward/account_snapshot.json
